@@ -4,25 +4,107 @@ init:
     mov es, ax
 
 main:
-    
     mov si, msg
     call write_string
-    
-    mov si, msg2
-    call write_string_hex 
-    
+
+    call detect_bootdisk 
+        
     mov si, newline
     call write_string
 
-    .loop:
-        ;mov si, prompt
-        mov ah, 0
-        int 0x16 ; al contains the key
-        
-        inc al; haha
+    mov si, msg2
+    call write_string_hex 
+
+    mov si, newline
+    call write_string
+
+    call cli
+
+detect_bootdisk:
+    and dl, 0xf0 ; only the first one
+    cmp dl, 0x80
+    je .hd
+
+    cmp dl, 0
+    je .fd
+
+    mov al, "U"
+    mov ah, 0x0e
+    int 0x10
+    jmp .end
+
+    .hd:
+        mov al, "H"
         mov ah, 0x0e
-        int 0x10 ; go ahead print it         
-    jmp .loop
+        int 0x10
+    jmp .end
+    .fd:
+        mov al, "F"
+        mov ah, 0x0e
+        int 0x10
+    jmp .end
+    .end:
+    ret
+
+cli:
+    .loop:
+        mov si, prompt
+        call write_string
+
+        call get_string
+    
+        ; by now the full string is in [di], [di+1], ...
+        ; we need to compare to si
+        
+        ;mov si, cmd_buffer
+        ;call write_string
+        
+        mov si, hello
+        call strcmp
+        jc .hello ; Jump if Carry (bit set)
+
+        jmp .loop 
+
+    .hello:
+        mov si, hello_response
+        call write_string
+        jmp .loop
+
+get_string:
+    xor cl, cl ; blank count
+    mov di, cmd_buffer
+
+    .getchar:
+
+    mov ah, 0
+    int 0x16 ; al contains the key
+
+    cmp al, 0x0d
+    je .enter
+
+    stosb
+    ; Don't inc di here - it does it - and if you do, you could end up with 0x41 0x00 0x42
+    ; - and the comparison would end at 0x00 of course
+
+    ; echo it
+    mov ah, 0x0e
+    int 0x10
+
+    jmp .getchar
+
+    .enter:
+    ; store a 0
+    mov al, 0
+    stosb
+    inc di
+
+    ; do the newline
+    mov si, newline
+    call write_string
+    
+    ; reset di
+    mov di, cmd_buffer
+    ret
 
 write_string:
     .writechar:
@@ -114,10 +196,65 @@ write_hex:
     .end:
     ret
 
+strcmp:
+    .loop:
+    mov al, [si] ; Move the value of the current source index into al
+    mov bl, [di] ; move the value of the current dest index into bl
+   
+    cmp al, bl ; are they the same?
+
+    jne .notequal
+    ; so we're equal 
+    
+    cmp al, 0 ; is al 0 (we know bl is 0)
+    je .done
+
+    inc si
+    inc di ; increment the index counters (so we can get the next bytes)
+    jmp .loop
+
+    .notequal:
+            ; so we need somewhere to store our result,
+            ; we could use anywhere but here an easy 1-bit ref will do 
+        clc ; CLear Carry
+        ret
+
+    .done:
+        stc ; SeT Carry
+        ret
+
+data:
     msg db 'Welcome to DanOS!', 0x0a, 0x0d, 0
     msg2 db 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 0
-    newline db 0x0a, 0x0d
+    hello db 'hello', 0
+    hello_response db 'Salutations!', 0x0a, 0x0d, 0
+    newline db 0x0a, 0x0d, 0
     prompt db '>',0
- 
-    times 510-($-$$) db 0
-    dw 0AA55h ; some BIOSes require this signature
+    cmd_buffer times 64 db 0 
+
+times 440-($-$$) db 0
+
+;db = 1, dw = 2, dd = 4
+disksig dd "DAND"
+extra dw 0x0000
+
+status db 0x80 ; 0x00 not bootable
+head_start db 0x00
+sector_start db 0x02
+cylinder_start db 0x00
+parttype db 0x83
+head_end db 0x01
+sector_end db 0x20
+cylinder_end db 0x02
+lba_firstsector_le dd 0x00000001
+num_sect_le dd 0x000007ff
+
+; no more parts
+part2 dd 0,0,0,0
+part3 dd 0,0,0,0
+part4 dd 0,0,0,0
+
+dw 0AA55h ; bootsector - some BIOSes require this signature
+
+; pad the rest with zeroes
+times 1048576-($-$$) db 0
