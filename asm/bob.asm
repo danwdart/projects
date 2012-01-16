@@ -7,11 +7,6 @@ main:
     mov si, msg
     call write_string
 
-    call detect_bootdisk 
-        
-    mov si, newline
-    call write_string
-
     mov si, msg2
     call write_string_hex 
 
@@ -19,32 +14,6 @@ main:
     call write_string
 
     call cli
-
-detect_bootdisk:
-    and dl, 0xf0 ; only the first one
-    cmp dl, 0x80
-    je .hd
-
-    cmp dl, 0
-    je .fd
-
-    mov al, "U"
-    mov ah, 0x0e
-    int 0x10
-    jmp .end
-
-    .hd:
-        mov al, "H"
-        mov ah, 0x0e
-        int 0x10
-    jmp .end
-    .fd:
-        mov al, "F"
-        mov ah, 0x0e
-        int 0x10
-    jmp .end
-    .end:
-    ret
 
 cli:
     .loop:
@@ -63,12 +32,49 @@ cli:
         call strcmp
         jc .hello ; Jump if Carry (bit set)
 
+        mov si, boot_string
+        call strcmp
+        jc .boot
+
         jmp .loop 
 
     .hello:
         mov si, hello_response
         call write_string
         jmp .loop
+
+    .boot:
+        call loader
+        jmp .loop
+
+loader:
+    .reset:
+        mov dl, 0x80 ; sda
+        mov ah, 0
+        int 0x13
+
+    .read:
+        mov ah, 0x02
+        mov al, 8 ; sectors to read
+        mov ch, 0 ; track
+        mov cl, 2 ; sector
+        mov dh, 0 ; head
+        mov dl, 0x80 ; drive
+        mov bx, 0x2000 ; segment ( * 0x10 )
+        mov es, bx
+        mov bx, 0x0000 ; offset (add to seg)
+        int 0x13
+        jnc .ok
+
+        mov al, ah
+        call write_hex
+        cli
+        hlt
+
+    .ok:
+        push es
+        push bx
+        retf ; ip=bx. cs = es 
 
 get_string:
     xor cl, cl ; blank count
@@ -228,6 +234,7 @@ data:
     msg2 db 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 0
     hello db 'hello', 0
     hello_response db 'Salutations!', 0x0a, 0x0d, 0
+    boot_string db 'boot', 0
     newline db 0x0a, 0x0d, 0
     prompt db '>',0
     cmd_buffer times 64 db 0 
@@ -255,6 +262,75 @@ part3 dd 0,0,0,0
 part4 dd 0,0,0,0
 
 dw 0AA55h ; bootsector - some BIOSes require this signature
+    call code
+    oem_id db 'DANOS0.1'
+    bytes_per_sector dw 0x0200 ; 512
+    sectors_per_cluster db 0x04
+    reserved_sectors dw 0x0001
+    num_fats db 0x02
+    num_dir_entries dw 0x0200
+    num_total_sectors dw 0x0800
+    media_descriptor db 0xf8 ; HD
+    sectors_per_fat dw 0x0002
+    sectors_per_track dw 0x0020
+    total_heads dw 0x0040
+    num_hidden_sectors dd 0x00000000
+    large_sector_count dd 0x00000000
+    ; fat12
+    drive_number db 0x80 ; useless!
+    nt_flags db 0x00 ; reserved
+    drive_signature db 0x29 ; or 0x28 - so NT recognises it
+    volume_id dd 0x12345678
+    volume_label db 'DANOS FILES'
+    sys_id db 'FAT12   '
+code:
+   ; org 0x103e
+   ; mov ax, 0x103e  ; "you are here" - set up segments
+   ; mov ds, ax
+   ; mov es, ax
+    cli             ; Clear interrupts
+    mov ax, 0
+    mov ss, ax          ; Set stack segment and pointer
+    mov sp, 0FFFFh
+    sti             ; Restore interrupts
+    cld            
+    mov ax, 2000h           ; Set all segments to match where kernel is loaded
+    mov ds, ax    
+    mov es, ax    
+    mov fs, ax    
+    mov gs, ax
+
+    mov ax, 1003h           ; Set text output with certain attributes
+    mov bx, 0           ; to be bright, and not blinking
+    int 10h
+
+    mov al, 'K'
+    mov ah, 0x0e
+    int 0x10
+    
+    mov si, partmsg
+    call os_write_string   
+   
+    jmp $
+     
+os_write_string:
+    .writechar:
+    lodsb ; load [si] into al
+    mov ah, 0x0E ; write function
+    int 0x10
+    or al, al
+    jz .done
+
+    jmp .writechar
+    .done:
+     ret
+
+partmsg db 'Hello from Partition 1', 0
+
+    
+bootlabel:
+    times 1022-($-$$) db 0
+    dw 0AA55h ; bootsector
 
 ; pad the rest with zeroes
 times 1048576-($-$$) db 0
