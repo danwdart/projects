@@ -18,7 +18,7 @@ then
 	exit 255 
 fi
 DIRENTRY="{{DIR}}"
-CURDIR=$(cd $(dirname $0) && pwd)
+CURDIR=$(pwd)
 NAMEENTRY="{{NAME}}"
 SITESAVAILABLE=/etc/apache2/sites-available
 
