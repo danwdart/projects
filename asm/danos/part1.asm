@@ -34,7 +34,9 @@ init:
 code:
     mov si, kernld
     call write_string   
-  
+    jmp load_kernel
+    jmp $
+ 
 vesa_get_info:
     mov ax, 0x4f00
     int 0x10
@@ -72,9 +74,40 @@ vesa_get_info:
 ;jmp .start
 ;.end: 
 
+
+
 loop:
     jmp $
-     
+
+
+load_kernel:
+    .reset:
+        mov dl, 0x80 ; sda
+        mov ah, 0
+        int 0x13
+
+    .read:
+        mov ah, 0x02
+        mov al, 19 ; sectors to read - todo confirm
+        mov ch, 0 ; track
+        mov cl, 3 ; sector
+        mov dh, 0 ; head
+        mov dl, 0x80 ; drive
+        mov bx, 0x2000 ; segment ( * 0x10 )
+        mov es, bx
+        mov bx, 0x0000 ; offset (add to seg)
+        int 0x13
+        jnc .ok
+
+        mov al, ah
+        call write_hex
+        cli
+        hlt
+
+    .ok:
+        push es
+        push bx
+        retf ; ip=bx. cs = es	     
 
 write_hexes:
     .start:
