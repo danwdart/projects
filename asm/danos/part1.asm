@@ -1,24 +1,24 @@
     call init
-    oem_id db 'DANOS0.1'
-    bytes_per_sector dw 0x0200 ; 512
-    sectors_per_cluster db 0x04
-    reserved_sectors dw 0x0001
-    num_fats db 0x02
-    num_dir_entries dw 0x0200
-    num_total_sectors dw 0x0800
-    media_descriptor db 0xf8 ; HD
-    sectors_per_fat dw 0x0002
-    sectors_per_track dw 0x0020
-    total_heads dw 0x0040
-    num_hidden_sectors dd 0x00000000
-    large_sector_count dd 0x00000000
+    OEMId db 'DANOS0.1'
+    BytesPerSector dw 512
+    SectorsPerCluster db 1
+    ReservedForBoot dw 1
+    NumberOfFats db 2
+    NumberOfDirEntries dw 512 ; sectors to read = direntries * 32 / (bytespercluster*sectorspercluster) = 32
+    LogicalSectors dw 2047 ;= 1M. 0x0800
+    MediaDescriptor db 0xf8 ; f8 = HD
+    SectorsPerFat dw 9 ;2
+    SectorsPerTrack dw 18 ;32
+    TotalHeads dw 2 ; 0x0040
+    HiddenSectors dd 0
+    LargeSectors dd 0
     ; fat12
-    drive_number db 0x80 ; useless!
-    nt_flags db 0x00 ; reserved
-    drive_signature db 0x29 ; or 0x28 - so NT recognises it
-    volume_id dd 0x12345678
-    volume_label db 'DANOS FILES'
-    sys_id db 'FAT12   '
+    DriveNumber db 0x80 ; useless!
+    NTFlags db 0x00 ; reserved
+    DriveSignature db 0x29 ; or 0x28 - so NT recognises it
+    VolumeId dd 0x78563412
+    VolumeLabel db 'DANOS FILES'
+    SysId db 'FAT12   '
 init:
     cli             ; Clear interrupts
     mov ax, 0
@@ -26,7 +26,7 @@ init:
     mov sp, 0FFFFh
     sti             ; Restore interrupts
     cld            
-    mov ax, 2000h           ; Set all segments to match where kernel is loaded
+    mov ax, 2000h           ; Set all segments to match where booter is loaded
     mov ds, ax    
     mov es, ax    
     mov fs, ax    
@@ -36,49 +36,6 @@ code:
     call write_string   
     jmp load_kernel
     jmp $
- 
-vesa_get_info:
-    mov ax, 0x4f00
-    int 0x10
-	; this should have set es:di to our point
-    cmp ax, 0x4f00 ; did it work
-    je .fail
-
-    ;add di, 4 ; get to after the VESA signature
-    ;mov ax, di
-    ;mov si, ax
-    mov si, di
-    mov cx, 16
-    call write_hexes
-    jmp .end
-
-.fail:
-    mov ah, 0x0e
-    mov al, "F"
-    int 0x10
-.end:
-
-;cpuid:
-;cpuid
-;push ecx
-;push edx
-;push ebx
-;mov cl, 12
-;mov ah, 0x0e
-;.start:
-;pop al
-;int 0x10
-;cmp cl, 0
-;je .end
-;dec cl
-;jmp .start
-;.end: 
-
-
-
-loop:
-    jmp $
-
 
 load_kernel:
     .reset:
@@ -88,26 +45,44 @@ load_kernel:
 
     .read:
         mov ah, 0x02
-        mov al, 19 ; sectors to read - todo confirm
+        mov al, 19 ; sectors to read = reserved + fats * sectors per fat
         mov ch, 0 ; track
-        mov cl, 3 ; sector
+        mov cl, 3 ; sector, 1-based
         mov dh, 0 ; head
         mov dl, 0x80 ; drive
-        mov bx, 0x2000 ; segment ( * 0x10 )
-        mov es, bx
+        mov es, [buffer]
         mov bx, 0x0000 ; offset (add to seg)
         int 0x13
         jnc .ok
-
+    
+    .error:
         mov al, ah
         call write_hex
         cli
         hlt
 
     .ok:
-        push es
-        push bx
-        retf ; ip=bx. cs = es	     
+;	mov si,buffer
+;	mov cl, 255 
+;	call write_hexes
+
+	mov cl, 255	
+	mov si, filename
+	mov di, buffer
+	call findstr
+	jc .found
+	.notfound:
+		mov ah, 0x0e
+		mov al, "N"
+		int 0x10
+		jmp .done
+	.found:
+		mov ah, 0x0e
+		mov al, "F"
+		int 0x10
+	.done: 
+
+jmp $ 
 
 write_hexes:
     .start:
@@ -154,7 +129,6 @@ write_hex:
     .isless:
     add bl, 0x30 ; e.g. 0x04 + 0x30 = 0x34 = "4"
         jmp .cont
-
     .cont: 
     ; bl now correct
     ; bh can now be the higher byte
@@ -184,6 +158,40 @@ write_hex:
 
     .end:
     ret
+
+findstr:
+; maybe switch this
+;	1. si = addr1 TEST, di = addr2 DEST
+;	2. does [si] = [di]?
+;	3. yes: inc si, di, keep going
+;	4. no: inc di only, keep going
+;	5. if si = 0 end yes
+;	6. no
+; limit count
+; todo fix this
+    .loop:
+	mov al, [si]
+	mov bl, [di]
+	mov dh, si
+	cmp cl, 0
+	je .nomatch
+	cmp al, bl
+	jne .notequal
+    .equal:
+	inc si
+    .notequal:
+	inc di
+	dec cl
+        cmp bl, 0
+	je .match
+    	jmp .loop
+    .match:
+	stc ; di is now one more than the 0
+	dec di ; di is here STRING^
+	ret
+    .nomatch:
+	clc
+	ret
 
 strcmp:
     .loop:
@@ -260,7 +268,8 @@ write_string:
     .done:
      ret
 
-kernld db 'Finding kernel.bin', 0x13, 0x10, 0
+kernld db 'Finding kernel.bin', 0x0d, 0x0a, 0
+filename db 'KERNEL  BIN',0
 newline db 0x0a, 0x0d, 0
 prompt db '>',0
 cmd_buffer times 64 db 0 
@@ -268,6 +277,7 @@ cmd_buffer times 64 db 0
 bootlabel:
     times 510-($-$$) db 0
     dw 0AA55h ; bootsector
-
+buffer:
+db "KERNEL  BINHello World!"
 ; pad the rest with zeroes
 times 1048576-($-$$) db 0
