@@ -50,7 +50,7 @@ load_kernel:
         mov cl, 3 ; sector, 1-based
         mov dh, 0 ; head
         mov dl, 0x80 ; drive
-        mov es, [buffer]
+        mov es, 0x3000
         mov bx, 0x0000 ; offset (add to seg)
         int 0x13
         jnc .ok
@@ -62,25 +62,26 @@ load_kernel:
         hlt
 
     .ok:
-;	mov si,buffer
-;	mov cl, 255 
-;	call write_hexes
+    mov si,0x3000
+    mov cx, 1024 
+    call write_hexes
 
-	mov cl, 255	
-	mov si, filename
-	mov di, buffer
-	call findstr
-	jc .found
-	.notfound:
-		mov ah, 0x0e
-		mov al, "N"
-		int 0x10
-		jmp .done
-	.found:
-		mov ah, 0x0e
-		mov al, "F"
-		int 0x10
-	.done: 
+;    mov cx, 1024    
+;    mov si, filename
+;    mov di, buffer
+;    clc
+;    call findstr
+;    jc .found
+;    .notfound:
+;        mov ah, 0x0e
+;        mov al, "N"
+;        int 0x10
+;        jmp .done
+;    .found:
+;        mov ah, 0x0e
+;        mov al, "F"
+;        int 0x10
+;    .done: 
 
 jmp $ 
 
@@ -88,9 +89,9 @@ write_hexes:
     .start:
     lodsb
     call write_hex
-    cmp cl, 0
+    cmp cx, 0
     je .end
-    dec cl
+    dec cx
     jmp .start
     .end:
     ret
@@ -160,38 +161,45 @@ write_hex:
     ret
 
 findstr:
-; maybe switch this
-;	1. si = addr1 TEST, di = addr2 DEST
-;	2. does [si] = [di]?
-;	3. yes: inc si, di, keep going
-;	4. no: inc di only, keep going
-;	5. if si = 0 end yes
-;	6. no
-; limit count
-; todo fix this
+    ; 1. si = ^HELLO
+    ; 2. di = ^ASTRINGHELLOASTRING
+    ; cmp [si], [di]
+    ; if [si] = 0 then return carry decrement di
+    ; if cx = 0 then return nocarry
+    ; if same, increment both
+    ; 1. si = H^ELLO
+    ; if different, increment di, reset si
+    ; regardless decrement cx
+    ; go to 3
+
     .loop:
-	mov al, [si]
-	mov bl, [di]
-	mov dh, si
-	cmp cl, 0
-	je .nomatch
-	cmp al, bl
-	jne .notequal
-    .equal:
-	inc si
-    .notequal:
-	inc di
-	dec cl
-        cmp bl, 0
-	je .match
-    	jmp .loop
-    .match:
-	stc ; di is now one more than the 0
-	dec di ; di is here STRING^
-	ret
-    .nomatch:
-	clc
-	ret
+    mov al, [si] ; lodsb would work just as well I suppose
+    mov dx, si ; save location
+    mov bl, [di]
+    cmp al, 0
+    je .success
+    cmp cx, 0
+    je .fail
+    cmp al, bl
+    jne .different
+    .same:
+    inc si
+    inc di
+    jmp .finish
+    .different:
+    inc di
+    mov si, dx
+    jmp .finish
+    .finish:
+    dec cx
+    jmp .loop
+    .success:
+    dec di
+    stc
+    ret
+    .fail:
+    clc
+    ret
 
 strcmp:
     .loop:
@@ -278,6 +286,5 @@ bootlabel:
     times 510-($-$$) db 0
     dw 0AA55h ; bootsector
 buffer:
-db "KERNEL  BINHello World!"
 ; pad the rest with zeroes
 times 1048576-($-$$) db 0
