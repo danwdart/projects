@@ -50,7 +50,8 @@ load_kernel:
         mov cl, 3 ; sector, 1-based
         mov dh, 0 ; head
         mov dl, 0x80 ; drive
-        mov es, 0x3000
+        mov bx, 0x3000 ; segment to load it to
+        mov es, bx
         mov bx, 0x0000 ; offset (add to seg)
         int 0x13
         jnc .ok
@@ -60,28 +61,30 @@ load_kernel:
         call write_hex
         cli
         hlt
+        jmp $
 
     .ok:
-    mov si,0x3000
-    mov cx, 1024 
-    call write_hexes
+    mov bx, 0x3000
+    mov ds, bx ; here is the data segment
+    mov cx, 0x2500 ; bigger than this 
+    mov si, filename
+    mov bx, 12
+    mov di, 0
+    clc
+    call findstr_in_junk
+    jc .found
+    .notfound:
+        mov ah, 0x0e
+        mov al, "N"
+        int 0x10
+        hlt
+    .found:
+    ; echo first letter of the count
 
-;    mov cx, 1024    
-;    mov si, filename
-;    mov di, buffer
-;    clc
-;    call findstr
-;    jc .found
-;    .notfound:
-;        mov ah, 0x0e
-;        mov al, "N"
-;        int 0x10
-;        jmp .done
-;    .found:
-;        mov ah, 0x0e
-;        mov al, "F"
-;        int 0x10
-;    .done: 
+    mov si, dx
+    mov cx, 0x2500
+    call write_hexes
+    hlt
 
 jmp $ 
 
@@ -160,6 +163,52 @@ write_hex:
     .end:
     ret
 
+findstr_in_junk:
+    ; 1. si = ^HELLO
+    ; 2. di = ^\0\0\0\0\0\0HELLO\0\0\0\0\0
+    ; 3. bx = string length
+    ; 3. cx = when to give up
+    ; CACHE bx in dx
+    ; CACHE si in ax
+    ; loop:
+    ; if bx = 0 then return success
+    ; if cx = 0 then return fail
+    ; cmp [si], [di]
+    ; if so inc si, inc di, dec bx 
+    ; if not, inc di, reset si, reset bx
+    ; regardless decrement dx
+    ; jmp loop
+    ; return value: dx
+    mov dx, bx
+    mov ax, si
+    .loop:
+    cmp bx, 0
+    jz .success
+    cmp cx, 0
+    jz .fail
+    cmpsb
+    je .ok
+    .notok:
+    mov si, ax
+    mov bx, dx
+    jmp .cont
+    .ok:
+    ;inc si
+    ;inc di
+    dec bx
+    ;jmp .cont
+    .cont:
+    dec dx
+    jmp .loop
+    .success:
+    stc
+    mov dx, di
+    ret
+    .fail:
+    clc
+    mov dx, 0
+    ret
+
 findstr:
     ; 1. si = ^HELLO
     ; 2. di = ^ASTRINGHELLOASTRING
@@ -196,6 +245,7 @@ findstr:
     .success:
     dec di
     stc
+    mov dx, di ; I just added this for good measure
     ret
     .fail:
     clc
