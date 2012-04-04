@@ -64,32 +64,89 @@ load_kernel:
         jmp $
 
     .ok:
-    mov bx, 0x3000
-    mov ds, bx ; here is the data segment
-    mov cx, 0x2500 ; bigger than this 
-    mov si, filename
-    mov bx, 12
-    mov di, 0
-    clc
-    call findstr_in_junk
-    jc .found
+        ; Compare from where we loaded it 
+        mov bx, 0x3000
+        mov es, bx ; here is the data segment
+        mov di, 0
+        
+        ; compare to our segment
+        mov ax, 0x2000
+        mov ds, ax
+        mov si, filename
+        
+        mov cx, 0x3600 ; bigger than this 
+        mov bx, 11
+
+        clc
+        call findstr_in_junk
+        jc .getsector
     .notfound:
         mov ah, 0x0e
         mov al, "N"
         int 0x10
         hlt
-    .found:
-    ; echo first letter of the count
+        jmp $
+    .getsector:
+    ; By this time my location of string will be in es:di
+    ; get low cluster number
+    mov ax, [si+26]
 
-    mov si, dx
-    mov cx, 0x2500
-    call write_hexes
-    hlt
+    ; sector = cluster here + 32
+    ;cheating here
+    mov ax, 35
 
-jmp $ 
+    .readfile:
+        ; Sector 35 (ax)
+        ; Since now SectorsPerTrack > Sector we need to do:
+        ; Sector += 1 - for 1-based Sector later
+        ; Track = Sector \ SectorsPerTrack quotient = 35/18 = 1 
+        ; Sector = Sector \ SectorsPerTrack remainder =  17
+        div byte [SectorsPerTrack]
+        ; al = quotient track, ah = remainder sector
+
+        mov ch, 1 ;al ; track
+        mov cl, 17 ;ah ; sector = 17 - maybe not 1-based - 0-based?
+        mov al, 4 ; sectors to read - from the file size but for now just one
+        mov ah, 0x02
+        mov dh, 0 ; head
+        mov dl, 0x80 ; drive
+        mov bx, 0x3000 ; segment to load it to
+        mov es, bx
+        mov bx, 0x0000 ; offset (add to seg)
+        int 0x13
+        jnc .readfileok
+    .readfileerror:
+        mov ah, 0x0e
+        mov al, "E"
+        int 0x10
+        hlt
+        jmp $
+    .readfileok:
+        mov ax, es
+    ;    call ax:bx 
+        mov ax, 0x3000 
+        mov ds, ax
+        mov si, 0
+        mov cx, 0x800
+        call write_hexes
+    
+ret
+
+write_string:
+    .writechar:
+    lodsb ; load [si] into al
+    mov ah, 0x0E ; write function
+    int 0x10
+    or al, al
+    jz .done
+
+    jmp .writechar
+    .done:
+     ret
 
 write_hexes:
     .start:
+    ;ds:si
     lodsb
     call write_hex
     cmp cx, 0
@@ -97,11 +154,6 @@ write_hexes:
     dec cx
     jmp .start
     .end:
-    ret
-
-write_char:
-    mov ah, 0x0e
-    int 0x10
     ret
 
 write_string_hex:
@@ -164,8 +216,8 @@ write_hex:
     ret
 
 findstr_in_junk:
-    ; 1. si = ^HELLO
-    ; 2. di = ^\0\0\0\0\0\0HELLO\0\0\0\0\0
+    ; 1. ds:si = ^HELLO
+    ; 2. es:di = ^\0\0\0\0\0\0HELLO\0\0\0\0\0
     ; 3. bx = string length
     ; 3. cx = when to give up
     ; CACHE bx in dx
@@ -176,19 +228,20 @@ findstr_in_junk:
     ; cmp [si], [di]
     ; if so inc si, inc di, dec bx 
     ; if not, inc di, reset si, reset bx
-    ; regardless decrement dx
+    ; regardless decrement cx
     ; jmp loop
     ; return value: dx
     mov dx, bx
     mov ax, si
     .loop:
     cmp bx, 0
-    jz .success
+    je .success
     cmp cx, 0
-    jz .fail
+    je .fail
     cmpsb
     je .ok
     .notok:
+    ;inc di
     mov si, ax
     mov bx, dx
     jmp .cont
@@ -198,7 +251,7 @@ findstr_in_junk:
     dec bx
     ;jmp .cont
     .cont:
-    dec dx
+    dec cx
     jmp .loop
     .success:
     stc
@@ -209,128 +262,9 @@ findstr_in_junk:
     mov dx, 0
     ret
 
-findstr:
-    ; 1. si = ^HELLO
-    ; 2. di = ^ASTRINGHELLOASTRING
-    ; cmp [si], [di]
-    ; if [si] = 0 then return carry decrement di
-    ; if cx = 0 then return nocarry
-    ; if same, increment both
-    ; 1. si = H^ELLO
-    ; if different, increment di, reset si
-    ; regardless decrement cx
-    ; go to 3
-
-    .loop:
-    mov al, [si] ; lodsb would work just as well I suppose
-    mov dx, si ; save location
-    mov bl, [di]
-    cmp al, 0
-    je .success
-    cmp cx, 0
-    je .fail
-    cmp al, bl
-    jne .different
-    .same:
-    inc si
-    inc di
-    jmp .finish
-    .different:
-    inc di
-    mov si, dx
-    jmp .finish
-    .finish:
-    dec cx
-    jmp .loop
-    .success:
-    dec di
-    stc
-    mov dx, di ; I just added this for good measure
-    ret
-    .fail:
-    clc
-    ret
-
-strcmp:
-    .loop:
-    mov al, [si] ; Move the value of the current source index into al
-    mov bl, [di] ; move the value of the current dest index into bl
-   
-    cmp al, bl ; are they the same?
-
-    jne .notequal
-    ; so we're equal 
-    
-    cmp al, 0 ; is al 0 (we know bl is 0)
-    je .done
-
-    inc si
-    inc di ; increment the index counters (so we can get the next bytes)
-    jmp .loop
-
-    .notequal:
-            ; so we need somewhere to store our result,
-            ; we could use anywhere but here an easy 1-bit ref will do 
-        clc ; CLear Carry
-        ret
-
-    .done:
-        stc ; SeT Carry
-        ret
-
-get_string:
-    xor cl, cl ; blank count
-    mov di, cmd_buffer
-
-    .getchar:
-
-    mov ah, 0
-    int 0x16 ; al contains the key
-
-    cmp al, 0x0d
-    je .enter
-
-    stosb
-    ; Don't inc di here - it does it - and if you do, you could end up with 0x41 0x00 0x42
-    ; - and the comparison would end at 0x00 of course
-
-    ; echo it
-    mov ah, 0x0e
-    int 0x10
-
-    jmp .getchar
-
-    .enter:
-    ; store a 0
-    mov al, 0
-    stosb
-    inc di
-
-    ; do the newline
-    mov si, newline
-    call write_string
-    
-    ; reset di
-    mov di, cmd_buffer
-    ret
-
-write_string:
-    .writechar:
-    lodsb ; load [si] into al
-    mov ah, 0x0E ; write function
-    int 0x10
-    or al, al
-    jz .done
-
-    jmp .writechar
-    .done:
-     ret
-
 kernld db 'Finding kernel.bin', 0x0d, 0x0a, 0
-filename db 'KERNEL  BIN',0
+filename db 'KERNEL  BIN'
 newline db 0x0a, 0x0d, 0
-prompt db '>',0
-cmd_buffer times 64 db 0 
 
 bootlabel:
     times 510-($-$$) db 0
