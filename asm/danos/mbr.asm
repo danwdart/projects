@@ -249,7 +249,7 @@ status db 0x80 ; 0x00 not bootable
 head_start db 0x00
 sector_start db 0x02
 cylinder_start db 0x00
-parttype db 0x83
+parttype db 0x01 ; 1 = FAT12
 head_end db 0x01
 sector_end db 0x20
 cylinder_end db 0x02
