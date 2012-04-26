@@ -1,0 +1,3 @@
+root {
+	Stdout <- "Hello World!";
+} - {}
