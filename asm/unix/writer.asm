@@ -2,9 +2,13 @@
 section .text
 global _start
 _start:
+mov si, string
+mov di, file
+add si, 5
+add di, 10
 
-sub [string+5], "#"
-sub [file+10], "#"
+sub [si], 0x23
+sub [di], 0x23
 
 section .data
 string db "Hello#"
