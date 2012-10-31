@@ -1,7 +1,11 @@
 init:
     mov ax, 0x07C0  ; set up segments
     mov ds, ax
+    mov ss, ax
     mov es, ax
+    mov cs, ax
+    mov fs, ax
+    mov gs, ax
 cli:
     .loop:
         mov si, prompt
@@ -120,35 +124,21 @@ write_hex:
     and bl, 0x0f ; make sure!!!
 
     cmp bl, 0x0a
+    add bl, 0x30
     jl .isless
-    
-    .isge:
-    add bl, 0x37 ; for instance 0x0b + 0x37 = "B"
-    jmp .cont
-
+    add bl, 0x07
     .isless:
-    add bl, 0x30 ; e.g. 0x04 + 0x30 = 0x34 = "4"
-        jmp .cont
-
-    .cont: 
     mov bh, al ; bl now 0xba
     and bh, 0x0f ; bl now 0x0a
 
     cmp bh, 0x0a
-    jl .islesst
-
-    .isget:
-    add bh, 0x37
-    jmp .contt
-
-    .islesst:
     add bh, 0x30
-    jmp .contt
-
-    .contt:
+    jl .islesst
+    add bh, 0x07
+    .islesst:
     ; bx now correct
-
     mov al, bl
+
     call write_char
 
     mov al, bh
