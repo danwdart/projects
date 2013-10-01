@@ -1,1 +1,0 @@
-gcc -m32 -S c16.c -nostdinc -nostdlib -ffreestanding -O3 -fomit-frame-pointer -fno-asynchronous-unwind-tables
