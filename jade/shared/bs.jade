@@ -1,0 +1,61 @@
+include macros
+!!!
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport',content='width=device-width, initial-scale=1')
+		block usercss
+		+jq
+		+bs
+		+fa
+		+ko
+		+font('Open Sans')
+		:css
+			* { font-family: 'Open Sans' }
+		block title
+	body
+		header.navbar
+			.container
+				button.navbar.toggle(type='button',data-toggle='collapse',data-target='.sidebar-nav.nav-collapse')
+					each val in [1,2,3]
+						span.icon-bar
+				a#main-menu-toggle.hidden-xs-open
+					+icon('reorder')
+				a.navbar-brand.col-lg-2.col-sm-1.col-xs-12(href='https://clientplatform.viewex.co.uk')
+					span Viewex
+				.nav-no-collapse.header-nav
+					ul.nav.navbar-nav.pull-right
+						li.dropdown
+							a.btn(href='/')
+								.user
+									span.hello Welcome Dan Dart
+						li
+							a.btn(href='https://clientplatform.viewex.co.uk/logout')
+								+icon('off')
+		.container
+			.row
+				#sidebar-left.col-lg-2.col-sm-1
+					.nav-collapse.sidebar-nav.collapse.navbar-collapse.bs-navbar-collapse
+						ul.nav.nav-tabs.nav-stacked.main-menu
+							li
+								a(href='https://clientplatform.viewex.co.uk')
+									+icon('home')
+									span.hidden-sm
+										Home
+							li
+								a.dropmenu(href='#')
+									+icon('eye-open')
+									span.hidden-sm Viewex
+									span.label 2
+								ul
+									li
+										a.submenu(href='#')
+											+icon('bar-chart')
+											span.hidden-sm Reporting
+
+			block main
+		footer
+			p
+				span.left &copy; 2013 Dan
+	block userscripts
+	block dialogs

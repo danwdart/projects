@@ -7,5 +7,34 @@ mixin jq
 mixin ko
 	+js('http://knockoutjs.com/downloads/knockout-3.0.0.js')
 mixin bs
-	+css('//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
-	+js('//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js')
+	+css('http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
+	+js('http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js')
+mixin fa
+	+css('http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css')
+mixin icon(name)
+	i(class='fa fa-'+name)
+mixin font(name)
+	+css('https://fonts.googleapis.com/css?family=' + name + ':400,600,700,300');
+mixin modal(id, title)
+	div.modal.fade(id=id)
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(data-dismiss='modal') &times;
+					h2.modal-title= title
+				.modal-body
+					if block
+						block
+				.modal-footer
+					button.btn.btn-danger(data-dismiss='modal') NO
+					button.btn.btn-success(data-bind='click: function(data) { commitDelete(data) }') YES
+mixin bscontrol(label, type, name, id, placeholder)
+	.form-group
+		if ('checkbox' == type)
+			.checkbox
+				label(for=id)= label
+					input(id=id,name=name,type='checkbox',data-bind='value:'+name)
+		else
+			label.control-label(for=id)= name
+			div
+				input.form-control(id=id,type=type,name=name,data-bind='value:'+name,placeholder=placeholder)		

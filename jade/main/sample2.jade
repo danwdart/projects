@@ -1,0 +1,26 @@
+extends ../shared/bs
+block title
+	title My great title
+
+block main
+	.row
+		.col-lg-12
+			table.table
+				thead
+					tr
+						th #
+						th ID
+						th Site
+						th Date
+				tbody(data-bind="template: {name: 'tagtableRowTemplate',foreach:TableRows,as:'Row'}")
+				tfoot
+			a(href='#dlgHello',data-toggle='modal') Click me Now!
+block dialogs
+	+modal('dlgHello','A title')
+		+bscontrol('My Label', 'text', 'That', 'txtThat', 'Enter That')
+		+bscontrol('That', 'checkbox', 'Checked', 'chkChecked')
+
+block userscripts
+	script#tagtableRowTemplate(type='text/html')
+		tr
+			td(data-bind='text:recordid')
