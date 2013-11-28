@@ -1,0 +1,2 @@
+npm -g install jade
+jade -PwD main
