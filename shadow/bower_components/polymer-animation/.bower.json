@@ -1,0 +1,19 @@
+{
+  "name": "polymer-animation",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#0.1.1",
+    "web-animations-js": "web-animations/web-animations-js#master"
+  },
+  "version": "0.1.1",
+  "homepage": "https://github.com/Polymer/polymer-animation",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.1",
+    "commit": "bb85dd81458d498d10e557be48585879e17cc784"
+  },
+  "_source": "git://github.com/Polymer/polymer-animation.git",
+  "_target": "0.1.1",
+  "_originalSource": "Polymer/polymer-animation"
+}

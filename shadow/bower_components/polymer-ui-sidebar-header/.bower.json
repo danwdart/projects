@@ -1,0 +1,19 @@
+{
+  "name": "polymer-ui-sidebar-header",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#0.1.1",
+    "polymer-ui-toolbar": "Polymer/polymer-ui-toolbar#0.1.1"
+  },
+  "version": "0.1.1",
+  "homepage": "https://github.com/Polymer/polymer-ui-sidebar-header",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.1",
+    "commit": "b01a98eeddde95bed0dc4f4933dc418aca7ef4e9"
+  },
+  "_source": "git://github.com/Polymer/polymer-ui-sidebar-header.git",
+  "_target": "0.1.1",
+  "_originalSource": "Polymer/polymer-ui-sidebar-header"
+}

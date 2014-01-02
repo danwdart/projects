@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<div name="figlets">
+		<span class="fn">Wibble</span>
+		<span class="ln">figlets</span>
+	</div>
+	<template id="wibbleTemplate">
+		<style>
+		</style>
+		<div>
+			<!-- content can be updated with Element.textContent -->
+			<div id="name">
+				<!-- NOTE select only selects DIRECT descendents -->
+				<content select=".fn"></content> is
+				<content select=".ln"></content>!
+			</div>
+		</div>
+	</style>
+	</template>
+	<script>
+		// Without this line you have to enable experimental web platform features
+		HTMLElement.prototype.createShadowRoot = HTMLElement.prototype.createShadowRoot || HTMLElement.prototype.webkitCreateShadowRoot;
+		
+		var shadow = document.querySelector('div').createShadowRoot(),
+			template = document.querySelector('#wibbleTemplate');
+			shadow.appendChild(template.content);
+			template.remove();
+	</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<template id="wibbleTemplate">
+		<style>
+		</style>
+		<div>
+			<content></content>
+		</div>
+	</template>
+	<script>
+		// Without this line you have to enable experimental web platform features
+		HTMLElement.prototype.createShadowRoot = HTMLElement.prototype.createShadowRoot || HTMLElement.prototype.webkitCreateShadowRoot;
+		
+		/*
+		Second param = optional what to extend from
+		eg <button is="mega-button">
+		We require a dash to use HTMLElement rather than HTMLUnknownElement as seen here
+		Before the element is registered it will be a HTMLUnresolvedElement.
+
+		> document.register('wibble')
+		InvalidCharacterError: Failed to call 'register' on 'Document' for type 'wibble': : 'wibble' is not a valid name.
+		> document.register('wibble-wobble')
+		function wibble-wobble() { [native code] }
+		*/
+
+		/*
+
+		var WibbleFibber = document.register('wibble-fibber', {
+			prototype: Object.create(HTMLElement.prototype)
+		});
+
+		*/
+
+		// Now you can treat it like any normal element.
+
+		// Add HTML dynamically etc
+
+		/* var XFooProto = Object.create(HTMLElement.prototype);
+
+		XFooProto.createdCallback = function() {
+		  this.innerHTML = "<b>I'm an x-foo-with-markup!</b>";
+		};
+
+		var XFoo = document.register('x-foo-with-markup', {prototype: XFooProto});
+		*/
+
+		/*
+		Or use a shadow root:
+		var XFooProto = Object.create(HTMLElement.prototype);
+
+		XFooProto.createdCallback = function() {
+		  // 1. Attach a shadow root on the element.
+		  var shadow = this.createShadowRoot();
+
+		  // 2. Fill it with markup goodness.
+		  shadow.innerHTML = "<b>I'm in the element's Shadow DOM!</b>";
+		};
+
+		var XFoo = document.register('x-foo-shadowdom', {prototype: XFooProto});
+		*/
+
+		// But even nicer... templates! Shame they shelved <element> in AUgust - but Polymer made one of its own.
+
+		// Let's just invent our own hook to making a new element with our template shall we?
+
+		var proto = Object.create(HTMLElement.prototype, {
+		  createdCallback: {
+		    value: function() {
+		      var template = document.querySelector('#wibbleTemplate');
+		      var clone = document.importNode(template.content, true);
+		      this.createShadowRoot().appendChild(clone);
+		    }
+		  }
+		});
+		document.register('wibble-fibber', {prototype: proto});
+	</script>
+	Hello! <wibble-fibber>I am in a shadow dom</wibble-fibber>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<div name="figlets">Wibble</div>
+	<template id="wibbleTemplate">
+		<style>
+			#name:after {
+				content: 'figlets';
+			}
+		</style>
+		<div>
+			<!-- content can be updated with Element.textContent -->
+			<div id="name"><content></content></div>
+		</div>
+	</style>
+	</template>
+	<script>
+		// Without this line you have to enable experimental web platform features
+		HTMLElement.prototype.createShadowRoot = HTMLElement.prototype.createShadowRoot || HTMLElement.prototype.webkitCreateShadowRoot;
+		
+		var shadow = document.querySelector('div').createShadowRoot(),
+			template = document.querySelector('#wibbleTemplate');
+			shadow.appendChild(template.content);
+			template.remove();
+	</script>
+</html>
