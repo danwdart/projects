@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!-- Some notes:
+1. Polymer doesn't work if you've enabled HTML imports in about:flags currently
+2. Polymer doesn't create a shadow dom unless you enable web platform features - it doesn't use the webkitCreateShadowRoot because it doesn't support the ::content shadowselector which it uses and creates a weird <shadow><content></content></shadow>
+-->
+<html>
+  <head>
+    <script src="bower_components/platform/platform.js"></script>
+    <link rel="import"
+          href="bower_components/polymer-ui-tabs/polymer-ui-tabs.html">
+  </head>
+  <body>
+    <polymer-ui-tabs selected="0">
+      <span>One</span><span>Two</span><span>Three</span><span>Four</span><span>Five</span>	
+    </polymer-ui-tabs>
+  </body>
+</html>
