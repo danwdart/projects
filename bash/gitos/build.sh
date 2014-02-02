@@ -1,14 +1,14 @@
 #GitOS - Builder
-# This application goes and gets the latest builds of everything, asks you to compile it and 
 case "$1" in
     install)
+        mkdir source
         cd source
         echo Cloning Linux...
-        git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+        git clone --depth=1 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
         echo Cloning uClibc...
-        git clone git://uclibc.org/uClibc.git
+        git clone --depth=1 git://uclibc.org/uClibc.git
         echo Cloning busybox...
-        git clone git://git.busybox.net/busybox.git
+        git clone --depth=1 git://git.busybox.net/busybox.git
         cd ..
     ;;
     update)
