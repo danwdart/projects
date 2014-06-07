@@ -2,6 +2,10 @@ class Camera
     constructor: (w,h,fov,x,y,z,tx,ty,tz) ->
         @canvases = document.getElementsByTagName 'canvas'
         @canvas = @canvases[0]
+        @canvas.height = h
+        @canvas.width = w
+        @canvas.style.height = h+'px'
+        @canvas.style.width = w+'px'
         @ctx = @canvas.getContext '2d'
         {@w,@h,@fov,@x,@y,@z,@tx,@ty,@tz} = {w,h,fov,x,y,z,tx,ty,tz}
         @origin = 
@@ -10,36 +14,40 @@ class Camera
 
     clear: ->
         @ctx.fillStyle = 'black'
-        @ctx.fillRect 0, 0, @w, @h
+        @ctx.clearRect 0, 0, @w,@h
 
-    trace: (map, res) ->
-
-
-        for x in [0..@w] by res
-            for y in [0..@h] by res
+    trace: (map, res, maxdepth) ->
+        for y in [0..@h] by res
+            for x in [0..@w] by res
                 # first get angle
                 tx = @tx + (@fov / @w) * ( x - @origin.x )
                 ty = @ty + (@fov / @h) * ( @origin.y - y )
 
                 # get real colour
-                @ctx.fillStyle = 'white';
                 depth = 1
-                while depth < 10
+                while depth < maxdepth
                     dz = Math.floor(depth)
                     dx = Math.floor(depth * Math.sin tx)
                     dy = Math.floor(depth * Math.sin ty)
 
-                    if 0 > @x + dx or map.x < @x + dx or 0 > @y + dy or map.y < @y + dy or 0 > @z + dz or map.z < @z + dz
-                        break
+                    newx = @x + dx
+                    newy = @y + dy
+                    newz = @z + dz
+                    
+                    if 0 > newx or map.x <= newx or 0 > newy or map.y <= newy or 0 > newz or map.z <= newz
+                        depth++
+                        continue
 
-                    voxel = map.get(@x + dx, @y + dy, @z + dz)
+                    voxel = map.get(newx, newy, newz)
 
-                    if 0 < voxel.r or 0 < voxel.g or 0 < voxel.b
-                        @ctx.fillStyle = 'rgb('+voxel.r+','+voxel.g+','+voxel.b+')'
-                        @ctx.fillRect x, y, res, res
-                        break
+                    if 0 == voxel.r and 0 == voxel.g and 0 == voxel.b
+                        depth++
+                        continue
 
-                    depth++
+                    style = 'rgb('+voxel.r+','+voxel.g+','+voxel.b+')'
+                    @ctx.fillStyle = style
+                    @ctx.fillRect x, y, res, res
+                    break
 class Map
     constructor: (x,y,z) ->
         @grid = []
@@ -52,7 +60,12 @@ class Map
                 g: 0
                 b: 0
             }
-        res = @grid[z][y][x]
+
+        x = Math.floor x
+        y = Math.floor y
+        z = Math.floor z
+
+        res = @grid[x][y][z]
         return {
             r: res[0]
             g: res[1]
@@ -61,18 +74,26 @@ class Map
 
     random: ->
         @grid = []
-        for x in [0..2]
+        for x in [0..@x-1]
             @grid[x] = []
-            for y in [0..2]
+            for y in [0..@y-1]
                 @grid[x][y] = []
-                for z in [0..2]
-                    @grid[x][y][z] = []
-                    @grid[x][y][z][0] = Math.floor Math.random() * 255
-                    @grid[x][y][z][1] = Math.floor Math.random() * 255
-                    @grid[x][y][z][2] = Math.floor Math.random() * 255
+                for z in [0..@z-1]
+                    @grid[x][y][z] = [
+                        Math.floor Math.random() * 255
+                        Math.floor Math.random() * 255
+                        Math.floor Math.random() * 255
+                    ]
 
-cam = new Camera window.innerWidth, window.innerHeight, Math.PI / 2, 1, 1, -1, Math.PI / 6, Math.PI / 6, Math.PI / 6
+cam = new Camera window.innerWidth, window.innerHeight, Math.PI / 2, -10, 5, -10, 0, 0, 0
 cam.clear()
-map = new Map(3,3,3)
+map = new Map 10, 10, 10
 map.random()
-cam.trace(map, 5)
+
+frame = ->
+    cam.clear()
+    cam.tx += 0.05
+    cam.trace(map, 10, 15)
+    window.requestAnimationFrame frame
+
+frame()
