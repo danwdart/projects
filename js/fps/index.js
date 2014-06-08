@@ -31,7 +31,7 @@
 
     Camera.prototype.clear = function() {
       this.ctx.fillStyle = 'black';
-      return this.ctx.clearRect(0, 0, this.w, this.h);
+      return this.ctx.fillRect(0, 0, this.w, this.h);
     };
 
     Camera.prototype.trace = function(map, res, maxdepth) {
