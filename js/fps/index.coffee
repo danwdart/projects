@@ -14,7 +14,7 @@ class Camera
 
     clear: ->
         @ctx.fillStyle = 'black'
-        @ctx.clearRect 0, 0, @w,@h
+        @ctx.fillRect 0, 0, @w,@h
 
     trace: (map, res, maxdepth) ->
         for y in [0..@h] by res
