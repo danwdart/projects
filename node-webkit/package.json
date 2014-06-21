@@ -1,7 +1,7 @@
 {
-    "name": "coolapp",
-    "main": "index.html",
+    "name": "thatthing",
     "version": "0.0.1",
+    "main": "index.html",
     "author": "Dan Dart <funky@dandart.co.uk> (http://dandart.co.uk)",
     "scripts": {
         "start": "zip app.nw *; nw app.nw"
