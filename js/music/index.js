@@ -20,7 +20,7 @@
 			audio: document.querySelector('audio'),
 			timer: null,
 			initial: 'Bob',
-			url: 'http://api.jamendo.com/v3.0/tracks?audioformat=ogg&client_id=116b585a&namesearch=',
+			url: 'https://api.jamendo.com/v3.0/tracks?audioformat=ogg&client_id=116b585a&namesearch=',
 			ajcb: function(data) {
 				var obj = JSON.parse(data),
 					result = '';
