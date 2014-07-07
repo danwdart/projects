@@ -1,6 +1,25 @@
 #!/usr/bin/env node
+
+// Dumb wordoid generator.
+// First parameter is number of phonemes to use.
+// 
+// Use like:
+// ./generator 6
+//
+// Known issues: Works in English.
+
 var Word = require('./word'),
-	nLetters = process.argv[2],
-	strWord = Word(nLetters);
+    argv = process.argv,
+    // Number casting is more efficient than parseInt()...
+	nPhonemes = Number(argv[2]),
+	strWord;
+
+// ... but still requires some error checking
+if ('number' !== typeof nPhonemes || isNaN(nPhonemes)) {
+    console.log('Usage: '+argv[1]+' (number of phonemes)');
+    return process.exit(1);
+} 
+
+strWord = Word(nPhonemes);
 	
 console.log(strWord);
