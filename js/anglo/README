@@ -1,0 +1,7 @@
+Dumb wordoid generator.
+First parameter is number of phonemes to use.
+
+Use like:
+./generator 6
+
+Known issues: Works in English.

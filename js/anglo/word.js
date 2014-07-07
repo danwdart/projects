@@ -1,9 +1,12 @@
+// I am very evil indeed.
 Array.prototype.pick = function () {
     return this[Math.floor(Math.random() * this.length)];
 }
 
-module.exports = function Word(nLetters)
+// invoke with a number to generate
+module.exports = function Word(nPhonemes)
 {
+    // Hardcoded for now. Might do other languages though.
 	var phonemes = [
 			[
 				"a", "aa", "ae", "ai", "au",
@@ -23,10 +26,13 @@ module.exports = function Word(nLetters)
 			]
 		],
 		word = '',
+        // Choose vowel or consonant
 		current = [0,1].pick();
 
-	for (var i = 1; i <= nLetters; i++) {
+	for (var i = 1; i <= nPhonemes; i++) {
+        // Append a random letter
 		word += phonemes[current].pick();
+        // and flip the bit so we pick the other next time
 		current = Number(!current);
 	}
 
