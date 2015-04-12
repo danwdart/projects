@@ -1,5 +1,6 @@
 var video = document.querySelector('video'),
     canvas = document.querySelector('canvas'),
+    textarea = document.querySelector('textarea'),
     context = canvas.getContext('2d'),
     backCanvas = document.createElement('canvas'),
     backContext = backCanvas.getContext('2d');
@@ -9,8 +10,9 @@ navigator.getUserMedia = navigator.getUserMedia ||
     navigator.mozGetUserMedia ||
     navigator.msGetUserMedia;
 
-var AudioContext = window.AudioContext || window.webkitAudioContext ;
-audioContext = new AudioContext();
+var AudioContext = window.AudioContext || window.webkitAudioContext,
+    audioContext = new AudioContext(),
+    oscillator = audioContext.createOscillator();
 
 function playSound(buffer) {
     var source = audioContext.createBufferSource(); // creates a sound source
@@ -21,18 +23,22 @@ function playSound(buffer) {
 }
 
 var playTone = function(freq, time, delay) {
-    var oscillator = audioContext.createOscillator();
+
     oscillator.type = 0; // sine wave
 
+    !function(oscillator, delay) {
     setTimeout(function() {
         oscillator.frequency.value = freq;
         oscillator.connect(audioContext.destination);
-        oscillator.start();
+        //oscillator.start();
     }, delay);
+    }(oscillator, delay);
 
-    //setTimeout(function() {
-    //    oscillator.stop();
-    //}, delay + time);
+    !function(oscillator, delay) {
+    setTimeout(function() {
+        //oscillator.stop();
+    }, delay + time);
+}(oscillator, delay);
 }
 
 navigator.getUserMedia(
@@ -52,6 +58,7 @@ navigator.getUserMedia(
 );
 function readycam()
 {
+    oscillator.start();
     var cw = canvas.clientWidth;
     var ch = canvas.clientHeight;
     canvas.width = cw;
@@ -89,8 +96,7 @@ function draw(v, c, bc, w, h)
     c.putImageData(idata,0,0);
     var realX = brightpx % w;
     var realY = Math.floor(brightpx / w);
-    console.log(realX, realY);
     var tone = 440 + ((1000/h) * (h - realY));
-    playTone(tone,5,0)
+    playTone(tone,20,0)
     setTimeout(draw,20,v,c,bc,w,h);
 }
