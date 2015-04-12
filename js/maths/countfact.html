@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<script src="index.js"></script>
+<script src="countfact.js"></script>
 <canvas id="canvas" width="1200" height="600" style="width:1200px;height:600px"></canvas>
 <script>
 var ctx = document.getElementById('canvas').getContext('2d');
@@ -46,20 +46,23 @@ var ch0 = buffer.getChannelData(0);
 var ch1 = buffer.getChannelData(1);
 
 for (var i = 0; i <= 100000; i++) {
-	var sf = sumfact(i);
+	var sf = countfact(i);
 	var newx = i;
-	var newy = Math.log(sf) / 2;
+	var newy = sf;
 	//if (newy == newx) continue;
 	//if (newy > Math.sqrt(newx)) continue;
 	line(
-		oldx, oldy*100,
-		newx, newy*100
+		oldx*5, oldy*20,
+		newx*5, newy*20
 	);
 //	playTone(440+10000*((newy-5)/newx), 1, 1*i);
+	
 	oldx = newx;
+	//if (1 != newy) {
 	oldy = newy;
-	ch0[i] = newy;
-	ch1[i] = newy;
+	//}
+	ch0[i] = (newy/10) - 0.5;
+	ch1[i] = (newy/10) - 0.5;
 }
 
 setTimeout(function() {
