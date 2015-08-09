@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<style>
+body { 
+}
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
+<h1>Say something!</h1>
+<script>
+var commands = {
+    '(computer) refresh': function() {
+        window.location.reload();
+    },
+    '(computer) reload': function() {
+        window.location.reload();
+    },
+    '(computer) weather': function() {
+        window.open('http://bbc.co.uk/weather')
+    },
+    '(computer) weather in *place': function(place) {
+        window.open('http://bbc.co.uk/weather/'+place.toLowerCase());
+    },
+    '(computer) type *thing': function(thing) {
+        document.querySelector('h1').innerHTML = thing;
+    },
+    '(computer) search (for) *term (please)': function(term) {
+        window.open('http://google.co.uk/search?q='+term)
+    },
+    '(computer) (find) pictures of *term': function(term) {
+        window.open('http://google.co.uk/search?tbm=isch&q='+term)
+    },
+    '(computer) slides of *term': function(term) {
+        window.open('http://theslideshow.net/#simple/'+term);
+    },
+    '(computer) (find) videos of *term': function(term) {
+        window.open('https://www.youtube.com/results?search_query='+term);
+    },
+    '(computer) define *term': function(term) {
+        window.open('http://google.co.uk/search?q=define+'+term)
+    },
+    '(computer) wikipedia *term': function(term) {
+        window.open('https://en.wikipedia.org/wiki/'+term);
+    },
+    '(computer) wiktionary *term': function(term) {
+        window.open('https://en.wiktionary.org/wiki/'+term);
+    },
+    '(computer) tweet *term': function(term) {
+        window.open('https://twitter.com/intent/tweet?text='+term);
+    },
+    '(computer) twitter': function() {
+        window.open('http://twitter.com');
+    },
+    '(computer) facebook': function() {
+        window.open('http://facebook.com');
+    },
+    '(computer) github': function() {
+        window.open('https://github.com');
+    },
+    '(show me a) map of *where': function() {
+        window.open('https://www.google.co.uk/maps/search/'+where)
+    },  
+    'praise bob': function() {
+        window.open('http://subgenius.com');
+    },
+    'commands': function() {
+        document.querySelector('h1').innerHTML = Object.keys(commands).join('<br/>');
+    },
+    'what can I say': function() {
+        document.querySelector('h1').innerHTML = Object.keys(commands).join('<br/>');
+    },
+    '*term': function(term) {
+        document.querySelector('h1').innerHTML = 'didn\'t understand '+term;
+    }
+}
+
+
+
+annyang.addCommands(commands);
+annyang.start();
+</script>
+</html>
