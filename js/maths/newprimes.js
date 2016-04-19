@@ -31,7 +31,7 @@ for (let v of getprimes(200)) {
     console.log(v);
 }
 
-function getprimefactors(i) {
+function *getprimefactors(i) {
     for (let v of getprimes(Math.sqrt(i))) {
         if (0 == i % v) {
             yield v;
