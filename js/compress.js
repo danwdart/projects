@@ -1,4 +1,4 @@
-let tryfunc = (name, num, squashFn, stretchFn) => {
+let tryfunc = (name, num, squashFn, stretchFn, shh) => {
     let nums = [];
     while (0 < num) {
         let squashN = squashFn(num),
@@ -6,16 +6,15 @@ let tryfunc = (name, num, squashFn, stretchFn) => {
             num -= Math.floor(stretchFn(floorSquash));
         nums.push(floorSquash);
     }
-    console.log(name+' method had', nums.length, 'elements');
     let intFinalEntropy = 0;
     for (let number of nums) {
-        intFinalEntropy += Math.ceil(0 == number?1:Math.log2(number));
+        intFinalEntropy += Math.ceil(1 >= number?1:Math.log2(number));
     }
-    console.log(name+' method:', nums, 'with entropy', intFinalEntropy);
+    console.log('Naive', name, 'method:',nums.length, 'elements', ((shh)?'':nums), 'with entropy', intFinalEntropy);
 };
 
-function prifact(num){
-  var root = Math.sqrt(num),
+let prifact = function(num) {
+  let root = Math.sqrt(num),
   result = arguments[1] || [],  //get unnamed paremeter from recursive calls
   x = 2;
 
@@ -34,20 +33,20 @@ function prifact(num){
 console.log('Generating big number');
 let intBigNumber = Math.floor(Math.random() * (1<<30));
 console.log('Number is', intBigNumber, 'entropy is', Math.ceil(Math.log2(intBigNumber)), 'bits');
-console.log('Calculating most efficient packing structure');
-console.log('Determining sum of squares method, naive way');
 tryfunc('Square', intBigNumber, Math.sqrt, (n)=>n**2);
-console.log('Trying cubes');
 tryfunc('Cube', intBigNumber, (n)=>n**(1/3), (n)=>n**3);
-console.log('Trying tesseract');
 tryfunc('Tesseract', intBigNumber, (n)=>n**(1/4), (n)=>n**4);
-console.log('Trying log');
+tryfunc('Quintic HyperCube', intBigNumber, (n)=>n**(1/5), (n)=>n**5);
+tryfunc('Power6 HyperCube', intBigNumber, (n)=>n**(1/6), (n)=>n**6, true);
+tryfunc('Power7 HyperCube', intBigNumber, (n)=>n**(1/7), (n)=>n**7, true);
+tryfunc('Power8 HyperCube', intBigNumber, (n)=>n**(1/8), (n)=>n**8, true);
+tryfunc('Power9 HyperCube', intBigNumber, (n)=>n**(1/9), (n)=>n**9, true);
+tryfunc('Power10 HyperCube', intBigNumber, (n)=>n**(1/10), (n)=>n**10, true);
 tryfunc('Log', intBigNumber, Math.log, Math.exp);
-console.log('Trying factoring');
 let facts = prifact(intBigNumber);
-console.log('Prime Factors', facts);
 let intTotalEnt = 0;
 for (let num of facts) {
     intTotalEnt += Math.ceil(Math.log2(num));
 }
-console.log('Prime factors entropy is', intTotalEnt);
+console.log('Prime factors:', facts.length, 'elements:', facts, 'with entropy', intTotalEnt);
+tryfunc('Triangle', intBigNumber, (n) => ((8*n+1)**(1/2)-1)/2, (n) => (n*(n+1)/2))
