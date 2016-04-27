@@ -36,7 +36,7 @@ console.log('Number is', intBigNumber, 'entropy is', Math.ceil(Math.log2(intBigN
 tryfunc('Square', intBigNumber, Math.sqrt, (n)=>n**2);
 tryfunc('Cube', intBigNumber, (n)=>n**(1/3), (n)=>n**3);
 tryfunc('Tesseract', intBigNumber, (n)=>n**(1/4), (n)=>n**4);
-tryfunc('Quintic HyperCube', intBigNumber, (n)=>n**(1/5), (n)=>n**5);
+tryfunc('Quintic HyperCube', intBigNumber, (n)=>n**(1/5), (n)=>n**5, true);
 tryfunc('Power6 HyperCube', intBigNumber, (n)=>n**(1/6), (n)=>n**6, true);
 tryfunc('Power7 HyperCube', intBigNumber, (n)=>n**(1/7), (n)=>n**7, true);
 tryfunc('Power8 HyperCube', intBigNumber, (n)=>n**(1/8), (n)=>n**8, true);
