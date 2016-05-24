@@ -15,5 +15,5 @@ function* sternbrocot() {
 var sb = sternbrocot();
 
 for (;;) {
-    console.log(sb.next);
+    console.log(sb.next().value);
 }
