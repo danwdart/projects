@@ -31,9 +31,7 @@ let ctx = canvas.getContext('2d'),
             }
         }
     },
-    clear = () => {
-        ctx.clearRect(0, 0, w, h);
-    },
+    clear = () => ctx.clearRect(0, 0, w, h),
     setupNumbers = (num) => {
         let numbers = {};
         for (let i = 1; i <= num; i++) {
