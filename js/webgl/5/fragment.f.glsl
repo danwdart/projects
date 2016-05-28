@@ -17,15 +17,16 @@ uniform sampler2D sampler;
 
 void main()
 {
-    vec3 normSunDirection = normalize(sun.direction);
-    vec3 surfaceNormal = normalize(fragNormal);
-
     vec4 texel = texture2D(sampler, fragTexCoord);
 
     vec3 lightIntensity = ambientLightIntensity + (
-        sun.intensity * max(dot(surfaceNormal, normSunDirection), 0.0)
+        sun.intensity * max(
+            dot(
+                normalize(fragNormal), normalize(sun.direction)
+            ),
+            0.0
+        )
     );
 
     gl_FragColor = vec4(texel.rgb * lightIntensity, texel.a);
-    //gl_FragColor = texture2D(sampler, fragTexCoord);
 }
