@@ -15,7 +15,7 @@ let ctx = canvas.getContext('2d'),
         ctx.fillRect(x, y, res, res);
     },
     render = () => {
-        let worker = new Worker('worker3.js');
+        let worker = new Worker('worker.js');
         worker.addEventListener('message', (msg) => paint(msg.data.x, msg.data.y, msg.data.col));
         worker.addEventListener('error', (err) => console.log(err));
         worker.postMessage({w, h});
