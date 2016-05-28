@@ -1,4 +1,5 @@
-let canvas = document.querySelector('canvas'),
+let T = 2 * Math.PI,
+    canvas = document.querySelector('canvas'),
     h = window.innerHeight,
     w = window.innerWidth;
 
@@ -154,7 +155,7 @@ let gl = canvas.getContext('webgl'),
             mZRot = new Float32Array(16);
         mat4.identity(mWorld);
         mat4.lookAt(mView, [0, 0, -5], [0, 0, 0], [0, 1, 0]);
-        mat4.perspective(mProj, Math.PI / 4, canvas.width / canvas.height, 0.1, 1000.0);
+        mat4.perspective(mProj, T / 8, canvas.width / canvas.height, 0.1, 1000.0);
         mat4.identity(mId);
 
         // float vertex
@@ -174,7 +175,7 @@ let gl = canvas.getContext('webgl'),
         gl.uniform3f(sunlightIntensityUniformLocation, 0.9, 0.9, 0.9);
     },
     rotate = (mXRot, mYRot, mId, mWorld, matWorldUniformLocation) => {
-        let angle = performance.now() / 1000 / 6 * 2 * Math.PI;
+        let angle = performance.now() / 1000 / 6 * T;
         mat4.rotate(mYRot, mId, angle, [0, 1, 0]);
         mat4.rotate(mXRot, mId, angle / 4, [1, 0, 0]);
         mat4.mul(mWorld, mXRot, mYRot);
