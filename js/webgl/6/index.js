@@ -191,8 +191,7 @@ let gl = canvas.getContext('webgl'),
             arrTexCoords = arr.meshes[0].texturecoords[0],
             arrNormals = arr.meshes[0].normals,
             program = compileProgram(vertexText, fragmentText),
-            tex = enableTexture(program, 'texture'),
-            transforms = enableTransforms(program);
+            tex = enableTexture(program, 'texture');
 
         applySettings();
         enablePositionBuffer(program, arrVertices);
@@ -201,6 +200,7 @@ let gl = canvas.getContext('webgl'),
         enableNormalBuffer(program, arrNormals);
         gl.useProgram(program);
 
+        let transforms = enableTransforms(program);
         enableLights(program);
 
         loop = () => {
