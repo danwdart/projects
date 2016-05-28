@@ -17,7 +17,7 @@ let zoom = 0.5,
     polrec = (arg, mag) => [-mag * Math.cos(arg), mag * Math.sin(arg)], // that - is random
     mulcmp = (n1, i1, n2, i2) => polrec(...mulpol(...recpol(n1, i1), ...recpol(n2, i2)))
     squared = (n, i) => mulcmp(n, i, n, i),
-    itmax = 20,
+    itmax = 100,
     extrapoints = {};
     willgocrazy = (n, i) => {
         let resn = 0,
@@ -26,15 +26,22 @@ let zoom = 0.5,
             [resn, resi] = squared(resn, resi);
             resn += n;
             resi += i;
+            let [x,y] = nitoxy(resn, resi);
+            if ('undefined' == typeof extrapoints[y])
+                extrapoints[y] = {};
+            if ('undefined' == typeof extrapoints[y][x])
+                extrapoints[y][x] = 0;
+            extrapoints[y][x]++;
             if (2 < mag(resn, resi)) return 'rgb('+it*20+','+it*20+','+it*20+')';
         }
         // not gone crazy
-        let [x,y] = nitoxy(n, i);
+        let [x,y] = nitoxy(resn, resi);
         if ('undefined' == typeof extrapoints[y])
             extrapoints[y] = {};
         if ('undefined' == typeof extrapoints[y][x])
             extrapoints[y][x] = 0;
         extrapoints[y][x]++;
+
         return 'white';
     };
 addEventListener('message', (msg) => {
