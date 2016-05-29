@@ -138,11 +138,9 @@ let gl = canvas.getContext('webgl'),
         vpDim = [canvas.width, canvas.height];
 
         let oldRealRange = maxR - minR;
-        maxR = (maxI - minI) + minR;
+        maxR = ((maxI - minI) + minR);
         let newRealRange = maxR - minR;
-
         minR -= (newRealRange - oldRealRange) / 2;
-        maxR = (maxI - minI) + minR;
 
         gl.viewport(0, 0, w, h);
     },
