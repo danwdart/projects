@@ -164,7 +164,7 @@ let gl = canvas.getContext('webgl'),
         if (1 !== ev.buttons) return;
         let iRange = maxI - minI,
             rRange = maxR - minR,
-            di = (ev.movementY / w) * iRange,
+            di = (ev.movementY / h) * iRange,
             dr = (ev.movementX / w) * rRange;
         minI += di;
         maxI += di;
