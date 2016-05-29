@@ -33,9 +33,9 @@ void main()
     }
 
     if (it < maxIt) {
-        gl_FragColor = vec4(0.0, it / 10.0, 0.0, 1.0);
+        gl_FragColor = vec4(it / 10.0, it / 10.0, it / 10.0, 1.0);
     }
     else {
-        gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0);
+        gl_FragColor = vec4(z, 0.0, 1.0);
     }
 }
