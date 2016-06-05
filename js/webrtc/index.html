@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebRTC demo</title>
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            background-color: #ccc;
+        }
+        main {
+            max-height: 100%;
+        }
+        .flex {
+            display: flex;
+            position: relative;
+        }
+        .flex-row {
+            flex-direction: row;
+        }
+        .flex-col {
+            flex-direction: column;
+        }
+        .flex-1 {
+            flex-grow: 1;
+        }
+        .flex-2 {
+            flex-grow: 2;
+        }
+        .force-third {
+            flex-basis: 33%;
+        }
+        video {
+            width: 100%;
+            max-height: 100%;
+        }
+        .convo {
+            background-color: white;
+            max-height: 200px;
+            overflow: auto;
+        }
+        .input {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <main class="flex flex-col">
+        <h1>WebRTC demo</h1>
+        <div class="flex flex-row" style="height: 500px">
+            <div class="flex-2">
+                <video class="them"></video>
+            </div>
+            <div class="flex flex-col force-third">
+                <video class="me"></video>
+                <div class="convo"></div>
+                <input class="input" type="text"/>
+                <div class="flex flex-row">
+                    <button class="say flex-1">Say it</button>
+                    <button class="call flex-1">Call</button>
+                    <button class="answer flex-1">Answer</button>
+                </div>
+                Your session token:
+                <input class="yourtoken" type="text">
+                Their session token:
+                <input class="theirtoken" type="text">
+                <button class="usetheirtoken">Use Token</button>
+                Our Candidate token:
+                <input class="ourcandidate" type="text">
+                Their Candidate token:
+                <input class="theircandidate" type="text">
+                <button class="usetheircandidate">Use Candidate</button>
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
