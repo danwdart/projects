@@ -6,4 +6,8 @@ export default class Model {
     constructor() {
 
     }
+
+    doSomething(a) {
+        return a ** 4;
+    }
 }
