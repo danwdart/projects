@@ -1,9 +1,9 @@
 let T = 2 * Math.PI,
     canvas = document.querySelector('canvas'),
     h,
-    w;
-
-let gl = canvas.getContext('webgl'),
+    w,
+    program,
+    gl = canvas.getContext('webgl'),
     loadAjax = (name) => new Promise((res, rej) => {
         let x = new XMLHttpRequest();
         x.open('GET', name, true);
@@ -46,7 +46,7 @@ let gl = canvas.getContext('webgl'),
             throw new Error('Error compiling fragment shader');
         }
 
-        let program = gl.createProgram();
+        program = gl.createProgram();
 
         gl.attachShader(program, vertexShader);
         gl.attachShader(program, fragmentShader);
@@ -67,7 +67,7 @@ let gl = canvas.getContext('webgl'),
         return program;
     },
     createProgram = (vertexText, fragmentText) => {
-        let program = compileProgram(vertexText, fragmentText);
+        program = compileProgram(vertexText, fragmentText);
 
         gl.useProgram(program);
 
@@ -94,11 +94,12 @@ let gl = canvas.getContext('webgl'),
         );
         gl.enableVertexAttribArray(vertPosAttrib);
 
+        gl.uniform2f(gl.getUniformLocation(program, 'mouse'), 0, 0);
+
         loop = () => {
             clear();
 
-            gl.uniform1f(gl.getUniformLocation(program, 'h'), h);
-            gl.uniform1f(gl.getUniformLocation(program, 'w'), w);
+            gl.uniform2f(gl.getUniformLocation(program, 'dim'), h, w);
             gl.uniform1f(gl.getUniformLocation(program, 't'), performance.now());
 
             draw(arrVertices);
@@ -127,3 +128,8 @@ let gl = canvas.getContext('webgl'),
 
 resize();
 load();
+window.addEventListener('mousemove', (e) => {
+    if (program) {
+        gl.uniform2f(gl.getUniformLocation(program, 'mouse'), e.clientX, e.clientY);
+    }
+});
