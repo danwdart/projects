@@ -9,7 +9,7 @@
     "babel-preset-stage-0": "^6.5.0"
   },
   "scripts": {
-    "build": "node_modules/babel-cli/bin/babel.js src -d build",
+    "build": "babel src -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
