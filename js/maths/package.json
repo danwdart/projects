@@ -4,7 +4,8 @@
   "description": "maths things",
   "main": "index.js",
   "dependencies": {
-    "bignumber.js": "^2.1.0"
+    "bignumber.js": "^2.1.0",
+    "node-fetch": "^1.5.3"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
