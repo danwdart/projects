@@ -99,7 +99,7 @@ let T = 2 * Math.PI,
         loop = () => {
             clear();
 
-            gl.uniform2f(gl.getUniformLocation(program, 'dim'), h, w);
+            gl.uniform2f(gl.getUniformLocation(program, 'dim'), w, h);
             gl.uniform1f(gl.getUniformLocation(program, 't'), performance.now());
 
             draw(arrVertices);
@@ -119,7 +119,7 @@ let T = 2 * Math.PI,
         w = window.innerWidth;
         canvas.height = h;
         canvas.width = w;
-        canvas.style.height = h+'px';
+        canvas.style.height = h +'px';
         canvas.style.width = w + 'px';
         vpDim = [canvas.width, canvas.height];
 
