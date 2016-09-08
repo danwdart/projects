@@ -1,5 +1,8 @@
+
 let bases = [],
-    basesd = [],
+    Fs = [],
+    Ls = [],
+    agrees = [],
     baselimit = 2000;
 
 for (let base = 2; base <= baselimit; base++) {
@@ -21,13 +24,17 @@ for (let base = 2; base <= baselimit; base++) {
             (lucas[1] == (lucas[lucas.length - 2] + 2 *lucas[lucas.length - 1]) % base))
             repeatingl = true;
     }
-    console.log('Base', base, 'F', fibs.length, 'L', lucas.length, (fibs.length != lucas.length) ? ' DIFFERENT!':'');
+    Fs[base] = fibs.length;
+    Ls[base] = lucas.length;
+
     if (fibs.length != lucas.length)
         bases.push(base);
     //console.log('F', fibs.join(','), 'L:', lucas.join(','));
 }
 
 for (let i = 1; i <= baselimit/5; i++) {
-    if (!bases.includes(i * 5)) basesd.push(i - 11);
+    if (!bases.includes(i * 5)) {
+        agrees.push(Fs[i * 5]);
+    }
 }
-console.log(basesd.join(','));
+console.log(agrees.join(','));
