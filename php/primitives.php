@@ -8,11 +8,13 @@ class Magic
 {
     private $_arrGetters;
     private $_arrSetters;
+    private $_arrCallers;
 
-    public function __construct($arrGetters, $arrSetters)
+    public function __construct($arrGetters, $arrSetters, $arrCallers)
     {
         $this->_arrGetters = $arrGetters;
         $this->_arrSetters = $arrSetters;
+        $this->_arrCallers = $arrCallers;
     }
 
     public function defineGetter($strWhat, $callback)
@@ -25,6 +27,11 @@ class Magic
         $this->_arrSetters[$strWhat] = $callback;
     }
 
+    public function defineCaller($strWhat, $callback)
+    {
+        $this->_arrCallers[$strWhat] = $callback;
+    }
+
     public function __get($what)
     {
         return $this->_arrGetters[$what]() ?? undefined;
@@ -33,6 +40,11 @@ class Magic
     public function __set($what, $towhat)
     {
         return $this->_arrSetters[$what]($towhat);
+    }
+
+    public function __call($what, $with)
+    {
+        return $this->_arrCallers[$what]($with);
     }
 }
 
