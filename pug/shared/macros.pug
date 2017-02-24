@@ -14,7 +14,7 @@ mixin fa
 mixin icon(name)
 	i(class='fa fa-'+name)
 mixin font(name)
-	+css('https://fonts.googleapis.com/css?family=' + name + ':400,600,700,300');
+	+css('https://fonts.googleapis.com/css?family=' + name + ':400,600,700,300')
 mixin modal(id, title)
 	div.modal.fade(id=id)
 		.modal-dialog
@@ -37,4 +37,4 @@ mixin bscontrol(label, type, name, id, placeholder)
 		else
 			label.control-label(for=id)= name
 			div
-				input.form-control(id=id,type=type,name=name,data-bind='value:'+name,placeholder=placeholder)		
+				input.form-control(id=id,type=type,name=name,data-bind='value:'+name,placeholder=placeholder)
