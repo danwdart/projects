@@ -1,0 +1,21 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kathie Dart <npm@kathiedart.uk>",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "css-loader": "^0.27.3",
+    "html-loader": "^0.4.5",
+    "style-loader": "^0.16.0",
+    "webpack": "^2.3.1"
+  }
+}
