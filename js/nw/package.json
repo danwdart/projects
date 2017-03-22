@@ -1,0 +1,13 @@
+{
+  "name": "thatthing",
+  "version": "0.0.1",
+  "main": "src/index.html",
+  "author": "Dan Dart <funky@dandart.co.uk> (http://dandart.co.uk)",
+  "scripts": {
+    "start": "nw ."
+  },
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "nw": "^0.21.3"
+  }
+}
