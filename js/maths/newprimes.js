@@ -27,10 +27,6 @@ function* getprimes(upto) {
     }
 }
 
-for (let v of getprimes(200)) {
-    console.log(v);
-}
-
 function *getprimefactors(i) {
     for (let v of getprimes(Math.sqrt(i))) {
         if (0 == i % v) {
@@ -39,4 +35,9 @@ function *getprimefactors(i) {
         }
         if (1 == i) return;
     }
+}
+
+
+for (let v of getprimes(200)) {
+    console.log(v);
 }
