@@ -14,7 +14,7 @@ const c = document.querySelector('canvas'),
             (p1[1] + p2[1]) / 2
         )
     ],
-    points = [];
+    points = [[0,0],[0,800],[800,0],[800,800]];
 
 let state = randpoint();
 
@@ -22,10 +22,12 @@ ctx.fillStyle = 'black';
 
 draw(state);
 
-for (let i = 0; i < 5; i++) {
+/*
+for (let i = 0; i < 4; i++) {
     points[i] = randpoint();
     draw(points[i]);
 }
+*/
 
 for (let n = 0; n <= 1000000; n++) {
     const towhich = pick(points);
