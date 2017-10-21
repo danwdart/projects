@@ -5,13 +5,14 @@ class AutoSchema
         throw new Error('No fields defined');
     }
 
-    static create(arrData)
+    constructor(arrData)
     {
+        const symFields = Symbol("FIELDS");
         return new Proxy(
             new this.constructor(arrData),
             {
                 get(what, field) {
-                    if (what.)
+                    if (what[symFields][field])
                 },
 
                 set(what, field, value) {
@@ -24,7 +25,7 @@ class AutoSchema
 
 class Model extends AutoSchema
 {
-    static getFields()
+    static getFields =
     {
         return ['a'];
     }
