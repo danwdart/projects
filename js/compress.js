@@ -31,7 +31,7 @@ let prifact = function(num) {
 }
 
 console.log('Generating big number');
-let intBigNumber = Math.floor(Math.random() * (1<<30));
+let intBigNumber = Math.floor(Math.random() * (Number.MAX_SAFE_INTEGER));
 console.log('Number is', intBigNumber, 'entropy is', Math.ceil(Math.log2(intBigNumber)), 'bits');
 tryfunc('Square', intBigNumber, Math.sqrt, (n)=>n**2);
 tryfunc('Cube', intBigNumber, (n)=>n**(1/3), (n)=>n**3);
