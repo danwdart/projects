@@ -1,59 +1,39 @@
-!function() {
-    var Body = function() {
-        function Body() {
-            this.title = Fef.obs();
-            this.text = Fef.obs();
-            this.para = Fef.obs();
-        }
+class Fef {
+    constructor() {
+        this._models = [];
+    }
 
-        return Body;
-    }();
+    #get(query, start) {
+        if (null == start) start = document;
+        return start.querySelector(query);
+    }
 
-    var Fef =function() {
-        function Fef() {
-            this._models = [];
-        }
+    #getfef(name, start) {
+        if (null == start) start = document;
+        return this.#get('[data-fef-'+name+']', start)
+    }
 
-        function get(query, start) {
-            if (null == start) start = document;
-            return start.querySelector(query);
-        }
+    #fefval(el, name) {
+        return el.data['fef-'+name];
+    }
 
-        function getfef(name, start) {
-            if (null == start) start = document;
-            return get('[data-fef-'+name+']', start)
-        }
-
-        function fefval(el, name) {
-            return el.data['fef-'+name];
-        }
-
-        function forEach(things, anddo) {
-            for (var i = 0; i < things.length; i++) {
-                anddo(things[i]);
+    initModel(model) {
+        var modelName = this.#fefval(model, 'model');
+        this._models.push(
+            {
+                name: modelName,
+                model: new modelName,
+                dom: model
             }
-        }
+        );
+    }
 
-        Fef.prototype.initModel = function(model) {
-            var modelName = fefval(model, 'model');
-            this._models.push(
-                {
-                    name: modelName,
-                    model: new modelName,
-                    dom: model
-                }
-            );
-        }
+    init() {
+        var models = this.#getfef('model');
+        [].prototype.forEach(models, this.initModel.bind(this));
+    };
+}
 
-        Fef.prototype.init = function() {
-            var models = getfef('model');
-            forEach(models, this.initModel.bind(this));
+const fef = new Fef();
 
-        };
-
-        return Fef;
-    }();
-
-    var fef = new Fef();
-    fef.init();
-}();
+fef.init();
