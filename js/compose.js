@@ -26,15 +26,15 @@ class D
 
 const compose = arrClasses => {
     const cl = class {};
-    arrClasses.forEach(c => {
-        Object.getOwnPropertyNames(c.prototype).filter(n => `constructor` !== n).forEach(m => {
-            cl.prototype[m] = c.prototype[m];
-        });
-    });
+    arrClasses.forEach(c =>
+        Object.getOwnPropertyNames(c.prototype).filter(n => `constructor` !== n).forEach(m =>
+            cl.prototype[m] = c.prototype[m]
+        )
+    );
     return cl;
 };
 
-class A extends compose([B, C, D]);
+class A extends compose([B, C, D])
 {
     constructor()
     {
