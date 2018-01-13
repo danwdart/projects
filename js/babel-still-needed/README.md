@@ -12,7 +12,6 @@ Examples of prerelease Babel stuff.
 - Syntax: Dynamic Import
 - Syntax: Import Meta
 
-
 # Stage 2
 
 Everything in Stage 3 plus:
