@@ -1,0 +1,23 @@
+{
+    "name": "babel-still-needed",
+    "version": "1.0.0",
+    "description": "things that still need babel",
+    "main": "index.js",
+    "scripts": {
+        "build-browser": "babel --config-file ./.babelrc-browser --no-babelrc -d browser src",
+        "build-node": "babel --config-file ./.babelrc-node --no-babelrc -d node src",
+        "start": "",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Dan Dart <git@dandart.co.uk>",
+    "license": "WTFPL",
+    "devDependencies": {
+        "@babel/cli": "^7.0.0-beta.37",
+        "@babel/core": "^7.0.0-beta.37",
+        "@babel/plugin-proposal-class-properties": "^7.0.0-beta.37",
+        "@babel/plugin-proposal-decorators": "^7.0.0-beta.37",
+        "@babel/plugin-proposal-do-expressions": "^7.0.0-beta.37",
+        "@babel/plugin-proposal-function-bind": "^7.0.0-beta.37",
+        "@babel/preset-env": "^7.0.0-beta.37"
+    }
+}
