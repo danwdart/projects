@@ -4,10 +4,14 @@
   "main": "src/index.html",
   "author": "Dan Dart <funky@dandart.co.uk> (http://dandart.co.uk)",
   "scripts": {
-    "start": "nw ."
+    "start": "nw .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "license": "AGPL-3.0",
   "dependencies": {
-    "nw": "^0.21.3"
-  }
+    "nw": "^0.23.7",
+    "snyk": "^1.69.3"
+  },
+  "snyk": true
 }
