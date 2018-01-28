@@ -1,0 +1,7 @@
+<!doctype html>
+<html>
+<h1>Hello World!</h1>
+<script>
+(async () => {
+    console.log(await (await fetch("cgi-bin/index.sh")).json());
+})();
