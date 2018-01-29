@@ -10,8 +10,8 @@
   },
   "license": "AGPL-3.0",
   "dependencies": {
-    "nw": "^0.23.7",
-    "snyk": "^1.69.3"
+    "nw": "^0.28.0",
+    "snyk": "^1.69.5"
   },
   "snyk": true
 }
