@@ -4,12 +4,12 @@
   "description": "maths things",
   "main": "index.js",
   "dependencies": {
-    "bignumber.js": "^2.1.0",
-    "node-fetch": "^1.5.3"
+    "bignumber.js": "^6.0.0",
+    "node-fetch": "^1.7.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.10.1",
-    "babel-preset-stage-0": "^6.5.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-stage-0": "^6.24.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
