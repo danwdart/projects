@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "synaptic": "^1.1.1"
+    "synaptic": "^1.1.4"
   }
 }
