@@ -1,0 +1,17 @@
+{
+  "name": "functional",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel -d js js/src",
+    "start": "node js/index.js",
+    "test": "eslint *.js"
+  },
+  "author": "Dan Dart <npm@dandart.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.39",
+    "@babel/preset-stage-0": "^7.0.0-beta.39"
+  }
+}
