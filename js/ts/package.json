@@ -4,8 +4,8 @@
   "description": "",
   "main": "js/index.js",
   "scripts": {
-    "start": "node js/index.js",
-    "build": "tsc",
+    "start": "node --experimental-modules js/index.mjs",
+    "build": "tsc && mv js/index.js js/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
