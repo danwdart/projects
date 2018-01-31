@@ -36,7 +36,7 @@ class Friender
     private $_object;
     private $_arrAllowedClasses;
 
-    public function __construct(object $object, Array $arrAllowedClasses)
+    public function __construct(object $object, array $arrAllowedClasses)
     {
         $this->_object = $object;
         $this->_arrAllowedClasses = $arrAllowedClasses;

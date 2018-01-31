@@ -1,5 +1,5 @@
 <?php
-include 'facebookapi/php/facebook.php';
+require 'facebookapi/php/facebook.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,9 +14,9 @@ img { padding:5px; border-style:none;}
 </head>
 <body>
 
-<?php  
-  $appapikey = '8fd7899ac52b475e90ec5ac46e112992';    //CHANGE THIS 
-  $appsecret = '698a166e513aa63b75d0d08ebb917daf'; //CHANGE THIS 
+<?php
+  $appapikey = '8fd7899ac52b475e90ec5ac46e112992';    //CHANGE THIS
+  $appsecret = '698a166e513aa63b75d0d08ebb917daf'; //CHANGE THIS
   $facebook = new Facebook($appapikey, $appsecret);
   $user_id = $facebook->require_login();
   
@@ -32,30 +32,30 @@ img { padding:5px; border-style:none;}
 echo "Here's a list of 10 of your friends. Click on one to see all their photos.<br />";
 $i=0;
 foreach ($friends as $friend) {
-  $personArray = $facebook->api_client->users_getInfo($friend,"name");
-  $query="SELECT pic_square FROM profile WHERE id=".$friend;
-  $result=$facebook->api_client->fql_query($query);
-  foreach ($result as $img) {
-    ?>
-    <a href="fbtest.php?uid=<?php echo $friend; ?>"><img src="<?php echo $img[pic_square]; ?>" /></a>
+    $personArray = $facebook->api_client->users_getInfo($friend, "name");
+    $query="SELECT pic_square FROM profile WHERE id=".$friend;
+    $result=$facebook->api_client->fql_query($query);
+    foreach ($result as $img) {
+        ?>
+      <a href="fbtest.php?uid=<?php echo $friend; ?>"><img src="<?php echo $img[pic_square]; ?>" /></a>
     <?php
     }
-  $person[$i]=$personArray[0];
-  $i++;
-  }
+    $person[$i]=$personArray[0];
+    $i++;
+}
 
 if (isset($_GET['uid'])) {
-echo "Here are their pictures:<br />";
-  $query="SELECT aid FROM album WHERE owner=".$_GET['uid'];
-  $result=$facebook->api_client->fql_query($query);
-  foreach ($result as $albums) {
-    $query="SELECT src_small FROM photo WHERE aid=".$albums[aid];
+    echo "Here are their pictures:<br />";
+    $query="SELECT aid FROM album WHERE owner=".$_GET['uid'];
     $result=$facebook->api_client->fql_query($query);
-      foreach ($result as $picture) {
-	echo "<img src='".$picture[src_small]."' /><br />";
-      }
+    foreach ($result as $albums) {
+        $query="SELECT src_small FROM photo WHERE aid=".$albums[aid];
+        $result=$facebook->api_client->fql_query($query);
+        foreach ($result as $picture) {
+            echo "<img src='".$picture[src_small]."' /><br />";
+        }
     }
-  }
+}
 
 
 

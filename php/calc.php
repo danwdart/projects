@@ -6,12 +6,12 @@ echo 'Factoring '.gmp_strval($g).PHP_EOL;
 $ok = false;
 $n = 2;
 $arrOut = array();
-while($ok == false) {
+while ($ok == false) {
     $a = gmp_div_qr($g, $n);
     $q = $a[0];
     $r = $a[1];
-    if('0' == gmp_strval($r)) {
-        if('1' == gmp_strval($q)) {
+    if ('0' == gmp_strval($r)) {
+        if ('1' == gmp_strval($q)) {
             $ok = true;
             break;
         }
@@ -24,4 +24,3 @@ while($ok == false) {
 }
 
 var_dump($arrOut);
-

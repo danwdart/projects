@@ -81,7 +81,6 @@ class Str
 
     public function startsWith(self $str)
     {
-
     }
 
     public function prepend(self $str)
@@ -92,7 +91,6 @@ class Str
 
     public function endsWith(self $str)
     {
-
     }
 
     public function __toString()
@@ -142,7 +140,6 @@ class DemoClass
 {
     public function run()
     {
-
     }
 }
 

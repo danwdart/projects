@@ -9,7 +9,7 @@ class C
 
 $o = new C();
 
-$cl = (function() {
+$cl = (function () {
     return $this->_doSomething();
 })->bindTo($o, $o);
 

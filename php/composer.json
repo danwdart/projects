@@ -1,0 +1,15 @@
+{
+    "name": "dandart/projects",
+    "description": "Projects",
+    "type": "project",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.2"
+    },
+    "license": "Expat",
+    "authors": [
+        {
+            "name": "Dan Dart",
+            "email": "git@dandart.co.uk"
+        }
+    ]
+}
