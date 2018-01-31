@@ -1,6 +1,6 @@
 console.log(`Hello World!`);
-const button = document.querySelector('button');
-button.addEventListener('click', async () => {
+const button = document.querySelector(`button`);
+button.addEventListener(`click`, async () => {
     let device;
     try {
         device = await navigator.usb.requestDevice(
@@ -21,9 +21,9 @@ button.addEventListener('click', async () => {
         console.log(device);
 
     } catch (e) {
-        console.log("Oh no", e)
+        console.log(`Oh no`, e);
         // No device was selected.
     }
 
 
-})
+});

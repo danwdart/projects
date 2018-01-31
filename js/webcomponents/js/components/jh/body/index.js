@@ -8,9 +8,9 @@ export default class JhApp extends HTMLElement
 
     async render()
     {
-        let shadowRoot = this.attachShadow({mode: 'open'});
+        let shadowRoot = this.attachShadow({mode: `open`});
 
-        let index = await fetch("/js/components/jh/title/index.html"),
+        let index = await fetch(`/js/components/jh/body/index.html`),
             dom = await index.text();
 
         shadowRoot.innerHTML = dom;

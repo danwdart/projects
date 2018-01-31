@@ -10,7 +10,7 @@ export default class JhApp extends HTMLElement
 
     render()
     {
-        let shadowRoot = this.attachShadow({mode: 'open'});
+        let shadowRoot = this.attachShadow({mode: `open`});
         shadowRoot.innerHTML = indexTemplate;
     }
 }
