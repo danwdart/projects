@@ -2,11 +2,10 @@ export namespace Stuff.Things
 {
     export class A
     {
-        private name: string;
-
-        constructor(name: string)
+        constructor(
+            public name: string
+        )
         {
-            this.name = name;
         }
 
         public sayHello(tosay: string): void
