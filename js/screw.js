@@ -4,7 +4,7 @@
 
     Object.defineProperty(
         global,
-        "prop",
+        `prop`,
         {
             get() {
                 return _prop++;

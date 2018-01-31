@@ -19,16 +19,16 @@ let min = 1,
 
 loop([],
     (a) => loop([a],
-    (b) => { console.log(a,b); loop([a,b],
-    (c) => loop([a,b,c],
-    (d) => loop([a,b,c,d],
-    (e) => loop([a,b,c,d,e],
-    (f) => loop([a,b,c,d,e,f],
-    (g) => loop([a,b,c,d,e,f,g],
-    (h) => loop([a,b,c,d,e,f,g,h],
-    (i) => {
-        let tot = a**2+b**2+c**2;
-        if (tot == d**2+e**2+f**2 &&
+        (b) => { console.log(a,b); loop([a,b],
+            (c) => loop([a,b,c],
+                (d) => loop([a,b,c,d],
+                    (e) => loop([a,b,c,d,e],
+                        (f) => loop([a,b,c,d,e,f],
+                            (g) => loop([a,b,c,d,e,f,g],
+                                (h) => loop([a,b,c,d,e,f,g,h],
+                                    (i) => {
+                                        let tot = a**2+b**2+c**2;
+                                        if (tot == d**2+e**2+f**2 &&
             tot == g**2+h**2+i**2 &&
             tot == a**2+d**2+g**2 &&
             tot == b**2+e**2+h**2 &&
@@ -36,7 +36,7 @@ loop([],
             tot == a**2+e**2+i**2 &&
             tot == c**2+e**2+g**2 &&
             different(a,b,c,d,e,f,g,h,i)
-        )
-            console.log(a,b,c,d,e,f,g,h,i);
-    }
-)))))))}));
+                                        )
+                                            console.log(a,b,c,d,e,f,g,h,i);
+                                    }
+                                )))))));}));

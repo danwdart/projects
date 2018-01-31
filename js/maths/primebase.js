@@ -20,22 +20,22 @@ let prime = function*() {
 };
 
 let pb = (n) => {
-    console.log('Checking pb of', n)
+    console.log(`Checking pb of`, n);
     let primes = prime();
     let mappy = new Map();
     while(1 < n) {
         let p = primes.next().value;
         mappy.set(p, 0);
         if (0 == n % p) {
-            console.log('Adding', p)
+            console.log(`Adding`, p);
             mappy.set(p, mappy.get(p) + 1);
             n /= p;
-            console.log('n now', n)
+            console.log(`n now`, n);
         }
     }
     return mappy;
-}
+};
 
 for (let i = 1; i <= 1000; i++) {
-    console.log(i, 'is in prime base: '+JSON.stringify(pb(i)));
+    console.log(i, `is in prime base: `+JSON.stringify(pb(i)));
 }

@@ -52,6 +52,6 @@ end2 = (new Date()).getTime();
 //}
 //end3 = (new Date()).getTime();
 
-console.log('Method 1: '+(end1 - start1)+' ms.');
-console.log('Method 2: '+(end2 - start2)+' ms.');
+console.log(`Method 1: `+(end1 - start1)+` ms.`);
+console.log(`Method 2: `+(end2 - start2)+` ms.`);
 //console.log('Method 3: '+(end3 - start3)+' ms.');

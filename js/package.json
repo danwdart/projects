@@ -1,0 +1,14 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "js projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint *"
+  },
+  "author": "Dan Dart <npm@dandart.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.16.0"
+  }
+}

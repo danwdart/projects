@@ -34,7 +34,7 @@ function conflict(num) {
         var last = num.charAt(i),
             penul = num.charAt(i-1),
             together = penul+last;
-        if ('' == penul) continue;
+        if (`` == penul) continue;
         //console.log({num:num, i:i,last:last,penul:penul,together:together});
         if (last == penul ||
         (-1 !== num.indexOf(together) &&

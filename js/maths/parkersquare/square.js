@@ -8,16 +8,16 @@ let min = 1,
 
 loop(
     (a) => loop(
-    (b) => loop(
-    (c) => loop(
-    (d) => loop(
-    (e) => loop(
-    (f) => loop(
-    (g) => loop(
-    (h) => loop(
-    (i) => {
-        let tot = a+b+c;
-        if (tot == d+e+f &&
+        (b) => loop(
+            (c) => loop(
+                (d) => loop(
+                    (e) => loop(
+                        (f) => loop(
+                            (g) => loop(
+                                (h) => loop(
+                                    (i) => {
+                                        let tot = a+b+c;
+                                        if (tot == d+e+f &&
             tot == g+h+i &&
             tot == a+d+g &&
             tot == b+e+h &&
@@ -28,7 +28,7 @@ loop(
             c != g &&
             b != h &&
             d != f
-        )
-            console.log(a,b,c,d,e,f,g,h,i);
-    }
-)))))))));
+                                        )
+                                            console.log(a,b,c,d,e,f,g,h,i);
+                                    }
+                                )))))))));

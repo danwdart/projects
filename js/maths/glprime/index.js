@@ -1,23 +1,23 @@
 let T = 2 * Math.PI,
-    canvas = document.querySelector('canvas'),
+    canvas = document.querySelector(`canvas`),
     h,
     w,
     program,
-    gl = canvas.getContext('webgl'),
+    gl = canvas.getContext(`webgl`),
     loadAjax = (name) => new Promise((res, rej) => {
         let x = new XMLHttpRequest();
-        x.open('GET', name, true);
+        x.open(`GET`, name, true);
         x.onreadystatechange = () => {
             if (4 == x.readyState) {
                 if (200 !== x.status)
-                    return rej('Error loading '+name);
+                    return rej(`Error loading `+name);
                 return res(x.responseText);
             }
         };
         x.send();
     }),
-    pVertexText = loadAjax('vertex.v.glsl'),
-    pFragmentText = loadAjax('fragment.f.glsl'),
+    pVertexText = loadAjax(`vertex.v.glsl`),
+    pFragmentText = loadAjax(`fragment.f.glsl`),
     clear = () => {
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -37,13 +37,13 @@ let T = 2 * Math.PI,
         gl.compileShader(vertexShader);
         if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
             console.log(gl.getShaderInfoLog(vertexShader));
-            throw new Error('Error compiling vertex shader');
+            throw new Error(`Error compiling vertex shader`);
         }
 
         gl.compileShader(fragmentShader);
         if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
             console.log(gl.getShaderInfoLog(fragmentShader));
-            throw new Error('Error compiling fragment shader');
+            throw new Error(`Error compiling fragment shader`);
         }
 
         program = gl.createProgram();
@@ -55,13 +55,13 @@ let T = 2 * Math.PI,
 
         if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
             console.log(gl.getProgramInfoLog(program));
-            throw new Error('Error linking program');
+            throw new Error(`Error linking program`);
         }
 
         gl.validateProgram(program);
         if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
             console.log(gl.getProgramInfoLog(program));
-            throw new Error('Error validating program');
+            throw new Error(`Error validating program`);
         }
 
         return program;
@@ -84,7 +84,7 @@ let T = 2 * Math.PI,
         gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(arrVertices), gl.STATIC_DRAW);
 
-        let vertPosAttrib = gl.getAttribLocation(program, 'vPos');
+        let vertPosAttrib = gl.getAttribLocation(program, `vPos`);
         gl.vertexAttribPointer(
             vertPosAttrib,
             2, gl.FLOAT,
@@ -94,13 +94,13 @@ let T = 2 * Math.PI,
         );
         gl.enableVertexAttribArray(vertPosAttrib);
 
-        gl.uniform2f(gl.getUniformLocation(program, 'mouse'), 0, 0);
+        gl.uniform2f(gl.getUniformLocation(program, `mouse`), 0, 0);
 
         loop = () => {
             clear();
 
-            gl.uniform2f(gl.getUniformLocation(program, 'dim'), w, h);
-            gl.uniform1f(gl.getUniformLocation(program, 't'), performance.now());
+            gl.uniform2f(gl.getUniformLocation(program, `dim`), w, h);
+            gl.uniform1f(gl.getUniformLocation(program, `t`), performance.now());
 
             draw(arrVertices);
 
@@ -119,8 +119,8 @@ let T = 2 * Math.PI,
         w = window.innerWidth;
         canvas.height = h;
         canvas.width = w;
-        canvas.style.height = h +'px';
-        canvas.style.width = w + 'px';
+        canvas.style.height = h +`px`;
+        canvas.style.width = w + `px`;
         vpDim = [canvas.width, canvas.height];
 
         gl.viewport(0, 0, w, h);
@@ -128,8 +128,8 @@ let T = 2 * Math.PI,
 
 resize();
 load();
-window.addEventListener('mousemove', (e) => {
+window.addEventListener(`mousemove`, (e) => {
     if (program) {
-        gl.uniform2f(gl.getUniformLocation(program, 'mouse'), e.clientX, e.clientY);
+        gl.uniform2f(gl.getUniformLocation(program, `mouse`), e.clientX, e.clientY);
     }
 });

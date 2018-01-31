@@ -12,7 +12,7 @@ for (let i = 0; i < to; i++) {
 //console.log(res);
 
 for (let n in res) {
-    console.log(`${res[n].length} ways to get to ${n}`)
+    console.log(`${res[n].length} ways to get to ${n}`);
 }
 
 /*

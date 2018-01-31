@@ -4,11 +4,11 @@ let mul = 1,
 for (let it = 0; it < 1000000; it++) {
     piover4 += mul/i;
     console.log(
-        'Iteration', it,
-        'Pi = ', 4 * piover4,
-        'Average Pi = ',
-            2 * (
-                piover4 +
+        `Iteration`, it,
+        `Pi = `, 4 * piover4,
+        `Average Pi = `,
+        2 * (
+            piover4 +
                 (
                     piover4 + (
                         mul / (
@@ -16,7 +16,7 @@ for (let it = 0; it < 1000000; it++) {
                         )
                     )
                 )
-            )
+        )
     );
     mul *= -1;
     i += 2;

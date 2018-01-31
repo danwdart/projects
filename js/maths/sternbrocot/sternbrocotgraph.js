@@ -1,6 +1,6 @@
 function* sternbrocot() {
     var i = 0;
-        nums = [1,1];
+    nums = [1,1];
     yield 1;
     yield 1;
     while(true) {

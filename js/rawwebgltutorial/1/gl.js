@@ -1,7 +1,7 @@
 // Get A WebGL context
-var canvas = document.getElementById("canvas");
-    gl = canvas.getContext("webgl"),
-    offset = [1,1];
+var canvas = document.getElementById(`canvas`);
+gl = canvas.getContext(`webgl`),
+offset = [1,1];
 
 function createProgram(vstr, fstr) {
     var program = gl.createProgram();
@@ -14,10 +14,10 @@ function createProgram(vstr, fstr) {
 }
 
 function createShader(str, type) {
-  var shader = gl.createShader(type);
-  gl.shaderSource(shader, str);
-  gl.compileShader(shader);
-  return shader;
+    var shader = gl.createShader(type);
+    gl.shaderSource(shader, str);
+    gl.compileShader(shader);
+    return shader;
 }
 
 gl.clearColor(0,0,0,1);
@@ -41,21 +41,21 @@ function screenQuad()
 
 var vertexPosBuffer = screenQuad();
 
-var vs = 'attribute vec2 aVertexPosition;'+
-    'uniform vec2 uOffset;'+
-    'varying vec2 vTexCoord;'+
-    'void main() {  vTexCoord = aVertexPosition + uOffset;'+
-    'gl_Position = vec4(aVertexPosition, 0, 1); }';
+var vs = `attribute vec2 aVertexPosition;`+
+    `uniform vec2 uOffset;`+
+    `varying vec2 vTexCoord;`+
+    `void main() {  vTexCoord = aVertexPosition + uOffset;`+
+    `gl_Position = vec4(aVertexPosition, 0, 1); }`;
 
-var fs = 'precision mediump float;'+
-    'varying vec2 vTexCoord;'+
-    'void main() {  gl_FragColor = vec4(vTexCoord, 0, 1); }';
+var fs = `precision mediump float;`+
+    `varying vec2 vTexCoord;`+
+    `void main() {  gl_FragColor = vec4(vTexCoord, 0, 1); }`;
 
 var program = createProgram(vs,fs);
 gl.useProgram(program);
 
-program.vertexPosAttrib = gl.getAttribLocation(program, 'aVertexPosition');
-program.offsetUniform = gl.getUniformLocation(program, 'uOffset');
+program.vertexPosAttrib = gl.getAttribLocation(program, `aVertexPosition`);
+program.offsetUniform = gl.getUniformLocation(program, `uOffset`);
 
 gl.uniform2f(program.offsetUniform, offset[0], offset[1]);
 

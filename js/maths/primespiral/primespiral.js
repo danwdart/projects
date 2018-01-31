@@ -1,12 +1,12 @@
-let canvas = document.querySelector('canvas'),
+let canvas = document.querySelector(`canvas`),
     w = window.innerWidth,
     h = window.innerHeight;
 canvas.width = w;
 canvas.height = h;
-canvas.style.width = w + 'px';
-canvas.style.height = h + 'px';
+canvas.style.width = w + `px`;
+canvas.style.height = h + `px`;
 
-let ctx = canvas.getContext('2d'),
+let ctx = canvas.getContext(`2d`),
     centre = [Math.floor(w/2), Math.floor(h/2)],
     currentpoint = centre,
     plot = (point, colour) => {
@@ -14,10 +14,10 @@ let ctx = canvas.getContext('2d'),
         ctx.rect(...point,1,1);
         ctx.fill();
     },
-    black = 'rgb(0,0,0)',
-    red = 'rgb(255,0,0)',
-    green = 'rgb(0,255,0)',
-    blue = 'rgb(0,0,255)',
+    black = `rgb(0,0,0)`,
+    red = `rgb(255,0,0)`,
+    green = `rgb(0,255,0)`,
+    blue = `rgb(0,0,255)`,
     minx = 0,
     maxx = 0,
     miny = 0,
@@ -59,11 +59,11 @@ for (let i = 0; i <= 10000; i++) {
     n++;
 
     switch (d) {
-        case 0: currentpoint[0]++; break;
-        case 1: currentpoint[1]--; break;
-        case 2: currentpoint[0]--; break;
-        case 3: currentpoint[1]++; break;
-        default: console.log('broken', d);
+    case 0: currentpoint[0]++; break;
+    case 1: currentpoint[1]--; break;
+    case 2: currentpoint[0]--; break;
+    case 3: currentpoint[1]++; break;
+    default: console.log(`broken`, d);
     }
     //console.log('currentpoint now', currentpoint)
 

@@ -1,7 +1,7 @@
-var fs = require('fs'),
-    path = '/etc/passwd',
+var fs = require(`fs`),
+    path = `/etc/passwd`,
     de = document.documentElement,
-    ta = document.createElement('textarea');
+    ta = document.createElement(`textarea`);
 
 de.appendChild(ta);
 

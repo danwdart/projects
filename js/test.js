@@ -11,15 +11,15 @@ var itt = function() {
             for (var i = 0; i < self._elems.length; i++) {
                 cb(self._elems[i], i);
             }
-        } 
+        }; 
     },
     bob = new itt();
 
-bob.add('1');
-bob.add('2');
-bob.add('3');
-console.log('hi');
+bob.add(`1`);
+bob.add(`2`);
+bob.add(`3`);
+console.log(`hi`);
 bob.forEach(function(e) {
     console.log(e);
 });
-console.log('ho');
+console.log(`ho`);

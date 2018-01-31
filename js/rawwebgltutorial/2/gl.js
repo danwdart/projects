@@ -35,35 +35,35 @@
         return vertexPosBuffer;
     }
 
-    var canvas = document.getElementById("canvas"),
-        gl = canvas.getContext("webgl"),
-        vs = 'attribute vec2 aVertexPosition;' +
-            'void main() {' +
-            'gl_Position = vec4(aVertexPosition, 0, 1);' +
-            '}',
-        fs = '#ifdef GL_FRAGMENT_PRECISION_HIGH\n' +
-            'precision highp float;\n' +
-            '#else\n' +
-            'precision mediump int;\n' +
-            '#endif\n' +
-            'uniform vec2 uCanvasSize;' +
-            'vec4 calc(vec2 texCoord) {'+
-            '   float x = 0.0; float y = 0.0;' +
-            '   for(int iteration = 0; iteration < 1000; ++iteration) { ' +
-            '       float xtemp = x*x - y*y+texCoord.x;' +
-            '       y = 2.0 * x*y + texCoord.y;' +
-            '       x = xtemp - 0.5;' +
-            '       if(x*x+y*y >= 8.0) {' +
-            '           float d = float(iteration)/20.0;' +
-            '           return vec4(d, d, d, 1);'+
-            '       }' +
-            '   }' +
-            '   return vec4 (0, 0, 0, 1);'+
-            '}'+
-            'void main() {' +
-            'vec2 texCoord = (gl_FragCoord.xy / uCanvasSize.xy) * 2.0 - vec2(1.0,1.0);' +
-            'gl_FragColor = calc(texCoord);' +
-            '}',
+    var canvas = document.getElementById(`canvas`),
+        gl = canvas.getContext(`webgl`),
+        vs = `attribute vec2 aVertexPosition;` +
+            `void main() {` +
+            `gl_Position = vec4(aVertexPosition, 0, 1);` +
+            `}`,
+        fs = `#ifdef GL_FRAGMENT_PRECISION_HIGH\n` +
+            `precision highp float;\n` +
+            `#else\n` +
+            `precision mediump int;\n` +
+            `#endif\n` +
+            `uniform vec2 uCanvasSize;` +
+            `vec4 calc(vec2 texCoord) {`+
+            `   float x = 0.0; float y = 0.0;` +
+            `   for(int iteration = 0; iteration < 1000; ++iteration) { ` +
+            `       float xtemp = x*x - y*y+texCoord.x;` +
+            `       y = 2.0 * x*y + texCoord.y;` +
+            `       x = xtemp - 0.5;` +
+            `       if(x*x+y*y >= 8.0) {` +
+            `           float d = float(iteration)/20.0;` +
+            `           return vec4(d, d, d, 1);`+
+            `       }` +
+            `   }` +
+            `   return vec4 (0, 0, 0, 1);`+
+            `}`+
+            `void main() {` +
+            `vec2 texCoord = (gl_FragCoord.xy / uCanvasSize.xy) * 2.0 - vec2(1.0,1.0);` +
+            `gl_FragColor = calc(texCoord);` +
+            `}`,
         vertexPosBuffer = screenQuad(gl),
         program = createProgram(gl, vs, fs);
 
@@ -72,8 +72,8 @@
 
     gl.useProgram(program);
 
-    program.vertexPosAttrib = gl.getAttribLocation(program, 'aVertexPosition');
-    program.canvasSizeUniform = gl.getUniformLocation(program, 'uCanvasSize');
+    program.vertexPosAttrib = gl.getAttribLocation(program, `aVertexPosition`);
+    program.canvasSizeUniform = gl.getUniformLocation(program, `uCanvasSize`);
 
     gl.uniform2f(program.canvasSizeUniform, canvas.width, canvas.height);
 

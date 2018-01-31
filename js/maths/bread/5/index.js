@@ -1,5 +1,5 @@
 let T = 2 * Math.PI,
-    canvas = document.querySelector('canvas'),
+    canvas = document.querySelector(`canvas`),
     h,
     w,
     vpDim = [canvas.width, canvas.height],
@@ -8,21 +8,21 @@ let T = 2 * Math.PI,
     minR = -2.0,
     maxR = 2.0;
 
-let gl = canvas.getContext('webgl'),
+let gl = canvas.getContext(`webgl`),
     loadAjax = (name) => new Promise((res, rej) => {
         let x = new XMLHttpRequest();
-        x.open('GET', name, true);
+        x.open(`GET`, name, true);
         x.onreadystatechange = () => {
             if (4 == x.readyState) {
                 if (200 !== x.status)
-                    return rej('Error loading '+name);
+                    return rej(`Error loading `+name);
                 return res(x.responseText);
             }
         };
         x.send();
     }),
-    pVertexText = loadAjax('vertex.v.glsl'),
-    pFragmentText = loadAjax('fragment.f.glsl'),
+    pVertexText = loadAjax(`vertex.v.glsl`),
+    pFragmentText = loadAjax(`fragment.f.glsl`),
     clear = () => {
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -42,13 +42,13 @@ let gl = canvas.getContext('webgl'),
         gl.compileShader(vertexShader);
         if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
             console.log(gl.getShaderInfoLog(vertexShader));
-            throw new Error('Error compiling vertex shader');
+            throw new Error(`Error compiling vertex shader`);
         }
 
         gl.compileShader(fragmentShader);
         if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
             console.log(gl.getShaderInfoLog(fragmentShader));
-            throw new Error('Error compiling fragment shader');
+            throw new Error(`Error compiling fragment shader`);
         }
 
         let program = gl.createProgram();
@@ -60,13 +60,13 @@ let gl = canvas.getContext('webgl'),
 
         if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
             console.log(gl.getProgramInfoLog(program));
-            throw new Error('Error linking program');
+            throw new Error(`Error linking program`);
         }
 
         gl.validateProgram(program);
         if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
             console.log(gl.getProgramInfoLog(program));
-            throw new Error('Error validating program');
+            throw new Error(`Error validating program`);
         }
 
         return program;
@@ -77,11 +77,11 @@ let gl = canvas.getContext('webgl'),
         gl.useProgram(program);
 
         let uniforms = {
-            vpDim: gl.getUniformLocation(program, 'vpDim'),
-            minI: gl.getUniformLocation(program, 'minI'),
-            maxI: gl.getUniformLocation(program, 'maxI'),
-            minR: gl.getUniformLocation(program, 'minR'),
-            maxR: gl.getUniformLocation(program, 'maxR')
+            vpDim: gl.getUniformLocation(program, `vpDim`),
+            minI: gl.getUniformLocation(program, `minI`),
+            maxI: gl.getUniformLocation(program, `maxI`),
+            minR: gl.getUniformLocation(program, `minR`),
+            maxR: gl.getUniformLocation(program, `maxR`)
         };
 
         let vertBuf = gl.createBuffer(),
@@ -97,7 +97,7 @@ let gl = canvas.getContext('webgl'),
         gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(arrVertices), gl.STATIC_DRAW);
 
-        let vertPosAttrib = gl.getAttribLocation(program, 'vPos');
+        let vertPosAttrib = gl.getAttribLocation(program, `vPos`);
         gl.vertexAttribPointer(
             vertPosAttrib,
             2, gl.FLOAT,
@@ -133,8 +133,8 @@ let gl = canvas.getContext('webgl'),
         w = window.innerWidth;
         canvas.height = h;
         canvas.width = w;
-        canvas.style.height = h+'px';
-        canvas.style.width = w + 'px';
+        canvas.style.height = h+`px`;
+        canvas.style.width = w + `px`;
         vpDim = [canvas.width, canvas.height];
 
         let oldRealRange = maxR - minR;
@@ -174,6 +174,6 @@ let gl = canvas.getContext('webgl'),
 
 resize();
 load();
-addEventListener('resize', resize);
-addEventListener('wheel', zoom);
-addEventListener('mousemove', mousemove);
+addEventListener(`resize`, resize);
+addEventListener(`wheel`, zoom);
+addEventListener(`mousemove`, mousemove);

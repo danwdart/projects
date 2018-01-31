@@ -30,6 +30,6 @@ const test = new Proxy(
             return on[what];
         }
     }
-)
+);
 
-console.log(test + test * test + "hi");
+console.log(test + test * test + `hi`);

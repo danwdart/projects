@@ -45,16 +45,16 @@ A.CLASSES = [B.name];
 const friender = (object, arrAllowedClasses) => new Proxy(
     object,
     {
-        get (object, strProperty) {;
+        get (object, strProperty) {
             try {
-                throw new Error(`Called`)
+                throw new Error(`Called`);
             } catch (err) {
                 // ugh!
                 strCaller = err.stack
-                    .split("at ")[2]
-                    .split(" (")[0]
-                    .replace(/new /, "")
-                    .replace(/\..*/, "");
+                    .split(`at `)[2]
+                    .split(` (`)[0]
+                    .replace(/new /, ``)
+                    .replace(/\..*/, ``);
                 console.debug(`${strProperty} requested from instance of ${strCaller}`);
                 if (!arrAllowedClasses.includes(strCaller)) {
                     throw new Error(`Disallowed call to instance of ${object.constructor.name} from non-friend class ${strCaller}`);

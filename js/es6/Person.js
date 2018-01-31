@@ -17,6 +17,6 @@ export class Me extends Person
 {
     constructor(name, age)
     {
-        super(name, age, ['all', 'of', 'them']);
+        super(name, age, [`all`, `of`, `them`]);
     }
 }

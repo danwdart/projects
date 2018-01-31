@@ -1,6 +1,6 @@
 let luhn = (n) => {
     let sn = String(n),
-	len = sn.length,
+        len = sn.length,
         rt = 0;
     for (let i = 0; i < len; i++) {
         let ni = sn.charAt(i),
@@ -10,11 +10,11 @@ let luhn = (n) => {
         rt += realtot;
     }
     return ((9 * rt) % 10);
-}
+};
 let b = 100201;
 for (let i = 1; i <= 20; i++) {
-console.log('On iteration', i, 'b =', b, 'and l =', luhn(b))
-b = Number(String(b) + String(luhn(b)));
+    console.log(`On iteration`, i, `b =`, b, `and l =`, luhn(b));
+    b = Number(String(b) + String(luhn(b)));
 }
 console.log(b);
 console.log(luhn(444433332222111));

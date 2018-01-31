@@ -1,5 +1,5 @@
-const c = document.querySelector('canvas'),
-    ctx = c.getContext('2d'),
+const c = document.querySelector(`canvas`),
+    ctx = c.getContext(`2d`),
     draw = ([x,y]) => {
         ctx.fillRect(x,y,1,1);
     },
@@ -18,7 +18,7 @@ const c = document.querySelector('canvas'),
 
 let state = randpoint();
 
-ctx.fillStyle = 'black';
+ctx.fillStyle = `black`;
 
 draw(state);
 

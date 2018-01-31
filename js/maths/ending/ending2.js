@@ -4,7 +4,7 @@ let things = {},
     iterations = (n, m = 0) => (1 == n)?m:iterations(iterate(n), m)+1;
 for (let i = 1; i < 1000; i++) {
     let it = iterations(i);
-    if ('undefined' === typeof things[it])
+    if (`undefined` === typeof things[it])
         things[it] = []; 
     things[it].push(i);
 }
