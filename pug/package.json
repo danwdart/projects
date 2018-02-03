@@ -11,7 +11,7 @@
   "keywords": [
     "pug"
   ],
-  "author": "Kathie Dart <npm@kathiedart.uk>",
+  "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "WTFPL",
   "dependencies": {
     "pug": "^2.0.0-beta11",
