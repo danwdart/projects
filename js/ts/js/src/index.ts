@@ -1,18 +1,5 @@
-export namespace Stuff.Things
-{
-    export class A
-    {
-        constructor(
-            public name: string
-        )
-        {
-        }
+import Pagen from './lib/pagen';
 
-        public sayHello(tosay: string): void
-        {
-            console.log(`${this.name} says: ${tosay}`)
-        }
-    }
+const page = new Pagen();
 
-    new A(`Bob`).sayHello(`Hi`);
-}
+console.log(page.toString());

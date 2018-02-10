@@ -1,11 +1,14 @@
 {
+    "target": "ESNext",
     "compilerOptions": {
+        "lib": ["ESNext"],
         "module": "ESNext",
         "noImplicitAny": true,
-        "removeComments": true,
         "preserveConstEnums": true,
-        "outDir": "js",
-        "sourceMap": true
+        "removeComments": true,
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "outDir": "js"
     },
     "include": [
         "js/src/**/*"

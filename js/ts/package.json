@@ -4,13 +4,16 @@
   "description": "",
   "main": "js/index.js",
   "scripts": {
+    "clean": "rm -rf js/lib js/*.*",
     "start": "node --experimental-modules js/index.mjs",
-    "build": "tsc && mv js/index.js js/index.mjs",
+    "rename": "find js -type f -name *.js | grep -v src | sed 's/\\(.*\\)\\.js/mv \\1\\.js \\1\\.mjs/g' | bash",
+    "build": "npm run clean && tsc && npm run rename",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^9.4.0",
     "typescript": "^2.6.2"
   }
 }
