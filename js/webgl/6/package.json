@@ -4,11 +4,14 @@
   "description": "WebGL Project v2",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "snyk test"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "gl-matrix": "^2.3.2"
+  },
+  "devDependencies": {
+    "snyk": "^1.69.7"
   }
 }

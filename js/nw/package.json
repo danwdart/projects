@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nw .",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "npm run snyk-protect",
+    "test": "snyk test"
   },
   "license": "AGPL-3.0",
   "dependencies": {
