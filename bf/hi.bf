@@ -1,4 +1,4 @@
-Typer:
+TyPer:
 [,.]
 
 H: 72
@@ -11,10 +11,10 @@ r: 114
 l: 108
 d: 100
 
-Naive method
+NaiVe method
 ++[>++++++[>++++++<-]<-].
 >
 
 Differential method
 
-Most appropriate location method
+Most aPProPriate location method
