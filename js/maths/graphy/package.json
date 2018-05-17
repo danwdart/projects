@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cytoscape": "^3.2.8"
+    "cytoscape": "^3.2.12"
   },
   "devDependencies": {
     "snyk": "^1.69.7"
