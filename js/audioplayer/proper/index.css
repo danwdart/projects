@@ -1,0 +1,27 @@
+#tracks {
+  display: inline-block;
+  background: pink;
+  border: 1px inset #333;
+  padding: 10px 30px;
+  font-size: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#tracks a,
+#tracks a:visited {
+  color: purple;
+  text-decoration: none;
+  line-height: 150%;
+}
+
+#tracks .active:before {
+  margin-left: -25px;
+  margin-right: 15px;
+  content: '▶';
+}
+
+#tracks .active.paused:before {
+  margin-left: -25px;
+  margin-right: 15px;
+  content: '⏸';
+}

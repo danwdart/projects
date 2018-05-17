@@ -1,11 +1,12 @@
 module.exports = {
     "env": {
-        "node": true,
+        "browser": true,
         "es6": true
     },
     "extends": "eslint:recommended",
+    "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": "2018",
+	    "ecmaVersion": "2018",
         "sourceType": "module"
     },
     "rules": {
@@ -24,6 +25,10 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console": [
+            0
+        ],
+        "strict": 0
     }
 };

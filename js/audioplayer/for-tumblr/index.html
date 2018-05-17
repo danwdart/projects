@@ -1,0 +1,121 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  #tracks {
+    display: inline-block;
+    background: pink;
+    border: 1px inset #333;
+    padding: 10px 30px;
+    font-size: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  #tracks a,
+  #tracks a:visited {
+    color: purple;
+    text-decoration: none;
+    line-height: 150%;
+  }
+  
+  #tracks .active:before {
+    margin-left: -25px;
+    margin-right: 15px;
+    content: '▶';
+  }
+
+  #tracks .active.paused:before {
+    margin-left: -25px;
+    margin-right: 15px;
+    content: '⏸';
+  }
+</style>
+<audio id="player"></audio>
+<ol id="tracks">
+  <li>
+    <a href="https://dl.dropboxusercontent.com/s/s8buq3o36biz9dy/01%20-%20Doomed%20%5BExplicit%5D.mp3">
+      Doomed - BMTH
+    </a>
+  </li>
+  <li>
+    <a href="https://a.tumblr.com/tumblr_m8ar24lW3Q1r02uggo1.mp3">
+      Kuusou Mesorogiwi - Mirai Nikki
+    </a>
+  </li>
+  <li>
+    <a href="https://dl.dropboxusercontent.com/s/jud2np2xy6yy1kj/Bring%C2%A0Me%C2%A0The%C2%A0Horizon%C2%A0-%C2%A0Sleepwalking.mp3">
+      Sleepwalking - BMTH
+    </a>
+  </li>
+  <li>
+    <a href="https://a.tumblr.com/tumblr_na8cljlU7w1tw40j0o1.mp3">
+      My Demons - Starset
+    </a>
+  </li>
+  <li>
+    <a href="https://a.tumblr.com/tumblr_ngx00izDjY1snh4eko1.mp3">
+      Echo - Crusher-P
+    </a>
+  </li>
+</ol>
+<script>
+  const audio = document.querySelector(`#player`),
+    tracks = document.querySelector(`#tracks`),
+    tracksItems = Array.from(tracks.children),
+    CLASS_ACTIVE = `active`,
+    CLASS_PAUSED = `paused`,
+    SELECTOR_ACTIVE = `.${CLASS_ACTIVE}`,
+    SELECTOR_LINK = `a`,
+    SELECTOR_ACTIVE_LINK = `${SELECTOR_ACTIVE} ${SELECTOR_LINK}`,
+    ATTR_URL = `href`,
+    selectActive = () => {
+      audio.src = tracks.querySelector(SELECTOR_ACTIVE_LINK)
+        .getAttribute(ATTR_URL);
+    },
+    deselectAll = () => tracksItems.forEach(track => track.classList.remove(CLASS_ACTIVE)),
+    nextTrack = () => (
+      tracks.querySelector(SELECTOR_ACTIVE).nextElementSibling ||
+      tracks.children[0]
+    ).classList.add(CLASS_ACTIVE);
+  
+  /*
+  audio.addEventListener(
+    `play`,
+    event => {
+      if (!audio.src) {
+        if (!tracks.querySelector(SELECTOR_ACTIVE)) {
+          tracks.children[0].classList.add(CLASS_ACTIVE);
+        }
+        selectActive();
+      }
+    }
+  );
+  */
+
+  audio.addEventListener(
+    `ended`,
+    event => {
+      deselectAll();
+      nextTrack();
+      selectActive();
+      audio.play();
+    }
+  );
+
+  tracksItems.forEach(listItem =>
+    listItem.querySelector(SELECTOR_LINK).addEventListener(
+      `click`,
+      event => {
+        event.preventDefault();
+        if (!listItem.classList.contains(CLASS_ACTIVE)) {
+          deselectAll();
+          listItem.classList.add(CLASS_ACTIVE);
+          selectActive();
+          audio.play();
+        } else {
+          listItem.classList.toggle(CLASS_PAUSED);
+          audio.pause();
+        }
+      }
+    )
+  );
+</script>
