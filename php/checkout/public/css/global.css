@@ -1,0 +1,48 @@
+* {
+margin:0;
+padding:0;
+}
+
+body {
+}
+
+#pagewrapper {
+height:100%;
+width:1000px;
+margin:0 auto;
+border-style: outset;
+}
+
+#header {
+height:100px;
+}
+
+#contentwrapper {
+}
+
+#wrapper_left {
+float:left;
+width:150px;
+min-height:400px;
+border:1px solid black;
+padding:5px;
+}
+
+#content {
+float:left;
+min-height:400px;
+padding:5px;
+border:auto 0;
+}
+
+#wrapper_right {
+float:right;
+width:150px;
+min-height:400px;
+border:1px solid black;
+padding:5px;
+}
+
+#footer {
+
+}
