@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script>
+$(document).ready(function(){
+    var url = "http://www.jamendo.com/get/album/list/artist/title/json/?names=Cynicism&callback=?";
+    $.getJSON(url,function(data){
+        console.log(data);
+        $('#out').html(data);
+    });
+});
+</script>
+<div id="out"></div>
