@@ -1,19 +1,27 @@
 {
   "name": "maths",
   "version": "1.0.0",
-  "description": "maths things",
-  "main": "index.js",
+  "description": "maths demos",
+  "main": "",
   "dependencies": {
-    "bignumber.js": "^6.0.0",
-    "node-fetch": "^1.7.3"
+    "bignumber.js": "^7.2.1",
+    "node-fetch": "^2.1.2",
+    "gl-matrix": "^2.6.1",
+    "cytoscape": "^3.2.12"
   },
   "devDependencies": {
+    "@std/esm": "^0.26.0",
     "babel-cli": "^6.26.0",
     "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "mocha": "^5.2.0",
     "snyk": "^1.69.7"
   },
   "scripts": {
-    "test": "snyk test"
+    "build": "",
+    "cli": "scripts/run-cli.sh",
+    "gui": "scripts/run-gui.sh",
+    "test": "eslint src lib && mocha -r @std/esm test/**/* && snyk test"
   },
   "author": "",
   "license": "WTFPL"
