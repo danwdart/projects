@@ -1,11 +1,17 @@
-import {IncomingHttpHeaders, OutgoingHttpHeaders, STATUS_CODES} from 'http';
+import {IncomingHttpHeaders, OutgoingHttpHeaders, STATUS_CODES, METHODS} from 'http';
+import {URL} from 'url';
 
-export default (method: string, url: string, headers: IncomingHttpHeaders, body: String) : {
+export default (
+    method: METHODS[keyof METHODS],
+    url: URL,
+    headers: IncomingHttpHeaders,
+    body: String
+) : {
     statusCode: keyof STATUS_CODES,
-    headers: Map,
+    headers: OutgoingHttpHeaders,
     body: string
 } => ({
-    statusCode: String(200) as keyof STATUS_CODES,
+    statusCode: String(200),
     headers: new Map([[`Server`, `Weird thing Dan made`]]),
     body: JSON.stringify(
         {

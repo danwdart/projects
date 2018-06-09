@@ -4,10 +4,10 @@
   "description": "",
   "main": ".app/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf .app && tsc",
     "start": "node -r esm .app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "tsc -w"
+    "watch": "rm -rf .app && tsc -w"
   },
   "author": "",
   "license": "ISC",
