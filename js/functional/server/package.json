@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".app/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node -r esm .app/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.3.2",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.1"
+  },
+  "dependencies": {
+    "esm": "^3.0.48"
+  }
+}
