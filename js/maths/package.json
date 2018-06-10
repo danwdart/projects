@@ -15,7 +15,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.19.1",
     "mocha": "^5.2.0",
-    "snyk": "^1.69.7"
+    "snyk": "^1.82.1"
   },
   "scripts": {
     "build": "",
