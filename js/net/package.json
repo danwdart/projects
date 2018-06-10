@@ -1,0 +1,15 @@
+{
+  "name": "netstuff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bonjour.js",
+  "scripts": {
+    "start": "node bonjour.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bonjour": "^3.5.0"
+  }
+}
