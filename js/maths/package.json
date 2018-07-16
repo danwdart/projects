@@ -9,22 +9,25 @@
     "esm": "^3.0.62",
     "gl-matrix": "^2.6.1",
     "node-fetch": "^2.1.2",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "snyk": "^1.88.2"
   },
   "devDependencies": {
     "@std/esm": "^0.26.0",
     "babel-cli": "^6.26.0",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.19.1",
-    "mocha": "^5.2.0",
-    "snyk": "^1.82.1"
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "build": "",
     "cli": "scripts/run-cli.sh",
     "gui": "scripts/run-gui.sh",
-    "test": "eslint src lib && mocha -r @std/esm test/**/* && snyk test"
+    "test": "eslint src lib && mocha -r @std/esm test/**/* && snyk test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "",
-  "license": "WTFPL"
+  "license": "WTFPL",
+  "snyk": true
 }
