@@ -9,7 +9,6 @@
                     ]
                 }
             }
-        ],
-        "@babel/preset-stage-0"
+        ]
     ]
 }

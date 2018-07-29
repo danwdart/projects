@@ -1,5 +1,11 @@
 {
-    "presets": [
-        "@babel/preset-stage-0"
+    "presets": [],
+    "plugins": [
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ]
     ]
 }

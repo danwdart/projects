@@ -1,5 +1,6 @@
 {
-    "presets": [
-        "stage-0"
+    "presets": [],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties"
     ]
 }
