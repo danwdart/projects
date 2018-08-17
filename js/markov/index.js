@@ -32,7 +32,7 @@ sentences.forEach(sentence => {
         const current = words[i],
             next = words[i + 1];
         
-        if ('undefined' === typeof next) {
+        if (`undefined` === typeof next) {
             console.debug(`Not setting ${current} to anything.`);
             continue;
         }
