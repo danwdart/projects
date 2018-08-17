@@ -8,7 +8,7 @@ class A
 
     sayHello(tosay        )      
     {
-        console.log(`${this.name} says: ${tosay}`)
+        console.log(`${this.name} says: ${tosay}`);
     }
 }
 
