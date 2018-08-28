@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <style>
+        html {
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            background-color: teal;
+        }
+
+        .box {
+            display: inline-block;
+            border: 10px solid black;
+            margin: auto;
+            text-align: center;
+            padding: 100px;
+            background-color: grey;
+        }
+
+        .box:hover {
+            animation: rotate 1s linear 0s 1 normal forwards;
+        }
+
+        @keyframes rotate {
+            0% {
+                background-image: linear-gradient(90deg, transparent 50%, white 50%),
+                                  linear-gradient(180deg, white 50%, transparent 50%);
+            }
+
+            50% {
+                background-image: linear-gradient(90deg, transparent 50%, white 50%),
+                                  linear-gradient(270deg, white 50%, transparent 50%);
+            }
+
+            100% {
+                background-image: linear-gradient(90deg, transparent 50%, white 50%),
+                                  linear-gradient(90deg, white 50%, transparent 50%);
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+    <div class="box">
+        Some text
+    </div>
+    <div class="box">
+        Some text
+    </div>
+    <div class="box">
+        Some text
+    </div>
+    <div class="box">
+        Some text
+    </div>
+</html>
