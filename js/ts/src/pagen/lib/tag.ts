@@ -4,9 +4,7 @@ export default class Tag
 {
     private attrs: Map<string, string> = new Map();
     private children: Set<Tag | string> = new Set();
-    private selfClosing: boolean = false;
     private empty: boolean = false;
-    private nl = "\n";
 
     constructor(public type: string)
     {

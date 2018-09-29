@@ -1,4 +1,4 @@
-import prifact from './prifact';
+import prifact from './prifact.js';
 
 export function sumfact(i) {
     var thistime = i, lasttime = null;

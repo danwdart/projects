@@ -1,19 +1,19 @@
 {
-  "name": "ts",
+  "name": "markov",
   "version": "1.0.0",
   "description": "",
-  "main": "js/index.js",
+  "main": "index.js",
   "scripts": {
-    "clean": "rm -rf .app",
-    "start": "node --experimental-modules .app/index.mjs",
-    "build": "npm run clean && tsc",
+    "build": "tsc",
+    "start": "node .app/index.js sample",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc -w"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@types/node": "^10.10.0",
+    "tslint": "^5.11.0",
     "typescript": "^3.0.3"
   }
 }

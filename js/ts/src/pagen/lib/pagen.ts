@@ -2,8 +2,6 @@ import Tag from './tag';
 
 export default class Pagen
 {
-    private nl = `\n`;
-
     render(): string
     {
         const doctype = new Tag(`!doctype`).setAttribute(`html`),

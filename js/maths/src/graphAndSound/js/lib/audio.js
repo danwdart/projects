@@ -1,3 +1,7 @@
+export const getContext = () => new (window.AudioContext || window.webkitAudioContext)();
+export const getBuffer = context => context.createBuffer(2, 100000, 22050);
+export const getChannels = buffer => ([buffer.getChannelData(0), buffer.getChannelData(1)]);
+
 export function playSound(context, buffer) {
     var source = context.createBufferSource(); // creates a sound source
     source.buffer = buffer;                    // tell the source which sound to play
@@ -6,17 +10,4 @@ export function playSound(context, buffer) {
     // note: on older systems, may have to use deprecated noteOn(time);
 }
 
-export function playTone(context, freq, time, delay) {
-    var oscillator = context.createOscillator();
-    oscillator.type = 0; // sine wave
-
-    setTimeout(function() {
-        oscillator.frequency.value = freq;
-        oscillator.connect(context.destination);
-        oscillator.start();
-    }, delay);
-
-    setTimeout(function() {
-        oscillator.stop();
-    }, delay + time);
-}
+export const startsound = (...args) => setTimeout(playSound.bind(null, ...args), 5000);

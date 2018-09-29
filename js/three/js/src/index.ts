@@ -72,4 +72,5 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 document.documentElement.appendChild(renderer.domElement);
 
+throw new Error("hi")
 animate();

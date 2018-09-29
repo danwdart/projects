@@ -46,3 +46,16 @@ class A extends compose([B, C, D])
 new A();
 
 // The decorated decorator way
+@B
+@C
+@D
+class E
+{
+    constructor()
+    {
+        super();
+        console.log(this.b(), this.c(), this.d());
+    }
+}
+
+new E();
