@@ -1,46 +1,57 @@
+import {countfact} from './seq/countfact.js';
+import {sumfact} from './seq/sumfact.js';
+import {generator as sternbrocot, generatorModded as sbmod} from './seq/sternbrocot.js';
+import {logistic} from './seq/logistic.js';
+import {identity} from './combinators.js';
+import {generatorToFunction} from './utils.js';
+
 export const OPTIONS_DEFAULT = {
-    numbers: 100000,
-    soundfn: newy => (newy / 10) - 0.5,
-    newyFn: sf => sf,
+    numbers: 1000,
     scale: {
         x: 5,
         y: 5
-    },
-    tonefn: (i, newx, newy) => ([440 + 10000 * ((newy - 5) / newx), 1, 1 * i])
+    }
 };
 
 export const TYPES = {
     countfact: {
-        sound: true,
-        tone: false,
         fn: countfact,
         scale: {
             y: 20
         },
-        tone: true
+        soundfn: newy => (Math.log(newy) / 10) - 0.5,
+        tonefn: (i, newx, newy) => ([440 + 100 * newy, 100, 100 * i]),
+        newyfn: identity,
     },
     sumfact: {
-        sound: true,
-        tone: false,
         fn: sumfact,
         scale: {
-            x: 100,
-            y: 100
+            y: 20
         },
-        soundFn = newy => newy,
-        newyFn = sf => Math.log(sf) / 2
+        soundfn: newy => newy,
+        tonefn: (i, newx, newy) => ([440 + 100 * newy, 100, 100 * i]),
+        newyfn: sf => Math.log(sf) / 2
     },
-    sbaudio: {
-        sound: true,
-        tone: false,
-        fn: (() => { const sb = sternbrocot(); return () => sb.next().value; })(),
+    sternbrocot: {
+        fn: generatorToFunction(sternbrocot),
         soundfn: newy => (Math.log(newy) / 10) - 0.5,
+        tonefn: (i, newx, newy) => ([440 + 100 * newy, 100, 100 * i]),
+        newyfn: identity
     },
-    sbaudiotones: {
-        numbers: 1000,
-        sound: false,
-        tone: true,
-        fn: (() => { const sb = sternbrocot(); return () => sb.next().value; })(),
-        tonefn: (i, newx, newy) => ([440 * Math.pow(2, (newy / 12)), 50, 50 * i])
+    sbmod: {
+        fn: generatorToFunction(sbmod),
+        soundfn: newy => (Math.log(newy) / 10) - 0.5,
+        tonefn: (i, newx, newy) => ([440 + 100 * newy, 100, 100 * i]),
+        newyfn: identity
+    },
+    logistic: {
+        fn: logistic,
+        scale: {
+            y: 300,
+            x: 2
+        },
+        soundfn: newy => newy,
+        tonefn: (i, newx, newy) => ([440 + 1000 * newy, 100, 100 * i]),
+        newyfn: identity
     }
 }

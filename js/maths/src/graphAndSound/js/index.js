@@ -1,33 +1,51 @@
 import {calc} from './lib/calc.js';
-import {countfact} from './lib/countfact.js';
-import {sumfact} from './lib/sumfact.js';
-import {generator as sternbrocot} from './lib/sternbrocot.js';
 import {getContext as getCanvasContext, clear as clearCanvas} from './lib/canvas.js'; 
-import {getContext as getAudioContext, getBuffer, getChannels as getBufferChannels} from './lib/audio.js';
+import {
+    playSound,
+    getContext as getAudioContext
+} from './lib/audio.js';
 import {drawLines} from './lib/line.js';
-import {startsound} from './lib/audio.js';
-import {playTone} from './lib/tone.js';
+import {playTones} from './lib/tone.js';
 import {OPTIONS_DEFAULT, TYPES} from './lib/options.js';
+import { dom } from './lib/dom.js';
 
-const run = type => {
-    const options = options = {
+const getOptions = typefn => {
+    const type = typefn();
+    return {
         ...OPTIONS_DEFAULT,
-        ...TYPES[type]
+        ...TYPES[type],
+        scale: {
+            ...OPTIONS_DEFAULT.scale,
+            ...(TYPES[type].scale || {}),
+        }
     };
-
-    const ctx = getCanvasContext();
-    const audioContext = getAudioContext();
-    const buffer = getBuffer(audioContext);
-    const bufChannels = getBufferChannels(buffer);
-
-    const [lines, tones, channels] = calc(options);
-
-    drawLines(ctx, lines);
 }
 
-drawLines = lines => 
-playTones = tones =>
-playAudio = channels => 
+const draw = typefn => {
+        const options = getOptions(typefn),
+            ctx = getCanvasContext(),
+            [lines] = calc(options);
 
-// on click     playTone(audioContext, arrTones)
-// on click    startsound(context, buffer)
+        clearCanvas(ctx);
+        drawLines(ctx, lines);
+    },
+    tones = typefn => {
+        const options = getOptions(typefn),
+            audioContext = getAudioContext(),
+            [,tones] = calc(options);
+        
+        playTones(audioContext, tones);
+    },
+    audio = typefn => {
+        const options = {
+                ...getOptions(typefn),
+                numbers: 100000
+            },
+            audioContext = getAudioContext(),
+            [,,channels] = calc(options);
+
+        playSound(audioContext, channels);
+    };
+
+dom(draw, audio, tones);
+

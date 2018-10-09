@@ -1,4 +1,4 @@
-export function playTone(context, freq, time, delay) {
+function playTone(context, freq, time, delay) {
     var oscillator = context.createOscillator();
     oscillator.type = 0; // sine wave
 
@@ -12,3 +12,7 @@ export function playTone(context, freq, time, delay) {
         oscillator.stop();
     }, delay + time);
 }
+
+export const playTones = (context, tones) => tones.forEach(
+    toneData => playTone(context, ...toneData)
+);

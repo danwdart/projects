@@ -1,13 +1,12 @@
 export const getContext = () => new (window.AudioContext || window.webkitAudioContext)();
-export const getBuffer = context => context.createBuffer(2, 100000, 22050);
-export const getChannels = buffer => ([buffer.getChannelData(0), buffer.getChannelData(1)]);
 
-export function playSound(context, buffer) {
-    var source = context.createBufferSource(); // creates a sound source
-    source.buffer = buffer;                    // tell the source which sound to play
-    source.connect(context.destination);       // connect the source to the context's destination (the speakers)
-    source.start(0);                           // play the source now
+export const playSound = (context, soundData) => {
+    const buffer = context.createBuffer(soundData.length, soundData[0].length, 22050),
+        source = context.createBufferSource();
+    buffer.copyToChannel(soundData[0], 0);
+    buffer.copyToChannel(soundData[1], 1);
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.start(0);
     // note: on older systems, may have to use deprecated noteOn(time);
-}
-
-export const startsound = (...args) => setTimeout(playSound.bind(null, ...args), 5000);
+};

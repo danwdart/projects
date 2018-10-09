@@ -1,29 +1,35 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <h1>Graph and Sound Demos</h1>
 <form>
     <label>
-        <input type="radio" name="type" value="countfact"/>
+        <input class="type" type="radio" name="type" value="countfact"/>
         Count of Prime Factors
     </label>
     <br/>
     <label>
-        <input type="radio" name="type" value="sumfact"/>
+        <input class="type" type="radio" name="type" value="sumfact"/>
         Sum of Prime Factors
     </label>
     <br/>
     <label>
-        <input type="radio" name="type" value="sb"/>
+        <input class="type" type="radio" name="type" value="sternbrocot"/>
         Stern-Brocot sequence
     </label>
     <br/>
     <label>
-        <input type="radio" name="type" value="sbmod"/>
+        <input class="type" type="radio" name="type" value="sbmod"/>
         Stern-Brocot sequence (modified for challenge)
     </label>
     <br/>
-    <button>Play as audio &rtrif;</button>
-    <button>Play as tones &rtrif;</button>
+    <label>
+        <input class="type" type="radio" name="type" value="logistic"/>
+        Logistic mapping
+    </label>
+    <br/>
+    <button id="draw">Draw</button>
+    <button id="playAsAudio">Play as audio &rtrif;</button>
+    <button id="playAsTones">Play as tones &rtrif;</button>
 </form>
-<input type="radio"
 <script type="module" src="js/index.js"></script>
 <canvas id="canvas" width="1200" height="600" style="width:1200px;height:600px"></canvas>
