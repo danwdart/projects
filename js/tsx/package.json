@@ -1,0 +1,23 @@
+{
+  "name": "tsx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --experimental-modules -r esm .app/demo",
+    "test": "tslint 'src/**.tsx'",
+    "watch": "tsc -w"
+  },
+  "keywords": [
+    "tsx"
+  ],
+  "author": "Dan Dart <npm@dandart.co.uk>",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "esm": "^3.0.84",
+    "tslint": "^5.11.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.1.3"
+  }
+}
