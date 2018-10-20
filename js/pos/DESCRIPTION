@@ -1,0 +1,74 @@
+Point of sale system
+
+Requirements
+
+Buying online (categories, search, orders, etc) with stock check
+Booking delivery
+Delivery driver Booking
+Source delivery booking
+Staff booking (notify on requirement of extra staff)
+Suggestion of expansion and locations
+Serviced checkout with staff logins
+Stock, price and find from customer use terminals
+Locations on phones giving newest offers, availability of usuals, real time
+NO DATA SHARING!
+Warehouse management
+Self service checkout
+Barcode management / multiple standards
+Management / adding / taking / verifying stock / making orders of stock
+Bulk price changes / offer management
+Auto re-order (with human verification / auto-sign-off) and notification of discontinuity
+Shelf and back room management
+Store location management
+Multiple vendors' information
+Customers' details, loyalty cards, offers and recommendations
+Web and phone apps
+Whitelabelling
+Auto-setup of networked devices
+Boot to working of devices
+
+Collections could be:
+
+chains
+
+products
+
+vendors
+
+categories
+
+customers
+customer_lists
+customer_offers
+customer_addresses
+customer_cards
+customer_orders
+customer_searches
+customer_viewed_items
+customer_delivery_timeslots
+customer_recommendations
+
+delivery_driver_bookings
+
+warehouses
+warehouse_floors
+warehouse_shelves
+warehouse_sections
+
+producers
+producer_addresses
+producer_orders
+producer_deliveries
+
+shops
+shop_floors
+shop_shelves
+shop_sections
+
+staff_members
+staff_time_off
+shifts
+
+checkouts / devices
+
+stock_verifications
