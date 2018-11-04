@@ -1,0 +1,1 @@
+export const def = d => v => v || d;

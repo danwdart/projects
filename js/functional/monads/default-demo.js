@@ -1,9 +1,8 @@
 import {compose, dup} from './lib/functional';
+import {prop} from './lib/object';
+import {def} from './lib/value';
 
 // a.b.c.d.e.f.g
-
-const prop = p => o => o[p]; // haha
-const def = d => v => v || d;
 
 // I use this combinator a lot, I wonder what it's called?
 const foo = f => g => x => y => f(g(x)(y));

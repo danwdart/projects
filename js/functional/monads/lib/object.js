@@ -1,0 +1,1 @@
+export const prop = p => o => o[p]; // haha
