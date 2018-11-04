@@ -1,25 +1,26 @@
+import {compose, dup} from './lib/functional';
+
 // a.b.c.d.e.f.g
 
 const prop = p => o => o[p]; // haha
 const def = d => v => v || d;
 
 // I use this combinator a lot, I wonder what it's called?
-// Or is it perhaps combine with f, g(x) and y, or f, f, g and x(y)?
-// I don't think that works tho
 const foo = f => g => x => y => f(g(x)(y));
 
-// Using these...
-const compose = f => g => x => f(g(x));
-const dup = f => x => f(x)(x);
-
 // foo can be shortened and made more confusing...
-
 const fooComposed1 = f => g => x => compose(f)(g(x));
 const fooComposed2 = f => compose(compose(f));
 const fooComposed3 = f => compose(compose)(compose)(f);
+// we're finally pointless :p
 const fooComposed4 = compose(compose)(compose);
 const fooComposed5 = dup(compose)(compose);
 const fooComposed6 = dup(dup)(compose);
+// still at 3 fns, not going to get better than that.
+
+// if we reverse and get pointy this gets way more confusing...
+// const fooComposed7 = (f => x => f(x)(x))(f => x => f(x)(x))(f => g => x => f(g)(x))
+// console.log(fooComposed6(s => s.toUpperCase())(x => y => x + y)("hello ")("world"))
 
 const defToObj = def({});
 
