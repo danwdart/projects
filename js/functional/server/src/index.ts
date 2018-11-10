@@ -1,5 +1,5 @@
-import {createServer} from 'http';
-import handleRequest from './handleRequest';
+import {createServer} from "http";
+import handleRequest from "./handleRequest";
 
 createServer()
     .on(`request`, handleRequest)

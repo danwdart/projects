@@ -1,28 +1,27 @@
-import {IncomingHttpHeaders, OutgoingHttpHeaders} from 'http';
-
+import {IncomingHttpHeaders, OutgoingHttpHeaders} from "http";
 
 export default (
     method: string,
     url: string,
     headers: IncomingHttpHeaders,
-    body: string
-) : {
-    statusCode: number,
+    body: string,
+): {
+    body: string,
     headers: OutgoingHttpHeaders,
-    body: string
+    statusCode: number,
 } => ({
-    statusCode: 200,
-    headers: {
-        Server: `Weird thing Dan made`,
-        'Content-Type': 'application/json'
-    },
     body: JSON.stringify(
         {
+            body,
+            headers,
             method,
             url,
-            headers,
-            body,
-            version: 1
-        }
-    )
+            version: 1,
+        },
+    ),
+    headers: {
+        "Content-Type": "application/json",
+        "Server": `Weird thing Dan made`,
+    },
+    statusCode: 200,
 });
