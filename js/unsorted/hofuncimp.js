@@ -3,14 +3,14 @@ const monad = x => {
     ret.toString = () => `[Monad ${x}]`;
     ret.map = fn => monad(fn(x));
     return ret;
-}
+};
 
 const moreComplexMonad = x => {
     const ret = () => [x];
     ret.toString = () => `[Monad [${x}]]`;
     ret.map = fn => moreComplexMonad(fn(x));
     return ret;
-}
+};
 
 const lazyMonad = (x, fns = []) => {
     const ret = () => x;
@@ -18,7 +18,7 @@ const lazyMonad = (x, fns = []) => {
     ret.map = fn => lazyMonad(x, [...fns, fn]);
     ret.unwrap = () => fns.reduce((x, fn) => fn(x), x);
     return ret;
-}
+};
 
 // Does it implement Fn.map?
 const map = x => fn => x.map ? x.map(fn) : x;
