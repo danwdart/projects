@@ -1,9 +1,24 @@
 <!doctype html>
 <html>
+<meta charset="utf-8">
 <h1>Hello World!</h1>
 <script>
 (async () => {
-    console.log(await (await fetch("/cgi-bin/index.sh")).json());
+    console.log(await (await fetch("/cgi-bin/index.sh?qs")).json());
+    console.log(
+        await (
+            await fetch(
+                '/cgi-bin/index.sh',
+                {
+                    method: 'post',
+                    headers: {
+                        "x-ag":"ee"
+                    },
+                    data: JSON.stringify({foo:"bar"})
+                }
+            )
+        ).json()
+    );
 })();
 </script>
 </html>
