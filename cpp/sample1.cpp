@@ -63,7 +63,6 @@ namespace OhMyGosh {
     };
 };
 
-using namespace std;
 int main()
 {
     OhMyGosh::Simple bob;
