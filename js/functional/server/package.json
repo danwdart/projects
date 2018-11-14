@@ -12,10 +12,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "esm": "^3.0.48",
-    "mocha": "^5.2.0",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.3.2",
+    "esm": "^3.0.48",
+    "mocha": "^5.2.0",
+    "ts-mocha": "^2.0.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "typescript": "^2.9.1"
