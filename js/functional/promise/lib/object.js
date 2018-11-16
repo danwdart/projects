@@ -1,0 +1,1 @@
+export const key = y => x => x[y];
