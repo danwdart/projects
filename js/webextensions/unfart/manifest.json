@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "UnFart",
+    "version": "1.0",
+    "description": "Changes mentions of the fart leader to something more pleasant and/or hilarious.",
+    "applications": {
+        "gecko": {
+            "id": "unfart@jolharg.com"
+        }
+    },
+    "icons": {
+      "48": "icons/border-48.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*/*"],
+        "js": ["unfart.js"]
+      }
+    ]
+  }
