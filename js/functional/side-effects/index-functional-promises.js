@@ -6,8 +6,6 @@ import fs from 'fs';
 import https from 'https';
 import {promisify} from 'util';
 
-import {JSDOM} from 'jsdom';
-
 import {
     constant,
     compose,
@@ -25,10 +23,10 @@ import {
     OUT_IS,
     SITE_URL,
     IS_AWESOME,
-    QS,
-    ATTR,
     STATUS_CODE
 } from './lib/constants';
+
+import {findWhoIsAwesome} from './lib/find-who-is-awesome';
 
 import {iff} from './lib/logic';
 
@@ -47,6 +45,8 @@ import {
 
 import {prop} from './lib/objects';
 
+import {streamToString} from './lib/stream-to-string';
+
 
 const writeFile = promisify(fs.writeFile),
     readFile = promisify(fs.readFile),
@@ -59,22 +59,6 @@ const writeFile = promisify(fs.writeFile),
 // and describe what we want first, then afterwards not so much.
 
 // Let's strip constants and simplify & pull out separate actions!
-
-const streamToString = response =>
-    new Promise((res, rej) => {
-        let responseString = '';
-        response.on('error', rej);
-        response.on('data', dataChunk => {
-            responseString += dataChunk.toString();
-        });
-        response.on('end', () => res(responseString));
-    });
-
-const findWhoIsAwesome = responseString => new JSDOM(responseString)
-    .window
-    .document
-    .querySelector(QS)
-    .getAttribute(ATTR);
 
 const outPhrase = ([rnd, fileBuffer]) => [OUT_IS, JSON.parse(fileBuffer.toString()), rnd];
 const rndAndStatus = rnd => [rnd, upOrDown(rnd)];

@@ -6,8 +6,6 @@ import fs from 'fs';
 import https from 'https';
 import {promisify} from 'util';
 
-import {JSDOM} from 'jsdom';
-
 import {
     constant,
     compose,
@@ -25,10 +23,10 @@ import {
     OUT_IS,
     SITE_URL,
     IS_AWESOME,
-    QS,
-    ATTR,
     STATUS_CODE
 } from './lib/constants';
+
+import {findWhoIsAwesome} from './lib/find-who-is-awesome';
 
 import {iff} from './lib/logic';
 
@@ -47,6 +45,7 @@ import {
 
 import {prop} from './lib/objects';
 
+import {streamToString} from './lib/stream-to-string';
 
 const writeFile = promisify(fs.writeFile),
     readFile = promisify(fs.readFile),
@@ -60,36 +59,12 @@ const writeFile = promisify(fs.writeFile),
 
 // Let's strip constants and simplify & pull out separate actions!
 
-const streamToString = response =>
-    new Promise((res, rej) => {
-        let responseString = '';
-        response.on('error', rej);
-        response.on('data', dataChunk => {
-            responseString += dataChunk.toString();
-        });
-        response.on('end', () => res(responseString));
-    });
-
-const findWhoIsAwesome = responseString => new JSDOM(responseString)
-    .window
-    .document
-    .querySelector(QS)
-    .getAttribute(ATTR);
-
 const outPhrase = ([rnd, fileBuffer]) => [OUT_IS, JSON.parse(fileBuffer.toString()), rnd];
-const rndAndStatus = rnd => [rnd, upOrDown(rnd)];
+const rndAndStatus = rnd => [rnd, compose(Number)(lte(0.5))(rnd)];
 const theOpts = ([rnd, option]) => [rnd, IN_THE, prop(option)(THE_OPTS)];
 const doWhen = check => whenTrue => whenFalse => pred => 
     check(pred)(ap(whenTrue)(whenFalse)(pred));
-const getUrl = https => url => (res, rej) => https.get(url, on(doWhen(ifIsOK))(callWith)(res)(rej));
-
-// Point-free
-const ifIsOK = compose(iff)(compose(eq(200))(prop(STATUS_CODE)));
-const callWith = compose(constant);
-const makePromiseWith = compose(compose(callNew(Promise)));
-const awesomePhrase = flip(add)(IS_AWESOME);
-const upOrDown = compose(Number)(lte(0.5)); 
-const promiseAll = Promise.all.bind(Promise);
+const getUrl = https => url => (res, rej) => https.get(url, on(doWhen(compose(iff)(compose(eq(200))(prop(STATUS_CODE)))))(compose(constant))(res)(rej));
 
 // insert into the pipeline to view
 //const debug = r => (void console.log(r)) || r;
@@ -102,16 +77,16 @@ writeFile(FILE, firstJSON)
     .then(rndAndStatus)
     .then(theOpts)
     .then(doAndReturn(callRest(console.log)))
-    .then(passAndDo(callWith(readFile)(FILE)))
-    .then(promiseAll)
+    .then(passAndDo(compose(constant)(readFile)(FILE)))
+    .then(Promise.all.bind(Promise))
     .then(outPhrase)
     .then(callRest(console.log))
     .then(constant(FILE))
     .then(unlink)
     .then(constant(SITE_URL))
-    .then(makePromiseWith(getUrl)(https))
+    .then(compose(compose(callNew(Promise)))(getUrl)(https))
     .then(streamToString)
     .then(findWhoIsAwesome)
-    .then(awesomePhrase)
+    .then(flip(add)(IS_AWESOME))
     .then(console.log)
     .catch(console.error);
