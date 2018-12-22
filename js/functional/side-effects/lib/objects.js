@@ -1,0 +1,1 @@
+export const prop = p => x => x[p];

@@ -1,0 +1,19 @@
+{
+  "name": "side-effects",
+  "version": "1.0.0",
+  "description": "Not everything is pure.",
+  "main": "interpreter.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "keywords": [],
+  "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "eslint": "^5.10.0"
+  },
+  "dependencies": {
+    "esm": "^3.0.84",
+    "jsdom": "^13.1.0"
+  }
+}
