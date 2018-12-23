@@ -1,38 +1,48 @@
-const printf = s => process.stdout.write(s);
 const BAUDRATE = 110;
 const TIMEOUT = 1000 / BAUDRATE;
 const PROGRESS_FULL = `#`;
 const PROGRESS_EMPTY = `=`;
 const BACKSPACE = `\x08`;
 const SIZE = 40;
-const first = PROGRESS_EMPTY.repeat(SIZE)
+const first = PROGRESS_EMPTY.repeat(SIZE);
 const manyOf = many => of => of.repeat(many);
-const TEXT = manyOf(10)(`I am a really cool hacker. `)
+const TEXT = manyOf(10)(`I am a really cool hacker. `);
+
+const whatToDrawFor = num => (num > SIZE) ?
+    `\n` :
+    manyOf(SIZE)(BACKSPACE) +
+    manyOf(num)(PROGRESS_FULL)
+
+const whatToWriteFor = index => what => (index >= what.length) ?
+    `\n`:
+    what[index];
+
+const instructDraw = num => done => ({
+    toPrint: whatToDrawFor(num),
+    retDone: num > SIZE,
+    next: () => draw(num + 1)(done)
+});
+
+const instructWrite = index => what => done => ({
+    toPrint: whatToWriteFor(index)(what),
+    retDone: index >= what.length,
+    next: () => write(index + 1)(what)(done)
+});
 
 // Impure
+const printf = s => process.stdout.write(s);
 const onNextTick = fn => setTimeout(fn, TIMEOUT);
 
 const draw = num => done => {
-    if (num > SIZE) {
-        printf(`\n`);
-        done();
-        return;
-    }
-    printf(
-        manyOf(SIZE)(BACKSPACE) +
-        manyOf(num)(PROGRESS_FULL)
-    );
-    onNextTick(() => draw(num + 1)(done));
+    const {toPrint, retDone, next} = instructDraw(num)(done);
+    printf(toPrint);
+    return (retDone) ? done() : onNextTick(next);
 }
 
 const write = index => what => done => {
-    if (index >= what.length) {
-        printf(`\n`);
-        done();
-        return;
-    }
-    printf(what[index]);
-    onNextTick(() => write(index + 1)(what)(done))
+    const {toPrint, retDone, next} = instructWrite(index)(what)(done);
+    printf(toPrint);
+    return (retDone) ? done() : onNextTick(next);
 }
 
 printf(first);
