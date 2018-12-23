@@ -74,6 +74,17 @@ const MyIO = f => ({
 const ios3 = MyIO(first).map(second).map(third).map(console.log);
 ios3.unwrap();
 
+console.log('Define');
+const procs = [
+    first,
+    second,
+    third,
+    console.log
+];
+console.log('Run');
+procs.reduce((prev, current) => current(prev));
+console.log('Done');
+
     /*
     console.debug('hi, just some kind of debug in between');
     const buf = await readFile(FILE);
