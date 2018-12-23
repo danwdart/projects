@@ -1,44 +1,43 @@
-const printf = process.stdout.write.bind(process.stdout);
+const printf = s => process.stdout.write(s);
 const BAUDRATE = 110;
 const TIMEOUT = 1000 / BAUDRATE;
+const PROGRESS_FULL = `#`;
+const PROGRESS_EMPTY = `=`;
+const BACKSPACE = `\x08`;
+const SIZE = 40;
+const first = PROGRESS_EMPTY.repeat(SIZE)
+const manyOf = many => of => of.repeat(many);
+const TEXT = manyOf(10)(`I am a really cool hacker. `)
+
+// Impure
 const onNextTick = fn => setTimeout(fn, TIMEOUT);
-// const writeToBuffer = () => 
-// const flushBuffer = () => 
 
-const progress = fn => {
-    const PROGRESS_FULL = `#`;
-    const PROGRESS_EMPTY = `=`;
-    const BACKSPACE = `\x08`;
-    const SIZE = 40;
-    
-    const first = PROGRESS_EMPTY.repeat(SIZE)
-
-    printf(first);
-    const draw = num => {
-        if (num > SIZE) {
-            printf(`\n`);
-            fn();
-            return;
-        }
-        printf(BACKSPACE.repeat(SIZE));
-        printf(PROGRESS_FULL.repeat(num));
-        onNextTick(draw.bind(null, num + 1));
+const draw = num => done => {
+    if (num > SIZE) {
+        printf(`\n`);
+        done();
+        return;
     }
-    draw(1);
+    printf(
+        manyOf(SIZE)(BACKSPACE) +
+        manyOf(num)(PROGRESS_FULL)
+    );
+    onNextTick(() => draw(num + 1)(done));
 }
 
-const writeSlow = what => {
-    const write = index => {
-        if (index >= what.length) {
-            printf(`\n`);
-            return;
-        }
-        printf(what[index]);
-        onNextTick(write.bind(null, index + 1))
+const write = index => what => done => {
+    if (index >= what.length) {
+        printf(`\n`);
+        done();
+        return;
     }
-    write(0);
+    printf(what[index]);
+    onNextTick(() => write(index + 1)(what)(done))
 }
 
-progress(
-    () => writeSlow(`I am a really cool hacker. `.repeat(100))
+printf(first);
+draw(1)(
+    () => write(0)(TEXT)(
+        () => console.log('Done')
+    )
 );
