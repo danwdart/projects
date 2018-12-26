@@ -1,3 +1,4 @@
-const example = new Autoloader('./example');
+import Autoloader from './lib/autoloader';
+const example = new Autoloader('./lib');
 
-example.lib.test();
+example.demo.test();
