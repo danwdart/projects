@@ -22,6 +22,6 @@ const main = tWriteFile(FILE, CONTENTS)
     .map(console.log)
     .flatMap(() => tUnlink(FILE))
     .flatMap(eitherToTask)
-    .flatMap(() => tUnlink(FILE))
+    .map(() => 0)
 
 main.fork(x => console.error(x.unwrap()), console.log);
