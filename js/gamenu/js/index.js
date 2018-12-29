@@ -6,14 +6,14 @@ const eq = a => b => a === b;
 
 const compose = f => g => x => f(g(x));
 const flip = f => y => x => f(x)(y);
-const call = f => x => f(x);
-const applyTo = x => f => f(x);
+//const call = f => x => f(x);
+//const applyTo = x => f => f(x);
 
 const find = on => fn => on.find(fn);
 
 const on = f => g => x => y => f(g(x))(g(y));
 
-const b3 = f => g => h => x => f(g(h(x)));
+//const b3 = f => g => h => x => f(g(h(x)));
 const d2 = f => g => h => i => j => f(g(h))(i(j));
 /*
 "D" = B2
@@ -46,45 +46,44 @@ const Maybe = x => ({
     //ap: v => Maybe(x(v.unwrap()))
 });
 
-const ifThen = then => iff => iff ? then : null;
+//const ifThen = then => iff => iff ? then : null;
 
 const getData = compose(flip(compose)(prop('dataset')))(prop);
 
 const IO = io => ({
     performUnsafeIO: io,
-    map: f => IO(() => f(io))
+    map: f => IO(() => f(io()))
 });
 
-const ioReplaceMenu = me => IO(() => 
-    document.querySelector('main').innerHTML = menu(findMenuItem(me)))
+const replaceMenu = me =>
+    //eslint-disable-next-line cleanjs/no-mutation
+    document.querySelector('main').innerHTML = menu(findMenuItem(me));
 
-const ioLogAction = me => IO(() => 
-    console.log(me.dataset.action));
+const logAction = me => 
+    console.log(me.dataset.action);
 
-const ioAddClicks = IO(() => document.querySelectorAll('.menuitem').forEach(
+const addClicks = () => document.querySelectorAll('.menuitem').forEach(
     menuitem => menuitem.addEventListener('click', clickMenu)
-));
+);
 
-const debug = v => console.log(v) || v;
+const iff = a => b => c => a ? b : c;
 
-const clickMenu = ev => {
-    const me = getTarget(ev);
-    
-    if (getData('menu')(me)) {
-        ioReplaceMenu(me).performUnsafeIO();
-    }
+const clickTarget = me => IO(
+    // TODO EitherIO
+    iff(getData('menu')(me))(() => replaceMenu(me))(()=>0)
+)
+    .map(iff(getData('action')(me))(() => logAction(me))(()=>0))
+    .map(addClicks)
+    .performUnsafeIO();
 
-    if (getData('action')(me)) {
-        ioLogAction(me).performUnsafeIO();
-    }
+const clickMenu = compose(clickTarget)(getTarget);
 
-    ioAddClicks.performUnsafeIO();
-};
+const main = IO(() =>
+    //eslint-disable-next-line cleanjs/no-mutation
+    document.querySelector('main').innerHTML = menu(json[0])
+).map(
+    addClicks
+);
 
-const main = IO(() => {
-    IO(() => document.querySelector('main').innerHTML = menu(json[0])).performUnsafeIO()
-    ioAddClicks.performUnsafeIO();
-});
-
+//eslint-disable-next-line cleanjs/no-unused-expression
 main.performUnsafeIO();
-

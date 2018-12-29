@@ -1,29 +1,29 @@
 const tmpl = [
     {
         num: 1,
-        name: "One"
+        name: 'One'
     },
     {
         num: 2,
-        name: "Two"
+        name: 'Two'
     },
     {
         num: 3,
-        name: "Three"
+        name: 'Three'
     },
     {
         num: 4,
-        name: "Four"
+        name: 'Four'
     },
     {
         num: 5,
-        name: "Five"
+        name: 'Five'
     }
 ];
 
 export const json = [
     {
-        id: "default",
+        id: 'default',
         items: tmpl.map(({num, name}) => ({menu: `menu${num}`, name}))
     },
     ...tmpl.map(({num, name: name1}) => ({
@@ -31,8 +31,8 @@ export const json = [
         items: [
             ...tmpl.map(({num, name}) => ({action: `hi ${num}`, name: `${name1} ${name}`})),
             {
-                menu: "default",
-                name: "Back"
+                menu: 'default',
+                name: 'Back'
             }
         ]
     }))
