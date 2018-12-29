@@ -1,3 +1,43 @@
-.menu:not(.show) {
-    display: none;
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #333;
+    color: white;
+    font-family: sans;
+}
+header {
+    text-align: center;
+    padding: 10px;
+}
+main {
+    text-align: center;
+}
+.menu {
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+}
+.menuitem {
+    padding: 15px;
+    width: 400px;
+    display: inline-block;
+    font-size: 40px;
+    color: white;
+    background: blue;
+    border: 5px outset black;
+    cursor: pointer;
+    margin: 10px;
+    user-select: none;
+    -moz-user-select: none;
+}
+.menuitem:hover {
+    background: #00a;
+}
+.menuitem:active {
+    border: 5px inset black;
 }
