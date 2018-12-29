@@ -2,6 +2,10 @@
 // Henceforth we can describe what we want outside of how we're going to get it.
 
 // A complex example in the classical way
+/* eslint-disable cleanjs/no-new */
+/* eslint-disable cleanjs/no-let */
+/* eslint-disable cleanjs/must-return */
+/* eslint-disable cleanjs/no-mutation */
 import fs from 'fs';
 import https from 'https';
 import {JSDOM} from 'jsdom';

@@ -1,6 +1,4 @@
 import fs from 'fs';
-import https from 'https';
-import {JSDOM} from 'jsdom';
 
 const FILE = 'a';
 
@@ -85,7 +83,7 @@ console.log('Run');
 procs.reduce((prev, current) => current(prev));
 console.log('Done');
 
-    /*
+/*
     console.debug('hi, just some kind of debug in between');
     const buf = await readFile(FILE);
     const output = buf.toString();

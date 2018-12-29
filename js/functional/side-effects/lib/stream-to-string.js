@@ -1,3 +1,7 @@
+/* eslint-disable cleanjs/no-new */
+/* eslint-disable cleanjs/must-return */
+/* eslint-disable cleanjs/no-let */
+/* eslint-disable cleanjs/no-mutation */
 export const streamToString = response =>
     new Promise((res, rej) => {
         let responseString = '';

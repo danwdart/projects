@@ -3,7 +3,10 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:cleanjs/recommended"
+    ],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -11,6 +14,9 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "plugins": [
+        "cleanjs"
+    ],
     "rules": {
         "indent": [
             "error",
@@ -29,6 +35,9 @@ module.exports = {
             "always"
         ],
         "no-console": [
+            0
+        ],
+        "cleanjs/no-unused-expression": [
             0
         ]
     }
