@@ -16,5 +16,5 @@ const me2 = myMon(myMon(1)).flatMap(inc);
 
 console.log(me2.unwrap()); // yay!
 
-const me3 = myMon(myMon(1)).flat()
+const me3 = myMon(myMon(1)).flat();
 console.log(me3.unwrap());

@@ -7,8 +7,8 @@ import {delay} from './lib/delay';
         console.log('Done');
         await delay(500);
         throw new Error('foo');
-        await delay(500);
-        console.log('Done');
+        //await delay(500);
+        //console.log('Done');
     } catch (err) {
         console.error(err);
     }

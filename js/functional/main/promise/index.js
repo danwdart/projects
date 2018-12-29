@@ -3,10 +3,10 @@ import {waitApply} from './lib/wait';
 import {delay} from './lib/delay';
 
 // Generally, instead of writing this...
-setTimeout(() => console.log(`foo`), 5000);
+setTimeout(() => console.log('foo'), 5000);
 
 // we can avoid function definitions and write this
-setTimeout(console.log.bind(console, `foo`), 5000);
+setTimeout(console.log.bind(console, 'foo'), 5000);
 
 // or pre-prepare and write this
 const log = console.log.bind(console);
@@ -16,12 +16,12 @@ const log = console.log.bind(console);
 
 // we can do this
 const waitLog = waitApply(log);
-setTimeout(waitLog(`foo`), 5000);
+setTimeout(waitLog('foo'), 5000);
 
 // So how about shortening promises?
 // First, the ES2015 promise syntax
 delay(5000)
-    .then(constant(`foo`))
+    .then(constant('foo'))
     //.then(x => console.log(x)) // Wait a minute, we don't need that duplicate `x`...
     .then(console.log) // This is a function that can just be called with the result!
     .catch(console.error);
@@ -29,5 +29,5 @@ delay(5000)
 // Then, the async/await syntax
 (async () => {
     await delay(5000);
-    console.log(await `foo`);
+    console.log(await 'foo');
 })();

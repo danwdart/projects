@@ -1,8 +1,8 @@
 import {constant} from './lib/combinators';
 import {delay} from './lib/delay';
 
-const doneMsg = constant(`Done!`);
-const die = Promise.reject(`Error!`);
+const doneMsg = constant('Done!');
+const die = Promise.reject('Error!');
 
 delay(500)
     .then(delay(500))

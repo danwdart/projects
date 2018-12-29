@@ -4,12 +4,12 @@ import {add, mul, recip} from './lib/maths';
 
 // Laters, but not quite laters
 // These execute upon combination !!
-const log = console.log;
-const laterLog = () => log;
+//const log = console.log;
+//const laterLog = () => log;
 
-const neg = mul(constant(-1));
-const backwardsComposer = foo(flip)(compose)
-const sub = backwardsComposer(add)(neg)
+//const neg = mul(constant(-1));
+const backwardsComposer = foo(flip)(compose);
+//const sub = backwardsComposer(add)(neg);
 const div = backwardsComposer(mul)(recip);
 
 const zero = constant(0);
@@ -37,6 +37,6 @@ const output = [
     anotherTwo,
     fortyTwo,
     twenty
-].map(exec)
+].map(exec);
 
 console.log(output);

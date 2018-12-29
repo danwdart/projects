@@ -3,12 +3,12 @@
 const makeRight = x => (x => {
     const Right = () => x;
     return Right;
-})(x)
+})(x);
 
 const makeLeft = x => ((x) => {
     const Left = () => x;
     return Left;
-})(x)
+})(x);
 
 const either = cond => l => r => cond ? makeRight(r) : makeLeft(l);
 

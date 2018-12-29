@@ -7,7 +7,7 @@ const Right = x => ({
 
 const Left = x => ({
     unwrap: () => x,
-    map: f => Left(x)
+    map: () => Left(x)
 });
 
 const either = cond => l => r => cond ? Right(r) : Left(l);
