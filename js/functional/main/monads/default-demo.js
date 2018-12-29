@@ -37,6 +37,7 @@ const propDefObj = fooComposed6(defToObj)(prop); // y.x || {}
 const fluentDefaultProp = obj => {
     const fOut = prop => {
         // Not allowed to do that! TODO work it out
+        // eslint-disable-next-line cleanjs/no-mutation
         obj = propDefObj(prop)(obj);
         return prop ? fOut : obj;
     };

@@ -39,4 +39,5 @@ const output = [
     twenty
 ].map(exec);
 
+// eslint-disable-next-line cleanjs/no-unused-expression
 console.log(output);

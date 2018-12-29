@@ -3,8 +3,6 @@ const Maybe = x => ({
     map: fn => undefined === x ? Maybe(undefined) : Maybe(fn(x)),
     value: x
 });
-Maybe.Nothing = Maybe(undefined);
-Maybe.Just = m => m.value;
 
 const addThree = x => x + 3;
 const dieIfNine = x => x === 9 ? undefined : x;

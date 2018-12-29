@@ -3,13 +3,15 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "plugin:cleanjs/recommended"
+    ],
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": [
-        "eslint-plugin-better"
+        "cleanjs"
     ],
     "rules": {
         "indent": [
@@ -29,6 +31,18 @@ module.exports = {
             "always"
         ],
         "no-console": [
+            0
+        ],
+        "cleanjs/no-unused-expression": [
+            0
+        ],
+        "cleanjs/must-return": [
+            0
+        ],
+        "cleanjs/no-new": [
+            0
+        ],
+        "cleanjs/no-nil": [
             0
         ]
     }

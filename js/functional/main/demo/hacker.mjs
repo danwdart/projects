@@ -35,17 +35,21 @@ const onNextTick = fn => setTimeout(fn, TIMEOUT);
 
 const draw = num => done => {
     const {toPrint, retDone, next} = instructDraw(num)(done);
+    // eslint-disable-next-line cleanjs/no-unused-expression
     printf(toPrint);
     return (retDone) ? done() : onNextTick(next);
 };
 
 const write = index => what => done => {
     const {toPrint, retDone, next} = instructWrite(index)(what)(done);
+    // eslint-disable-next-line cleanjs/no-unused-expression
     printf(toPrint);
     return (retDone) ? done() : onNextTick(next);
 };
 
+// eslint-disable-next-line cleanjs/no-unused-expression
 printf(first);
+// eslint-disable-next-line cleanjs/no-unused-expression
 draw(1)(
     () => write(0)(TEXT)(
         () => console.log('Done')
