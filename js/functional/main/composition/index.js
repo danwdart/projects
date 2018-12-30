@@ -36,6 +36,19 @@ const B_4 = bluebird(B_3);
 
 //it appears B(BB)(BB)(BBBB) ==== B(BB)(BB)(BBBBBBBB) ?
 
+/*
+Anyway...
+B(2B) = 4B
+B(3B) = 7B
+
+2B(B) = 3B obviously
+2B(2B) = 6B
+2B(3B) = 10B - although possibly.... fewer Bs
+
+3B(B) = 4B obviously
+3B(2B) = 9B... perhaps
+*/
+
 console.log([
     [
         B_4
