@@ -38,6 +38,10 @@ const B_4 = bluebird(B_3);
 
 /*
 Anyway...
+B^2 = 2B
+B^3 = 4B
+B^4 = ?
+
 B(2B) = 4B
 B(3B) = 7B
 
