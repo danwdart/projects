@@ -1,7 +1,6 @@
 import Data.Maybe
-
-safeDiv :: (Num a, Fractional a, Eq a) => a -> a -> Maybe a
-safeDiv x y = if y == 0 then Nothing else Just (x / y)
+import Lib.SafeDiv
 
 main :: IO ()
-main = print (safeDiv 2 11)
+-- print (saveDiv 2 11)
+main = print $ safeDiv 2 11

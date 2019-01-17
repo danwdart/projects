@@ -5,4 +5,4 @@ chain n
     | odd n  =  n:chain (n*3 + 1)
 
 main :: IO ()
-main = print (chain 89)
+main = print $ chain 89
