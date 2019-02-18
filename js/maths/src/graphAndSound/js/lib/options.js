@@ -1,7 +1,4 @@
-import {countfact} from './seq/countfact.js';
-import {sumfact} from './seq/sumfact.js';
-import {generator as sternbrocot, generatorModded as sbmod} from './seq/sternbrocot.js';
-import {logistic} from './seq/logistic.js';
+import {countfact, sumfact, sternbrocot, sbmod, logistic, triggy} from './seq';
 import {identity} from './combinators.js';
 import {generatorToFunction} from './utils.js';
 
@@ -46,6 +43,16 @@ export const TYPES = {
     },
     logistic: {
         fn: logistic,
+        scale: {
+            y: 300,
+            x: 2
+        },
+        soundfn: newy => newy,
+        tonefn: (i, newx, newy) => ([440 + 1000 * newy, 100, 100 * i]),
+        newyfn: identity
+    },
+    triggy: {
+        fn: triggy,
         scale: {
             y: 300,
             x: 2

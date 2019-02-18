@@ -1,6 +1,5 @@
-export function prifact(num){
-    var root = Math.sqrt(num),  
-        result = arguments[1] || [],  //get unnamed paremeter from recursive calls
+export function prifact(num, result = []){
+    var root = Math.sqrt(num),
         x = 2; 
 
     if(num % x){//if not divisible by 2 

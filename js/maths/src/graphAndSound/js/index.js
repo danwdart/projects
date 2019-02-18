@@ -21,28 +21,37 @@ const getOptions = typefn => {
     };
 }
 
+const getAllOptions = () => {
+    const OPTIONS = [];
+    for (const id in TYPES) {
+        OPTIONS.push(getOptions())
+    }
+    return OPTIONS;
+}
+
+const calcAll = (typefn, optionsOverrides = []) => {
+    const options = getOptions(typefn);
+    return calc({...options, ...optionsOverrides});
+};
+
 const draw = typefn => {
-        const options = getOptions(typefn),
-            ctx = getCanvasContext(),
-            [lines] = calc(options);
+        const ctx = getCanvasContext(),
+            [lines] = calcAll(typefn);
 
         clearCanvas(ctx);
         drawLines(ctx, lines);
     },
     tones = typefn => {
-        const options = getOptions(typefn),
-            audioContext = getAudioContext(),
-            [,tones] = calc(options);
+        const audioContext = getAudioContext(),
+            [,tones] = calcAll(typefn);
         
         playTones(audioContext, tones);
     },
     audio = typefn => {
-        const options = {
-                ...getOptions(typefn),
+        const audioContext = getAudioContext(),
+            [,,channels] = calcAll(typefn, {
                 numbers: 100000
-            },
-            audioContext = getAudioContext(),
-            [,,channels] = calc(options);
+            });
 
         playSound(audioContext, channels);
     };

@@ -12,9 +12,16 @@ const $ = document.querySelector.bind(document),
     proxyGen = (prefix, fn) => new Proxy({}, {get: (on, what) => fn(`${prefix}${what}`)}),
     byId = proxyGen(`#`, $),
     // byClass = proxyGen(`.`, $$),
-    invokeWith = arg => fn => fn.bind(null, arg);
+    invokeWith = arg => fn => fn.bind(null, arg),
+    radios = options => options.map(option => 
+        `<label>
+            <input class="type" type="radio" name="type" value="${option.id}"/>
+            ${option.name}
+        </label>`
+    ).join(`<br/>`);
 
 export const dom = (draw, clickPlayAsAudio, clickPlayAsTones) => {
+
     const typefn = () => $(`input[type="radio"]:checked`).value,
         invokeWithType = invokeWith(typefn);
     onClick(invokeWithType(draw))(byId.draw);
