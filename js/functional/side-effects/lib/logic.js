@@ -1,0 +1,1 @@
+export const iff = x => y => z => x ? y() : z();

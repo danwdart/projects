@@ -1,0 +1,17 @@
+{
+  "name": "unfart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "web-ext run",
+    "test": "eslint unfart.js && web-ext lint"
+  },
+  "keywords": [],
+  "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "web-ext": "^2.9.3"
+  }
+}

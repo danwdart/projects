@@ -6,10 +6,10 @@
   "dependencies": {
     "bignumber.js": "^7.2.1",
     "cytoscape": "^3.2.12",
-    "esm": "^3.0.62",
+    "esm": "^3.1.0",
     "gl-matrix": "^2.6.1",
     "node-fetch": "^2.1.2",
-    "snyk": "^1.88.2",
+    "snyk": "^1.82.1",
     "typescript": "^2.9.2"
   },
   "devDependencies": {
