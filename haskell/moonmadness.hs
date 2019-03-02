@@ -34,12 +34,12 @@ mulTwo fnMul a b = transpose (concat ((transpose $ splitEvery maxLen (liftM2 fnM
     threeTwoOneZero n = reverse $ tail $ take n $ inits $ repeat 0
 
 (<<+>>) :: Int -> Int -> Int
-a <<+>> b = reduceDigitsIntoInt $ moonAddWith (max (splitIntIntoDigits a) (splitIntIntoDigits b))
+a <<+>> b = reduceDigitsIntoInt $ moonAddWith max (splitIntIntoDigits a) (splitIntIntoDigits b)
 
 (<<*>>) :: Int -> Int -> Int
-a <<*>> b = reduceDigitsIntoInt $ moonMulWith (min max (splitIntIntoDigits a) (splitIntIntoDigits b)
-)
+a <<*>> b = reduceDigitsIntoInt $ moonMulWith min max (splitIntIntoDigits a) (splitIntIntoDigits b)
+
 main :: IO ()
-main = mapM_ putStrLn [
-    "35 <<+>> 97 is " ++ show (39 <<+>> 97 :: Int),
-    "315 <<*>> 971 is " ++ show (315 <<*>> 971 :: Int)]
+main = print [
+    [show x ++ " <<+>> " ++ show y ++ " = " ++ show (x <<+>> y) | x <- [0..20], y <- [0..20]],
+    [show x ++ " <<*>> " ++ show y ++ " = " ++ show (x <<*>> y) | x <- [0..20], y <- [0..20]]]
