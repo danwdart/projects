@@ -1,0 +1,4 @@
+-- soe
+primes = 
+
+primefactors = 
