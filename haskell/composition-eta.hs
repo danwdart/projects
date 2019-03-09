@@ -1,3 +1,4 @@
+import Data.Function
 -- We're often faced with something difficult to eta-reduce, like...
 
 -- Fns
@@ -64,10 +65,16 @@ testUT1 :: String -> String -> String
 -- but the regular ... works just fine, presumably because of its fixity or something.
 testUT1 = uns ... tris "My name is"
 
+testBUDup :: String -> String
+-- testBUDup a = bis (uns a) (uns a)
+-- We can't (yet) double up.
+testBUDup a = on bis uns a a
+
 main :: IO ()
 main = mapM_ putStrLn [
     testUU "Bob",
     testUB1 "Bob",
     testUB "Bob" "Frog",
     testUT2 "Frog",
-    testUT1 "Bob" "Frog"]
+    testUT1 "Bob" "Frog",
+    testBUDup "Bob"]
