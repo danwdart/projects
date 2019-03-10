@@ -41,7 +41,9 @@ export const grab = fetch => async search => {
     )))
     .flat(3)
     .filter(x => x.source)
-    .filter(x => !(searchTerms.map(
-        tag => x.tag_string.includes(tag)
-    ).includes(false))));
+    .filter(
+        x => !(searchTerms.map(
+            tag => x.tag_string.includes(tag)
+        ).includes(false)
+    )));
 };
