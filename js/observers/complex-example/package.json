@@ -12,7 +12,7 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "snyk": "^1.69.7"
+    "eslint": "^5.16.0",
+    "snyk": "^1.163.3"
   }
 }

@@ -12,10 +12,10 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.2",
-    "css-loader": "^0.28.9",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
     "html-loader": "^0.5.5",
-    "style-loader": "^0.20.1",
-    "webpack": "^3.10.0"
+    "style-loader": "^0.23.1",
+    "webpack": "^4.31.0"
   }
 }

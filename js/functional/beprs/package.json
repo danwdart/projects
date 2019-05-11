@@ -10,7 +10,7 @@
   "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
   "license": "AGPL-3.0",
   "dependencies": {
-    "esm": "^3.0.84",
+    "esm": "^3.2.22",
     "fantasy-birds": "^0.1.0"
   }
 }

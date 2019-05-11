@@ -4,15 +4,15 @@
   "version": "0.0.1",
   "devDependencies": {
     "chai": "*",
-    "grunt": "^1.0.2",
+    "grunt": "^1.0.4",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-yuidoc": "~0.4.0",
+    "grunt-contrib-yuidoc": "~1.0.0",
     "grunt-karma": "*",
     "karma-crbot-reporter": "*",
     "karma-ie-launcher": "*",
     "karma-mocha": "*",
     "karma-safari-launcher": "*",
     "karma-script-launcher": "*",
-    "mocha": "^5.1.1"
+    "mocha": "^6.1.4"
   }
 }
