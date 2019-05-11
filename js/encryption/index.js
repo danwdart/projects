@@ -11,11 +11,14 @@ const algorithm = {
 const encryptionAlgorithm = {
     name: "RSA-OAEP"
 };
-const extractable = false;
+const extractable = true;
 const keyUsages = [
     "encrypt", "decrypt"
 ];
-const exportFormat = "pkci";
+const privKeyUsages = ["decrypt"];
+const pubKeyUsages = ["encrypt"];
+const privKeyFormat = "pkcs8";
+const pubKeyFormat = "spki";
 
 const dom = {
     text: {
@@ -27,35 +30,32 @@ const dom = {
     button: {
         encrypt: $("#encrypt"),
         decrypt: $("#decrypt"),
-        generate: $("#generate")
+        generate: $("#generate"),
+        import: $("#import")
     }
 };
 
 const bPrefix = 'data:application/octet-stream;base64,';
 
 const binaryBufferToBase64 = binaryBuffer => new Promise((res, rej) => {
-    console.log('bb2b', {binaryBuffer})
     const blob = new Blob([new DataView(binaryBuffer)], {type: 'application/octet-stream'});
     const reader = new FileReader();
-    reader.onload = ev => console.log({r: ev.target.result}) || res(ev.target.result.substr(bPrefix.length));
+    reader.onload = ev => res(ev.target.result.substr(bPrefix.length));
     reader.onerror = err => rej(err);
     reader.readAsDataURL(blob, {type: 'application/octet-stream'});
 });
 
 const base64ToBinaryBuffer = async base64 => {
-    console.log('b2bb', {base64});
     const response = await fetch(`${bPrefix}${base64}`);
-    const binary = await response.text();
-    console.log({base64, response, binary, e: new TextEncoder('utf8').encode(binary)});
-    return new TextEncoder('utf8').encode(binary);
+    return await response.arrayBuffer();
 };
 
 let state = {
     text: {
         input: null,
         output: null,
-        //pubkey: null,
-        //privkey: null
+        pubkey: null,
+        privkey: null
     },
     keyPair: null
 };
@@ -67,59 +67,89 @@ const setState = newStateFn => {
 
 const btnFns = {
     encrypt: async () => {
-        try {
-            console.log('Enc', state.text.input);
-
-            const binaryInput = state.text.input;
-
-            const encodedData = new TextEncoder('utf8').encode(binaryInput)
-
-            const encryptedBinaryBuffer = await crypto.subtle.encrypt(
+        const encrypted = await binaryBufferToBase64(
+            await crypto.subtle.encrypt(
                 encryptionAlgorithm,
                 state.keyPair.publicKey,
-                encodedData
-            );
+                new TextEncoder('utf8').encode(state.text.input)
+            )
+        );
 
-            console.log('Enc1.4', encryptedBinaryBuffer)
-
-            const encrypted = await binaryBufferToBase64(encryptedBinaryBuffer);
-
-            console.log('Enc2', encrypted);
-
-            setState(state => ({
-                ...state,
-                text: {
-                    ...state.text,
-                    output: encrypted
-                }
-            }));
-
-            console.log(state.text.output);
-        } catch (err) {
-            console.error(err);
-        }
+        setState(state => ({
+            ...state,
+            text: {
+                ...state.text,
+                input: '',
+                output: encrypted
+            }
+        }));
     },
     decrypt: async () => {
-        try {
-            const decrypted = await crypto.subtle.decrypt(
+        const decrypted = new TextDecoder('utf8').decode(
+            await crypto.subtle.decrypt(
                 encryptionAlgorithm,
                 state.keyPair.privateKey,
                 await base64ToBinaryBuffer(state.text.output)
-            );
+            )
+        );
 
-            setState(state => ({
-                ...state,
-                text: {
-                    ...state.text,
-                    output: decrypted
-                }
-            }));
-        } catch (err) {
-            console.error(err);
-        }
+        setState(state => ({
+            ...state,
+            text: {
+                ...state.text,
+                input: decrypted,
+                output: ''
+            }
+        }));
     },
     generate: async () => {
         const keyPair = await pGenerate();
+
+        //console.log(
+            //await crypto.subtle.exportKey("raw", keyPair.publicKey),
+            //await crypto.subtle.exportKey("pkcs8", keyPair.publicKey),
+            
+            //(await crypto.subtle.exportKey("jwk", keyPair.publicKey)).n
+        //);
+
+        //console.log(
+            //await crypto.subtle.exportKey("raw", keyPair.privateKey),
+            
+            //await binaryBufferToBase64(await crypto.subtle.exportKey("spki", keyPair.privateKey)),
+            //(await crypto.subtle.exportKey("jwk", keyPair.privateKey))
+        //);
+
+        const privkey = (await binaryBufferToBase64(await crypto.subtle.exportKey(privKeyFormat, keyPair.privateKey)));
+        const pubkey = (await binaryBufferToBase64(await crypto.subtle.exportKey(pubKeyFormat, keyPair.publicKey)));
+
+
+        setState(state => ({
+            ...state,
+            text: {
+                ...state.text,
+                privkey,
+                pubkey
+            },
+            keyPair
+        }));
+    },
+    import: async () => {
+        const keyPair = {
+            publicKey: await crypto.subtle.importKey(
+                pubKeyFormat,
+                await base64ToBinaryBuffer(state.text.pubkey),
+                algorithm,
+                extractable,
+                pubKeyUsages
+            ),
+            privateKey: await crypto.subtle.importKey(
+                privKeyFormat,
+                await base64ToBinaryBuffer(state.text.privkey),
+                algorithm,
+                extractable,
+                privKeyUsages
+            )
+        };
 
         setState(state => ({
             ...state,
@@ -129,11 +159,14 @@ const btnFns = {
 }
 
 const changeState = name => ev => state.text[name] = ev.currentTarget.value;
+const detectState = name => state.text[name] = dom.text[name].value;
 const changeInput = name => newVal => dom.text[name].value = newVal;
 
 const pGenerate = () => crypto.subtle.generateKey(algorithm, extractable, keyUsages);
 
 const main = () => {
-    Object.entries(dom.text).map(([k, v]) => v.addEventListener("change", changeState(k)));
-    Object.entries(dom.button).map(([k, v]) => v.addEventListener("click", btnFns[k]));
+    Object.entries(dom.text).forEach(([k, v]) => v.addEventListener("change", changeState(k)));
+    Object.keys(dom.text).forEach(detectState);
+    Object.entries(dom.button).forEach(([k, v]) => v.addEventListener("click", btnFns[k]));
+    //window.addEventListener('DOMContentLoaded', () => Object.values(dom.text).forEach(detectState));
 };

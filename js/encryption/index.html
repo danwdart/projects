@@ -3,23 +3,33 @@
     <meta charset="utf-8"/>
     <body onload="main()">
         <h1>Encryption demo</h1>
-        <section>
-            <label>Input</label>
-            <textarea id="input"></textarea>
-            <button id="encrypt">Encrypt</button>
-        </section>
-        <section>
-            <label>Output</label>
-            <textarea id="output"></textarea>
-            <button id="decrypt">Decrypt</button>
-        </section>
-        <aside>
+        <fieldset>
             <button id="generate">Generate keypair</button>
+            <button id="import">Import keypair</button>
+            <br/>
             <label>Public key</label>
-            <textarea id="pubkey"></textarea>
+            <br/>
+            <textarea style="width: 800px;height:150px;" id="pubkey"></textarea>
+            <br/>
             <label>Private key</label>
-            <textarea id="privkey"></textarea>
-        </aside>
+            <br/>
+            <textarea style="width: 800px;height:600px;" id="privkey"></textarea>
+        </fieldset>
+        <fieldset>
+            <label>Input</label>
+            <br/>
+            <textarea style="width: 500px; height: 50px;" id="input"></textarea>
+            <br/>
+            <button disabled id="encrypt">Encrypt</button>
+        </fieldset>
+        <fieldset>
+            <label>Output</label>
+            <br/>
+            <textarea style="width: 800px;height:200px;" id="output"></textarea>
+            <br/>
+            <button disabled id="decrypt">Decrypt</button>
+        </fieldset>
+        
     </body>
     <script src="index.js"></script>
 </html>
