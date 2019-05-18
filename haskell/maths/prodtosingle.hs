@@ -1,3 +1,4 @@
+import Data.Function
 import Data.List
 
 charToInteger :: Char -> Integer
@@ -23,14 +24,18 @@ intsToPrintList xs = intercalate  ", " (map show xs)
 breakDown :: Integer -> [Integer]
 breakDown n = takeWhileOneMore (>10) $ iterate integerToProd n
 
-newtype MyStruct = MyStruct (Integer, Int, [Integer])
+data MyStruct = MyStruct {
+    x :: Integer,
+    lbd :: Int,
+    bd :: [Integer]
+}
 
-instance Eq MyStruct where MyStruct (a, b, c) == MyStruct (a1, b1, c1) = b == b1
-instance Ord MyStruct where compare (MyStruct (a, b, c)) (MyStruct (a1, b1, c1)) = compare b b1
-instance Show MyStruct where show (MyStruct (a, b, c)) = show a ++ ": " ++ show b ++ " steps: " ++ intsToPrintList c
+instance Eq MyStruct where (==) = on (==) lbd
+instance Ord MyStruct where compare = on compare lbd
+instance Show MyStruct where show ms = show (x ms) ++ ": " ++ show (lbd ms) ++ " steps: " ++ intsToPrintList (bd ms)
 
 myStruct :: Integer -> MyStruct
-myStruct x = MyStruct (x, length (breakDown x) - 1, breakDown x)
+myStruct x = MyStruct x (length (breakDown x) - 1) (breakDown x)
 
 outputNaive :: [MyStruct]
 outputNaive = nub $ map myStruct [1..1000000]
