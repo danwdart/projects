@@ -14,5 +14,7 @@ fibonacci = makeSeq (+) [1, 1]
 lucas :: (Num a) => [[a]]
 lucas = makeSeq (+) [1, 2]
 
+
+
 main :: IO ()
 main = print [fibonacci !! 5, lucas !! 5]
