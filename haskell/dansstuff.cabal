@@ -4,7 +4,7 @@ version:             0.1.0.0
 -- description:
 homepage:            https://github.com/githubuser/dansstuff#readme
 license:             PublicDomain
-license-file:        LICENSE
+-- license-file:        LICENSE
 author:              Dan Dart
 maintainer:          cabal@dandart.co.uk
 copyright:           2019 Dan Dart
@@ -303,6 +303,12 @@ executable pipeline
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable random
+  hs-source-dirs:      src
+  main-is:             random.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, random
+  
 executable reader
   hs-source-dirs:      src
   main-is:             reader.hs
