@@ -1,0 +1,395 @@
+name:                dansstuff
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/githubuser/dansstuff#readme
+license:             PublicDomain
+license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable euler1
+  hs-source-dirs:      src/euler
+  main-is:             1.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable euler2
+  hs-source-dirs:      src/euler
+  main-is:             2.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable euler3
+  hs-source-dirs:      src/euler
+  main-is:             3.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable onetwenty
+  hs-source-dirs:      src/maths
+  main-is:             120.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable kaprekar
+  hs-source-dirs:      src/maths
+  main-is:             kaprekar.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable prodtosingle
+  hs-source-dirs:      src/maths
+  main-is:             prodtosingle.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable decomp
+  hs-source-dirs:      src/maths/primefun
+  main-is:             decomp.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, primes
+
+executable primefun
+  hs-source-dirs:      src/maths/primefun
+  main-is:             primefun.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, primes
+
+executable primey
+  hs-source-dirs:      src/maths/primefun
+  main-is:             primey.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, primes
+
+executable intro
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable algsys
+  hs-source-dirs:      src
+  main-is:             algebra-systems.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable alltypes
+  hs-source-dirs:      src
+  main-is:             alltypes.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable async
+  hs-source-dirs:      src
+  main-is:             async.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, async
+
+executable bar
+  hs-source-dirs:      src
+  main-is:             bar.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  other-modules:       Lib.SafeDiv
+
+executable basic
+  hs-source-dirs:      src
+  main-is:             basic.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable baz
+  hs-source-dirs:      src
+  main-is:             baz.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable callcc
+  hs-source-dirs:      src
+  main-is:             callcc.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable chain
+  hs-source-dirs:      src
+  main-is:             chain.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable class
+  hs-source-dirs:      src
+  main-is:             class.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable cli_contt
+  hs-source-dirs:      src
+  main-is:             cli_contt.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable cli
+  hs-source-dirs:      src
+  main-is:             cli.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable complex
+  hs-source-dirs:      src
+  main-is:             complex.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable composition-eta
+  hs-source-dirs:      src
+  main-is:             composition-eta.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable cont
+  hs-source-dirs:      src
+  main-is:             cont.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable data
+  hs-source-dirs:      src
+  main-is:             data.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  other-modules:       Lib.Credential, Lib.Person
+
+executable data2
+  hs-source-dirs:      src
+  main-is:             data2.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable db
+  hs-source-dirs:      src
+  main-is:             db.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable delay
+  hs-source-dirs:      src
+  main-is:             delay.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable disparate
+  hs-source-dirs:      src
+  main-is:             disparate.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable do
+  hs-source-dirs:      src
+  main-is:             do.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable dokis
+  hs-source-dirs:      src
+  main-is:             dokis.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable dorar
+  hs-source-dirs:      src
+  main-is:             dorar.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable echo
+  hs-source-dirs:      src
+  main-is:             echo.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable enum
+  hs-source-dirs:      src
+  main-is:             enum.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable eventloop
+  hs-source-dirs:      src
+  main-is:             eventLoop.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, async, concurrent-extra, lifted-async
+
+executable foo
+  hs-source-dirs:      src
+  main-is:             foo.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable generics
+  hs-source-dirs:      src
+  main-is:             generics.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable graft
+  hs-source-dirs:      src
+  main-is:             graft.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable hashparker
+  hs-source-dirs:      src
+  main-is:             hashparker.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable heact
+  hs-source-dirs:      src
+  main-is:             heact.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, containers
+
+executable interact
+  hs-source-dirs:      src
+  main-is:             interact.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable ioref
+  hs-source-dirs:      src
+  main-is:             ioref.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable lc
+  hs-source-dirs:      src
+  main-is:             lc.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable lenses
+  hs-source-dirs:      src
+  main-is:             lenses.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, lens
+
+executable moonmadness
+  hs-source-dirs:      src
+  main-is:             moonmadness.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable mvar
+  hs-source-dirs:      src
+  main-is:             mvar.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable noecho
+  hs-source-dirs:      src
+  main-is:             noecho.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable pipeline
+  hs-source-dirs:      src
+  main-is:             pipeline.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable reader
+  hs-source-dirs:      src
+  main-is:             reader.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable sequences
+  hs-source-dirs:      src
+  main-is:             sequences.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable st
+  hs-source-dirs:      src
+  main-is:             st.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable state
+  hs-source-dirs:      src
+  main-is:             state.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable stm
+  hs-source-dirs:      src
+  main-is:             stm.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable texttodec
+  hs-source-dirs:      src
+  main-is:             textToDec.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable texttodeccrazy
+  hs-source-dirs:      src
+  main-is:             textToDecCrazy.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable transformers
+  hs-source-dirs:      src
+  main-is:             transformers.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, transformers
+
+executable trip
+  hs-source-dirs:      src
+  main-is:             trip.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable typeable
+  hs-source-dirs:      src
+  main-is:             typeable.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable types
+  hs-source-dirs:      src
+  main-is:             types.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  other-modules:       Lib.Auth, Lib.Data.Email, Lib.Data.Name, Lib.Data.Password, Lib.Data.User
+
+executable unicode
+  hs-source-dirs:      src
+  main-is:             unicode.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable wai
+  hs-source-dirs:      src
+  main-is:             wai.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, http-types, wai, warp
+
+executable whereinlet
+  hs-source-dirs:      src
+  main-is:             whereinlet.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable writer
+  hs-source-dirs:      src
+  main-is:             writer.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
