@@ -289,7 +289,7 @@ executable mvar
   hs-source-dirs:      src
   main-is:             mvar.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, async
 
 executable noecho
   hs-source-dirs:      src
@@ -331,7 +331,7 @@ executable stm
   hs-source-dirs:      src
   main-is:             stm.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, stm
 
 executable texttodec
   hs-source-dirs:      src
