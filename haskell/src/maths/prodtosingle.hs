@@ -46,11 +46,11 @@ iCombo n m = replicate <$> [0..n] <*> [m]
 makeCombos :: Int -> [[Int]]
 makeCombos upTo = (++) <$> ((++) <$> ((++) <$> iCombo upTo 3 <*> iCombo upTo 7) <*> iCombo upTo 8) <*> iCombo upTo 9
 
-allCombos :: [Integer]
-allCombos = map digitsToInteger $ dropWhile null $ makeCombos 25
+-- allCombos :: [Integer]
+-- allCombos = map digitsToInteger $ dropWhile null $ makeCombos 25
 
-outputTwo :: [MyStruct]
-outputTwo = nub $ map myStruct allCombos
+-- outputTwo :: [MyStruct]
+-- outputTwo = nub $ map myStruct allCombos
 
 -- By formula
 -- mapM_ print $ nubBy (on (==) snd) $ map (\(n, x) -> (n, length (breakDown x) - 1)) [(n, 10^n-1) | n <- [1..1000]]

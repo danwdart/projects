@@ -14,8 +14,9 @@ for (var i = 0; i < 10000000; i++) {
 
 import Data.List
 
-splitIntoPieces n l = 
+-- splitIntoPieces n l = 
 
+{-
 saa :: (Num n) => n -> Bool
 saa n = n == sum piecesNums where
     squared = n ** 2
@@ -25,3 +26,6 @@ saa n = n == sum piecesNums where
 
 main :: IO ()
 main = print $ filter saa [1..10000000]
+-}
+
+main = undefined

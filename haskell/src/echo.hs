@@ -55,4 +55,4 @@ Prelude Control.Monad Data.Function> 3 <$ [14]
 [3]
 -}
 
-print =<< getLine
+main = print =<< getLine

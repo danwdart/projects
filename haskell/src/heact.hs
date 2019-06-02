@@ -1,3 +1,4 @@
+{-
 import qualified Data.Map as Map
 import qualified Data.Set as Set
 
@@ -39,3 +40,5 @@ result = render h
 
 main :: IO ()
 main = putStrLn result
+-}
+main = putStrLn "Hi"

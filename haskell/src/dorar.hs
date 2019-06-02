@@ -1,5 +1,5 @@
 -- ap
-map ($ 3) [(4+),(7+)]
+main = print $ map ($ 3) [(4+),(7+)]
 
 -- Params
 -- sum (replicate 5 (max 6.7 8.9))

@@ -6,7 +6,7 @@ c = cont ($ 34)
 run :: IO ()
 run = runCont c print
 
-runCC = 
+-- runCC = 
 
 main :: IO ()
 main = run

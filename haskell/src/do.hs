@@ -4,6 +4,6 @@ main = do
     line <- getLine
     if line == "exit"
         then putStrLn "exit"
-        else do               -- Note this!
+        else putStrLn "Wat?"               -- Note this!
     name <- getLine
     putStrLn ("Hello " ++ name)

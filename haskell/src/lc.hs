@@ -6,7 +6,7 @@ data Expr = Var Name
     | Lam Name Expr
     | App Expr Expr
 
-instance Show (Expr) where
+instance Show Expr where
     show (Var v)       = v
     show (Lam n e)  = "\\" ++ n ++ "." ++ show e
     show (App e1 e2) = "(" ++ show e1 ++ " " ++ show e2 ++ ")"
@@ -14,3 +14,5 @@ instance Show (Expr) where
 -- apply 
 
 compose = Lam "a" (Lam "b" (Lam "c" (App ( App (Var "a") (Var "b")) (Var "c"))))
+
+main = print compose

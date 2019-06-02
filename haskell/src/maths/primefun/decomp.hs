@@ -9,17 +9,18 @@ decomp (x, ys) = if even x then (x `div` 2, 0:ys) else (x - 1, 1:ys)
 decompOther :: (Integer, [Integer]) -> (Integer, [Integer])
 decompOther (x, ys) = if odd x then (x `div` 2, 0:ys) else (x - 1, 1:ys)
 
-zeck :: Integer -> String
-zeck n = bintodec (1 : snd (last $ takeWhile (\(x, ys) -> x > 0) $ iterate decomp (n, [])))
+-- zeck :: Integer -> String
+-- zeck n = bintodec (1 : snd (last $ takeWhile (\(x, ys) -> x > 0) $ iterate decomp (n, [])))
 
-zeck2 :: Integer -> String
-zeck2 n = bintodec (1 : snd (last $ takeWhile (\(x, ys) -> x > 0) $ iterate decompOther (n, [])))
+-- zeck2 :: Integer -> String
+-- zeck2 n = bintodec (1 : snd (last $ takeWhile (\(x, ys) -> x > 0) $ iterate decompOther (n, [])))
 
 -- printIt :: Integer -> String
 -- printIt x = show x ++ "th prime = " ++ show (primes !! x) ++ ", zecked = " ++ show (zeck (primes !! x)) ++ ", split = " ++ show (primeFactors (weird (primes !! x))) ++ ", elem?: " ++ show (primes !! x `elem` primeFactors (weird (primes !! x)))
 
---main :: IO ()
---main = mapM_ putStrLn [printIt x | x <- [1..100]]
+main :: IO ()
+main = undefined
+-- main = mapM_ putStrLn [printIt x | x <- [1..100]]
 
 -- zecked?
 -- something :: [Integer]
