@@ -43,6 +43,7 @@ extra-deps:
   - lens-4.17.1
   - lifted-async-0.10.0.4
   - random-1.1
+  - threepenny-gui-0.8.3.0
   - wai-3.2.2
   - warp-3.2.26
 
