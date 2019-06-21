@@ -4,6 +4,9 @@
 
 1. API socket
 2. Listener to Discord bot
+3. Maybe a web based client
+4. Maybe a mobile app
+5. Maybe a desktop app
 
 ## Commands
 
