@@ -2,8 +2,9 @@
 
 ## Structure
 
-1. API socket
+1. API socket - takes requests and posts tasks in message queue, and receives status updates too
 2. Listener to Discord bot
+3. Tasks listener - takes tasks in message queue and processes them, and posts status updates
 3. Maybe a web based client
 4. Maybe a mobile app
 5. Maybe a desktop app
