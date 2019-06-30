@@ -25,5 +25,8 @@ processArgs :: Either String [Int] -> Either String Int
 processArgs (Right [a, b]) = frob2 a b
 processArgs _ = Left "Can't process args!"
 
+prog :: [String] -> String
+prog = fromEither . fmap show . processArgs . validateArgs . parseArgs
+
 main :: IO ()
-main = getArgs >>= return . fromEither . fmap show . processArgs . validateArgs . parseArgs >>= putStrLn
+main = getArgs >>= return . prog >>= putStrLn
