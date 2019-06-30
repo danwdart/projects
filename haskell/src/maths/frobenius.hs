@@ -26,4 +26,4 @@ processArgs (Right [a, b]) = frob2 a b
 processArgs _ = Left "Can't process args!"
 
 main :: IO ()
-main = getArgs >>= return . parseArgs >>= return . validateArgs >>= return . processArgs >>= return . fmap show >>= return . fromEither >>= putStrLn
+main = getArgs >>= return . fromEither . fmap show . processArgs . validateArgs . parseArgs >>= putStrLn
