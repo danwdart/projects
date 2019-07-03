@@ -1,6 +1,4 @@
--- soe
--- primes = 
+import Data.Numbers.Primes
 
--- primefactors = 
-
+main :: IO ()
 main = undefined
