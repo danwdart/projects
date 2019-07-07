@@ -84,11 +84,15 @@ alias masscan='dhrr-masscan'
 alias dhr-qjackctl='dhrx lasery/qjackctl'
 alias qjackctl='dhr-qjackctl qjackctl'
 
-alias dhr-audacity='dhrx jess/audacity'
-alias audacity='dhr-audacity audacity'
+# won't work atm
+#alias dhr-audacity='dhrx jess/audacity'
+#alias audacity='dhr-audacity audacity'
 
-alias dhr-wine='dhrx jess/wine'
+alias dhr-wine='dhrx -v $HOME/.wine:$HOME/.wine -v $HOME/.local/share:$HOME/.local/share jess/wine'
 alias wine='dhr-wine wine'
+
+alias dhr-torbrowser='dhrx jess/tor-browser'
+alias tor-browser='dhr-torbrowser'
 
 alias dhr-wireshark='dhrrx jess/wireshark'
 alias wireshark='dhr-wireshark'
@@ -96,7 +100,7 @@ alias wireshark='dhr-wireshark'
 alias dhr-wargames='dhrx jess/wargames'
 alias wargames='dhr-wargames'
 
-alias dhr-vscode='dhrx jess/vscode'
+alias dhr-vscode='dhrrx jess/vscode' # user "user" - can't override?
 alias vscode='dhr-vscode'
 
 alias dhr-vlc='dhrx jess/vlc'
@@ -111,11 +115,8 @@ alias traceroute='dhr-traceroute'
 alias dhr-spotify='dhrx jess/spotify'
 alias spotify='dhr-spotify'
 
-alias dhr-skype='dhrx jess/skype'
+alias dhr-skype='dhrx -v $HOME/.config:$HOME/.config jess/skype'
 alias skype='dhr-skype'
-
-alias dhr-routersploit='dhrx jess/routersploit'
-alias routersploit='dhr-routersploit'
 
 alias dhr-rdesktop='dhrx jess/rdesktop'
 alias rdesktop='dhr-rdesktop'
@@ -135,6 +136,12 @@ alias inkscape='dhr-inkscape'
 alias dhr-cathode='dhrx -v $HOME:$HOME -v $PWD:$PWD jess/cathode'
 alias cathode='dhr-cathode'
 
-alias dhr-kali='dhrx jess/kalilinux'
+alias dhr-kali='dhrr jess/kalilinux'
+alias kali='dhr-kali bash'
 
+alias dhr-steam='dhrx -v $HOME/.steam:$HOME/.steam -v $HOME/.local:$HOME/.local tianon/steam'
+alias steam='dhr-steam'
+
+alias dhr-mongo='drri -p27017:27017 mongo'
+alias mongod='dhr-mongo'
 # alias dhr-kvm='dhrx jess/kvm'
