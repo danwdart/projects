@@ -70,8 +70,12 @@ resetGame = do
     clearScreen
     setCursorPosition 0 0
 
+resetTerm :: IO ()
+resetTerm = showCursor
+
 main :: IO ()
 main = do
     resetGame
     --getChar >>= loop
     print gameState
+    resetTerm
