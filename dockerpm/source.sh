@@ -3,7 +3,21 @@ d() {
 }
 
 dc() {
-    [ -f docker-compose.dev.yml ] && sudo docker-compose -f docker-compose.yml -f docker-compose.dev.yml $@ || sudo docker-compose $@
+    if [ -f docker-compose.dev.yml ]
+    then
+        sudo docker-compose -f docker-compose.yml -f docker-compose.dev.yml $@
+    else
+        sudo docker-compose $@
+    fi
+}
+
+dca() {
+    if [ -f docker-compose.admin.yml ]
+    then
+        dc -f docker-compose.admin.yml $@ 
+    else
+        echo "No docker-compose.admin.yml present."
+    fi
 }
 
 alias dcu='dc up -d'
