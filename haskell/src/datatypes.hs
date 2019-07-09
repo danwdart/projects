@@ -37,6 +37,7 @@ main = do
     print $ constrType $ toConstr myComputer
     print $ constrFields $ toConstr myComputer
     print $ constrFields $ toConstr myPlayer
-    print $ fromConstr (toConstr (Nothing :: Maybe Int)) :: Maybe Int
-    print $ fromConstrB (fromConstr (toConstr (1 :: Int))) (toConstr (Just 1 :: Maybe Int)) :: Maybe Int
+    print (fromConstr (toConstr (Nothing :: Maybe Int)) :: Maybe Int)
+    print (fromConstrB (fromConstr (toConstr (1 :: Int))) (toConstr (Just 1 :: Maybe Int)) :: Maybe Int)
+    
     -- etc etc fromConstrM etc
