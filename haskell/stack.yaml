@@ -41,6 +41,7 @@ extra-deps:
   - aeson-1.4.3.0
   - ansi-terminal-0.9.1
   - async-2.2.1
+  - avahi-0.2.0
   - bytestring-0.10.8.2
   - concurrent-extra-0.7.0.12
   - directory-1.3.3.2
@@ -56,6 +57,8 @@ extra-deps:
   - mongoDB-2.5.0.0
   - random-1.1
   - regex-tdfa-1.2.3.2
+  - req-2.1.0
+  - retry-0.8.0.1@sha256:149393f74ce7504e171d71046936e58841ccfa0e59a37809824b6d68c04a36e5
   - tardis-0.4.1.0
   - text-1.2.3.1
   - threepenny-gui-0.8.3.0
