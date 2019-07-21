@@ -134,6 +134,12 @@ executable bar
   build-depends:       base >= 4.7 && < 5
   other-modules:       Lib.SafeDiv
 
+executable bashy
+  hs-source-dirs:      src
+  main-is:             bashy.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, directory
+
 executable basic
   hs-source-dirs:      src
   main-is:             basic.hs
