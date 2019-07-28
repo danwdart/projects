@@ -351,6 +351,12 @@ executable heact
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers
 
+executable hsx
+  hs-source-dirs:      src
+  main-is:             hsx.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, hsp, hsx2hs, template-haskell, text
+
 executable interact
   hs-source-dirs:      src
   main-is:             interact.hs
@@ -500,6 +506,12 @@ executable transformers
   main-is:             transformers.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, transformers
+
+executable translatorglitch
+  hs-source-dirs:      src
+  main-is:             translatorglitch.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, gogol, gogol-translate, lens
 
 executable trip
   hs-source-dirs:      src
