@@ -1,8 +1,10 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 import qualified Graphics.UI.Threepenny as UI
 import Graphics.UI.Threepenny.Core
 
 main :: IO ()
-main = startGUI defaultConfig setup
+main = startGUI defaultConfig {jsAddr = Just "0.0.0.0"} setup
 
 alert :: String -> JSFunction ()
 alert = ffi "alert(%1)"
