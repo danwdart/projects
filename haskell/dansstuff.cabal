@@ -79,6 +79,12 @@ executable kaprekar
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable numbertypes
+  hs-source-dirs:      src/maths
+  main-is:             numbertypes.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable prodtosingle
   hs-source-dirs:      src/maths
   main-is:             prodtosingle.hs
@@ -163,6 +169,12 @@ executable binarygame
   main-is:             binarygame.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, ansi-terminal
+
+executable breakeverything
+  hs-source-dirs:      src
+  main-is:             breakeverything.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
 
 executable callcc
   hs-source-dirs:      src
@@ -511,7 +523,7 @@ executable translatorglitch
   hs-source-dirs:      src
   main-is:             translatorglitch.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, gogol, gogol-translate, lens
+  build-depends:       base >= 4.7 && < 5, gogol, gogol-translate, lens, text
 
 executable trip
   hs-source-dirs:      src
