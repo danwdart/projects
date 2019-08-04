@@ -2,7 +2,7 @@ name:                dansstuff
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/dansstuff#readme
+homepage:            https://github.com/danwdart/dansstuff#readme
 license:             PublicDomain
 -- license-file:        LICENSE
 author:              Dan Dart
@@ -13,99 +13,130 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
+executable battleships
+  hs-source-dirs:      src
+  main-is:             boardgames/battleships.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable minesweeper
+  hs-source-dirs:      src
+  main-is:             boardgames/minesweeper.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable monopoly
+  hs-source-dirs:      src
+  main-is:             boardgames/monopoly.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, containers, random
+
+executable razzledazzle
+  hs-source-dirs:      src
+  main-is:             boardgames/razzledazzle.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable ur
+  hs-source-dirs:      src
+  main-is:             boardgames/ur.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable dubloons-bot
-  hs-source-dirs:      src/dubloons
-  main-is:             server.hs
+  hs-source-dirs:      src
+  main-is:             dubloons/server.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable dubloons-server
-  hs-source-dirs:      src/dubloons
-  main-is:             server.hs
+  hs-source-dirs:      src
+  main-is:             dubloons/server.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable dubloons-tasks
-  hs-source-dirs:      src/dubloons
-  main-is:             tasks.hs
+  hs-source-dirs:      src
+  main-is:             dubloons/tasks.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, aeson, bytestring, http-client, hxt, hxt-xpath, mtl, safe-foldable, req, retry, text
+  other-modules:       Lib.XPath
 
 executable euler1
-  hs-source-dirs:      src/euler
-  main-is:             1.hs
+  hs-source-dirs:      src
+  main-is:             euler/1.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable euler2
-  hs-source-dirs:      src/euler
-  main-is:             2.hs
+  hs-source-dirs:      src
+  main-is:             euler/2.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable euler3
-  hs-source-dirs:      src/euler
-  main-is:             3.hs
+  hs-source-dirs:      src
+  main-is:             euler/3.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
 executable euler4
-  hs-source-dirs:      src/euler
-  main-is:             4.hs
+  hs-source-dirs:      src
+  main-is:             euler/4.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable base
-  hs-source-dirs:      src/maths
-  main-is:             base.hs
+  hs-source-dirs:      src
+  main-is:             maths/base.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
 executable onetwenty
-  hs-source-dirs:      src/maths
-  main-is:             120.hs
+  hs-source-dirs:      src
+  main-is:             maths/120.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable frobenius
-  hs-source-dirs:      src/maths
-  main-is:             frobenius.hs
+  hs-source-dirs:      src
+  main-is:             maths/frobenius.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable kaprekar
-  hs-source-dirs:      src/maths
-  main-is:             kaprekar.hs
+  hs-source-dirs:      src
+  main-is:             maths/kaprekar.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable numbertypes
-  hs-source-dirs:      src/maths
-  main-is:             numbertypes.hs
+  hs-source-dirs:      src
+  main-is:             maths/numbertypes.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable prodtosingle
-  hs-source-dirs:      src/maths
-  main-is:             prodtosingle.hs
+  hs-source-dirs:      src
+  main-is:             maths/prodtosingle.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
 executable decomp
-  hs-source-dirs:      src/maths/primefun
-  main-is:             decomp.hs
+  hs-source-dirs:      src
+  main-is:             maths/primefun/decomp.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
 executable primefun
-  hs-source-dirs:      src/maths/primefun
-  main-is:             primefun.hs
+  hs-source-dirs:      src
+  main-is:             maths/primefun/primefun.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
 executable primey
-  hs-source-dirs:      src/maths/primefun
-  main-is:             primey.hs
+  hs-source-dirs:      src
+  main-is:             maths/primefun/primey.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
@@ -124,6 +155,12 @@ executable algsys
 executable alltypes
   hs-source-dirs:      src
   main-is:             alltypes.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable applicativedo
+  hs-source-dirs:      src
+  main-is:             applicativedo.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -567,6 +604,12 @@ executable writer
   main-is:             writer.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
+
+executable xpath
+  hs-source-dirs:      src
+  main-is:             xpath.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, hxt, hxt-xpath, safe-foldable, text
 
 executable yaml
   hs-source-dirs:      src
