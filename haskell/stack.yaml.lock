@@ -138,6 +138,20 @@ packages:
   original:
     hackage: hsx2hs-0.14.1.5
 - completed:
+    hackage: hxt-9.3.1.16@sha256:0a59d7e4b2002823f82695039c13dc9eba7d9b3e8e131f1b8ccd4b66c8d364e3,9451
+    pantry-tree:
+      size: 10091
+      sha256: c25064c16e9db908077b1a2a8bbf57a448f23fb146566bcf1740f5ffdb542723
+  original:
+    hackage: hxt-9.3.1.16
+- completed:
+    hackage: hxt-xpath-9.1.2.2@sha256:9cd590ae93a04573db8f90fa4094625ebd97dded45da7667c577ce6b38a42900,1999
+    pantry-tree:
+      size: 2225
+      sha256: aee2f75974e868ff429b8ff349a29667536c60397098f5dfedc968d1951511bb
+  original:
+    hackage: hxt-xpath-9.1.2.2
+- completed:
     hackage: lens-4.17.1@sha256:61f6956d463e4c6d44d9d3f0637ed957e4a6756145c0f433fffa6371608276fe,15822
     pantry-tree:
       size: 8041
@@ -193,6 +207,13 @@ packages:
       sha256: d0cfb99557baafa97f0c269c72fca810dd37d958e86056f345c24956f1e05977
   original:
     hackage: retry-0.8.0.1@sha256:149393f74ce7504e171d71046936e58841ccfa0e59a37809824b6d68c04a36e5
+- completed:
+    hackage: safe-foldable-0.1.0.0@sha256:dd9d8099faa71e5cbc38e3060dc23804de26d13d514e65ea13617ecb6e624d5e,979
+    pantry-tree:
+      size: 223
+      sha256: bee958f261ede34b86e5993cf06961f50ecadfd24959c41f8f5b8c084480a819
+  original:
+    hackage: safe-foldable-0.1.0.0
 - completed:
     hackage: tardis-0.4.1.0@sha256:7b45b8fba6db18e5fcfb22dab3de1809b88e8fda6a202a32da308507d2dde6f2,1276
     pantry-tree:
