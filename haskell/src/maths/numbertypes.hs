@@ -29,9 +29,9 @@ instance (Num a) => Num (NumberType a) where
     -- signum PositiveInfinity = 1
     -- signum NegativeInfinity = -1
 
-    PositiveInfinity + PositiveInfinity = PositiveInfinity
-    PositiveInfinity - PositiveInfinity = Undefined
-    PositiveInfinity * PositiveInfinity = PositiveInfinity
+    -- PositiveInfinity + PositiveInfinity = PositiveInfinity
+    -- PositiveInfinity - PositiveInfinity = Undefined
+    -- PositiveInfinity * PositiveInfinity = PositiveInfinity
     
     (Finite x) + (Finite y) = Finite (x + y)
     (Finite x) - (Finite y) = Finite (x - y)
