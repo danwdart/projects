@@ -75,22 +75,30 @@ myGame = Game
     )
 
 performRound :: Game -> IO Game
-performRound (Game (Board spaces freeParkingMoney) players rules) = do
+performRound (Game board players rules) = do
     putStrLn "Let's go!"
+    let numSpaces = length . spaces board
     players' <- forM players $ \p -> do
-        putStrLn $ name p ++ " (the " ++ show (token p) ++ ") is on " ++ show (playerSpace spaces p)
+        putStrLn $ name p ++ " (the " ++ show (token p) ++ ") is on " ++ show (playerSpace (spaces board) p)
         roll <- (,) <$> (randomRIO (1, 6)) <*> (randomRIO (1, 6)) :: IO (Int, Int)
         -- let total = roll <&> uncurry (+)
         putStrLn $ "Roll: " ++ show roll
         let total = uncurry (+) roll
         putStrLn $ "Total: " ++ show total
-        let newSpace = spaces !! ((position p) + total)
-        putStrLn $ "That puts you on " ++ show newSpace
-        processLand p newSpace
+        let newPosition = position p + total
+        --when (newPosition > numSpaces) $ do
+        --   print "Passed GO."
+        let p' = p {position = newPosition}
+        let newSpace = (spaces board) !! newPosition
+        putStrLn $ "That puts you on position " ++ show newPosition ++ " which is " ++ show newSpace
+        (player', board') <- processLand p' board newSpace
+        -- board'
+        return p'
 
-    return $ Game (Board spaces freeParkingMoney) players' rules
+    return $ Game board players' rules
 
 main :: IO ()
 main = do
-    performRound myGame
+    myGame1 <- performRound myGame
+    myGame2 <- performRound myGame1
     return ()
