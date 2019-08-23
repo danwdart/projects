@@ -77,7 +77,7 @@ myGame = Game
 performRound :: Game -> IO Game
 performRound (Game board players rules) = do
     putStrLn "Let's go!"
-    let numSpaces = length . spaces board
+    let numSpaces = length (spaces board)
     players' <- forM players $ \p -> do
         putStrLn $ name p ++ " (the " ++ show (token p) ++ ") is on " ++ show (playerSpace (spaces board) p)
         roll <- (,) <$> (randomRIO (1, 6)) <*> (randomRIO (1, 6)) :: IO (Int, Int)

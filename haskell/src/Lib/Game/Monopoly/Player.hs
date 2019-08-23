@@ -14,3 +14,13 @@ data Player = Player {
 
 newPlayer :: String -> Token -> Player
 newPlayer name token = Player name token 0 1500 [] []
+
+data OwnedStatus = Unowned | Owned | Mortgaged
+
+owns :: Player -> Property -> OwnedStatus
+owns player property = if property `elem` properties player
+    then Owned
+    else
+        if property `elem` mortgagedProperties player
+            then Mortgaged
+            else Unowned

@@ -3,6 +3,7 @@ module Lib.Game.Monopoly.Rules where
 import qualified Data.Set as Set
 import Data.Set (Set)
 
+data PropertyRule = ForceBuy | ConfirmBuy | Auction deriving (Eq, Ord)
 data Rule = HitGoExactlyReceive400 | FreeParkingMoney deriving (Eq, Ord)
 
 instance Show Rule where
