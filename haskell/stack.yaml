@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-13.24
+resolver: lts-14.0
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -44,12 +44,17 @@ extra-deps:
   - avahi-0.2.0
   - bytestring-0.10.8.2
   - concurrent-extra-0.7.0.12
+  - digits-0.3.1
   - directory-1.3.3.2
+  - egyptian-fractions-0.1.0.2
+  - FixedPoint-simple-0.6.1
   - flow-1.0.18
   - gd-3000.7.3
   - gogol-0.4.0
   - gogol-core-0.4.0@sha256:764a6648535bf2e248c220fe85d4d63fa4c21f896e7f0e23322b2bb8cc3e81c6,2821
   - gogol-translate-0.4.0
+  - haskell-src-exts-1.20.3
+  - haxl-2.1.2.0
   - HDBC-2.4.0.2
   - hdbc-aeson-0.1.3.2
   - HDBC-postgresql-2.3.2.6
@@ -59,10 +64,13 @@ extra-deps:
   - hsx2hs-0.14.1.5
   - hxt-9.3.1.16
   - hxt-xpath-9.1.2.2
+  - IfElse-0.85@sha256:6939b94acc6a55f545f63a168a349dd2fbe4b9a7cca73bf60282db5cc6aa47d2,445
   - lens-4.17.1
   - lifted-async-0.10.0.4
   - mongoDB-2.5.0.0
+  - numbers-3000.2.0.2
   - process-1.6.5.1@sha256:77a9afeb676357f67fe5cf1ad79aca0745fb6f7fb96b786d510af08f622643f6,2468
+  - propellor-5.9.1
   - random-1.1
   - regex-tdfa-1.2.3.2
   - req-2.1.0

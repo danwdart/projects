@@ -30,6 +30,7 @@ executable monopoly
   main-is:             boardgames/monopoly.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers, random
+  other-modules:       Lib.Game.Monopoly.Addons, Lib.Game.Monopoly.Board, Lib.Game.Monopoly.Colour, Lib.Game.Monopoly.Game, Lib.Game.Monopoly.Helpers, Lib.Game.Monopoly.Player, Lib.Game.Monopoly.Property, Lib.Game.Monopoly.Random, Lib.Game.Monopoly.Rules, Lib.Game.Monopoly.Space, Lib.Game.Monopoly.Station, Lib.Game.Monopoly.Tax, Lib.Game.Monopoly.Token, Lib.Game.Monopoly.Utility
 
 executable razzledazzle
   hs-source-dirs:      src
@@ -90,7 +91,7 @@ executable base
   hs-source-dirs:      src
   main-is:             maths/base.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, mtl
+  build-depends:       base >= 4.7 && < 5, digits
 
 executable onetwenty
   hs-source-dirs:      src
@@ -109,6 +110,12 @@ executable kaprekar
   main-is:             maths/kaprekar.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable more
+  hs-source-dirs:      src
+  main-is:             maths/more.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, egyptian-fractions, numbers, FixedPoint-simple
 
 executable numbertypes
   hs-source-dirs:      src
@@ -139,6 +146,20 @@ executable primey
   main-is:             maths/primefun/primey.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
+
+executable graph
+  hs-source-dirs:      src
+  main-is:             web/graph.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom
+  ghc-options:         -DGHCJS_BROWSER
+
+executable unfart
+  hs-source-dirs:      src
+  main-is:             web/extension/unfart.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom
+  ghc-options:         -DGHCJS_BROWSER
 
 executable intro
   hs-source-dirs:      src
@@ -249,6 +270,12 @@ executable complex
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable composition
+  hs-source-dirs:      src
+  main-is:             composition.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, template-haskell
+
 executable composition-eta
   hs-source-dirs:      src
   main-is:             composition-eta.hs
@@ -290,7 +317,7 @@ executable delay
   hs-source-dirs:      src
   main-is:             delay.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, ansi-terminal, random
 
 executable disparate
   hs-source-dirs:      src
@@ -394,6 +421,12 @@ executable hashparker
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable haxl
+  hs-source-dirs:      src
+  main-is:             haxl.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, haxl
+
 executable heact
   hs-source-dirs:      src
   main-is:             heact.hs
@@ -460,6 +493,12 @@ executable mvar
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, async
 
+executable napier-locar
+  hs-source-dirs:      src
+  main-is:             napier-locar.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, digits
+
 executable noecho
   hs-source-dirs:      src
   main-is:             noecho.hs
@@ -471,6 +510,12 @@ executable pipeline
   main-is:             pipeline.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable propellor
+  hs-source-dirs:      src
+  main-is:             propellor.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, propellor
 
 executable random
   hs-source-dirs:      src
@@ -495,6 +540,12 @@ executable req
   main-is:             req.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, aeson, bytestring, mtl, req, retry, text
+
+executable scrapetumblr
+  hs-source-dirs:      src
+  main-is:             scrapetumblr.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
 
 executable sequences
   hs-source-dirs:      src
@@ -610,6 +661,7 @@ executable xpath
   main-is:             xpath.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, hxt, hxt-xpath, safe-foldable, text
+  other-modules:       Lib.XPath
 
 executable yaml
   hs-source-dirs:      src

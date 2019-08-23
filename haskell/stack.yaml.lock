@@ -47,12 +47,33 @@ packages:
   original:
     hackage: concurrent-extra-0.7.0.12
 - completed:
+    hackage: digits-0.3.1@sha256:39009270485114ee7c51273ccca354c6d4af8408f8f1345d506fc5e638b99273,992
+    pantry-tree:
+      size: 263
+      sha256: 514b46f148370fc857f7d9a1604a510ac732034ecf7d6b0a5b82f0c94fe634ce
+  original:
+    hackage: digits-0.3.1
+- completed:
     hackage: directory-1.3.3.2@sha256:79e15a62f90cb9f20f46b2b56fe67d00d71ed54cfad07ea337695f9ebb74baa4,2829
     pantry-tree:
       size: 3363
       sha256: 07702ef1e423c4d3eb2e56f581c684e6a6956f40bf5a269bd41c758ccff7f493
   original:
     hackage: directory-1.3.3.2
+- completed:
+    hackage: egyptian-fractions-0.1.0.2@sha256:e109daa27dba59e911fe5ede3519368e69d178159561195e1f3b1fe5ec680adc,1059
+    pantry-tree:
+      size: 269
+      sha256: 258085134512bf0833d2725cbf92345ba9e706da210a7dc58f4d6e58743dd528
+  original:
+    hackage: egyptian-fractions-0.1.0.2
+- completed:
+    hackage: FixedPoint-simple-0.6.1@sha256:01f08f712f70b4499d2099adda71ee887f24cc0f285f29c4952815e7d52c2bb8,1179
+    pantry-tree:
+      size: 284
+      sha256: 2ee6b74d4232718915ab08602984ce7eee3921e266997ed9813b08fb484590e1
+  original:
+    hackage: FixedPoint-simple-0.6.1
 - completed:
     hackage: flow-1.0.18@sha256:9a4dd87a97ea73f47350e7e94baf362b56a06a5783287daf5c7a690c173f7c93,1477
     pantry-tree:
@@ -88,6 +109,20 @@ packages:
       sha256: 32398d7a45e971ebcde1ebe226bea82be52cbd461f18846ebb2ac53fd2a3a476
   original:
     hackage: gogol-translate-0.4.0
+- completed:
+    hackage: haskell-src-exts-1.20.3@sha256:eb9a0a02e422f64e793fe077e445e930bc365b7f7ce92ce6983475c72f8b3785,4467
+    pantry-tree:
+      size: 92343
+      sha256: c14945db7232a46e974a3467d881e7929d4940fb947ccecb8e210cebba7abe1b
+  original:
+    hackage: haskell-src-exts-1.20.3
+- completed:
+    hackage: haxl-2.1.2.0@sha256:1cee655c380dd0373932c666808edc9a9a2d4d8c4e03caeb4da49fbd135b24d9,4040
+    pantry-tree:
+      size: 2888
+      sha256: 90522851e0cd5bb9cb78e83adc4ee9fba86879c91ccdc514bedcc6ddfc140889
+  original:
+    hackage: haxl-2.1.2.0
 - completed:
     hackage: HDBC-2.4.0.2@sha256:77de460b831e7e5cea8fa0f5c0271ac5465d911d988443acef605fddf2ad2550,2997
     pantry-tree:
@@ -152,6 +187,13 @@ packages:
   original:
     hackage: hxt-xpath-9.1.2.2
 - completed:
+    hackage: IfElse-0.85@sha256:6939b94acc6a55f545f63a168a349dd2fbe4b9a7cca73bf60282db5cc6aa47d2,445
+    pantry-tree:
+      size: 213
+      sha256: 4efed7ab11ec6d794c7e56eb76216363c51c4c084d9a616917fc025a1151cd65
+  original:
+    hackage: IfElse-0.85@sha256:6939b94acc6a55f545f63a168a349dd2fbe4b9a7cca73bf60282db5cc6aa47d2,445
+- completed:
     hackage: lens-4.17.1@sha256:61f6956d463e4c6d44d9d3f0637ed957e4a6756145c0f433fffa6371608276fe,15822
     pantry-tree:
       size: 8041
@@ -173,12 +215,26 @@ packages:
   original:
     hackage: mongoDB-2.5.0.0
 - completed:
+    hackage: numbers-3000.2.0.2@sha256:fedb235e16f19ffb5dc40711738c29e231fae4ad608473880a1f59ba5f60829e,1757
+    pantry-tree:
+      size: 845
+      sha256: 8b21054c6431e81d0cb58611caabc07feac8ef40854e5f72b553edddb72cee43
+  original:
+    hackage: numbers-3000.2.0.2
+- completed:
     hackage: process-1.6.5.1@sha256:77a9afeb676357f67fe5cf1ad79aca0745fb6f7fb96b786d510af08f622643f6,2468
     pantry-tree:
       size: 1211
       sha256: 19d944da6aa37944332e0726372288319852e5f72aa57dbc3516dc15e760a502
   original:
     hackage: process-1.6.5.1@sha256:77a9afeb676357f67fe5cf1ad79aca0745fb6f7fb96b786d510af08f622643f6,2468
+- completed:
+    hackage: propellor-5.9.1@sha256:a379cde809635c2216240ff3a2d41a6d5fbf811b1607bc630918b69c8a06bd7c,7271
+    pantry-tree:
+      size: 14035
+      sha256: 19b8c2822d828460043acaa0d35d36bd9920d6ece9ed31e7af232453c2324d41
+  original:
+    hackage: propellor-5.9.1
 - completed:
     hackage: random-1.1@sha256:7b67624fd76ddf97c206de0801dc7e888097e9d572974be9b9ea6551d76965df,1777
     pantry-tree:
@@ -258,7 +314,7 @@ packages:
     hackage: yaml-0.11.0.0
 snapshots:
 - completed:
-    size: 498402
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/13/24.yaml
-    sha256: 33e96adfe24f112b62f6edd22565cdbaa13155703bbfbfdc3d0a9bc6138ae7bf
-  original: lts-13.24
+    size: 523443
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/0.yaml
+    sha256: 283773e7120f5446d961eab35ea95c9af9c24187cc178537bd29273200a05171
+  original: lts-14.0
