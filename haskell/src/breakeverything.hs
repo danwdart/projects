@@ -1,4 +1,4 @@
-{-# LANGUAGE NoImplicitPrelude #-}
+-- {-# LANGUAGE NoImplicitPrelude #-}
 
 -- (+), (*) :: (Num a, Show a) => a -> a -> a
 -- a + b = (show a) ++ (show b)
