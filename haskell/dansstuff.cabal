@@ -147,19 +147,28 @@ executable primey
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
-executable graph
-  hs-source-dirs:      src
-  main-is:             web/graph.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom
-  ghc-options:         -DGHCJS_BROWSER
+--executable graph
+--  hs-source-dirs:      src
+--  main-is:             web/graph.hs
+--  default-language:    Haskell2010
+  -- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom
+--  build-depends:       base >= 4.7 && < 5, jsaddle
+  -- ghc-options:         -DGHCJS_BROWSER
 
 executable unfart
   hs-source-dirs:      src
   main-is:             web/extension/unfart.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom
-  ghc-options:         -DGHCJS_BROWSER
+  -- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
+  build-depends:       base >= 4.7 && < 5, containers, jsaddle
+  -- ghc-options:         -DGHCJS_BROWSER
+
+executable helloworld
+  hs-source-dirs:      src
+  main-is:             web/HelloMain.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
+  -- ghc-options:         -DGHCJS_BROWSER
 
 executable intro
   hs-source-dirs:      src
@@ -408,6 +417,7 @@ executable gifencode
   main-is:             gifencode.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, gd
+  other-modules:       Lib.Seq
 
 executable graft
   hs-source-dirs:      src
@@ -511,6 +521,12 @@ executable pipeline
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable ports
+  hs-source-dirs:      src
+  main-is:             ports.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable propellor
   hs-source-dirs:      src
   main-is:             propellor.hs
@@ -547,6 +563,13 @@ executable scrapetumblr
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable sequence
+  hs-source-dirs:      src
+  main-is:             sequence.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  other-modules:       Lib.Seq
+
 executable sequences
   hs-source-dirs:      src
   main-is:             sequences.hs
@@ -556,6 +579,12 @@ executable sequences
 executable sockets
   hs-source-dirs:      src
   main-is:             sockets.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable sound
+  hs-source-dirs:      src
+  main-is:             sound.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
