@@ -17,7 +17,10 @@ efimain.o:
       -o efimain.o
 
 main.o: main.hs
-	ghc -c -optc-fno-stack-protector \
+	ghc -c -no-hs-main \
+	 -static \
+	 -optc-O \
+	 -optc-fno-stack-protector \
 	 -optc-fpic \
 	 -optc-fshort-wchar \
 	 -optc-mno-red-zone \
