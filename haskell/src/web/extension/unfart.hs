@@ -1,4 +1,4 @@
-{-# LANGUAGE JavaScriptFFI, OverloadedStrings #-}
+{-# LANGUAGE ForeignFunctionInterface, JavaScriptFFI, OverloadedStrings #-}
 
 {-
 const doReplaceName = replacements.forEach(
@@ -15,7 +15,7 @@ import qualified Data.Map as Map
 -- import qualified JavaScript.Web.
 
 
-foreign import javascript unsafe "console.log($1)" js_log :: JSString -> IO ()
+--foreign import javascript unsafe "console.log($1)" js_log :: JSString -> IO ()
 
 twitterUrl :: String
 twitterUrl = "https://twitter.com/realdonaldtrump"
@@ -34,6 +34,12 @@ replacements = Map.fromList
     ,("Trump", "Fart")
     ]
 
+replaceNames :: IO ()
+replaceNames = undefined
+
+replaceTweets :: IO ()
+replaceTweets = undefined
+
 performReplacements :: IO ()
 performReplacements = do
     replaceNames
@@ -44,6 +50,6 @@ onLoad action = undefined
 
 main :: IO ()
 main = do
-    js_log "Unfart initialised"
+    --js_log "Unfart initialised"
     onLoad performReplacements
-    js_log "Unfart finished"
+    --js_log "Unfart finished"

@@ -1,12 +1,12 @@
-{-# LANGUAGE JavaScriptFFI, OverloadedStrings #-}
+{-# LANGUAGE ForeignFunctionInterface, JavaScriptFFI, OverloadedStrings #-}
 
 import Data.JSString ()
 import GHCJS.Types
 import qualified JavaScript.Web.Canvas as C
 
-foreign import javascript unsafe "window.alert($1)" js_alert :: JSString -> IO ()
-foreign import javascript unsafe "console.log($1)" js_log :: JSVal -> IO ()
-foreign import javascript unsafe "document.body.appendChild($1)" js_append :: JSVal -> IO ()
+--foreign import javascript unsafe "window.alert($1)" js_alert :: JSString -> IO ()
+--foreign import javascript unsafe "console.log($1)" js_log :: JSVal -> IO ()
+--foreign import javascript unsafe "document.body.appendChild($1)" js_append :: JSVal -> IO ()
 
 data Point2D = Point2D {
     x :: Double,

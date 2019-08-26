@@ -1,8 +1,8 @@
-{-# LANGUAGE JavaScriptFFI #-}
-
+{-}
 module HelloMain (
     helloMain
 ) where
+-}
 
 import Control.Monad.IO.Class (MonadIO(..))
 import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
@@ -72,3 +72,6 @@ helloMain = do
     -- Wait until the user clicks exit.
     liftIO $ takeMVar exitMVar
     setInnerHTML body "<h1>Ka kite ano (See you later)</h1>"
+
+main :: IO ()
+main = undefined
