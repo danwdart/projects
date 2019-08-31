@@ -16,6 +16,8 @@ import GHCJS.DOM.EventM
 import GHCJS.DOM.GlobalEventHandlers
 import GHCJS.DOM.HTMLHyperlinkElementUtils
 
+import Language.Javascript.JSaddle.Warp
+
 -- | This is the main function of this application it is shared by all the different executable
 -- types included in this package.  Its type JSM () is like IO () but for anything that needs
 -- a JavaScript context to run.
@@ -74,4 +76,4 @@ helloMain = do
     setInnerHTML body "<h1>Ka kite ano (See you later)</h1>"
 
 main :: IO ()
-main = undefined
+main = debug 3708 helloMain
