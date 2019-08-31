@@ -93,6 +93,12 @@ executable base
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, digits
 
+executable cardord
+  hs-source-dirs:      src
+  main-is:             maths/cardord.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable onetwenty
   hs-source-dirs:      src
   main-is:             maths/120.hs
@@ -232,6 +238,12 @@ executable baz
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable betterbools
+  hs-source-dirs:      src
+  main-is:             betterbools.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable bifunctor
   hs-source-dirs:      src
   main-is:             bifunctor.hs
@@ -365,6 +377,12 @@ executable echo
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable elf
+  hs-source-dirs:      src
+  main-is:             elf.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, elf, bytestring
+
 executable enum
   hs-source-dirs:      src
   main-is:             enum.hs
@@ -382,6 +400,12 @@ executable exception-safety
   main-is:             exception-safety.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable fake
+  hs-source-dirs:      src
+  main-is:             fake.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, fakedata, text
 
 executable ffi
   hs-source-dirs:      src
@@ -472,7 +496,7 @@ executable json
   hs-source-dirs:      src
   main-is:             json.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, aeson, bytestring
+  build-depends:       base >= 4.7 && < 5, aeson, bytestring, mtl
 
 executable lc
   hs-source-dirs:      src
@@ -540,6 +564,12 @@ executable propellor
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, propellor
 
+executable qchas
+  hs-source-dirs:      src
+  main-is:             qchas.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, qchas
+  
 executable random
   hs-source-dirs:      src
   main-is:             random.hs
@@ -647,7 +677,7 @@ executable translatorglitch
   hs-source-dirs:      src
   main-is:             translatorglitch.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, gogol, gogol-translate, lens, text
+  build-depends:       base >= 4.7 && < 5, aeson, bytestring, gogol, gogol-core, gogol-translate, lens, req, text, unordered-containers
 
 executable trip
   hs-source-dirs:      src
