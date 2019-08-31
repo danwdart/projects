@@ -68,6 +68,20 @@ packages:
   original:
     hackage: egyptian-fractions-0.1.0.2
 - completed:
+    hackage: elf-0.30@sha256:c43915ff7a88500e728655d7f3a27e4016cffd824fa8b996c4cc35600dd8279f,1375
+    pantry-tree:
+      size: 703
+      sha256: e091de0fb7c57fba3c2c47fb5505884ab8c2fdaa3f3a7c32b628a5dddd8453af
+  original:
+    hackage: elf-0.30
+- completed:
+    hackage: fakedata-0.2.2@sha256:24595200d354d47fca9c92f0e7d350decc9a6e06baaf26b155ffb04c145b0c7e,17555
+    pantry-tree:
+      size: 35913
+      sha256: 348cec651007590ea30340d0c3ffd1eaab2ba05b15dae6d17a066101577fff04
+  original:
+    hackage: fakedata-0.2.2
+- completed:
     hackage: FixedPoint-simple-0.6.1@sha256:01f08f712f70b4499d2099adda71ee887f24cc0f285f29c4952815e7d52c2bb8,1179
     pantry-tree:
       size: 284
@@ -103,26 +117,26 @@ packages:
   original:
     hackage: ghcjs-dom-jsaddle-0.9.4.0
 - completed:
-    hackage: gogol-0.4.0@sha256:c2065fa419553781b7f972e3ec9f14e74df2c8ff2f1edf1151c7297f2c8a0729,3222
+    hackage: gogol-0.5.0@sha256:01b38acf97ae0afb2465935fee1bebce03c1b84e629cf0887467be7ae361f0a7,3222
     pantry-tree:
       size: 1243
-      sha256: c247176133ef3d8287de3251c8663d9622430e8195a77d901267a75e1852f7f4
+      sha256: ab472e169f12b97837cdfca2262b2d6fb569ae17876cbc10e97186944a401866
   original:
-    hackage: gogol-0.4.0
+    hackage: gogol-0.5.0
 - completed:
-    hackage: gogol-core-0.4.0@sha256:764a6648535bf2e248c220fe85d4d63fa4c21f896e7f0e23322b2bb8cc3e81c6,2821
+    hackage: gogol-core-0.5.0@sha256:c0a919cd89a33de7fd6ee925abdb48b0eb5d1002a016124acbdff568f267e4c7,2821
     pantry-tree:
       size: 686
-      sha256: fe48ec7650b34c6dd5d66791f099e55e5c80be3d73a5db1403f5eaa6a014ca32
+      sha256: f3c803da46a2df6987b72098b3e7c6c2c0aeb141335d2a0d5630b210401bc2c8
   original:
-    hackage: gogol-core-0.4.0@sha256:764a6648535bf2e248c220fe85d4d63fa4c21f896e7f0e23322b2bb8cc3e81c6,2821
+    hackage: gogol-core-0.5.0
 - completed:
-    hackage: gogol-translate-0.4.0@sha256:dba724e6439f32ad0973dd62cee1714f4b69c0c66301ccd54f7d089863123e9c,1795
+    hackage: gogol-translate-0.5.0@sha256:b07968efdff5dcbeb3526cbf382cc8632fa7d863ff2d23f23564353a5362624b,1795
     pantry-tree:
       size: 1067
-      sha256: 32398d7a45e971ebcde1ebe226bea82be52cbd461f18846ebb2ac53fd2a3a476
+      sha256: f7f0b4ce5cec274ef30c0116da425d791718751278b657d309a45a056773c3b0
   original:
-    hackage: gogol-translate-0.4.0
+    hackage: gogol-translate-0.5.0
 - completed:
     hackage: haskell-src-exts-1.20.3@sha256:eb9a0a02e422f64e793fe077e445e930bc365b7f7ce92ce6983475c72f8b3785,4467
     pantry-tree:
@@ -271,6 +285,13 @@ packages:
   original:
     hackage: propellor-5.9.1
 - completed:
+    hackage: qchas-1.1.0.1@sha256:c0d763136369f09678ceb17031b3ea6eb648e903798a21fbeb6c184035350060,2321
+    pantry-tree:
+      size: 1249
+      sha256: d1ee7e333ce971ae5bd3689b831154834f1c577bacf7eaadbc24205de10a918f
+  original:
+    hackage: qchas-1.1.0.1
+- completed:
     hackage: random-1.1@sha256:7b67624fd76ddf97c206de0801dc7e888097e9d572974be9b9ea6551d76965df,1777
     pantry-tree:
       size: 637
@@ -356,7 +377,7 @@ packages:
     hackage: yaml-0.11.0.0
 snapshots:
 - completed:
-    size: 523443
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/0.yaml
-    sha256: 283773e7120f5446d961eab35ea95c9af9c24187cc178537bd29273200a05171
-  original: lts-14.0
+    size: 523878
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/3.yaml
+    sha256: 470c46c27746a48c7c50f829efc0cf00112787a7804ee4ac7a27754658f6d92c
+  original: lts-14.3
