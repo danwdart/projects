@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-14.3
+resolver: lts-14.4
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -75,6 +75,7 @@ extra-deps:
   - lens-4.17.1
   - lifted-async-0.10.0.4
   - mongoDB-2.5.0.0
+  - network-3.1.0.1
   - numbers-3000.2.0.2
   - process-1.6.5.1@sha256:77a9afeb676357f67fe5cf1ad79aca0745fb6f7fb96b786d510af08f622643f6,2468
   - propellor-5.9.1
@@ -85,6 +86,7 @@ extra-deps:
   - req-2.1.0
   - retry-0.8.0.1@sha256:149393f74ce7504e171d71046936e58841ccfa0e59a37809824b6d68c04a36e5
   - safe-foldable-0.1.0.0
+  - simple-bluetooth-0.1.0.0
   - tardis-0.4.1.0
   - text-1.2.3.1
   - threepenny-gui-0.8.3.0
@@ -115,3 +117,4 @@ system-ghc: true
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor
+allow-newer: true

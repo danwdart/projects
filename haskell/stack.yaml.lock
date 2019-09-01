@@ -264,6 +264,13 @@ packages:
   original:
     hackage: mongoDB-2.5.0.0
 - completed:
+    hackage: network-3.1.0.1@sha256:a4fbed4314fa32fb89df4593cdd70fc685181c3a9c7321b0856b135f2a250796,4268
+    pantry-tree:
+      size: 3296
+      sha256: f11168ed066a92f028be441e200d0c4bb840dd06f9b6420ac4b60f3906038593
+  original:
+    hackage: network-3.1.0.1
+- completed:
     hackage: numbers-3000.2.0.2@sha256:fedb235e16f19ffb5dc40711738c29e231fae4ad608473880a1f59ba5f60829e,1757
     pantry-tree:
       size: 845
@@ -333,6 +340,13 @@ packages:
       sha256: bee958f261ede34b86e5993cf06961f50ecadfd24959c41f8f5b8c084480a819
   original:
     hackage: safe-foldable-0.1.0.0
+- completed:
+    hackage: simple-bluetooth-0.1.0.0@sha256:c1cb65d4591a4e29edb9aea172bf78ccb8691d0d1021b0da87534b1f66382d08,1300
+    pantry-tree:
+      size: 555
+      sha256: fb8ba71d32dde7018cc7288dd651f7ca265585b12a8b08f1a3a068d8b8416bd3
+  original:
+    hackage: simple-bluetooth-0.1.0.0
 - completed:
     hackage: tardis-0.4.1.0@sha256:7b45b8fba6db18e5fcfb22dab3de1809b88e8fda6a202a32da308507d2dde6f2,1276
     pantry-tree:
