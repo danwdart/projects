@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings, TemplateHaskell #-}
+{-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
 
 import Control.Monad
 import Data.Maybe
@@ -8,9 +8,10 @@ import qualified Data.Aeson as A
 import Data.Aeson ((.:),(.=), FromJSON)
 import Data.Aeson.Types (parse)
 import qualified Data.ByteString as BS
+import qualified Data.ByteString.Lazy as BSL
 import Data.Function
 import Data.Functor
-import Data.Text
+import Data.Text as T
 import GHC.Generics
 import Network.Google
 import Network.Google.Auth
@@ -24,36 +25,65 @@ import System.IO
 
 -- TODO either use the Google Req gen or make own
 
-res :: AccessToken -> IO (Maybe A.Object)
-res accessToken = req POST 
+res :: AccessToken -> [T.Text] -> IO (Maybe TR)
+res accessToken xs = req POST
     (https "translation.googleapis.com" /: "language" /: "translate" /: "v2")
-    (ReqBodyBs "{\"q\":[\"ts um ik im ik an is th eb es t\"],\"target\":\"so\",\"source\":\"en\",\"model\":\"nmt\"}")
+    (ReqBodyBs (BSL.toStrict (A.encode (makeT xs))))
     jsonResponse
-    (header "Authorization" ("Bearer " `BS.append` (toHeader accessToken)))
+    (header "Authorization" ("Bearer " `BS.append` toHeader accessToken))
     <&> responseBody
     & runReq defaultHttpConfig
 
-collateResults :: A.Object -> [A.Object]
-collateResults a = a & parse (.: "data")
-    >>= parse (.: "translations")
-    & fold
+data TRT = TRT {
+    model :: String,
+    translatedText :: String
+} deriving (FromJSON, Generic, Show)
+
+data TRD = TRD {
+    translations :: [TRT]
+} deriving (FromJSON, Generic, Show)
+
+data TR = TR {
+    _data :: TRD
+} deriving (Generic, Show)
+
+instance FromJSON TR where
+    parseJSON (A.Object v) = do
+        _data <- v .: "data"
+        return (TR {_data = _data})
 
 main = do
     lgr <- newLogger Trace stdout
     setEnv "GOOGLE_APPLICATION_CREDENTIALS" "./google.json"
     env <- newEnv <&> (envLogger .~ lgr) . (envScopes .~ cloudTranslationScope)
-    accessToken <- retrieveTokenFromStore (env ^. envStore) lgr (env ^.envManager) <&> _tokenAccess 
+    accessToken <- retrieveTokenFromStore (env ^. envStore) lgr (env ^.envManager) <&> _tokenAccess
 
-    myRes <- res accessToken <&> fromJust
+    myRes <- res accessToken stringsToTranslate :: IO (Maybe TR)
 
-    print (myRes & collateResults <&> parse (.: "translatedText") <&> (\(A.Success a) -> a) :: [String])
-    
+    mapM_ putStrLn (myRes <&> _data <&> translations <&> ( <&> translatedText) & fromJust)
+
     --a <- runResourceT . runGoogle env $ send myR
     --print $ a
     --print $ a^.tlrTranslations
 
-myT :: TranslateTextRequest
-myT = translateTextRequest & ttrFormat .~ Just "text" & ttrQ .~ ["hallo"] & ttrSource .~ (Just "de") & ttrTarget .~ (Just "en") & ttrModel .~ (Just "nmt")
+stringsToTranslate :: [T.Text]
+stringsToTranslate =
+    [ "aaaaaaaaaa aaaaaaaa aaaaaaa aaaaaa aaaaaaa aaaa aaaa aaa aaa aaaaa aaaaaa a a aa aaa aa aaaaaa aaa aa aaaaaaaaaaaaaaaaaaaaaa. aaaaaaaaaa aaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. . aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    , "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    , "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    , "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+    , "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+    , "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
+    , "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeee eeeeeeeeeeeeee"
+    ]
 
-myR :: TranslationsTranslate
-myR = myT & translationsTranslate & ttPp .~ True
+makeT :: [T.Text] -> TranslateTextRequest
+makeT xs = translateTextRequest
+    & ttrFormat .~ Just "text"
+    & ttrSource .~ Just "so"
+    & ttrTarget .~ Just "en"
+    & ttrModel .~ Just "nmt"
+    & ttrQ .~ xs
+
+--myR :: TranslationsTranslate
+--myR = myT & translationsTranslate & ttPp .~ True{-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
