@@ -48,7 +48,7 @@ executable dubloons-bot
   hs-source-dirs:      src
   main-is:             dubloons/server.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, discord-haskell
 
 executable dubloons-server
   hs-source-dirs:      src
@@ -480,6 +480,12 @@ executable heact
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers
 
+executable hnet
+  hs-source-dirs:      src
+  main-is:             hnet.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, HaskellNet, text
+
 executable hsx
   hs-source-dirs:      src
   main-is:             hsx.hs
@@ -618,6 +624,12 @@ executable sequences
   main-is:             sequences.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable shell
+  hs-source-dirs:      src
+  main-is:             shell.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, shell-conduit
 
 executable sockets
   hs-source-dirs:      src
