@@ -44,25 +44,6 @@ executable ur
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable dubloons-bot
-  hs-source-dirs:      src
-  main-is:             dubloons/server.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, discord-haskell
-
-executable dubloons-server
-  hs-source-dirs:      src
-  main-is:             dubloons/server.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
-executable dubloons-tasks
-  hs-source-dirs:      src
-  main-is:             dubloons/tasks.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, aeson, bytestring, http-client, hxt, hxt-xpath, mtl, safe-foldable, req, retry, text
-  other-modules:       Lib.XPath
-
 executable euler1
   hs-source-dirs:      src
   main-is:             euler/1.hs
