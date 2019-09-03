@@ -47,10 +47,10 @@ data TR = TR {
     _data :: TRD
 } deriving (Generic, Show)
 
+-- TODO: This is actually a setting for an options map tbh
 instance FromJSON TR where
-    parseJSON (A.Object v) = do
-        _data <- v .: "data"
-        return (TR {_data = _data})
+    -- Removes the _ from _data so that it can find the "data" key which I can't use here.
+    parseJSON = A.genericParseJSON $ A.defaultOptions { A.fieldLabelModifier = Prelude.tail }
 
 main = do
     lgr <- newLogger Trace stdout
