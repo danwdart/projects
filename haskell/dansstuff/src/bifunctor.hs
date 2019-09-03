@@ -22,4 +22,4 @@ bm = bimap ("Was going to add one but it doesn't matter: "++) (+1)
 
 
 main :: IO ()
-main = forM_ [fm, sm, bm] $ \m -> forM_ [myResult1, myResult2] $ \r -> print $ m r
+main = mapM_ print $ [fm,sm,bm] <*> [myResult1, myResult2]
