@@ -3,6 +3,7 @@ packages:
 - .
 extra-deps:
   - aeson-1.4.3.0
+  - aeson-pretty-0.8.7
   - ansi-terminal-0.9.1
   - async-2.2.1
   - avahi-0.2.0

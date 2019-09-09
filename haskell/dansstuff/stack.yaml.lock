@@ -12,6 +12,13 @@ packages:
   original:
     hackage: aeson-1.4.3.0
 - completed:
+    hackage: aeson-pretty-0.8.7@sha256:998d82a86269a34ec41c5ae5ee6ddbee2757eebabf2b4ede634b51a5bdafa688,2301
+    pantry-tree:
+      size: 337
+      sha256: a7be4907addcd1a84ebec606b8dc931d6bbfd875262f9b89776dabd041e96fb3
+  original:
+    hackage: aeson-pretty-0.8.7
+- completed:
     hackage: ansi-terminal-0.9.1@sha256:48f53532d0f365ffa568c8cf0adc84c66f800a7d80d3329e4f04fa75392f4af1,3225
     pantry-tree:
       size: 1461
@@ -159,10 +166,10 @@ packages:
   original:
     hackage: HaskellNet-0.5.1
 - completed:
-    hackage: haskell-src-exts-1.20.3@sha256:eb9a0a02e422f64e793fe077e445e930bc365b7f7ce92ce6983475c72f8b3785,4467
+    hackage: haskell-src-exts-1.20.3@sha256:83ae523bbec907a42c043de1f5bbf4c1554e7c3b898af07bb1ce6e80eaa282ec,4589
     pantry-tree:
       size: 92343
-      sha256: c14945db7232a46e974a3467d881e7929d4940fb947ccecb8e210cebba7abe1b
+      sha256: 44f923980e915c41b96f326d93ef19c0b51e0799fe2370d7604d16c8cbad9151
   original:
     hackage: haskell-src-exts-1.20.3
 - completed:
@@ -271,10 +278,10 @@ packages:
   original:
     hackage: jsaddle-warp-0.9.6.0
 - completed:
-    hackage: lens-4.17.1@sha256:61f6956d463e4c6d44d9d3f0637ed957e4a6756145c0f433fffa6371608276fe,15822
+    hackage: lens-4.17.1@sha256:7b7900cd621be02888e311f77af05a1770216d28be708c386c3ada64283208ae,15822
     pantry-tree:
       size: 8041
-      sha256: fece7dc98d59f1613c05dd07329b5fe287a8560fb8856d2bef2b46b5c9fe23c3
+      sha256: c73c1c3affee21e099600d69215cb28bc527f5fdba8bac1d3ed71bafd02ddbd7
   original:
     hackage: lens-4.17.1
 - completed:

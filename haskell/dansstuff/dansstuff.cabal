@@ -551,6 +551,12 @@ executable pipeline
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable pizza
+  hs-source-dirs:      src
+  main-is:             pizza.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, aeson, aeson-pretty, bytestring, containers, http-client, req, text
+
 executable ports
   hs-source-dirs:      src
   main-is:             ports.hs
