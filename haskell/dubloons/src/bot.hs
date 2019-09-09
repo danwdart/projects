@@ -1,13 +1,18 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Control.Exception
 import Control.Monad
+import Control.Monad.IO.Class
+import Control.Monad.Trans.Except
+import Data.Either
 import qualified Data.Text as T (append, pack, unpack)
 import Data.Text.IO as TIO (putStrLn, readFile)
 import Data.Text (Text)
 import Discord
 import qualified Discord.Requests as R
 import Discord.Types  (GuildId, ChannelId, Message, Event (..), userId, messageText, userIsBot, userName, messageAuthor)
-import Prelude hiding (putStrLn)
+import System.Environment
+import System.IO.Error
 
 guildId :: GuildId
 guildId = 507557271191158784
@@ -17,7 +22,7 @@ channelId = 617861907050659850
 
 handleStart :: DiscordHandle -> IO ()
 handleStart h = do
-    putStrLn "Start handler called"
+    Prelude.putStrLn "Start handler called"
     Right user <- restCall h (R.GetCurrentUser)
     channel <- restCall h (R.GetChannel channelId)
     void $ sendMessage h "-- Bot Started --"
@@ -37,7 +42,7 @@ handleMessage h username messageText = do
         "/status" -> void $ sendMessage h $ "Yarr, all hands on deck!"
         "/quit" -> do
             messageEvent <- sendMessage h "Bye, Cap'n!"
-            putStrLn "Received quit message"
+            Prelude.putStrLn "Received quit message"
             stopDiscord h
         otherwise ->
             return ()
@@ -50,14 +55,14 @@ handleEvent h e = do
             let isBot = userIsBot author
             let msg = messageText m
             let username = userName author
-            putStrLn $ username `T.append` (T.pack " said: ") `T.append` msg
+            TIO.putStrLn $ username `T.append` (T.pack " said: ") `T.append` msg
             handleMessage h username msg
         otherwise -> do
-            putStrLn "Event detected. Not handled."
+            Prelude.putStrLn "Event detected. Not handled."
 
 handleQuit :: IO ()
 handleQuit = do
-    putStrLn "Quit handler called"
+    Prelude.putStrLn "Quit handler called"
 
 runDiscordOpts :: Token -> RunDiscordOpts
 runDiscordOpts token = RunDiscordOpts {
@@ -71,9 +76,17 @@ runDiscordOpts token = RunDiscordOpts {
 
 main :: IO ()
 main = do
-    putStrLn "Dubloons v0.1"
-    putStrLn "Loading auth token"
-    token <- TIO.readFile "auth-token.secret"
-    putStrLn "Starting bot"
-    runDiscord $ runDiscordOpts token
-    putStrLn "Bot stopped"
+    runExceptT (catchE ( do
+        liftIO . Prelude.putStrLn $ "Dubloons v0.1"
+        liftIO . Prelude.putStrLn $ "Loading auth token"
+        token <- ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_AUTH_TOKEN"))
+        liftIO . Prelude.putStrLn $ "Starting bot"
+        liftIO . runDiscord . runDiscordOpts . T.pack $ token
+        liftIO . Prelude.putStrLn $ "Bot stopped"
+        return "OK"
+        ) (
+        (\e -> do
+            liftIO . Prelude.putStrLn $ "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details."
+            return "OK"
+        )))
+    return ()

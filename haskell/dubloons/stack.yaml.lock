@@ -19,33 +19,19 @@ packages:
   original:
     hackage: bytestring-0.10.8.2
 - completed:
-    hackage: connection-0.2.8@sha256:b33ed18b274e9d65ffefcda46ba3d6ff852bec1e7ffcb686985228dc52631c2e,1525
-    pantry-tree:
-      size: 386
-      sha256: c551e941b8b047a1f2ae6a44c15a405ddeb12132953dd6c782041c070ee3e358
-  original:
-    hackage: connection-0.2.8
-- completed:
-    hackage: discord-haskell-1.0.0@sha256:91b4a0839c1c994eec1c77ffd0ecab387a3e46db3caf4bc949c7853bbd7fc0b7,3683
+    hackage: discord-haskell-1.1.0@sha256:d2fb18cefa91d0f6c84024061ae0e55471c711e5e296f260dec534556dfcd265,3680
     pantry-tree:
       size: 1957
-      sha256: 2541b6b62de9f64f55f88af661d7b3e2d8fd514fd4bf9730c60836a470aed180
+      sha256: 493203f34ea557275fb6b51f7f742023b329523464f2b6aea2c79d46b7170798
   original:
-    hackage: discord-haskell-1.0.0
+    hackage: discord-haskell-1.1.0
 - completed:
     hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f,1273
     pantry-tree:
       size: 437
       sha256: dd9ea90a631342e5db0fc21331ade4d563a685e9125d5a3989eefa8e1b96c6c6
   original:
-    hackage: emoji-0.1.0.2
-- completed:
-    hackage: http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
-    pantry-tree:
-      size: 2457
-      sha256: 02bcffba9cad572fefb4640f5fc9be68e770b32ab73efcac649db20290994c6d
-  original:
-    hackage: http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
+    hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f,1273
 - completed:
     hackage: hxt-9.3.1.16@sha256:0a59d7e4b2002823f82695039c13dc9eba7d9b3e8e131f1b8ccd4b66c8d364e3,9451
     pantry-tree:
@@ -68,26 +54,12 @@ packages:
   original:
     hackage: safe-foldable-0.1.0.0
 - completed:
-    hackage: req-1.2.1@sha256:d2db586ab7fe07efc82fef2082e88f5728c472c08728c985aacf142c661675e9,5034
+    hackage: req-2.1.0@sha256:ca64dfb2076e56f7a79e54e5e4a8ea36217769c7aa0b2d89cfc327cb4aa77abc,4751
     pantry-tree:
       size: 712
-      sha256: 4ae1291fb70c1d498cf727689aabf1fd87bf840d4b9916d2f2fc830ae7a5e375
+      sha256: f70f0958d3fe86d46b5fc25e37b50de8ef278c2cad2ddb7164809dab199a49ca
   original:
-    hackage: req-1.2.1
-- completed:
-    hackage: retry-0.7.7.0@sha256:7b00ea9a64adec514a830209ae3d75919d5b510eb688783634f61469b4d3d182,2292
-    pantry-tree:
-      size: 433
-      sha256: 0acb8ebf4fdcad1716fdcb8c21128dac0b8e59bef12cee21ac9af88f3523a37d
-  original:
-    hackage: retry-0.7.7.0
-- completed:
-    hackage: socks-0.5.6@sha256:765b6ba4996fda7bbf561a2bb7ad2a37087dfe0691a31fe2077caf4ed5f7c6a5,1254
-    pantry-tree:
-      size: 693
-      sha256: 3103259b991b69ef587a606941aa399dcab5bd36e85311f0acb439d52a00065f
-  original:
-    hackage: socks-0.5.6
+    hackage: req-2.1.0
 - completed:
     hackage: text-1.2.3.1@sha256:ceb05f2a77b82bffe58c9ce8d8ad447191e4509bd28c14bf3da610bd6b82a62b,8560
     pantry-tree:
