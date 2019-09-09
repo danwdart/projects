@@ -49,3 +49,5 @@ patch:
         patched: '2019-07-04T01:54:32.248Z'
     - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
         patched: '2019-07-04T01:54:32.248Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2019-07-31T20:28:49.121Z'
