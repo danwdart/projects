@@ -79,6 +79,22 @@ executable numbertypes
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable oeis
+  hs-source-dirs:      src
+  main-is:             maths/oeis.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                      , aeson
+                      , aeson-pretty
+                      , bytestring
+                      , containers
+                      , GenericPretty
+                      , http-client
+                      , req
+                      , text
+                      , unordered-containers
+                      , vector
+
 executable prodtosingle
   hs-source-dirs:      src
   main-is:             maths/prodtosingle.hs
@@ -490,16 +506,16 @@ executable pizza
   main-is:             pizza.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-    , aeson
-    , aeson-pretty
-    , bytestring
-    , containers
-    , GenericPretty
-    , http-client
-    , req
-    , text
-    , unordered-containers
-    , vector
+                      , aeson
+                      , aeson-pretty
+                      , bytestring
+                      , containers
+                      , GenericPretty
+                      , http-client
+                      , req
+                      , text
+                      , unordered-containers
+                      , vector
 
 executable ports
   hs-source-dirs:      src
