@@ -1,4 +1,4 @@
-name:                dansstuff
+name:                other
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -12,37 +12,6 @@ category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
-
-executable battleships
-  hs-source-dirs:      src
-  main-is:             boardgames/battleships.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
-executable minesweeper
-  hs-source-dirs:      src
-  main-is:             boardgames/minesweeper.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
-executable monopoly
-  hs-source-dirs:      src
-  main-is:             boardgames/monopoly.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, containers, random
-  other-modules:       Lib.Game.Monopoly.Addons, Lib.Game.Monopoly.Board, Lib.Game.Monopoly.Colour, Lib.Game.Monopoly.Game, Lib.Game.Monopoly.Helpers, Lib.Game.Monopoly.Player, Lib.Game.Monopoly.Property, Lib.Game.Monopoly.Random, Lib.Game.Monopoly.Rules, Lib.Game.Monopoly.Space, Lib.Game.Monopoly.Station, Lib.Game.Monopoly.Tax, Lib.Game.Monopoly.Token, Lib.Game.Monopoly.Utility
-
-executable razzledazzle
-  hs-source-dirs:      src
-  main-is:             boardgames/razzledazzle.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
-executable ur
-  hs-source-dirs:      src
-  main-is:             boardgames/ur.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable euler1
   hs-source-dirs:      src
@@ -141,29 +110,6 @@ executable primey
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
---executable graph
---  hs-source-dirs:      src
---  main-is:             web/graph.hs
---  default-language:    Haskell2010
-  -- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom
---  build-depends:       base >= 4.7 && < 5, jsaddle
-  -- ghc-options:         -DGHCJS_BROWSER
-
-executable unfart
-  hs-source-dirs:      src
-  main-is:             web/extension/unfart.hs
-  default-language:    Haskell2010
-  -- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
-  build-depends:       base >= 4.7 && < 5, containers, jsaddle
-  -- ghc-options:         -DGHCJS_BROWSER
-
-executable helloworld
-  hs-source-dirs:      src
-  main-is:             web/HelloMain.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
-  -- ghc-options:         -DGHCJS_BROWSER
-
 executable intro
   hs-source-dirs:      src
   main-is:             Main.hs
@@ -237,11 +183,11 @@ executable binarygame
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, ansi-terminal
 
-executable bluetooth
-  hs-source-dirs:      src
-  main-is:             bluetooth.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, simple-bluetooth
+--executable bluetooth
+--  hs-source-dirs:      src
+--  main-is:             bluetooth.hs
+--  default-language:    Haskell2010
+--  build-depends:       base >= 4.7 && < 5, simple-bluetooth
 
 executable breakeverything
   hs-source-dirs:      src
@@ -321,12 +267,6 @@ executable datatypes
   main-is:             datatypes.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-
-executable db
-  hs-source-dirs:      src
-  main-is:             db.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, mongoDB, HDBC, HDBC-sqlite3, HDBC-mysql, HDBC-postgresql, text, mtl
 
 executable delay
   hs-source-dirs:      src
@@ -461,12 +401,6 @@ executable heact
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers
 
-executable hnet
-  hs-source-dirs:      src
-  main-is:             hnet.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, HaskellNet, text
-
 executable hsx
   hs-source-dirs:      src
   main-is:             hsx.hs
@@ -572,13 +506,7 @@ executable ports
   main-is:             ports.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-
-executable propellor
-  hs-source-dirs:      src
-  main-is:             propellor.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, propellor
-
+  
 executable qchas
   hs-source-dirs:      src
   main-is:             qchas.hs
@@ -634,17 +562,23 @@ executable shell
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, shell-conduit
 
-executable sockets
-  hs-source-dirs:      src
-  main-is:             sockets.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, async, bytestring, network
+--executable sockets
+--  hs-source-dirs:      src
+--  main-is:             sockets.hs
+--  default-language:    Haskell2010
+--  build-depends:       base >= 4.7 && < 5, async, bytestring, network
 
 executable sound
   hs-source-dirs:      src
   main-is:             sound.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable sql
+  hs-source-dirs:      src
+  main-is:             sql.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, HDBC, HDBC-sqlite3, HDBC-mysql, HDBC-postgresql, text, mtl
 
 executable st
   hs-source-dirs:      src
@@ -698,7 +632,16 @@ executable translatorglitch
   hs-source-dirs:      src
   main-is:             translatorglitch.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, aeson, bytestring, gogol, gogol-core, gogol-translate, lens, req, text, unordered-containers
+  build-depends:       base >= 4.7 && < 5
+                      , aeson
+                      , bytestring
+                      , gogol
+                      , gogol-core
+                      , gogol-translate
+                      , lens
+                      , req
+                      , text
+                      , unordered-containers
 
 executable trip
   hs-source-dirs:      src
@@ -717,7 +660,11 @@ executable types
   main-is:             types.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-  other-modules:       Lib.Auth, Lib.Data.Email, Lib.Data.Name, Lib.Data.Password, Lib.Data.User
+  other-modules:       Lib.Auth
+                      , Lib.Data.Email
+                      , Lib.Data.Name
+                      , Lib.Data.Password
+                      , Lib.Data.User
 
 executable unicode
   hs-source-dirs:      src

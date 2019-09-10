@@ -1,0 +1,11 @@
+resolver: lts-14.5
+packages:
+- .
+extra-deps:
+  - IfElse-0.85@sha256:6939b94acc6a55f545f63a168a349dd2fbe4b9a7cca73bf60282db5cc6aa47d2,445
+  - HaskellNet-0.5.1
+  - mime-mail-0.4.14@sha256:22e54d99c3f9f21004c929f0cf0c7ab75fcee5e0666c03517157be61be6fea93,1647
+  - mongoDB-2.5.0.0
+  - propellor-5.9.1
+
+system-ghc: true

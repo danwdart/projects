@@ -1,3 +1,5 @@
+org: dandart
+app: haskell-demo
 service: sls
 
 provider:

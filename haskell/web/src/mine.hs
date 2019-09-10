@@ -1,9 +1,3 @@
-{-}
-module HelloMain (
-    helloMain
-) where
--}
-
 import Control.Monad.IO.Class (MonadIO(..))
 import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
 
@@ -76,4 +70,4 @@ helloMain = do
     setInnerHTML body "<h1>Ka kite ano (See you later)</h1>"
 
 main :: IO ()
-main = debug 3708 helloMain
+main = debug 5000 helloMain

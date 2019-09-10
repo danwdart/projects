@@ -19,8 +19,6 @@ extra-deps:
   - FixedPoint-simple-0.6.1
   - flow-1.0.18
   - gd-3000.7.3
-  - ghcjs-dom-0.9.4.0
-  - ghcjs-dom-jsaddle-0.9.4.0
   - gogol-0.5.0
   - gogol-core-0.5.0
   - gogol-translate-0.5.0
@@ -38,9 +36,6 @@ extra-deps:
   - hxt-9.3.1.16
   - hxt-xpath-9.1.2.2
   - IfElse-0.85@sha256:6939b94acc6a55f545f63a168a349dd2fbe4b9a7cca73bf60282db5cc6aa47d2,445
-  - jsaddle-0.9.6.0
-  - jsaddle-dom-0.9.3.2
-  - jsaddle-warp-0.9.6.0
   - lens-4.17.1
   - lifted-async-0.10.0.4
   - mime-mail-0.4.14@sha256:22e54d99c3f9f21004c929f0cf0c7ab75fcee5e0666c03517157be61be6fea93,1647
@@ -55,7 +50,6 @@ extra-deps:
   - propellor-5.9.1
   - qchas-1.1.0.1
   - random-1.1
-  - ref-tf-0.4.0.1
   - regex-tdfa-1.2.3.2
   - req-2.1.0
   - retry-0.8.0.1@sha256:149393f74ce7504e171d71046936e58841ccfa0e59a37809824b6d68c04a36e5

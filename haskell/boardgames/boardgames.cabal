@@ -1,0 +1,58 @@
+name:                boardgames
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/dansstuff#readme
+license:             PublicDomain
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable battleships
+  hs-source-dirs:      src
+  main-is:             battleships.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable minesweeper
+  hs-source-dirs:      src
+  main-is:             minesweeper.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable monopoly
+  hs-source-dirs:      src
+  main-is:             monopoly.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, containers, random
+  other-modules:       Lib.Game.Monopoly.Addons
+    , Lib.Game.Monopoly.Board
+    , Lib.Game.Monopoly.Colour
+    , Lib.Game.Monopoly.Game
+    , Lib.Game.Monopoly.Helpers
+    , Lib.Game.Monopoly.Player
+    , Lib.Game.Monopoly.Property
+    , Lib.Game.Monopoly.Random
+    , Lib.Game.Monopoly.Rules
+    , Lib.Game.Monopoly.Space
+    , Lib.Game.Monopoly.Station
+    , Lib.Game.Monopoly.Tax
+    , Lib.Game.Monopoly.Token
+    , Lib.Game.Monopoly.Utility
+
+executable razzledazzle
+  hs-source-dirs:      src
+  main-is:             razzledazzle.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable ur
+  hs-source-dirs:      src
+  main-is:             ur.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5

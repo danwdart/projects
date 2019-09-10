@@ -1,0 +1,32 @@
+name:                old-network
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/dansstuff#readme
+license:             PublicDomain
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable hnet
+  hs-source-dirs:      src
+  main-is:             hnet.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, HaskellNet, text
+
+executable mongo
+  hs-source-dirs:      src
+  main-is:             mongo.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mongoDB, text, mtl
+
+executable propellor
+  hs-source-dirs:      src
+  main-is:             propellor.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, propellor

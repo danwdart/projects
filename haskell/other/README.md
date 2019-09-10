@@ -1,9 +1,5 @@
 # Interesting Haskell things
 
-## Requirements
-
-async
-
 ## Links
 https://wiki.haskell.org/The_JavaScript_Problem#Haskell_-.3E_JS
 https://wiki.haskell.org/Applications_and_libraries/Operating_system
