@@ -1,20 +1,21 @@
 cabal-version:       >=1.10
 name:                peoplemanager
 version:             0.1.0.0
--- synopsis:
--- description:
+synopsis:            People Manager Game
+description:         Game to manage people
 -- bug-reports:
-license:             AGPL-3.0
--- license-file:        LICENSE
+license:             AGPL-3
+license-file:        LICENCE
 author:              Dan Dart
--- maintainer:
+maintainer:          Dan Dart
 -- copyright:
--- category:
+category:            game
 build-type:          Simple
-extra-source-files:  CHANGELOG.md, README.md
+extra-source-files:  CHANGELOG.md, LICENCE, README.md
 
 executable peoplemanager
   main-is:             Main.hs
+  hs-source-dirs:      src
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.12 && <5
@@ -26,6 +27,4 @@ executable peoplemanager
     , time
     , uuid
     , vector
-
-  hs-source-dirs:      src
   default-language:    Haskell2010

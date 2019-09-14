@@ -1,4 +1,5 @@
 {-# LANGUAGE NamedFieldPuns #-}
+module Main where
 
 import qualified Data.Set as S
 import Data.Set (Set)
