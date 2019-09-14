@@ -33,6 +33,13 @@ packages:
   original:
     hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f,1273
 - completed:
+    hackage: http2-2.0.3@sha256:c08885f0fd26ae035b169029b782cc693cc30e4d7a3b6f21a61de31085e8cfae,17644
+    pantry-tree:
+      size: 44789
+      sha256: 954622417a3d9a33975c5ab7e68d3218b0bc383c9f7ee192ee3ac849a63d2613
+  original:
+    hackage: http2-2.0.3@sha256:c08885f0fd26ae035b169029b782cc693cc30e4d7a3b6f21a61de31085e8cfae,17644
+- completed:
     hackage: hxt-9.3.1.16@sha256:0a59d7e4b2002823f82695039c13dc9eba7d9b3e8e131f1b8ccd4b66c8d364e3,9451
     pantry-tree:
       size: 10091
@@ -67,9 +74,16 @@ packages:
       sha256: c9b38b60593401bb378b694a42b085d46f74f97d86d39edeb01a616965f2b581
   original:
     hackage: text-1.2.3.1
+- completed:
+    hackage: warp-3.3.1@sha256:c078c90b6d92064c3933f3a1bdfff1b0683d78d7b01ad661d454e21e3e9c35ce,10720
+    pantry-tree:
+      size: 3898
+      sha256: 9ed9a0b12e1483fda1b85a8d926b02c68984530ef581eac54481e05350ae2ab9
+  original:
+    hackage: warp-3.3.1
 snapshots:
 - completed:
-    size: 523884
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/4.yaml
-    sha256: 16f24be248b42c9e16d59db84378836b1e7c239448a041cae46d32daffa45a8b
-  original: lts-14.4
+    size: 524127
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/6.yaml
+    sha256: dc70dfb45e2c32f54719819bd055f46855dd4b3bd2e58b9f3f38729a2d553fbb
+  original: lts-14.6
