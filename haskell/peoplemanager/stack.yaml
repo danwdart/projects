@@ -1,0 +1,7 @@
+resolver: lts-14.5
+packages:
+  - .
+extra-deps:
+  - brick-0.50
+  - fakedata-0.2.2
+system-ghc: true
