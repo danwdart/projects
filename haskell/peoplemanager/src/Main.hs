@@ -22,10 +22,10 @@ generateND = generateWithSettings fakerSettings
 today :: IO Day
 today = utctDay <$> getCurrentTime
 
-diffYears :: Day -> Day -> Int
+diffYears :: Day -> Day -> Integer
 diffYears to from = diffDays from to `div` 365
 
-yearsAgo :: Day -> IO Int
+yearsAgo :: Day -> IO Integer
 yearsAgo from = today >>= (\to -> return $ diffYears from to)
 
 data Person = Person {
