@@ -1,5 +1,5 @@
 import Data.Typeable
-import Data.Dynamic
+-- import Data.Dynamic
 
 data A = C deriving (Show, Typeable)
 

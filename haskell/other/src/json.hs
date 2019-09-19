@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
 
-import Control.Exception
-import qualified Data.ByteString as BS
+-- import Control.Exception
+-- import qualified Data.ByteString as BS
 import Data.Aeson ((.=))
 import qualified Data.Aeson as A
 import GHC.Generics
@@ -12,6 +12,7 @@ data Person = Person {
     , age  :: Int
     } deriving (A.FromJSON ,A.ToJSON, Generic, Show)
 
+myPerson :: Person
 myPerson = Person {
     name = "Joe",
     age = 42
@@ -21,6 +22,7 @@ myPerson = Person {
 myVal :: A.Value
 myVal = A.Object ("bob" .= A.String "Ted")
 
+main :: IO ()
 main = do
     print $ A.encode myPerson
     print (A.decode "{\"name\":\"Bob\",\"age\":28}" :: Maybe Person)

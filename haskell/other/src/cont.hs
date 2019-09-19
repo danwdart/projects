@@ -19,6 +19,7 @@ myCBT = Just
 result :: Int
 result = runCont myCont myCB
 
+resultT :: Maybe Int
 resultT = runCont myContT myCBT
 
 main :: IO ()

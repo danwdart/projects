@@ -41,4 +41,5 @@ result = render h
 main :: IO ()
 main = putStrLn result
 -}
+main :: IO ()
 main = putStrLn "Hi"

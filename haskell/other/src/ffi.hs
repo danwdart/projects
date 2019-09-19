@@ -1,45 +1,45 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 
-import Foreign.Ptr
-import Foreign.ForeignPtr
+-- import Foreign.Ptr
+-- import Foreign.ForeignPtr
 import Foreign.Marshal.Alloc
 import Foreign.C.String
 import Foreign.C.Types
-import System.IO
+-- import System.IO
 
 foreign import ccall "exp" c_exp1 :: Double -> Double
-foreign import ccall "&exp" a_exp :: FunPtr (Double -> Double)
-foreign import ccall "dynamic" mkFun :: FunPtr (Double -> Double) -> (Double -> Double)
+-- foreign import ccall "&exp" a_exp :: FunPtr (Double -> Double)
+-- foreign import ccall "dynamic" mkFun :: FunPtr (Double -> Double) -> (Double -> Double)
 foreign import ccall "printf" c_printf :: CString -> IO CInt
 foreign import ccall "printf" c_printf2 :: CString -> CString -> IO CInt
 foreign import ccall "sprintf" c_sprintf2 :: CString -> CString -> CString -> IO CInt
 
 
-c_exp :: Double -> Double
-c_exp = mkFun a_exp
+-- c_exp :: Double -> Double
+-- c_exp = mkFun a_exp
 
-foreign import ccall "wrapper" createAddPtr :: (Int -> Int) -> IO (FunPtr (Int -> Int))
+-- foreign import ccall "wrapper" createAddPtr :: (Int -> Int) -> IO (FunPtr (Int -> Int))
 
 -- wrapperFunPtr = return (+) >>= createAddPtr >>= {- do stuff >>= -} freeHaskellFunPtr
 
-memAlloca = do
-    allocaBytes 128 $ \ptr -> do
-        print ptr
+--memAlloca = do
+--    allocaBytes 128 $ \ptr -> do
+--        print ptr
         -- do stuff with the pointer ptr...
         -- ...
         -- do not return "ptr" in any way because it will become an invalid pointer
     -- here the 128 bytes have been released and should not be accessed
 
-lowLevelAlloca = do
-    ptr <- mallocBytes 128
+-- lowLevelAlloca = do
+--     ptr <- mallocBytes 128
     -- do stuff with the pointer ptr...
     -- ...
-    free ptr
+--     free ptr
     -- here the 128 bytes have been released and should not be accessed
 
-foreignPtrAlloc = do
-    ptr <- mallocForeignPtrBytes 128
-    print ptr
+-- foreignPtrAlloc = do
+--     ptr <- mallocForeignPtrBytes 128
+--     print ptr
     -- do stuff with the pointer ptr...
     -- ...
     --
@@ -51,17 +51,17 @@ cFlush = return "\n" >>= newCString >>= c_printf
 main :: IO ()
 main = do
     print $ c_exp1 0.1
-    return "Bob\n" >>= newCString >>= c_printf
+    _ <- return "Bob\n" >>= newCString >>= c_printf
     param1 <- newCString "My name is %s."
     param2 <- newCString "Dan"
     putStrLn "Printing..."
     res <- c_printf2 param1 param2
-    cFlush
+    _ <- cFlush
     putStrLn "Result was..."
     print res
     putStrLn "And again..."
     res2 <- c_printf param2
-    cFlush
+    _ <- cFlush
     putStrLn "Result was..."
     print res2
     putStrLn "Yeah?"

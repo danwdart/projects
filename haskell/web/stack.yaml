@@ -10,3 +10,5 @@ extra-deps:
   - ref-tf-0.4.0.1@sha256:369e5c6237e4b6fe330fde021b94a9f98971690cbec5b910faa9af3cbcb15610,1133
 
 system-ghc: true
+ghc-options:
+  web: -Wall -Werror

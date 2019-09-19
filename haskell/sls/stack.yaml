@@ -1,4 +1,4 @@
-resolver: lts-14.0
+resolver: lts-14.6
 packages:
 - .
 extra-deps:
@@ -9,3 +9,5 @@ extra-deps:
 - serverless-haskell-0.8.10
 - fakedata-0.2.2
 system-ghc: true
+ghc-options:
+  sls: -Wall -Werror

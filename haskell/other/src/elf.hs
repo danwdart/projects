@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import qualified Data.ByteString as BS
-import Data.Function
+-- import Data.Function
 import Data.Functor
 import Data.Elf
 

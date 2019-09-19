@@ -3,18 +3,18 @@
 -- Order me a pizza
 import Control.Monad.IO.Class
 import Data.Aeson
-import Data.Aeson.Encode.Pretty
-import Data.Aeson.Types
+-- import Data.Aeson.Encode.Pretty
+-- import Data.Aeson.Types
 import qualified Data.ByteString.Char8 as BS
-import qualified Data.ByteString.Lazy.Char8 as BSL
+-- import qualified Data.ByteString.Lazy.Char8 as BSL
 import Data.Char
-import Data.Function
-import Data.Functor
+-- import Data.Function
+-- import Data.Functor
 -- import qualified Data.HashMap.Lazy as HM
 import Data.List
 import Data.Maybe
-import Data.Text (Text)
-import qualified Data.Text as T
+-- import Data.Text (Text)
+-- import qualified Data.Text as T
 -- import qualified Data.Vector as V
 import GHC.Generics
 import qualified Network.HTTP.Client as HC
@@ -124,19 +124,23 @@ data DealsResponse = DealsResponse {
     storeDeals :: [StoreDealsResponse]
 } deriving (Eq, FromJSON, Generic, Out, Show)
 
+host :: Url 'Https
 host = https "www.dominos.co.uk"
 
+uriGetLogin, uriPostLogin, uriProcessLogin, uriNav, uriBasket :: Url 'Https
 uriGetLogin = host /: "user" /: "login"
 uriPostLogin = host /: "Account" /: "Login"
 uriProcessLogin = host /: "Account" /: "ProcessLogin"
-uriBasketInfo = host /: "BasketDetails" /: "BasketInfo"
+-- uriBasketInfo = host /: "BasketDetails" /: "BasketInfo"
 uriNav = host /: "Navigation" /: "GetNavigationInfo"
-uriDeals = host /: "Deals" /: "StoreDealGroups"
+-- uriDeals = host /: "Deals" /: "StoreDealGroups"
 uriBasket = host /: "basketdetails" /: "show"
-uriGetBasket = host /: "CheckoutBasket" /: "GetBasket"
+-- uriGetBasket = host /: "CheckoutBasket" /: "GetBasket"
 
+ua :: BS.ByteString
 ua = "Firefox/100"
 
+uaHeader, xhrHeader, defaultHeaders :: Option scheme
 uaHeader = header "User-Agent" ua
 xhrHeader = header "X-Requested-With" "XMLHttpRequest"
 
@@ -155,8 +159,8 @@ getHomepage = do
     return (jar, token)
 
 login :: Email -> Password -> Token -> HC.CookieJar -> Req (HC.CookieJar, Token, LoginResponseData)
-login email password xsrfToken jar = do
-    resLogin <- req POST uriPostLogin (ReqBodyJson (Login email password)) jsonResponse
+login sEmail sPassword xsrfToken jar = do
+    resLogin <- req POST uriPostLogin (ReqBodyJson (Login sEmail sPassword)) jsonResponse
         (
             defaultHeaders <>
             header "X-XSRF-TOKEN" xsrfToken <>
@@ -195,15 +199,20 @@ createDefaultHeaders basketJar basketXsrfToken = defaultHeaders <>
     cookieJar basketJar 
 
 -- This 'Https is from DataKinds
+{-
 getBasket :: Option 'Https -> Req IgnoreResponse
 getBasket newDefaultHeaders = req GET uriGetBasket NoReqBody ignoreResponse (
     queryParam "noCache" (Just ("67512637912536197" :: String)) <>
     newDefaultHeaders
     )
+-}
 
+{-
 basketInfo :: Option 'Https -> Req IgnoreResponse
 basketInfo newDefaultHeaders = req GET uriBasketInfo NoReqBody ignoreResponse newDefaultHeaders
+-}
 
+{-}
 dealsInfo :: Req (JsonResponse [DealsResponse])
 dealsInfo = req GET uriDeals NoReqBody jsonResponse (
     queryParam "dealsVersion" (Just ("637036279849230000" :: String)) <>
@@ -212,6 +221,7 @@ dealsInfo = req GET uriDeals NoReqBody jsonResponse (
     queryParam "storeId" (Just ("29001" :: String)) <>
     queryParam "v" (Just ("65.1.0.11098" :: String))
     )
+-}
 
 nav :: Option 'Https -> Req (JsonResponse NavResponse)
 nav newDefaultHeaders = req GET uriNav NoReqBody jsonResponse newDefaultHeaders
@@ -221,30 +231,30 @@ greet resNav = do
     let navResponse = responseBody resNav
     liftIO . putStrLn $ "Hello " ++ (userName navResponse) ++ ", your local store seems to be " ++ (storeName navResponse)
 
-debugJSON :: JsonResponse Value -> Req ()
-debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
+-- debugJSON :: JsonResponse Value -> Req ()
+-- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
 
-debug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
-debug = liftIO . print . responseBody
+-- debug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
+-- debug = liftIO . print . responseBody
 
-debugPP :: (FromJSON a, Out a) => JsonResponse a -> Req ()
-debugPP = liftIO . pp . responseBody
+-- debugPP :: (FromJSON a, Out a) => JsonResponse a -> Req ()
+-- debugPP = liftIO . pp . responseBody
 
-valueToObject :: Value -> Object
-valueToObject (Object a) = a
+-- valueToObject :: Value -> Object
+-- valueToObject (Object a) = a
 
-valueToArray :: Value -> Array
-valueToArray (Array a) = a
+-- valueToArray :: Value -> Array
+-- valueToArray (Array a) = a
 
 reqMain :: Email -> Password -> Req ()
-reqMain email password = do
+reqMain sEmail sPassword = do
     (jar, xsrfToken) <- getHomepage
-    (loggedInJar, loggedInXsrfToken, stateObject) <- login email password xsrfToken jar
+    (loggedInJar, _, stateObject) <- login sEmail sPassword xsrfToken jar
     processedJar <- processLogin stateObject xsrfToken loggedInJar
     (basketJar, basketXsrfToken) <- basket processedJar
     let newDefaultHeaders = createDefaultHeaders basketJar basketXsrfToken
-    resGetBasket <- getBasket newDefaultHeaders
-    resBasketInfo <- basketInfo newDefaultHeaders
+    -- resGetBasket <- getBasket newDefaultHeaders
+    -- resBasketInfo <- basketInfo newDefaultHeaders
     resNav <- nav newDefaultHeaders
 
     greet resNav
@@ -252,5 +262,5 @@ reqMain email password = do
     -- debugPP resDeals
 main :: IO ()
 main = do
-    [email, password] <- sequence $ getEnv <$> ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"]
-    runReq defaultHttpConfig $ reqMain email password
+    [sEmail, sPassword] <- sequence $ getEnv <$> ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"]
+    runReq defaultHttpConfig $ reqMain sEmail sPassword

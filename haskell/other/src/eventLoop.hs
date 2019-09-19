@@ -1,7 +1,7 @@
 {-# LANGUAGE BlockArguments #-}
 
 -- Let's make our own event loop
-import Control.Concurrent.Event ( Event )
+-- import Control.Concurrent.Event ( Event )
 import qualified Control.Concurrent.Event as Event
 import Control.Concurrent
 import Control.Concurrent.Async.Lifted
@@ -17,9 +17,10 @@ main = do
             Event.wait myNewEvent
             putStrLn "Set!" )
 
+{-
 main2 :: IO ((),())
 main2 = runConcurrently $ (,) <$>
         Concurrently (threadDelay 5000000)
         <*>
         Concurrently (putStrLn "Hi")
-
+-}

@@ -1,7 +1,7 @@
-import Control.Monad
 import System.Console.ANSI
 import System.IO
 
+{-
 process :: Char -> IO ()
 process = undefined
 
@@ -38,30 +38,31 @@ renderButton b bp = setCursorPositionCode (y $ location b) (x $ location b) ++
     setSGRCode [SetColor Foreground Vivid Green] ++
     " ]]" ++
     setSGRCode [Reset]
-
+-}
 instance Show GameState where
-    show gs = "<<GameState>>"
-
+    show _ = "<<GameState>>"
 {-
     show b = 
--}
 
 makeInitialButtons :: [Button]
 makeInitialButtons = map (
     \n -> Button {text = "0", location = Point2D (n * 10) 0})
     [0..7]
+-}
 
-data GameState = GameState {
+data GameState = GameState Int [Int]
+
+{-{
     selectedButton :: Int,
     buttonValues :: [Int]
-}
+}-}
 
 gameState :: GameState
 gameState = GameState 0 $ replicate 8 0
-
+{-}
 select :: Int -> [Button] -> [Button]
 select n btns = undefined
-
+-}
 resetGame :: IO ()
 resetGame = do
     hideCursor

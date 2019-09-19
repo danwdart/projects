@@ -64,3 +64,5 @@ extra-deps:
   - yaml-0.11.0.0
 
 system-ghc: true
+ghc-options:
+  boardgames: -Wall -Werror

@@ -1,12 +1,12 @@
 {-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
 
-import Control.Monad
+-- import Control.Monad
 import Data.Maybe
-import Data.Foldable
+--import Data.Foldable
 import Control.Lens ((.~),(^.))
 import qualified Data.Aeson as A
-import Data.Aeson ((.:),(.=), FromJSON)
-import Data.Aeson.Types (parse)
+import Data.Aeson (FromJSON)
+-- import Data.Aeson.Types (parse)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as BSL
 import Data.Function
@@ -15,10 +15,10 @@ import Data.Text as T
 import GHC.Generics
 import Network.Google
 import Network.Google.Auth
-import Network.Google.Env
-import Network.Google.Prelude (toHeader, toUrlPiece)
+--import Network.Google.Env
+import Network.Google.Prelude (toHeader)
 import Network.Google.Translate
-import Network.Google.Types
+-- import Network.Google.Types
 import Network.HTTP.Req
 import System.Environment
 import System.IO
@@ -52,6 +52,7 @@ instance FromJSON TR where
     -- Removes the _ from _data so that it can find the "data" key which I can't use here.
     parseJSON = A.genericParseJSON $ A.defaultOptions { A.fieldLabelModifier = Prelude.tail }
 
+main :: IO ()
 main = do
     lgr <- newLogger Trace stdout
     setEnv "GOOGLE_APPLICATION_CREDENTIALS" "./google.json"

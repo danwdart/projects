@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Control.Monad
+-- import Control.Monad
 import System.Environment
 import Data.Char
 import Numeric
@@ -12,7 +12,7 @@ stringToInteger :: String -> Integer
 stringToInteger string = fst $ (readHex $ concatMap (\x -> showHex x "") $ map ord $ filter notSpaces string ) !! 0 where
     notSpaces = (/=' ')
 
-args = return ["Foo"] :: IO [String]
+-- args = return ["Foo"] :: IO [String]
 
 foo :: IO [String] -> IO (Maybe String)
 foo arggs = fmap (maybeIndex 0) arggs

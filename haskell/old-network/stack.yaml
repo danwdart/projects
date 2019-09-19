@@ -9,3 +9,5 @@ extra-deps:
   - propellor-5.9.1
 
 system-ghc: true
+ghc-options:
+  old-network: -Wall -Werror

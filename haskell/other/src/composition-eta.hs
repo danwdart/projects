@@ -38,8 +38,10 @@ testUB :: String -> String -> String
 -- We could invent a combinator for this (spoiler it exists)
 -- It'd look like this, let's look it up.
 -- It's blackbird!
-b1 :: (c -> d) -> (a -> b -> c) -> a -> b -> d
-b1 = (.) . (.)
+
+--b1 :: (c -> d) -> (a -> b -> c) -> a -> b -> d
+-- b1 = (.) . (.)
+
 -- And finally...
 -- testUB = b1 uns bis
 -- It works!

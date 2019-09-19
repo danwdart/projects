@@ -1,3 +1,5 @@
+{- TODO: Deriving -}
+
 newtype Bob a = Bob a deriving (Show)
 
 instance Functor Bob where
@@ -11,4 +13,4 @@ instance Monad Bob where
     (Bob x) >>= f = f x
 
 main :: IO ()
-main = print $ Bob 2 >>= return . (*2)
+main = print $ Bob (2 :: Int) >>= return . (*2)

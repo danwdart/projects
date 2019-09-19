@@ -12,7 +12,7 @@ for (var i = 0; i < 10000000; i++) {
 }
 -}
 
-import Data.List
+-- import Data.List
 
 -- splitIntoPieces n l = 
 
@@ -28,4 +28,5 @@ main :: IO ()
 main = print $ filter saa [1..10000000]
 -}
 
+main :: IO ()
 main = undefined

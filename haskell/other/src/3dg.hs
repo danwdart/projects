@@ -14,13 +14,13 @@ consolelog = ffi "console.log(%1)"
 
 setup :: Window -> UI ()
 setup w = do
-    return w # set title "Hi"
+    _ <- return w # set title "Hi"
 
-    title <- UI.h1 #. "title"
+    eTitle <- UI.h1 #. "title"
         # set style [("color","grey")]
         # set text "Hello!"
     
-    getBody w #+ [element title]
+    _ <- getBody w #+ [element eTitle]
     
     liftUI $ do
         runFunction $ alert "Hello World"

@@ -1,6 +1,6 @@
 import Control.Exception
 import Control.Monad.Fail
-import System.IO
+-- import System.IO
 -- now there's a try and an exception monad
 
 type IOStrEx = IO (Either SomeException String)
@@ -13,6 +13,6 @@ main = do
     tryRead "bob" >>= print
     writeFile "Jim" "Contents"
     tryRead "Jim" >>= print
-    return (try $ Control.Monad.Fail.fail "Bob" :: IOStrEx)
+    _ <- return (try $ Control.Monad.Fail.fail "Bob" :: IOStrEx)
     return ()
     -- userError "Bob"

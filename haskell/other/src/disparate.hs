@@ -1,15 +1,11 @@
 {-# LANGUAGE ExistentialQuantification #-}
 
-data Disparate = forall a. (Show a) => ShowableDisparate {
-    get :: a
- } |
-    forall b. HiddenDisparate {
-    get :: b
-}
+data Disparate = forall a. (Show a) => ShowableDisparate a |
+    forall b. HiddenDisparate b
 
 instance Show Disparate where
     show (ShowableDisparate a) = show a
-    show (HiddenDisparate a) = "(hidden)"
+    show (HiddenDisparate _) = "(hidden)"
 
 data NamedDisparate = NamedDisparate {
     name :: String,
@@ -19,8 +15,8 @@ data NamedDisparate = NamedDisparate {
 
 as :: [Disparate]
 as = [
-    ShowableDisparate $ Just 1,
-    ShowableDisparate 2,
+    ShowableDisparate $ Just (1 :: Int),
+    ShowableDisparate (2 :: Int),
     ShowableDisparate "Hi",
     HiddenDisparate ($)]
 

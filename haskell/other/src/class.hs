@@ -37,5 +37,5 @@ main = print [
         Enum3 ++++ Enum1
     ],
     [
-        -- 1 |+ 8
+        (1 :: Int) |+ (8 :: Int)
     ]]

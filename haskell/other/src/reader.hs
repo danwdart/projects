@@ -16,8 +16,8 @@ rtSimple = ask >>= liftIO . putStrLn
 
 rt :: ReaderT String IO ()
 rt = ReaderT $ do
-    x <- ask
-    y <- asks (++"Bob")
+    _ <- ask
+    _ <- asks (++"Bob")
     liftIO . putStrLn
 
 rWithLocal :: Reader String String

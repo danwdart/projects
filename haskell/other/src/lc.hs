@@ -1,4 +1,4 @@
-import Data.Traversable
+-- import Data.Traversable
 
 type Name = String
 
@@ -13,6 +13,8 @@ instance Show Expr where
 
 -- apply 
 
+compose :: Expr
 compose = Lam "a" (Lam "b" (Lam "c" (App ( App (Var "a") (Var "b")) (Var "c"))))
 
+main :: IO ()
 main = print compose

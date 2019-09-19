@@ -1,6 +1,6 @@
 import Control.Monad.Trans.Writer.Lazy
-import Control.Monad.Trans.State.Lazy
-import Control.Monad.Trans.Maybe
+-- import Control.Monad.Trans.State.Lazy
+-- import Control.Monad.Trans.Maybe
 
 myT :: String -> WriterT [String] Maybe String
 myT start = WriterT (Just (start, [])) 

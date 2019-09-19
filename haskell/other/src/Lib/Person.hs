@@ -16,17 +16,17 @@ data Person = Person {
 wordlist :: String -> [String] -> String
 wordlist whats [] = "no " ++ whats ++ "!"
 wordlist whats xs = "a massive array of " ++ whats ++ ", including: " ++
-    intercalate ", " inits ++ " and " ++ lasts ++ "!"
-    where inits = init xs
+    intercalate ", " initss ++ " and " ++ lasts ++ "!"
+    where initss = init xs
           lasts = last xs
 
 describePerson :: Person -> String
 describePerson Person {
-    firstName = firstName,
-    lastName = lastName,
-    birthYear = birthYear,
-    hatsOwned = hatsOwned
-} = firstName ++ " " ++ lastName ++
-    " was born in " ++ show birthYear ++
+    firstName = sFirstName,
+    lastName = sLastName,
+    birthYear = iBirthYear,
+    hatsOwned = lHatsOwned
+} = sFirstName ++ " " ++ sLastName ++
+    " was born in " ++ show iBirthYear ++
     " and has " ++
-    wordlist "hats" hatsOwned
+    wordlist "hats" lHatsOwned

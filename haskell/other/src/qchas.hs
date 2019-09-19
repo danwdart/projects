@@ -1,6 +1,6 @@
-import Quantum.Gates
-import Quantum.MeasurementPerformer
-import Quantum.Qubits
+-- import Quantum.Gates
+-- import Quantum.MeasurementPerformer
+-- import Quantum.Qubits
 
 main :: IO ()
 main = undefined

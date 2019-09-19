@@ -1,12 +1,13 @@
 import Data.List
 import Data.Maybe
-import Control.Monad
+-- import Control.Monad
 
-power = 0.5 :: Double
+power :: Double
+power = 0.5
 -- base = 10
 
-ssp :: String -> String -> Maybe Int
-ssp needle haystack = (findIndex . isPrefixOf) needle (tails haystack)
+-- ssp :: String -> String -> Maybe Int
+-- ssp needle haystack = (findIndex . isPrefixOf) needle (tails haystack)
 
 substringPosition :: String -> String -> Maybe Int
 substringPosition haystack = ($ tails haystack) . findIndex . isPrefixOf
@@ -17,7 +18,7 @@ foundMsg number root position = "Found " ++ show number ++
     " on " ++ show root
 
 intThenLength :: Double -> Int
-intThenLength = length . show . floor
+intThenLength = length . show . (\x -> floor x :: Int)
 
 boolToMaybe :: Bool -> a -> Maybe a
 boolToMaybe True = Just

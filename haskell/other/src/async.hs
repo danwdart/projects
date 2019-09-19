@@ -9,7 +9,7 @@ main = do
     a <- async task
     wait a
     withAsync task wait
-    concurrently task task
+    concurrently_ task task
     mapConcurrently_ putStrLn ["Hi", "Hi2"]
     forConcurrently_ ["1","2","3"] putStrLn
     replicateConcurrently_ 16 (putStrLn "Hi")

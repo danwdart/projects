@@ -1,3 +1,4 @@
-import Control.Monad.Tardis
+-- import Control.Monad.Tardis
 
+main :: IO ()
 main = undefined

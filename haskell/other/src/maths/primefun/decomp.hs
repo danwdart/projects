@@ -1,13 +1,13 @@
-import Data.Numbers.Primes
+-- import Data.Numbers.Primes
 
-bintodec :: [Int] -> Int
-bintodec = sum . zipWith (*) (iterate (*2) 1) . reverse
+-- bintodec :: [Int] -> Int
+-- bintodec = sum . zipWith (*) (iterate (*2) 1) . reverse
 
-decomp :: (Integer, [Integer]) -> (Integer, [Integer])
-decomp (x, ys) = if even x then (x `div` 2, 0:ys) else (x - 1, 1:ys)
+-- decomp :: (Integer, [Integer]) -> (Integer, [Integer])
+-- decomp (x, ys) = if even x then (x `div` 2, 0:ys) else (x - 1, 1:ys)
 
-decompOther :: (Integer, [Integer]) -> (Integer, [Integer])
-decompOther (x, ys) = if odd x then (x `div` 2, 0:ys) else (x - 1, 1:ys)
+-- decompOther :: (Integer, [Integer]) -> (Integer, [Integer])
+-- decompOther (x, ys) = if odd x then (x `div` 2, 0:ys) else (x - 1, 1:ys)
 
 -- zeck :: Integer -> String
 -- zeck n = bintodec (1 : snd (last $ takeWhile (\(x, ys) -> x > 0) $ iterate decomp (n, [])))

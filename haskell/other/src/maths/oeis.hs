@@ -2,8 +2,8 @@
 
 import Control.Monad.IO.Class
 import Data.Aeson
-import Data.Aeson.Encode.Pretty
-import qualified Data.ByteString.Lazy.Char8 as BSL
+-- import Data.Aeson.Encode.Pretty
+-- import qualified Data.ByteString.Lazy.Char8 as BSL
 import Network.HTTP.Req
 import Text.PrettyPrint.GenericPretty
 
@@ -36,11 +36,11 @@ data OEISResponse = OEISResponse {
     results :: [OEISResult]
 } deriving (Eq, FromJSON, Generic, Out, Show)
 
-debugJSON :: JsonResponse Value -> Req ()
-debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
+-- debugJSON :: JsonResponse Value -> Req ()
+-- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
 
-debug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
-debug = liftIO . print . responseBody
+-- ebug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
+-- debug = liftIO . print . responseBody
 
 debugPP :: (FromJSON a, Out a) => JsonResponse a -> Req ()
 debugPP = liftIO . pp . responseBody

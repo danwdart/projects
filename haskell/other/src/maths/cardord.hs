@@ -1,5 +1,6 @@
 -- discrete/continuous?
 -- validation?
+{-
 
 newtype Cardinal = Cardinal Int deriving (Show)
 newtype Ordinal = Ordinal Int deriving (Show)
@@ -23,6 +24,6 @@ compareOrdinal (Ordinal x) (Ordinal y) = case compare x y of
     LT -> Before
     EQ -> SamePos
     GT -> After
-
+-}
 main :: IO ()
 main = undefined

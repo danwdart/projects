@@ -1,3 +1,4 @@
+{-
 a = [1,2,3]
 h = head a
 t = tail a
@@ -63,3 +64,7 @@ factorial2 0 = 1
 factorial2 n = n * factorial2 (n - 1)  
 main :: IO ()
 main = putStrLn "Nah"
+-}
+
+main :: IO ()
+main = undefined

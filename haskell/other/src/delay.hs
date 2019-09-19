@@ -37,8 +37,8 @@ fastPass = pass >>= typeFast
 charsToStringList :: String -> [String]
 charsToStringList = fmap (\c -> [c])
 
-password :: IO String
-password = crackPassword <&> (\pw -> intercalate pw $ charsToStringList "MYPASSWORD")
+-- password :: IO String
+-- password = crackPassword <&> (\pw -> intercalate pw $ charsToStringList "MYPASSWORD")
 
 crackPassword :: IO String
 crackPassword = ((replicateM 25 $ randomRIO ('A','Z')) <&> intersperse '\b') <&> (++"\b")

@@ -1,10 +1,10 @@
-import Control.Monad.Cont
+-- import Control.Monad.Cont
 
-welcome :: String
-welcome = "Welcome to ARSVX. Use of this system by unauthorised entities is prohibited."
+-- welcome :: String
+-- welcome = "Welcome to ARSVX. Use of this system by unauthorised entities is prohibited."
 
-process :: String -> String
-process a = "You said: " ++ a
+-- process :: String -> String
+-- process a = "You said: " ++ a
 {-
 cli :: ContT () IO String
 cli = do

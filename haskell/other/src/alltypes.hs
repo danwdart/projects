@@ -5,6 +5,7 @@ import Data.List
 nl :: String
 nl = "\n"
 
+{-
 c_type :: String
 c_type = ":t"
 
@@ -16,6 +17,7 @@ toRight n what = c_type ++ " " ++ (concat $ intersperse (nl ++ c_type ++ " ") $ 
 
 toLeft :: Int -> String -> String
 toLeft n what = c_type ++ " " ++ (concat $ intersperse (nl ++ c_type ++ " ") $ take n $ drop 1 $ iterate (\s -> what ++ "(" ++ s ++ ")") what)
+-}
 
 namesFor :: String -> Int -> Int -> Int -> String
 namesFor s_type a b c = (show a) ++ s_type ++

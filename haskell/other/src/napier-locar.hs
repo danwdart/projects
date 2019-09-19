@@ -1,3 +1,4 @@
+{-}
 import Data.Digits (digitsRev)
 import Data.Function ((&))
 import Data.Functor ((<&>))
@@ -25,6 +26,6 @@ fromString a = a & filter (`elem` napierSymbols) <&> (\k -> findIndex (==k) napi
 
 symToInt :: String -> Int
 symToInt = getNumber . fromString
-
+-}
 main :: IO ()
 main = undefined

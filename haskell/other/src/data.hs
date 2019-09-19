@@ -6,6 +6,7 @@ import Lib.Person
 myCreds :: Creds
 myCreds = Creds "Username" "Password"
 
+me :: Person
 me = Person {
     firstName = "Dan",
     lastName = "Dart",
@@ -13,6 +14,7 @@ me = Person {
     hatsOwned = ["Lightbulb Bowler", "Topper", "Spanish", "Pope"]
 }
 
+someone :: Person
 someone = Person {
     firstName = "Bob",
     lastName = "Frog",

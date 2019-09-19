@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Monad.Except
-import Control.Monad.IO.Class (MonadIO, liftIO)
-import Control.Retry
-import Data.Aeson
+-- import Control.Monad.IO.Class (MonadIO, liftIO)
+-- import Control.Retry
+-- import Data.Aeson
 import Data.Text
 import Network.HTTP.Req
 

@@ -12,8 +12,8 @@ type AuthenticationResult = Either String User
 
 authenticate :: Email -> Password -> AuthenticationResult
 -- authenticate email password = Left "Sorry wrong password"
-authenticate email password = Right User {
-    email = email,
-    password = password,
+authenticate sEmail sPassword = Right User {
+    email = sEmail,
+    password = sPassword,
     name = DuoName "Bob" "Frog"
 }

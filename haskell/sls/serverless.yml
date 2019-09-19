@@ -4,11 +4,12 @@ service: sls
 
 provider:
   name: aws
+  region: eu-west-1
   runtime: haskell
 
 functions:
   sls-func:
-    handler: sls.sls-exe
+    handler: sls.sls
     # Here, mypackage is the Haskell package name and myfunc is the executable
     # name as defined in the Cabal file. The handler field may be prefixed
     # with a path of the form `dir1/.../dirn`, relative to `serverless.yml`,

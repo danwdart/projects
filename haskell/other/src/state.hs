@@ -16,10 +16,10 @@ stateProcessByFns = state1 1 >>= stateModifier
 stateProcessByDo :: MyState
 stateProcessByDo = do
     x <- state1 1
-    stateModifier x
-    stateModifier x
-    stateNow <- get
-    put [1, 2]
+    _ <- stateModifier x
+    _ <- stateModifier x
+    _ <- get
+    _ <- put [1, 2]
     return 1
 
 main :: IO ()

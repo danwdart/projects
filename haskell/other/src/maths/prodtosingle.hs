@@ -1,20 +1,20 @@
 import Data.Function
 import Data.List
 
-charToInteger :: Char -> Integer
-charToInteger x = read [x]
+-- charToInteger :: Char -> Integer
+-- charToInteger y = read [y]
 
 integerToDigits :: Integer -> [Integer]
-integerToDigits n = map (\x -> read [x] :: Integer) $ show n
+integerToDigits n = map (\y -> read [y] :: Integer) $ show n
 
-digitsToInteger :: [Integer] -> Integer
-digitsToInteger xs = read $ concatMap show xs :: Integer
+-- digitsToInteger :: [Integer] -> Integer
+-- digitsToInteger xs = read $ concatMap show xs :: Integer
 
 integerToProd :: Integer -> Integer
 integerToProd = product . integerToDigits
 
 takeWhileOneMore :: (a -> Bool) -> [a] -> [a]
-takeWhileOneMore p = foldr (\x ys -> if p x then x:ys else [x]) []
+takeWhileOneMore p = foldr (\y ys -> if p y then y:ys else [y]) []
 
 intsToPrintList :: [Integer] -> String
 intsToPrintList xs = intercalate  ", " (map show xs)
@@ -35,16 +35,16 @@ instance Ord MyStruct where compare = on compare lbd
 instance Show MyStruct where show ms = show (x ms) ++ ": " ++ show (lbd ms) ++ " steps: " ++ intsToPrintList (bd ms)
 
 myStruct :: Integer -> MyStruct
-myStruct x = MyStruct x (length (breakDown x) - 1) (breakDown x)
+myStruct y = MyStruct y (length (breakDown y) - 1) (breakDown y)
 
 outputNaive :: [MyStruct]
 outputNaive = nub $ map myStruct [1..1000000]
 
-iCombo :: Int -> Int -> [[Int]]
-iCombo n m = replicate <$> [0..n] <*> [m]
+-- iCombo :: Int -> Int -> [[Int]]
+-- iCombo n m = replicate <$> [0..n] <*> [m]
 
-makeCombos :: Int -> [[Int]]
-makeCombos upTo = (++) <$> ((++) <$> ((++) <$> iCombo upTo 3 <*> iCombo upTo 7) <*> iCombo upTo 8) <*> iCombo upTo 9
+-- makeCombos :: Int -> [[Int]]
+-- makeCombos upTo = (++) <$> ((++) <$> ((++) <$> iCombo upTo 3 <*> iCombo upTo 7) <*> iCombo upTo 8) <*> iCombo upTo 9
 
 -- allCombos :: [Integer]
 -- allCombos = map digitsToInteger $ dropWhile null $ makeCombos 25
