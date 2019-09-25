@@ -1,29 +1,30 @@
 import Control.Monad
-import Control.Monad.IO.Class (MonadIO(..))
-import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
+--import Control.Monad.IO.Class (MonadIO(..))
+-- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
 
-import Data.Function ((&))
+-- import Data.Function ((&))
 import Data.Functor ((<&>))
 import Data.Maybe
 
 import GHCJS.DOM
-import GHCJS.DOM.AudioContext
+-- import GHCJS.DOM.AudioContext
 import GHCJS.DOM.CanvasPath
 import GHCJS.DOM.CanvasRenderingContext2D
 import GHCJS.DOM.Document
 import GHCJS.DOM.Element
-import GHCJS.DOM.EventM
-import GHCJS.DOM.GlobalEventHandlers
+-- import GHCJS.DOM.EventM
+-- import GHCJS.DOM.GlobalEventHandlers
 import GHCJS.DOM.HTMLCanvasElement
-import GHCJS.DOM.HTMLHyperlinkElementUtils  
+-- import GHCJS.DOM.HTMLHyperlinkElementUtils  
 import GHCJS.DOM.Node
 import GHCJS.DOM.Types
-import GHCJS.DOM.WebGL2RenderingContext
+-- import GHCJS.DOM.WebGL2RenderingContext
 
 import Language.Javascript.JSaddle.Debug
 import Language.Javascript.JSaddle.Object
 import Language.Javascript.JSaddle.Warp
 
+{-
 helloMain :: JSM ()
 helloMain = do
     doc <- currentDocumentUnchecked
@@ -57,18 +58,22 @@ helloMain = do
     -- Wait until the user clicks exit.
     liftIO $ takeMVar exitMVar
     setInnerHTML body "<h1>You clicked me.</h1>"
+-}
 
 main :: IO ()
-main = debug 5000 helloMain
+main = serve $ do
+    runOnAll_ logHere
+    _ <- runOnAll getConfirmFromClient
+    _ <- runOnAll getPromptFromClient
+    runOnAll_ drawOnNewCanvas
+    _ <- runOnAll getBodies
+    return ()
 
-serve :: IO ()
-serve = debug 5000 (return ())
+serve :: JSM () -> IO ()
+serve f = debug 5000 f
 
-log :: JSM ()
-log = void $ jsg "console" # "log" $ ["Hi folks!"]
-
-logOnAll :: IO ()
-logOnAll = runOnAll_ $ jsg "console" # "log" $ ["Hi folks!"]
+logHere :: JSM ()
+logHere = void $ jsg "console" # "log" $ ["Hi folks!"]
 
 -- Prints Maybe Bool properly - but there's no answer if not that
 getConfirmFromClient :: JSM Bool
