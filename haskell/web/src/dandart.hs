@@ -9,12 +9,15 @@ import Text.Blaze.Html5.Attributes as A
 main :: IO ()
 main = BSL.putStrLn . renderHtml $ page
 
+intercalateAttr :: AttributeValue -> [AttributeValue] -> AttributeValue
+intercalateAttr x = foldl1 (\acc y -> acc <> x <> y)
+
 htmlHead :: Html
 htmlHead = H.head $ do
     meta ! charset "utf-8"
     mapM_ (\(aName, aCont) -> meta ! name aName ! content aCont) $ [
         ("description", "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"),
-        ("keywords", foldl1 (\acc y -> acc <> "," <> y) [
+        ("keywords", intercalateAttr "," [
             "dan",
             "dart",
             "software",
