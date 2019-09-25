@@ -12,8 +12,32 @@ main = BSL.putStrLn . renderHtml $ page
 htmlHead :: Html
 htmlHead = H.head $ do
     meta ! charset "utf-8"
-    meta ! name "description" ! content "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"
-    meta ! name "keywords" ! content "dan,dart,software,engineer,mathematics,lover,radio.ham,php,javascript,css,coffee,coffeescript,laravel,zend,framework,linux,gnu,express.js,ubuntu,debian"
+    mapM_ (\(aName, aCont) -> meta ! name aName ! content aCont) $ [
+        ("description", "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"),
+        ("keywords", foldl1 (\acc y -> acc <> "," <> y) [
+            "dan",
+            "dart",
+            "software",
+            "engineer",
+            "mathematics",
+            "lover",
+            "radio",
+            "ham",
+            "php",
+            "javascript",
+            "css",
+            "coffee",
+            "coffeescript",
+            "laravel",
+            "zend",
+            "framework",
+            "linux",
+            "gnu",
+            "express.js",
+            "ubuntu",
+            "debian"
+            ])
+        ]
     meta ! name "viewport" ! content "width=device-width, initial-scale=1"
     meta ! httpEquiv "Content-Type" ! content "text/html; charset=utf-8"
     meta ! httpEquiv "Who-is-awesome" ! content "Kaychan"
