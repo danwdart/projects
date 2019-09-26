@@ -2,6 +2,7 @@
 
 -- import Control.Monad (forM_)
 import qualified Data.ByteString.Lazy.Char8 as BSL
+import Data.String
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
@@ -12,42 +13,50 @@ main = BSL.putStrLn . renderHtml $ page
 intercalateAttr :: AttributeValue -> [AttributeValue] -> AttributeValue
 intercalateAttr x = foldl1 (\acc y -> acc <> x <> y)
 
+keywords :: [AttributeValue]
+keywords = [
+    "dan",
+    "dart",
+    "software",
+    "engineer",
+    "mathematics",
+    "lover",
+    "radio",
+    "ham",
+    "php",
+    "javascript",
+    "css",
+    "coffee",
+    "coffeescript",
+    "laravel",
+    "zend",
+    "framework",
+    "linux",
+    "gnu",
+    "express.js",
+    "ubuntu",
+    "debian"
+    ]
+
+descTitle :: String
+descTitle = "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"
+
 htmlHead :: Html
 htmlHead = H.head $ do
     meta ! charset "utf-8"
     mapM_ (\(aName, aCont) -> meta ! name aName ! content aCont) $ [
-        ("description", "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"),
-        ("keywords", intercalateAttr "," [
-            "dan",
-            "dart",
-            "software",
-            "engineer",
-            "mathematics",
-            "lover",
-            "radio",
-            "ham",
-            "php",
-            "javascript",
-            "css",
-            "coffee",
-            "coffeescript",
-            "laravel",
-            "zend",
-            "framework",
-            "linux",
-            "gnu",
-            "express.js",
-            "ubuntu",
-            "debian"
-            ])
+        ("description", fromString descTitle),
+        ("keywords", intercalateAttr "," keywords)
         ]
     meta ! name "viewport" ! content "width=device-width, initial-scale=1"
-    meta ! httpEquiv "Content-Type" ! content "text/html; charset=utf-8"
-    meta ! httpEquiv "Who-is-awesome" ! content "Kaychan"
-    meta ! httpEquiv "X-UA-Compatible" ! content "IE=edge,chrome=1"
+    mapM_ (\(aHE, aCont) -> meta ! httpEquiv aHE ! content aCont) $ [
+        ("Content-Type", "text/html; charset=utf-8"),
+        ("Who-is-awesome", "Kaychan"),
+        ("X-UA-Compatible", "IE=edge,chrome=1")
+        ]
     link ! rel "shortcut icon" ! type_ "image/png" ! href "/img/favicon.png"
     link ! rel "stylesheet" ! type_ "text/css" ! href "/css/style.css"
-    H.title "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"
+    H.title $ toHtml descTitle
 
 extLink :: AttributeValue -> Html -> Html
 extLink linkHref linkText = a ! href linkHref ! target "_blank" ! rel "noopener" $ linkText
