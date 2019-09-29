@@ -2,16 +2,17 @@
 
 -- import Control.Monad (forM_)
 import qualified Data.ByteString.Lazy.Char8 as BSL
-import Data.String
+-- import Data.String
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
+import Page.Audio
+import Page.Head
+import Page.Link
+import Page.Social
 
 main :: IO ()
 main = BSL.putStrLn . renderHtml $ page
-
-intercalateAttr :: AttributeValue -> [AttributeValue] -> AttributeValue
-intercalateAttr x = foldl1 (\acc y -> acc <> x <> y)
 
 keywords :: [AttributeValue]
 keywords = [
@@ -41,35 +42,6 @@ keywords = [
 descTitle :: String
 descTitle = "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"
 
-htmlHead :: Html
-htmlHead = H.head $ do
-    meta ! charset "utf-8"
-    mapM_ (\(aName, aCont) -> meta ! name aName ! content aCont) $ [
-        ("description", fromString descTitle),
-        ("keywords", intercalateAttr "," keywords)
-        ]
-    meta ! name "viewport" ! content "width=device-width, initial-scale=1"
-    mapM_ (\(aHE, aCont) -> meta ! httpEquiv aHE ! content aCont) $ [
-        ("Content-Type", "text/html; charset=utf-8"),
-        ("Who-is-awesome", "Kaychan"),
-        ("X-UA-Compatible", "IE=edge,chrome=1")
-        ]
-    link ! rel "shortcut icon" ! type_ "image/png" ! href "/img/favicon.png"
-    link ! rel "stylesheet" ! type_ "text/css" ! href "/css/style.css"
-    H.title $ toHtml descTitle
-
-extLink :: AttributeValue -> Html -> Html
-extLink linkHref linkText = a ! href linkHref ! target "_blank" ! rel "noopener" $ linkText
-
-extLinkTitle :: AttributeValue -> AttributeValue -> Html -> Html
-extLinkTitle linkHref linkTitle linkText = a ! href linkHref ! target "_blank" ! rel "noopener" ! A.title linkTitle $ linkText
-
-socialIconB :: AttributeValue -> AttributeValue -> AttributeValue -> Html
-socialIconB linkTitle linkHref iconName = a ! class_ "social" ! href linkHref ! A.style "color:black" ! A.title linkTitle ! target "_blank" ! rel "noopener" $ i ! class_ ("fab fa-" <> iconName) $ mempty
-
-socialIconS :: AttributeValue -> AttributeValue -> AttributeValue -> Html
-socialIconS linkTitle linkHref iconName = a ! class_ "social" ! href linkHref ! A.style "color:black" ! A.title linkTitle ! target "_blank" ! rel "noopener" $ i ! class_ ("fas fa-" <> iconName) $ mempty
-
 musicalStyles :: [Html]
 musicalStyles = [
     "Prog Rock",
@@ -90,16 +62,6 @@ yt = "https://www.youtube.com/watch?v="
 imdb = "https://www.imdb.com/title/tt"
 nhs = "https://www.nhs.uk/conditions/"
 oeis = "https://oeis.org/A"
-
-audioFile :: Html -> AttributeValue -> AttributeValue -> Html
-audioFile audioTitle oggFilename mp3Filename = H.div ! class_ "border m-3" $ do
-    p ! class_ "m-3" $ strong audioTitle
-    p $ do
-        audio ! controls "" $ do
-            source ! src ("/music/" <> oggFilename <> ".ogg")
-            source ! src ("/music/" <> mp3Filename <> ".mp3")
-        extLink ("/music/" <> oggFilename <> ".ogg") "OGG"
-        extLink ("/music/" <> mp3Filename <> ".mp3") "MP3"
 
 pageIntro :: Html
 pageIntro = li ! class_ "nav-item" $ do
@@ -542,24 +504,26 @@ socialIcons = H.div ! class_ "row social-row" $ H.div ! class_ "text-right socia
     -- +social-no('windows', 'Windows', 'url', 'black')
     socialIconB (ytChan <> "UCaHwNzu1IlQKWCQEXACflaw") "YouTube" "youtube"
 
+htmlHeader :: Html
+htmlHeader = nav ! class_ "p-0 p-sm-2 navbar d-block d-sm-flex navbar-expand navbar-dark bg-primary" $ do
+    a ! class_ "w-25 p-0 pt-1 pt-sm-0 w-sm-auto text-center text-sm-left navbar-brand" ! href "#intro" $ do
+        img ! src "/img/favicon.png" ! A.style "height:32px" ! alt ""
+        H.span ! class_ "title ml-2" $ "Dan Dart"
+    H.div $ do
+        ul ! class_ "navbar-nav px-3" $ do
+            pageIntro
+            pageCharacters
+            pageFavourites
+            pageHamRadio
+            pageHealth
+            pageMusic
+            pageMaths
+            pageAbout
+            pageSoftware
+            pageContact
+        socialIcons
 
 page :: Html
 page = docTypeHtml ! lang "en-GB" $ do
-    htmlHead
-    nav ! class_ "p-0 p-sm-2 navbar d-block d-sm-flex navbar-expand navbar-dark bg-primary" $ do
-        a ! class_ "w-25 p-0 pt-1 pt-sm-0 w-sm-auto text-center text-sm-left navbar-brand" ! href "#intro" $ do
-            img ! src "/img/favicon.png" ! A.style "height:32px" ! alt ""
-            H.span ! class_ "title ml-2" $ "Dan Dart"
-        H.div $ do
-            ul ! class_ "navbar-nav px-3" $ do
-                pageIntro
-                pageCharacters
-                pageFavourites
-                pageHamRadio
-                pageHealth
-                pageMusic
-                pageMaths
-                pageAbout
-                pageSoftware
-                pageContact
-            socialIcons
+    htmlHead descTitle keywords
+    htmlHeader

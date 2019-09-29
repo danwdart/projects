@@ -5,6 +5,13 @@
 
 packages:
 - completed:
+    hackage: Cabal-2.4.1.0@sha256:8aef21305c2324214944983e9dd118e65063b2e04f8c597db875298f602f6f12,21831
+    pantry-tree:
+      size: 31482
+      sha256: 0d79ac300c7ac910d6a813b4de687498e51b6068e4f97503b8772dc9e9f0d36c
+  original:
+    hackage: Cabal-2.4.1.0
+- completed:
     hackage: ghcjs-dom-0.9.4.0@sha256:c2b3d25145e24b66a8a5078c0d750305b577aeff05957cf282d74f6e8d2424dd,32082
     pantry-tree:
       size: 357
@@ -39,6 +46,13 @@ packages:
       sha256: 6ed1686e8dc644064c1668bbbeaea97b974499b172eb77e670c6389b78a40fda
   original:
     hackage: jsaddle-warp-0.9.6.0
+- completed:
+    hackage: reactive-banana-1.2.1.0@sha256:af0a41dec95e1478acd5280f0fdde51afddf9fbfa4e0a4c226a2c6fa65702796,3975
+    pantry-tree:
+      size: 2443
+      sha256: 367a55194ed03065dd7cf9e63c851ae4fe56f8533d07cdfe751fa68da9c7d66d
+  original:
+    hackage: reactive-banana-1.2.1.0
 - completed:
     hackage: ref-tf-0.4.0.1@sha256:369e5c6237e4b6fe330fde021b94a9f98971690cbec5b910faa9af3cbcb15610,1133
     pantry-tree:
