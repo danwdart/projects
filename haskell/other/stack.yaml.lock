@@ -82,6 +82,13 @@ packages:
   original:
     hackage: elf-0.30
 - completed:
+    hackage: factory-0.3.2.1@sha256:f37a28784f037516f1b57b695ee0394767fc6bb768773dba4948946a30ebd47e,7618
+    pantry-tree:
+      size: 7755
+      sha256: 411e32e8f6bff049431188bcbbedc846f85c8e5c963bb80c2f38515e880dc2e9
+  original:
+    hackage: factory-0.3.2.1
+- completed:
     hackage: fakedata-0.2.2@sha256:24595200d354d47fca9c92f0e7d350decc9a6e06baaf26b155ffb04c145b0c7e,17555
     pantry-tree:
       size: 35913
@@ -347,6 +354,13 @@ packages:
       sha256: dde501488c3d113fbbba57efe26f3ab2b654f094174f2476fe47e47e3b12c8df
   original:
     hackage: threepenny-gui-0.8.3.0
+- completed:
+    hackage: toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
+    pantry-tree:
+      size: 2930
+      sha256: eb782c3c9b0eca5a00fd1010ac346d1538dc79b4e44206074179e2aead453603
+  original:
+    hackage: toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
 - completed:
     hackage: wai-3.2.2@sha256:0d38213a13820a418591fa69f767c44616574c833b1fc9e1425ac59ed3d35704,1763
     pantry-tree:

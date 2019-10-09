@@ -1,0 +1,11 @@
+resolver: lts-14.7
+packages:
+- .
+extra-deps:
+- req-2.1.0
+- vector-0.12.0.3
+system-ghc: true
+ghc-options:
+  other: -Wall -Werror
+# extra-include-dirs: [/path/to/dir]
+# extra-lib-dirs: [/path/to/dir]

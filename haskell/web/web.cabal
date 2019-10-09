@@ -40,9 +40,7 @@ executable frp
   hs-source-dirs:      src
   main-is:             frp.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, reactive-banana
-
-
+  build-depends:       base >= 4.7 && < 5, blaze-html, blaze-markup, bytestring, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp, reactive-banana
 
 -- executable unfart
 --  hs-source-dirs:      src

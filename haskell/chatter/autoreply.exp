@@ -1,0 +1,8 @@
+#!/usr/bin/expect -f
+while (true) {
+    expect {
+        "asl\n" {
+            send -- "I'm 28, Dan\n"
+        }
+    }
+}
