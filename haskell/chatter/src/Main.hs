@@ -1,24 +1,29 @@
-{-# LANGUAGE DataKinds, DeriveAnyClass, DeriveGeneric, GeneralisedNewtypeDeriving, LambdaCase, OverloadedStrings #-}    
+{-# LANGUAGE DataKinds                  #-}
+{-# LANGUAGE DeriveAnyClass             #-}
+{-# LANGUAGE DeriveGeneric              #-}
+{-# LANGUAGE GeneralisedNewtypeDeriving #-}
+{-# LANGUAGE LambdaCase                 #-}
+{-# LANGUAGE OverloadedStrings          #-}
 module Main where
 
-import Control.Monad
-import Control.Monad.IO.Class
-import Data.Aeson
-import Data.Maybe
-import qualified Data.Text as T
-import Data.Text (Text)
-import qualified Data.Vector as V
-import Debug.Trace
-import qualified Data.ByteString.Char8 as BS
+import           Control.Monad
+import           Control.Monad.IO.Class
+import           Data.Aeson
+import qualified Data.ByteString.Char8      as BS
 import qualified Data.ByteString.Lazy.Char8 as LBS
-import Data.Function
-import Data.Functor
-import Data.List
-import GHC.Generics
-import Network.HTTP.Req
-import Safe (headMay)
-import System.Environment
-import System.Random
+import           Data.Function
+import           Data.Functor
+import           Data.List
+import           Data.Maybe
+import           Data.Text                  (Text)
+import qualified Data.Text                  as T
+import qualified Data.Vector                as V
+import           Debug.Trace
+import           GHC.Generics
+import           Network.HTTP.Req
+import           Safe                       (headMay)
+import           System.Environment
+import           System.Random
 
 (<<&>>) :: (Functor f1, Functor f2) => f1 (f2 a) -> (a -> b) -> f1 (f2 b)
 (<<&>>) = flip $ (<$>) . (<$>)
@@ -82,10 +87,15 @@ instance FromJSON Event where
             [String a, String b] -> return $ Event (T.unpack a) (Single (T.unpack b))
             [String a, Array b] -> case V.toList b of
                 [String c, String d] -> return $ Event (T.unpack a) (Multi [(T.unpack c), (T.unpack d)])
+                [String e] -> return $ Event (T.unpack a) (Single (T.unpack e))
+                _ -> error "Subarray is wrong"
+            [String a, String b, String c] -> error $ show $ [a, b, c] <&> T.unpack
+            _ -> error "Array is wrong"
+        _ -> error "Not array"
 
 data LoginResponse = LoginResponse {
     clientID :: String,
-    events :: [Event]
+    events   :: [Event]
 } deriving (Eq, FromJSON, Generic, Show)
 
 --postReq :: (FromJSON a) => String -> Query -> Req (JsonResponse a)
@@ -101,7 +111,7 @@ login = do
     let clientId = clientID loginBody
     parseEvents clientId (events loginBody)
     doEvents clientId
-    
+
 connected :: IO ()
 connected = putStrLn "Connected."
 
