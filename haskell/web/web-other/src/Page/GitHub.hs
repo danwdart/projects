@@ -3,7 +3,7 @@ module Page.GitHub (fetchRepos, Repo (..), Language (..), getRepos) where
 
 import Control.Monad.IO.Class
 import Data.Aeson
-import Data.Text
+import Data.Text as T
 import Distribution.SPDX
 import GHC.Generics
 import Network.HTTP.Req
@@ -26,6 +26,9 @@ data Language = LangJS
 
 -- I need to make a newtype because I can't just decide to make instances
 newtype Licence = Licence LicenseId deriving (Generic, Show)
+
+instance FromJSON Licence where
+    parseJSON (String a) = return $ Licence (read (T.unpack a) :: LicenseId)
 
 data Repo = Repo {
     name :: String,

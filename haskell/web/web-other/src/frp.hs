@@ -40,7 +40,7 @@ page = docTypeHtml ! lang "en-GB" $ do
             h1 "FRP Demo"
         H.main $ do
             p "Hi"
-            form $ do
+            H.form $ do
                 input ! A.type_ "text" ! A.name "text"
                 input ! A.type_ "submit"
         footer $ do

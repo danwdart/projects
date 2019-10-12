@@ -3,6 +3,7 @@
 -- import Control.Monad (forM_)
 import qualified Data.ByteString.Lazy.Char8 as BSL
 -- import Data.String
+import Network.HTTP.Req
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
@@ -12,7 +13,7 @@ import Page.Head
 
 main :: IO ()
 main = do
-    reposDan <- runReq $ getRepos "dandart"
+    reposDan <- runReq defaultHttpConfig $ getRepos "dandart"
     print $ reposDan
     BSL.putStrLn . renderHtml $ page
 
@@ -853,7 +854,7 @@ pageContact = li ! class_ "nav-item" $ do
                 H.div ! class_ "form-group" $ input ! class_ "btn btn-primary" ! type_ "submit" ! value "Send"
 
 htmlHeader :: Html
-htmlHeader = header $ nav ! class_ "p-0 p-sm-2 navbar d-block d-sm-flex navbar-expand navbar-dark bg-primary" $ do
+htmlHeader = H.header $ nav ! class_ "p-0 p-sm-2 navbar d-block d-sm-flex navbar-expand navbar-dark bg-primary" $ do
     a ! class_ "w-75 p-0 pt-1 pt-sm-0 w-sm-auto text-center text-sm-left navbar-brand" ! href "" $ img ! src "/img/jolharg.png" ! A.style "height:32px" ! alt ""
     H.div $ ul ! class_ "navbar-nav px-3" $ do
         pagePortfolio
