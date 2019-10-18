@@ -32,7 +32,6 @@ imagesFs = [
 languageImage :: Language -> AttributeValue
 languageImage l = maybe genericImage Prelude.id (lookup l imagesFs)
     
-
 card :: AttributeValue -> Html -> Html -> AttributeValue -> Html
 card cardImage cardTitle cardText cardLink =  H.div ! class_ "card col-md-4 text-center" $ H.div ! class_ "card-body" $ do
     img ! class_ "card-img-top" ! src cardImage
@@ -58,7 +57,7 @@ renderCard repo = do
         p ! class_ "card-text" $ do
             H.span ! class_ "description" $ fromString . GH.description $ repo
             br
-            a ! href ("https://spdx.org/licenses/" <> (fromString . show . licence $ repo) <> ".html") ! target "_blank" $ fromString . show . licence $ repo
+            a ! href ("https://spdx.org/licenses/" <> (fromString . show . license $ repo) <> ".html") ! target "_blank" $ fromString . show . license $ repo
             small $ em "Not yet licenced"
-        a ! class_ "btn btn-secondary" ! href (fromString . GH.source $ repo) ! target "_blank" $ "Source"
-        a ! class_ "btn btn-secondary" ! href (fromString . website $ repo) ! target "_blank" $ "Website"
+        maybe "" (\src -> a ! class_ "btn btn-secondary" ! href (fromString src) ! target "_blank" $ "Source") (GH.source repo)
+        maybe "" (\site -> a ! class_ "btn btn-secondary" ! href (fromString site) ! target "_blank" $ "Website") $ website repo

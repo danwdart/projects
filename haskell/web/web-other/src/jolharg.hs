@@ -15,7 +15,10 @@ main :: IO ()
 main = do
     reposDan <- runReq defaultHttpConfig $ getRepos "dandart"
     print $ reposDan
-    BSL.putStrLn . renderHtml $ page
+    reposJH <- runReq defaultHttpConfig $ getRepos "jolharg"
+    print $ reposJH
+    print $ reposDan <> reposJH
+    -- BSL.putStrLn . renderHtml $ page
 
 keywords :: [AttributeValue]
 keywords = [
