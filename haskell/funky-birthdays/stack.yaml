@@ -12,4 +12,4 @@ extra-deps:
 
 system-ghc: true
 ghc-options:
-  web: -Wall -Werror
+  funky-birthdays: -Wall -Werror

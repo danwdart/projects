@@ -19,7 +19,13 @@ extra-source-files:  CHANGELOG.md
 
 executable funky-birthdays
   main-is:             Main.hs
-  -- other-modules:
+  other-modules:       Funk.Constants
+                     , Funk.Conversion
+                     , Funk.Data
+                     , Funk.Ranges
+                     , Funk.Round
+                     , Funk.Types
+                     , Funk.Utils
   -- other-extensions:
   build-depends:       base >=4.12 && <5, datetime, iCalendar, time
   hs-source-dirs:      src
