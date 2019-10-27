@@ -3,7 +3,7 @@ import Control.Monad.Reader
 -- Reader a b is a -> b
 
 intToIntReader :: Reader Int Int
-intToIntReader = reader (+1)
+intToIntReader = 
 
 stringToStringReader :: Reader String String
 stringToStringReader = reader (++"Bob")
@@ -22,6 +22,8 @@ rt = ReaderT $ do
 
 rWithLocal :: Reader String String
 rWithLocal = local (++"Jim") stringToStringReader
+
+-- MOAR.
 
 main :: IO ()
 main = do
