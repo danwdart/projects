@@ -1,9 +1,14 @@
 module Main where
 
+import qualified Data.ByteString.Lazy.Char8 as BSL
 import Data.DateTime (getCurrentTime)
+import Data.Map
+import Funk.ICalendar
 import Funk.Utils (untilEnd)
 
 main :: IO ()
 main = do
     now <- getCurrentTime
-    mapM_ putStrLn $ untilEnd now
+    let ical = generateICal . fromList . untilEnd $ now
+    BSL.writeFile "events.ics" ical
+    putStrLn "Wrote events.ics"
