@@ -8,7 +8,7 @@ import Data.Functor
 import Faker
 import Faker.TvShow.StarTrek
 import qualified Data.Text as T
-import Data.Text (Text)
+-- import Data.Text (Text)
 import Lib
 import qualified Data.Aeson as A
 
