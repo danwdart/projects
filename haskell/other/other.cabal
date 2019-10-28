@@ -229,6 +229,12 @@ executable chain
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable cipher
+  hs-source-dirs:      src
+  main-is:             cipher.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable class
   hs-source-dirs:      src
   main-is:             class.hs
