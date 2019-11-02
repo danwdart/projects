@@ -1,4 +1,4 @@
-{-# LANGUAGE ForeignFunctionInterface, JavaScriptFFI, OverloadedStrings #-}
+{-# LANGUAGE JavaScriptFFI #-}
 
 import Data.JSString ()
 import GHCJS.Types

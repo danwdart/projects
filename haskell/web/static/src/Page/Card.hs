@@ -3,6 +3,7 @@
 module Page.Card (Language (..), imagesFs, Repo (..), card, cardDefunct) where
 
 import Data.String
+import Data.Maybe
 import Distribution.SPDX
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A

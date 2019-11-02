@@ -5,12 +5,19 @@
 
 packages:
 - completed:
-    hackage: Cabal-2.4.1.0@sha256:8aef21305c2324214944983e9dd118e65063b2e04f8c597db875298f602f6f12,21831
+    hackage: blaze-html-0.9.1.1@sha256:66f01bef8455b3387e592819584dbd5e501fe0bb5620a3bad80ca8f92d2b2296,2793
     pantry-tree:
-      size: 31482
-      sha256: 0d79ac300c7ac910d6a813b4de687498e51b6068e4f97503b8772dc9e9f0d36c
+      size: 2227
+      sha256: fcba08da4585059dbf59db4d025ecee290c1b74680b0c7e6e905d5627a27dc60
   original:
-    hackage: Cabal-2.4.1.0
+    hackage: blaze-html-0.9.1.1
+- completed:
+    hackage: blaze-markup-0.8.2.3@sha256:2d74dbb26ee73a0aaeeb169bf555d26494e2b622867a7507daf53cd3a45c4792,2184
+    pantry-tree:
+      size: 818
+      sha256: 72cfa3d654ef7cc1f10e3bb4cbe44a06caf57b2e21329151646fe23af157771d
+  original:
+    hackage: blaze-markup-0.8.2.3
 - completed:
     hackage: ghcjs-dom-0.9.4.0@sha256:c2b3d25145e24b66a8a5078c0d750305b577aeff05957cf282d74f6e8d2424dd,32082
     pantry-tree:
@@ -33,10 +40,10 @@ packages:
   original:
     hackage: jsaddle-0.9.6.0
 - completed:
-    hackage: jsaddle-dom-0.9.3.2@sha256:54d4666c8983d227b2b560714c54a9486629201c49de178bbf563c6db3aa8160,75673
+    hackage: jsaddle-dom-0.9.3.2@sha256:a50147c183fc3c44ae209ecbbf58bc99e3205aa87372d0635d56e775d9c2186e,75688
     pantry-tree:
       size: 48227
-      sha256: 49d82904ca995ef048dbde99eddb827c5c40eaf3618815040af15f5ffba58063
+      sha256: 2aa625df7fba42afbe99245661f0b8c0f166d77ddfcca09d664ede406b291c3d
   original:
     hackage: jsaddle-dom-0.9.3.2
 - completed:
@@ -54,15 +61,15 @@ packages:
   original:
     hackage: reactive-banana-1.2.1.0
 - completed:
-    hackage: ref-tf-0.4.0.1@sha256:369e5c6237e4b6fe330fde021b94a9f98971690cbec5b910faa9af3cbcb15610,1133
+    hackage: ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
     pantry-tree:
       size: 211
-      sha256: 81ecae4728867eaa8aff5bfcd26f05942ff8c5c3e6568a1e042db444063ea5e7
+      sha256: fc5a4a35b4c782a33f452c1dc66ffa8ddbf321e2db369bd8823c796f0d4d8c7f
   original:
-    hackage: ref-tf-0.4.0.1@sha256:369e5c6237e4b6fe330fde021b94a9f98971690cbec5b910faa9af3cbcb15610,1133
+    hackage: ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
 snapshots:
 - completed:
-    size: 524130
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/10.yaml
-    sha256: 04841e0397d7ce6364f19359fce89aa45ca8684609d665845db80d398002baa9
-  original: lts-14.10
+    size: 545658
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/12.yaml
+    sha256: 26b807457213126d26b595439d705dc824dbb7618b0de6b900adc2bf6a059406
+  original: lts-14.12

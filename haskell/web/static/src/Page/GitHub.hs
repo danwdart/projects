@@ -35,7 +35,7 @@ newtype Licence = Licence LicenseId deriving (Generic, Show)
 
 instance FromJSON Licence where
     parseJSON (String a) = return $ Licence (read (T.unpack a) :: LicenseId)
-    parseJSON (Object b) = return $ Licence (read (b .: "spdx_id" :: String) :: LicenseId)
+    -- parseJSON (Object b) = return (Licence (read (b .: "spdx_id") :: String) :: LicenseId)
     parseJSON Null = return $ Licence Unlicense
     parseJSON a = do
         traceShowM a
