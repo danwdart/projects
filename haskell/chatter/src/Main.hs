@@ -86,7 +86,7 @@ instance FromJSON Event where
             [String a] -> return $ Event (T.unpack a) NoMessageBody
             [String a, String b] -> return $ Event (T.unpack a) (Single (T.unpack b))
             [String a, Array b] -> case V.toList b of
-                [String c, String d] -> return $ Event (T.unpack a) (Multi [(T.unpack c), (T.unpack d)])
+                [String c, String d] -> return $ Event (T.unpack a) (Multi [T.unpack c, T.unpack d])
                 [String e] -> return $ Event (T.unpack a) (Single (T.unpack e))
                 _ -> error "Subarray is wrong"
             [String a, String b, String c] -> error $ show $ [a, b, c] <&> T.unpack
@@ -137,7 +137,7 @@ parseEvent clientId event = case eventName event of
         disconnect clientId
     "statusInfo" -> mempty
     "identDigests" -> mempty
-    "error" -> do
+    "error" ->
         putStrLn $ "Error: " ++ (msg . eventBody $ event)
 
 doEvents :: String -> IO ()

@@ -26,7 +26,7 @@ server = do
         setSocketOption sock ReuseAddr 1
         -- If the prefork technique is not used,
         -- set CloseOnExec for the security reasons.
-        withFdSocket sock $ setCloseOnExecIfNeeded
+        withFdSocket sock setCloseOnExecIfNeeded
         bind sock (addrAddress addr)
         listen sock 10
         return sock

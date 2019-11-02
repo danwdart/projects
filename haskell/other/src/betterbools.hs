@@ -13,7 +13,7 @@ coerceEnum = toEnum . fromEnum
 main :: IO ()
 main = do
     print (coerce $ LightState True :: Bool)
-    print (unsafeCoerce $ Off :: Bool)
+    print (unsafeCoerce Off :: Bool)
     print (fromEnum On :: Int)
     print (toEnum 0 :: Lights)
     print (toEnum (fromEnum Off) :: Bool)

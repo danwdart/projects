@@ -10,6 +10,6 @@
 -- div a b = Just $ (show a) ++ " div " ++ (show b)
 
 main :: IO ()
-main = do
+main =
     putStrLn "I broke it."
     -- print $ 5 * 3

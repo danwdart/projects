@@ -1,4 +1,4 @@
-{-# LANGUAGE ForeignFunctionInterface, JavaScriptFFI, OverloadedStrings #-}
+{-# LANGUAGE JavaScriptFFI, OverloadedStrings #-}
 
 {-
 const doReplaceName = replacements.forEach(

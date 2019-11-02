@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+
 
 module Lib.XPath (processXPath) where
 

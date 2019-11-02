@@ -29,4 +29,4 @@ prog :: [String] -> String
 prog = fromEither . fmap show . processArgs . validateArgs . parseArgs
 
 main :: IO ()
-main = getArgs >>= return . prog >>= putStrLn
+main = prog <$> getArgs >>= putStrLn

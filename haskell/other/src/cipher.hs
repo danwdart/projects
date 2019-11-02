@@ -1,7 +1,7 @@
 data LetterType = TypeVowel Char | TypeConsonant Char deriving (Show)
 
 instance Ord LetterType where
-    compare (a b) (c d) = compare b d
+    compare (TypeVowel b) (TypeVowel d) = compare b d
 
 data LetterLocation = LocVowel Int | LocConsonant Int deriving (Show)
 

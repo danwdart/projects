@@ -7,7 +7,7 @@ import Lib.Game.Monopoly.Space
 import Lib.Game.Monopoly.Tax
 
 playerSpace :: [Space] -> Player -> Space
-playerSpace spaces player = spaces !! (position player)
+playerSpace spaces player = spaces !! position player
 
 processLand :: Player -> Board -> Space -> IO (Player, Board)
 processLand player board space = case space of

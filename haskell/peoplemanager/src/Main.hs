@@ -27,7 +27,7 @@ diffYears :: Day -> Day -> Integer
 diffYears to from = diffDays from to `div` 365
 
 yearsAgo :: Day -> IO Integer
-yearsAgo from = today >>= (\to -> return $ diffYears from to)
+yearsAgo from = today >>= (return . diffYears from)
 
 data Person = Person {
     uuid :: Text,
@@ -57,7 +57,7 @@ makePerson = do
     }
 
 makePeople :: Int -> IO [Person]
-makePeople number = sequence $ replicate number makePerson
+makePeople number = Control.Monad.replicateM number makePerson
 
 data RelationshipType = Married | Couple | Family | Friend | Coworker | Enemy | Indifferent deriving (Eq, Ord, Show)
 

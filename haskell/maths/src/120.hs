@@ -89,7 +89,7 @@ result4 = [
         res = pwr - res2 :: Integer
     in
         show a ++ " ^ " ++ show b ++ " - " ++ show c ++ " ^ " ++ show pwr2 ++ " = " ++ show res |
-    a <- ([2..10] :: [Integer]), b <- ([2..10] :: [Integer]), c <- ([2..10] :: [Integer])]
+    a <- [2..10] :: [Integer], b <- [2..10] :: [Integer], c <- [2..10] :: [Integer]]
 
 main :: IO ()
 main = mapM_ putStrLn result4

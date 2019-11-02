@@ -41,7 +41,7 @@ data LoginResponse = LoginResponse {
 instance FromJSON LoginResponse where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = \(_:f:fs) -> toUpper f : fs}
 
-data LoginResponseData = LoginResponseData {
+newtype LoginResponseData = LoginResponseData {
     stateId :: String
 } deriving (Eq, Generic, Show, ToJSON)
 
@@ -120,7 +120,7 @@ data StoreDealsResponse = StoreDealsResponse {
     -- description :: String
 } deriving (Eq, FromJSON, Generic, Out, Show)
 
-data DealsResponse = DealsResponse {
+newtype DealsResponse = DealsResponse {
     storeDeals :: [StoreDealsResponse]
 } deriving (Eq, FromJSON, Generic, Out, Show)
 
@@ -224,12 +224,12 @@ dealsInfo = req GET uriDeals NoReqBody jsonResponse (
 -}
 
 nav :: Option 'Https -> Req (JsonResponse NavResponse)
-nav newDefaultHeaders = req GET uriNav NoReqBody jsonResponse newDefaultHeaders
+nav = req GET uriNav NoReqBody jsonResponse
 
 greet :: JsonResponse NavResponse -> Req ()
 greet resNav = do
     let navResponse = responseBody resNav
-    liftIO . putStrLn $ "Hello " ++ (userName navResponse) ++ ", your local store seems to be " ++ (storeName navResponse)
+    liftIO . putStrLn $ "Hello " ++ userName navResponse ++ ", your local store seems to be " ++ storeName navResponse
 
 -- debugJSON :: JsonResponse Value -> Req ()
 -- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody

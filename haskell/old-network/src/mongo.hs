@@ -10,6 +10,6 @@ import Data.Text (pack)
 -- import Database.MongoDB
 main = do
     mongoconn <- connect $ host "localhost"
-    access mongoconn master "bob" ((insert "bobs" ["name"=:"Jim"]) >> find (select [] "bobs") >>= rest)
+    access mongoconn master "bob" (insert "bobs" ["name"=:"Jim"] >> find (select [] "bobs") >>= rest)
 
     return ()

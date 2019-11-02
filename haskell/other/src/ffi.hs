@@ -46,12 +46,12 @@ foreign import ccall "sprintf" c_sprintf2 :: CString -> CString -> CString -> IO
     -- ptr is freed when it is collected
 
 cFlush :: IO CInt
-cFlush = return "\n" >>= newCString >>= c_printf
+cFlush = newCString "\n" >>= c_printf
 
 main :: IO ()
 main = do
     print $ c_exp1 0.1
-    _ <- return "Bob\n" >>= newCString >>= c_printf
+    _ <- newCString "Bob\n" >>= c_printf
     param1 <- newCString "My name is %s."
     param2 <- newCString "Dan"
     putStrLn "Printing..."

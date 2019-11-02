@@ -4,15 +4,15 @@ import Data.List
 
 splitEvery :: Int -> [a] -> [[a]]
 splitEvery _ [] = []
-splitEvery n list = first : (splitEvery n rest)
+splitEvery n list = first : splitEvery n rest
   where
     (first,rest) = splitAt n list
 
 splitIntIntoDigits :: Int -> [Int]
-splitIntIntoDigits i = map (\x -> (read [x])) $ show i
+splitIntIntoDigits i = map (\x -> read [x]) $ show i
 
 reduceDigitsIntoInt :: [Int] -> Int
-reduceDigitsIntoInt d = read $ concat $ map show d :: Int
+reduceDigitsIntoInt d = read $ concatMap show d :: Int
 
 maxLength :: [a] -> [a] -> Int
 maxLength = on max length
@@ -29,7 +29,7 @@ moonMulWith :: (Int -> Int -> Int) -> (Int -> Int -> Int) -> [Int] -> [Int] -> [
 moonMulWith fnMul fnAdd a b = foldl1 (moonAddWith fnAdd) (mulTwo fnMul a b)
 
 mulTwo :: Num a1 => (a2 -> a2 -> a1) -> [a2] -> [a2] -> [[a1]]
-mulTwo fnMul a b = transpose (concat ((transpose $ splitEvery maxLen (liftM2 fnMul a b)):([threeTwoOneZero minLen]))) where
+mulTwo fnMul a b = transpose (concat (transpose (splitEvery maxLen (liftM2 fnMul a b)):[threeTwoOneZero minLen])) where
     maxLen = maxLength a b
     minLen = minLength a b
     threeTwoOneZero n = reverse $ tail $ take n $ inits $ repeat 0

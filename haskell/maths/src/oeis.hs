@@ -53,7 +53,7 @@ reqMain = do
         queryParam "start" (Just ("1" :: String))
         )
     debugPP (resSearchBySequence :: JsonResponse OEISResponse)
-    
+
 
 main :: IO ()
 main = runReq defaultHttpConfig reqMain

@@ -13,4 +13,4 @@ instance Monad Bob where
     (Bob x) >>= f = f x
 
 main :: IO ()
-main = print $ Bob (2 :: Int) >>= return . (*2)
+main = print $ (*2) <$> Bob (2 :: Int)

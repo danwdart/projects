@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+
 module Funk.ICalendar (generateICal) where
 
 import qualified Data.ByteString.Lazy.Char8 as BSL
@@ -12,7 +12,7 @@ import Text.ICalendar
 generateICal :: Map String UTCTime -> BSL.ByteString
 generateICal mapNameToTime = printICalendar def def {
     vcEvents = mapMap (\(name, utctime) -> (
-        ( T.pack name, Just $ Right $ UTCDateTime $ utctime),
+        ( T.pack name, Just $ Right $ UTCDateTime utctime),
         (
             VEvent {
                 veDTStamp = DTStamp {
@@ -25,7 +25,7 @@ generateICal mapNameToTime = printICalendar def def {
                 },
                 veClass = def,
                 veDTStart = Just DTStartDateTime {
-                    dtStartDateTimeValue = UTCDateTime $ utctime,
+                    dtStartDateTimeValue = UTCDateTime utctime,
                     dtStartOther = def
                 },
                 veCreated = Nothing,

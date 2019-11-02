@@ -1,5 +1,5 @@
 {-# LANGUAGE ApplicativeDo #-}
 
 main :: IO ()
-main = do
+main =
     putStrLn "Some kind of..."

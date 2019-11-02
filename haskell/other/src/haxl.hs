@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, RebindableSyntax #-}
+{-# LANGUAGE RebindableSyntax #-}
 
 import Haxl.Prelude
 

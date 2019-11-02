@@ -6,10 +6,10 @@ import Data.Char
 import Numeric
 
 maybeIndex :: Int -> [a] -> Maybe a
-maybeIndex index xs = if 0 == length xs then Nothing else Just $ xs !! index
+maybeIndex index xs = if null xs then Nothing else Just $ xs !! index
 
 stringToInteger :: String -> Integer
-stringToInteger string = fst $ (readHex $ concatMap (\x -> showHex x "") $ map ord $ filter notSpaces string ) !! 0 where
+stringToInteger string = fst $ head (readHex $ concatMap (\x -> showHex x "") $ map ord $ filter notSpaces string ) where
     notSpaces = (/=' ')
 
 -- args = return ["Foo"] :: IO [String]

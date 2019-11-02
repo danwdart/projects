@@ -16,10 +16,8 @@ rtSimple ∷ ReaderT String IO ()
 rtSimple = ask >>= liftIO . putStrLn
 
 rt ∷ ReaderT String IO ()
-rt = ReaderT $ do
-    -- x ← ask
-    -- y ← asks (++"Bob")
-    liftIO . putStrLn 
+rt = ReaderT $
+    liftIO . putStrLn
 
 rWithLocal ∷ Reader String String
 rWithLocal = local (++"Jim") stringToStringReader

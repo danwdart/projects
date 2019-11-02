@@ -3,7 +3,7 @@ import Control.Monad.Reader
 -- Reader a b is a -> b
 
 intToIntReader :: Reader Int Int
-intToIntReader = 
+intToIntReader = reader (+1)
 
 stringToStringReader :: Reader String String
 stringToStringReader = reader (++"Bob")

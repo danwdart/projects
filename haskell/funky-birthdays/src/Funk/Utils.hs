@@ -21,5 +21,4 @@ birthTimes = do
 
 untilEnd :: UTCTime -> [DateNameTime]
 untilEnd now = do
-    end <- filterDays now (addSeconds (5 * secondsInYear) now) (sortOn snd birthTimes)
-    return end
+    filterDays now (addSeconds (5 * secondsInYear) now) (sortOn snd birthTimes)
