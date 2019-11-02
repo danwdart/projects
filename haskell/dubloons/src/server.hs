@@ -28,7 +28,7 @@ app req res = do
     -- body <- getRequestBodyChunk req
     let mAccept = lookup "Accept" headers
     let mCT = lookup "Content-Type" headers
-    let resp = maybe "Hello World!" id $ do
+    let resp = fromMaybe "Hello World!" $ do
                                             accept <- mAccept
                                             ct <- mCT
                                             return $ accept `BS.append` ct

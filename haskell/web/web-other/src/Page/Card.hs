@@ -30,7 +30,7 @@ imagesFs = [
     ]
 
 languageImage :: Language -> AttributeValue
-languageImage l = maybe genericImage Prelude.id (lookup l imagesFs)
+languageImage l = fromMaybe genericImage (lookup l imagesFs)
     
 card :: AttributeValue -> Html -> Html -> AttributeValue -> Html
 card cardImage cardTitle cardText cardLink =  H.div ! class_ "card col-md-4 text-center" $ H.div ! class_ "card-body" $ do
@@ -47,7 +47,7 @@ cardDefunct cardTitle cardText = H.div ! class_ "card col-md-4 text-center" $ H.
     strong "Website defunct"
 
 renderCard :: Repo -> Html
-renderCard repo = do
+renderCard repo =
     H.div ! class_ "card col-md-4 text-center" $ H.div ! class_ "card-body" $ do
         img ! class_ "card-img-top-github" ! A.src (languageImage . language $ repo)
         h4 ! class_ "card-title" $ do

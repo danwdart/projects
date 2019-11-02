@@ -2,3 +2,5 @@
 node_modules/
 .serverless/
 sls.cabal
+*.hi
+*.o

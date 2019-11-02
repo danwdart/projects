@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Page.Utils (intercalateAttr) where
 
 -- import Data.String

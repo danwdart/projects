@@ -98,7 +98,7 @@ pageCharacters = li ! class_ "nav-item" $ do
                             extLink (wikipedia <> "Spock") "Spock"
                             ", because I often think of the world logically"
                         li $ do
-                            extLink "http://memory-alpha.wikia.com/wiki/Spock_(mirror)" $ "Evil (Mirror) Spock"
+                            extLink "http://memory-alpha.wikia.com/wiki/Spock_(mirror)" "Evil (Mirror) Spock"
                             ", because of his outrageous beard and he's just hysterical"
                         li $ do
                             extLink (wikipedia <> "Data_%28Star_Trek%29") "Data"
@@ -147,7 +147,7 @@ pageCharacters = li ! class_ "nav-item" $ do
                     extLink (wikipedia <> "The_Ancient_Magus%27_Bride") "Mahoutsukai no Yome"
                     ":"
                     ul $ li $ do
-                        extLink "http://ancientmagusbride.wikia.com/wiki/Elias_Ainsworth" $ "Elias Ainsworth"
+                        extLink "http://ancientmagusbride.wikia.com/wiki/Elias_Ainsworth" "Elias Ainsworth"
                         ", because he's caring, doesn't act like outrageous humans and Chise is my waifu"
                 li $ do
                     "from"
@@ -175,7 +175,7 @@ pageCharacters = li ! class_ "nav-item" $ do
                     extLink (ytUser <> "TVFilthyFrank") "The Filthy Frank Show"
                     ":"
                     ul $ li $ do
-                        extLink "http://filthy-frank.wikia.com/wiki/Filthy_Frank" $ "Real Frank"
+                        extLink "http://filthy-frank.wikia.com/wiki/Filthy_Frank" "Real Frank"
                         ", because he's lost and good to his crew. ^Also depression, yay^"
                 li $ do
                     "from"

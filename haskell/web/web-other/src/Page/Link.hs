@@ -7,7 +7,7 @@ import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
 
 extLink :: AttributeValue -> Html -> Html
-extLink linkHref linkText = a ! href linkHref ! target "_blank" ! rel "noopener" $ linkText
+extLink linkHref = a ! href linkHref ! target "_blank" ! rel "noopener"
 
 extLinkTitle :: AttributeValue -> AttributeValue -> Html -> Html
-extLinkTitle linkHref linkTitle linkText = a ! href linkHref ! target "_blank" ! rel "noopener" ! A.title linkTitle $ linkText
+extLinkTitle linkHref linkTitle = a ! href linkHref ! target "_blank" ! rel "noopener" ! A.title linkTitle

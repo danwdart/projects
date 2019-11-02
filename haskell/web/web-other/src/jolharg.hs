@@ -14,9 +14,9 @@ import Page.Head
 main :: IO ()
 main = do
     reposDan <- runReq defaultHttpConfig $ getRepos "dandart"
-    print $ reposDan
+    print reposDan
     reposJH <- runReq defaultHttpConfig $ getRepos "jolharg"
-    print $ reposJH
+    print reposJH
     print $ reposDan <> reposJH
     -- BSL.putStrLn . renderHtml $ page
 

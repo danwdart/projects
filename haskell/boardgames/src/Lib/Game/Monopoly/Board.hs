@@ -8,4 +8,4 @@ data Board = Board {
 } deriving (Eq)
 
 instance Show Board where
-    show (Board spaces freeParkingMoney) = "Board (spaces: " ++ show (spaces !! 0) ++ "Free Parking Money: " ++ show freeParkingMoney
+    show (Board spaces freeParkingMoney) = "Board (spaces: " ++ show (head spaces) ++ "Free Parking Money: " ++ show freeParkingMoney

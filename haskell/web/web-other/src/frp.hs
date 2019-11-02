@@ -33,17 +33,17 @@ import Text.Blaze.Html5.Attributes as A
 
 page :: Html
 page = docTypeHtml ! lang "en-GB" $ do
-    H.head $ do
+    H.head $
         H.title "FRP Demo"
     body $ do
-        header $ do
+        header $
             h1 "FRP Demo"
         H.main $ do
             p "Hi"
             H.form $ do
                 input ! A.type_ "text" ! A.name "text"
                 input ! A.type_ "submit"
-        footer $ do
+        footer $
             small "Made by JolHarg"
 
 jsCode :: JSM ()

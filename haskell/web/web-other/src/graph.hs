@@ -29,8 +29,8 @@ draw (Line2D (Point2D x0 y0) (Point2D x1 y1)) ctx = do
 
 drawGrid :: C.Context -> IO ()
 drawGrid ctx = do
-    mapM_ (\l -> draw l ctx) $ map (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0..16]
-    mapM_ (\l -> draw l ctx) $ map (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0..16]
+    mapM_ (`draw` ctx) . (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0..16]
+    mapM_ (`draw` ctx) . (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0..16]
 
 -- fillGridSquare :: Int -> Int -> C.Context -> IO ()
 

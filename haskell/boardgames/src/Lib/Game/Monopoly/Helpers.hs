@@ -10,8 +10,7 @@ playerSpace :: [Space] -> Player -> Space
 playerSpace spaces player = spaces !! (position player)
 
 processLand :: Player -> Board -> Space -> IO (Player, Board)
-processLand player board space = do
-    case space of
+processLand player board space = case space of
         GoSpace -> do
             putStrLn "You win some money."
             let player' = addMoney 200 player

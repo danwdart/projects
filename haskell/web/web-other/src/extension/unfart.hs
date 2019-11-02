@@ -45,11 +45,11 @@ performReplacements = do
     replaceNames
     replaceTweets
 
-onLoad :: (IO ()) -> IO ()
+onLoad :: IO () -> IO ()
 onLoad action = undefined
 
 main :: IO ()
-main = do
+main =
     --js_log "Unfart initialised"
     onLoad performReplacements
     --js_log "Unfart finished"

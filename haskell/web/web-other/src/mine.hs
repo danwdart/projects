@@ -70,7 +70,7 @@ main = serve $ do
     return ()
 
 serve :: JSM () -> IO ()
-serve f = debug 5000 f
+serve = debug 5000
 
 logHere :: JSM ()
 logHere = void $ jsg "console" # "log" $ ["Hi folks!"]
@@ -79,14 +79,14 @@ logHere = void $ jsg "console" # "log" $ ["Hi folks!"]
 getConfirmFromClient :: JSM Bool
 getConfirmFromClient = do
     info <- jsg1 "confirm" ["Are you sure?"]
-    v <- fromJSVal $ info
+    v <- fromJSVal info
     return . fromJust $ v
 
 -- Prints Maybe String but includes Maybe "null" - JSNull should be Nothing?
 getPromptFromClient :: JSM (Maybe String)
 getPromptFromClient = do
     info <- jsg1 "prompt" ["What is your name"]
-    fromJSVal $ info -- no need to return because returns anyway
+    fromJSVal info -- no need to return because returns anyway
 
 newContextFromNewCanvas :: JSM CanvasRenderingContext2D
 newContextFromNewCanvas = do

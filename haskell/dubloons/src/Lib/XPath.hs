@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Lib.XPath (processXPath) where
 
 import Data.Functor

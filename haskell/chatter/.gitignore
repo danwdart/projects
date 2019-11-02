@@ -3,3 +3,5 @@ dist
 dist-newstyle
 .ghc.*
 google.json
+*.hi
+*.o

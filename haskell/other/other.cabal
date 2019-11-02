@@ -79,6 +79,12 @@ executable more
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, egyptian-fractions, numbers, FixedPoint-simple
 
+executable mtdivergence
+  hs-source-dirs:      src
+  main-is:             maths/mtdivergence.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable numbertypes
   hs-source-dirs:      src
   main-is:             maths/numbertypes.hs
@@ -274,6 +280,12 @@ executable composition-eta
 executable cont
   hs-source-dirs:      src
   main-is:             cont.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable cyclesinmixedset
+  hs-source-dirs:      src
+  main-is:             cyclesinmixedset.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
@@ -631,6 +643,12 @@ executable tardis
   main-is:             tardis.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, tardis
+
+executable terrain
+  hs-source-dirs:      src
+  main-is:             terrain.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, random
 
 executable texttodec
   hs-source-dirs:      src
