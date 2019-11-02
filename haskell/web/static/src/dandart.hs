@@ -199,6 +199,54 @@ pageCharacters = li ! class_ "nav-item" $ do
                         extLink "https://battleborn.com/en/battleborn/marquis/" "Marquis"
                         ", because those quotes are amazing, dunk dunk dunk!"
 
+musicList :: [(Html, [Html])]
+musicList = [
+    (
+        "Pink Floyd",
+        [
+            "Comfortably Numb",
+            "Another Brick in the Wall",
+            "Wish You Were Here",
+            "The Dark Side of the Moon (yes, to me it's a single song)"
+        ]
+    ),
+    (
+        "Focus",
+        [
+            "Anonymus II",
+            "Eruption",
+            "Sylvia/Hocus Pocus"
+        ]
+    ),
+    (
+        "16volt",
+        [
+            "At The End",
+            "Therapy"
+        ]
+    ),
+    (
+        "Bring Me The Horizon",
+        ["That's The Spirit (the whole album is amazing!)"]
+    ),
+    (
+        "Starset",
+        ["My Demons"]
+    ),
+    (
+        "Bach",
+        ["Wohltemperierte Klavier"]
+    ),
+    (
+        "Holst",
+        ["Planets"]
+    ),
+    (
+        "Many more...",
+        []
+    )
+    ]
+
 pageFavourites :: Html
 pageFavourites = li ! class_ "nav-item" $ do
     input ! type_ "radio" ! A.style "display:none" ! name "selected" ! A.id "Favourites" ! value "Favourites"
@@ -247,40 +295,10 @@ pageFavourites = li ! class_ "nav-item" $ do
                     extLink (imdb <> "0056751") "Doctor Who (1963-)"
                     "(my favourite Doctor is Tom Baker)"
             p $ strong "Music"
-            ul $ do
-                li $ do
-                    "Pink Floyd"
-                    ul $ mapM_ li [
-                        "Comfortably Numb",
-                        "Another Brick in the Wall",
-                        "Wish You Were Here",
-                        "The Dark Side of the Moon (yes, to me it's a single song)"
-                        ]
-                li $ do
-                    "Focus"
-                    ul $ mapM_ li [
-                        "Anonymus II",
-                        "Eruption",
-                        "Sylvia/Hocus Pocus"
-                        ]
-                li $ do
-                    "16volt"
-                    ul $ do
-                        li "At The End"
-                        li "Therapy"
-                li $ do
-                    "Bring Me The Horizon"
-                    ul $ li "That's The Spirit (the whole album is amazing!)"
-                li $ do
-                    "Starset"
-                    ul $ li "My Demons"
-                li $ do
-                    "Bach"
-                    ul $ li "Wohltemperierte Klavier"
-                li $ do
-                    "Holst"
-                    ul $ li "Planets"
-                li "Many more..."
+            ul $ mapM_ (\(title, list) -> do
+                title
+                ul $ mapM_ li list
+                ) musicList
             p $ strong "Musical styles"
             ul $ mapM_ li musicalStyles
             p $ strong "Games"
