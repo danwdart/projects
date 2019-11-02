@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass, DeriveGeneric, LambdaCase, OverloadedStrings #-}
+{-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
 module Page.GitHub (Repo (..), Language (..), getRepos) where
 
 import Control.Monad.IO.Class

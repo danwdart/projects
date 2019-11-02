@@ -12,6 +12,5 @@ extra-deps:
   - req-2.1.0
   - text-1.2.4.0
   - unix-2.7.2.2
-system-ghc: true
 ghc-options:
   web: -Wall -Werror
