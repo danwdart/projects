@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Page.Card (Language (..), imagesFs, Repo (..), card, cardDefunct) where
+module Page.Card (Language (..), imagesFs, Repo (..), card, cardDefunct, renderCard) where
 
 import Data.String
 import Data.Maybe
@@ -28,6 +28,7 @@ imagesFs = [
     (LangC, "https://upload.wikimedia.org/wikipedia/commons/3/3b/C.sh-600x600.png"),
     (LangTcl, "https://upload.wikimedia.org/wikipedia/commons/4/41/Tcl.svg"),
     (LangCPP, "https://upload.wikimedia.org/wikipedia/commons/5/5c/Images_200px-ISO_C%2B%2B_Logo_svg.png")
+    -- TODO Haskell, VB, Docker
     ]
 
 languageImage :: Language -> AttributeValue
@@ -56,9 +57,9 @@ renderCard repo =
             H.span ! class_ "stars" $ "(" <> (fromString . show . stars $ repo) <> "★)"
             H.span ! class_ "fork" $ "⑂"
         p ! class_ "card-text" $ do
-            H.span ! class_ "description" $ fromString . GH.description $ repo
+            H.span ! class_ "description" $ fromString . fromMaybe "" $ GH.description repo
             br
-            a ! href ("https://spdx.org/licenses/" <> (fromString . show . license $ repo) <> ".html") ! target "_blank" $ fromString . show . license $ repo
+            a ! href ("https://spdx.org/licenses/" <> (fromString . show . licence $ repo) <> ".html") ! target "_blank" $ fromString . show . licence $ repo
             small $ em "Not yet licenced"
         maybe "" (\src -> a ! class_ "btn btn-secondary" ! href (fromString src) ! target "_blank" $ "Source") (GH.source repo)
         maybe "" (\site -> a ! class_ "btn btn-secondary" ! href (fromString site) ! target "_blank" $ "Website") $ website repo

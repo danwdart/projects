@@ -3,6 +3,8 @@ module Page.GitHub (Repo (..), Language (..), getRepos) where
 
 import Control.Monad.IO.Class
 import Data.Aeson
+import Data.Aeson.Types
+import Data.Maybe
 import Data.Text as T
 import Debug.Trace
 import Distribution.SPDX
@@ -10,7 +12,8 @@ import GHC.Generics
 import Network.HTTP.Req
 import System.Environment
 
-data Language = LangJS 
+data Language = LangHS
+    | LangJS 
     | LangHTML
     | LangPHP
     | LangASM
@@ -28,29 +31,75 @@ data Language = LangJS
 instance FromJSON Language where
     parseJSON (String a) = return $ case a of
         "JavaScript" -> LangJS
-        _ -> LangGeneric
+        "HTML" -> LangHTML
+        "Python" -> LangPython
+        "PHP" -> LangPHP
+        "TypeScript" -> LangTS
+        "CoffeeScript" -> LangCoffee
+        "Shell" -> LangShell
+        "Assembly" -> LangASM
+        "C" -> LangC
+        "Makefile" -> LangShell
+        "Visual Basic" -> LangGeneric
+        "Dockerfile" -> LangGeneric
+        "Tcl" -> LangTcl
+        "BlitzBasic" -> LangBlitzBasic
+        "Haskell" -> LangHS
+        "C++" -> LangCPP
+        "Vim script" -> LangShell
+        _ -> error $ "Unknown language: " ++ T.unpack a
+    parseJSON Null = return LangGeneric
 
--- I need to make a newtype because I can't just decide to make instances
-newtype Licence = Licence LicenseId deriving (Generic, Show)
-
-instance FromJSON Licence where
-    parseJSON (String a) = return $ Licence (read (T.unpack a) :: LicenseId)
-    -- parseJSON (Object b) = return (Licence (read (b .: "spdx_id") :: String) :: LicenseId)
-    parseJSON Null = return $ Licence Unlicense
-    parseJSON a = do
-        traceShowM a
-        fail $ "Don't know what to parse!: " ++ show a
-        return $ Licence Unlicense
+newtype Licence = Licence {
+    spdx_id :: String
+} deriving (FromJSON, Generic, Show)
 
 data Repo = Repo {
     name :: String,
-    description :: String,
+    description :: Maybe String,
     language :: Language,
     source :: Maybe String,
     website :: Maybe String,
-    license :: Licence,
+    licence :: Maybe Licence,
     stars :: Int
-} deriving (FromJSON, Generic, Show)
+} deriving (Generic, Show)
+
+instance FromJSON Repo where
+    parseJSON (Object a) = do
+        homepage <- a .: "homepage"
+        -- private <- a .: "private"
+        -- fork <- a .: "fork"
+        -- fullName <- a .: "full_name"
+        url <- a .: "url"
+        -- issuesUrl <- a .: "issues_url"
+        name <- a .: "name"
+        -- forksCount <- a .: "forks_count"
+        -- updatedAt <- a .: "updated_at"
+        language <- a .: "language"
+        -- pushedAt <- a .: "pushed_at"
+        -- openIssuesCount <- a .: "open_issues_count"
+        -- openIssues <- a .: "open_issues"
+        -- watchers <- a .: "watchers"
+        stargazers <- a .: "stargazers_count"
+        licence <- a .:? "license"
+        -- licenceUrl <- licence .: "url"
+        -- licenceKey <- licence .: "key"
+        -- licenceName <- licence .: "name"
+        -- licenceSpdxId <- licence .: "spdx_id"
+        -- traceShowM licenceSpdxId
+        -- forks <- a .: "forks"
+        desc <- a .: "description"
+        -- watchersCount <- a .: "watchers_count"
+
+        return $ Repo {
+            name = name,
+            description = desc,
+            language = language,
+            source = url,
+            website = homepage,
+            licence = licence,
+            stars = stargazers
+        }
 
 getRepos :: Text -> Req [Repo]
 getRepos user = do
@@ -63,5 +112,4 @@ getRepos user = do
         "access_token" =: githubAccessToken <>
         header "User-Agent" "Dan's Haskell Bot v1.0"
         )
-    liftIO . print . responseBody $ res
     return $ responseBody res
