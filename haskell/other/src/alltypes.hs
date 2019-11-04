@@ -37,7 +37,7 @@ assign :: String -> String -> Int -> Int -> Int -> String
 assign s_type f_type a b c = "c_" ++ namesFor s_type a b c ++ " = " ++ fnFor f_type a b c
 
 breakWithNLs :: [String] -> String
-breakWithNLs strings = intercalate nl strings
+breakWithNLs = intercalate nl
 
 assignAll :: String
 assignAll = breakWithNLs [assign "C" "(.)" a b c | a <- [1..10], b <- [1..9], c <- [1..9]]

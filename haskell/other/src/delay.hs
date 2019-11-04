@@ -35,7 +35,7 @@ fastPass :: IO ()
 fastPass = pass >>= typeFast
 
 charsToStringList :: String -> [String]
-charsToStringList = fmap ((: []))
+charsToStringList = fmap (: [])
 
 -- password :: IO String
 -- password = crackPassword <&> (\pw -> intercalate pw $ charsToStringList "MYPASSWORD")

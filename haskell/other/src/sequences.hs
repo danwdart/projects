@@ -3,7 +3,7 @@ module Main (main) where
 import Data.List
 
 continueSequence1 :: (Integer -> Integer -> Integer) -> [Integer] -> [Integer]
-continueSequence1 f (x1:x2:xs) = (f x1 x2):x1:x2:xs
+continueSequence1 f (x1:x2:xs) = f x1 x2:x1:x2:xs
 continueSequence1 _ [x] = [x]
 continueSequence1 _ [] = []
 

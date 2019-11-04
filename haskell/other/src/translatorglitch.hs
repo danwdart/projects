@@ -39,11 +39,11 @@ data TRT = TRT {
     translatedText :: String
 } deriving (FromJSON, Generic, Show)
 
-data TRD = TRD {
+newtype TRD = TRD {
     translations :: [TRT]
 } deriving (FromJSON, Generic, Show)
 
-data TR = TR {
+newtype TR = TR {
     _data :: TRD
 } deriving (Generic, Show)
 
@@ -80,10 +80,10 @@ stringsToTranslate =
 
 makeT :: [T.Text] -> TranslateTextRequest
 makeT xs = translateTextRequest
-    & ttrFormat .~ Just "text"
-    & ttrSource .~ Just "so"
-    & ttrTarget .~ Just "en"
-    & ttrModel .~ Just "nmt"
+    & ttrFormat ?~ "text"
+    & ttrSource ?~ "so"
+    & ttrTarget ?~ "en"
+    & ttrModel ?~ "nmt"
     & ttrQ .~ xs
 
 --myR :: TranslationsTranslate

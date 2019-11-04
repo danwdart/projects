@@ -15,4 +15,4 @@ main = fmap show r >>= putStrLn where
     maybeIndex :: Int -> [a] -> Maybe a
     maybeIndex index xs = if null xs then Nothing else Just $ xs !! index
     stringToInteger :: String -> Int
-    stringToInteger string = fst $ head (readHex $ concatMap (\x -> showHex x "") $ map ord $ filter (/=' ') string )
+    stringToInteger string = fst $ head (readHex $ concatMap ((`showHex` "") . ord) (filter (/= ' ') string) )

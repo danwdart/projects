@@ -1,4 +1,4 @@
-import Control.Monad.Writer
+import           Control.Monad.Writer
 
 type MyWriter = Writer [String] Int
 
@@ -20,4 +20,4 @@ withDo = do
 main :: IO ()
 main = mapM_ print [
     runWriter withFns,
-    runWriter withDo ] 
+    runWriter withDo ]
