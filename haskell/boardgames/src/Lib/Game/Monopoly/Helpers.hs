@@ -1,51 +1,50 @@
 module Lib.Game.Monopoly.Helpers where
 
 import Lib.Game.Monopoly.Board
-import Lib.Game.Monopoly.Game
 import Lib.Game.Monopoly.Player
 import Lib.Game.Monopoly.Space
 import Lib.Game.Monopoly.Tax
 
 playerSpace :: [Space] -> Player -> Space
-playerSpace spaces player = spaces !! position player
+playerSpace s player = s !! position player
 
 processLand :: Player -> Board -> Space -> IO (Player, Board)
-processLand player board space = case space of
+processLand player b space = case space of
         GoSpace -> do
             putStrLn "You win some money."
             let player' = addMoney 200 player
-            return (player', board)
+            return (player', b)
         PropertySpace p -> do
             putStrLn $ "Unimplemented: " ++ show p
-            return (player, board)
+            return (player, b)
         RandomSpace t -> do
             putStrLn $ "Unimplemented: " ++ show t
-            return (player, board)
+            return (player, b)
         StationSpace s -> do
             putStrLn $ "Unimplemented: " ++ show s
-            return (player, board)
+            return (player, b)
         UtilitySpace u -> do
             putStrLn $ "Unimplemented: " ++ show u
-            return (player, board)
+            return (player, b)
         TaxSpace t -> do
             putStrLn "You hit the tax space!"
-            let (player', board') = taxMoney t player board
-            return (player', board')
+            let (player', b') = taxMoney t player b
+            return (player', b')
         JailSpace -> do
             putStrLn "You are in jail."
-            return (player, board)
+            return (player, b)
         JustVisitingSpace -> do
             putStrLn "Just visiting right now..."
-            return (player, board)
+            return (player, b)
         FreeParkingSpace -> do
             putStrLn "You receive all of the money."
-            return (player, board)
+            return (player, b)
         GoToJailSpace -> do
             putStrLn "You must go to jail now."
-            return (player, board)
+            return (player, b)
 
 addMoney :: Int -> Player -> Player
 addMoney income player = player {money = money player + income}
 
 taxMoney :: Tax -> Player -> Board -> (Player, Board)
-taxMoney (Tax _ fee) player board = (player {money = money player - fee}, board {freeParkingMoney = freeParkingMoney board + fee})
+taxMoney (Tax _ fee) player b = (player {money = money player - fee}, b {freeParkingMoney = freeParkingMoney b + fee})

@@ -6,7 +6,7 @@ extra-deps:
 - amazonka-kinesis-1.6.1@sha256:439479d6d7f4a731a2f1feeb3a4c653d266c11d655cd4085608e157eb524c51b,3998
 - amazonka-s3-1.6.1@sha256:9d07240fca59ad5197fb614ce3051e701e4951e6d4625a2dab4a9c17a1900194,6317
 - http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
-- serverless-haskell-0.8.10
+- serverless-haskell-0.9.1
 - fakedata-0.2.2
 system-ghc: true
 ghc-options:

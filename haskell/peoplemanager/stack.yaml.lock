@@ -12,19 +12,12 @@ packages:
   original:
     hackage: brick-0.50
 - completed:
-    size: 93663
-    url: https://github.com/psibi/fakedata/archive/bench.tar.gz
-    cabal-file:
-      size: 18219
-      sha256: 802e5ae1f31a9d969584c67eca4e1b632bdb6343801bb78c5208192e02c45903
-    name: fakedata
-    version: 0.2.2
-    sha256: f786427cf6ac1ca6be29efc5167eea618068facfb6bf83bf78fbb70510f49549
+    hackage: fakedata-0.3.1@sha256:4e10a0818c27a26f2934a770eaf73a1d60154772662d5acdeefdce0a2ecd0bfb,18150
     pantry-tree:
-      size: 22330
-      sha256: d2666350b636665c833df44c8465800f9c2c7c7cca9429265543a2047487e37c
+      size: 36093
+      sha256: e65050b38c8ad6a56fe781d204a6ca85532011b041156756dca178e2e28612f7
   original:
-    url: https://github.com/psibi/fakedata/archive/bench.tar.gz
+    hackage: fakedata-0.3.1
 - completed:
     hackage: uuid-1.3.13@sha256:380b45cfd1d2dfda0b52d414f0040cef3adfc02bf54bd9e61f2ef47755ce5adc,3137
     pantry-tree:

@@ -158,6 +158,12 @@ executable cont
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
+executable contravariant
+  hs-source-dirs:      src
+  main-is:             contravariant.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable cyclesinmixedset
   hs-source-dirs:      src
   main-is:             cyclesinmixedset.hs
@@ -254,6 +260,12 @@ executable ffi
   main-is:             ffi.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable fieldTrans
+  hs-source-dirs:      src
+  main-is:             fieldTrans.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, bifunctors
 
 executable files
   hs-source-dirs:      src
@@ -422,6 +434,12 @@ executable ports
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
   
+executable profunctor
+  hs-source-dirs:      src
+  main-is:             profunctor.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, profunctors
+  
 executable qchas
   hs-source-dirs:      src
   main-is:             qchas.hs
@@ -457,6 +475,12 @@ executable req
   main-is:             req.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, aeson, bytestring, mtl, req, retry, text
+
+executable rws
+  hs-source-dirs:      src
+  main-is:             rws.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, monads-tf
 
 executable scrapetumblr
   hs-source-dirs:      src

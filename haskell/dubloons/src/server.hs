@@ -4,6 +4,7 @@ import Control.Monad.IO.Class
 -- import Data.Aeson
 import qualified Data.ByteString.Char8 as BS
 import qualified Data.ByteString.Lazy.Char8 as BSL
+import Data.Maybe
 import Network.HTTP.Types
 import Network.Wai
 import Network.Wai.Handler.Warp

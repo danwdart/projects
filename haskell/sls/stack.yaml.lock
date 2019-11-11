@@ -33,12 +33,12 @@ packages:
   original:
     hackage: http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
 - completed:
-    hackage: serverless-haskell-0.8.10@sha256:ef898ee04ddfb6d444afb5965776a13d901af809e30e6f608591a241cd502ab6,2529
+    hackage: serverless-haskell-0.9.1@sha256:732cd364d2f0526a26685d12a41b14105b607e239c19f9e6dcbc399daa5c9819,2528
     pantry-tree:
       size: 1614
-      sha256: 26b0c5eefd874625a2a9788cbda2a5bff85d00d22052601b75c61754721c2dfc
+      sha256: 7b82553a99f9d852b20af89172bf68d4ea729571e1cbf89fb8bbc3c9a1c753dc
   original:
-    hackage: serverless-haskell-0.8.10
+    hackage: serverless-haskell-0.9.1
 - completed:
     hackage: fakedata-0.2.2@sha256:24595200d354d47fca9c92f0e7d350decc9a6e06baaf26b155ffb04c145b0c7e,17555
     pantry-tree:

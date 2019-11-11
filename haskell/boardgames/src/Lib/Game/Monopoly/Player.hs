@@ -13,7 +13,7 @@ data Player = Player {
 } deriving (Eq, Show)
 
 newPlayer :: String -> Token -> Player
-newPlayer name token = Player name token 0 1500 [] []
+newPlayer n t = Player n t 0 1500 [] []
 
 data OwnedStatus = Unowned | Owned | Mortgaged
 

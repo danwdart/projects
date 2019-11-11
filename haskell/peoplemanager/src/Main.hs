@@ -1,12 +1,13 @@
 {-# LANGUAGE NamedFieldPuns #-}
 module Main where
 
-import qualified Data.Set as S
+import Control.Monad
+-- import qualified Data.Set as S
 import Data.Set (Set)
 import qualified Data.Text as T
 import Data.Text (Text)
 import Data.Time
-import Data.Time.Calendar
+-- import Data.Time.Calendar
 import Data.UUID
 import Data.UUID.V4
 import Faker
@@ -57,7 +58,7 @@ makePerson = do
     }
 
 makePeople :: Int -> IO [Person]
-makePeople number = Control.Monad.replicateM number makePerson
+makePeople number = replicateM number makePerson
 
 data RelationshipType = Married | Couple | Family | Friend | Coworker | Enemy | Indifferent deriving (Eq, Ord, Show)
 

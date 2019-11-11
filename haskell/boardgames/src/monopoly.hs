@@ -1,8 +1,5 @@
 import Control.Monad
-import Data.Function
-import Data.Functor
 import qualified Data.Set as Set
-import Data.Set (Set)
 
 import Lib.Game.Monopoly.Board
 import Lib.Game.Monopoly.Colour
@@ -75,11 +72,11 @@ myGame = Game
     )
 
 performRound :: Game -> IO Game
-performRound (Game board players rules) = do
+performRound (Game b pl r) = do
     putStrLn "Let's go!"
-    let numSpaces = length (spaces board)
-    players' <- forM players $ \p -> do
-        putStrLn $ name p ++ " (the " ++ show (token p) ++ ") is on " ++ show (playerSpace (spaces board) p)
+    -- let numSpaces = length (spaces board)
+    players' <- forM pl $ \p -> do
+        putStrLn $ name p ++ " (the " ++ show (token p) ++ ") is on " ++ show (playerSpace (spaces b) p)
         roll <- (,) <$> randomRIO (1, 6) <*> randomRIO (1, 6) :: IO (Int, Int)
         -- let total = roll <&> uncurry (+)
         putStrLn $ "Roll: " ++ show roll
@@ -89,16 +86,17 @@ performRound (Game board players rules) = do
         --when (newPosition > numSpaces) $ do
         --   print "Passed GO."
         let p' = p {position = newPosition}
-        let newSpace = spaces board !! newPosition
+        let newSpace = spaces b !! newPosition
         putStrLn $ "That puts you on position " ++ show newPosition ++ " which is " ++ show newSpace
-        (player', board') <- processLand p' board newSpace
+        (_, _) <- processLand p' b newSpace
         -- board'
         return p'
 
-    return $ Game board players' rules
+    return $ Game b players' r
 
 main :: IO ()
 main = do
     myGame1 <- performRound myGame
     myGame2 <- performRound myGame1
+    print myGame2
     return ()
