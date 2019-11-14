@@ -2,6 +2,8 @@ import Control.Monad
 import Control.Monad.Loops
 import qualified Control.Monad.HT as M
 import Data.Maybe
+import Numeric.Probability.Object
+import Numeric.Probability.Random (run)
 import Rando
 -- import System.Random
 
@@ -13,23 +15,20 @@ data Yield = Yield | Winner | Continue deriving (Eq, Show)
 
 -- Number of something, actual thing
 
--- boardNumbers :: [(Int, Int)]
--- boardNumbers = [(1,11),(2,18),(3,39),(4,44),(5,20),(6,11)]
-
-numberOfChoices :: Int
-numberOfChoices = 8
+boardNumbers :: [(Int, Double)]
+boardNumbers = [(1,11/143),(2,18/143),(3,39/143),(4,44/143),(5,20/143),(6,11/143)]
 
 diceNumbers :: [Int]
 diceNumbers = [1..6]
 
-rollDice :: IO [Int]
-rollDice = replicateM numberOfChoices $ pickOne diceNumbers
-
-sumDice :: IO Int
-sumDice = sum <$> rollDice
+makeResult :: IO Int -> IO Result
+makeResult a = fromJust . flip lookup boardPrizes . sum <$> replicateM 8 a
 
 resDice :: IO Result
-resDice = fromJust . flip lookup boardPrizes <$> sumDice
+resDice = makeResult . pickOne $ diceNumbers
+
+resMarbles :: IO Result
+resMarbles = makeResult . run . fromFrequencies $ boardNumbers
 
 data GameState = GameState {
     score :: Score,
@@ -45,41 +44,42 @@ initialGameState :: GameState
 initialGameState = GameState {
     score = 0,
     prizes = 0,
-    money = 10000,
+    money = 100000000000,
     spent = 0,
     cost = 1,
     turns = 0,
     yield = Continue
 }
 
-processRound :: GameState -> IO GameState
-processRound gameState = do
-    result <- resDice
-    return $ if money gameState > cost gameState then
-        GameState {
-            score = score gameState + getPoints result,
-            prizes = prizes gameState + getPrizeIncrement (getPrize result),
-            money = money gameState - cost gameState,
-            spent = spent gameState + cost gameState,
-            cost = getCost result $ cost gameState,
-            turns = turns gameState + 1,
-            yield = if score gameState >= 100 then Winner else Continue
-        }
-    else
-        gameState {
-            yield = Yield
-        }
+processRound :: GameState -> IO Result -> IO GameState
+processRound gameState res = do
+    result <- res
+    return $
+        if money gameState > cost gameState then
+            GameState {
+                score = score gameState + getPoints result,
+                prizes = prizes gameState + getPrizeIncrement (getPrize result),
+                money = money gameState - cost gameState,
+                spent = spent gameState + cost gameState,
+                cost = getCost result $ cost gameState,
+                turns = turns gameState + 1,
+                yield = if score gameState >= 100 then Winner else Continue
+            }
+        else
+            gameState {
+                yield = Yield
+            }
 
-processValidateRound :: GameState -> IO GameState
-processValidateRound gameState
+processValidateRound :: GameState -> IO Result -> IO GameState
+processValidateRound gameState res
     | money gameState == 0 = return gameState
     | yield gameState == Yield = return gameState
-    | otherwise = processRound gameState
+    | otherwise = processRound gameState res
 
-processUntilFinish :: GameState -> IO GameState
-processUntilFinish = iterateUntilM (\x -> yield x /= Continue) processValidateRound
-
+processUntilFinish :: IO Result -> GameState -> IO GameState
+processUntilFinish  = iterateUntilM (\ x -> yield x /= Continue) . flip processValidateRound
 -- Scan ...
+
 
 -- State? Random without IO?
 
@@ -147,10 +147,14 @@ boardPrizes = [
     (48, Points 100)
     ]
 
-game :: IO GameState
-game = processUntilFinish initialGameState
+game :: IO Result -> IO GameState
+game = flip processUntilFinish initialGameState
 
 main :: IO ()
 main = do
-    game >>= print
-    M.until (\x -> yield x == Winner) game >>= print
+    putStrLn "Dice version"
+    game resDice >>= print
+    M.until (\x -> yield x == Winner) (game resDice) >>= print
+    putStrLn "Marbles version"
+    game resMarbles >>= print
+    M.until (\x -> yield x == Winner) (game resMarbles) >>= print
