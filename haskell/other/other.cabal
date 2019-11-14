@@ -78,7 +78,13 @@ executable bifunctor
   hs-source-dirs:      src
   main-is:             bifunctor.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, bifunctors
+
+executable bijections
+  hs-source-dirs:      src
+  main-is:             bijections.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, invertible
 
 executable binarygame
   hs-source-dirs:      src
@@ -433,6 +439,12 @@ executable ports
   main-is:             ports.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable prim
+  hs-source-dirs:      src
+  main-is:             prim.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, ghc-prim
   
 executable profunctor
   hs-source-dirs:      src
