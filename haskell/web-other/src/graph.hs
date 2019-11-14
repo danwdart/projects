@@ -1,12 +1,13 @@
 {-# LANGUAGE JavaScriptFFI #-}
 
 import Data.JSString ()
+import GHCJS.DOM
 import GHCJS.Types
 import qualified JavaScript.Web.Canvas as C
 
---foreign import javascript unsafe "window.alert($1)" js_alert :: JSString -> IO ()
---foreign import javascript unsafe "console.log($1)" js_log :: JSVal -> IO ()
---foreign import javascript unsafe "document.body.appendChild($1)" js_append :: JSVal -> IO ()
+foreign import javascript unsafe "window.alert($1)" js_alert :: JSString -> IO ()
+foreign import javascript unsafe "console.log($1)" js_log :: JSVal -> IO ()
+foreign import javascript unsafe "document.body.appendChild($1)" js_append :: JSVal -> IO ()
 
 data Point2D = Point2D {
     x :: Double,
@@ -28,9 +29,9 @@ draw (Line2D (Point2D x0 y0) (Point2D x1 y1)) ctx = do
     C.stroke ctx
 
 drawGrid :: C.Context -> IO ()
-drawGrid ctx = do
-    mapM_ (`draw` ctx) . (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0..16]
-    mapM_ (`draw` ctx) . (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0..16]
+drawGrid ctx = return () -- do
+    -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0.0..16.0]
+    -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0.0..16.0]
 
 -- fillGridSquare :: Int -> Int -> C.Context -> IO ()
 
