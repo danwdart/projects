@@ -13,6 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "serverless": "^1.57.0",
-    "serverless-haskell": "^0.9.1"
+    "serverless-haskell": "^0.9.3"
   }
 }
