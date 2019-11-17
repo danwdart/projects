@@ -10,10 +10,10 @@
   "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^6.6.0",
     "eslint-plugin-cleanjs": "0.0.1"
   },
   "dependencies": {
-    "esm": "^3.2.22"
+    "esm": "^3.2.25"
   }
 }

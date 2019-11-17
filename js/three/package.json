@@ -12,24 +12,24 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
     "@types/three": "^0.103.2",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "css-loader": "^2.1.1",
-    "eslint": "^5.16.0",
-    "file-loader": "^3.0.1",
-    "style-loader": "^0.23.1",
-    "ts-loader": "^6.0.0",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5",
-    "url-loader": "^1.1.2",
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1"
+    "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "file-loader": "^4.2.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.2.1",
+    "tslint": "^6.0.0-beta1",
+    "typescript": "^3.8.0-dev.20191116",
+    "url-loader": "^2.2.0",
+    "webpack": "^5.0.0-beta.6",
+    "webpack-cli": "^4.0.0-beta.1",
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "three": "^0.104.0"
+    "three": "^0.110.0"
   }
 }

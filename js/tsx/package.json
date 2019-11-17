@@ -15,9 +15,9 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "esm": "^3.2.22",
-    "tslint": "^5.16.0",
-    "tslint-react": "^4.0.0",
-    "typescript": "^3.4.5"
+    "esm": "^3.2.25",
+    "tslint": "^6.0.0-beta1",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.8.0-dev.20191116"
   }
 }

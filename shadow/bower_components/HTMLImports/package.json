@@ -13,6 +13,6 @@
     "karma-mocha": "*",
     "karma-safari-launcher": "*",
     "karma-script-launcher": "*",
-    "mocha": "^6.1.4"
+    "mocha": "^6.2.2"
   }
 }

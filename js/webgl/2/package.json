@@ -9,9 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gl-matrix": "^3.0.0"
+    "gl-matrix": "^3.1.0"
   },
   "devDependencies": {
-    "snyk": "^1.165.0"
+    "snyk": "^1.248.0"
   }
 }

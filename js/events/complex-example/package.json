@@ -12,7 +12,7 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^6.6.0"
   },
   "dependencies": {
     "EventEmitter": "^1.0.0"
