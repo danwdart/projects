@@ -76,4 +76,4 @@ helloMain = do
     setInnerHTML body "<h1>Ka kite ano (See you later)</h1>"
 
 main :: IO ()
-main = debug 5000 helloMain
+main = run 5000 helloMain

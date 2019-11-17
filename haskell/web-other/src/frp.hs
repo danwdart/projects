@@ -53,7 +53,7 @@ jsCode = do
     setInnerHTML elBody $ BSL.unpack $ renderHtml page
 
 serve :: JSM () -> IO ()
-serve = debug 5000
+serve = run 5000
 
 main :: IO ()
 main = serve jsCode

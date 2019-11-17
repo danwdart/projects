@@ -20,7 +20,6 @@ import GHCJS.DOM.Node
 import GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
 
-import Language.Javascript.JSaddle.Debug
 import Language.Javascript.JSaddle.Object
 import Language.Javascript.JSaddle.Warp
 
@@ -62,15 +61,15 @@ helloMain = do
 
 main :: IO ()
 main = serve $ do
-    runOnAll_ logHere
-    _ <- runOnAll getConfirmFromClient
-    _ <- runOnAll getPromptFromClient
-    runOnAll_ drawOnNewCanvas
-    _ <- runOnAll getBodies
+    logHere
+    _ <- getConfirmFromClient
+    _ <- getPromptFromClient
+    drawOnNewCanvas
+    _ <- getBodies
     return ()
 
 serve :: JSM () -> IO ()
-serve = debug 5000
+serve = run 5000
 
 logHere :: JSM ()
 logHere = void $ jsg "console" # "log" $ ["Hi folks!"]
