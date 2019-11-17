@@ -1,7 +1,10 @@
+{-# LANGUAGE TemplateHaskell #-}
 
+import Language.Haskell.TH
+import Lib.TH
 
--- import Language.Haskell.TH
--- reify
+stringifyType :: Name -> String
+stringifyType n = filterOK $(reify n >>= infoToExp)
 
 main :: IO ()
-main = undefined
+main = putStrLn stringifyType '(.)
