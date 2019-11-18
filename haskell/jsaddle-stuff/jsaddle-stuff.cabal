@@ -1,0 +1,30 @@
+name:                jsaddle-stuff
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/dansstuff#readme
+license:             PublicDomain
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable tumblreasyswitch
+  hs-source-dirs:      src
+  main-is:             extension/tumblreasyswitch.hs
+  default-language:    Haskell2010
+-- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
+  build-depends:       base >= 4.7 && < 5, containers, jsaddle
+  cpp-options:         -DGHCJS_BROWSER
+
+executable cardioid
+  hs-source-dirs:      src
+  main-is:             cardioid.hs
+  default-language:    Haskell2010
+-- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
+  build-depends:       base >= 4.7 && < 5, containers, jsaddle
+  cpp-options:         -DGHCJS_BROWSER

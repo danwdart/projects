@@ -1,0 +1,16 @@
+resolver: lts-14.12
+packages:
+- .
+extra-deps:
+  - blaze-html-0.9.1.1
+  - blaze-markup-0.8.2.3
+  - ghcjs-dom-0.9.4.0
+  - ghcjs-dom-jsaddle-0.9.4.0
+  - jsaddle-0.9.6.0
+  - jsaddle-dom-0.9.3.2
+  - jsaddle-warp-0.9.6.0
+  - reactive-banana-1.2.1.0
+  - ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
+system-ghc: true
+ghc-options:
+  web: -Wall -Werror
