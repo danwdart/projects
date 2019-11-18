@@ -2,10 +2,13 @@
 
 import qualified Data.ByteString.Lazy.Char8 as BSL
 
+import Control.Monad.IO.Class
+
 import JSDOM
 import JSDOM.Document
-import JSDOM.Element
-import JSDOM.Window
+import JSDOM.Element (setInnerHTML)
+import JSDOM.HTMLCollection
+import JSDOM.Types
 
 import Language.Javascript.JSaddle hiding ((!))
 import Language.Javascript.JSaddle.Warp
@@ -35,6 +38,8 @@ jsMain = do
     doc <- currentDocumentUnchecked
     elBody <- getBodyUnchecked doc
     setInnerHTML elBody $ BSL.unpack $ renderHtml page
+    fgetElementsByTagName doc ("form" :: String) >>= flip itemUnchecked 0 >>= toJSVal >>= jsg ("console" :: String) # ("log" :: String)
+    return ()
     
 main :: IO ()
 main = run 5000 jsMain
