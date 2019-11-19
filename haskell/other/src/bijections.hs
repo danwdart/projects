@@ -1,4 +1,4 @@
-import Data.Invertible.Prelude
+-- import Data.Invertible.Prelude
 
 main :: IO ()
 main = return ()
