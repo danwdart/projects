@@ -38,7 +38,7 @@ jsMain = do
     doc <- currentDocumentUnchecked
     elBody <- getBodyUnchecked doc
     setInnerHTML elBody $ BSL.unpack $ renderHtml page
-    fgetElementsByTagName doc ("form" :: String) >>= flip itemUnchecked 0 >>= toJSVal >>= jsg ("console" :: String) # ("log" :: String)
+    getElementsByTagName doc ("form" :: String) >>= flip itemUnchecked 0 >>= toJSVal >>= jsg ("console" :: String) # ("log" :: String)
     return ()
     
 main :: IO ()
