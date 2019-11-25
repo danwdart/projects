@@ -2,6 +2,10 @@ org: dandart
 app: haskell-demo
 service: sls
 
+environment:
+  LANG: en_GB.UTF-8
+  LC_ALL: en_GB.UTF-8
+
 provider:
   name: aws
   region: eu-west-1
@@ -10,12 +14,20 @@ provider:
 functions:
   sls-func:
     handler: sls.sls
-    # Here, mypackage is the Haskell package name and myfunc is the executable
-    # name as defined in the Cabal file. The handler field may be prefixed
-    # with a path of the form `dir1/.../dirn`, relative to `serverless.yml`,
-    # which points to the location where the Haskell package `mypackage` is
-    # defined. This prefix is not needed when the Stack project is defined at
-    # the same level as `serverless.yml`.
+    events:
+      - http:
+          path: /sls
+          method: post
+          cors: true
+          private: false
+  github-pr:
+    handler: sls.githubpr
+    events:
+      - http:
+          path: /github
+          method: post
+          cors: true
+          private: false
 
 plugins:
   - serverless-haskell
