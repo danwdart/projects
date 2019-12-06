@@ -26,6 +26,27 @@ packages:
   original:
     hackage: amazonka-s3-1.6.1@sha256:9d07240fca59ad5197fb614ce3051e701e4951e6d4625a2dab4a9c17a1900194,6317
 - completed:
+    hackage: binary-instances-1@sha256:b17565598b8df3241f9b46fa8e3a3368ecc8e3f2eb175d7c28f319042a6f5c79,2613
+    pantry-tree:
+      size: 1035
+      sha256: 938ffc6990cac12681c657f7afa93737eecf335e6f0212d8c0b7c1ea3e0f40f4
+  original:
+    hackage: binary-instances-1@sha256:b17565598b8df3241f9b46fa8e3a3368ecc8e3f2eb175d7c28f319042a6f5c79,2613
+- completed:
+    hackage: git-0.3.0@sha256:dc070840ab24792c9664b9e3e69c9d55d30fc36fee41049c548bb0e8ec83c919,3448
+    pantry-tree:
+      size: 1900
+      sha256: da2861008035f16e43f0c4ea293cec15e04b398c911fa99322d159e19cd0266e
+  original:
+    hackage: git-0.3.0
+- completed:
+    hackage: github-0.23@sha256:07671c92da7142668ecdeaa5669ddda629ae85f25acd2ecadd49f9a119a5eac6,6965
+    pantry-tree:
+      size: 7113
+      sha256: 90337bce40541903a3f151210499e3fbfa3e9fafbba4b1067641698cc6ee3921
+  original:
+    hackage: github-0.23
+- completed:
     hackage: http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
     pantry-tree:
       size: 2457
