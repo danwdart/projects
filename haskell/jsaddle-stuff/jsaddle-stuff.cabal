@@ -12,6 +12,8 @@ category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
+data-files:          *.html
+data-dir:            data
 
 executable tumblreasyswitch
   hs-source-dirs:      src
@@ -19,6 +21,14 @@ executable tumblreasyswitch
   default-language:    Haskell2010
 -- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
   build-depends:       base >= 4.7 && < 5, containers, jsaddle
+  cpp-options:         -DGHCJS_BROWSER
+
+executable canvas
+  hs-source-dirs:      src
+  main-is:             canvas.hs
+  default-language:    Haskell2010
+-- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
+  build-depends:       base >= 4.7 && < 5, containers, jsaddle, jsaddle-dom, jsaddle-warp
   cpp-options:         -DGHCJS_BROWSER
 
 executable cardioid
@@ -32,14 +42,6 @@ executable cardioid
 executable cfe
   hs-source-dirs:      src
   main-is:             cfe.hs
-  default-language:    Haskell2010
--- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
-  build-depends:       base >= 4.7 && < 5, blaze-html, bytestring, containers, jsaddle, jsaddle-dom, jsaddle-warp, split
-  cpp-options:         -DGHCJS_BROWSER
-
-executable github-pr
-  hs-source-dirs:      src
-  main-is:             github-pr.hs
   default-language:    Haskell2010
 -- build-depends:       base >= 4.7 && < 5, ghcjs-base, ghcjs-dom, containers
   build-depends:       base >= 4.7 && < 5, blaze-html, bytestring, containers, jsaddle, jsaddle-dom, jsaddle-warp, split
