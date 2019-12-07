@@ -244,6 +244,12 @@ executable enum
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable error-collection
+  hs-source-dirs:      src
+  main-is:             error-collection.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, bifunctors, containers
+
 executable eventloop
   hs-source-dirs:      src
   main-is:             eventLoop.hs
