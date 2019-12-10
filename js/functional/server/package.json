@@ -17,9 +17,9 @@
     "esm": "^3.2.25",
     "mocha": "^6.2.2",
     "ts-mocha": "^6.0.0",
-    "ts-node": "^8.5.2",
+    "ts-node": "^8.5.4",
     "tslint": "^6.0.0-beta1",
-    "typescript": "^3.8.0-dev.20191116"
+    "typescript": "^3.8.0-dev.20191210"
   },
   "dependencies": {}
 }
