@@ -14,6 +14,6 @@
   "dependencies": {
     "@types/node": "^12.12.8",
     "tslint": "^6.0.0-beta1",
-    "typescript": "^3.8.0-dev.20191116"
+    "typescript": "^3.8.0-dev.20191210"
   }
 }
