@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "serverless": "^1.57.0",
-    "serverless-haskell": "^0.9.3"
+    "serverless": "^1.59.3",
+    "serverless-haskell": "^0.9.4"
   }
 }
