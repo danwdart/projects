@@ -11,7 +11,7 @@
   "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "eslint": "^6.6.0",
+    "eslint": "^6.7.2",
     "web-ext": "^3.2.1"
   }
 }
