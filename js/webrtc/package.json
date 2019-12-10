@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "snyk": "^1.248.0",
+    "snyk": "^1.258.1",
     "socket.io": "2.3.0"
   },
   "snyk": true
