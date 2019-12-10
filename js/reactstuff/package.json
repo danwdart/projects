@@ -5,12 +5,12 @@
   "dependencies": {
     "@types/jest": "24.0.23",
     "@types/node": "12.12.8",
-    "@types/react": "16.9.11",
+    "@types/react": "16.9.16",
     "@types/react-dom": "16.9.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0-next.62",
-    "typescript": "3.8.0-dev.20191116"
+    "react-scripts": "3.3.0",
+    "typescript": "3.8.0-dev.20191210"
   },
   "scripts": {
     "start": "react-scripts start",
