@@ -39,21 +39,25 @@ getPoints startX endX skipX = enumFromThenTo startX (startX + skipX) endX
 
 plotFormula :: (Double -> Double) -> Double -> Double -> Double -> CanvasRenderingContext2D -> JSM ()
 plotFormula fn startX endX skipX ctx = do
+    clearRect ctx 0 0 1600 800
     let points = getPoints startX endX skipX
     let p = pairs $ zipFn fn points
     mapM_ (\(p1, p2) -> line p1 p2 ctx) p
 
 plotRecurrenceRelation :: (Double -> Double) -> Double -> Double -> Double -> Double -> Double -> CanvasRenderingContext2D -> JSM ()
 plotRecurrenceRelation rr startY scaleY startX endX skipX ctx = do
+    clearRect ctx 0 0 1600 800
     let pointsX = getPoints startX endX skipX
     let p = pairs $ zip pointsX $ (*scaleY) <$> iterate rr startY
     mapM_ (\(p1, p2) -> line p1 p2 ctx) p
 
 plotGraph :: CanvasRenderingContext2D -> JSM ()
 plotGraph ctx = do
+    clearRect ctx 0 0 1600 800
     plotFormula ((200*) . sin . (/100)) 0 1600 1 ctx
     plotRecurrenceRelation (1-) 0.2 350 0 1600 100 ctx
     plotRecurrenceRelation (\x -> 3.95 * (1-x) * x) 0.2 350 0 1600 2 ctx
+    plotRecurrenceRelation (\x -> 3.02 * (1-x) * x) 0.2 350 0 1600 2 ctx
 
 newCanvas :: Document -> JSM HTMLCanvasElement
 newCanvas doc = do
