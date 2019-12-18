@@ -1,0 +1,63 @@
+p, ul {
+    margin: 0;
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+    color: purple;
+}
+
+a.social {
+    font-size: 24px;
+    margin: 0 4px;
+}
+
+a.social, a.social-pump {
+    filter: contrast(0);
+    transition: filter 0.5s;
+}
+
+a.social:hover, a.social-pump:hover {
+    filter: contrast(1);
+}
+
+a.social-pump img {
+    width: 24px;
+    margin: -10px 4px 0 4px;
+}
+
+.social-row {
+    overflow: auto;
+    display: block;
+    text-align: right;
+}
+
+.social-inside {
+    width: 620px;
+}
+
+.navbar-nav {
+    overflow: auto hidden;
+}
+
+@media(max-width: 768px) {
+    .page {
+        margin-top: 30px;
+    }
+
+    .social-row, .navbar-nav, .navbar > div {
+        max-width: 90%;
+    }
+}
+
+@media(max-width: 576px) {
+    .social-row, .navbar-nav, .navbar > div {
+        max-width: 100%;
+    }
+
+    .social-inside {
+        width: 630px;
+    }
+}
