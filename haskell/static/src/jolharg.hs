@@ -2,6 +2,7 @@
 
 -- import Control.Monad (forM_)
 import qualified Data.ByteString.Lazy.Char8 as BSL
+import Data.JolHarg
 -- import Data.String
 import Network.HTTP.Req
 import Text.Blaze.Html.Renderer.Utf8
@@ -16,34 +17,6 @@ main = do
     reposDan <- runReq defaultHttpConfig $ getRepos "danwdart"
     reposJH <- runReq defaultHttpConfig $ getRepos "jolharg"
     BSL.putStrLn . renderHtml $ page $ reposDan <> reposJH
-
-keywords :: [AttributeValue]
-keywords = [
-    "dan",
-    "dart",
-    "software",
-    "engineer",
-    "mathematics",
-    "lover",
-    "radio",
-    "ham",
-    "php",
-    "javascript",
-    "css",
-    "coffee",
-    "coffeescript",
-    "laravel",
-    "zend",
-    "framework",
-    "linux",
-    "gnu",
-    "express.js",
-    "ubuntu",
-    "debian"
-    ]
-
-descTitle :: String
-descTitle = "JolHarg: Engineering Software"
 
 pagePortfolio :: Html
 pagePortfolio = li ! class_ "nav-item" $ do

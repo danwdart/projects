@@ -26,4 +26,4 @@ executable jolharg
   main-is:             jolharg.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, aeson, blaze-html, blaze-markup, bytestring, Cabal, req, text
-  other-modules:       Page.Card, Page.GitHub Page.Head, Page.Link, Page.Social, Page.Utils
+  other-modules:       Data.JolHarg, Page.Card, Page.GitHub Page.Head, Page.Link, Page.Shortcuts, Page.Social, Page.Utils
