@@ -2,6 +2,7 @@
 
 -- import Control.Monad (forM_)
 import qualified Data.ByteString.Lazy.Char8 as BSL
+import Data.DanDart
 -- import Data.String
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5 as H hiding (main)
@@ -11,10 +12,12 @@ import Page.Head
 import Page.Link
 import Page.Shortcuts
 import Page.Social
-import Data.DanDart
+import System.Directory
 
 main :: IO ()
-main = BSL.putStrLn . renderHtml $ page
+main = do
+    createDirectoryIfMissing True ".sites/dandart"
+    BSL.writeFile ".sites/dandart/index.html" $ renderHtml page
 
 pageIntro :: Html
 pageIntro = li ! class_ "nav-item" $ do

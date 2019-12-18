@@ -11,12 +11,14 @@ import Text.Blaze.Html5.Attributes as A
 import Page.Card
 import Page.GitHub
 import Page.Head
+import System.Directory
 
 main :: IO ()
 main = do
     reposDan <- runReq defaultHttpConfig $ getRepos "danwdart"
     reposJH <- runReq defaultHttpConfig $ getRepos "jolharg"
-    BSL.putStrLn . renderHtml $ page $ reposDan <> reposJH
+    createDirectoryIfMissing True ".sites/jolharg"
+    BSL.writeFile ".sites/jolharg/index.html" $ renderHtml $ page $ reposDan <> reposJH
 
 pagePortfolio :: Html
 pagePortfolio = li ! class_ "nav-item" $ do
