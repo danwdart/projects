@@ -1,0 +1,67 @@
+Code
+    Checkbox game - probably involves comonads
+    Monitor corporate chat with graphs and notifications
+    Drpl in parser combinators
+    Deduper inc site stuff
+    Run stuff through shells if not exists natively
+    Wishlist offers or page update detector?
+    Arrays copying
+    Arch or os for fd or opcode = device always? Like io ports idk
+    Multicore stuff
+    Machine learn
+    Advantage for console / file / memory monads? Implicit contt fd? Put and get are isomorphic?
+    Puppetteer?
+    Simd
+    Update funky birthdays with error bounds e.g. 1.505 -> 1.5025 .. 1.5075
+    6!+9=9^3?
+    Realistic goal calculator using stdev
+    Cycles in mixed set (Adceb -> 1 id, 1 cycle of 4)
+    Cipher moving each cons and vowel: Hello world -> Hemnu Z...
+    3d terrain generation
+    Sls
+        Pr and commit or just moderatable db
+        Make analytics in sls with sqs for proc jobs
+        Transfer via either reverse ssl or gpg the analytics data depending on the key uploaded
+            things like db search results
+        Firebase or graphql
+    Linux
+        Barebones linux haskell env
+    Low level
+        Assembly in parser combinators??
+        Binary file writing from record by packing?
+        Wasm loader toy
+        Disassembler with opcode documentor
+        Exploitable app
+        Inline assembly
+        Raw ip packet encrypted??
+        Proprietary iconset extractor
+            exists
+    FS
+        Fs creator for efi
+To investigate
+    Os imgs on archive
+    Fun old progs
+    Make ipcam streams embeddable
+    spectrum fan noise
+    Which mercator straight
+    Coords of platonic soluds on a sphere
+    Road windiness
+    Where does maclsirin taylor series diverge by set proportions?
+    concatMap vs =<<
+    What's not a monad
+    Monads, constructors, types in symbols, bind, map and such in types with checking in constructor: js? Wrapped or proto js?
+    Which way do fibs round
+    Or lucases
+    Powers of phi in terms of root5
+
+Blogs
+    Prime fanfic but maths euphemisms
+
+To make
+    Announcement sound effects
+
+
+
+
+
+
