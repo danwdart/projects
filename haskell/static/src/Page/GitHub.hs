@@ -26,6 +26,7 @@ data Language = LangHS
     | LangBlitzBasic
     | LangC
     | LangTcl
+    | LangVB
     | LangCPP deriving (Eq, Generic, Show)
 
 instance FromJSON Language where
@@ -46,6 +47,7 @@ instance FromJSON Language where
         "BlitzBasic" -> LangBlitzBasic
         "Haskell" -> LangHS
         "C++" -> LangCPP
+        "VBA" -> LangVB
         "Vim script" -> LangShell
         _ -> error $ "Unknown language: " ++ T.unpack a
     parseJSON Null = return LangGeneric

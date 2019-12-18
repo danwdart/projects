@@ -9,59 +9,12 @@ import Text.Blaze.Html5.Attributes as A
 import Page.Audio
 import Page.Head
 import Page.Link
+import Page.Shortcuts
 import Page.Social
+import Data.DanDart
 
 main :: IO ()
 main = BSL.putStrLn . renderHtml $ page
-
-keywords :: [AttributeValue]
-keywords = [
-    "dan",
-    "dart",
-    "software",
-    "engineer",
-    "mathematics",
-    "lover",
-    "radio",
-    "ham",
-    "php",
-    "javascript",
-    "css",
-    "coffee",
-    "coffeescript",
-    "laravel",
-    "zend",
-    "framework",
-    "linux",
-    "gnu",
-    "express.js",
-    "ubuntu",
-    "debian"
-    ]
-
-descTitle :: String
-descTitle = "Dan Dart: Software Engineer, Mathematics Lover, Radio Ham, Musician"
-
-musicalStyles :: [Html]
-musicalStyles = [
-    "Prog Rock",
-    "Heavy Metal",
-    "Ambient",
-    "Classical"
-    ]
-
-ghPages, ghPagesProjects, projectsSource, imdb, wikipedia, yt, ytChan, ytUser, nhs, oeis :: AttributeValue
-ghPages = "https://danwdart.github.io/"
-ghPagesProjects = ghPages <> "projects/"
-
-projectsSource = "https://github.com/danwdart/projects/tree/master"
-wikipedia = "https://en.wikipedia.org/wiki/"
-ytChan = "https://www.youtube.com/channel/"
-ytUser = "https://www.youtube.com/user/"
-yt = "https://www.youtube.com/watch?v="
-imdb = "https://www.imdb.com/title/tt"
-nhs = "https://www.nhs.uk/conditions/"
-oeis = "https://oeis.org/A"
 
 pageIntro :: Html
 pageIntro = li ! class_ "nav-item" $ do
@@ -88,164 +41,16 @@ pageCharacters = li ! class_ "nav-item" $ do
         H.div ! class_ "row" $ H.div ! class_ "col my-md-3" $ small "» Characters"
         H.div ! class_ "row" $ H.div ! class_ "col-md-8 offset-md-2 py-3 mb-3 bg-light" $ do
             p "Some of my favourite characters and characters that I identify with are:"
-            ul $ do
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Star_Trek") "Star Trek"
-                    ":"
-                    ul $ do
-                        li $ do
-                            extLink (wikipedia <> "Spock") "Spock"
-                            ", because I often think of the world logically"
-                        li $ do
-                            extLink "http://memory-alpha.wikia.com/wiki/Spock_(mirror)" "Evil (Mirror) Spock"
-                            ", because of his outrageous beard and he's just hysterical"
-                        li $ do
-                            extLink (wikipedia <> "Data_%28Star_Trek%29") "Data"
-                            ", because I am curious, confused and if he was human he'd probably be autistic"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Danganronpa") "Danganronpa"
-                    ":"
-                    ul $ do
-                        li $ do
-                            extLink (wikipedia <> "List_of_Danganronpa_characters#Danganronpa_2:_Goodbye_Despair") "Nagito Komaeda"
-                            ", because I'm very lucky and obsessed with hope, and also trash"
-                        li $ do
-                            extLink (wikipedia <> "List_of_Danganronpa_characters#Danganronpa:_Trigger_Happy_Havoc") "Chihiro Fujisaki"
-                            ", because I love programming and feel similar about life"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Miss_Kobayashi%27s_Dragon_Maid") "Kobayashi-san Chi no Maid Dragon"
-                    ":"
-                    ul $ li $ do
-                        extLink "http://maid-dragon.wikia.com/wiki/Fafnir" "Fafnir"
-                        ", because he's dapper, awesome, interesting and acts hilariously"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Future_Diary") "Mirai Nikki"
-                    ":"
-                    ul $ li $ do
-                        extLink "http://futurediary.wikia.com/wiki/Yukiteru_Amano" "Yukiteru Amano"
-                        ", because my waifu is Yuno, and Yuki is depressed and I would act like he acts in the OVA"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Berserk_%28manga%29") "Berserk"
-                    ":"
-                    ul $ li $ do
-                        extLink (wikipedia <> "List_of_Berserk_characters#Griffith") "Griffith"
-                        ", because he's sneaky and smart and he looks fabulous"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Black_Butler") "Kuroshitsuji"
-                    ":"
-                    ul $ li $ do
-                        extLink "https://kuroshitsuji.fandom.com/wiki/Grell_Sutcliff" "Grell Sutcliff"
-                        ", because he's hysterical, fabulous and has good taste in butlers"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "The_Ancient_Magus%27_Bride") "Mahoutsukai no Yome"
-                    ":"
-                    ul $ li $ do
-                        extLink "http://ancientmagusbride.wikia.com/wiki/Elias_Ainsworth" "Elias Ainsworth"
-                        ", because he's caring, doesn't act like outrageous humans and Chise is my waifu"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Neon_Genesis_Evangelion") "Neon Genesis Evangelion"
-                    ":"
-                    ul $ li $ do
-                        extLink (wikipedia <> "Shinji_Ikari") "Shinji Ikari"
-                        ", because... existentialism, essentially. He's a whiner, but I like his thought patterns when he's being existential."
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "My_Little_Pony:_Friendship_Is_Magic") "MLP"
-                    ":"
-                    ul $ li $ do
-                        extLink (wikipedia <> "List_of_My_Little_Pony%3A_Friendship_Is_Magic_characters#Twilight_Sparkle") "Twilight Sparkle"
-                        ", because knowledge and being awesome"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Alice%27s_Adventures_in_Wonderland") "Alice's Adventures in Wonderland"
-                    ":"
-                    ul $ li $ do
-                        extLink (wikipedia <> "Hatter_(Alice%27s_Adventures_in_Wonderland)") "The Mad Hatter"
-                        ", because I like his sense of humour, eccentricity and hats"
-                li $ do
-                    "from"
-                    extLink (ytUser <> "TVFilthyFrank") "The Filthy Frank Show"
-                    ":"
-                    ul $ li $ do
-                        extLink "http://filthy-frank.wikia.com/wiki/Filthy_Frank" "Real Frank"
-                        ", because he's lost and good to his crew. ^Also depression, yay^"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Back_to_the_Future_(franchise)") "Back to the Future"
-                    ":"
-                    ul $ li $ do
-                        extLink (wikipedia <> "Emmett_Brown") "\"Doc\" Emmett Brown"
-                        ", because he's eccentric and time travel, hell yeah"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Doctor_Who") "Doctor Who"
-                    ":"
-                    ul $ li $ do
-                        extLink (wikipedia <> "The_Doctor_(Doctor_Who)") "The Doctor"
-                        ", again because of eccentricity, inventions and awesomeness"
-                li $ do
-                    "from"
-                    extLink (wikipedia <> "Battleborn_(video_game)") "Battleborn"
-                    ":"
-                    ul $ li $ do
-                        extLink "https://battleborn.com/en/battleborn/marquis/" "Marquis"
-                        ", because those quotes are amazing, dunk dunk dunk!"
-
-musicList :: [(Html, [Html])]
-musicList = [
-    (
-        "Pink Floyd",
-        [
-            "Comfortably Numb",
-            "Another Brick in the Wall",
-            "Wish You Were Here",
-            "The Dark Side of the Moon (yes, to me it's a single song)"
-        ]
-    ),
-    (
-        "Focus",
-        [
-            "Anonymus II",
-            "Eruption",
-            "Sylvia/Hocus Pocus"
-        ]
-    ),
-    (
-        "16volt",
-        [
-            "At The End",
-            "Therapy"
-        ]
-    ),
-    (
-        "Bring Me The Horizon",
-        ["That's The Spirit (the whole album is amazing!)"]
-    ),
-    (
-        "Starset",
-        ["My Demons"]
-    ),
-    (
-        "Bach",
-        ["Wohltemperierte Klavier"]
-    ),
-    (
-        "Holst",
-        ["Planets"]
-    ),
-    (
-        "Many more...",
-        []
-    )
-    ]
+            ul $ mapM_ (\(fandom, fandomLink, characters) -> do
+                "from"
+                extLink fandomLink fandom
+                ":"
+                ul $ mapM_ (\(character, charLink, reason) -> li $ do
+                        extLink charLink character
+                        ", "
+                        reason
+                    ) characters
+                ) favCharacters
 
 pageFavourites :: Html
 pageFavourites = li ! class_ "nav-item" $ do
@@ -402,7 +207,7 @@ pageMaths = li ! class_ "nav-item" $ do
             p "Mathematics has always been a great pastime for me."
             p $ do
                 "I have invented quite a few visualisations and generators for several interesting pieces of mathematics, some of which you can see and try on repos like my projects repo on GitHub ("
-                extLink (projectsSource <> "/haskell/other/src/maths") "Haskell examples"
+                extLink (projectsSource <> "/haskell/maths/src") "Haskell examples"
                 extLink (projectsSource <> "/js/maths") "JS examples"
                 ")"
             p "Some web-based notable (read: working right now) examples are:"

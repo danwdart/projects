@@ -19,7 +19,7 @@ executable dandart
   main-is:             dandart.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, blaze-html, blaze-markup, bytestring, Cabal
-  other-modules:       Page.Audio, Page.Head, Page.Link, Page.Social, Page.Utils
+  other-modules:       Data.DanDart, Page.Audio, Page.Head, Page.Link, Page.Social, Page.Utils
 
 executable jolharg
   hs-source-dirs:      src
