@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
-module Page.GitHub (Repo (..), Language (..), getRepos) where
+module Html.Common.GitHub (Repo (..), Language (..), getRepos) where
 
 import Control.Monad.IO.Class
 import Data.Aeson

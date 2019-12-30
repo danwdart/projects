@@ -1,10 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Page.Audio (audioFile) where
+module Html.Common.Audio (audioFile) where
 
-import Page.Link
+import Html.Common.Link
 
--- import Data.String
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
 

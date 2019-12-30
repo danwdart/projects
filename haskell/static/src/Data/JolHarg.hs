@@ -2,7 +2,7 @@
 
 module Data.JolHarg (keywords, descTitle) where
 
-import Page.Shortcuts
+import Html.Common.Shortcuts
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
 

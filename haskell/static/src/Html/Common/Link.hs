@@ -1,8 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Page.Link (extLink, extLinkTitle) where
+module Html.Common.Link (extLink, extLinkTitle) where
 
--- import Data.String
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
 

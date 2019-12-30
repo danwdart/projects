@@ -1,13 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Page.Card (Language (..), imagesFs, Repo (..), card, cardDefunct, renderCard) where
+module Html.Common.Card (Language (..), imagesFs, Repo (..), card, cardDefunct, renderCard) where
 
 import Data.String
 import Data.Maybe
 import Distribution.SPDX
+
+import Html.Common.GitHub as GH
+
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
-import Page.GitHub as GH
 
 genericImage :: AttributeValue
 genericImage = "https://web.archive.org/web/20181125122112if_/https://upload.wikimedia.org/wikipedia/commons/1/1a/Code.jpg"

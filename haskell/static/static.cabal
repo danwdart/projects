@@ -19,11 +19,11 @@ executable dandart
   main-is:             dandart.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, blaze-html, blaze-markup, bytestring, Cabal, directory
-  other-modules:       Data.DanDart, Page.Audio, Page.Head, Page.Link, Page.Shortcuts, Page.Social, Page.Utils
+  other-modules:       Data.DanDart, Html.DanDart.Index, Html.Common.Audio, Html.Common.Head, Html.Common.Link, Html.Common.Shortcuts, Html.Common.Social, Html.Common.Utils
 
 executable jolharg
   hs-source-dirs:      src
   main-is:             jolharg.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, aeson, blaze-html, blaze-markup, bytestring, Cabal, directory, req, text
-  other-modules:       Data.JolHarg, Page.Card, Page.GitHub Page.Head, Page.Link, Page.Shortcuts, Page.Social, Page.Utils
+  other-modules:       Data.JolHarg, Html.JolHarg.Index, Html.Common.Card, Html.Common.GitHub Html.Common.Head, Html.Common.Link, Html.Common.Shortcuts, Html.Common.Social, Html.Common.Utils

@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Page.Shortcuts (ghPages, ghPagesProjects, projectsSource, imdb, wikipedia, yt, ytChan, ytUser, nhs, oeis, wikia) where
+module Html.Common.Shortcuts (ghPages, ghPagesProjects, projectsSource, imdb, wikipedia, yt, ytChan, ytUser, nhs, oeis, wikia) where
 
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A

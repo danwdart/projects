@@ -1,9 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Page.Head (htmlHead) where
+module Html.Common.Head (htmlHead) where
 
 import Data.String
-import Page.Utils
+
+import Html.Common.Utils
+
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
 
