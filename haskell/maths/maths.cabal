@@ -43,6 +43,12 @@ executable base
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, digits
 
+executable cards
+  hs-source-dirs:      src
+  main-is:             cards.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, random
+
 executable cardord
   hs-source-dirs:      src
   main-is:             cardord.hs
