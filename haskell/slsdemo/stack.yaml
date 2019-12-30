@@ -1,4 +1,4 @@
-resolver: lts-14.10
+resolver: lts-13.30
 packages:
 - .
 extra-deps:
@@ -6,10 +6,12 @@ extra-deps:
 - amazonka-kinesis-1.6.1@sha256:439479d6d7f4a731a2f1feeb3a4c653d266c11d655cd4085608e157eb524c51b,3998
 - amazonka-s3-1.6.1@sha256:9d07240fca59ad5197fb614ce3051e701e4951e6d4625a2dab4a9c17a1900194,6317
 - binary-instances-1@sha256:b17565598b8df3241f9b46fa8e3a3368ecc8e3f2eb175d7c28f319042a6f5c79,2613
+- binary-orphans-1.0.1@sha256:c33927e88d93f64a82abab5aa5f296c64e744c99df7ad6f789e466c89f538e2c,2101
 - git-0.3.0
 - github-0.23
 - http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
-- serverless-haskell-0.9.3
+- serverless-haskell-0.10.0
+- time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
 - fakedata-0.2.2
 system-ghc: true
 ghc-options:

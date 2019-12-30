@@ -33,6 +33,13 @@ packages:
   original:
     hackage: binary-instances-1@sha256:b17565598b8df3241f9b46fa8e3a3368ecc8e3f2eb175d7c28f319042a6f5c79,2613
 - completed:
+    hackage: binary-orphans-1.0.1@sha256:c33927e88d93f64a82abab5aa5f296c64e744c99df7ad6f789e466c89f538e2c,2101
+    pantry-tree:
+      size: 285
+      sha256: 639f9d67ae632406e780ebd5765535b99b3ea1389f3ee33a00ba60730901274b
+  original:
+    hackage: binary-orphans-1.0.1@sha256:c33927e88d93f64a82abab5aa5f296c64e744c99df7ad6f789e466c89f538e2c,2101
+- completed:
     hackage: git-0.3.0@sha256:dc070840ab24792c9664b9e3e69c9d55d30fc36fee41049c548bb0e8ec83c919,3448
     pantry-tree:
       size: 1900
@@ -54,12 +61,19 @@ packages:
   original:
     hackage: http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
 - completed:
-    hackage: serverless-haskell-0.9.3@sha256:a263c73883efc7a5df3120b6d0d34ce9f133d43e78a3cb2b166081deb904ffda,2528
+    hackage: serverless-haskell-0.10.0@sha256:30b913e14e9f01cc31b63f038663a21cf20d747f246d9c19f7f9121fba7ff401,2637
     pantry-tree:
-      size: 1614
-      sha256: 8f8594a7e1dc77370aaa15aa4b1af5349d3c749a5cb3ba27e48e0d7040766a93
+      size: 1845
+      sha256: 602faffcb358eb869a270c7050bff6e183cb4d67a47eefc9fa55b361aca70d50
   original:
-    hackage: serverless-haskell-0.9.3
+    hackage: serverless-haskell-0.10.0
+- completed:
+    hackage: time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
+    pantry-tree:
+      size: 3602
+      sha256: 724a63e80871bc6709a2d3ca1c3c7316048e99c9d50b0492f0eff25ce2cecbe0
+  original:
+    hackage: time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
 - completed:
     hackage: fakedata-0.2.2@sha256:24595200d354d47fca9c92f0e7d350decc9a6e06baaf26b155ffb04c145b0c7e,17555
     pantry-tree:
@@ -69,7 +83,7 @@ packages:
     hackage: fakedata-0.2.2
 snapshots:
 - completed:
-    size: 524130
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/10.yaml
-    sha256: 04841e0397d7ce6364f19359fce89aa45ca8684609d665845db80d398002baa9
-  original: lts-14.10
+    size: 500539
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/13/30.yaml
+    sha256: 59ad6b944c9903847fecdc1d4815e8500c1f9999d80fd1b4d2d66e408faec44b
+  original: lts-13.30
