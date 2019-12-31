@@ -10,7 +10,6 @@ import Html.Common.Link
 import Html.Common.Shortcuts
 import Html.Common.Social
 
-import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
 

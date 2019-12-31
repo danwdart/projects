@@ -10,7 +10,6 @@ import Html.Common.Head
 
 import Network.HTTP.Req
 
-import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5 as H hiding (main)
 import Text.Blaze.Html5.Attributes as A
 
