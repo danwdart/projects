@@ -4,6 +4,7 @@ module Html.Common.Head (htmlHead) where
 
 import Data.String
 
+import Html.Common.CSS
 import Html.Common.Utils
 
 import Text.Blaze.Html5 as H hiding (main)
@@ -27,6 +28,5 @@ htmlHead :: String -> [AttributeValue] -> Html
 htmlHead descTitle keywords = H.head $ do
     metas descTitle keywords
     link ! rel "shortcut icon" ! type_ "image/png" ! href "/img/favicon.png"
-    link ! rel "stylesheet" ! type_ "text/css" ! href "https://fonts.googleapis.com/css?family=Caudex"
-    link ! rel "stylesheet" ! type_ "text/css" ! href "/css/style.css"
     H.title $ toHtml descTitle
+    commonCSS

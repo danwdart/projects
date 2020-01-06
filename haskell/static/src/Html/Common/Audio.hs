@@ -14,5 +14,5 @@ audioFile audioTitle oggFilename mp3Filename = H.div ! class_ "border m-3" $ do
         audio ! controls "" $ do
             source ! src ("/music/" <> oggFilename <> ".ogg")
             source ! src ("/music/" <> mp3Filename <> ".mp3")
-        extLink ("/music/" <> oggFilename <> ".ogg") "OGG"
-        extLink ("/music/" <> mp3Filename <> ".mp3") "MP3"
+        extLink ("/music/" <> oggFilename <> ".ogg") $ H.span ! class_ "px-2" $ "OGG"
+        extLink ("/music/" <> mp3Filename <> ".mp3") $ H.span ! class_ "px-2" $ "MP3"

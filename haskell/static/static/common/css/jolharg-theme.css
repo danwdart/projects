@@ -73,6 +73,7 @@ input:checked ~ .page {
     padding: 0;
     background-color: transparent;
     border: none;
+    display: inline-block;
 }
 
 .card-body {

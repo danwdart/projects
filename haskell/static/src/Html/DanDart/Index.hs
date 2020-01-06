@@ -23,7 +23,7 @@ pageIntro = li ! class_ "nav-item" $ do
             p "Hello, my name is Dan."
             p "I am a software engineer, mathematics lover, radio ham and musician."
             p $ do
-                "I work remotely to care for my future wife,"
+                "I work remotely to care for my future wife, "
                 extLink "http://tsumikimikan.com" "Tsumiki"
                 "."
             p "I also enjoy discordant and nonsensical commentary."
@@ -39,12 +39,12 @@ pageCharacters = li ! class_ "nav-item" $ do
         H.div ! class_ "row" $ H.div ! class_ "col-md-8 offset-md-2 py-3 mb-3 bg-light" $ do
             p "Some of my favourite characters and characters that I identify with are:"
             ul $ mapM_ (\(fandom, fandomLink, characters) -> do
-                "from"
+                "from "
                 extLink fandomLink fandom
                 ":"
                 ul $ mapM_ (\(character, charLink, reason) -> li $ do
                         extLink charLink character
-                        ", "
+                        ", because "
                         reason
                     ) characters
                 ) favCharacters
@@ -71,9 +71,9 @@ pageFavourites = li ! class_ "nav-item" $ do
                 ul $ li $ extLink (ytChan <> "UC9pgQfOXRsp4UKrI8q0zjXQ") "Lindybeige"
             p $ do
                 strong "TV shows/movies"
-                "(I also have an"
+                "(I also have an "
                 extLink "https://www.imdb.com/list/ls029966237/" "IMDB"
-                "watchlist)"
+                " watchlist)"
             ul $ do
                 li $ do
                     "The Hannibal film and TV series:"
@@ -95,7 +95,7 @@ pageFavourites = li ! class_ "nav-item" $ do
                         li $ extLink (imdb <> "0092455") "Star Trek: The Next Generation (1987-1994)"
                 li $ do
                     extLink (imdb <> "0056751") "Doctor Who (1963-)"
-                    "(my favourite Doctor is Tom Baker)"
+                    " (my favourite Doctor is Tom Baker)"
             p $ strong "Music"
             ul $ mapM_ (\(title, list) -> do
                 title
@@ -111,23 +111,23 @@ pageFavourites = li ! class_ "nav-item" $ do
                 li $ extLink "https://ddlc.moe/" "Doki Doki Literature Club"
                 li $ do
                     extLink "https://danganronpa.us/" "Danganronpa"
-                    "(no despair girls / hope side spoilers please!)"
+                    " (no despair girls / hope side spoilers please!)"
             p $ strong "Coding language:"
             ul $ li $ do
                 extLink "https://www.haskell.org/" "Haskell"
-                "(it's epic and pure!)"
+                " (it's epic and pure!)"
             p $ strong "Operating Systems"
             ul $ do
                 li $ do
                     extLink "http://www.gnu.org/gnu/why-gnu-linux.en.html" "GNU/Linux"
-                    ":"
+                    ": "
                     extLink "http://kubuntu.org" "Kubuntu"
                 li $ do
                     extLink (wikipedia <> "Blue_Screen_of_Death") "Windows"
-                    ":"
+                    ": "
                     extLink (wikipedia <> "Windows_98#Windows_98_Second_Edition") "98 SE"
                 li $ do
-                    "All-time:"
+                    "All-time: "
                     extLink "http://riscos.com/riscos/310/index.php" "RISC OS"
 
 pageHamRadio :: Html
@@ -139,23 +139,23 @@ pageHamRadio = li ! class_ "nav-item" $ do
         H.div ! class_ "row" $ H.div ! class_ "col-md-8 offset-md-2 py-3 bg-light" $ do
             p "I am a UK full-licenced radio amateur, and have been issued the callsign M0ORI."
             p $ do
-                "My nearest radio club is"
+                "My nearest radio club is "
                 extLink "https://www.midsarc.org.uk/" "Mid-Somerset Amateur Radio Club"
                 "."
             p "I own the following types of radio:"
             ul $ do
                 li $ do
                     extLink "https://www.yaesu.com/indexVS.cfm?cmd=DisplayProducts&ProdCatID=102&encProdID=06014CD0AFA0702B25B12AB4DC9C0D27" "Yaesu FT-817"
-                    "(5W, all-mode HF, VHF, UHF transceiver)"
+                    " (5W, all-mode HF, VHF, UHF transceiver)"
                 li $ do
                     extLink "https://baofengtech.com/uv82" "Baofeng UV-82"
-                    "(5W, FM, VHF and UHF transceiver)"
+                    " (5W, FM, VHF and UHF transceiver)"
                 li $ do
                     extLink "http://www.uv3r.com/" "Baofeng UV-3R"
-                    "(2W, FM, VHF and UHF transceiver)"
+                    " (2W, FM, VHF and UHF transceiver)"
                 li $ do
                     extLink "https://www.eham.net/reviews/detail/7627" "Tecsun PL-600"
-                    "(HF receiver)"
+                    " (HF receiver)"
             p "You may sometimes find me on:"
             ul $ do
                 li "FM in mid-Somerset, UK (IO81)."
@@ -205,6 +205,7 @@ pageMaths = li ! class_ "nav-item" $ do
             p $ do
                 "I have invented quite a few visualisations and generators for several interesting pieces of mathematics, some of which you can see and try on repos like my projects repo on GitHub ("
                 extLink (projectsSource <> "/haskell/maths/src") "Haskell examples"
+                ", "
                 extLink (projectsSource <> "/js/maths") "JS examples"
                 ")"
             p "Some web-based notable (read: working right now) examples are:"
@@ -227,9 +228,9 @@ pageMaths = li ! class_ "nav-item" $ do
                 li $ extLink (ghPages <> "heartish/card.html") "Random Cardioid"
                 li $ extLink (ghPages <> "heartish/index.html") "Circle Reflection"
             p $ do
-                "My approved"
+                "My approved "
                 extLinkTitle "https://oeis.org" "Online Encyclopedia of Integer Sequences" "OEIS"
-                "sequences are:"
+                " sequences are:"
             ul $ do
                 li $ extLink (oeis <> "275124") "A275124: Multiples of 5 where Pisano periods of Fibonacci numbers A001175 and Lucas numbers A106291 agree."
                 li $ extLink (oeis <> "275167") "A275167: Pisano periods of A275124."
@@ -247,15 +248,15 @@ pageAbout = li ! class_ "nav-item" $ do
             p mempty
             p $ do
                 strong "The layout"
-                "was based on Bootstrap. I kept the header component and chose to be without a footer component. The menus are actually a hack, such that the chosen menu item is linked to a hidden radio button which chose which sub-page to show, rather than using JS for the menu."
+                " was based on Bootstrap. I kept the header component and chose to be without a footer component. The menus are actually a hack, such that the chosen menu item is linked to a hidden radio button which chose which sub-page to show, rather than using JS for the menu."
             p mempty
             p $ do
                 strong "The code"
-                "actually contains no client-side JS at all, therefore, also adding to the preference of more and more users these days to not have tracking. The website code is compiled using the Pug layout engine, and uploaded to GitHub Pages. It uses my custom website theme which is published under the JolHarg organisation."
+                " actually contains no client-side JS at all, therefore, also adding to the preference of more and more users these days to not have tracking. The website code is compiled using the Pug layout engine, and uploaded to GitHub Pages. It uses my custom website theme which is published under the JolHarg organisation."
             p mempty
             p $ do
                 strong "The font choice"
-                "was difficult to make, as I was (and am still not quite happy enough with it, and so therefore still am) looking for a suitable, free software natural sans-serif font style, which has the single-storey \"a\", non-looped \"g\", and the double-seriffed I and J amongst other things. For now I've settled on Caudex, which whilst it is still serif, seems to be the closest I've yet to come across."
+                " was difficult to make, as I was (and am still not quite happy enough with it, and so therefore still am) looking for a suitable, free software natural sans-serif font style, which has the single-storey \"a\", non-looped \"g\", and the double-seriffed I and J amongst other things. For now I've settled on Caudex, which whilst it is still serif, seems to be the closest I've yet to come across."
 
 pageSoftware :: Html
 pageSoftware = li ! class_ "nav-item" $ a ! class_ "nav-link btn btn-sm" ! href "https://jolharg.com" ! target "_blank" $ "Software"
