@@ -2,6 +2,8 @@
 
 module Html.Common.Card (Language (..), imagesFs, Repo (..), card, cardDefunct, renderCard) where
 
+import Control.Monad
+
 import Data.String
 import Data.Maybe
 import Distribution.SPDX
@@ -29,7 +31,10 @@ imagesFs = [
     (LangBlitzBasic, "https://upload.wikimedia.org/wikipedia/en/6/65/BlitzBasicLogo.gif"),
     (LangC, "https://upload.wikimedia.org/wikipedia/commons/3/3b/C.sh-600x600.png"),
     (LangTcl, "https://upload.wikimedia.org/wikipedia/commons/4/41/Tcl.svg"),
-    (LangCPP, "https://upload.wikimedia.org/wikipedia/commons/5/5c/Images_200px-ISO_C%2B%2B_Logo_svg.png")
+    (LangCPP, "https://upload.wikimedia.org/wikipedia/commons/5/5c/Images_200px-ISO_C%2B%2B_Logo_svg.png"),
+    (LangHS, "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/1280px-Haskell-Logo.svg.png"),
+    (LangVB, "https://upload.wikimedia.org/wikipedia/en/e/e4/Visual_Basic_6.0_logo.png"),
+    (LangDocker, "https://www.docker.com/sites/default/files/d8/2019-07/vertical-logo-monochromatic.png")
     -- TODO Haskell, VB, Docker
     ]
 
@@ -50,18 +55,22 @@ cardDefunct cardTitle cardText = H.div ! class_ "card col-md-4 text-center" $ H.
     p ! class_ "card-text" $ cardText
     strong "Website defunct"
 
+licenceLink :: Licence -> Html
+licenceLink licence =  a ! href ("https://spdx.org/licenses/" <> fromString avOrHtmlSpdx <> ".html") ! target "_blank" $ fromString avOrHtmlSpdx
+    where avOrHtmlSpdx = GH.spdx_id licence
+
 renderCard :: Repo -> Html
 renderCard repo =
     H.div ! class_ "card col-md-4 text-center" $ H.div ! class_ "card-body" $ do
         img ! class_ "card-img-top-github" ! A.src (languageImage . language $ repo)
         h4 ! class_ "card-title" $ do
             H.span ! class_ "name" $ fromString . GH.name $ repo
+            " "
             H.span ! class_ "stars" $ "(" <> (fromString . show . stars $ repo) <> "★)"
-            H.span ! class_ "fork" $ "⑂"
+            when (fork repo) $ H.span ! class_ "fork" $ "⑂"
         p ! class_ "card-text" $ do
             H.span ! class_ "description" $ fromString . fromMaybe "" $ GH.description repo
             br
-            a ! href ("https://spdx.org/licenses/" <> (fromString . show . licence $ repo) <> ".html") ! target "_blank" $ fromString . show . licence $ repo
-            small $ em "Not yet licenced"
-        maybe "" (\src -> a ! class_ "btn btn-secondary" ! href (fromString src) ! target "_blank" $ "Source") (GH.source repo)
-        maybe "" (\site -> a ! class_ "btn btn-secondary" ! href (fromString site) ! target "_blank" $ "Website") $ website repo
+            maybe (small $ em "Not yet licenced") licenceLink (licence repo)
+        maybe "" (\src -> a ! class_ "btn btn-secondary mx-1" ! href (fromString src) ! target "_blank" $ "Source") (GH.source repo)
+        maybe "" (\site -> a ! class_ "btn btn-secondary mx-1" ! href (fromString site) ! target "_blank" $ "Website") $ website repo

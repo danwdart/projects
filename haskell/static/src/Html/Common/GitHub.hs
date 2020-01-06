@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
-module Html.Common.GitHub (Repo (..), Language (..), getRepos) where
+module Html.Common.GitHub (Repo (..), Language (..), Licence (..), getRepos) where
 
 import Control.Monad.IO.Class
 import Data.Aeson
@@ -27,7 +27,8 @@ data Language = LangHS
     | LangC
     | LangTcl
     | LangVB
-    | LangCPP deriving (Eq, Generic, Show)
+    | LangCPP
+    | LangDocker deriving (Eq, Generic, Show)
 
 instance FromJSON Language where
     parseJSON (String a) = return $ case a of
@@ -41,8 +42,8 @@ instance FromJSON Language where
         "Assembly" -> LangASM
         "C" -> LangC
         "Makefile" -> LangShell
-        "Visual Basic" -> LangGeneric
-        "Dockerfile" -> LangGeneric
+        "Visual Basic" -> LangVB
+        "Dockerfile" -> LangDocker
         "Tcl" -> LangTcl
         "BlitzBasic" -> LangBlitzBasic
         "Haskell" -> LangHS
@@ -54,11 +55,12 @@ instance FromJSON Language where
 
 newtype Licence = Licence {
     spdx_id :: String
-} deriving (FromJSON, Generic, Show)
+} deriving (Eq, FromJSON, Generic, Show)
 
 data Repo = Repo {
     name :: String,
     description :: Maybe String,
+    fork :: Bool,
     language :: Language,
     source :: Maybe String,
     website :: Maybe String,
@@ -70,9 +72,9 @@ instance FromJSON Repo where
     parseJSON (Object a) = do
         homepage <- a .: "homepage"
         -- private <- a .: "private"
-        -- fork <- a .: "fork"
+        fork <- a .: "fork"
         -- fullName <- a .: "full_name"
-        url <- a .: "url"
+        url <- a .: "clone_url"
         -- issuesUrl <- a .: "issues_url"
         name <- a .: "name"
         -- forksCount <- a .: "forks_count"
@@ -93,13 +95,22 @@ instance FromJSON Repo where
         desc <- a .: "description"
         -- watchersCount <- a .: "watchers_count"
 
+        let website = if isJust homepage && Just "" == homepage
+            then Nothing
+            else homepage
+        
+        let licenceText = if isJust licence && Just (Licence "NOASSERTION") == licence
+            then Nothing
+            else licence
+
         return $ Repo {
             name = name,
             description = desc,
+            fork = fork,
             language = language,
             source = url,
-            website = homepage,
-            licence = licence,
+            website = website,
+            licence = licenceText,
             stars = stargazers
         }
 
@@ -108,7 +119,7 @@ getRepos user = do
     githubAccessToken <- liftIO . getEnv $ "GITHUB_ACCESS_TOKEN" -- throws
     res <- req GET (https "api.github.com" /: "users" /: user /: "repos") NoReqBody jsonResponse (
         "per_page" =: ("100" :: Text) <>
-        "sort" =: ("pushed" :: Text) <>
+        "sort" =: ("pushed" :: Text) <> -- can't sort by stars
         "type" =: ("owner" :: Text) <>
         "direction" =: ("desc" :: Text) <>
         "access_token" =: githubAccessToken <>
