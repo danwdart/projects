@@ -33,6 +33,13 @@ packages:
   original:
     hackage: FixedPoint-simple-0.6.1@sha256:01f08f712f70b4499d2099adda71ee887f24cc0f285f29c4952815e7d52c2bb8,1179
 - completed:
+    hackage: MonadRandom-0.1.7@sha256:9b13ab123be929a9bb8c5c3d074f3218a94698d856cee8208985e7e72a72f60c,598
+    pantry-tree:
+      size: 288
+      sha256: 375ce770be92c1143516ed0bb4f9e7e82a261780403431ce42d7400217a4c0b3
+  original:
+    hackage: MonadRandom-0.1.7
+- completed:
     hackage: numbers-3000.2.0.2@sha256:fedb235e16f19ffb5dc40711738c29e231fae4ad608473880a1f59ba5f60829e,1757
     pantry-tree:
       size: 845
@@ -40,12 +47,26 @@ packages:
   original:
     hackage: numbers-3000.2.0.2
 - completed:
+    hackage: random-shuffle-0.0.4@sha256:d0b9783c30208d1ce05caa05139fb00372802edb6c678b73d61b5eb4eebb3aba,818
+    pantry-tree:
+      size: 226
+      sha256: e6e1c894e726443bc7165618de6745812610e70f0df22dbe5c130bafee2c507b
+  original:
+    hackage: random-shuffle-0.0.4
+- completed:
     hackage: toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
     pantry-tree:
       size: 2930
       sha256: eb782c3c9b0eca5a00fd1010ac346d1538dc79b4e44206074179e2aead453603
   original:
     hackage: toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
+- completed:
+    hackage: utility-ht-0.0.14@sha256:586b3253413423a6fb205dbba9c02ac6c3c9684f8466e32a8c25053bc6d1d2b0,3023
+    pantry-tree:
+      size: 2741
+      sha256: 82c46e76df9fe51060161c2fa5f300c9e977f87f1fb02fb6eebd1c47fb9a4f15
+  original:
+    hackage: utility-ht-0.0.14
 snapshots:
 - completed:
     size: 545658
