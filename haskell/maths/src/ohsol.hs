@@ -1,3 +1,5 @@
+{-# LANGUAGE TupleSections #-}
+
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
 import Control.Monad.Random.Class
 import Data.Function
@@ -11,6 +13,17 @@ type Value = Int
 type Suit = Int
 type Card = (Value, Suit)
 type Deck = [Card]
+type Current = Deck
+type InPlay = Deck
+type Discard = Deck
+type Game = (Current, InPlay, Discard)
+
+fullPack :: Deck
+fullPack = flip (,) <$> [1..4] <*> [1..13]
+
+initialGameState :: MonadRandom m => m Game
+initialGameState = ([], , []) <$> shuffleM fullPack
+
 
 sameSuit :: Card -> Card -> Bool
 sameSuit = on (==) snd
@@ -18,11 +31,12 @@ sameSuit = on (==) snd
 sameValue :: Card -> Card -> Bool
 sameValue = on (==) fst
 
-pack :: Deck
-pack = flip (,) <$> [1..4] <*> [1..13]
 
-shuffledPack :: MonadRandom m => m Deck
-shuffledPack = shuffleM pack
+takeOne :: Game -> Game
+takeOne = undefined
 
-hand :: MonadRandom m => m Deck
-hand = take 4 <$> shuffledPack
+discardFour :: Game -> Game
+discardFour = undefined
+
+discardTwo :: Game -> Game
+discardTwo = undefined
