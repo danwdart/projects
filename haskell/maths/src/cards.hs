@@ -30,7 +30,11 @@ instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) => Random a where
 (...) = (.) . (.)
 
 main :: IO ()
-main = return ()
+main = do
+    putStrLn "Average matches in one round (even-ing out the two lines)"
+    meanDist <$> avgDist 2000 >>= print
+    putStrLn "Average non-matches after finishing rounds"
+    meanDist <$> magicDist 2000 >>= print
 
 class Pp a where
     pp :: a -> String
@@ -105,13 +109,29 @@ adj a b = 1 == abs (fromEnum a - fromEnum b)
 filterOutList :: (Eq a) => [a] -> [a] -> [a]
 filterOutList bads = filter (not . flip elem bads) -- todo reduce
 
-countFreq :: (Traversable t, Num n) => t a -> M.Map a n
-countFreq = undefined
+-- combinator
+countFreq :: (Traversable t, Num n, Ord a) => t a -> M.Map a n
+countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) (M.fromList [])
+
+-- TODO compose for <$>
+
+dist :: MonadRandom m => Int -> m Int -> m (M.Map Int Int)
+dist n x = countFreq <$> replicateM n x
+
+mean :: (Num a, Integral a) => [a] -> Double
+mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
+
+-- weighted average
+
+meanDist :: M.Map Int Int -> Double
+meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (\(a, b) -> (fromIntegral a, fromIntegral b)) . M.toList
 
 eqOrAdj :: Card -> Card -> Bool
 eqOrAdj Joker Joker = True
 eqOrAdj (Card value1 suit1) (Card value2 suit2) = value1 == value2 || (suit1 == suit2 && adj value1 value2)
 eqOrAdj _ _ = False
+
+-- filter out?
 
 adjPairs :: Deck -> [(Card, Card)]
 adjPairs x = filter (uncurry eqOrAdj) (listToPairs x)
@@ -145,7 +165,16 @@ extractAdj p = do
 magicNumbers :: MonadRandom m => m Int
 magicNumbers = length <$> HT.nest 30 extractAdj pack
 
+magicDist :: MonadRandom m => Int -> m (M.Map Int Int)
+magicDist n = dist n magicNumbers
+
 -- replicateM 200 magicNumbers
 
 avgNumbers :: MonadRandom m => m Int
 avgNumbers = length . adjCards <$> shuffleM pack
+
+avgDist :: MonadRandom m => Int -> m (M.Map Int Int)
+avgDist n = dist n avgNumbers
+
+-- todo generalise with ints for numbers and decks!
+
