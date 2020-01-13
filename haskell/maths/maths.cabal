@@ -155,12 +155,17 @@ executable surds
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-
 executable decomp
   hs-source-dirs:      src
   main-is:             primefun/decomp.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
+
+executable ohsol
+  hs-source-dirs:      src
+  main-is:             ohsol.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, MonadRandom, random-shuffle
 
 executable primefun
   hs-source-dirs:      src
