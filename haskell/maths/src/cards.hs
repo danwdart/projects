@@ -178,3 +178,4 @@ avgDist n = dist n avgNumbers
 
 -- todo generalise with ints for numbers and decks!
 
+-- anything to do with log2 52? Let's generalise.
