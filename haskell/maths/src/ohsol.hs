@@ -7,6 +7,7 @@ import Control.Monad.HT (nest)
 import Control.Monad.Random.Class
 import Data.Function
 import Data.Functor
+import qualified Data.Map as M
 import Debug.Trace
 import System.Random.Shuffle
 
@@ -101,3 +102,24 @@ playUntilEnd g = if gameState g == InProgress then playUntilEnd $ performMove g 
 
 tryGame :: Game -> GameState
 tryGame = gameState . playUntilEnd
+
+
+
+
+
+-- combinator
+countFreq :: (Traversable t, Num n, Ord a) => t a -> M.Map a n
+countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) (M.fromList [])
+
+-- TODO compose for <$>
+
+dist :: MonadRandom m => Int -> m Int -> m (M.Map Int Int)
+dist n x = countFreq <$> replicateM n x
+
+mean :: (Num a, Integral a) => [a] -> Double
+mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
+
+-- weighted average
+
+meanDist :: M.Map Int Int -> Double
+meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (\(a, b) -> (fromIntegral a, fromIntegral b)) . M.toList
