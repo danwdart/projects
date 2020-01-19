@@ -5,6 +5,13 @@
 
 packages:
 - completed:
+    hackage: data-default-0.7.1.1@sha256:2804e8d14f521a1edee88b68b66347448e7f3b685868290fdc55930e4471f5a9,645
+    pantry-tree:
+      size: 212
+      sha256: 1db0dcb6890feff1b87ea180a4c4a0611cda399a700822bd75970a2b7ad02dbc
+  original:
+    hackage: data-default-0.7.1.1
+- completed:
     hackage: digits-0.3.1@sha256:39009270485114ee7c51273ccca354c6d4af8408f8f1345d506fc5e638b99273,992
     pantry-tree:
       size: 263
