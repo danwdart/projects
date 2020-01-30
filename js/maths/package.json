@@ -5,18 +5,18 @@
   "main": "",
   "dependencies": {
     "bignumber.js": "^9.0.0",
-    "cytoscape": "^3.12.1",
+    "cytoscape": "^3.13.0",
     "esm": "^3.2.25",
     "gl-matrix": "^3.1.0",
     "node-fetch": "^2.6.0",
-    "snyk": "^1.258.1",
-    "typescript": "^3.8.0-dev.20191210"
+    "snyk": "^1.288.0",
+    "typescript": "^3.8.0-dev.20200130"
   },
   "devDependencies": {
-    "@babel/cli": "7.7.5",
+    "@babel/cli": "7.8.4",
     "@std/esm": "^0.26.0",
-    "eslint": "^6.7.2",
-    "mocha": "^6.2.2"
+    "eslint": "^7.0.0-alpha.0",
+    "mocha": "^7.0.1"
   },
   "scripts": {
     "build": "",
