@@ -16,8 +16,8 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "esm": "^3.2.25",
-    "tslint": "^6.0.0-beta1",
-    "tslint-react": "^4.1.0",
-    "typescript": "^3.8.0-dev.20191210"
+    "tslint": "^6.0.0",
+    "tslint-react": "^4.2.0",
+    "typescript": "^3.8.0-dev.20200130"
   }
 }
