@@ -12,14 +12,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.8",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^13.5.3",
     "esm": "^3.2.25",
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.1",
     "ts-mocha": "^6.0.0",
-    "ts-node": "^8.5.4",
-    "tslint": "^6.0.0-beta1",
-    "typescript": "^3.8.0-dev.20191210"
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "typescript": "^3.8.0-dev.20200130"
   },
   "dependencies": {}
 }
