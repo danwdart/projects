@@ -1,0 +1,121 @@
+mediashare implement:
+
+M:
+    ACLs
+    Message queueing
+    Forms (add/edit media)
+    Views:
+        Layout
+        Channel
+        View
+            Remote
+            Local
+            Services
+        Add (upload)
+        Edit
+        Search:
+            Local
+            Services
+        Home
+        User edit
+        Register
+        Login
+        Forgot
+        Share on:
+            Diaspora
+            Facebook
+            GNU Social
+            Twitter
+    YT/Vimeo/DailyMotion imports
+    Encoding uploaded media
+    Search
+    Registration / Forgot / Login
+    APIs
+    Sharing
+S:
+    Emails: reset password, video finished transcoding
+    Comments
+    Votes
+    Video Licences
+    Video Privacy
+    Users page
+C:
+    Caching
+    Channels
+    OEmbed
+    Plex / Casting
+    Link and import to own youtubes
+W:
+    Nodes/federation
+    RTC / Broadcast
+    Analytics
+
+Database:
+
+Users (
+    Username    String PRIMARY KEY,
+    Password    String,
+    Nick        String,
+    Email       String,
+    Hash        String,
+    Validation  VARCHAR(32),
+    UserTypeId  TINYINT
+);
+Users_Credentials (
+    CredentialId SMALLINT NOT NULL PRIMARY KEY,
+    Username    String,
+    Type        String,
+    APIKey      String
+);
+Videos (
+    VideoId     PRIMARY KEY,
+    TimeCreated DATETIME NOT NULL,
+    Username    String REFERENCES Users,
+    Filename    String,
+    Thumbnail   String,
+    Title       String,
+    Description TEXT,
+    Uploader    VARCHAR(255),
+    Source     VARCHAR(255),
+    Licence     VARCHAR(10),
+    Length      SMALLINT,
+    Width       SMALLINT,
+    Height      SMALLINT,
+    Format      VARCHAR(10),
+    Bitrate     SMALLINT,
+    Size        INT,
+    Views       BIGINT,
+    PartialViews BIGINT,
+    Bounces     BIGINT,
+    Privacy     TINYINT,
+    Fb_Pos      BIGINT,
+    Fb_Neg      BIGINT
+);
+Videos_Tags (
+    VideoId     REFERENCES Videos,
+    Tag         String,
+    PRIMARY KEY (VideoId, Tag)
+);
+Videos_NotTags (
+    VideoId     REFERENCES Videos,
+    Tag         String,
+    PRIMARY KEY (VideoId, Tag)
+);
+Videos_Comments (
+    CommentId   PRIMARY KEY,
+    VideoId     REFERENCES Videos,
+    Username    REFERENCES Users,
+    Comment     String
+);
+Nodes (
+    NodeId      PRIMARY KEY,
+    IP          String,
+    Name        String,
+    Active      BOOL
+);
+Votes (
+    Username    String,
+    VideoId     String,
+    Vote        BOOL,
+    PRIMARY KEY (Username, VideoId)
+);
