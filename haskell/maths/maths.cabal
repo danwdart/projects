@@ -143,11 +143,29 @@ executable oeis
                       , unordered-containers
                       , vector
 
+executable pi-jg
+  hs-source-dirs:      src
+  main-is:             pi/jg.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5    
+
+executable pi-factory
+  hs-source-dirs:      src
+  main-is:             pi/factory.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, factory
+
 executable prodtosingle
   hs-source-dirs:      src
   main-is:             prodtosingle.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable selflocation
+  hs-source-dirs:      src
+  main-is:             selflocation.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, numbers
 
 executable sandpiles
   hs-source-dirs:      src
@@ -158,6 +176,12 @@ executable sandpiles
 executable surds
   hs-source-dirs:      src
   main-is:             surds.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable words
+  hs-source-dirs:      src
+  main-is:             words.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -173,11 +197,23 @@ executable ohsol
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers, MonadRandom, random-shuffle, utility-ht
 
+executable primemod
+  hs-source-dirs:      src
+  main-is:             primefun/primemod.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable primefun
   hs-source-dirs:      src
   main-is:             primefun/primefun.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
+
+executable primeraw
+  hs-source-dirs:      src
+  main-is:             primefun/primeraw.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
 
 executable primey
   hs-source-dirs:      src
