@@ -14,5 +14,14 @@
   "dependencies": {
     "serverless": "^1.65.0",
     "serverless-haskell": "^0.10.1"
+  },
+  "devDependencies": {
+    "fullstack-serverless": "^0.7.0",
+    "serverless-appsync-offline": "^1.4.0",
+    "serverless-appsync-plugin": "^1.2.0",
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^6.0.0-alpha.67",
+    "serverless-s3-local": "^0.5.4",
+    "serverless-static": "^1.0.0"
   }
 }

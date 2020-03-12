@@ -31,3 +31,8 @@ functions:
 
 plugins:
   - serverless-haskell
+  - serverless-offline
+  - serverless-appsync-offline
+  - serverless-appsync-plugin
+  - serverless-dynamodb-local
+  - fullstack-serverless
