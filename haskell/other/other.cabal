@@ -37,6 +37,12 @@ executable applicativedo
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable array
+  hs-source-dirs:      src
+  main-is:             array.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, array
+
 executable async
   hs-source-dirs:      src
   main-is:             async.hs
@@ -143,6 +149,12 @@ executable cli
 executable complex
   hs-source-dirs:      src
   main-is:             complex.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable composefunctors
+  hs-source-dirs:      src
+  main-is:             composefunctors.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -517,7 +529,7 @@ executable rws
   hs-source-dirs:      src
   main-is:             rws.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, monads-tf
+  build-depends:       base >= 4.7 && < 5, transformers, monads-tf
 
 executable scrapetumblr
   hs-source-dirs:      src
