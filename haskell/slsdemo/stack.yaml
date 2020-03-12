@@ -10,7 +10,7 @@ extra-deps:
 - git-0.3.0
 - github-0.23
 - http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
-- serverless-haskell-0.10.0
+- serverless-haskell-0.10.1
 - time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
 - fakedata-0.2.2
 system-ghc: true
