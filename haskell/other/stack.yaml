@@ -57,4 +57,4 @@ extra-deps:
 
 system-ghc: true
 ghc-options:
-  other: -Wall -Werror
+  other: -j16 -Wall # -Werror
