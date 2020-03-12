@@ -2,6 +2,8 @@ import System.Console.ANSI.Types
 import Control.Monad
 import Text.Parsec
 
+type Version = String
+
 number :: Parsec String u Int
 number = read <$> many digit
 
@@ -9,8 +11,8 @@ newtype DanImage = DanImage {
     getPixels :: [[Color]]
 } deriving (Eq, Show)
 
-encodeDanImage :: DanImage -> String
-encodeDanImage = undefined
+encodeDanImage :: Version -> DanImage -> Maybe String
+encodeDanImage version img = if "03" /= version then Nothing else Just $ "DAN" ++ version
 
 danParserMonadic :: Parsec String u DanImage
 danParserMonadic = do
