@@ -306,6 +306,13 @@ packages:
   original:
     hackage: safe-foldable-0.1.0.0
 - completed:
+    hackage: serial-0.2.7@sha256:7138d32ad74d4d360023455edd3b5bc112b6462eddb73bf2e57f888a0301f065,717
+    pantry-tree:
+      size: 390
+      sha256: 7bbefd6907aaf086d043a422f06dea4a6813e6d920e289e01686e2adcb1a805c
+  original:
+    hackage: serial-0.2.7
+- completed:
     hackage: shell-conduit-4.7.0@sha256:b78969dc4214db493a6c589f71069c46a9282b13105efe022d3313ce8f7efccf,2129
     pantry-tree:
       size: 811

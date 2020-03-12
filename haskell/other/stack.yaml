@@ -45,6 +45,7 @@ extra-deps:
   - regex-tdfa-1.2.3.2
   - req-2.1.0
   - safe-foldable-0.1.0.0
+  - serial-0.2.7
   - shell-conduit-4.7.0
   - simple-bluetooth-0.1.0.0
   - tardis-0.4.1.0
