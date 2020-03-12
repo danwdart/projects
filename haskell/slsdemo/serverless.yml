@@ -36,3 +36,17 @@ plugins:
   - serverless-appsync-plugin
   - serverless-dynamodb-local
   - fullstack-serverless
+  - serverless-s3-local
+  - serverless-static
+  - serverless-domain-manager
+
+custom:
+  fullstack:
+  appsync:
+  static:
+    bucket:
+  dynamodb:
+  customDomain:
+    domainName: sls.jolharg.com
+    basePath: ''
+    createRoute53Record: true

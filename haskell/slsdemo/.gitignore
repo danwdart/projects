@@ -4,3 +4,5 @@ node_modules/
 sls.cabal
 *.hi
 *.o
+public/
+buckets/

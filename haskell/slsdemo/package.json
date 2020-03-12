@@ -19,6 +19,7 @@
     "fullstack-serverless": "^0.7.0",
     "serverless-appsync-offline": "^1.4.0",
     "serverless-appsync-plugin": "^1.2.0",
+    "serverless-domain-manager": "^3.3.1",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^6.0.0-alpha.67",
     "serverless-s3-local": "^0.5.4",
