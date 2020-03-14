@@ -1,5 +1,5 @@
 org: dandart
-app: haskell-demo
+app: slsdemo
 service: slsdemo
 
 environment:
@@ -8,21 +8,21 @@ environment:
 
 provider:
   name: aws
-  region: eu-west-1
+  region: eu-west-2
   runtime: haskell
+  logs:
+    restApi: false
 
 functions:
-  slsdemo:
-    handler: slsdemo.slsdemo
-    events:
-      - http:
-          path: /slsdemo
-          method: post
-          cors: true
-          private: false
   github-pr:
     handler: slsdemo.githubpr
+    name: ${self:provider.stage}-github-pr
     events:
+      - http:
+          path: /github
+          method: get
+          cors: true
+          private: false
       - http:
           path: /github
           method: post
@@ -30,23 +30,37 @@ functions:
           private: false
 
 plugins:
-  - serverless-haskell
   - serverless-offline
-  - serverless-appsync-offline
-  - serverless-appsync-plugin
-  - serverless-dynamodb-local
-  - fullstack-serverless
-  - serverless-s3-local
-  - serverless-static
-  - serverless-domain-manager
+  - serverless-haskell
+#  - serverless-appsync-offline
+#  - serverless-appsync-plugin
+#  - serverless-dynamodb-local
+#  - fullstack-serverless
+#  - serverless-s3-local
+#  - serverless-static
+#  - serverless-domain-manager
 
 custom:
   fullstack:
-  appsync:
+    domain: slsdemo.jolharg.com
+    bucketName: slsdemo
+    distributionFolder: public
+    singlePageApp: true
+    apiPath: api
+    clientCommand: stack run html
+
+  appSync:
+    name: "api"
+    authenticationType: API_KEY
+    schema: schema.gql
+    #openIdConnectConfig:
+    #  issuer: google
+    #  clientId:
+    #  iatTTL:
+    #  authTTL:
   static:
-    bucket:
+    bucket: slsdemo-static
   dynamodb:
   customDomain:
     domainName: sls.jolharg.com
-    basePath: ''
     createRoute53Record: true

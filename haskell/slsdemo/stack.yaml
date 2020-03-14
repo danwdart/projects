@@ -2,6 +2,7 @@ resolver: lts-13.30
 packages:
 - .
 extra-deps:
+- aeson-1.4.6.0
 - amazonka-core-1.6.1@sha256:ad6b06eb5b6847cbfbe4201e78b3fdb7818a42da061c5d0f8af4fdf2494e44b5,4957
 - amazonka-kinesis-1.6.1@sha256:439479d6d7f4a731a2f1feeb3a4c653d266c11d655cd4085608e157eb524c51b,3998
 - amazonka-s3-1.6.1@sha256:9d07240fca59ad5197fb614ce3051e701e4951e6d4625a2dab4a9c17a1900194,6317
@@ -10,9 +11,10 @@ extra-deps:
 - git-0.3.0
 - github-0.23
 - http-client-0.5.14@sha256:4880b27d6741e331454a1d4c887d96ce3d7d625322c8433983a4b1cd08538577,5348
-- serverless-haskell-0.10.1
+- lens-4.19.1
+- serverless-haskell-0.10.2
+- th-abstraction-0.3.2.0@sha256:9b5b4e6e2bbff9b075ad7751ee98e2107090bd17b51d5442695b8990e4db6521,1851
 - time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
-- fakedata-0.2.2
 system-ghc: true
 ghc-options:
   sls: -Wall -Werror
