@@ -33,6 +33,13 @@ packages:
   original:
     hackage: amazonka-s3-1.6.1@sha256:9d07240fca59ad5197fb614ce3051e701e4951e6d4625a2dab4a9c17a1900194,6317
 - completed:
+    hackage: binary-0.8.7.0@sha256:ae3e6cca723ac55c54bbb3fa771bcf18142bc727afd57818e66d6ee6c8044f12,7705
+    pantry-tree:
+      size: 1976
+      sha256: 35e44b6d3ccf0d56fc5407dc3f0895e74696a66da189afbd65973c95743f5e25
+  original:
+    hackage: binary-0.8.7.0
+- completed:
     hackage: binary-instances-1@sha256:b17565598b8df3241f9b46fa8e3a3368ecc8e3f2eb175d7c28f319042a6f5c79,2613
     pantry-tree:
       size: 1035
@@ -46,6 +53,41 @@ packages:
       sha256: 639f9d67ae632406e780ebd5765535b99b3ea1389f3ee33a00ba60730901274b
   original:
     hackage: binary-orphans-1.0.1@sha256:c33927e88d93f64a82abab5aa5f296c64e744c99df7ad6f789e466c89f538e2c,2101
+- completed:
+    hackage: blaze-html-0.9.1.1@sha256:66f01bef8455b3387e592819584dbd5e501fe0bb5620a3bad80ca8f92d2b2296,2793
+    pantry-tree:
+      size: 2227
+      sha256: fcba08da4585059dbf59db4d025ecee290c1b74680b0c7e6e905d5627a27dc60
+  original:
+    hackage: blaze-html-0.9.1.1
+- completed:
+    hackage: blaze-markup-0.8.2.3@sha256:2d74dbb26ee73a0aaeeb169bf555d26494e2b622867a7507daf53cd3a45c4792,2184
+    pantry-tree:
+      size: 818
+      sha256: 72cfa3d654ef7cc1f10e3bb4cbe44a06caf57b2e21329151646fe23af157771d
+  original:
+    hackage: blaze-markup-0.8.2.3
+- completed:
+    hackage: bytestring-0.10.8.1@sha256:ba427593b1c6a427aeb69622a0802ad2abb4ee3d4f586e1693036d3f0fcfe391,8921
+    pantry-tree:
+      size: 2788
+      sha256: 97850196e2d9cba1912fd052b3fe3fc4f3167c934afe2fb18ad79d68a6160b66
+  original:
+    hackage: bytestring-0.10.8.1
+- completed:
+    hackage: directory-1.3.4.0@sha256:500019f04494324d1df16cf83eefeb3f809b2b20b32a32ccd755ee0439c18bfd,2829
+    pantry-tree:
+      size: 3365
+      sha256: 00c09e0c014d29ebfb921b64c1459e61a0ad6f10e70128d795246a47c06394b0
+  original:
+    hackage: directory-1.3.4.0
+- completed:
+    hackage: fsutils-0.1.2@sha256:fb3eb68e03e4317352032642d3ed18c796c30f5a3bec40caef69cee0b859df5e,1028
+    pantry-tree:
+      size: 210
+      sha256: f92ef28c1edc20a1653f074bc85e7862c81ff850893b4417b64a8582ce62b531
+  original:
+    hackage: fsutils-0.1.2@sha256:fb3eb68e03e4317352032642d3ed18c796c30f5a3bec40caef69cee0b859df5e,1028
 - completed:
     hackage: git-0.3.0@sha256:dc070840ab24792c9664b9e3e69c9d55d30fc36fee41049c548bb0e8ec83c919,3448
     pantry-tree:
@@ -75,12 +117,26 @@ packages:
   original:
     hackage: lens-4.19.1
 - completed:
+    hackage: process-1.6.6.0@sha256:e5efd14b980668ed34e426f4bee3c4ad19d089b748b440f6b3823c673c2d7b78,2576
+    pantry-tree:
+      size: 1211
+      sha256: 9bedc5518fd8c4495941383c795019cd7788ccd87c0a4ec562d8b6166b19b429
+  original:
+    hackage: process-1.6.6.0
+- completed:
     hackage: serverless-haskell-0.10.2@sha256:3cacfd2b68ef1c6cdc1ddf142a7185b6e4ca3361ccbef247a54d3fb656089e23,2601
     pantry-tree:
       size: 1845
       sha256: 76d58ef51ed227972a9126ddbcfa7531223e9423308a2c88eb910a551042f95e
   original:
     hackage: serverless-haskell-0.10.2
+- completed:
+    hackage: text-1.2.4.0@sha256:8c24450feb8e3bbb7ea3e17af24ef57e85db077c4bf53e5bcc345b283d1b1d5b,10081
+    pantry-tree:
+      size: 7457
+      sha256: 3437b0a73ce2ae1a81aa8b3438d41a85981c00894cdbee0d6d6d6873046a5d5d
+  original:
+    hackage: text-1.2.4.0
 - completed:
     hackage: th-abstraction-0.3.2.0@sha256:9b5b4e6e2bbff9b075ad7751ee98e2107090bd17b51d5442695b8990e4db6521,1851
     pantry-tree:
@@ -95,6 +151,13 @@ packages:
       sha256: 724a63e80871bc6709a2d3ca1c3c7316048e99c9d50b0492f0eff25ce2cecbe0
   original:
     hackage: time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
+- completed:
+    hackage: unix-2.7.2.2@sha256:e69269a17b9fa26cb77f3f55e86c39d0a4940ccfa0c4bc20826919d2572076ad,3496
+    pantry-tree:
+      size: 3536
+      sha256: c355f7924ce67e5bf8f20767462af18f09b8c0d1f7161117221cbb94c15deee3
+  original:
+    hackage: unix-2.7.2.2
 snapshots:
 - completed:
     size: 500539

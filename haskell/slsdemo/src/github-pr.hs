@@ -4,16 +4,18 @@ import AWSLambda.Events.APIGateway
 import Control.Lens
 import Data.Aeson
 import Data.Aeson.Embedded
+import qualified Data.ByteString.Lazy.Char8 as BSL
 import Data.Map
 import GHC.Generics
-import qualified Data.ByteString.Lazy.Char8 as BSL
--- import Data.Text
+import System.Environment
+import qualified Data.Text as T
 
 main :: IO ()
 main = apiGatewayMain handler
 
-handler :: APIGatewayProxyRequest (Embedded Value) -> IO (APIGatewayProxyResponse String)
+handler :: APIGatewayProxyRequest (Embedded Value) -> IO (APIGatewayProxyResponse (Embedded Value))
 handler request = do
+  env <- getEnvironment
   putStrLn "This should go to logs"
   print $ request ^. requestBody
-  pure $ responseOK & responseBody ?~ "{\"Airse\":\"Baulacks\"}"
+  pure $ responseOK & responseBody ?~ (Embedded $ object $ fmap (\(k, v) -> (T.pack k, String (T.pack v))) env)

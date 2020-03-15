@@ -40,3 +40,19 @@ executable githubpr
     , serverless-haskell
     , text
   default-language: Haskell2010
+
+executable html
+  main-is: index.hs
+  hs-source-dirs:
+      html
+  build-depends:
+      base >=4.7 && <5
+    , aeson
+    , blaze-html
+    , blaze-markup
+    , bytestring
+    , directory
+    , fsutils
+    , req
+    , text
+  default-language: Haskell2010

@@ -35,9 +35,9 @@ plugins:
 #  - serverless-appsync-offline
 #  - serverless-appsync-plugin
 #  - serverless-dynamodb-local
-#  - fullstack-serverless
+  - fullstack-serverless
 #  - serverless-s3-local
-#  - serverless-static
+  - serverless-static
 #  - serverless-domain-manager
 
 custom:
@@ -59,7 +59,7 @@ custom:
     #  iatTTL:
     #  authTTL:
   static:
-    bucket: slsdemo-static
+    bucket: slsdemo-dev-slsdemo
   dynamodb:
   customDomain:
     domainName: sls.jolharg.com
