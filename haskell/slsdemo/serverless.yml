@@ -32,18 +32,18 @@ functions:
 plugins:
   - serverless-offline
   - serverless-haskell
-#  - serverless-appsync-offline
-#  - serverless-appsync-plugin
+  - serverless-appsync-offline
+  - serverless-appsync-plugin
 #  - serverless-dynamodb-local
   - fullstack-serverless
 #  - serverless-s3-local
-  - serverless-static
+#  - serverless-static # kills deploy so disable or find alternative
 #  - serverless-domain-manager
 
 custom:
   fullstack:
-    domain: slsdemo.jolharg.com
-    bucketName: slsdemo
+    # domain: slsdemo.jolharg.com
+    bucketName: slsdemo-fullstack
     distributionFolder: public
     singlePageApp: true
     apiPath: api
@@ -52,14 +52,14 @@ custom:
   appSync:
     name: "api"
     authenticationType: API_KEY
-    schema: schema.gql
+    schema: schema.graphql
     #openIdConnectConfig:
     #  issuer: google
     #  clientId:
     #  iatTTL:
     #  authTTL:
   static:
-    bucket: slsdemo-dev-slsdemo
+    bucket: slsdemo-static
   dynamodb:
   customDomain:
     domainName: sls.jolharg.com

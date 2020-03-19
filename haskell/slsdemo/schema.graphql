@@ -1,0 +1,40 @@
+"""
+Testing type
+"""
+type Bob {
+    id: ID!
+    bob: String
+}
+
+
+type Query {
+  """
+  Necessary for later extension
+  """
+  dummy: String
+}
+
+type Mutation {
+  """
+  Necessary for later extension
+  """
+  dummy: String
+}
+
+type Subscription {
+  """
+  Necessary for later extension
+  """
+  dummy: String
+}
+
+extend type Query {
+    bob(id: ID!): Bob
+    bobs(filter: String, offset: Int = 0, limit: Int = 0): [Bob]
+}
+
+extend type Mutation {
+    addBob(bob: String): Bob
+    updateBob(id: ID!, bob: String): Bob
+    deleteBob(id: ID!): ID
+}
