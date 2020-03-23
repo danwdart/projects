@@ -23,7 +23,37 @@ rt = ReaderT $ do
 rWithLocal :: Reader String String
 rWithLocal = local (++"Jim") stringToStringReader
 
--- MOAR.
+
+s2s1 :: String -> String
+s2s1 = ("Hello!! " ++)
+
+-- This needs some DI.
+s2s2 :: String -> String
+s2s2 = ("Hi, my name is " ++) . (++ "!")
+
+s2s3 :: String -> String
+s2s3 = s2s1 . s2s2
+
+-- It could be done with two... but there's no point...
+r1 :: Reader String String
+r1 = asks s2s1
+
+r2 :: Reader String String
+r2 = asks s2s2
+
+r3 :: Reader String String
+r3 = do
+    a <- ask
+    let b = runReader r2 a
+    return $ runReader r1 b
+
+mergeReaders :: Reader a b -> Reader b c -> Reader a c
+mergeReaders a b = asks $ runReader b . runReader a
+
+-- TODO Kleisli & Category
+
+r3alt :: Reader String String
+r3alt = mergeReaders r2 r1
 
 main :: IO ()
 main = do
@@ -33,3 +63,9 @@ main = do
     print $ runReader stringToIntReaderComplex "Bobby"
     runReaderT rtSimple "Bob"
     runReaderT rt "Bob"
+    putStrLn $ s2s1 . s2s2 $ "Bob"
+    putStrLn $ runReader r1 $ runReader r2 "Bob"
+    putStrLn $ s2s1 $ runReader r2 "Bob"
+    putStrLn $ runReader r3 "Bob"
+    putStrLn $ runReader r3alt "Bob"
+    -- putStrLn $ runReader readerRec reader1

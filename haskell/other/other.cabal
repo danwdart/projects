@@ -513,6 +513,12 @@ executable rebindable
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable recursion
+  hs-source-dirs:      src
+  main-is:             recursion.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable regex
   hs-source-dirs:      src
   main-is:             regex.hs
