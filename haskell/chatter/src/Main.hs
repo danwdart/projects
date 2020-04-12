@@ -4,8 +4,11 @@
 {-# LANGUAGE GeneralisedNewtypeDeriving #-}
 {-# LANGUAGE LambdaCase                 #-}
 {-# LANGUAGE OverloadedStrings          #-}
+
 module Main where
 
+import           Control.Concurrent.Async
+import           Control.Exception
 import           Control.Monad
 import           Control.Monad.IO.Class
 import           Data.Aeson
@@ -23,6 +26,8 @@ import           GHC.Generics
 import           Network.HTTP.Req
 import           Safe                       (headMay)
 import           System.Environment
+import           System.Exit
+import           System.Posix.Signals
 import           System.Random
 
 (<<&>>) :: (Functor f1, Functor f2) => f1 (f2 a) -> (a -> b) -> f1 (f2 b)
@@ -30,8 +35,8 @@ import           System.Random
 
 -- Let's do omegle with pure stdin/stdout
 
--- endpoint :: Url Http'
-endpoint = http "front4.omegle.com"
+endpoint :: Url 'Http
+endpoint = http "front2.omegle.com"
 
 userAgent :: BS.ByteString
 userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36"
@@ -63,11 +68,9 @@ loginQuery = do
 type EventType = String
 type MessageBody = String
 
-data Message = Single {
-    msg :: MessageBody
-} | Multi {
+newtype Message = Message {
     msgs :: [MessageBody]
-} | NoMessageBody deriving (Eq, Generic, Show)
+} deriving (Eq, Generic, Show)
 
 instance FromJSON Message where
     parseJSON = genericParseJSON defaultOptions { unwrapUnaryRecords = True }
@@ -83,14 +86,17 @@ data Event = Event {
 instance FromJSON Event where
     parseJSON = \case
         (Array a) -> case V.toList a of
-            [String a] -> return $ Event (T.unpack a) NoMessageBody
-            [String a, String b] -> return $ Event (T.unpack a) (Single (T.unpack b))
+            [String a] -> return $ Event (T.unpack a) $ Message []
+            [String a, String b] -> return $ Event (T.unpack a) $ Message [T.unpack b]
             [String a, Array b] -> case V.toList b of
-                [String c, String d] -> return $ Event (T.unpack a) (Multi [T.unpack c, T.unpack d])
-                [String e] -> return $ Event (T.unpack a) (Single (T.unpack e))
-                _ -> error "Subarray is wrong"
+                [String c, String d] -> return $ Event (T.unpack a) $ Message [T.unpack c, T.unpack d]
+                [String e] -> return $ Event (T.unpack a) $ Message [T.unpack e]
+                xs -> error $ "Subarray is wrong" ++ show xs
             [String a, String b, String c] -> error $ show $ [a, b, c] <&> T.unpack
-            _ -> error "Array is wrong"
+            (String a:xs) -> if a == "statusInfo" then
+                    return $ Event (T.unpack a) $ Message []
+                else 
+                    error $ "Array is wrong" ++ show xs
         _ -> error "Not array"
 
 data LoginResponse = LoginResponse {
@@ -109,8 +115,14 @@ login = do
     reqConnect <- runReq defaultHttpConfig $ req POST (endpoint /: "start") NoReqBody jsonResponse query
     let loginBody = responseBody reqConnect :: LoginResponse
     let clientId = clientID loginBody
+    putStrLn $ "Client ID: " ++ clientId
+    installHandler keyboardTermination (Catch $ disconnect clientId) Nothing
     parseEvents clientId (events loginBody)
-    doEvents clientId
+    concurrently_ (
+        doEvents clientId
+        ) (
+        forever $ (getLine >>= \msg -> if "\EOT" /= msg && "\ETX" /= msg && "/q" /= msg then send clientId msg else disconnect clientId) `catch` \(SomeException e) -> putStrLn "failed to send... somebody disconnected!" >> disconnect clientId
+        )
 
 connected :: IO ()
 connected = putStrLn "Connected."
@@ -119,10 +131,10 @@ commonLikes :: [String] -> IO ()
 commonLikes likes = putStrLn $ "Common likes: " ++ intercalate ", " likes
 
 gotMessage :: String -> IO ()
-gotMessage msg = putStrLn $ "Stranger: " ++ msg
+gotMessage = putStrLn . ("Stranger: " ++)
 
 parseEvents :: String -> [Event] -> IO ()
-parseEvents clientId = mapM_ . parseEvent $ clientId
+parseEvents = mapM_ . parseEvent
 
 parseEvent :: String -> Event -> IO ()
 parseEvent clientId event = case eventName event of
@@ -131,14 +143,14 @@ parseEvent clientId event = case eventName event of
     "commonLikes" -> commonLikes . msgs . eventBody $ event
     "typing" -> putStrLn "Stranger typing..."
     "stoppedTyping" -> putStrLn "Stranger stopped typing."
-    "gotMessage" -> gotMessage . msg . eventBody $ event
+    "gotMessage" -> gotMessage . head . msgs . eventBody $ event
     "strangerDisconnected" -> do
         putStrLn "Stranger disconnected."
         disconnect clientId
     "statusInfo" -> mempty
     "identDigests" -> mempty
     "error" ->
-        putStrLn $ "Error: " ++ (msg . eventBody $ event)
+        putStrLn $ ("Error: " ++) . head . msgs . eventBody $ event
 
 doEvents :: String -> IO ()
 doEvents clientId = do
@@ -147,13 +159,11 @@ doEvents clientId = do
     parseEvents clientId body
     doEvents clientId
 
-exit :: IO ()
-exit = undefined
-
 disconnect :: String -> IO ()
 disconnect clientId = do
-    reqDisconnect <- runReq defaultHttpConfig $ req POST (endpoint /: "disconnect") (ReqBodyUrlEnc ("id" =: clientId)) ignoreResponse headers
-    exit
+    putStrLn "Disconnecting..."
+    runReq defaultHttpConfig $ req POST (endpoint /: "disconnect") (ReqBodyUrlEnc ("id" =: clientId)) ignoreResponse headers
+    exitSuccess
 
 send :: String -> String -> IO ()
 send clientId messageText = do
