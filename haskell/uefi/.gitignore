@@ -1,7 +1,10 @@
-efimain.efi
+efi/
 efimain.so
 efimain.o
 main.hi
-main.hs
 main.o
 main_stub.h
+main.hs
+main.hsc
+main.chs.h
+main.chi
