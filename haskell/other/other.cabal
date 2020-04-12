@@ -13,6 +13,12 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
+executable lambda
+  hs-source-dirs:      lambda/untyped
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, containers, haskeline, mtl, parsec, pretty
+
 executable intro
   hs-source-dirs:      src
   main-is:             Main.hs
@@ -156,7 +162,7 @@ executable composefunctors
   hs-source-dirs:      src
   main-is:             composefunctors.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, template-haskell
 
 executable composition
   hs-source-dirs:      src
