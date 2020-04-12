@@ -143,6 +143,12 @@ executable oeis
                       , unordered-containers
                       , vector
 
+executable pichang
+  hs-source-dirs:      src
+  main-is:             pichang.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5    
+
 executable pi-jg
   hs-source-dirs:      src
   main-is:             pi/jg.hs
@@ -172,6 +178,12 @@ executable sandpiles
   main-is:             sandpiles.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, comonad
+
+executable sumdiff-lucaslike
+  hs-source-dirs:      src
+  main-is:             sumdiff-lucaslike.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, MonadRandom
 
 executable surds
   hs-source-dirs:      src
@@ -220,3 +232,9 @@ executable primey
   main-is:             primefun/primey.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
+
+executable raw
+  hs-source-dirs:      src
+  main-is:             primefun/raw.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
