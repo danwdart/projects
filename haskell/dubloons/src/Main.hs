@@ -23,16 +23,12 @@ import System.Process
 -- guildId :: GuildId
 -- guildId = 507557271191158784
 
--- This is the group channel
-channelId :: ChannelId
-channelId = 617861907050659850
-
-handleStart :: DiscordHandle -> IO ()
-handleStart h = do
+handleStart :: ChannelId -> DiscordHandle -> IO ()
+handleStart channelId h = do
     putStrLn "Start handler called"
     -- Right user <- restCall h R.GetCurrentUser
     -- channel <- restCall h (R.GetChannel channelId)
-    void $ sendMessage h "-- Arrr, I be here! --"
+    void $ sendMessage h channelId "-- Arrr, I be here! --"
 
 type Token = Text
 type Username = Text
@@ -40,8 +36,8 @@ type MessageText = Text
 type MessageResult = Either RestCallErrorCode Message
 type MState = [(Int, (String, String))]
 
-sendMessage :: DiscordHandle -> MessageText -> IO MessageResult
-sendMessage h msg = do
+sendMessage :: DiscordHandle -> ChannelId -> MessageText -> IO MessageResult
+sendMessage h channelId msg = do
     putStrLn $ "Sending a message to channel " <> show channelId
     restCall h . R.CreateMessage channelId $ msg
 
@@ -52,8 +48,8 @@ indexList' :: [a] -> Int -> [(Int, a)]
 indexList' [] _ = []
 indexList' (a:as) total = (total - length as, a):indexList' as total
 
-getQuery :: IORef MState -> DiscordHandle -> Text -> IO ()
-getQuery ir h query = do
+getQuery :: IORef MState -> DiscordHandle -> ChannelId -> Text -> IO ()
+getQuery ir h channelId query = do
     _ <- sendMsg $ "Yarrrr, I be gettin' " <> query <> " for ye!"
     results <- queryPirate query
     _ <- sendMsg $ "Yarrrr, I got ye ' " <> query <> " for ye!"
@@ -63,11 +59,11 @@ getQuery ir h query = do
         take 10 (indexList results)
     void . sendMsg $ "Yarr, that be it! Ye can pick! Ye say fer example 'dl 2' to get ye yer second entry! Arr!"
     where
-        sendMsg = sendMessage h
+        sendMsg = sendMessage h channelId
 
-parseMsg :: IORef MState -> DiscordHandle -> Text -> Text -> IO ()
-parseMsg ir h query = \case
-    "get" -> getQuery ir h query
+parseMsg :: IORef MState -> ChannelId -> DiscordHandle -> Text -> Text -> IO ()
+parseMsg ir channelId h query = \case
+    "get" -> getQuery ir h channelId query
     "results" -> do
         v <- liftIO . readIORef $ ir
         void $ sendMsg (T.pack $ show (map (\(i, (n, _)) -> (i, n)) v))
@@ -82,10 +78,10 @@ parseMsg ir h query = \case
             ) result
     _ -> return ()
     where
-        sendMsg = sendMessage h
+        sendMsg = sendMessage h channelId
 
-handleMessage :: IORef MState -> DiscordHandle -> Username -> MessageText -> IO ()
-handleMessage ir h username = \case
+handleMessage :: IORef MState -> ChannelId -> DiscordHandle -> Username -> MessageText -> IO ()
+handleMessage ir channelId h username = \case
     "/hello" -> void $ sendMsg $ "Ahoy, matey, " <> username <> "!"
     "/status" -> void $ sendMsg "Yarr, all hands on deck!"
     "/help" -> void $ sendMsg $ "Arr, ye can say:\n" <>
@@ -100,19 +96,19 @@ handleMessage ir h username = \case
     msg -> do
         let (cmd : queries) = T.words msg
         let query = T.unwords queries
-        parseMsg ir h query cmd
+        parseMsg ir channelId h query cmd
     where
-        sendMsg = sendMessage h
+        sendMsg = sendMessage h channelId
 
-handleEvent :: IORef MState -> DiscordHandle -> Event -> IO ()
-handleEvent ir h = \case
+handleEvent :: IORef MState -> ChannelId -> DiscordHandle -> Event -> IO ()
+handleEvent ir channelId h = \case
     MessageCreate m -> do
         let author = messageAuthor m
         -- let isBot = userIsBot author
         let msg = messageText m
         let username = userName author
         putStrLn $ username <> " said: " <> msg
-        handleMessage ir h username msg
+        handleMessage ir channelId h username msg
     Ready {} -> putStrLn "Received Ready event."
     GuildCreate {} -> putStrLn "Received GuildCreate event."
     ChannelCreate ChannelDirectMessage {} -> putStrLn "Received ChannelCreate - direct message event."
@@ -126,12 +122,12 @@ handleEvent ir h = \case
 handleQuit :: IO ()
 handleQuit = putStrLn "Quit handler called"
 
-runDiscordOpts :: IORef MState -> Token -> RunDiscordOpts
-runDiscordOpts ir token = RunDiscordOpts {
+runDiscordOpts :: IORef MState -> Token -> ChannelId -> RunDiscordOpts
+runDiscordOpts ir token channelId = RunDiscordOpts {
     discordToken = token,
-    discordOnStart = handleStart,
+    discordOnStart = handleStart channelId,
     discordOnEnd = handleQuit,
-    discordOnEvent = handleEvent ir,
+    discordOnEvent = handleEvent ir channelId,
     discordOnLog = putStrLn,
     discordForkThreadForEvents = False
 }
@@ -143,10 +139,11 @@ main = void $ runExceptT (
             putStrLn "Dubloons v0.1"
             putStrLn "Loading auth token"
             token <- ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_AUTH_TOKEN"))
+            channelId <- ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_CHANNEL_ID"))
             putStrLn "Starting bot"
             stateM <- liftIO . newIORef $ []
-            _ <- liftIO . runDiscord . runDiscordOpts stateM . T.pack $ token
+            _ <- liftIO . runDiscord . runDiscordOpts stateM (T.pack token) $ fromIntegral $ read channelId
             putStrLn "Bot stopped"
         ) (
-        const $ putStrLn "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details.")
+        const $ putStrLn "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token & make sure you include DISCORD_CHANNEL_ID. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details.")
     )
