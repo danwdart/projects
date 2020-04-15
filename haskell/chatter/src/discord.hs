@@ -1,9 +1,6 @@
 {-# LANGUAGE LambdaCase, OverloadedStrings #-}
 {-# OPTIONS_GHC -Wall -Werror -Wno-type-defaults -Wno-unused-imports #-}
 
-import Control.Concurrent
-import Control.Concurrent.Async
-import Control.Concurrent.MVar
 import Control.Exception
 import Control.Monad
 import Control.Monad.IO.Class
@@ -25,19 +22,18 @@ import System.Process
 -- guildId :: GuildId
 -- guildId = 507557271191158784
 
-type MVH = MVar DiscordHandle
 type Token = Text
 type Username = Text
 type MessageText = Text
 type MessageResult = Either RestCallErrorCode Message
 
-handleStart :: MVH -> ChannelId -> DiscordHandle -> IO ()
-handleStart mv channelId h = do
+handleStart :: ChannelId -> DiscordHandle -> IO ()
+handleStart channelId h = do
     putStrLn "Start handler called"
     -- Right user <- restCall h R.GetCurrentUser
     -- channel <- restCall h (R.GetChannel channelId)
-    putMVar mv h
     void $ sendMessage h channelId "Bot Started"
+    void $ forever $ sendMessageFromInput h channelId
 
 sendMessage :: DiscordHandle -> ChannelId -> MessageText -> IO MessageResult
 sendMessage h channelId msg = do
@@ -76,10 +72,10 @@ handleEvent channelId h = \case
 handleQuit :: IO ()
 handleQuit = putStrLn "Quit handler called"
 
-runDiscordOpts :: MVH -> Token -> ChannelId -> RunDiscordOpts
-runDiscordOpts ready token channelId = RunDiscordOpts {
+runDiscordOpts :: Token -> ChannelId -> RunDiscordOpts
+runDiscordOpts token channelId = RunDiscordOpts {
     discordToken = token,
-    discordOnStart = handleStart ready channelId,
+    discordOnStart = handleStart channelId,
     discordOnEnd = handleQuit,
     discordOnEvent = handleEvent channelId,
     discordOnLog = putStrLn,
@@ -105,14 +101,9 @@ main = void $ runExceptT (
             token <- ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_AUTH_TOKEN"))
             channelId <- ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_CHANNEL_ID"))
             putStrLn "Starting bot"
-            ready <- liftIO newEmptyMVar
-            liftIO $ concurrently_
-                (void $ liftIO . runDiscord . runDiscordOpts ready (T.pack token) $ fromIntegral $ read channelId)
-                (liftIO $ do
-                    h <- liftIO . readMVar $ ready
-                    void $ forever $ sendMessageFromInput h (fromIntegral $ read channelId)
-                )
+            void $ liftIO . runDiscord . runDiscordOpts (T.pack token) $ fromIntegral $ read channelId
             putStrLn "Bot stopped"
         ) (
-        const $ putStrLn "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token & make sure you include DISCORD_CHANNEL_ID. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details.")
+            const $ putStrLn "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token & make sure you include DISCORD_CHANNEL_ID. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details."
+        )
     )
