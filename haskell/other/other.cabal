@@ -495,6 +495,12 @@ executable profunctor
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, profunctors
   
+executable python5
+  hs-source-dirs:      src
+  main-is:             python5.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, array
+  
 executable qchas
   hs-source-dirs:      src
   main-is:             qchas.hs
