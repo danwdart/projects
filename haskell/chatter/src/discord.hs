@@ -93,17 +93,13 @@ sendMessageFromInput h channelId = do
             exitSuccess
 
 main :: IO ()
-main = void $ runExceptT (
-    catchE (
-        do
-            putStrLn "Chiscord v0.1"
-            putStrLn "Loading auth token"
-            token <- ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_AUTH_TOKEN"))
-            channelId <- ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_CHANNEL_ID"))
-            putStrLn "Starting bot"
-            void $ liftIO . runDiscord . runDiscordOpts (T.pack token) $ fromIntegral $ read channelId
-            putStrLn "Bot stopped"
-        ) (
-            const $ putStrLn "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token & make sure you include DISCORD_CHANNEL_ID. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details."
-        )
-    )
+main = void $ runExceptT $ do
+    putStrLn "Chiscord v0.1"
+    putStrLn "Loading auth token"
+    token <- catchE (ExceptT $ tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_AUTH_TOKEN")) $
+        fail "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token & make sure you include DISCORD_CHANNEL_ID. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details."
+    channelId <- catchE (ExceptT $ tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_CHANNEL_ID")) $
+        fail "Failed to get the channel ID. Please set the environment variable DISCORD_CHANNEL_ID."
+    putStrLn "Starting bot"
+    void $ liftIO . runDiscord . runDiscordOpts (T.pack token) $ fromIntegral $ read channelId
+    putStrLn "Bot stopped"
