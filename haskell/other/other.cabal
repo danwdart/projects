@@ -164,13 +164,6 @@ executable composefunctors
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, template-haskell
 
-executable composition
-  hs-source-dirs:      src
-  main-is:             composition.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, template-haskell
-  other-modules:       Lib.TH
-
 executable composition-eta
   hs-source-dirs:      src
   main-is:             composition-eta.hs
