@@ -69,7 +69,7 @@ packages:
     hackage: ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
 snapshots:
 - completed:
-    size: 545658
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/12.yaml
-    sha256: 26b807457213126d26b595439d705dc824dbb7618b0de6b900adc2bf6a059406
-  original: lts-14.12
+    size: 492015
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/8.yaml
+    sha256: 926bc3d70249dd0ba05277ff00943c0addb35b627cb641752669e7cf771310d0
+  original: lts-15.8

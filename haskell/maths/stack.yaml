@@ -1,4 +1,4 @@
-resolver: lts-14.12
+resolver: lts-15.8
 packages:
 - .
 extra-deps:
@@ -12,6 +12,5 @@ extra-deps:
   - random-shuffle-0.0.4
   - toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
   - utility-ht-0.0.14
-system-ghc: true
 ghc-options:
   other: -Wall -Werror

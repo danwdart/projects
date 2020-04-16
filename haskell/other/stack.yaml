@@ -1,4 +1,4 @@
-resolver: lts-14.10
+resolver: lts-15.8
 packages:
 - .
 extra-deps:
@@ -55,7 +55,5 @@ extra-deps:
   - wai-3.2.2
   - warp-3.2.26
   - yaml-0.11.0.0
-
-system-ghc: true
 ghc-options:
   other: -j16 -Wall # -Werror

@@ -1,4 +1,4 @@
-resolver: lts-14.10
+resolver: lts-15.8
 packages:
 - .
 extra-deps:
@@ -46,6 +46,7 @@ extra-deps:
   - optics-core-0.1@sha256:301a7ec522495868a8969a6ad74913c569a1492ba455e5f3c6fcc65f16f500ca,4402
   - optics-extra-0.1@sha256:1ade88aef7931e547f4f0c22f1d92b552009f4389c2e43674c34e644e99af5c6,3162
   - optics-th-0.1@sha256:9b465554bdebad9715e35924a1439a3f2739c78bf84a0e3b9aace553eb30850c,1911
+  - probability-0.2.6@sha256:6d85d961d85fd5d1a35b90fe77510f6fcc6a8f20e8ed503219c38378de9cb3cd
   - process-1.6.5.1@sha256:77a9afeb676357f67fe5cf1ad79aca0745fb6f7fb96b786d510af08f622643f6,2468
   - propellor-5.9.1
   - qchas-1.1.0.1
@@ -62,7 +63,5 @@ extra-deps:
   - wai-3.2.2
   - warp-3.2.26
   - yaml-0.11.0.0
-
-system-ghc: true
 ghc-options:
   boardgames: -Wall -Werror

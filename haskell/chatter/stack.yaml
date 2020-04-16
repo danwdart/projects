@@ -1,4 +1,4 @@
-resolver: lts-14.10
+resolver: lts-15.8
 packages:
 - .
 extra-deps:
@@ -6,9 +6,9 @@ extra-deps:
 - discord-haskell-1.1.0
 - emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f
 - req-2.1.0
+- time-1.8.0.4@sha256:3f6eddf238b828eb4f82683acce1c3afe64784f0d20114239b738c123316c85c,5494
 - unix-2.7.2.2
 - vector-0.12.0.3
-system-ghc: true
 ghc-options:
   other: -Wall -Werror
 # extra-include-dirs: [/path/to/dir]

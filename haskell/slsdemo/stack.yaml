@@ -1,4 +1,4 @@
-resolver: lts-15.3
+resolver: lts-15.8
 packages:
 - .
 extra-deps:
@@ -27,6 +27,5 @@ extra-deps:
 - time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
 - unix-2.7.2.2
 allow-newer: true
-system-ghc: true
 ghc-options:
   sls: -Wall -Werror

@@ -4,6 +4,7 @@ packages:
 extra-deps:
   - blaze-html-0.9.1.1
   - blaze-markup-0.8.2.3
+  - ghcjs-base-0.2.0.0@sha256:d755c0dc16c2b5fd45e7a1db75f68a1ddaf400b38166fac8194a8c3acc1deae3
   - ghcjs-dom-0.9.4.0
   - ghcjs-dom-jsaddle-0.9.4.0
   - jsaddle-0.9.6.0
@@ -11,6 +12,5 @@ extra-deps:
   - jsaddle-warp-0.9.6.0
   - reactive-banana-1.2.1.0
   - ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
-system-ghc: true
 ghc-options:
   web: -Wall -Werror

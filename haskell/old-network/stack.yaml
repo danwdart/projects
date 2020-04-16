@@ -1,4 +1,4 @@
-resolver: lts-14.10
+resolver: lts-15.8
 packages:
 - .
 extra-deps:
@@ -7,7 +7,5 @@ extra-deps:
   - mime-mail-0.4.14@sha256:22e54d99c3f9f21004c929f0cf0c7ab75fcee5e0666c03517157be61be6fea93,1647
   - mongoDB-2.5.0.0
   - propellor-5.9.1
-
-system-ghc: true
 ghc-options:
   old-network: -Wall -Werror

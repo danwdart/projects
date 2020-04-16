@@ -19,6 +19,13 @@ packages:
   original:
     hackage: blaze-markup-0.8.2.3
 - completed:
+    hackage: ghcjs-base-0.2.0.0@sha256:d755c0dc16c2b5fd45e7a1db75f68a1ddaf400b38166fac8194a8c3acc1deae3,6759
+    pantry-tree:
+      size: 6382
+      sha256: de9f53b305557b551b6ab08b0b6b75bb0909f4d65d26f40a5d71fd9c29cf905f
+  original:
+    hackage: ghcjs-base-0.2.0.0@sha256:d755c0dc16c2b5fd45e7a1db75f68a1ddaf400b38166fac8194a8c3acc1deae3
+- completed:
     hackage: ghcjs-dom-0.9.4.0@sha256:c2b3d25145e24b66a8a5078c0d750305b577aeff05957cf282d74f6e8d2424dd,32082
     pantry-tree:
       size: 357

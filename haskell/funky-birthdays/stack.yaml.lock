@@ -12,6 +12,13 @@ packages:
   original:
     hackage: binary-0.8.7.0@sha256:ae3e6cca723ac55c54bbb3fa771bcf18142bc727afd57818e66d6ee6c8044f12,7705
 - completed:
+    hackage: Cabal-3.2.0.0@sha256:d0d7a1f405f25d0000f5ddef684838bc264842304fd4e7f80ca92b997b710874,27320
+    pantry-tree:
+      size: 40963
+      sha256: b122f2d76dc82a350d3986fa0cbc4ecf9c3bb4f9c598ccbfb3b2bfdde02f3698
+  original:
+    hackage: Cabal-3.2.0.0@sha256:d0d7a1f405f25d0000f5ddef684838bc264842304fd4e7f80ca92b997b710874,27320
+- completed:
     hackage: containers-0.5.11.0@sha256:28ad7337057442f75bc689315ab4ec7bdf5e6b2c39668f306672cecd82c02798,16685
     pantry-tree:
       size: 4849
@@ -47,6 +54,13 @@ packages:
   original:
     hackage: network-2.6.3.6@sha256:1ca79d81af02d7acd6032d5e6c9bde4618a8fdcfbe19bd42b49d420183975df0,2666
 - completed:
+    hackage: parsec-3.1.14.0@sha256:63a4555d6ea2aaccd8588fc809e5d137e72b668898ab3b171ce8458b792f0f36,4356
+    pantry-tree:
+      size: 2574
+      sha256: c17cc12ba9a912521d58d8bcee07830351fe27483d9309ebdac8e32175e10706
+  original:
+    hackage: parsec-3.1.14.0@sha256:63a4555d6ea2aaccd8588fc809e5d137e72b668898ab3b171ce8458b792f0f36,4356
+- completed:
     hackage: text-1.2.4.0@sha256:8c24450feb8e3bbb7ea3e17af24ef57e85db077c4bf53e5bcc345b283d1b1d5b,10081
     pantry-tree:
       size: 7457
@@ -55,7 +69,7 @@ packages:
     hackage: text-1.2.4.0@sha256:8c24450feb8e3bbb7ea3e17af24ef57e85db077c4bf53e5bcc345b283d1b1d5b,10081
 snapshots:
 - completed:
-    size: 524130
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/10.yaml
-    sha256: 04841e0397d7ce6364f19359fce89aa45ca8684609d665845db80d398002baa9
-  original: lts-14.10
+    size: 492015
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/8.yaml
+    sha256: 926bc3d70249dd0ba05277ff00943c0addb35b627cb641752669e7cf771310d0
+  original: lts-15.8
