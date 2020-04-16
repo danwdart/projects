@@ -48,10 +48,10 @@ indexList' :: [a] -> Int -> [(Int, a)]
 indexList' [] _ = []
 indexList' (a:as) total = (total - length as, a):indexList' as total
 
-getQuery :: IORef MState -> DiscordHandle -> ChannelId -> Text -> IO ()
-getQuery ir h channelId query = do
+getQuery :: IORef MState -> DiscordHandle -> ChannelId -> Text -> Text -> IO ()
+getQuery ir h channelId hostname query = do
     _ <- sendMsg $ "Yarrrr, I be gettin' " <> query <> " for ye!"
-    results <- queryPirate query
+    results <- queryPirate hostname query
     _ <- sendMsg $ "Yarrrr, I got ye ' " <> query <> " for ye!"
     _ <- liftIO $ writeIORef ir (indexList results)
     _ <- sendMsg $ "Yarrrr, I stored ye ' " <> query <> " for ye! Here they be:"
@@ -61,9 +61,9 @@ getQuery ir h channelId query = do
     where
         sendMsg = sendMessage h channelId
 
-parseMsg :: IORef MState -> ChannelId -> DiscordHandle -> Text -> Text -> IO ()
-parseMsg ir channelId h query = \case
-    "get" -> getQuery ir h channelId query
+parseMsg :: IORef MState -> ChannelId -> DiscordHandle -> Text -> Text -> Text -> IO ()
+parseMsg ir channelId h hostname query = \case
+    "get" -> getQuery ir h channelId hostname query
     "results" -> do
         v <- liftIO . readIORef $ ir
         void $ sendMsg (T.pack $ show (map (\(i, (n, _)) -> (i, n)) v))
@@ -80,8 +80,8 @@ parseMsg ir channelId h query = \case
     where
         sendMsg = sendMessage h channelId
 
-handleMessage :: IORef MState -> ChannelId -> DiscordHandle -> Username -> MessageText -> IO ()
-handleMessage ir channelId h username = \case
+handleMessage :: IORef MState -> ChannelId -> DiscordHandle -> Username -> Text -> MessageText -> IO ()
+handleMessage ir channelId h username hostname  = \case
     "/hello" -> void $ sendMsg $ "Ahoy, matey, " <> username <> "!"
     "/status" -> void $ sendMsg "Yarr, all hands on deck!"
     "/help" -> void $ sendMsg $ "Arr, ye can say:\n" <>
@@ -96,19 +96,19 @@ handleMessage ir channelId h username = \case
     msg -> do
         let (cmd : queries) = T.words msg
         let query = T.unwords queries
-        parseMsg ir channelId h query cmd
+        parseMsg ir channelId h hostname query cmd
     where
         sendMsg = sendMessage h channelId
 
-handleEvent :: IORef MState -> ChannelId -> DiscordHandle -> Event -> IO ()
-handleEvent ir channelId h = \case
+handleEvent :: IORef MState -> ChannelId -> Text -> DiscordHandle -> Event -> IO ()
+handleEvent ir channelId hostname h = \case
     MessageCreate m -> do
         let author = messageAuthor m
         -- let isBot = userIsBot author
         let msg = messageText m
         let username = userName author
         putStrLn $ username <> " said: " <> msg
-        handleMessage ir channelId h username msg
+        handleMessage ir channelId h username hostname msg
     Ready {} -> putStrLn "Received Ready event."
     GuildCreate {} -> putStrLn "Received GuildCreate event."
     ChannelCreate ChannelDirectMessage {} -> putStrLn "Received ChannelCreate - direct message event."
@@ -122,12 +122,12 @@ handleEvent ir channelId h = \case
 handleQuit :: IO ()
 handleQuit = putStrLn "Quit handler called"
 
-runDiscordOpts :: IORef MState -> Token -> ChannelId -> RunDiscordOpts
-runDiscordOpts ir token channelId = RunDiscordOpts {
+runDiscordOpts :: IORef MState -> Token -> ChannelId -> Text -> RunDiscordOpts
+runDiscordOpts ir token channelId hostname = RunDiscordOpts {
     discordToken = token,
     discordOnStart = handleStart channelId,
     discordOnEnd = handleQuit,
-    discordOnEvent = handleEvent ir channelId,
+    discordOnEvent = handleEvent ir channelId hostname,
     discordOnLog = putStrLn,
     discordForkThreadForEvents = False
 }
@@ -140,7 +140,9 @@ main = void $ runExceptT $ do
         fail "Failed to get the authentication token. Please set the environment variable DISCORD_AUTH_TOKEN to your token & make sure you include DISCORD_CHANNEL_ID. See https://github.com/aquarial/discord-haskell/wiki/Creating-your-first-Bot for more details."
     channelId <- catchE (ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "DISCORD_CHANNEL_ID"))) $
         fail "Failed to get the channel ID. Please set the environment variable DISCORD_CHANNEL_ID."
+    hostname <- catchE (ExceptT (tryJust (guard . isDoesNotExistError) (getEnv "TPB_DOMAIN"))) $
+        fail "Failed to get the TPB domain. Please set the environment variable TPB_DOMAIN."
     putStrLn "Starting bot"
     stateM <- liftIO . newIORef $ []
-    _ <- liftIO . runDiscord . runDiscordOpts stateM (T.pack token) $ fromIntegral $ read channelId
+    _ <- liftIO . runDiscord $ runDiscordOpts stateM (T.pack token) (fromIntegral $ read channelId) (T.pack hostname)
     putStrLn "Bot stopped"
