@@ -195,7 +195,7 @@ executable words
   hs-source-dirs:      src
   main-is:             words.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, containers, mtl, profunctors
 
 executable decomp
   hs-source-dirs:      src
