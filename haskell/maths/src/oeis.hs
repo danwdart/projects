@@ -32,7 +32,7 @@ data OEISResult = OEISResult {
 instance FromJSON OEISResult where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = tail }
 
-data OEISResponse = OEISResponse {
+newtype OEISResponse = OEISResponse {
     results :: [OEISResult]
 } deriving (Eq, FromJSON, Generic, Out, Show)
 

@@ -67,12 +67,6 @@ executable onetwenty
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable factory
-  hs-source-dirs:      src
-  main-is:             factory.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, factory
-
 executable frobenius
   hs-source-dirs:      src
   main-is:             frobenius.hs
