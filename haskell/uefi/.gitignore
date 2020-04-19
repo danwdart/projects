@@ -1,4 +1,4 @@
-efi/
+fat/
 efimain.so
 efimain.o
 main.hi
@@ -8,3 +8,5 @@ main.hs
 main.hsc
 main.chs.h
 main.chi
+ghc*
+cabal*
