@@ -17,28 +17,21 @@ packages:
       size: 1437
       sha256: e0806ea13b946dfc785bf9580e126cfcb8d3c6f21e1fbe313374745c3a8a8b99
   original:
-    hackage: HaskellNet-0.5.1
+    hackage: HaskellNet-0.5.1@sha256:53f2cfffb140740691296f905a70143c859b571eea3f5cf5f7a4642851d9e38a,1584
 - completed:
-    hackage: mime-mail-0.4.14@sha256:22e54d99c3f9f21004c929f0cf0c7ab75fcee5e0666c03517157be61be6fea93,1647
+    hackage: network-2.8.0.1@sha256:0f165dffa752d8cde30c2bde86f80609c4f1dc5eeb3182d593041f97839c5b3b,3011
     pantry-tree:
-      size: 439
-      sha256: 85b015dbc632b2796dfc1b6b750f4a7906c62c4067af0f27460fbf38c712b6e4
+      size: 2488
+      sha256: 2dbdda2225969dcd452d983a2ac7e52341e5fc1df76103342c9fac08fc686931
   original:
-    hackage: mime-mail-0.4.14@sha256:22e54d99c3f9f21004c929f0cf0c7ab75fcee5e0666c03517157be61be6fea93,1647
+    hackage: network-2.8.0.1
 - completed:
-    hackage: mongoDB-2.5.0.0@sha256:fa2e3ad7a79f0e5472fda78dad040062cb2c73687d329161d5900ec30ef666d1,5008
-    pantry-tree:
-      size: 1186
-      sha256: 807e4b23607d1a21dde32b8b2f98ce0f0bbc168c8514b627ee166b37a3b7b1e2
-  original:
-    hackage: mongoDB-2.5.0.0
-- completed:
-    hackage: propellor-5.9.1@sha256:a379cde809635c2216240ff3a2d41a6d5fbf811b1607bc630918b69c8a06bd7c,7271
+    hackage: propellor-5.10.1@sha256:ba86a9714ec198dcdb5332b1bde8e1270c6d2523ef1c6707309aab41a9a56bb6,7272
     pantry-tree:
       size: 14035
-      sha256: 19b8c2822d828460043acaa0d35d36bd9920d6ece9ed31e7af232453c2324d41
+      sha256: 356657466358932d811f031f23f903525a5154a86a5be391e2a9d32590fbf0fc
   original:
-    hackage: propellor-5.9.1
+    hackage: propellor-5.10.1@sha256:ba86a9714ec198dcdb5332b1bde8e1270c6d2523ef1c6707309aab41a9a56bb6,7272
 snapshots:
 - completed:
     size: 492015

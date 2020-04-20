@@ -84,3 +84,6 @@ toppleSum existing changes = undefined
 
 topple :: Sandpile Int -> Sandpile Int
 topple a = undefined
+
+main :: IO ()
+main = return ()

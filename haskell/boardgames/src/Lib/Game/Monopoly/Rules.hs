@@ -1,6 +1,5 @@
 module Lib.Game.Monopoly.Rules where
 
-import qualified Data.Set as Set
 import Data.Set (Set)
 
 data PropertyRule = ForceBuy | ConfirmBuy | Auction deriving (Eq, Ord)

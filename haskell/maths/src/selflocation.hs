@@ -1,8 +1,6 @@
 import Data.Number.CReal
 import System.IO
 
-main = return ()
-
 fact :: CReal -> CReal
 fact 0.0 = 1.0
 fact a = a * fact (a - 1.0)

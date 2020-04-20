@@ -5,19 +5,12 @@
 
 packages:
 - completed:
-    hackage: async-2.2.2@sha256:ed46f0f5be36cf8a3e3aebc6827d015e1f3bf9615c245e057b9e9bd35faddd21,2895
+    hackage: discord-haskell-1.5.0@sha256:eabc14a9f6b0f2ba82034c0fe80e8504a816c915fb99e83e7b71c3a878e7692d,3798
     pantry-tree:
-      size: 501
-      sha256: dab5a4c2126fbce3f4a7c15ccf66e60de61d3eccae071f4bfbad036087399f32
+      size: 2108
+      sha256: 9d3edbdcf4193af765d251a7d8a7562f87126f1624fa6360fb5dc0c5a341f448
   original:
-    hackage: async-2.2.2
-- completed:
-    hackage: discord-haskell-1.1.0@sha256:d2fb18cefa91d0f6c84024061ae0e55471c711e5e296f260dec534556dfcd265,3680
-    pantry-tree:
-      size: 1957
-      sha256: 493203f34ea557275fb6b51f7f742023b329523464f2b6aea2c79d46b7170798
-  original:
-    hackage: discord-haskell-1.1.0
+    hackage: discord-haskell-1.5.0@sha256:eabc14a9f6b0f2ba82034c0fe80e8504a816c915fb99e83e7b71c3a878e7692d,3798
 - completed:
     hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f,1273
     pantry-tree:
@@ -25,34 +18,6 @@ packages:
       sha256: dd9ea90a631342e5db0fc21331ade4d563a685e9125d5a3989eefa8e1b96c6c6
   original:
     hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f
-- completed:
-    hackage: req-2.1.0@sha256:0aa582e7b69b6a5ecb065263a208f9f5e3faed33cb140fa7491334191f27ed35,4878
-    pantry-tree:
-      size: 712
-      sha256: b64ceb7150f3b1899e7f87acf93cca2ef035fae3a45b17e868fe05946beaff80
-  original:
-    hackage: req-2.1.0
-- completed:
-    hackage: time-1.8.0.4@sha256:3f6eddf238b828eb4f82683acce1c3afe64784f0d20114239b738c123316c85c,5494
-    pantry-tree:
-      size: 5406
-      sha256: 1a186b21ff55d3e8f7d66ed2075bbce4dcc9ccaeef87665aa88752412f14073f
-  original:
-    hackage: time-1.8.0.4@sha256:3f6eddf238b828eb4f82683acce1c3afe64784f0d20114239b738c123316c85c,5494
-- completed:
-    hackage: unix-2.7.2.2@sha256:e69269a17b9fa26cb77f3f55e86c39d0a4940ccfa0c4bc20826919d2572076ad,3496
-    pantry-tree:
-      size: 3536
-      sha256: c355f7924ce67e5bf8f20767462af18f09b8c0d1f7161117221cbb94c15deee3
-  original:
-    hackage: unix-2.7.2.2
-- completed:
-    hackage: vector-0.12.0.3@sha256:1422b0bcf4e7675116ca8d9f473bf239850c58c4518a56010e3bfebeac345ace,7171
-    pantry-tree:
-      size: 3429
-      sha256: 1adb067bf4b6abf2269a369e18016e5a0e6c40b876aa64dfea9f47547d915ef6
-  original:
-    hackage: vector-0.12.0.3
 snapshots:
 - completed:
     size: 492015

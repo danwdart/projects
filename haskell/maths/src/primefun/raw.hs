@@ -9,3 +9,6 @@ primes = sieve [2..] where sieve (x:xs) = x : sieve (filter (notdiv x) xs)
 -- appears slower, is it tho
 pf :: [Integer]
 pf = fix (\sieve (x:xs) -> x : sieve (filter (notdiv x) xs)) [2..]
+
+main :: IO ()
+main = return ()

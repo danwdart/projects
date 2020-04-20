@@ -15,10 +15,10 @@ instance Show Property where
     show (Property n p hp c a) = n ++ " - " ++ show c ++ " (£" ++ show p ++ ") (house price: £" ++ show hp ++ ") "++ show a
 
 emptyProperty :: Colour -> String -> Int -> Property
-emptyProperty colour name price = Property {
-    name = name,
-    price = price,
-    housePrice = price `div` 2,
-    colour = colour,
+emptyProperty c n p = Property {
+    name = n,
+    price = p,
+    housePrice = p `div` 2,
+    colour = c,
     addons = NoAddons
 }
