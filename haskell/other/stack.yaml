@@ -1,8 +1,8 @@
-resolver: lts-15.9
+resolver: lts-14.27 # monadfail issue in dependency
 packages:
 - .
 extra-deps:
-- Cabal-3.2.0.0@sha256:d0d7a1f405f25d0000f5ddef684838bc264842304fd4e7f80ca92b997b710874,27320
+- Cabal-2.4.1.0 # HDBC issue with 3.0
 - directory-1.3.6.1@sha256:3dc9c69c8e09ec95a7a45c6d06abe0f0d2f604439c37e5f88e5a6c335b088d71,2810
 - HDBC-2.4.0.3@sha256:99d3de808f53271afb0a8c31adfc99c7ef94f28355aba58bb0c9dffd4376296f,2998
 - HDBC-mysql-0.7.1.0@sha256:0a10703f7fd1bd19c8061ebd6dd318acbc107d55502936ba21c1ca705ca1d790,1454
@@ -16,10 +16,18 @@ extra-deps:
 - haxl-2.1.2.0@sha256:1cee655c380dd0373932c666808edc9a9a2d4d8c4e03caeb4da49fbd135b24d9,4040
 - hsx2hs-0.14.1.6@sha256:0681c3cc1d681b45e11e8b53119942bb8e9d65477d2e44f45d3f78baba322286,3579
 - hxt-xpath-9.1.2.2@sha256:9cd590ae93a04573db8f90fa4094625ebd97dded45da7667c577ce6b38a42900,1999
+- indexed-profunctors-0.1@sha256:ddf618d0d4c58319c1e735e746bc69a1021f13b6f475dc9614b80af03432e6d4,1016
+- optics-0.3@sha256:5f62fca47b01ce065bb999724b8cdd45e747537892ee00faeac4b4b20d821aee,6494
+- optics-core-0.3@sha256:0464583aaef715f8e48b8c9ce3fab9866345de93e740dae32d5c5e9a57097bf7,4532
+- optics-extra-0.3@sha256:b1b9917596a4305069aa95eaf3083afe88c6db3c84ed6f52e926c82d0c56eea9,3382
+- optics-th-0.3@sha256:b4746b3d142feb2dc9dfcf76b49a11fd04321aa0ee9c1bcd297c5e8dc393803c,1965
 - process-1.6.8.2@sha256:c2c95560dab7cea7f77b190166c3916945155f0daf5928b28c20a0ac34d4ea2a,2468
 - serial-0.2.7@sha256:7138d32ad74d4d360023455edd3b5bc112b6462eddb73bf2e57f888a0301f065,717
+-
+  git: git@github.com:danwdart/shell-conduit.git
+  commit: 536d3ac5d1fc660d80d0e5b3556375ee7e1f0abf
 - time-1.8.0.4@sha256:3f6eddf238b828eb4f82683acce1c3afe64784f0d20114239b738c123316c85c,5494
 - unix-2.7.2.2@sha256:e69269a17b9fa26cb77f3f55e86c39d0a4940ccfa0c4bc20826919d2572076ad,3496
 allow-newer: true
 ghc-options:
-  other: -j16 -Wall # -Werror
+  other: -j16 -Wall # -Werrorb
