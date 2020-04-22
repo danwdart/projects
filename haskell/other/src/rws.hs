@@ -1,6 +1,5 @@
 import Control.Monad.IO.Class
-import qualified Control.Monad.RWS
-import qualified Control.Monad.Trans.RWS
+import Control.Monad.Trans.RWS
 
 stuff :: RWS String [String] Int Char
 stuff = do
