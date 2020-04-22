@@ -1,4 +1,6 @@
--- import Data.Conduit.Shell
+import Data.Conduit.Shell
 
 main :: IO ()
-main = undefined
+main = do
+    run $ ps ["-aux"]
+    run $ ls ["-lah"]

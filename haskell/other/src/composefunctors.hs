@@ -1,6 +1,11 @@
-{-# LANGUAGE DeriveFunctor, ExistentialQuantification,
-  FlexibleContexts, FlexibleInstances, GeneralizedNewtypeDeriving,
-  RankNTypes, Strict #-}
+{-# LANGUAGE
+  DeriveFunctor,
+  ExistentialQuantification,
+  FlexibleContexts,
+  FlexibleInstances,
+  GeneralizedNewtypeDeriving,
+  RankNTypes,
+  Strict #-}
 
 import Control.Applicative
 import Data.Functor.Compose
