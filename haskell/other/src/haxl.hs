@@ -1,4 +1,4 @@
-{-# LANGUAGE RebindableSyntax #-}
+{-# LANGUAGE NoImplicitPrelude, RebindableSyntax #-}
 
 import Haxl.Prelude
 

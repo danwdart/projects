@@ -1,7 +1,9 @@
 {-# LANGUAGE DataKinds, DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
 
 -- Order me a pizza
+import Control.Monad
 import Control.Monad.IO.Class
+import Control.Monad.Trans.Except
 import Data.Aeson
 -- import Data.Aeson.Encode.Pretty
 -- import Data.Aeson.Types
@@ -261,6 +263,8 @@ reqMain sEmail sPassword = do
     -- resDeals <- dealsInfo
     -- debugPP resDeals
 main :: IO ()
-main = do
-    [sEmail, sPassword] <- sequence $ getEnv <$> ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"]
-    runReq defaultHttpConfig $ reqMain sEmail sPassword
+main = void $ runExceptT $ catchE (
+    do
+        [sEmail, sPassword] <- liftIO $ sequence $ getEnv <$> ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"]
+        void . liftIO . runReq defaultHttpConfig $ reqMain sEmail sPassword
+    ) $ const . liftIO . putStrLn $ "Environment variables not present. Needed: DOMINOS_EMAIL, DOMINOS_PASSWORD"

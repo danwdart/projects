@@ -9,10 +9,10 @@ splitEvery n list = first : splitEvery n rest
     (first,rest) = splitAt n list
 
 splitIntIntoDigits :: Int -> [Int]
-splitIntIntoDigits i = map (\x -> read [x]) $ show i
+splitIntIntoDigits = map (read . (: [])) . show
 
 reduceDigitsIntoInt :: [Int] -> Int
-reduceDigitsIntoInt d = read $ concatMap show d :: Int
+reduceDigitsIntoInt = read . concatMap show
 
 maxLength :: [a] -> [a] -> Int
 maxLength = on max length

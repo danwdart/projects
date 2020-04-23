@@ -1,2 +1,4 @@
+import Data.Profunctor
+
 main :: IO ()
-main = undefined
+main = return ()

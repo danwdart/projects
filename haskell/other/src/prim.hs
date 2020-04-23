@@ -1,4 +1,4 @@
-{-# LANGUAGE MagicHash, TupleSections, UnboxedTuples #-}
+{-# LANGUAGE MagicHash, TupleSections #-}
 
 import GHC.Exts
 -- import GHC.IO

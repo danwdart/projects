@@ -1,4 +1,6 @@
-import           Control.Monad.Writer
+{-# LANGUAGE PackageImports #-}
+
+import "mtl" Control.Monad.Writer
 
 type MyWriter = Writer [String] Int
 
