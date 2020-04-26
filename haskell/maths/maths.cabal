@@ -73,6 +73,12 @@ executable frobenius
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable gamma
+  hs-source-dirs:      src
+  main-is:             gamma.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, invertible
+
 executable harmonic
   hs-source-dirs:      src
   main-is:             harmonic.hs
