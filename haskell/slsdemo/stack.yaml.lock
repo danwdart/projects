@@ -138,12 +138,12 @@ packages:
   original:
     hackage: process-1.6.6.0
 - completed:
-    hackage: serverless-haskell-0.10.2@sha256:3cacfd2b68ef1c6cdc1ddf142a7185b6e4ca3361ccbef247a54d3fb656089e23,2601
+    hackage: serverless-haskell-0.10.5@sha256:0c8f12970c8814feb2f7a159f0b535d060614a787c368bc4fae1097bbe488597,2601
     pantry-tree:
       size: 1845
-      sha256: 76d58ef51ed227972a9126ddbcfa7531223e9423308a2c88eb910a551042f95e
+      sha256: a5f2bd0691567db8f290b7ccaf4d64b549c99a23904c029be1523424e85ad1ee
   original:
-    hackage: serverless-haskell-0.10.2
+    hackage: serverless-haskell-0.10.5
 - completed:
     hackage: text-1.2.4.0@sha256:8c24450feb8e3bbb7ea3e17af24ef57e85db077c4bf53e5bcc345b283d1b1d5b,10081
     pantry-tree:
@@ -177,4 +177,4 @@ snapshots:
     size: 492015
     url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/8.yaml
     sha256: 926bc3d70249dd0ba05277ff00943c0addb35b627cb641752669e7cf771310d0
-  original: lts-15.9
+  original: lts-15.10

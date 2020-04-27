@@ -1,4 +1,4 @@
-resolver: lts-15.9
+resolver: lts-15.10
 packages:
 - .
 extra-deps:
@@ -21,7 +21,7 @@ extra-deps:
 - lens-4.19.1
 - parsec-3.1.14.0@sha256:9f35f3a6ae66c6e1c22a1b84e62731f1501057791ffb2554f710aa08c7a4d651,4211
 - process-1.6.6.0
-- serverless-haskell-0.10.2
+- serverless-haskell-0.10.5
 - text-1.2.4.0
 - th-abstraction-0.3.2.0@sha256:9b5b4e6e2bbff9b075ad7751ee98e2107090bd17b51d5442695b8990e4db6521,1851
 - time-compat-1.9.2.2@sha256:9998dc1b77b5067572ab708e94750f1061152f342e92ad1aba38aae63581174d,4209
