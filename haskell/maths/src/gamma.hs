@@ -4,7 +4,7 @@ import Prelude hiding (succ, (.))
 import Data.Invertible
 
 -- Not really invertible but whatever
-sqr :: (Fractional a, Floating a)=> a <-> a
+sqr :: (Fractional a, Floating a) => a <-> a
 sqr = (^2) <-> sqrt
 
 gammaI :: Double <-> Double
