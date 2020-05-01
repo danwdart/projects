@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.5
+version: v1.14.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -43,3 +43,18 @@ patch:
         patched: '2019-07-31T20:28:48.186Z'
     - snyk > @snyk/dep-graph > graphlib > lodash:
         patched: '2019-07-31T20:28:48.186Z'
+  SNYK-JS-LODASH-567746:
+    - '@babel/core > lodash':
+        patched: '2020-05-01T08:25:01.939Z'
+    - '@babel/core > @babel/helper-module-transforms > lodash':
+        patched: '2020-05-01T08:25:01.939Z'
+    - '@babel/plugin-proposal-function-sent > @babel/helper-wrap-function > @babel/traverse > lodash':
+        patched: '2020-05-01T08:25:01.939Z'
+    - '@babel/plugin-proposal-decorators > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > lodash':
+        patched: '2020-05-01T08:25:01.939Z'
+    - '@babel/plugin-proposal-decorators > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/generator > lodash':
+        patched: '2020-05-01T08:25:01.939Z'
+    - '@babel/plugin-proposal-decorators > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash':
+        patched: '2020-05-01T08:25:01.939Z'
+    - '@babel/plugin-proposal-decorators > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2020-05-01T08:25:01.939Z'
