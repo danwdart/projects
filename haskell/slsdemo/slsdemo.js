@@ -1,7 +1,7 @@
 'use strict';
 
-const { spawn } = require('child_process');
-const net = require('net');
+import { spawn } from 'child_process'
+import net from 'net'
 
 function wrapper(options) {
     const executable = options['executable'];

@@ -1,16 +1,10 @@
-resolver: lts-15.10
+resolver: lts-15.11
 packages:
 - .
 extra-deps:
-  - data-default-0.7.1.1
-  - digits-0.3.1
-  - egyptian-fractions-0.1.0.2
-  - factory-0.3.2.1
-  - FixedPoint-simple-0.6.1@sha256:01f08f712f70b4499d2099adda71ee887f24cc0f285f29c4952815e7d52c2bb8,1179
-  - MonadRandom-0.1.7
-  - numbers-3000.2.0.2
-  - random-shuffle-0.0.4
-  - toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
-  - utility-ht-0.0.14
+- FixedPoint-simple-0.6.1@sha256:01f08f712f70b4499d2099adda71ee887f24cc0f285f29c4952815e7d52c2bb8,1179
+- egyptian-fractions-0.1.0.2@sha256:e109daa27dba59e911fe5ede3519368e69d178159561195e1f3b1fe5ec680adc,1059
+- factory-0.3.2.1@sha256:f37a28784f037516f1b57b695ee0394767fc6bb768773dba4948946a30ebd47e,7618
+- toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
 ghc-options:
   other: -Wall -Werror

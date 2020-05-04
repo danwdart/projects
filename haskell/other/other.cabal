@@ -309,6 +309,12 @@ executable foo
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable frp
+  hs-source-dirs:      src
+  main-is:             frp.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable generics
   hs-source-dirs:      src
   main-is:             generics.hs

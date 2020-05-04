@@ -1,16 +1,11 @@
-resolver: lts-15.10
+resolver: lts-15.11 # base-compat-batteries doesn't work on 8.10 yet
 packages:
 - .
 extra-deps:
-  - blaze-html-0.9.1.1
-  - blaze-markup-0.8.2.3
-  - ghcjs-dom-0.9.4.0
-  - ghcjs-dom-jsaddle-0.9.4.0
-  - jsaddle-0.9.6.0
-  - jsaddle-dom-0.9.3.2
-  - jsaddle-warp-0.9.6.0
-  - reactive-banana-1.2.1.0
-  - ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
+- jsaddle-0.9.7.0@sha256:b848f626aede158a4ac9c1129699a44b7e5fa7d3ed9778b6df3390f2a4706412,4418
+- jsaddle-dom-0.9.4.0@sha256:e9557e5a6df02bf089acab3e053ee3d4b523acebfe9ede9b5091d12cee760780,75700
+- jsaddle-warp-0.9.7.0@sha256:2499b761254df1935f95e73285b59de1933d39e405baa76190cb14f9ddf2a687,2712
+- ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
 allow-newer: true
 ghc-options:
   web: -Wall -Werror

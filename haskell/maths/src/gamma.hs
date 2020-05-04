@@ -13,3 +13,6 @@ gammaI = involve recip . succ . involve negate . sqr
 gamma, unGamma :: Double -> Double
 gamma = biTo gammaI
 unGamma = biFrom gammaI
+
+main :: IO ()
+main = return ()

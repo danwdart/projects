@@ -5,34 +5,6 @@
 
 packages:
 - completed:
-    hackage: data-default-0.7.1.1@sha256:2804e8d14f521a1edee88b68b66347448e7f3b685868290fdc55930e4471f5a9,645
-    pantry-tree:
-      size: 212
-      sha256: 1db0dcb6890feff1b87ea180a4c4a0611cda399a700822bd75970a2b7ad02dbc
-  original:
-    hackage: data-default-0.7.1.1
-- completed:
-    hackage: digits-0.3.1@sha256:39009270485114ee7c51273ccca354c6d4af8408f8f1345d506fc5e638b99273,992
-    pantry-tree:
-      size: 263
-      sha256: 514b46f148370fc857f7d9a1604a510ac732034ecf7d6b0a5b82f0c94fe634ce
-  original:
-    hackage: digits-0.3.1
-- completed:
-    hackage: egyptian-fractions-0.1.0.2@sha256:e109daa27dba59e911fe5ede3519368e69d178159561195e1f3b1fe5ec680adc,1059
-    pantry-tree:
-      size: 269
-      sha256: 258085134512bf0833d2725cbf92345ba9e706da210a7dc58f4d6e58743dd528
-  original:
-    hackage: egyptian-fractions-0.1.0.2
-- completed:
-    hackage: factory-0.3.2.1@sha256:f37a28784f037516f1b57b695ee0394767fc6bb768773dba4948946a30ebd47e,7618
-    pantry-tree:
-      size: 7755
-      sha256: 411e32e8f6bff049431188bcbbedc846f85c8e5c963bb80c2f38515e880dc2e9
-  original:
-    hackage: factory-0.3.2.1
-- completed:
     hackage: FixedPoint-simple-0.6.1@sha256:01f08f712f70b4499d2099adda71ee887f24cc0f285f29c4952815e7d52c2bb8,1179
     pantry-tree:
       size: 284
@@ -40,26 +12,19 @@ packages:
   original:
     hackage: FixedPoint-simple-0.6.1@sha256:01f08f712f70b4499d2099adda71ee887f24cc0f285f29c4952815e7d52c2bb8,1179
 - completed:
-    hackage: MonadRandom-0.1.7@sha256:9b13ab123be929a9bb8c5c3d074f3218a94698d856cee8208985e7e72a72f60c,598
+    hackage: egyptian-fractions-0.1.0.2@sha256:e109daa27dba59e911fe5ede3519368e69d178159561195e1f3b1fe5ec680adc,1059
     pantry-tree:
-      size: 288
-      sha256: 375ce770be92c1143516ed0bb4f9e7e82a261780403431ce42d7400217a4c0b3
+      size: 269
+      sha256: 258085134512bf0833d2725cbf92345ba9e706da210a7dc58f4d6e58743dd528
   original:
-    hackage: MonadRandom-0.1.7
+    hackage: egyptian-fractions-0.1.0.2@sha256:e109daa27dba59e911fe5ede3519368e69d178159561195e1f3b1fe5ec680adc,1059
 - completed:
-    hackage: numbers-3000.2.0.2@sha256:fedb235e16f19ffb5dc40711738c29e231fae4ad608473880a1f59ba5f60829e,1757
+    hackage: factory-0.3.2.1@sha256:f37a28784f037516f1b57b695ee0394767fc6bb768773dba4948946a30ebd47e,7618
     pantry-tree:
-      size: 845
-      sha256: 8b21054c6431e81d0cb58611caabc07feac8ef40854e5f72b553edddb72cee43
+      size: 7755
+      sha256: 411e32e8f6bff049431188bcbbedc846f85c8e5c963bb80c2f38515e880dc2e9
   original:
-    hackage: numbers-3000.2.0.2
-- completed:
-    hackage: random-shuffle-0.0.4@sha256:d0b9783c30208d1ce05caa05139fb00372802edb6c678b73d61b5eb4eebb3aba,818
-    pantry-tree:
-      size: 226
-      sha256: e6e1c894e726443bc7165618de6745812610e70f0df22dbe5c130bafee2c507b
-  original:
-    hackage: random-shuffle-0.0.4
+    hackage: factory-0.3.2.1@sha256:f37a28784f037516f1b57b695ee0394767fc6bb768773dba4948946a30ebd47e,7618
 - completed:
     hackage: toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
     pantry-tree:
@@ -67,16 +32,9 @@ packages:
       sha256: eb782c3c9b0eca5a00fd1010ac346d1538dc79b4e44206074179e2aead453603
   original:
     hackage: toolshed-0.18.0.1@sha256:0f59f31f74c3724490f18e109d52c3d52bacc4411b15d007f5dc372de0a872eb,3984
-- completed:
-    hackage: utility-ht-0.0.14@sha256:586b3253413423a6fb205dbba9c02ac6c3c9684f8466e32a8c25053bc6d1d2b0,3023
-    pantry-tree:
-      size: 2741
-      sha256: 82c46e76df9fe51060161c2fa5f300c9e977f87f1fb02fb6eebd1c47fb9a4f15
-  original:
-    hackage: utility-ht-0.0.14
 snapshots:
 - completed:
-    size: 492015
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/8.yaml
-    sha256: 926bc3d70249dd0ba05277ff00943c0addb35b627cb641752669e7cf771310d0
-  original: lts-15.10
+    size: 494638
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/11.yaml
+    sha256: 5747328cdcbb8fe9c96fc048b5566167c80dd176a41b52d3b363058e3cc1dc5d
+  original: lts-15.11
