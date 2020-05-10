@@ -11,4 +11,4 @@ gimme :: Fake a -> IO a
 gimme = generateWithSettings (setNonDeterministic defaultFakerSettings)
 
 main :: IO ()
-main = character <&> (`T.append` " is awesome") & gimme <&> T.unpack >>= putStrLn
+main = (character <&> (`T.append` " is awesome") & gimme) >>= putStrLn . T.unpack

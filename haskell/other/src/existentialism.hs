@@ -1,4 +1,4 @@
 import Control.Monad
 
 main :: IO ()
-main = void $ return Nothing
+main = void $ pure Nothing

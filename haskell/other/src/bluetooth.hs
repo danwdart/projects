@@ -3,6 +3,6 @@ import Data.Functor
 import Network.Bluetooth
 
 main :: IO ()
-main =
+main = do
     allAdapters >>= print
-    --print allAdapters <&> discover
+    allAdapters >>= mapM discover >>= print

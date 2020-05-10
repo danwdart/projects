@@ -96,13 +96,13 @@ executable binarygame
   hs-source-dirs:      src
   main-is:             binarygame.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, ansi-terminal
+  build-depends:       base >= 4.7 && < 5, ansi-terminal, ilist, transformers
 
---executable bluetooth
---  hs-source-dirs:      src
---  main-is:             bluetooth.hs
---  default-language:    Haskell2010
---  build-depends:       base >= 4.7 && < 5, simple-bluetooth
+executable bluetooth
+  hs-source-dirs:      src
+  main-is:             bluetooth.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, simple-bluetooth
 
 executable breakeverything
   hs-source-dirs:      src
@@ -328,6 +328,12 @@ executable gifencode
   build-depends:       base >= 4.7 && < 5, gd
   other-modules:       Lib.Seq
 
+executable gl
+  hs-source-dirs:      src
+  main-is:             gl.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, OpenGL
+
 executable graft
   hs-source-dirs:      src
   main-is:             graft.hs
@@ -543,6 +549,12 @@ executable scrapetumblr
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable sdl
+  hs-source-dirs:      src
+  main-is:             sdl.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, sdl2, sdl2-ttf, sdl2-image, sdl2-mixer, sdl2-gfx
+
 executable sequence
   hs-source-dirs:      src
   main-is:             sequence.hs
@@ -578,7 +590,7 @@ executable sound
   hs-source-dirs:      src
   main-is:             sound.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, pulseaudio, jack
 
 executable sql
   hs-source-dirs:      src
@@ -695,6 +707,12 @@ executable unicode
   main-is:             unicode.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
+
+executable vulkan
+  hs-source-dirs:      src
+  main-is:             vulkan.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, vulkan
 
 executable wai
   hs-source-dirs:      src

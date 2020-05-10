@@ -12,7 +12,7 @@ myComputer = Computer "Dell" "Inspiron"
 
 data Player = Player {
     name :: String,
-    position:: Int,
+    position :: Int,
     money :: Int
 } deriving (Data, Show)
 

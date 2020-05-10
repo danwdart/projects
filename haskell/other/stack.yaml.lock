@@ -138,6 +138,27 @@ packages:
   original:
     hackage: serial-0.2.7@sha256:7138d32ad74d4d360023455edd3b5bc112b6462eddb73bf2e57f888a0301f065,717
 - completed:
+    hackage: simple-bluetooth-0.1.0.0@sha256:c1cb65d4591a4e29edb9aea172bf78ccb8691d0d1021b0da87534b1f66382d08,1300
+    pantry-tree:
+      size: 555
+      sha256: fb8ba71d32dde7018cc7288dd651f7ca265585b12a8b08f1a3a068d8b8416bd3
+  original:
+    hackage: simple-bluetooth-0.1.0.0@sha256:c1cb65d4591a4e29edb9aea172bf78ccb8691d0d1021b0da87534b1f66382d08,1300
+- completed:
+    hackage: pulseaudio-0.0.2.1@sha256:5595863afe793bf204d8013e2cbe738d977e04bc0320390a2cb4115c62ca49a6,4279
+    pantry-tree:
+      size: 1280
+      sha256: 384b0bbf97c213a2b150c3c10564361fd633e11fb4536c53658aa5404edb0a2f
+  original:
+    hackage: pulseaudio-0.0.2.1@sha256:5595863afe793bf204d8013e2cbe738d977e04bc0320390a2cb4115c62ca49a6,4279
+- completed:
+    hackage: vulkan-3.2.0.0@sha256:df0e65e092ec8504c815876e298d3b291a43b95fe4158a15171478d317315c8d,26369
+    pantry-tree:
+      size: 67826
+      sha256: 3d9943e581264d396f9087a909755327874d5ca4d6eae00e356587daa88e4b5d
+  original:
+    hackage: vulkan-3.2.0.0@sha256:df0e65e092ec8504c815876e298d3b291a43b95fe4158a15171478d317315c8d,26369
+- completed:
     name: shell-conduit
     version: 4.7.0
     git: git@github.com:danwdart/shell-conduit.git

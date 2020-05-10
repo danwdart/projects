@@ -6,4 +6,4 @@ import Data.Functor
 import Data.Elf
 
 main :: IO ()
-main = BS.readFile "/usr/bin/apt" <&> parseElf <&> elfMachine >>= print
+main = (BS.readFile "/usr/bin/apt" <&> parseElf) >>= print . elfMachine

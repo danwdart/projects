@@ -1,5 +1,3 @@
-{-# LANGUAGE GeneralisedNewtypeDeriving #-}
-
 import Data.Coerce
 import Unsafe.Coerce
 
