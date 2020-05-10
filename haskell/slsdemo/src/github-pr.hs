@@ -18,4 +18,8 @@ handler request = do
   env <- getEnvironment
   putStrLn "This should go to logs"
   print $ request ^. requestBody
-  pure $ responseOK & responseBody ?~ (Embedded $ object $ fmap (\(k, v) -> (T.pack k, String (T.pack v))) env)
+  pure $ responseOK &
+    responseBody
+    ?~
+      Embedded
+        (object $ fmap (\ (k, v) -> (T.pack k, String (T.pack v))) env)

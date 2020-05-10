@@ -6,7 +6,7 @@ import Data.Char
 import Numeric
 
 main :: IO ()
-main = fmap show r >>= putStrLn where
+main = print =<< r where
     r :: IO (Maybe Int)
     r = fffsi fma
     fff = fmap fmap fmap
