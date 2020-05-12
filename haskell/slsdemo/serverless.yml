@@ -28,14 +28,28 @@ functions:
           method: post
           cors: true
           private: false
+      - http:
+          path: /github
+          method: get
+          cors: true
+          private: false
+  emailme:
+    handler: slsdemo.emailme
+    name: ${self:provider.stage}-emailme
+    events:
+      - http:
+          path: /email
+          method: get
+          cors: true
+          private: false
 
 plugins:
-  - serverless-offline
+#  - serverless-offline
   - serverless-haskell
-  - serverless-appsync-offline
-  - serverless-appsync-plugin
+#  - serverless-appsync-offline # kills deploy (or spams with warnings)
+#  - serverless-appsync-plugin # not ready yet anyway...
 #  - serverless-dynamodb-local
-  - fullstack-serverless
+#  - fullstack-serverless
 #  - serverless-s3-local
 #  - serverless-static # kills deploy so disable or find alternative
 #  - serverless-domain-manager

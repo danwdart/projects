@@ -1,4 +1,5 @@
 .stack-work/
+dist-newstyle/
 node_modules/
 .serverless/
 sls.cabal
@@ -6,3 +7,4 @@ sls.cabal
 *.o
 public/
 buckets/
+.aws/

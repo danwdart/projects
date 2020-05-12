@@ -900,4 +900,11 @@ packages:
       sha256: 9f04ef44c2459a122f2d5c093b4a9ebc47aaa00284a7bff9793fee7c6783f979
   original:
     hackage: vector-algorithms-0.8.0.3@sha256:477ef5ac82fdd28a39536ed0a767faec3425802827abee485be31db5bc6f5e90,3488
+- completed:
+    hackage: amazonka-ses-1.6.1@sha256:335796c855121ca34affd35097676587d5ebe0b2e576da42faaedd9d163881b0,6425
+    pantry-tree:
+      size: 18151
+      sha256: 1b4746acac660d5418731b3972c4ff2285ee3435c709dfda67df49665f781d0a
+  original:
+    hackage: amazonka-ses-1.6.1@sha256:335796c855121ca34affd35097676587d5ebe0b2e576da42faaedd9d163881b0,6425
 snapshots: []
