@@ -1,5 +1,12 @@
 {-# LANGUAGE ApplicativeDo #-}
 
+import Data.Functor.Compose
+
 main :: IO ()
-main =
-    putStrLn "Some kind of..."
+main = print . getCompose $ c
+
+c :: Compose [] [] (Char, Char)
+c = do
+    a <- Compose ["aa"]
+    b <- Compose ["bb"]
+    return (a, b)
