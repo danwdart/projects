@@ -17,7 +17,7 @@ executable 10x10grid
   hs-source-dirs:      src
   main-is:             10x10grid.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5, bifunctors, MonadRandom
 
 executable battleships
   hs-source-dirs:      src
