@@ -1,4 +1,5 @@
-import Propellor.Types.Bootloader
+{-# LANGUAGE UnicodeSyntax #-}
+import           Propellor.Types.Bootloader
 
-main :: IO ()
+main ∷ IO ()
 main = undefined

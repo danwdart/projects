@@ -1,15 +1,16 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
-import Control.Concurrent (forkFinally, threadDelay)
-import Control.Concurrent.Async (concurrently_)
-import qualified Control.Exception as E
-import Control.Monad (unless, forever, void)
-import qualified Data.ByteString as S
-import qualified Data.ByteString.Char8 as C
-import Network.Socket hiding (recv)
-import Network.Socket.ByteString (recv, sendAll)
+import           Control.Concurrent        (forkFinally, threadDelay)
+import           Control.Concurrent.Async  (concurrently_)
+import qualified Control.Exception         as E
+import           Control.Monad             (forever, unless, void)
+import qualified Data.ByteString           as S
+import qualified Data.ByteString.Char8     as C
+import           Network.Socket            hiding (recv)
+import           Network.Socket.ByteString (recv, sendAll)
 
-server :: IO ()
+server ∷ IO ()
 server = do
     addr <- resolve "3000"
     E.bracket (open addr) close loop
@@ -40,7 +41,7 @@ server = do
           sendAll conn msg
           talk conn
 
-client :: IO ()
+client ∷ IO ()
 client = do
     addr <- resolve "127.0.0.1" "3000"
     E.bracket (open addr) close talk
@@ -59,5 +60,5 @@ client = do
         putStr "Received: "
         C.putStrLn msg
 
-main :: IO ()
+main ∷ IO ()
 main = concurrently_ server (threadDelay 1000 >> client)

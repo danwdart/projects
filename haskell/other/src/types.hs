@@ -1,4 +1,5 @@
-import Lib.Auth
+{-# LANGUAGE UnicodeSyntax #-}
+import           Lib.Auth
 
-main :: IO ()
+main ∷ IO ()
 main = print $ authenticate "bob@bob.com" "password"

@@ -1,4 +1,6 @@
-{-# LANGUAGE JavaScriptFFI, OverloadedStrings #-}
+{-# LANGUAGE JavaScriptFFI     #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 {-
 const doReplaceName = replacements.forEach(
@@ -8,25 +10,25 @@ const doReplaceTweets = twitterUr; === window.location.href ?
     () => {};
 -}
 
-import Data.JSString ()
-import GHCJS.Types
-import Data.Map (Map)
-import qualified Data.Map as Map
+import           Data.JSString ()
+import           Data.Map      (Map)
+import qualified Data.Map      as Map
+import           GHCJS.Types
 -- import qualified JavaScript.Web.
 
 
 --foreign import javascript unsafe "console.log($1)" js_log :: JSString -> IO ()
 
-twitterUrl :: String
+twitterUrl ∷ String
 twitterUrl = "https://twitter.com/realdonaldtrump"
 
-tweetReplacements :: String
+tweetReplacements ∷ String
 tweetReplacements = "Pfffffrt"
 
-tweetLocations :: String
+tweetLocations ∷ String
 tweetLocations = ".TweetTextSize"
 
-replacements :: Map String String
+replacements ∷ Map String String
 replacements = Map.fromList
     [("Donald John Trump", "Arsehole Rectum Fart")
     ,("Donald J. Trump", "Arsehole R. Fart")
@@ -34,21 +36,21 @@ replacements = Map.fromList
     ,("Trump", "Fart")
     ]
 
-replaceNames :: IO ()
+replaceNames ∷ IO ()
 replaceNames = undefined
 
-replaceTweets :: IO ()
+replaceTweets ∷ IO ()
 replaceTweets = undefined
 
-performReplacements :: IO ()
+performReplacements ∷ IO ()
 performReplacements = do
     replaceNames
     replaceTweets
 
-onLoad :: IO () -> IO ()
+onLoad ∷ IO () → IO ()
 onLoad action = undefined
 
-main :: IO ()
+main ∷ IO ()
 main =
     --js_log "Unfart initialised"
     onLoad performReplacements

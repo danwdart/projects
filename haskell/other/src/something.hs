@@ -1,10 +1,11 @@
-import Control.Arrow
-import Data.Functor
-import Data.Char
-import Control.Monad
-import Data.List
-import Control.Applicative
-import Data.Function
+{-# LANGUAGE UnicodeSyntax #-}
+import           Control.Applicative
+import           Control.Arrow
+import           Control.Monad
+import           Data.Char
+import           Data.Function
+import           Data.Functor
+import           Data.List
 
 a1 x = x ++ " " ++ show (length x)
 
@@ -16,4 +17,4 @@ b1 = undefined
 
 main1 = getLine <&> fmap toUpper <&> words <&> intercalate "-" <&> replicate 2 <&> unwords <&> a2
 
--- main2 = 
+-- main2 =

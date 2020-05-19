@@ -1,22 +1,24 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-}
 module HelloMain (
     helloMain
 ) where
 -}
 
-import Control.Monad.IO.Class (MonadIO(..))
-import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
+import           Control.Concurrent.MVar             (newEmptyMVar, putMVar,
+                                                      takeMVar)
+import           Control.Monad.IO.Class              (MonadIO (..))
 
-import GHCJS.DOM
-import GHCJS.DOM.Types
-import GHCJS.DOM.Document
-import GHCJS.DOM.Element
-import GHCJS.DOM.Node
-import GHCJS.DOM.EventM
-import GHCJS.DOM.GlobalEventHandlers
-import GHCJS.DOM.HTMLHyperlinkElementUtils
+import           GHCJS.DOM
+import           GHCJS.DOM.Document
+import           GHCJS.DOM.Element
+import           GHCJS.DOM.EventM
+import           GHCJS.DOM.GlobalEventHandlers
+import           GHCJS.DOM.HTMLHyperlinkElementUtils
+import           GHCJS.DOM.Node
+import           GHCJS.DOM.Types
 
-import Language.Javascript.JSaddle.Warp
+import           Language.Javascript.JSaddle.Warp
 
 -- | This is the main function of this application it is shared by all the different executable
 -- types included in this package.  Its type JSM () is like IO () but for anything that needs
@@ -41,7 +43,7 @@ import Language.Javascript.JSaddle.Warp
 -- Use `runOnAll` to run JavaScript on all the connected browsers.  For instance the following
 -- will print the HTML from the body of each connected browser:
 -- > Language.Javascript.JSaddle.Debug.runOnAll_ $ currentDocumentUnchecked >>= getBodyUnchecked >>= getInnerHTML >>= liftIO . putStrLn
-helloMain :: JSM ()
+helloMain ∷ JSM ()
 helloMain = do
     doc <- currentDocumentUnchecked
     body <- getBodyUnchecked doc
@@ -75,5 +77,5 @@ helloMain = do
     liftIO $ takeMVar exitMVar
     setInnerHTML body "<h1>Ka kite ano (See you later)</h1>"
 
-main :: IO ()
+main ∷ IO ()
 main = run 5000 helloMain

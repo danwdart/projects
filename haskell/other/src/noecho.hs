@@ -1,6 +1,7 @@
-import System.IO
+{-# LANGUAGE UnicodeSyntax #-}
+import           System.IO
 
-main :: IO ()
+main ∷ IO ()
 main = do
     hSetEcho stdin False
     putStr "Enter your super secret password: "

@@ -1,27 +1,28 @@
-import Control.Monad
-import Control.Monad.IO.Class (liftIO)
+{-# LANGUAGE UnicodeSyntax #-}
+import           Control.Monad
+import           Control.Monad.IO.Class             (liftIO)
 -- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
 
 -- import Data.Function ((&))
-import Data.Functor ((<&>))
-import Data.Maybe
+import           Data.Functor                       ((<&>))
+import           Data.Maybe
 
-import GHCJS.DOM
+import           GHCJS.DOM
 -- import GHCJS.DOM.AudioContext
-import GHCJS.DOM.CanvasPath
-import GHCJS.DOM.CanvasRenderingContext2D
-import GHCJS.DOM.Document
-import GHCJS.DOM.Element
+import           GHCJS.DOM.CanvasPath
+import           GHCJS.DOM.CanvasRenderingContext2D
+import           GHCJS.DOM.Document
+import           GHCJS.DOM.Element
 -- import GHCJS.DOM.EventM
 -- import GHCJS.DOM.GlobalEventHandlers
-import GHCJS.DOM.HTMLCanvasElement
--- import GHCJS.DOM.HTMLHyperlinkElementUtils  
-import GHCJS.DOM.Node
-import GHCJS.DOM.Types
+import           GHCJS.DOM.HTMLCanvasElement
+-- import GHCJS.DOM.HTMLHyperlinkElementUtils
+import           GHCJS.DOM.Node
+import           GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
 
-import Language.Javascript.JSaddle.Object
-import Language.Javascript.JSaddle.Warp
+import           Language.Javascript.JSaddle.Object
+import           Language.Javascript.JSaddle.Warp
 
 {-
 helloMain :: JSM ()
@@ -59,7 +60,7 @@ helloMain = do
     setInnerHTML body "<h1>You clicked me.</h1>"
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = serve $ do
     logHere
     _ <- getConfirmFromClient
@@ -69,28 +70,28 @@ main = serve $ do
     liftIO . putStrLn $ body
     return ()
 
-serve :: JSM () -> IO ()
+serve ∷ JSM () → IO ()
 serve = run 5000
 
-logHere :: JSM ()
+logHere ∷ JSM ()
 logHere = void $ jsg "console" # "log" $ ["Hi folks!"]
 
 -- Prints Maybe Bool properly - but there's no answer if not that
-getConfirmFromClient :: JSM Bool
+getConfirmFromClient ∷ JSM Bool
 getConfirmFromClient = do
     info <- jsg1 "confirm" ["Are you sure?"]
     v <- fromJSVal info
     return . fromJust $ v
 
 -- Prints Maybe String but includes Maybe "null" - JSNull should be Nothing?
-getPromptFromClient :: JSM (Maybe String)
+getPromptFromClient ∷ JSM (Maybe String)
 getPromptFromClient = do
     info <- jsg1 "prompt" ["What is your name"]
     fromJSVal info -- no need to return because returns anyway
 
-newContextFromNewCanvas :: JSM CanvasRenderingContext2D
+newContextFromNewCanvas ∷ JSM CanvasRenderingContext2D
 newContextFromNewCanvas = do
-    d <- currentDocumentUnchecked 
+    d <- currentDocumentUnchecked
     b <- getBodyUnchecked d
     c <- createElement d "canvas"
     setAttribute c "height" "800px"
@@ -101,22 +102,22 @@ newContextFromNewCanvas = do
     let gCtx = fromJust mCtx
     return . uncheckedCastTo CanvasRenderingContext2D $ gCtx
 
-line :: (Double, Double) -> (Double, Double) -> CanvasRenderingContext2D -> JSM ()
+line ∷ (Double, Double) → (Double, Double) → CanvasRenderingContext2D → JSM ()
 line (x1, y1) (x2, y2) ctx = do
     beginPath ctx
     moveTo ctx x1 y1
     lineTo ctx x2 y2
     stroke ctx
 
-drawOnNewCanvas :: JSM ()
+drawOnNewCanvas ∷ JSM ()
 drawOnNewCanvas = do
     ctx <- newContextFromNewCanvas
     setStrokeStyle ctx "1px solid black"
     line (100, 100) (700, 700) ctx
     line (100, 700) (700, 100) ctx
-    
+
 
 -- getCtx :: JSM Context
 
-getMyBody :: JSM String
+getMyBody ∷ JSM String
 getMyBody = currentDocumentUnchecked >>= getBodyUnchecked >>= getInnerHTML <&> fromJSString

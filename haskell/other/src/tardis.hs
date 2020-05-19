@@ -1,6 +1,7 @@
-import Control.Monad.Tardis
+{-# LANGUAGE UnicodeSyntax #-}
+import           Control.Monad.Tardis
 
-main :: IO ()
+main ∷ IO ()
 main = print $ flip runTardis ("I'm The Doctor.", "I'm The Doctor.") $ do
     y <- getPast
     sendFuture "2073"

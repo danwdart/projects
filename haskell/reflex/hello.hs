@@ -1,3 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-import Reflex.Dom
+{-# LANGUAGE UnicodeSyntax     #-}
+import           Reflex.Dom
 main = mainWidget $ text "Hello, world!"

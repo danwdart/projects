@@ -1,4 +1,5 @@
-main :: IO ()
+{-# LANGUAGE UnicodeSyntax #-}
+main ∷ IO ()
 main = do
     putStrLn "Hello"
     line <- getLine

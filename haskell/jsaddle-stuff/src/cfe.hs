@@ -1,29 +1,30 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 
-import qualified Data.ByteString.Lazy.Char8 as BSL
+import qualified Data.ByteString.Lazy.Char8       as BSL
 
-import Control.Monad.IO.Class
+import           Control.Monad.IO.Class
 
-import Data.Char
-import Data.List.Split
-import Data.Ratio
+import           Data.Char
+import           Data.List.Split
+import           Data.Ratio
 
-import JSDOM
-import JSDOM.Document
-import JSDOM.Element (setInnerHTML)
-import JSDOM.HTMLCollection
-import JSDOM.Types
+import           JSDOM
+import           JSDOM.Document
+import           JSDOM.Element                    (setInnerHTML)
+import           JSDOM.HTMLCollection
+import           JSDOM.Types
 
-import Language.Javascript.JSaddle hiding ((!))
-import Language.Javascript.JSaddle.Warp
+import           Language.Javascript.JSaddle      hiding ((!))
+import           Language.Javascript.JSaddle.Warp
 
-import Text.Blaze.Html.Renderer.Utf8
-import Text.Blaze.Html5 as H hiding (main)
-import qualified Text.Blaze.Html5 as H (main)
-import Text.Blaze.Html5.Attributes as A
+import           Text.Blaze.Html.Renderer.Utf8
+import           Text.Blaze.Html5                 as H hiding (main)
+import qualified Text.Blaze.Html5                 as H (main)
+import           Text.Blaze.Html5.Attributes      as A
 
-myHead :: Html
+myHead ∷ Html
 myHead = H.head $ do
     meta ! charset "utf-8"
     link ! rel "stylesheet" ! href "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -38,13 +39,13 @@ myHead = H.head $ do
         \}\
         \"
 
-scripts :: Html
+scripts ∷ Html
 scripts = do
     script ! src "https://code.jquery.com/jquery-3.3.1.slim.min.js" $ mempty
     script ! src "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" $ mempty
     script ! src "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" $ mempty
 
-myBody :: Html
+myBody ∷ Html
 myBody = body ! class_ "bg-dark" $ do
     H.main ! class_ "container-fluid" $
         H.div ! class_ "row" $
@@ -73,34 +74,34 @@ myBody = body ! class_ "bg-dark" $ do
                             sub "10"
     scripts
 
-page :: Html
+page ∷ Html
 page =  do
     myHead
     myBody
 
-jq :: String -> JSM JSVal
+jq ∷ String → JSM JSVal
 jq = jsg1 ("$" :: String)
 
-splitIntoNumbers :: String -> [Int]
+splitIntoNumbers ∷ String → [Int]
 splitIntoNumbers s = read <$> splitWhen (not . isNumber) s
 
-intToRatio :: Int -> Ratio Int
+intToRatio ∷ Int → Ratio Int
 intToRatio = (% 1)
 
-cfToRatio :: [Ratio Int] -> Ratio Int
-cfToRatio = foldl1 (\t n -> n + (1 / t)) 
+cfToRatio ∷ [Ratio Int] → Ratio Int
+cfToRatio = foldl1 (\t n -> n + (1 / t))
 
 -- Not even needed!
 -- cfToFrac :: [Int] -> (Int, Int)
 -- cfToFrac = foldl (\(n, d) m -> (d + (n * m), n)) (1, 1)
 
-getCFEDetails :: JSString -> Ratio Int
+getCFEDetails ∷ JSString → Ratio Int
 getCFEDetails str = cfToRatio . fmap intToRatio . reverse . splitIntoNumbers $ fromJSString str
 
-callEmptyMethod :: String -> JSVal -> JSM JSVal
+callEmptyMethod ∷ String → JSVal → JSM JSVal
 callEmptyMethod m o = o # m $ ([] :: [String])
 
-calc :: JSM ()
+calc ∷ JSM ()
 calc = do
     cfe <- jq "#cfe"
     dec <- jq "#dec"
@@ -110,7 +111,7 @@ calc = do
     -- dec # ("html" :: String) $ cfeVal
     return ()
 
-jsMain :: JSM ()
+jsMain ∷ JSM ()
 jsMain = do
     doc <- currentDocumentUnchecked
     elBody <- getBodyUnchecked doc
@@ -125,48 +126,14 @@ jsMain = do
     liftIO . putStrLn $ "Ready"
     return ()
 
-main :: IO ()
+main ∷ IO ()
 main = run 5000 jsMain
-
-{-
-
-<$> switch ( long "native-executables" )
-            <*> switch ( long "native-too" )
-            <*> switch ( long "build-runner" )
-            <*> switch ( long "no-js-executables" )
-            <*> optStr ( long "strip-program" )
-            <*> optStr ( long "log-commandline" )
-            <*> optStr ( long "with-ghc" )
-            <*> switch ( long "only-out" )
-            <*> switch ( long "no-rts" )
-            <*> switch ( long "no-stats" )
-            <*> optStr ( long "generate-base" )
-            <*> (maybe NoBase BaseFile <$> optStr ( long "use-base" ))
-            <*> optStr ( long "link-js-lib" )
-            <*> optStr ( long "js-lib-outputdir" )
-            <*> strings ( long "js-lib-src" )
-            <*> switch ( long "dedupe" )
-
-
---print-topdir"         `elem` v = putStrLn t
-| "--print-libdir"         `elem` v = putStrLn t
-| "--print-global-db"      `elem` v = putStrLn (getGlobalPackageDB t)
-| "--print-user-db-dir"    `elem` v = putStrLn . fromMaybe "<none>" =<< getUserPackageDir
-| "--print-default-libdir" `elem` v = putStrLn =<< getDefaultLibDir
-| "--print-default-topdir" `elem` v = putStrLn =<< getDefaultTopDir
-| "--print-native-too"     `elem` v = print ("--native-too" `elem` v)
-| "--numeric-ghc-version"  `elem` v = putStrLn getGhcCompilerVersion
-| "--print-rts-profiled"  
-
--}
-
-
 
 {-
 const calc = () => {
     const cfe = $cfe.val(),
         [value, frac] = getCFEDetails(cfe);
-        
+
     $dec.html(value);
     $fracNum.html(frac[0]);
     $fracDen.html(frac[1]);

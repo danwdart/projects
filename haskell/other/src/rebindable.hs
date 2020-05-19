@@ -1,8 +1,9 @@
 {-# LANGUAGE RebindableSyntax #-}
+{-# LANGUAGE UnicodeSyntax    #-}
 
-import Prelude hiding ((>>=), (>>), return)
+import           Prelude hiding (return, (>>), (>>=))
 
-ints :: Int
+ints ∷ Int
 ints = do
     1
     2
@@ -12,5 +13,5 @@ ints = do
     where (>>) = (+)
           return = id
 
-main :: IO ()
+main ∷ IO ()
 main = print ints

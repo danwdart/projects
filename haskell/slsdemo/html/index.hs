@@ -1,12 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
-import qualified Data.ByteString.Lazy.Char8 as BSL
-import System.Environment
-import System.Path
-import Text.Blaze.Html5 as H hiding (main)
-import Text.Blaze.Html5.Attributes as A
-import Text.Blaze.Html.Renderer.Utf8
+{-# LANGUAGE UnicodeSyntax     #-}
+import qualified Data.ByteString.Lazy.Char8    as BSL
+import           System.Environment
+import           System.Path
+import           Text.Blaze.Html.Renderer.Utf8
+import           Text.Blaze.Html5              as H hiding (main)
+import           Text.Blaze.Html5.Attributes   as A
 
-main :: IO ()
+main ∷ IO ()
 main = do
     -- Copy all static files
     copyDir "static" "public"
@@ -14,7 +15,7 @@ main = do
     env <- getEnvironment
     BSL.writeFile "public/index.html" $ renderHtml $ page env
 
-page :: [(String, String)] -> Html
+page ∷ [(String, String)] → Html
 page env = docTypeHtml ! lang "en-GB" $ do
     H.html $
         H.head $

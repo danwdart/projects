@@ -1,33 +1,34 @@
-import Data.List
-import Data.Maybe
+{-# LANGUAGE UnicodeSyntax #-}
+import           Data.List
+import           Data.Maybe
 -- import Control.Monad
 
-power :: Double
+power ∷ Double
 power = 0.5
 -- base = 10
 
 -- ssp :: String -> String -> Maybe Int
 -- ssp needle haystack = (findIndex . isPrefixOf) needle (tails haystack)
 
-substringPosition :: String -> String -> Maybe Int
+substringPosition ∷ String → String → Maybe Int
 substringPosition haystack = ($ tails haystack) . findIndex . isPrefixOf
 
-foundMsg :: Int -> Double -> Int -> String
+foundMsg ∷ Int → Double → Int → String
 foundMsg number root position = "Found " ++ show number ++
     " at position " ++ show position ++
     " on " ++ show root
 
-intThenLength :: Double -> Int
+intThenLength ∷ Double → Int
 intThenLength = length . show . (\x -> floor x :: Int)
 
-boolToMaybe :: Bool -> a -> Maybe a
-boolToMaybe True = Just
+boolToMaybe ∷ Bool → a → Maybe a
+boolToMaybe True  = Just
 boolToMaybe False = const Nothing
 
-maybeApplyToSecondIf :: (t1 -> t2 -> Bool) -> (t2 -> a) -> t1 -> t2 -> Maybe a
+maybeApplyToSecondIf ∷ (t1 → t2 → Bool) → (t2 → a) → t1 → t2 → Maybe a
 maybeApplyToSecondIf comparator positionToFoundMessage one two = boolToMaybe (comparator one two) ( positionToFoundMessage two )
 
-mapping :: Int -> Maybe String
+mapping ∷ Int → Maybe String
 mapping number = maybeApplyToSecondIf (>) positionToFoundMessage resultLength =<< maybePosition where
     root = (fromIntegral number :: Double) ** power -- ** is like ^ but for non-integrals
     resultLength = intThenLength root
@@ -36,5 +37,5 @@ mapping number = maybeApplyToSecondIf (>) positionToFoundMessage resultLength =<
     maybePosition = substringPosition rootWithoutDots (show number)
     positionToFoundMessage = foundMsg number root
 
-main :: IO ()
+main ∷ IO ()
 main = print (take 1000 $ mapMaybe mapping [1..])

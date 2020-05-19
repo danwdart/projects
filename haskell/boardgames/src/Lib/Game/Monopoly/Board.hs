@@ -1,9 +1,10 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Lib.Game.Monopoly.Board where
 
-import Lib.Game.Monopoly.Space
+import           Lib.Game.Monopoly.Space
 
 data Board = Board {
-    spaces :: [Space],
+    spaces           :: [Space],
     freeParkingMoney :: Int
 } deriving (Eq)
 

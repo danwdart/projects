@@ -1,21 +1,22 @@
-import Control.Monad
-import qualified Data.Set as Set
+{-# LANGUAGE UnicodeSyntax #-}
+import           Control.Monad
+import qualified Data.Set                  as Set
 
-import Lib.Game.Monopoly.Board
-import Lib.Game.Monopoly.Colour
-import Lib.Game.Monopoly.Game
-import Lib.Game.Monopoly.Helpers
-import Lib.Game.Monopoly.Player
-import Lib.Game.Monopoly.Random
-import Lib.Game.Monopoly.Rules
-import Lib.Game.Monopoly.Space
-import Lib.Game.Monopoly.Token
+import           Lib.Game.Monopoly.Board
+import           Lib.Game.Monopoly.Colour
+import           Lib.Game.Monopoly.Game
+import           Lib.Game.Monopoly.Helpers
+import           Lib.Game.Monopoly.Player
+import           Lib.Game.Monopoly.Random
+import           Lib.Game.Monopoly.Rules
+import           Lib.Game.Monopoly.Space
+import           Lib.Game.Monopoly.Token
 
-import System.Random
+import           System.Random
 
--- data Round = 
+-- data Round =
 
-myGame :: Game
+myGame ∷ Game
 myGame = Game
     (
         Board [
@@ -71,7 +72,7 @@ myGame = Game
         )
     )
 
-performRound :: Game -> IO Game
+performRound ∷ Game → IO Game
 performRound (Game b pl r) = do
     putStrLn "Let's go!"
     -- let numSpaces = length (spaces board)
@@ -94,7 +95,7 @@ performRound (Game b pl r) = do
 
     return $ Game b players' r
 
-main :: IO ()
+main ∷ IO ()
 main = do
     myGame1 <- performRound myGame
     myGame2 <- performRound myGame1

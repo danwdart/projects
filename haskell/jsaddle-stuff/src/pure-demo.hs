@@ -1,24 +1,25 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
-import qualified Data.ByteString.Lazy.Char8 as BSL
+import qualified Data.ByteString.Lazy.Char8       as BSL
 
-import Control.Monad.IO.Class
+import           Control.Monad.IO.Class
 
-import JSDOM
-import JSDOM.Document
-import JSDOM.Element (setInnerHTML)
-import JSDOM.HTMLCollection
-import JSDOM.Types
+import           JSDOM
+import           JSDOM.Document
+import           JSDOM.Element                    (setInnerHTML)
+import           JSDOM.HTMLCollection
+import           JSDOM.Types
 
-import Language.Javascript.JSaddle hiding ((!))
-import Language.Javascript.JSaddle.Warp
+import           Language.Javascript.JSaddle      hiding ((!))
+import           Language.Javascript.JSaddle.Warp
 
-import Text.Blaze.Html.Renderer.Utf8
-import Text.Blaze.Html5 as H hiding (main)
-import qualified Text.Blaze.Html5 as H (main)
-import Text.Blaze.Html5.Attributes as A
+import           Text.Blaze.Html.Renderer.Utf8
+import           Text.Blaze.Html5                 as H hiding (main)
+import qualified Text.Blaze.Html5                 as H (main)
+import           Text.Blaze.Html5.Attributes      as A
 
-page :: Html
+page ∷ Html
 page = docTypeHtml ! lang "en-GB" $ do
     H.head $
         H.title "FRP Demo"
@@ -33,13 +34,13 @@ page = docTypeHtml ! lang "en-GB" $ do
         footer $
             small "Made by JolHarg"
 
-jsMain :: JSM ()
+jsMain ∷ JSM ()
 jsMain = do
     doc <- currentDocumentUnchecked
     elBody <- getBodyUnchecked doc
     setInnerHTML elBody $ BSL.unpack $ renderHtml page
     getElementsByTagName doc ("form" :: String) >>= flip itemUnchecked 0 >>= toJSVal >>= jsg ("console" :: String) # ("log" :: String)
     return ()
-    
-main :: IO ()
+
+main ∷ IO ()
 main = run 5000 jsMain

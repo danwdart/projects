@@ -1,20 +1,21 @@
-import System.Console.ANSI.Types
-import Control.Monad
-import Text.Parsec
+{-# LANGUAGE UnicodeSyntax #-}
+import           Control.Monad
+import           System.Console.ANSI.Types
+import           Text.Parsec
 
 type Version = String
 
-number :: Parsec String u Int
+number ∷ Parsec String u Int
 number = read <$> many digit
 
 newtype DanImage = DanImage {
     getPixels :: [[Color]]
 } deriving (Eq, Show)
 
-encodeDanImage :: Version -> DanImage -> Maybe String
+encodeDanImage ∷ Version → DanImage → Maybe String
 encodeDanImage version img = if "03" /= version then Nothing else Just $ "DAN" ++ version
 
-danParserMonadic :: Parsec String u DanImage
+danParserMonadic ∷ Parsec String u DanImage
 danParserMonadic = do
     _ <- string "DAN"
     version <- many digit
@@ -30,7 +31,7 @@ danParserMonadic = do
     when (width /= length (head pixels)) $ fail "Width not correct"
     return $ DanImage pixels
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ parse (char 'h') "Wtf?" "hi"
     print $ parse (string "My word." >> anyChar) "Wtf?" "My word..."

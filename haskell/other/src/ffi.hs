@@ -1,18 +1,19 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
+{-# LANGUAGE UnicodeSyntax            #-}
 
 -- import Foreign.Ptr
 -- import Foreign.ForeignPtr
-import Foreign.Marshal.Alloc
-import Foreign.C.String
-import Foreign.C.Types
+import           Foreign.C.String
+import           Foreign.C.Types
+import           Foreign.Marshal.Alloc
 -- import System.IO
 
-foreign import ccall "exp" c_exp1 :: Double -> Double
+foreign import ccall "exp" c_exp1 :: Double → Double
 -- foreign import ccall "&exp" a_exp :: FunPtr (Double -> Double)
 -- foreign import ccall "dynamic" mkFun :: FunPtr (Double -> Double) -> (Double -> Double)
-foreign import ccall "printf" c_printf :: CString -> IO CInt
-foreign import ccall "printf" c_printf2 :: CString -> CString -> IO CInt
-foreign import ccall "sprintf" c_sprintf2 :: CString -> CString -> CString -> IO CInt
+foreign import ccall "printf" c_printf :: CString → IO CInt
+foreign import ccall "printf" c_printf2 :: CString → CString → IO CInt
+foreign import ccall "sprintf" c_sprintf2 :: CString → CString → CString → IO CInt
 
 
 -- c_exp :: Double -> Double
@@ -45,10 +46,10 @@ foreign import ccall "sprintf" c_sprintf2 :: CString -> CString -> CString -> IO
     --
     -- ptr is freed when it is collected
 
-cFlush :: IO CInt
+cFlush ∷ IO CInt
 cFlush = newCString "\n" >>= c_printf
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ c_exp1 0.1
     _ <- newCString "Bob\n" >>= c_printf

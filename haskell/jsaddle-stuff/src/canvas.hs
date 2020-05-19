@@ -1,21 +1,22 @@
-import Control.Monad.IO.Class
+{-# LANGUAGE UnicodeSyntax #-}
+import           Control.Monad.IO.Class
 
-import JSDOM
-import JSDOM.CanvasPath
-import JSDOM.CanvasRenderingContext2D
-import JSDOM.Document
-import JSDOM.Element
-import JSDOM.HTMLCanvasElement
-import JSDOM.Node
+import           JSDOM
+import           JSDOM.CanvasPath
+import           JSDOM.CanvasRenderingContext2D
+import           JSDOM.Document
+import           JSDOM.Element
+import           JSDOM.HTMLCanvasElement
+import           JSDOM.Node
 
-import Language.Javascript.JSaddle
-import Language.Javascript.JSaddle.Warp
+import           Language.Javascript.JSaddle
+import           Language.Javascript.JSaddle.Warp
 
 -- add type aliases?
-cartesianToGraph :: (Double, Double) -> (Double, Double)
+cartesianToGraph ∷ (Double, Double) → (Double, Double)
 cartesianToGraph (x, y) = (x, 400 - y)
 
-line :: (Double, Double) -> (Double, Double) -> CanvasRenderingContext2D -> JSM ()
+line ∷ (Double, Double) → (Double, Double) → CanvasRenderingContext2D → JSM ()
 line (x1, y1) (x2, y2) ctx = do
     let (rx1, ry1) = cartesianToGraph (x1, y1)
     let (rx2, ry2) = cartesianToGraph (x2, y2)
@@ -25,33 +26,33 @@ line (x1, y1) (x2, y2) ctx = do
 {-
 -- Retrieve the conXYZ-ascending-index pairs from a list
 -- and return them in another list
--- e.g. [1,2,3] -> [(1, 2), (2, 3)] 
+-- e.g. [1,2,3] -> [(1, 2), (2, 3)]
 -}
-pairs :: [a] -> [(a,a)]
+pairs ∷ [a] → [(a,a)]
 pairs a = zip a $ tail a
 
 -- like Graphics.Gnuplot.Plot.ThreeDimensional.functionToGraph
-zipFn :: (a -> b) -> [a] -> [(a, b)]
+zipFn ∷ (a → b) → [a] → [(a, b)]
 zipFn f = fmap (\x -> (x, f x)) -- both map but cba
 
-getPoints :: Double -> Double -> Double -> [Double]
+getPoints ∷ Double → Double → Double → [Double]
 getPoints startX endX skipX = enumFromThenTo startX (startX + skipX) endX
 
-plotFormula :: (Double -> Double) -> Double -> Double -> Double -> CanvasRenderingContext2D -> JSM ()
+plotFormula ∷ (Double → Double) → Double → Double → Double → CanvasRenderingContext2D → JSM ()
 plotFormula fn startX endX skipX ctx = do
     clearRect ctx 0 0 1600 800
     let points = getPoints startX endX skipX
     let p = pairs $ zipFn fn points
     mapM_ (\(p1, p2) -> line p1 p2 ctx) p
 
-plotRecurrenceRelation :: (Double -> Double) -> Double -> Double -> Double -> Double -> Double -> CanvasRenderingContext2D -> JSM ()
+plotRecurrenceRelation ∷ (Double → Double) → Double → Double → Double → Double → Double → CanvasRenderingContext2D → JSM ()
 plotRecurrenceRelation rr startY scaleY startX endX skipX ctx = do
     clearRect ctx 0 0 1600 800
     let pointsX = getPoints startX endX skipX
     let p = pairs $ zip pointsX $ (*scaleY) <$> iterate rr startY
     mapM_ (\(p1, p2) -> line p1 p2 ctx) p
 
-plotGraph :: CanvasRenderingContext2D -> JSM ()
+plotGraph ∷ CanvasRenderingContext2D → JSM ()
 plotGraph ctx = do
     clearRect ctx 0 0 1600 800
     plotFormula ((200*) . sin . (/100)) 0 1600 1 ctx
@@ -59,7 +60,7 @@ plotGraph ctx = do
     plotRecurrenceRelation (\x -> 3.95 * (1-x) * x) 0.2 350 0 1600 2 ctx
     plotRecurrenceRelation (\x -> 3.02 * (1-x) * x) 0.2 350 0 1600 2 ctx
 
-newCanvas :: Document -> JSM HTMLCanvasElement
+newCanvas ∷ Document → JSM HTMLCanvasElement
 newCanvas doc = do
     canvas <- fromJSValUnchecked =<< toJSVal =<< createElement doc "canvas"
     setAttribute canvas "width" "1600px"
@@ -67,10 +68,10 @@ newCanvas doc = do
     setAttribute canvas "style" "width: 1600px; height: 800px"
     return canvas
 
-getCanvasContext :: HTMLCanvasElement -> JSM CanvasRenderingContext2D
+getCanvasContext ∷ HTMLCanvasElement → JSM CanvasRenderingContext2D
 getCanvasContext canvas = fromJSValUnchecked =<< toJSVal =<< getContextUnchecked canvas "2d" ([] :: [String])
 
-jsMain :: JSM ()
+jsMain ∷ JSM ()
 jsMain = do
     doc <- currentDocumentUnchecked
     elBody <- getBodyUnchecked doc
@@ -79,5 +80,5 @@ jsMain = do
     ctx <- getCanvasContext canvas
     plotGraph ctx
 
-main :: IO ()
+main ∷ IO ()
 main = run 5000 jsMain

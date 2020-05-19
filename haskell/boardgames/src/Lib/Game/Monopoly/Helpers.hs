@@ -1,14 +1,15 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Lib.Game.Monopoly.Helpers where
 
-import Lib.Game.Monopoly.Board
-import Lib.Game.Monopoly.Player
-import Lib.Game.Monopoly.Space
-import Lib.Game.Monopoly.Tax
+import           Lib.Game.Monopoly.Board
+import           Lib.Game.Monopoly.Player
+import           Lib.Game.Monopoly.Space
+import           Lib.Game.Monopoly.Tax
 
-playerSpace :: [Space] -> Player -> Space
+playerSpace ∷ [Space] → Player → Space
 playerSpace s player = s !! position player
 
-processLand :: Player -> Board -> Space -> IO (Player, Board)
+processLand ∷ Player → Board → Space → IO (Player, Board)
 processLand player b space = case space of
         GoSpace -> do
             putStrLn "You win some money."
@@ -43,8 +44,8 @@ processLand player b space = case space of
             putStrLn "You must go to jail now."
             return (player, b)
 
-addMoney :: Int -> Player -> Player
+addMoney ∷ Int → Player → Player
 addMoney income player = player {money = money player + income}
 
-taxMoney :: Tax -> Player -> Board -> (Player, Board)
+taxMoney ∷ Tax → Player → Board → (Player, Board)
 taxMoney (Tax _ fee) player b = (player {money = money player - fee}, b {freeParkingMoney = freeParkingMoney b + fee})

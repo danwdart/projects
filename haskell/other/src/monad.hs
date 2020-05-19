@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {- TODO: Deriving -}
 
 newtype Bob a = Bob a deriving (Show)
@@ -12,5 +13,5 @@ instance Applicative Bob where
 instance Monad Bob where
     (Bob x) >>= f = f x
 
-main :: IO ()
+main ∷ IO ()
 main = print $ (*2) <$> Bob (2 :: Int)

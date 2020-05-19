@@ -1,12 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 module Main where
 
-import Brick
-import Brick.Widgets.List
-import qualified Data.Vector as V
+import           Brick
+import           Brick.Widgets.List
+import qualified Data.Vector        as V
 
-main :: IO ()
+main ∷ IO ()
 main = simpleMain $
     renderList
         (\bC e -> str e)
