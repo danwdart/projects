@@ -652,6 +652,12 @@ executable texttodeccrazy
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable these
+  hs-source-dirs:      src
+  main-is:             these.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, these
+
 executable threedeegee
   hs-source-dirs:      src
   main-is:             3dg.hs
