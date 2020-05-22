@@ -187,6 +187,13 @@ packages:
   original:
     hackage: vect-0.4.7@sha256:218bb44622096d1e72772507fac4e073887fa6483f7b64d068d14ed2300ca377,3208
 - completed:
+    hackage: dependent-sum-0.7.1.0@sha256:5599aa89637db434431b1dd3fa7c34bc3d565ee44f0519bfbc877be1927c2531,2068
+    pantry-tree:
+      size: 290
+      sha256: 9cbfb32b5a8a782b7a1c941803fd517633cb699159b851c1d82267a9e9391b50
+  original:
+    hackage: dependent-sum-0.7.1.0
+- completed:
     name: shell-conduit
     version: 4.7.0
     git: git@github.com:danwdart/shell-conduit.git
