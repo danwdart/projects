@@ -140,6 +140,12 @@ executable cli
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable comonads
+  hs-source-dirs:      src
+  main-is:             comonads.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, comonad
+
 executable complex
   hs-source-dirs:      src
   main-is:             complex.hs
