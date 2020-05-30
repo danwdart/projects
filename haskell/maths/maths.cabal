@@ -37,6 +37,12 @@ executable euler4
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable 6x6euclid
+  hs-source-dirs:      src
+  main-is:             6x6euclid.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable ai
   hs-source-dirs:      src
   main-is:             ai.hs
