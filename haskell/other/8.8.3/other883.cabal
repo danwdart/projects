@@ -1,0 +1,64 @@
+name:                other883
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/projects#readme
+license:             PublicDomain
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+ -- too new!
+executable bijections
+  hs-source-dirs:      src
+  main-is:             bijections.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, invertible
+  
+-- needs older dbus
+executable mdns
+  hs-source-dirs:      src
+  main-is:             mdns.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, avahi
+
+-- broken on newer deps
+executable sockets
+  hs-source-dirs:      src
+  main-is:             sockets.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, async, bytestring, network
+
+executable these
+  hs-source-dirs:      src
+  main-is:             these.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, these
+
+-- needs older transformers
+executable threedeegee
+  hs-source-dirs:      src
+  main-is:             3dg.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, threepenny-gui
+
+-- gogol requires older base
+executable translatorglitch
+  hs-source-dirs:      src
+  main-is:             translatorglitch.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                      , aeson
+                      , bytestring
+                      , gogol
+                      , gogol-core
+                      , gogol-translate
+                      , lens
+                      , req
+                      , text
+                      , unordered-containers
