@@ -7,5 +7,10 @@ Notes:
 
     Needs to be sudo to run as system docker as rootless `docker --version` output is incompatible with `stack --docker`. See: https://github.com/commercialhaskell/stack/issues/5087
 
+    To use offline, you should run `sudo docker pull lambci/lambda:build-provided` if you don't want your first request to hang for a good while. It does this in the background, however it's just a silent nuisance.
+
+Usage:
+    Start offline: `sudo sls offline --useDocker`
+
 TODO:
     Find a way not to rebuild stack programs in deploy so we can deploy as user.
