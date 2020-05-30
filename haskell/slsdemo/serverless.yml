@@ -2,6 +2,8 @@ org: dandart
 app: slsdemo
 service: slsdemo
 
+docker: false
+
 environment:
   LANG: en_GB.UTF-8
   LC_ALL: en_GB.UTF-8
@@ -55,26 +57,27 @@ plugins:
 #  - serverless-domain-manager
 
 custom:
-  fullstack:
+  haskell:
+  #fullstack:
     # domain: slsdemo.jolharg.com
-    bucketName: slsdemo-fullstack
-    distributionFolder: public
-    singlePageApp: true
-    apiPath: api
-    clientCommand: stack run html
+  #  bucketName: slsdemo-fullstack
+  #  distributionFolder: public
+  #  singlePageApp: true
+  #  apiPath: api
+  #  clientCommand: stack run html
 
-  appSync:
-    name: "api"
-    authenticationType: API_KEY
-    schema: schema.graphql
+  #appSync:
+  #  name: "api"
+  #  authenticationType: API_KEY
+  #  schema: schema.graphql
     #openIdConnectConfig:
     #  issuer: google
     #  clientId:
     #  iatTTL:
     #  authTTL:
-  static:
-    bucket: slsdemo-static
-  dynamodb:
-  customDomain:
-    domainName: sls.jolharg.com
-    createRoute53Record: true
+  #static:
+  #  bucket: slsdemo-static
+  #dynamodb:
+  #customDomain:
+  #  domainName: sls.jolharg.com
+  #  createRoute53Record: true
