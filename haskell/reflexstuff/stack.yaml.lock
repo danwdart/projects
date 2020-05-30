@@ -158,13 +158,6 @@ packages:
       sha256: 82000a394aa858fa99bafa3bc8ff0646e3b1c6c62c3d7d49d46bf68311d0afb0
   original:
     hackage: jsaddle-dom-0.9.4.0@sha256:e9557e5a6df02bf089acab3e053ee3d4b523acebfe9ede9b5091d12cee760780,75700
-- completed:
-    hackage: reflex-dom-helpers-0.2.0.1@sha256:b90207df72cd879c0f241d095992c9fbeb104156adbf03a693ae780f6c0e9a8c,1576
-    pantry-tree:
-      size: 806
-      sha256: a0de6e4e0bcd5b82a66ab4706e1ee6d198c5bd9c1230ac00b95b6960bee18bec
-  original:
-    hackage: reflex-dom-helpers-0.2.0.1@sha256:b90207df72cd879c0f241d095992c9fbeb104156adbf03a693ae780f6c0e9a8c,1576
 snapshots:
 - completed:
     size: 524996
