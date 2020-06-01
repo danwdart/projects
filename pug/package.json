@@ -18,7 +18,7 @@
   "dependencies": {
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
-    "snyk": "^1.332.1"
+    "snyk": "^1.334.0"
   },
   "snyk": true
 }
