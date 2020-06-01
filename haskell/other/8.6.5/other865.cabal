@@ -13,7 +13,6 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
-
  -- deps too old
 executable bluetooth
   hs-source-dirs:      src

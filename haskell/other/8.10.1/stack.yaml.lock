@@ -1344,12 +1344,47 @@ packages:
 - completed:
     name: shell-conduit
     version: 4.7.0
-    git: git@github.com:danwdart/shell-conduit.git
+    git: git@github.com:psibi/shell-conduit.git
     pantry-tree:
       size: 1348
       sha256: 8871480b23568ba993ee3561f5bf665a74b64130678bcfc5c52a7ac63a2fe375
-    commit: 536d3ac5d1fc660d80d0e5b3556375ee7e1f0abf
+    commit: 18b7864120d67f80c4c0a3dcd2ae5c59451d6cb6
   original:
-    git: git@github.com:danwdart/shell-conduit.git
-    commit: 536d3ac5d1fc660d80d0e5b3556375ee7e1f0abf
+    git: git@github.com:psibi/shell-conduit.git
+    commit: 18b7864120d67f80c4c0a3dcd2ae5c59451d6cb6
+- completed:
+    hackage: mmap-0.5.9@sha256:93aa561c8cb418920bcbc2c3ae062059d67201d093d8e11cdbc868dcf73e02eb,1547
+    pantry-tree:
+      size: 428
+      sha256: b709099d5ed221273feab8a3a71db4bbc6b2a84ad4c72a01756a35994ad242df
+  original:
+    hackage: mmap-0.5.9@sha256:93aa561c8cb418920bcbc2c3ae062059d67201d093d8e11cdbc868dcf73e02eb,1547
+- completed:
+    hackage: fft-0.1.8.6@sha256:5cf9b66654384f7650874ca3cded9aa767855a5dc15153b05eae81b8f73760c7,1828
+    pantry-tree:
+      size: 505
+      sha256: dd10108581c913ffbbbd8be4867a577f4592ade899588eb184f8e7de3e694c7d
+  original:
+    hackage: fft-0.1.8.6@sha256:5cf9b66654384f7650874ca3cded9aa767855a5dc15153b05eae81b8f73760c7,1828
+- completed:
+    hackage: carray-0.1.6.8@sha256:92d2e14cad7096b98c5fc2313b893660a9e8238cdcf42f2a2e05006a119a8d50,2522
+    pantry-tree:
+      size: 834
+      sha256: 4ec54f93745d3641be4b555ba5264f3a8fb5ae302c300151478b2cbc429233e6
+  original:
+    hackage: carray-0.1.6.8@sha256:92d2e14cad7096b98c5fc2313b893660a9e8238cdcf42f2a2e05006a119a8d50,2522
+- completed:
+    hackage: ix-shapable-0.1.0@sha256:329c7a3eba788598e4768d8eabdb304b133124a522b7b3883a6fe8170e012c38,981
+    pantry-tree:
+      size: 215
+      sha256: c69f797f8621c95d532934887516733f7f5d6129d462eddb6b38cf7ee7e0f88c
+  original:
+    hackage: ix-shapable-0.1.0@sha256:329c7a3eba788598e4768d8eabdb304b133124a522b7b3883a6fe8170e012c38,981
+- completed:
+    hackage: vector-bytestring-0.0.0.1@sha256:c3d7f8a77f3748ad9de9086bf68ec98f1c36438cb22a5892aaf82733e30bf247,2827
+    pantry-tree:
+      size: 3272
+      sha256: 7735e7192742871ddce2add58f62a7594462ad73581a2f5995b6f5c9fc48d6b2
+  original:
+    hackage: vector-bytestring-0.0.0.1@sha256:c3d7f8a77f3748ad9de9086bf68ec98f1c36438cb22a5892aaf82733e30bf247,2827
 snapshots: []

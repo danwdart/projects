@@ -193,8 +193,13 @@ extra-deps:
 - conduit-extra-1.3.5@sha256:c3de6704df0b728d258827370b3de4e467a25d396037104639b859d743146365,4276
 - unliftio-0.2.13@sha256:14409c70eba13edfcca7564f7bccca298e49d6e21679a8894ac757f2f6008696,3325
 - typed-process-0.2.6.0@sha256:c901c13d491441830eb23132ad6968243a56b98161629d260a26c0b13c735fcd,2136
-- commit: 536d3ac5d1fc660d80d0e5b3556375ee7e1f0abf
-  git: 'git@github.com:danwdart/shell-conduit.git'
-allow-newer: true # transformers issue which works on cabal...?
+- commit: 18b7864120d67f80c4c0a3dcd2ae5c59451d6cb6
+  git: 'git@github.com:psibi/shell-conduit.git'
+- mmap-0.5.9@sha256:93aa561c8cb418920bcbc2c3ae062059d67201d093d8e11cdbc868dcf73e02eb,1547
+- fft-0.1.8.6@sha256:5cf9b66654384f7650874ca3cded9aa767855a5dc15153b05eae81b8f73760c7,1828
+- carray-0.1.6.8@sha256:92d2e14cad7096b98c5fc2313b893660a9e8238cdcf42f2a2e05006a119a8d50,2522
+- ix-shapable-0.1.0@sha256:329c7a3eba788598e4768d8eabdb304b133124a522b7b3883a6fe8170e012c38,981
+- vector-bytestring-0.0.0.1@sha256:c3d7f8a77f3748ad9de9086bf68ec98f1c36438cb22a5892aaf82733e30bf247,2827
+allow-newer: true # transformers issue on stack, but it works on cabal...?
 ghc-options:
   other8101: '-j16 -Wall'

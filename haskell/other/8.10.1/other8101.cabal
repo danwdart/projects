@@ -279,6 +279,12 @@ executable fieldTrans
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, bifunctors
 
+executable fileformat
+  hs-source-dirs:      src
+  main-is:             fileformat.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, bytestring, storable-record
+
 executable files
   hs-source-dirs:      src
   main-is:             files.hs
@@ -387,6 +393,12 @@ executable lenses
   main-is:             lenses.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, lens
+
+executable mmio
+  hs-source-dirs:      src
+  main-is:             mmio.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mmap
 
 executable moonmadness
   hs-source-dirs:      src
@@ -529,7 +541,7 @@ executable rws
   hs-source-dirs:      src
   main-is:             rws.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, transformers, monads-tf
+  build-depends:       base >= 4.7 && < 5, mtl, transformers, monads-tf
 
 executable scrapetumblr
   hs-source-dirs:      src
@@ -674,6 +686,12 @@ executable wai
   main-is:             wai.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, http-types, wai, warp
+
+executable wave
+  hs-source-dirs:      src
+  main-is:             wave.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, fft
 
 executable whereinlet
   hs-source-dirs:      src
