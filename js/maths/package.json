@@ -9,8 +9,8 @@
     "esm": "^3.2.25",
     "gl-matrix": "^3.3.0",
     "node-fetch": "^3.0.0-beta.6-exportfix",
-    "snyk": "^1.332.1",
-    "typescript": "^4.0.0-dev.20200530"
+    "snyk": "^1.334.0",
+    "typescript": "^4.0.0-dev.20200602"
   },
   "devDependencies": {
     "@babel/cli": "7.10.1",
