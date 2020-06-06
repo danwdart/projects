@@ -3,6 +3,7 @@ import Data.ByteString (ByteString)
 import Foreign.Storable (Storable (..), )
 import Foreign.Storable.Record as Store
 
+{-
 data Png = Png {
     magicNumber :: ByteString,
     version :: ByteString
@@ -20,6 +21,7 @@ instance Storable Png where
    alignment = Store.alignment store
    peek = Store.peek store
    poke = Store.poke store
+-}
 
 main :: IO ()
 main = return ()

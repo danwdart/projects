@@ -18,7 +18,7 @@ data Intonation = JustIntonation | EqualTemperament deriving (Show)
 
 data Scale = TwelveTone | Pentatonic deriving (Show)
 
-data KeyModifier = Flat | Natural | Sharp deriving (Show)
+data KeyModifier = Flat | Natural | Sharp | Cent Int deriving (Show)
 
 data KeyName = A | B | C | D | E | F | G deriving (Show)
 
