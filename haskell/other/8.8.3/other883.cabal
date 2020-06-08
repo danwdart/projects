@@ -19,7 +19,13 @@ executable bijections
   main-is:             bijections.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, invertible
-  
+
+executable langparse
+  hs-source-dirs:      src
+  main-is:             langparse.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, parsec, language-c, language-javascript
+
 -- needs older dbus
 executable mdns
   hs-source-dirs:      src
