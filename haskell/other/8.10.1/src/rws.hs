@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveFunctor, FlexibleInstances, GeneralisedNewtypeDeriving, MultiParamTypeClasses, PackageImports, StandaloneDeriving #-}
+{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses, PackageImports #-}
 
 import Control.Monad.IO.Class
 import "mtl" Control.Monad.RWS

@@ -39,11 +39,16 @@ assign s_type f_type a b c = "c_" ++ namesFor s_type a b c ++ " = " ++ fnFor f_t
 breakWithNLs :: [String] -> String
 breakWithNLs = intercalate nl
 
+as, bs, cs :: [Int]
+as = [1..10]
+bs = [1..9]
+cs = [1..9]
+
 assignAll :: String
-assignAll = breakWithNLs [assign "C" "(.)" a b c | a <- [1..10], b <- [1..9], c <- [1..9]]
+assignAll = breakWithNLs [assign "C" "(.)" a b c | a <- as, b <- bs, c <- cs]
 
 typesAll :: String
-typesAll = breakWithNLs [":t c_" ++ namesFor "C" a b c | a <- [1..10], b <- [1..9], c <- [1..9]]
+typesAll = breakWithNLs [":t c_" ++ namesFor "C" a b c | a <- as, b <- bs, c <- cs]
 
 result :: String
 result = assignAll ++ "\n" ++ typesAll

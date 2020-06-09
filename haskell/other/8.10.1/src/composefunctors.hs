@@ -49,7 +49,7 @@ main = do
     print $ fmap (fmap (+1)) <$> dat3
     print $ getCompose $ fmap (+1) <$> Compose dat3
     putStrLn "Triple functor without an extra fmap"
-    print $ getCompose $ getCompose $ (+1) <$> (Compose $ Compose dat3)
+    print $ getCompose $ getCompose $ (+1) <$> Compose (Compose dat3)
     print $ getCompose $ getCompose $ fmap (+1) $ Compose $ Compose dat3
     putStrLn "Double compose functions"
     print $ getCompose2 $ (+1) <$> compose2 dat3

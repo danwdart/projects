@@ -1,5 +1,3 @@
-{-# LANGUAGE DeriveFunctor, FlexibleInstances, GeneralisedNewtypeDeriving, MultiParamTypeClasses, OverloadedStrings, PackageImports, StandaloneDeriving #-}
-
 {-}
 import Control.Monad.IO.Class
 import "mtl" Control.Monad.Reader

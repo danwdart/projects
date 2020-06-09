@@ -24,4 +24,4 @@ bar :: IO (Maybe String) -> IO (Maybe Integer)
 bar = innerFmap stringToInteger
 
 main :: IO ()
-main = fmap show (bar $ foo getArgs) >>= putStrLn
+main = bar (foo getArgs) >>= print
