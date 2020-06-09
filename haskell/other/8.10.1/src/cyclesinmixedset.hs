@@ -12,4 +12,4 @@ for each X
 -}
 
 main :: IO ()
-main = undefined
+main = return ()

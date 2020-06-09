@@ -209,6 +209,13 @@ extra-deps:
 - quickcheck-io-0.2.0@sha256:7bf0b68fb90873825eb2e5e958c1b76126dcf984debb998e81673e6d837e0b2d,1133
 - setenv-0.1.1.3@sha256:c5916ac0d2a828473cd171261328a290afe0abd799db1ac8c310682fe778c45b,1053
 - tf-random-0.5@sha256:14012837d0f0e18fdbbe3d56e67da8622ee5e20b180abce952dd50bd9f36b326,3983
-allow-newer: true # transformers issue on stack, but it works on cabal...?
+- filemanip-0.3.6.3@sha256:7b5f8aa0626724fbd77721f4d01241b1e7f390dd6a4086bddba77c0cea25fcd7,1223
+- ghc-exactprint-0.6.3@sha256:1c9f8884a3bdce00f3c2febd8276be294faf9732d24bc89efe023f3c5678ea52,9375
+- optparse-applicative-0.15.1.0@sha256:29ff6146aabf54d46c4c8788e8d1eadaea27c94f6d360c690c5f6c93dac4b07e,4810
+- refact-0.3.0.2@sha256:4ea82b93debdc0711e1bc4b5d8989b9e19613f369ff2049da33c5250b8d33bcd,1065
+- temporary-1.3@sha256:3a66c136f700dbf42f3c5000ca93e80b26dead51e54322c83272b236c1ec8ef1,1485
+- ansi-wl-pprint-0.6.9@sha256:f6fd6dbd4adcad0432bf75e5f5b19bb1deda00a1d8056faf18090026e577652d,2388
+- ghc-paths-0.1.0.12@sha256:85370fdc615d4be5e09d9269eebb9a3fc7017c40b1a9e0050b121d75908564bd,632
+allow-newer: true
 ghc-options:
   other8101: '-j16 -Wall'

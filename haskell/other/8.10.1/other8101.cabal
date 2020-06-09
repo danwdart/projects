@@ -158,6 +158,12 @@ executable cont
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, directory, mtl
 
+executable cont-variadic
+  hs-source-dirs:      src
+  main-is:             cont-variadic.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
+
 executable contravariant
   hs-source-dirs:      src
   main-is:             contravariant.hs
@@ -417,6 +423,12 @@ executable monad
   main-is:             monad.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable mtl
+  hs-source-dirs:      src
+  main-is:             mtl.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, mtl
 
 executable mvar
   hs-source-dirs:      src

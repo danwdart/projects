@@ -18,9 +18,12 @@ tests = describe "tests" $ do
     it "checks" $
         1 `shouldBe` 1
     it "calcs prop" $
-        property $ \x y -> (x :: Int) == (y :: Int)
-    it "throws" $
-        evaluate (1 / 0) `shouldThrow` anyException
+        property $ \x -> (x :: Int) == (x :: Int)
+    {- it "throws" $
+        evaluate (1 / 0) `shouldReturn` infinity -}
+    it "runs IO" $ do
+        length <$> readFile "/etc/passwd" `shouldReturn` 3512
+        readFile "/etc/shadow" `shouldThrow` anyException
 
 main :: IO ()
 main = hspec tests

@@ -1,5 +1,6 @@
 {-# LANGUAGE DeriveFunctor, FlexibleInstances, GeneralisedNewtypeDeriving, MultiParamTypeClasses, OverloadedStrings, PackageImports, StandaloneDeriving #-}
 
+{-}
 import Control.Monad.IO.Class
 import "mtl" Control.Monad.Reader
 import "mtl" Control.Monad.Writer
@@ -30,7 +31,7 @@ class MonadFile a where
     readf :: IsString s => FilePath -> a s
 
 instance MonadFile IO where
-    writef f s = writeFile f
+    writef f s = writeFile f s
     readf f = fromString <$> readFile f
 
 newtype Fake a = Fake {
@@ -72,3 +73,7 @@ stuff3 = do
 main :: IO ()
 main = do
     print =<< runAppM stuff3 "aeiou" 1
+-}
+
+main :: IO ()
+main = return ()
