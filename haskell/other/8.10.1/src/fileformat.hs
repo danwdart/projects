@@ -1,27 +1,15 @@
-import qualified Data.ByteString as B
-import Data.ByteString (ByteString)
-import Foreign.Storable (Storable (..), )
-import Foreign.Storable.Record as Store
+{-# LANGUAGE OverloadedStrings #-}
 
-{-
+import Data.Binary.Get
+import Data.ByteString.Char8
+import Data.Word
+
 data Png = Png {
-    magicNumber :: ByteString,
-    version :: ByteString
-}
+    magicNumber :: !Word32,
+    version :: !Word32
+} deriving (Show)
 
-store :: Store.Dictionary Png
-store =
-   Store.run $
-   Png <$>
-      Store.element magicNumber <*>
-      Store.element version
 
-instance Storable Png where
-   sizeOf = Store.sizeOf store
-   alignment = Store.alignment store
-   peek = Store.peek store
-   poke = Store.poke store
--}
 
 main :: IO ()
-main = return ()
+main = print (runGet (Png <$> getWord32le <*> getWord32le) "aaaaaaaa")
