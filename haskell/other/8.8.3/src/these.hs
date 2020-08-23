@@ -1,4 +1,4 @@
-import Data.These
+import           Data.These
 
 thisOne :: These Int Int
 thisOne = This 1

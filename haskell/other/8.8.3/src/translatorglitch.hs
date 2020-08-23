@@ -1,27 +1,29 @@
-{-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
+{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 -- import Control.Monad
-import Data.Maybe
+import           Data.Maybe
 --import Data.Foldable
-import Control.Lens ((.~),(^.),(?~))
-import qualified Data.Aeson as A
-import Data.Aeson (FromJSON)
+import           Control.Lens             ((.~), (?~), (^.))
+import           Data.Aeson               (FromJSON)
+import qualified Data.Aeson               as A
 -- import Data.Aeson.Types (parse)
-import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as BSL
-import Data.Function
-import Data.Functor
-import Data.Text as T
-import GHC.Generics
-import Network.Google
-import Network.Google.Auth
+import qualified Data.ByteString          as BS
+import qualified Data.ByteString.Lazy     as BSL
+import           Data.Function
+import           Data.Functor
+import           Data.Text                as T
+import           GHC.Generics
+import           Network.Google
+import           Network.Google.Auth
 --import Network.Google.Env
-import Network.Google.Prelude (toHeader)
-import Network.Google.Translate
+import           Network.Google.Prelude   (toHeader)
+import           Network.Google.Translate
 -- import Network.Google.Types
-import Network.HTTP.Req
-import System.Environment
-import System.IO
+import           Network.HTTP.Req
+import           System.Environment
+import           System.IO
 
 -- TODO either use the Google Req gen or make own
 
@@ -35,7 +37,7 @@ res accessToken xs = req POST
     & runReq defaultHttpConfig
 
 data TRT = TRT {
-    model :: String,
+    model          :: String,
     translatedText :: String
 } deriving (FromJSON, Generic, Show)
 

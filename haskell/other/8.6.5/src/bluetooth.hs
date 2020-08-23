@@ -1,6 +1,6 @@
-import Data.Function
-import Data.Functor
-import Network.Bluetooth
+import           Data.Function
+import           Data.Functor
+import           Network.Bluetooth
 
 main :: IO ()
 main = do

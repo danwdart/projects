@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import HGamer3D
-import System.Clock
+import           HGamer3D
+import           System.Clock
 
 config :: Graphics3DConfig
 config = Graphics3DConfig

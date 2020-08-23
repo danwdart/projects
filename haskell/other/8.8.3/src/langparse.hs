@@ -1,8 +1,8 @@
 {-# LANGUAGE RankNTypes    #-}
 {-# LANGUAGE UnicodeSyntax #-}
 
-import Language.JavaScript.Parser
-import Language.C
+import           Language.C
+import           Language.JavaScript.Parser
 
 testFile ∷ String
 testFile = "(function main(a, b) { console.log(a + b); })(1, 2);"

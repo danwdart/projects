@@ -1,4 +1,4 @@
-{-# LANGUAGE UnicodeSyntax  #-}
+{-# LANGUAGE UnicodeSyntax #-}
 import           AWSLambda
 import           AWSLambda.Events.APIGateway
 import           Control.Lens

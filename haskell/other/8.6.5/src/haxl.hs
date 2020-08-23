@@ -1,6 +1,7 @@
-{-# LANGUAGE NoImplicitPrelude, RebindableSyntax #-}
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE RebindableSyntax  #-}
 
-import Haxl.Prelude
+import           Haxl.Prelude
 
 main :: IO ()
 main = undefined
