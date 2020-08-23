@@ -1,5 +1,5 @@
-import Debug.Trace
-import Control.Monad.Trans.State.Lazy
+import           Control.Monad.Trans.State.Lazy
+import           Debug.Trace
 
 st :: StateT Int IO Int
 st = do

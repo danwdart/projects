@@ -1,9 +1,9 @@
-import Control.Monad.Trans.Writer.Lazy
+import           Control.Monad.Trans.Writer.Lazy
 -- import Control.Monad.Trans.State.Lazy
 -- import Control.Monad.Trans.Maybe
 
 myT :: String -> WriterT [String] Maybe String
-myT start = WriterT (Just (start, [])) 
+myT start = WriterT (Just (start, []))
 
 myTResult :: Maybe (String, [String])
 myTResult = runWriterT $ do

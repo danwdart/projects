@@ -1,9 +1,9 @@
 module Main (main) where
 
 -- import Control.Monad
-import System.Environment
-import Data.Char
-import Numeric
+import           Data.Char
+import           Numeric
+import           System.Environment
 
 maybeIndex :: Int -> [a] -> Maybe a
 maybeIndex index xs = if null xs then Nothing else Just $ xs !! index

@@ -1,4 +1,4 @@
-{-# LANGuAGE TypeApplications #-}
+{-# LANGUAGE TypeApplications #-}
 main :: IO ()
 main = do
     let s = read @Int "2"

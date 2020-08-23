@@ -43,7 +43,7 @@ instance Applicative Fake where
 instance Monad Fake where
     return = Fake
     Fake a >>= f = f a
-    
+
 newtype AppM a = AppM {
     unApp :: RWST AppRead AppWriter AppState AppMonad a
 } deriving (

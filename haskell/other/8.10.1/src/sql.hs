@@ -1,8 +1,8 @@
-{-# LANGUAGE OverloadedStrings #-} -- Text can accept strings - no need to pack
-{-# LANGUAGE ExtendedDefaultRules #-} -- Stringy stuff can default to text
+{-# LANGUAGE ExtendedDefaultRules #-}
+{-# LANGUAGE OverloadedStrings    #-}
 
-import Database.HDBC
-import Database.HDBC.MySQL
+import           Database.HDBC
+import           Database.HDBC.MySQL
 
 main :: IO ()
 main = do

@@ -1,7 +1,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-import Relude
-import Control.Monad.IO.Unlift
+import           Control.Monad.IO.Unlift
+import           Relude
 
 main :: MonadIO m => m ()
 main = putStrLn "Hi"

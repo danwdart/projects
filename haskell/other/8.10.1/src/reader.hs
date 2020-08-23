@@ -1,4 +1,4 @@
-import Control.Monad.Reader
+import           Control.Monad.Reader
 
 -- Reader a b is a -> b
 

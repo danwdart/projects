@@ -26,7 +26,7 @@ data ModulationType = AM | FM
 
 data Modulation = Modulation {
     modulationType :: ModulationType,
-    modulationFn :: Float -> Float
+    modulationFn   :: Float -> Float
 }
 
 type AmplitudeEnvelope = Float -> Float
@@ -47,10 +47,10 @@ type Octave = Int
 type BPM = Int
 
 data Key = Key {
-    keyName :: KeyName,
-    keyModifier :: KeyModifier,
-    keyOctave :: Octave,
-    keyScale :: Scale,
+    keyName       :: KeyName,
+    keyModifier   :: KeyModifier,
+    keyOctave     :: Octave,
+    keyScale      :: Scale,
     keyIntonation :: Intonation
 } deriving (Show)
 
@@ -58,7 +58,7 @@ data Articulation = Legato | Normal | Staccato deriving (Show)
 
 data Tempo = Tempo {
     tempoNoteDuration :: NoteDuration,
-    tempoBPM :: BPM
+    tempoBPM          :: BPM
 } deriving (Show)
 
 data Voice = Sine |
@@ -67,13 +67,13 @@ data Voice = Sine |
     Triangle deriving (Show)
 
 data Note = Note {
-    noteKey :: Key,
-    noteDuration :: NoteDuration,
+    noteKey          :: Key,
+    noteDuration     :: NoteDuration,
     noteArticulation :: Articulation,
-    noteTempo :: Tempo,
-    noteAmplitude :: Amplitude,
-    noteModulations :: Modulations,
-    noteEnvelope :: AmplitudeEnvelope
+    noteTempo        :: Tempo,
+    noteAmplitude    :: Amplitude,
+    noteModulations  :: Modulations,
+    noteEnvelope     :: AmplitudeEnvelope
 }
 
 data Chord = Chord {
@@ -96,7 +96,7 @@ fft :: Wave -> Spectrum
 fft = undefined
 
 rollingFFT :: Wave -> NumSamples -> Spectrum
-rollingFFT = undefined 
+rollingFFT = undefined
 
 wave :: WaveType -> Frequency -> Amplitude -> Duration -> Wave
 wave = undefined

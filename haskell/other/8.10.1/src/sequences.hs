@@ -1,11 +1,11 @@
 module Main (main) where
 
-import Data.List
+import           Data.List
 
 continueSequence1 :: (Integer -> Integer -> Integer) -> [Integer] -> [Integer]
 continueSequence1 f (x1:x2:xs) = f x1 x2:x1:x2:xs
-continueSequence1 _ [x] = [x]
-continueSequence1 _ [] = []
+continueSequence1 _ [x]        = [x]
+continueSequence1 _ []         = []
 
 makeSeq :: (Integer -> Integer -> Integer) -> [Integer] -> [[Integer]]
 makeSeq fn nums = reverse (tail (tails nums)) ++ iterate (continueSequence1 fn) nums

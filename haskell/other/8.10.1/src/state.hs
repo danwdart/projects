@@ -1,11 +1,11 @@
 {-# LANGUAGE TupleSections #-}
 
-import Control.Monad.State
+import           Control.Monad.State
 
 type MyState = State [Int] Int
 
 state1 :: Int -> MyState
-state1 val = state (\s -> (val, 1:s)) 
+state1 val = state (\s -> (val, 1:s))
 
 stateModifier :: Int -> MyState
 stateModifier val = state (val + 1,)

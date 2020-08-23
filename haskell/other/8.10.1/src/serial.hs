@@ -1,7 +1,7 @@
-import System.IO
-import System.Serial
-import System.Serial.BlockingManager as BM
-import System.Serial.Manager as M
+import           System.IO
+import           System.Serial
+import           System.Serial.BlockingManager as BM
+import           System.Serial.Manager         as M
 
 blocking :: Handle -> IO ()
 blocking handle = do
