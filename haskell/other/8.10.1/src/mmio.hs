@@ -1,4 +1,4 @@
-import System.IO.MMap
+import           System.IO.MMap
 
 main :: IO ()
 main = return ()

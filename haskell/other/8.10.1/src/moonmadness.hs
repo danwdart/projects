@@ -1,6 +1,6 @@
-import Control.Monad
-import Data.Function
-import Data.List
+import           Control.Monad
+import           Data.Function
+import           Data.List
 
 splitEvery :: Int -> [a] -> [[a]]
 splitEvery _ [] = []

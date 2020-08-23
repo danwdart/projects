@@ -1,7 +1,7 @@
 data Dokis = Yuri deriving (Show)
 
 myLove :: Maybe Dokis
-myLove = pure Yuri 
+myLove = pure Yuri
 
 main :: IO ()
 main = print myLove

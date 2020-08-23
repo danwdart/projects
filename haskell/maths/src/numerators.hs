@@ -1,4 +1,4 @@
-import Data.Ratio
+import           Data.Ratio
 
 toNums :: Int -> [Int] -> [Int]
 toNums a = fmap (numerator . (% a))

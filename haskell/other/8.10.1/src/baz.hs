@@ -7,9 +7,9 @@ wholeListAndPartOfList :: (Show a) => [a] -> String
 wholeListAndPartOfList [] = "Nothing"
 wholeListAndPartOfList whole@(x:xs) = "x = " ++ show x ++ " and xs = " ++ show xs
 
-capital :: String -> String  
-capital "" = "Empty string, whoops!"  
-capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]  
+capital :: String -> String
+capital "" = "Empty string, whoops!"
+capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
 -}
 
 casesByGuard :: Int -> String

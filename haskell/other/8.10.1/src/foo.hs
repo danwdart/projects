@@ -23,8 +23,8 @@ boomBangs xs = [ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
 xx = [ x | x <- [10..20], x /= 13, x /= 15, x /= 19] -- /= is not equal
 xy = [ x*y | x <- [2,5,10], y <- [8,10,11]]  -- <- is from
 xy5 = [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]
-nouns = ["hobo","frog","pope"] 
-adjectives = ["lazy","grouchy","scheming"]  
+nouns = ["hobo","frog","pope"]
+adjectives = ["lazy","grouchy","scheming"]
 rrr = [adjective ++ " " ++ noun | adjective <- adjectives, noun <- nouns]
 length' xs = sum [1 | _ <- xs] -- sum one, but for how many xs there are
 removeNonUppercase st = [ char | char <- st, char `elem` ['A'..'Z']]
@@ -39,14 +39,14 @@ nat = [1..]
 tenNat = take 10 nat
 fiveTimesNat = [x * 5 | x <- take 10 nat]
 zipped = zip (take 10 nat) fiveTimesNat
-rt = [ (a,b,c) | c <- [1..100], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]  
-addThree :: Int -> Int -> Int -> Int  
+rt = [ (a,b,c) | c <- [1..100], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]
+addThree :: Int -> Int -> Int -> Int
 addThree x y z = x + y + z
 factorial :: Integer -> Integer -- eger = big
 factorial n = product [1..n]
-circumference :: Float -> Float  
-circumference r = 2 * pi * r  
-circumference' :: Double -> Double  
+circumference :: Float -> Float
+circumference r = 2 * pi * r
+circumference' :: Double -> Double
 circumference' r = 2 * pi * r
 ee = (+) 1 2
 eltee = compare 1 2
@@ -59,9 +59,9 @@ biggestInt = maxBound :: Int -- like typecasting but specifying a typeclass
 -- div is like / but only wholes, then mod
 foo = fromIntegral biggestInt
 bar = biggestInt - 2
-factorial2 :: (Integral a) => a -> a  
-factorial2 0 = 1  
-factorial2 n = n * factorial2 (n - 1)  
+factorial2 :: (Integral a) => a -> a
+factorial2 0 = 1
+factorial2 n = n * factorial2 (n - 1)
 main :: IO ()
 main = putStrLn "Nah"
 -}

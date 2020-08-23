@@ -1,6 +1,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-import Prelude (IO, Maybe(..), Show, Int, String, Num, ($), (++), show, putStrLn, print)
+import           Prelude (IO, Int, Maybe (..), Num, Show, String, print,
+                          putStrLn, show, ($), (++))
 
 (+), (*) :: (Num a, Show a) => a -> a -> String
 a + b = show a ++ show b

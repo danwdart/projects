@@ -1,6 +1,6 @@
 {-# LANGUAGE ApplicativeDo #-}
 
-import Data.Functor.Compose
+import           Data.Functor.Compose
 
 main :: IO ()
 main = do

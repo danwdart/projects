@@ -1,7 +1,7 @@
 {-# LANGUAGE TypeOperators #-}
 
-import Prelude hiding (succ, (.))
-import Data.Invertible
+import           Data.Invertible
+import           Prelude         hiding (succ, (.))
 
 -- Not really invertible but whatever
 sqr :: (Fractional a, Floating a) => a <-> a

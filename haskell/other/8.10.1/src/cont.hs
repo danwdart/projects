@@ -1,7 +1,7 @@
 -- Cont demo
-import Control.Monad.Cont
-import System.Directory
-import System.IO
+import           Control.Monad.Cont
+import           System.Directory
+import           System.IO
 
 -- It's like a JS callback that can interrupt stuff
 main :: IO ()

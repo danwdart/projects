@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
-import Data.Profunctor
+import           Data.Profunctor
 
 l, r :: Either Int Int
 l = Left 1

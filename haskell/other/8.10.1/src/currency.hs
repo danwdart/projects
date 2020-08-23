@@ -1,8 +1,8 @@
 data Currency = Currency {
     isoCode :: String,
-    symbol :: String,
-    name :: String,
-    rate :: Float
+    symbol  :: String,
+    name    :: String,
+    rate    :: Float
 }
 
 instance Show Currency where
@@ -13,13 +13,13 @@ gbp = Currency "GBP" "£" "Pound Sterling" 1.0
 
 data Money = Money {
     minorAmount :: Int,
-    currency :: Currency
+    currency    :: Currency
 }
 
 instance Show Money where
     show (Money amount curr) = show curr ++ show (fromIntegral amount / 100) -- todo fixpoint
 
--- instance Num 
+-- instance Num
 
 pound :: Money
 pound = Money 1 gbp

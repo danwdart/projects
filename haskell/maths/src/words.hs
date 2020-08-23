@@ -1,9 +1,9 @@
-import Data.Maybe
-import Data.Map (Map)
-import qualified Data.Map as M
-import Data.Profunctor
-import Data.Set (Set)
-import qualified Data.Set as S
+import           Data.Map        (Map)
+import qualified Data.Map        as M
+import           Data.Maybe
+import           Data.Profunctor
+import           Data.Set        (Set)
+import qualified Data.Set        as S
 
 main :: IO ()
 main = return ()
@@ -25,9 +25,9 @@ scaleDetails Short = (3, 3, (++"illion"), Nothing)
 scaleDetails Sand = (0, 3, (++"sand"), Nothing)
 
 data Config = Config {
-    oh :: OhOrZero,
+    oh      :: OhOrZero,
     hundred :: HundredPrefix,
-    scale :: Scale
+    scale   :: Scale
 }
 
 modifier :: (Integer -> Integer) -> String -> Set Integer -> Map Integer String -> Map Integer String
@@ -72,7 +72,7 @@ scaledPowModData = M.fromList [
 scaledPowTData :: Map Int String
 scaledPowTData = M.fromList [
     (2, "vi"),
-    (3, "tri"), 
+    (3, "tri"),
     (4, "quadra"){-},
     (5, "quinqua"),
     (6, "sexa"),
@@ -128,7 +128,7 @@ numToWords (Config o h s) = let (so, sm, sl, miss) = scaleDetails s in
     modifier (10*) "ty" (S.fromList [2..9]) (M.fromList [(2, "twen"), (3, "thir"), (5, "fif"), (8, "eigh")]) <>
     pows (M.fromList [(2, "hundred"), (3, "thousand")]) <>
     scaledPows s scaledPowData <>
-    scaledPows s (M.map (++"dec") $ M.mapKeys (+10) scaledPowModData) <> 
+    scaledPows s (M.map (++"dec") $ M.mapKeys (+10) scaledPowModData) <>
     scaledPows s (M.map (++"gint") $ M.mapKeys (*10) scaledPowTData) <>
     scaledPows s (M.map (++"gint") $ M.mapKeys (*10) combPowData)
     {- ++

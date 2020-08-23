@@ -1,5 +1,5 @@
-import Control.Arrow
-import Data.List
+import           Control.Arrow
+import           Data.List
 
 mk ::Int -> [[Int]]
 mk k = map (\ n -> map (\ m -> (n * m) `mod` k) [0 .. n]) [0 .. k - 1]

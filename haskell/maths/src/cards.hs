@@ -1,20 +1,21 @@
 -- https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
 
-{-# LANGUAGE FlexibleInstances, UndecidableInstances #-}
+{-# LANGUAGE FlexibleInstances    #-}
+{-# LANGUAGE UndecidableInstances #-}
 
-import Control.Monad
-import qualified Control.Monad.HT as HT (nest, repeat)
-import Control.Monad.IO.Class
-import Control.Monad.Random.Class
-import Control.Monad.Trans.State
-import Data.Bifoldable
-import Data.Bifunctor
-import Data.Function
-import Data.Functor
-import qualified Data.Map as M
-import qualified Data.Set as S
-import System.Random
-import System.Random.Shuffle
+import           Control.Monad
+import qualified Control.Monad.HT           as HT (nest, repeat)
+import           Control.Monad.IO.Class
+import           Control.Monad.Random.Class
+import           Control.Monad.Trans.State
+import           Data.Bifoldable
+import           Data.Bifunctor
+import           Data.Function
+import           Data.Functor
+import qualified Data.Map                   as M
+import qualified Data.Set                   as S
+import           System.Random
+import           System.Random.Shuffle
 
 -- https://wiki.haskell.org/Random_shuffle
 
@@ -25,7 +26,7 @@ instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) => Random a where
         in (toEnum rndInt, nxtGen)
 
 -- randomElem :: RandomGen g => [a] -> g -> (a, g)
--- randomElem elems g = elems !! randomR (0, length elems 
+-- randomElem elems g = elems !! randomR (0, length elems
 
 (...) :: (b -> c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
 (...) = (.) . (.)
@@ -47,34 +48,34 @@ data Value = Ace | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten 
     deriving (Bounded, Enum, Eq, Ord, Show)
 
 instance Pp Value where
-    pp Ace = "A"
-    pp Two = "2"
+    pp Ace   = "A"
+    pp Two   = "2"
     pp Three = "3"
-    pp Four = "4"
-    pp Five = "5"
-    pp Six = "6"
+    pp Four  = "4"
+    pp Five  = "5"
+    pp Six   = "6"
     pp Seven = "7"
     pp Eight = "8"
-    pp Nine = "9"
-    pp Ten = "10"
-    pp Jack = "J"
+    pp Nine  = "9"
+    pp Ten   = "10"
+    pp Jack  = "J"
     pp Queen = "Q"
-    pp King = "K"
+    pp King  = "K"
 
 data Suit = Hearts | Diamonds | Spades | Clubs
     deriving (Bounded, Enum, Eq, Ord, Show)
 
 instance Pp Suit where
-    pp Hearts = "♥"
+    pp Hearts   = "♥"
     pp Diamonds = "♦"
-    pp Spades = "♠"
-    pp Clubs = "♣"
+    pp Spades   = "♠"
+    pp Clubs    = "♣"
 
 data Card = Card Value Suit | Joker deriving (Eq, Ord)
 
 instance Pp Card where
     pp (Card value suit) = pp value ++ pp suit
-    pp Joker = "🃏"
+    pp Joker             = "🃏"
 
 ov = Card
 
@@ -84,7 +85,7 @@ instance Enum Card where
     toEnum 52 = Joker
     toEnum n = Card (toEnum v) (toEnum s)
         where (s, v) = n `divMod` 13
-    fromEnum Joker = 52
+    fromEnum Joker             = 52
     fromEnum (Card value suit) = fromEnum value + (13 * fromEnum suit)
 
 instance Bounded Card where
@@ -93,7 +94,7 @@ instance Bounded Card where
 
 instance Show Card where
     show (Card value suit) = show value ++ " of " ++ show suit
-    show Joker = "Joker"
+    show Joker             = "Joker"
 
 uniq :: Ord a => [a] -> [a]
 uniq = S.toList . S.fromList

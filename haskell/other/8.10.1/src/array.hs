@@ -1,4 +1,4 @@
-import Data.Array.IO
+import           Data.Array.IO
 
 type IA = IOArray Int Int
 

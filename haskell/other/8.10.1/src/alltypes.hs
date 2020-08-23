@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Data.List
+import           Data.List
 
 nl :: String
 nl = "\n"

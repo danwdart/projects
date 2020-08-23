@@ -1,4 +1,4 @@
-import Control.Monad.Random
+import           Control.Monad.Random
 
 main :: IO ()
 main = return ()

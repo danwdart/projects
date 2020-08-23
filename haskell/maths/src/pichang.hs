@@ -17,9 +17,9 @@ type Hang = (Hook, Direction)
 type PotentialSolution = [Hang]
 
 data IterationStats a = IterationStats {
-    steps :: Integer,
+    steps    :: Integer,
     sequence :: [a],
-    result :: a
+    result   :: a
 } deriving (Show)
 
 iterateUntilUnchanged :: (a -> a) -> a -> a

@@ -1,5 +1,5 @@
-import Data.Coerce
-import Unsafe.Coerce
+import           Data.Coerce
+import           Unsafe.Coerce
 
 newtype LightState = LightState Bool
 

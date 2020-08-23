@@ -1,6 +1,6 @@
 -- Shamelessly stolen from http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/spigot.pdf
 
-import Data.Ratio
+import           Data.Ratio
 
 main :: IO ()
 main = return ()
@@ -52,9 +52,9 @@ piL = stream next safe prod cons init lfts where
                   prod (z,i) n         = (comp (10, -10*n, 0, 1) z, i)
                   cons (z,i) z'        = (comp z z', i+1)
 
-    
+
 piG = stream next safe prod cons initr lfts
-   
+
 piG2 = process next prod cons initr lfts
 process next prod cons u (x:xs)
      = y : process next prod cons (prod v y) xs

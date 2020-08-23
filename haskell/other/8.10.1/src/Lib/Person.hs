@@ -3,11 +3,11 @@ module Lib.Person (
     describePerson
 ) where
 
-import Data.List
+import           Data.List
 
 data Person = Person {
     firstName :: String,
-    lastName :: String,
+    lastName  :: String,
     birthYear :: Int,
     hatsOwned :: [String]
 } deriving (Show)

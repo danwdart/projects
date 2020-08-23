@@ -1,4 +1,4 @@
-import Flow
+import           Flow
 
 main :: IO ()
 main = do

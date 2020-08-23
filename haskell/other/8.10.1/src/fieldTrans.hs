@@ -7,7 +7,7 @@ instance (Show a, Show b) => Show (Model a b) where
     show (Model a b) = "Model " ++ a ++ " " ++ b
 
 -- instance Bifunctor Model where
-    
+
 -- instance Biapplicative Model
 --     bipure = Model
 

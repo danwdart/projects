@@ -1,9 +1,9 @@
-import Data.Ratio
+import           Data.Ratio
 
-import Factory.Math.Implementations.Pi.BBP.Algorithm
-import Factory.Math.Implementations.Pi.BBP.Bellard
-import Factory.Math.Implementations.Pi.BBP.Series
-import Factory.Math.Pi
+import           Factory.Math.Implementations.Pi.BBP.Algorithm
+import           Factory.Math.Implementations.Pi.BBP.Bellard
+import           Factory.Math.Implementations.Pi.BBP.Series
+import           Factory.Math.Pi
 
 main :: IO ()
 main = return ()

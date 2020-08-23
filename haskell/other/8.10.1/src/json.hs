@@ -1,10 +1,12 @@
-{-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
+{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 -- import Control.Exception
 -- import qualified Data.ByteString as BS
-import Data.Aeson ((.=))
-import qualified Data.Aeson as A
-import GHC.Generics
+import           Data.Aeson   ((.=))
+import qualified Data.Aeson   as A
+import           GHC.Generics
 
 -- Automatic
 data Person = Person {

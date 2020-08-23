@@ -16,7 +16,7 @@ instance FourPlusableToString MyEnums
 instance Show MyEnums where
     show Enum1 = "One"
     show Enum2 = "Two"
-    show _ = "Other"
+    show _     = "Other"
 
 class (Show a) => ConcatNum a where
     (|+) :: a -> a -> String

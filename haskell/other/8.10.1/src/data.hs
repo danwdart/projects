@@ -1,7 +1,7 @@
 module Main where
 
-import Lib.Credential
-import Lib.Person
+import           Lib.Credential
+import           Lib.Person
 
 myCreds :: Creds
 myCreds = Creds "Username" "Password"

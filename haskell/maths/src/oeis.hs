@@ -1,32 +1,35 @@
-{-# LANGUAGE DataKinds, DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
+{-# LANGUAGE DataKinds         #-}
+{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
 
-import Control.Monad.IO.Class
-import Data.Aeson
+import           Control.Monad.IO.Class
+import           Data.Aeson
 -- import Data.Aeson.Encode.Pretty
 -- import qualified Data.ByteString.Lazy.Char8 as BSL
-import Network.HTTP.Req
-import Text.PrettyPrint.GenericPretty
+import           Network.HTTP.Req
+import           Text.PrettyPrint.GenericPretty
 
 data OEISResult = OEISResult {
-    _time :: String,
-    _offset :: String,
-    _references :: Int,
-    _data :: String,
-    _created :: String,
-    _link :: [String],
-    _example :: Maybe [String],
-    _reference :: Maybe [String],
+    _time        :: String,
+    _offset      :: String,
+    _references  :: Int,
+    _data        :: String,
+    _created     :: String,
+    _link        :: [String],
+    _example     :: Maybe [String],
+    _reference   :: Maybe [String],
     _mathematica :: [String],
-    _formula :: Maybe [String],
-    _xref :: [String],
-    _program :: Maybe [String],
-    _name :: String,
-    _author :: String,
-    _number :: Int,
-    _comment :: Maybe [String],
-    _revision :: Int,
-    _ext :: Maybe [String],
-    _keyword :: String
+    _formula     :: Maybe [String],
+    _xref        :: [String],
+    _program     :: Maybe [String],
+    _name        :: String,
+    _author      :: String,
+    _number      :: Int,
+    _comment     :: Maybe [String],
+    _revision    :: Int,
+    _ext         :: Maybe [String],
+    _keyword     :: String
 } deriving (Eq, Generic, Out, Show)
 
 instance FromJSON OEISResult where

@@ -40,8 +40,8 @@ result1 = [show a ++ "^" ++ show x ++ " + " ++ show b ++ " = " ++ show c ++ "^" 
 -}
 
 data NextPower = NextPower {
-    power :: Integer,
-    product :: Integer,
+    power     :: Integer,
+    product   :: Integer,
     remainder :: Integer
 } deriving (Show)
 

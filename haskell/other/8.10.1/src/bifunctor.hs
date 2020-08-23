@@ -1,5 +1,5 @@
 -- import Control.Monad
-import Data.Bifunctor
+import           Data.Bifunctor
 
 type ESI = Either String Int
 type EtoE = ESI -> ESI

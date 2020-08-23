@@ -1,42 +1,45 @@
-{-# LANGUAGE DataKinds, DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
+{-# LANGUAGE DataKinds         #-}
+{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 -- Order me a pizza
-import Control.Monad
-import Control.Monad.IO.Class
-import Control.Monad.Trans.Except
-import Data.Aeson
+import           Control.Monad
+import           Control.Monad.IO.Class
+import           Control.Monad.Trans.Except
+import           Data.Aeson
 -- import Data.Aeson.Encode.Pretty
 -- import Data.Aeson.Types
-import qualified Data.ByteString.Char8 as BS
+import qualified Data.ByteString.Char8          as BS
 -- import qualified Data.ByteString.Lazy.Char8 as BSL
-import Data.Char
+import           Data.Char
 -- import Data.Function
 -- import Data.Functor
 -- import qualified Data.HashMap.Lazy as HM
-import Data.List
-import Data.Maybe
+import           Data.List
+import           Data.Maybe
 -- import Data.Text (Text)
 -- import qualified Data.Text as T
 -- import qualified Data.Vector as V
-import GHC.Generics
-import qualified Network.HTTP.Client as HC
-import Network.HTTP.Req
-import System.Environment
-import Text.PrettyPrint.GenericPretty
+import           GHC.Generics
+import qualified Network.HTTP.Client            as HC
+import           Network.HTTP.Req
+import           System.Environment
+import           Text.PrettyPrint.GenericPretty
 
 type Email = String
 type Password = String
 
 data Login = Login {
-    email :: Email,
+    email    :: Email,
     password :: Password
 } deriving (Eq, FromJSON, Generic, Show, ToJSON)
 
 data LoginResponse = LoginResponse {
-    _data :: Maybe LoginResponseData,
-    _errorCode :: Int,
-    _success :: Bool,
-    _message :: Maybe String,
+    _data        :: Maybe LoginResponseData,
+    _errorCode   :: Int,
+    _success     :: Bool,
+    _message     :: Maybe String,
     _redirectUri :: Maybe String
 } deriving (Eq, Generic, Show)
 
@@ -51,24 +54,24 @@ instance FromJSON LoginResponseData where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = \(f:fs) -> toUpper f : fs}
 
 data GetBasketResponse = GetBasketResponse {
-    storeId :: Int,
-    displayTotalPrice :: String,
-    canChangeFulfilmentMethod :: Bool,
-    unqualifiedVouchers :: [String],
-    items :: [String],
-    isDelivery :: Bool,
-    proceedUrl :: String,
-    displaySubTotalPrice :: String,
-    information :: String,
-    displayOriginalTotalPrice :: String,
-    displayTotalSaving :: String,
+    storeId                         :: Int,
+    displayTotalPrice               :: String,
+    canChangeFulfilmentMethod       :: Bool,
+    unqualifiedVouchers             :: [String],
+    items                           :: [String],
+    isDelivery                      :: Bool,
+    proceedUrl                      :: String,
+    displaySubTotalPrice            :: String,
+    information                     :: String,
+    displayOriginalTotalPrice       :: String,
+    displayTotalSaving              :: String,
     isRealTimeMealDealWizardEnabled :: Bool,
-    displayDeliveryChargeAmount :: String,
-    minimumOrderValue :: Float
+    displayDeliveryChargeAmount     :: String,
+    minimumOrderValue               :: Float
 } deriving (Eq, FromJSON, Generic, Show)
 
 data BasketInfoResponse = BasketInfoResponse {
-    totalPrice :: Float,
+    totalPrice  :: Float,
     -- storeId :: Int, -- exists but clash
     basketItems :: [String]
 } deriving (Eq, Generic, Show)
@@ -77,33 +80,33 @@ instance FromJSON BasketInfoResponse where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = \(f:fs) -> toUpper f : fs}
 
 data NavResponse = NavResponse {
-    siteImage :: String,
-    canRenderBasket :: Bool,
+    siteImage                             :: String,
+    canRenderBasket                       :: Bool,
     noNotificationsAvailableForInitalLoad :: Bool, -- yes, misspelled
-    fulfilmentRedirectUrl :: String,
-    sessionIdentifier :: String,
-    bigDipUpsellOverlayEnabled :: Bool,
-    storeName :: String,
-    hasStoreInfo :: Bool,
-    formattedPrice :: String,
-    deliveryCharge :: String,
-    userName :: String,
-    basketUrl :: String,
-    fulfilmentMethod :: String,
-    homeUrl :: String,
-    isLoggedIn :: Bool,
-    pageType :: String
+    fulfilmentRedirectUrl                 :: String,
+    sessionIdentifier                     :: String,
+    bigDipUpsellOverlayEnabled            :: Bool,
+    storeName                             :: String,
+    hasStoreInfo                          :: Bool,
+    formattedPrice                        :: String,
+    deliveryCharge                        :: String,
+    userName                              :: String,
+    basketUrl                             :: String,
+    fulfilmentMethod                      :: String,
+    homeUrl                               :: String,
+    isLoggedIn                            :: Bool,
+    pageType                              :: String
 } deriving (Eq, FromJSON, Generic, Show)
 
 data Step = Step {
-    imageUrl :: String,
+    imageUrl    :: String,
     description :: String
 } deriving (Eq, FromJSON, Generic, Out, Show)
 
 data DealsDealsResponse = DealsDealsResponse {
-    displayOrder :: Int,
-    steps :: [Step],
-    isValid :: Bool,
+    displayOrder     :: Int,
+    steps            :: [Step],
+    isValid          :: Bool,
     -- imageUrl :: String,
     -- name :: String,
     -- id :: Int,
@@ -113,12 +116,12 @@ data DealsDealsResponse = DealsDealsResponse {
 
 data StoreDealsResponse = StoreDealsResponse {
     -- displayOrder :: Int,
-    deals :: [DealsDealsResponse],
+    deals        :: [DealsDealsResponse],
     topDealSteps :: Int,
     -- imageUrl :: String,
-    name :: String,
+    name         :: String,
     -- isGroup :: Bool,
-    id :: Int
+    id           :: Int
     -- description :: String
 } deriving (Eq, FromJSON, Generic, Out, Show)
 
@@ -198,7 +201,7 @@ createDefaultHeaders :: HC.CookieJar -> Token -> Option 'Https
 createDefaultHeaders basketJar basketXsrfToken = defaultHeaders <>
     header "X-XSRF-TOKEN" basketXsrfToken <>
     header "Referer" "https://www.dominos.co.uk/basketdetails/show" <>
-    cookieJar basketJar 
+    cookieJar basketJar
 
 -- This 'Https is from DataKinds
 {-

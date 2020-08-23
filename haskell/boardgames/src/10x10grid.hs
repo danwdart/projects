@@ -1,8 +1,8 @@
-import Control.Monad.Random
-import Control.Arrow
-import Data.Biapplicative
-import Data.List
-import Data.Maybe
+import           Control.Arrow
+import           Control.Monad.Random
+import           Data.Biapplicative
+import           Data.List
+import           Data.Maybe
 
 main :: IO ()
 main = return ()
@@ -69,7 +69,7 @@ isCoordOccupied :: Coords -> Board -> Bool
 isCoordOccupied = isEmpty .: getEl
 
 replaceElInRow :: XCoord -> El -> Row -> Row
-replaceElInRow = replaceListElement 
+replaceElInRow = replaceListElement
 
 replaceRow :: YCoord -> Row -> Board -> Board
 replaceRow = replaceListElement

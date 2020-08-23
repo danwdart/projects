@@ -1,10 +1,10 @@
-import Control.Monad
-import Control.Monad.Loops
-import qualified Control.Monad.HT as M
-import Data.Maybe
-import Numeric.Probability.Object
-import Numeric.Probability.Random (run)
-import Rando
+import           Control.Monad
+import qualified Control.Monad.HT           as M
+import           Control.Monad.Loops
+import           Data.Maybe
+import           Numeric.Probability.Object
+import           Numeric.Probability.Random (run)
+import           Rando
 -- import System.Random
 
 type Score = Int
@@ -31,13 +31,13 @@ resMarbles :: IO Result
 resMarbles = makeResult . run . fromFrequencies $ boardNumbers
 
 data GameState = GameState {
-    score :: Score,
+    score  :: Score,
     prizes :: Int,
-    money :: Money, -- budget
-    spent :: Money,
-    cost :: Money,
-    turns :: Int,
-    yield :: Yield
+    money  :: Money, -- budget
+    spent  :: Money,
+    cost   :: Money,
+    turns  :: Int,
+    yield  :: Yield
 } deriving (Show)
 
 initialGameState :: GameState
@@ -87,20 +87,20 @@ data Result = Points Score | Prize | Zilch | PrizeAndPayDouble deriving (Show)
 
 getPoints :: Result -> Score
 getPoints (Points x) = x
-getPoints _ = 0
+getPoints _          = 0
 
 getPrize :: Result -> HasPrize
-getPrize Prize = HasPrize
+getPrize Prize             = HasPrize
 getPrize PrizeAndPayDouble = HasPrize
-getPrize _ = NoPrize
+getPrize _                 = NoPrize
 
 getPrizeIncrement :: HasPrize -> Int
-getPrizeIncrement NoPrize = 0
+getPrizeIncrement NoPrize  = 0
 getPrizeIncrement HasPrize = 1
 
 getCost :: Result -> Money -> Money
 getCost PrizeAndPayDouble m = 2 * m
-getCost _ m = m
+getCost _ m                 = m
 
 boardPrizes :: [(Int, Result)]
 boardPrizes = [

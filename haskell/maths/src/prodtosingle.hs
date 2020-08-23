@@ -1,5 +1,5 @@
-import Data.Function
-import Data.List
+import           Data.Function
+import           Data.List
 
 -- charToInteger :: Char -> Integer
 -- charToInteger y = read [y]
@@ -25,9 +25,9 @@ breakDown :: Integer -> [Integer]
 breakDown n = takeWhileOneMore (>10) $ iterate integerToProd n
 
 data MyStruct = MyStruct {
-    x :: Integer,
+    x   :: Integer,
     lbd :: Int,
-    bd :: [Integer]
+    bd  :: [Integer]
 }
 
 instance Eq MyStruct where (==) = on (==) lbd

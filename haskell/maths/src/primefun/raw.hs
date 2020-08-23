@@ -1,4 +1,4 @@
-import Control.Monad.Fix
+import           Control.Monad.Fix
 
 notdiv x y = y `mod` x /= 0
 

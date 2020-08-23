@@ -1,7 +1,7 @@
 {-# LANGUAGE UnicodeSyntax #-}
+import           Debug.Trace
 import           Graphics.Gloss
 import           Graphics.Gloss.Interface.IO.Game
-import Debug.Trace
 
 window ∷ Display
 window = FullScreen -- InWindow "Game" (1720,880) (100, 100)

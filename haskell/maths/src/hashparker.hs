@@ -1,4 +1,4 @@
-import Data.List
+import           Data.List
 
 hash :: Double -> Int
 hash = read . sort . take 6 . filter (/='0') . drop 1 . dropWhile (/='.')  . show . (** 0.03125)

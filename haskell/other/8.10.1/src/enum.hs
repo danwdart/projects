@@ -9,7 +9,7 @@ another = read "\"Four\"" :: String
 
 allofthem = [One .. Three]
 
-allthings :: (Bounded a, Enum a) => [a] 
+allthings :: (Bounded a, Enum a) => [a]
 allthings = [minBound .. maxBound]
 
 allfoos = allthings :: [Foo]

@@ -1,12 +1,13 @@
-{-# LANGUAGE LambdaCase, OverloadedStrings #-}
+{-# LANGUAGE LambdaCase        #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Main where
 
-import qualified Graphics.Vty as V
+import qualified Graphics.Vty              as V
 import qualified Graphics.Vty.Input.Events as VIE
-import Reflex.Vty
-import Reflex.Vty.Host
-import Reflex.Vty.Widget
+import           Reflex.Vty
+import           Reflex.Vty.Host
+import           Reflex.Vty.Widget
 
 main :: IO ()
 main = mainWidget $ do

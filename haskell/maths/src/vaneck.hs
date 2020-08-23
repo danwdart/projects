@@ -1,5 +1,5 @@
-import Data.List
-import Data.Maybe
+import           Data.List
+import           Data.Maybe
 
 main :: IO ()
 main = print $ iterate iter [0] !! 151

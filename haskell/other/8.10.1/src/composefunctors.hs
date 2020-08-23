@@ -1,15 +1,14 @@
-{-# LANGUAGE
-  DeriveFunctor,
-  ExistentialQuantification,
-  FlexibleContexts,
-  FlexibleInstances,
-  GeneralizedNewtypeDeriving,
-  RankNTypes,
-  Strict #-}
+{-# LANGUAGE DeriveFunctor              #-}
+{-# LANGUAGE ExistentialQuantification  #-}
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE FlexibleInstances          #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE RankNTypes                 #-}
+{-# LANGUAGE Strict                     #-}
 
-import Control.Applicative
-import Data.Functor.Compose
-import Data.Functor.Contravariant
+import           Control.Applicative
+import           Data.Functor.Compose
+import           Data.Functor.Contravariant
 
 dat2 :: Maybe [Int]
 dat2 = Just [1,2,3]

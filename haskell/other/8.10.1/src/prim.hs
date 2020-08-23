@@ -1,6 +1,7 @@
-{-# LANGUAGE MagicHash, TupleSections #-}
+{-# LANGUAGE MagicHash     #-}
+{-# LANGUAGE TupleSections #-}
 
-import GHC.Exts
+import           GHC.Exts
 -- import GHC.IO
 -- import GHC.Prim
 -- import GHC.Types

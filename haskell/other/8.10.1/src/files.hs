@@ -1,5 +1,5 @@
-import System.Directory
-import System.IO
+import           System.Directory
+import           System.IO
 
 main :: IO ()
 main = do

@@ -1,16 +1,15 @@
-{-# LANGUAGE
-    DataKinds,
-    ExistentialQuantification,
-    FlexibleContexts,
-    FlexibleInstances,
-    GeneralisedNewtypeDeriving,
-    KindSignatures,
-    MultiParamTypeClasses,
-    PolyKinds,
-    TypeFamilies,
-    TypeOperators #-}
+{-# LANGUAGE DataKinds                  #-}
+{-# LANGUAGE ExistentialQuantification  #-}
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE FlexibleInstances          #-}
+{-# LANGUAGE GeneralisedNewtypeDeriving #-}
+{-# LANGUAGE KindSignatures             #-}
+{-# LANGUAGE MultiParamTypeClasses      #-}
+{-# LANGUAGE PolyKinds                  #-}
+{-# LANGUAGE TypeFamilies               #-}
+{-# LANGUAGE TypeOperators              #-}
 
-import GHC.TypeNats (Nat)
+import           GHC.TypeNats (Nat)
 
 class Unit x
 

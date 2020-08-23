@@ -1,21 +1,21 @@
-import Data.Graph.DGraph
-import Data.Graph.Traversal
-import Data.Graph.Types
-import Data.Graph.UGraph
-import Data.Graph.Visualize
+import           Data.Graph.DGraph
+import           Data.Graph.Traversal
+import           Data.Graph.Types
+import           Data.Graph.UGraph
+import           Data.Graph.Visualize
 
-import Data.List
-import Data.Maybe
+import           Data.List
+import           Data.Maybe
 
-import Control.Concurrent
+import           Control.Concurrent
 
 import           Data.GraphViz
 import           Data.GraphViz.Attributes.Complete
 import           Data.Hashable
 import qualified Data.Text.Lazy                    as TL
 
-import Data.Graph.Inductive.Graph
-import Data.Graph.Inductive.PatriciaTree
+import           Data.Graph.Inductive.Graph
+import           Data.Graph.Inductive.PatriciaTree
 -- chair is 3m/s = 180m/min = 10.8km/h
 
 walkingGraph :: UGraph String Int

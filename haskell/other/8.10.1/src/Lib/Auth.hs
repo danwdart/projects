@@ -3,10 +3,10 @@ module Lib.Auth (
     authenticate
 ) where
 
-import Lib.Data.Name
-import Lib.Data.Email
-import Lib.Data.Password
-import Lib.Data.User
+import           Lib.Data.Email
+import           Lib.Data.Name
+import           Lib.Data.Password
+import           Lib.Data.User
 
 type AuthenticationResult = Either String User
 

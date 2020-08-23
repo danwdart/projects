@@ -1,4 +1,4 @@
-import Control.Monad.Fix
+import           Control.Monad.Fix
 
 main :: IO ()
 main = do

@@ -1,11 +1,11 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
-import Control.Monad.IO.Class
-import Control.Monad.Trans.State
-import Data.Bool
-import Data.List.Index
-import System.Console.ANSI
-import System.IO
+import           Control.Monad.IO.Class
+import           Control.Monad.Trans.State
+import           Data.Bool
+import           Data.List.Index
+import           System.Console.ANSI
+import           System.IO
 
 process :: Char -> [Button] -> [Button]
 process = toggle . pred . read . return
@@ -26,10 +26,10 @@ data Point2D = Point2D {
 }
 
 data Button = Button {
-    text :: String,
+    text     :: String,
     location :: Point2D,
     selected :: Bool,
-    spacing :: Int
+    spacing  :: Int
 }
 
 padding :: Button -> Int

@@ -1,5 +1,5 @@
 -- import Data.Maybe
-import Lib.SafeDiv
+import           Lib.SafeDiv
 
 main :: IO ()
 -- print (saveDiv 2 11)

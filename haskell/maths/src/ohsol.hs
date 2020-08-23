@@ -2,15 +2,15 @@
 
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
 
-import Control.Monad (replicateM)
-import Control.Monad.HT (nest)
-import Control.Monad.Random.Class
-import Data.Bifunctor
-import Data.Function
-import Data.Functor
-import qualified Data.Map as M
-import Debug.Trace
-import System.Random.Shuffle
+import           Control.Monad              (replicateM)
+import           Control.Monad.HT           (nest)
+import           Control.Monad.Random.Class
+import           Data.Bifunctor
+import           Data.Function
+import           Data.Functor
+import qualified Data.Map                   as M
+import           Debug.Trace
+import           System.Random.Shuffle
 
 main :: IO ()
 main = return ()
@@ -21,8 +21,8 @@ instance Show Value where
     show (Value 13) = "K"
     show (Value 12) = "Q"
     show (Value 11) = "J"
-    show (Value 1) = "A"
-    show (Value n) = show n
+    show (Value 1)  = "A"
+    show (Value n)  = show n
 
 newtype Suit = Suit Int deriving (Eq)
 
@@ -35,7 +35,7 @@ instance Show Suit where
 
 data Card = Card {
     value :: Value,
-    suit :: Suit
+    suit  :: Suit
 } deriving (Eq)
 
 instance Show Card where
@@ -93,9 +93,9 @@ discardTwo (c1:c2:c3:c4:cs, ips, ds) = (c1:c4:cs, ips, c2:c3:ds)
 
 performMove :: Game -> Game
 performMove g = case nextGameMove g of
-    End -> g
-    TakeOne -> takeOne g
-    DiscardTwo -> discardTwo g
+    End         -> g
+    TakeOne     -> takeOne g
+    DiscardTwo  -> discardTwo g
     DiscardFour -> discardFour g
 
 playUntilEnd :: Game -> Game

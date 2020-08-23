@@ -1,7 +1,8 @@
-{-# LANGUAGE BinaryLiterals, OverloadedLists #-}
+{-# LANGUAGE BinaryLiterals  #-}
+{-# LANGUAGE OverloadedLists #-}
 
-import Data.Bits
-import Data.Map
+import           Data.Bits
+import           Data.Map
 
 {-
  _

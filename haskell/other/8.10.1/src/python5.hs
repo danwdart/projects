@@ -1,7 +1,7 @@
-import Control.Monad
-import Control.Monad.ST
-import Data.Array.ST
-import Data.Foldable
+import           Control.Monad
+import           Control.Monad.ST
+import           Data.Array.ST
+import           Data.Foldable
 
 bubbleSort :: STArray s Int Int -> ST s ()
 bubbleSort xs = do

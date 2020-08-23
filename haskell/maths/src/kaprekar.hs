@@ -14,7 +14,7 @@ for (var i = 0; i < 10000000; i++) {
 
 -- import Data.List
 
--- splitIntoPieces n l = 
+-- splitIntoPieces n l =
 
 {-
 saa :: (Num n) => n -> Bool

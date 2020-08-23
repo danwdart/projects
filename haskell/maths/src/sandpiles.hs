@@ -1,8 +1,10 @@
-{-# LANGUAGE FlexibleInstances, GeneralisedNewtypeDeriving, MultiParamTypeClasses #-}
+{-# LANGUAGE FlexibleInstances          #-}
+{-# LANGUAGE GeneralisedNewtypeDeriving #-}
+{-# LANGUAGE MultiParamTypeClasses      #-}
 
-import Control.Comonad
-import Control.Comonad.Store
-import Data.Functor.Identity
+import           Control.Comonad
+import           Control.Comonad.Store
+import           Data.Functor.Identity
 
 type Pos = (Int, Int)
 
@@ -18,7 +20,7 @@ instance Comonad Sandpile where
 -- Only works with numbers atm
 instance (Show a) => Show (Sandpile a) where
     show (Sandpile x) = unlines $ fmap (show .fmap (`peek` x)) fullCoords
-    
+
 instance ComonadStore Pos Sandpile where
     pos (Sandpile a) = pos a
     peek s (Sandpile a) = peek s a
@@ -59,7 +61,7 @@ fullCoords :: [[Pos]]
 fullCoords = [ [(x, y) | y <- [-1..1]] | x <- [-1..1] ]
 
 samplePile :: Sandpile Int
-samplePile = fromListOfLists [[1,2,3],[2,3,4],[3,4,5]] 
+samplePile = fromListOfLists [[1,2,3],[2,3,4],[3,4,5]]
 
 put :: a -> Sandpile a -> Sandpile a
 put item existingSandpile = undefined
@@ -80,7 +82,7 @@ modifysl :: (Pos -> Pos) -> (a -> b) -> Sandpile a -> Sandpile b
 modifysl modPos modVal existingSandpile = undefined
 
 toppleSum :: Sandpile Int -> Sandpile Int -> Sandpile Int
-toppleSum existing changes = undefined 
+toppleSum existing changes = undefined
 
 topple :: Sandpile Int -> Sandpile Int
 topple a = undefined

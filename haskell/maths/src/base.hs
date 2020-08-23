@@ -2,7 +2,7 @@
 -- import Data.Function
 -- import Data.Functor
 
--- convertBase :: 
+-- convertBase ::
 --revBin :: Integer -> Integer
 --revBin = unDigits 2 . digitsRev 2
 
