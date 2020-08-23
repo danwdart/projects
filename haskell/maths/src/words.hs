@@ -92,7 +92,7 @@ combPowData = M.fromList $
 
 scaledPows :: Scale -> Map Int String -> Map Integer String
 scaledPows sc datas = M.map sl (M.mapKeys (((10^so)*) . ((10^sm)^)) datas) <>
-    maybe (M.fromList []) (\(offset, offsetName) -> M.map offsetName (
+    maybe M.empty (\(offset, offsetName) -> M.map offsetName (
         M.mapKeys (((10^so)*) . ((10^offset)*) . ((10^sm)^)) datas
     )) miss
     where

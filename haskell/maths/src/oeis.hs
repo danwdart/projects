@@ -39,7 +39,7 @@ newtype OEISResponse = OEISResponse {
 -- debugJSON :: JsonResponse Value -> Req ()
 -- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
 
--- ebug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
+-- debug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
 -- debug = liftIO . print . responseBody
 
 debugPP :: (FromJSON a, Out a) => JsonResponse a -> Req ()

@@ -5,7 +5,7 @@ import           Control.Monad
 import           System.Random
 
 main ∷ IO ()
-main = print =<< avg <$> replicateM 1000000 (randomJump 1 10)
+main = print . avg =<< replicateM 1000000 (randomJump 1 10)
 
 randomJump ∷ Int → Int → IO Int
 randomJump js total = do

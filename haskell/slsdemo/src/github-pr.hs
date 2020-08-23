@@ -1,5 +1,3 @@
-{-# LANGUAGE DeriveAnyClass #-}
-{-# LANGUAGE DeriveGeneric  #-}
 {-# LANGUAGE UnicodeSyntax  #-}
 import           AWSLambda
 import           AWSLambda.Events.APIGateway

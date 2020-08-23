@@ -73,6 +73,12 @@ executable cardord
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable dungeon
+  hs-source-dirs:      src
+  main-is:             dungeon.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, digits
+
 executable onetwenty
   hs-source-dirs:      src
   main-is:             120.hs
@@ -130,6 +136,12 @@ executable more
 executable mtdivergence
   hs-source-dirs:      src
   main-is:             mtdivergence.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable multpers
+  hs-source-dirs:      src
+  main-is:             multpers.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 

@@ -8,6 +8,7 @@ import Control.Monad.IO.Class
 import Control.Monad.Random.Class
 import Control.Monad.Trans.State
 import Data.Bifoldable
+import Data.Bifunctor
 import Data.Function
 import Data.Functor
 import qualified Data.Map as M
@@ -32,9 +33,9 @@ instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) => Random a where
 main :: IO ()
 main = do
     putStrLn "Average matches in one round (even-ing out the two lines)"
-    meanDist <$> avgDist 2000 >>= print
+    avgDist 2000 >>= print . meanDist
     putStrLn "Average non-matches after finishing rounds"
-    meanDist <$> magicDist 2000 >>= print
+    magicDist 2000 >>= print . meanDist
 
 class Pp a where
     pp :: a -> String
@@ -111,7 +112,7 @@ filterOutList bads = filter (not . flip elem bads) -- todo reduce
 
 -- combinator
 countFreq :: (Traversable t, Num n, Ord a) => t a -> M.Map a n
-countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) (M.fromList [])
+countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) M.empty
 
 -- TODO compose for <$>
 
@@ -124,7 +125,7 @@ mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 -- weighted average
 
 meanDist :: M.Map Int Int -> Double
-meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (\(a, b) -> (fromIntegral a, fromIntegral b)) . M.toList
+meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (bimap fromintegral fromIntegral) . M.toList
 
 eqOrAdj :: Card -> Card -> Bool
 eqOrAdj Joker Joker = True
