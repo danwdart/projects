@@ -3,7 +3,6 @@
 {-# LANGUAGE FlexibleContexts           #-}
 {-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GeneralisedNewtypeDeriving #-}
-{-# LANGUAGE KindSignatures             #-}
 {-# LANGUAGE MultiParamTypeClasses      #-}
 {-# LANGUAGE PolyKinds                  #-}
 {-# LANGUAGE TypeFamilies               #-}
