@@ -13,6 +13,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
+-- euler
 executable euler1
   hs-source-dirs:      src
   main-is:             euler/1.hs
@@ -67,15 +68,21 @@ executable base
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, digits
 
+executable cardord
+  hs-source-dirs:      src
+  main-is:             cardord.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable cards
   hs-source-dirs:      src
   main-is:             cards.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
 
-executable cardord
+executable currency-and-units
   hs-source-dirs:      src
-  main-is:             cardord.hs
+  main-is:             currency-and-units.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -85,9 +92,21 @@ executable dungeon
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, digits
 
-executable onetwenty
+executable eightytwothousand
   hs-source-dirs:      src
-  main-is:             120.hs
+  main-is:             82000.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, digits
+
+executable fibsums
+  hs-source-dirs:      src
+  main-is:             fibsums.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable fibsvslucasmod
+  hs-source-dirs:      src
+  main-is:             fibsvslucasmod.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -121,6 +140,12 @@ executable hashparker
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable kaprekar
+  hs-source-dirs:      src
+  main-is:             kaprekar.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable localgraph
   hs-source-dirs:      src
   main-is:             localgraph.hs
@@ -130,12 +155,6 @@ executable localgraph
 executable lucas
   hs-source-dirs:      src
   main-is:             lucas.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
-executable kaprekar
-  hs-source-dirs:      src
-  main-is:             kaprekar.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -191,6 +210,18 @@ executable oeis
                       , unordered-containers
                       , vector
 
+executable ohsol
+  hs-source-dirs:      src
+  main-is:             ohsol.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, containers, MonadRandom, random-shuffle, utility-ht
+
+executable onetwenty
+  hs-source-dirs:      src
+  main-is:             120.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable pichang
   hs-source-dirs:      src
   main-is:             pichang.hs
@@ -215,17 +246,17 @@ executable prodtosingle
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable selflocation
-  hs-source-dirs:      src
-  main-is:             selflocation.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, numbers
-
 executable sandpiles
   hs-source-dirs:      src
   main-is:             sandpiles.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, comonad
+
+executable selflocation
+  hs-source-dirs:      src
+  main-is:             selflocation.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, numbers
 
 executable sumdiff-lucaslike
   hs-source-dirs:      src
@@ -236,6 +267,18 @@ executable sumdiff-lucaslike
 executable surds
   hs-source-dirs:      src
   main-is:             surds.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable units
+  hs-source-dirs:      src
+  main-is:             units.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable vaneck
+  hs-source-dirs:      src
+  main-is:             vaneck.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -251,24 +294,7 @@ executable decomp
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
-executable ohsol
-  hs-source-dirs:      src
-  main-is:             ohsol.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, containers, MonadRandom, random-shuffle, utility-ht
-
-executable units
-  hs-source-dirs:      src
-  main-is:             units.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
-executable vaneck
-  hs-source-dirs:      src
-  main-is:             vaneck.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
+-- Primes
 executable primemod
   hs-source-dirs:      src
   main-is:             primefun/primemod.hs
