@@ -32,9 +32,16 @@ packages:
       sha256: f7f0b4ce5cec274ef30c0116da425d791718751278b657d309a45a056773c3b0
   original:
     hackage: gogol-translate-0.5.0@sha256:b07968efdff5dcbeb3526cbf382cc8632fa7d863ff2d23f23564353a5362624b,1795
+- completed:
+    hackage: inline-asm-0.4.0.1@sha256:a451edb94b9acf6973a21b029b88b9f6012ab3ea14e17d2540661a8e4d1b23e7,2265
+    pantry-tree:
+      size: 641
+      sha256: caf7149e613fc7b0c4080ddbf1df3fb2dfbd3257531b9c348ffa2678ee1cf8b6
+  original:
+    hackage: inline-asm-0.4.0.1@sha256:a451edb94b9acf6973a21b029b88b9f6012ab3ea14e17d2540661a8e4d1b23e7,2265
 snapshots:
 - completed:
-    size: 496111
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/14.yaml
-    sha256: c442d702d66b8c129b3473a32c609050aabf1dc2f8e8502402c143271a8fb141
-  original: lts-15.14
+    size: 532381
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/13.yaml
+    sha256: 6ee17f7996e5bc75ae4406250841f1362ad4196418a4d90a0615ff4f26ac98df
+  original: lts-16.13
