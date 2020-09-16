@@ -182,6 +182,12 @@ executable icpp
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, inline-c-cpp
 
+executable crackme
+  hs-source-dirs:      src
+  main-is:             crackme.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable currency
   hs-source-dirs:      src
   main-is:             currency.hs
