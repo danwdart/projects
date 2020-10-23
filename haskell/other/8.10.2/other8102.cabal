@@ -225,6 +225,24 @@ executable delay
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, ansi-terminal, random
 
+executable discord-images-grabber
+  hs-source-dirs:      src
+  main-is:             discord-images-grabber.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , bytestring
+                     , discord-haskell
+                     , hoauth2
+                     , http-client
+                     , http-client-tls
+                     , http-types
+                     , req
+                     , text
+                     , transformers
+                     , uri-bytestring
+                     , wai
+                     , warp
+
 executable disparate
   hs-source-dirs:      src
   main-is:             disparate.hs

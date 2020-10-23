@@ -61,6 +61,13 @@ packages:
   original:
     hackage: fresco-binding-0.3.0@sha256:d57fc3af9b088a97f3ebdd1ba915f8d189eec260fb4bb95f16ae5f87ebdc2e92,1301
 - completed:
+    hackage: twilio-0.3.0.0@sha256:155b6780dd90f1835172f1651aec9caf008f9359317629fb7e39ac07d37c7870,5892
+    pantry-tree:
+      size: 4592
+      sha256: 87532151af7bb7de8fd3016e3f59112b28bbe7211d842e58604b2daaded29122
+  original:
+    hackage: twilio-0.3.0.0@sha256:155b6780dd90f1835172f1651aec9caf008f9359317629fb7e39ac07d37c7870,5892
+- completed:
     hackage: vect-0.4.7@sha256:218bb44622096d1e72772507fac4e073887fa6483f7b64d068d14ed2300ca377,3208
     pantry-tree:
       size: 2206

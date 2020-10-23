@@ -13,12 +13,13 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
- -- deps too old
-executable bluetooth
-  hs-source-dirs:      src
-  main-is:             bluetooth.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, simple-bluetooth
+if (os(linux))
+  -- deps too old, Linux only, no macOS support for libbluetooth
+  executable bluetooth
+    hs-source-dirs:      src
+    main-is:             bluetooth.hs
+    default-language:    Haskell2010
+    build-depends:       base >= 4.7 && < 5, simple-bluetooth
 
 -- needs time 1.8
 executable haxl
@@ -51,3 +52,9 @@ executable propellor
   main-is:             propellor.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, propellor
+
+executable twilio
+  hs-source-dirs:      src
+  main-is:             twilio.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, network-uri, text, twilio

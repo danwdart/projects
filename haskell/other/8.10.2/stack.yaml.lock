@@ -39,6 +39,20 @@ packages:
       sha256: 7bbefd6907aaf086d043a422f06dea4a6813e6d920e289e01686e2adcb1a805c
   original:
     hackage: serial-0.2.7@sha256:7138d32ad74d4d360023455edd3b5bc112b6462eddb73bf2e57f888a0301f065,717
+- completed:
+    hackage: discord-haskell-1.8.0@sha256:420515069c5be313dd31d16e9a4b163d2b3fdda18ba18e98cbb0b0536cbae136,3562
+    pantry-tree:
+      size: 2108
+      sha256: 2d32f71b9d3e32f797ad6d614d748b491350ff0febb7e7bfc6f7fb595d752a0d
+  original:
+    hackage: discord-haskell-1.8.0@sha256:420515069c5be313dd31d16e9a4b163d2b3fdda18ba18e98cbb0b0536cbae136,3562
+- completed:
+    hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f,1273
+    pantry-tree:
+      size: 437
+      sha256: dd9ea90a631342e5db0fc21331ade4d563a685e9125d5a3989eefa8e1b96c6c6
+  original:
+    hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f,1273
 snapshots:
 - completed:
     size: 529075

@@ -1,0 +1,9 @@
+#!/usr/bin/env stack
+-- stack ghci --resolver=lts-14.9 --ghci-options='-package shell-conduit'
+
+import Data.Conduit.Shell
+
+main :: IO ()
+main = run $ do
+    ps ["-aux"]
+    ls ["-lah"]
