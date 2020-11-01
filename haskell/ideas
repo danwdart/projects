@@ -21,7 +21,6 @@ Code
     Cipher moving each cons and vowel: Hello world -> Hemnu Z...
     3d terrain generation
     Sls
-        Pr and commit or just moderatable db
         Make analytics in sls with sqs for proc jobs
         Transfer via either reverse ssl or gpg the analytics data depending on the key uploaded
             things like db search results
