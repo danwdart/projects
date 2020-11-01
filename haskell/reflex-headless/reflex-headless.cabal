@@ -12,3 +12,9 @@ executable reflex
   hs-source-dirs:      src
   build-depends:       base >=4.12 && <5, async, reflex
   default-language:    Haskell2010
+
+executable minishop
+  main-is:             minishop.hs
+  hs-source-dirs:      src
+  build-depends:       base >=4.12 && <5, ansi-terminal, async, reflex
+  default-language:    Haskell2010
