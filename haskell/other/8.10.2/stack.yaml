@@ -1,11 +1,6 @@
-resolver: nightly-2020-09-10
+resolver: nightly-2020-11-01
 packages:
   - .
 extra-deps:
-- either-5.0.1.1@sha256:41167573bf575b7e0e24283a52fba8ce7bed5a7cc2984bba0dce305a0ab66f0d,1973
-- uniplate-1.6.12@sha256:a428a3dbc905928168aaa66580cd2d4d47433c89fdfb66461f4fa232abd0593f,3498
-- hsx2hs-0.14.1.8@sha256:fb5f626e29fca2710e41c7bb2e0868984b729c1ed58533e63580b071d63c0401,3943
-- pulseaudio-0.0.2.1@sha256:5595863afe793bf204d8013e2cbe738d977e04bc0320390a2cb4115c62ca49a6,4279
-- serial-0.2.7@sha256:7138d32ad74d4d360023455edd3b5bc112b6462eddb73bf2e57f888a0301f065,717
 ghc-options:
-  other8102: '-j16 -Wall'
+  other8102: -j16 -Wall -Werror

@@ -13,4 +13,4 @@ extra-deps:
 - vect-0.4.7@sha256:218bb44622096d1e72772507fac4e073887fa6483f7b64d068d14ed2300ca377,3208
 allow-newer: true
 ghc-options:
-  other865: -Wall # -Werror
+  other865: -j16 -Wall -Werror
