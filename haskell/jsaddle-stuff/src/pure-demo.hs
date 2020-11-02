@@ -3,8 +3,6 @@
 
 import qualified Data.ByteString.Lazy.Char8       as BSL
 
-import           Control.Monad.IO.Class
-
 import           JSDOM
 import           JSDOM.Document
 import           JSDOM.Element                    (setInnerHTML)
@@ -39,7 +37,7 @@ jsMain = do
     doc <- currentDocumentUnchecked
     elBody <- getBodyUnchecked doc
     setInnerHTML elBody $ BSL.unpack $ renderHtml page
-    getElementsByTagName doc ("form" :: String) >>= flip itemUnchecked 0 >>= toJSVal >>= jsg ("console" :: String) # ("log" :: String)
+    _ <- getElementsByTagName doc ("form" :: String) >>= flip itemUnchecked 0 >>= toJSVal >>= jsg ("console" :: String) # ("log" :: String)
     return ()
 
 main ∷ IO ()

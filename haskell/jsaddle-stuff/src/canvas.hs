@@ -1,5 +1,4 @@
 {-# LANGUAGE UnicodeSyntax #-}
-import           Control.Monad.IO.Class
 
 import           JSDOM
 import           JSDOM.CanvasPath

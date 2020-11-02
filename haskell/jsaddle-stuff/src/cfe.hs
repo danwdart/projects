@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE UnicodeSyntax     #-}
-
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-local-binds #-}
 
 import qualified Data.ByteString.Lazy.Char8       as BSL
 
@@ -13,7 +13,6 @@ import           Data.Ratio
 import           JSDOM
 import           JSDOM.Document
 import           JSDOM.Element                    (setInnerHTML)
-import           JSDOM.HTMLCollection
 import           JSDOM.Types
 
 import           Language.Javascript.JSaddle      hiding ((!))
