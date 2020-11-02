@@ -1,11 +1,14 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 import           Data.Ratio
 
-import           Factory.Math.Implementations.Pi.BBP.Algorithm
-import           Factory.Math.Implementations.Pi.BBP.Bellard
+-- import           Factory.Math.Implementations.Pi.BBP.Algorithm
+-- import           Factory.Math.Implementations.Pi.BBP.Bellard
 import           Factory.Math.Implementations.Pi.BBP.Series
-import           Factory.Math.Pi
+-- import           Factory.Math.Pi
 
 main :: IO ()
 main = return ()
 
-dig (MkSeries numerators getDenominators seriesScalingFactor base) = zipWith (*) (iterate (/ fromIntegral base) 1) $ map (sum . zipWith (%) numerators . getDenominators) [0 ..]
+dig :: Series -> [Ratio Integer]
+dig (MkSeries numerators' getDenominators' _ base') = zipWith (*) (iterate (/ fromIntegral base') 1) $ map (sum . zipWith (%) numerators' . getDenominators') [0 ..]

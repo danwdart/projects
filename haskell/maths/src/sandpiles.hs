@@ -1,10 +1,11 @@
 {-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GeneralisedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses      #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-unused-matches #-}
 
 import           Control.Comonad
-import           Control.Comonad.Store
-import           Data.Functor.Identity
+import Control.Comonad.Store
+    ( store, ComonadStore(peek, pos), Store )
 
 type Pos = (Int, Int)
 

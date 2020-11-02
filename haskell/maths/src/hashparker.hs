@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 import           Data.List
 
 hash :: Double -> Int

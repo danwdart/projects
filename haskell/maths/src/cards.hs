@@ -2,20 +2,20 @@
 
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE UndecidableInstances #-}
+{-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds #-}
 
 import           Control.Monad
-import qualified Control.Monad.HT           as HT (nest, repeat)
-import           Control.Monad.IO.Class
+import qualified Control.Monad.HT           as HT (nest)
 import           Control.Monad.Random.Class
-import           Control.Monad.Trans.State
 import           Data.Bifoldable
 import           Data.Bifunctor
-import           Data.Function
-import           Data.Functor
 import qualified Data.Map                   as M
 import qualified Data.Set                   as S
 import           System.Random
 import           System.Random.Shuffle
+
+(...) :: (b -> c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
+(...) = (.) . (.)
 
 -- https://wiki.haskell.org/Random_shuffle
 
@@ -27,9 +27,6 @@ instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) => Random a where
 
 -- randomElem :: RandomGen g => [a] -> g -> (a, g)
 -- randomElem elems g = elems !! randomR (0, length elems
-
-(...) :: (b -> c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
-(...) = (.) . (.)
 
 main :: IO ()
 main = do
@@ -77,6 +74,7 @@ instance Pp Card where
     pp (Card value suit) = pp value ++ pp suit
     pp Joker             = "🃏"
 
+ov :: Value -> Suit -> Card
 ov = Card
 
 type Deck = [Card]
@@ -126,7 +124,7 @@ mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 -- weighted average
 
 meanDist :: M.Map Int Int -> Double
-meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (bimap fromintegral fromIntegral) . M.toList
+meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (bimap fromIntegral fromIntegral) . M.toList
 
 eqOrAdj :: Card -> Card -> Bool
 eqOrAdj Joker Joker = True

@@ -7,6 +7,7 @@
 {-# LANGUAGE PolyKinds                  #-}
 {-# LANGUAGE TypeFamilies               #-}
 {-# LANGUAGE TypeOperators              #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           GHC.TypeNats (Nat)
 

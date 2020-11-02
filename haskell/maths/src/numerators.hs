@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 import           Data.Ratio
 
 toNums :: Int -> [Int] -> [Int]

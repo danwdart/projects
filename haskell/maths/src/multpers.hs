@@ -1,4 +1,3 @@
-import           Data.List
 import           Data.List.Nub
 import           Data.List.Repeat
 

@@ -1,7 +1,7 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-local-binds -Wno-missing-signatures -Wno-type-defaults -Wno-unused-matches #-}
+
 import           Data.Map        (Map)
 import qualified Data.Map        as M
-import           Data.Maybe
-import           Data.Profunctor
 import           Data.Set        (Set)
 import qualified Data.Set        as S
 

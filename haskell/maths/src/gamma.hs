@@ -1,4 +1,5 @@
 {-# LANGUAGE TypeOperators #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
 import           Data.Invertible
 import           Prelude         hiding (succ, (.))

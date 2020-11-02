@@ -1,8 +1,8 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
+
 import           Data.Graph.DGraph
-import           Data.Graph.Traversal
 import           Data.Graph.Types
 import           Data.Graph.UGraph
-import           Data.Graph.Visualize
 
 import           Data.List
 import           Data.Maybe
@@ -53,6 +53,7 @@ walkingGraph = fromEdgesList [
 
 -- START fgl
 
+vwg :: [String]
 vwg = vertices walkingGraph
 
 walkingFglNodes :: [LNode String]

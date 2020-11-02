@@ -1,3 +1,8 @@
+{-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds #-}
+
+main :: IO ()
+main = return ()
+
 phi :: Double
 phi = (sqrt 5 + 1) / 2
 

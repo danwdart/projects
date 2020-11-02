@@ -104,9 +104,9 @@ executable fibsums
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable fibsvslucasmod
+executable fibvslucasmod
   hs-source-dirs:      src
-  main-is:             fibsvslucasmod.hs
+  main-is:             fibvslucasmod.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
@@ -181,6 +181,7 @@ executable multpers
   main-is:             multpers.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+  other-modules:       Data.List.Nub, Data.List.Repeat
 
 executable numbertypes
   hs-source-dirs:      src

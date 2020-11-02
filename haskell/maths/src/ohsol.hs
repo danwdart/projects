@@ -1,15 +1,13 @@
 {-# LANGUAGE TupleSections #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-incomplete-patterns #-}
 
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
 
 import           Control.Monad              (replicateM)
-import           Control.Monad.HT           (nest)
 import           Control.Monad.Random.Class
 import           Data.Bifunctor
 import           Data.Function
-import           Data.Functor
 import qualified Data.Map                   as M
-import           Debug.Trace
 import           System.Random.Shuffle
 
 main :: IO ()

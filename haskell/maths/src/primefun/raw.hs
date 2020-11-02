@@ -1,5 +1,8 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-incomplete-patterns #-}
+
 import           Control.Monad.Fix
 
+notdiv :: Integral a => a -> a -> Bool
 notdiv x y = y `mod` x /= 0
 
 -- appears faster, is it tho

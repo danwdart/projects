@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-matches #-}
+
 data Combination = Sum Combination Combination |
     Product Combination Combination |
     Plain Int |
