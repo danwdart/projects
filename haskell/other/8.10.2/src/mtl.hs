@@ -1,14 +1,10 @@
 {-# LANGUAGE DeriveAnyClass   #-}
 {-# LANGUAGE DeriveFunctor    #-}
 {-# LANGUAGE FlexibleContexts #-}
+{-# OPTIONS_GHC -Wno-missing-methods #-}
 
-import           Control.Monad.Cont
-import           Control.Monad.Except
-import           Control.Monad.Identity
-import           Control.Monad.IO.Class
 import           Control.Monad.Reader
 import           Control.Monad.State
-import           Control.Monad.Trans
 import           Control.Monad.Writer
 
 newtype MyThing a = MyThing {

@@ -1,5 +1,3 @@
-import           Data.Function
-import           Data.Functor
 import           Network.Bluetooth
 
 main :: IO ()

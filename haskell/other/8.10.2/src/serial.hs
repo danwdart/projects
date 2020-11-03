@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 import           System.IO
 import           System.Serial
 import           System.Serial.BlockingManager as BM

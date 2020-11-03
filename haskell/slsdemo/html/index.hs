@@ -22,8 +22,8 @@ page env = docTypeHtml ! lang "en-GB" $ do
             H.title "Test"
     H.body $ do
         H.h1 "Test"
-        H.ul $ mapM_ (\(key, value) -> H.li $ do
+        H.ul $ mapM_ (\(key, value') -> H.li $ do
             strong (string key)
             string ": "
-            string value
+            string value'
             ) env

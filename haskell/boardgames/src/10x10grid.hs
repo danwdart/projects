@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 import           Control.Arrow
 import           Control.Monad.Random
 import           Data.Biapplicative

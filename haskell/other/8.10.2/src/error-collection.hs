@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 -- import Control.Monad
 -- import Data.Bifunctor
 import           Data.Biapplicative

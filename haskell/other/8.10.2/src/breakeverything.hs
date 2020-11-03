@@ -1,4 +1,5 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Prelude (IO, Int, Maybe (..), Num, Show, String, print,
                           putStrLn, show, ($), (++))

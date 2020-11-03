@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 type SampleRate = Int
 type Sample = Float
 type NumSamples = Int

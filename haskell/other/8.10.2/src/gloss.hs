@@ -1,5 +1,4 @@
 {-# LANGUAGE UnicodeSyntax #-}
-import           Debug.Trace
 import           Graphics.Gloss
 import           Graphics.Gloss.Interface.IO.Game
 

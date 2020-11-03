@@ -1,4 +1,4 @@
-resolver: lts-14.27
+resolver: lts-16.20 # reflex needs 8.8
 packages:
   - .
 extra-deps:

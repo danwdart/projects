@@ -5,6 +5,8 @@
 import           Reflex.Dom
 import           Reflex.Tags as T
 
+-- reflex-dom-helpers is too old for reflex.
+
 main ∷ IO ()
 main = mainWidgetWithHead (
     do

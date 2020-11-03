@@ -1,4 +1,5 @@
 {-# LANGUAGE NamedFieldPuns #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Control.Monad.IO.Class
 import           Control.Monad.Trans.State

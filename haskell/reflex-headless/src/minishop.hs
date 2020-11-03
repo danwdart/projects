@@ -2,14 +2,9 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE UnicodeSyntax #-}
 
-import           Control.Concurrent.Async
-import           Control.Monad
 import           Control.Monad.IO.Class
 import           Reflex
-import           Reflex.Host.Class
 import           Reflex.Host.Headless
-import           Reflex.PerformEvent.Base
-import           Reflex.TriggerEvent.Base
 
 import           System.Console.ANSI
 
@@ -22,9 +17,10 @@ getCharL = liftIO getChar
 getLineL :: MonadIO m => m String
 getLineL = liftIO getLine
 
-
+{-
 readyEvent :: MonadIO m => m ()
 readyEvent = putStrLnL "Ready."
+-}
 
 showit :: MonadIO m => Char -> m ()
 showit = putStrLnL . (: [])
@@ -51,7 +47,7 @@ app = newTriggerEvent >>=
 data AppState = AppState
 
 drawMenu :: MonadIO m => AppState -> m ()
-drawMenu as = liftIO $ do
+drawMenu _ = liftIO $ do
     clearScreen
     putStrLn $ "Mini Shop - Not Logged In (L/Q)"
 

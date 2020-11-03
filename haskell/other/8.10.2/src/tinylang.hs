@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE OverloadedStrings #-}
-
+{-}
 import Data.ByteString.Char8
 import Data.Map
 
@@ -15,7 +15,7 @@ newtype Param = Param DataType
 newtype Ret = Ret DataType
 
 data Instruction =
-    Datum Char8 |
+    Datum Char |
     FDIO Fd |
     Iterate Int Instruction |
     Push Queue |
@@ -30,7 +30,7 @@ instructions = []
 
 hW :: ByteString
 hW = ""
-
+-}
 -- Oh no. Not another one.
 main :: IO ()
 main = return ()

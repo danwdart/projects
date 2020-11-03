@@ -3,6 +3,7 @@
 {-# LANGUAGE UnboxedTuples #-}
 {-# LANGUAGE GHCForeignImportPrim #-}
 {-# LANGUAGE UnliftedFFITypes #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import Language.Asm.Inline
 import Language.Asm.Inline.QQ

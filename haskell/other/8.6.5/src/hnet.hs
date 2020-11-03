@@ -1,8 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE UnicodeSyntax     #-}
 
-import qualified Data.Text.Lazy          as T
-import           Network.HaskellNet.Auth
 import           Network.HaskellNet.SMTP
 
 main ∷ IO ()

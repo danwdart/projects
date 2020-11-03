@@ -26,14 +26,7 @@ executable haxl
   main-is:             haxl.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, haxl
-
--- needs base 4.9
-executable hgamer3d
-  hs-source-dirs:      src
-  main-is:             hgamer3d.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, HGamer3D, clock
-
+  
 executable hnet
   hs-source-dirs:      src
   main-is:             hnet.hs

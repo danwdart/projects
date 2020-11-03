@@ -1,4 +1,5 @@
 {-# LANGUAGE FlexibleInstances #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-orphans #-}
 
 import           Control.Applicative
 import           Data.Char

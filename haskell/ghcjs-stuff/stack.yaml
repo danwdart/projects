@@ -1,6 +1,0 @@
-resolver: lts-14.27
-packages:
-- .
-extra-deps:
-ghc-options:
-  ghcjs-stuff: -j16 -Wall -Werror

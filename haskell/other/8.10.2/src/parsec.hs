@@ -1,4 +1,6 @@
 {-# LANGUAGE UnicodeSyntax #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 import           Control.Monad
 import           System.Console.ANSI.Types
 import           Text.Parsec
@@ -13,7 +15,7 @@ newtype DanImage = DanImage {
 } deriving (Eq, Show)
 
 encodeDanImage ∷ Version → DanImage → Maybe String
-encodeDanImage version img = if "03" /= version then Nothing else Just $ "DAN" ++ version
+encodeDanImage version _ = if "03" /= version then Nothing else Just $ "DAN" ++ version
 
 danParserMonadic ∷ Parsec String u DanImage
 danParserMonadic = do

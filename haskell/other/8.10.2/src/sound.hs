@@ -1,7 +1,6 @@
 {-# LANGUAGE UnicodeSyntax #-}
 import           Sound.Pulse
 import           Sound.Pulse.Context
-import           Sound.Pulse.Mainloop
 import           Sound.Pulse.Mainloop.Simple
 import           Sound.Pulse.Serverinfo
 import           Sound.Pulse.Subscribe
@@ -11,7 +10,7 @@ main = do
     ml <- getMainloopImpl
     ctx <- getContext ml "HaskellSound"
     print ctx
-    subscribeEvents ctx [SubscriptionMaskAll] (\a b -> print a >> print b)
+    _ <- subscribeEvents ctx [SubscriptionMaskAll] (\a b -> print a >> print b)
     connRet <- connectContext ctx (Just "localhost") [ContextNoflags]
     print connRet
     runPulse_ ctx $ return ()

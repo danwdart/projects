@@ -1,13 +1,9 @@
 {-# LANGUAGE UnicodeSyntax #-}
 import           AWSLambda
-import           AWSLambda.Events.APIGateway
 import           Control.Lens
 import           Data.Aeson
 import           Data.Aeson.Embedded
-import qualified Data.ByteString.Lazy.Char8  as BSL
-import           Data.Map
 import qualified Data.Text                   as T
-import           GHC.Generics
 import           System.Environment
 
 main ∷ IO ()

@@ -1,8 +1,10 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 import           Data.Digits   (digitsRev)
 import           Data.Function ((&))
 import           Data.Functor  ((<&>))
-import           Data.List     (elemIndex, reverse)
-import           Data.Maybe    (Maybe (..), catMaybes)
+import           Data.List     (elemIndex)
+import           Data.Maybe    (catMaybes)
 
 napierSymbols :: String
 napierSymbols = ['a'..'z'] ++ ['A'..'Z']

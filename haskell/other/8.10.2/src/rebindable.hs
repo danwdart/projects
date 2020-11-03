@@ -11,7 +11,6 @@ ints = do
     4
     5
     where (>>) = (+)
-          return = id
 
 main ∷ IO ()
 main = print ints

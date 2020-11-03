@@ -1,4 +1,6 @@
 {-# LANGUAGE UnicodeSyntax #-}
+{-# OPTIONS_GHC -Wno-type-defaults #-}
+
 import           Data.Functor.Contravariant
 
 main ∷ IO ()

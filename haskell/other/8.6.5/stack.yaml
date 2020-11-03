@@ -2,15 +2,10 @@ resolver: lts-14.27 # monadfail issue in dependency
 packages:
 - .
 extra-deps:
-- IfElse-0.85@sha256:6939b94acc6a55f545f63a168a349dd2fbe4b9a7cca73bf60282db5cc6aa47d2,445
-- HaskellNet-0.4.5
-- network-2.7.0.2
-- propellor-5.10.1@sha256:ba86a9714ec198dcdb5332b1bde8e1270c6d2523ef1c6707309aab41a9a56bb6,7272
-- HGamer3D-0.9.5@sha256:b6aa5740fe4cc743e19d729a2cd0ed47dc04040977ae17a7d00f5e2c4bf1e1b3,2128
+- HaskellNet-0.5.1@sha256:53f2cfffb140740691296f905a70143c859b571eea3f5cf5f7a4642851d9e38a,1584
+- propellor-5.12@sha256:10f28a40c9aac73b9e5396c0ee1bf0e0629dd6fe8a76cf9966e9c4b7a102d476,7290
 - simple-bluetooth-0.1.0.0@sha256:c1cb65d4591a4e29edb9aea172bf78ccb8691d0d1021b0da87534b1f66382d08,1300
-- binary-serialise-cbor-0.2.1.0@sha256:737f4c1d72258a0ed6c72f24e052e1ce13068c0e40112b3812c477ed68bfa85b,1939
-- fresco-binding-0.3.0@sha256:d57fc3af9b088a97f3ebdd1ba915f8d189eec260fb4bb95f16ae5f87ebdc2e92,1301
-- vect-0.4.7@sha256:218bb44622096d1e72772507fac4e073887fa6483f7b64d068d14ed2300ca377,3208
-allow-newer: true
+- IfElse-0.85@sha256:6939b94acc6a55f545f63a168a349dd2fbe4b9a7cca73bf60282db5cc6aa47d2,445
+- mime-mail-0.4.14@sha256:22e54d99c3f9f21004c929f0cf0c7ab75fcee5e0666c03517157be61be6fea93,1647
 ghc-options:
   other865: -j16 -Wall -Werror

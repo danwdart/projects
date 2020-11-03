@@ -1,5 +1,6 @@
 {-# LANGUAGE BinaryLiterals  #-}
 {-# LANGUAGE OverloadedLists #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Data.Bits
 import           Data.Map
