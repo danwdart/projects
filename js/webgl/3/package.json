@@ -12,6 +12,6 @@
     "gl-matrix": "^3.3.0"
   },
   "devDependencies": {
-    "snyk": "^1.334.0"
+    "snyk": "^1.424.0"
   }
 }
