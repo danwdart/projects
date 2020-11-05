@@ -37,7 +37,7 @@ data Card = Card {
 } deriving (Eq)
 
 instance Show Card where
-    show (Card v s) = show v ++ show s
+    show (Card v s) = show v <> show s
 
 type Deck = [Card]
 type Current = Deck
@@ -48,7 +48,7 @@ data GameState = InProgress | Won | Lost deriving (Eq, Show)
 data GameMove = TakeOne | DiscardTwo | DiscardFour | End deriving (Eq, Show)
 
 fullPack :: Deck
-fullPack = flip Card <$> map Suit [1..4] <*> map Value [1..13]
+fullPack = flip Card <$> fmap Suit [1..4] <*> fmap Value [1..13]
 
 initialGameState :: MonadRandom m => m Game
 initialGameState = ([], , []) <$> shuffleM fullPack
@@ -121,4 +121,4 @@ mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 -- weighted average
 
 meanDist :: M.Map Int Int -> Double
-meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (bimap fromIntegral fromIntegral) . M.toList
+meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . fmap (bimap fromIntegral fromIntegral) . M.toList

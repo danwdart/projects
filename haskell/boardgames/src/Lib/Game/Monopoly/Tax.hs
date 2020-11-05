@@ -2,7 +2,7 @@
 module Lib.Game.Monopoly.Tax where
 
 data Tax = Tax {
-    name  :: String,
+    name :: String,
     price :: Int
 } deriving (Eq, Show)
 

@@ -9,7 +9,7 @@ import           Data.Tuple.Extra
 -- *>>
 
 result :: [(Int, Int)]
-result = nubOrdOn snd $ map (both floor) $ scanl1 (\(_,b0) (a1, b1) -> (a1, b0 + b1)) [ (x,1/x) | x <- [1..1000000000000000]]
+result = nubOrdOn snd . fmap (both floor) $ scanl1 (\(_,b0) (a1, b1) -> (a1, b0 + b1)) [ (x,1/x) | x <- [1..1000000000000000]]
 
 -- Code from site just gets the nth value and to do it, finds its index:
 

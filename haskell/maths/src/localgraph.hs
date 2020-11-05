@@ -60,7 +60,7 @@ walkingFglNodes :: [LNode String]
 walkingFglNodes = zip [0..] vwg
 
 walkingFglEdges :: [LEdge Int]
-walkingFglEdges = map (\(a, b, c) -> (fromJust (elemIndex a vwg), fromJust (elemIndex b vwg), c)) $ edgeTriples walkingGraph
+walkingFglEdges = (\(a, b, c) -> (fromJust (elemIndex a vwg), fromJust (elemIndex b vwg), c)) <$> edgeTriples walkingGraph
 
 fglGraph :: Gr String Int
 fglGraph = mkGraph walkingFglNodes walkingFglEdges
@@ -137,6 +137,6 @@ sensibleDotParams directed edgeLabeled = nonClusteredParams
     , fmtEdge = edgeFmt
     }
     where
-        edgeFmt (_, _, l) = [Label $ StrLabel $ TL.pack l | edgeLabeled]
+        edgeFmt (_, _, l) = [Label . StrLabel $ TL.pack l | edgeLabeled]
 
 

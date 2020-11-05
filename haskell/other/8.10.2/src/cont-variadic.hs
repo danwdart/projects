@@ -21,13 +21,13 @@ infixr 9 ...
 (>...>) = flip (...)
 infixr 9 >...>
 
-(.:::.) ∷ (b → c) → (a4 → a5 → a6 → a7 → b) → a4 → a5 → a6 → a7 → c
-(.:::.) = (...) . (...)
-infixr 9 .:::.
+(.---.) ∷ (b → c) → (a4 → a5 → a6 → a7 → b) → a4 → a5 → a6 → a7 → c
+(.---.) = (...) . (...)
+infixr 9 .---.
 
-(>:::>) ∷ (a4 → a5 → a6 → a7 → b) → (b → c) → a4 → a5 → a6 → a7 → c
-(>:::>) = flip (.:::.)
-infixr 9 >:::>
+(>---) ∷ (a4 → a5 → a6 → a7 → b) → (b → c) → a4 → a5 → a6 → a7 → c
+(>---) = flip (.---.)
+infixr 9 >---
 
 -- Black magic combinator
 combineCont ∷ (d → e → f) → ((d → a) → b) → ((e → c) → a) → (f → c) → b

@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 type SampleRate = Int
@@ -28,7 +29,7 @@ data ModulationType = AM | FM
 
 data Modulation = Modulation {
     modulationType :: ModulationType,
-    modulationFn   :: Float -> Float
+    modulationFn :: Float -> Float
 }
 
 type AmplitudeEnvelope = Float -> Float
@@ -49,10 +50,10 @@ type Octave = Int
 type BPM = Int
 
 data Key = Key {
-    keyName       :: KeyName,
-    keyModifier   :: KeyModifier,
-    keyOctave     :: Octave,
-    keyScale      :: Scale,
+    keyName :: KeyName,
+    keyModifier :: KeyModifier,
+    keyOctave :: Octave,
+    keyScale :: Scale,
     keyIntonation :: Intonation
 } deriving (Show)
 
@@ -60,7 +61,7 @@ data Articulation = Legato | Normal | Staccato deriving (Show)
 
 data Tempo = Tempo {
     tempoNoteDuration :: NoteDuration,
-    tempoBPM          :: BPM
+    tempoBPM :: BPM
 } deriving (Show)
 
 data Voice = Sine |
@@ -69,13 +70,13 @@ data Voice = Sine |
     Triangle deriving (Show)
 
 data Note = Note {
-    noteKey          :: Key,
-    noteDuration     :: NoteDuration,
+    noteKey :: Key,
+    noteDuration :: NoteDuration,
     noteArticulation :: Articulation,
-    noteTempo        :: Tempo,
-    noteAmplitude    :: Amplitude,
-    noteModulations  :: Modulations,
-    noteEnvelope     :: AmplitudeEnvelope
+    noteTempo :: Tempo,
+    noteAmplitude :: Amplitude,
+    noteModulations :: Modulations,
+    noteEnvelope :: AmplitudeEnvelope
 }
 
 data Chord = Chord {
@@ -85,43 +86,43 @@ data Chord = Chord {
 
 type Tune = [Chord]
 
-sampleRate :: SampleRate
+sampleRate ∷ SampleRate
 sampleRate = 44100
 
-noteToFrequency :: Note -> Frequency
+noteToFrequency ∷ Note → Frequency
 noteToFrequency = undefined
 
-tuneToWave :: Tune -> SampleRate -> Wave
+tuneToWave ∷ Tune → SampleRate → Wave
 tuneToWave = undefined
 
-fft :: Wave -> Spectrum
+fft ∷ Wave → Spectrum
 fft = undefined
 
-rollingFFT :: Wave -> NumSamples -> Spectrum
+rollingFFT ∷ Wave → NumSamples → Spectrum
 rollingFFT = undefined
 
-wave :: WaveType -> Frequency -> Amplitude -> Duration -> Wave
+wave ∷ WaveType → Frequency → Amplitude → Duration → Wave
 wave = undefined
 
-sine :: Frequency -> Amplitude -> Duration -> Wave
+sine ∷ Frequency → Amplitude → Duration → Wave
 sine = wave sin
 
-save :: FilePath -> Wave -> IO ()
+save ∷ FilePath → Wave → IO ()
 save = undefined
 
-play :: FilePath -> IO ()
+play ∷ FilePath → IO ()
 play = undefined
 
-note :: Key -> Frequency
+note ∷ Key → Frequency
 note = undefined
 
-pitchBend :: ()
+pitchBend ∷ ()
 pitchBend = ()
 
-adsr :: AmplitudeEnvelope
+adsr ∷ AmplitudeEnvelope
 adsr = undefined
 
-sampleTune :: Tune
+sampleTune ∷ Tune
 sampleTune = [
     Chord {
         chordNotes = [
@@ -184,7 +185,7 @@ sampleTune = [
     }
     ]
 
-main :: IO ()
+main ∷ IO ()
 main = do
     let myWave = tuneToWave sampleTune sampleRate
     save "sample.bin" myWave

@@ -46,8 +46,7 @@ scripts = do
 
 myBody ∷ Html
 myBody = body ! class_ "bg-dark" $ do
-    H.main ! class_ "container-fluid" $
-        H.div ! class_ "row" $
+    (H.main ! class_ "container-fluid") . (H.div ! class_ "row") $ (
             H.div ! class_ "col-md-8 my-5 pt-3 pb-2 bg-light offset-md-2" $ do
                 h1 "Continued Fraction Expander"
                 H.form $ do
@@ -70,7 +69,7 @@ myBody = body ! class_ "bg-dark" $ do
                         H.div ! A.id "frac" ! class_ "border col-md-12" $ do
                             sup "1"
                             "⁄"
-                            sub "10"
+                            sub "10")
     scripts
 
 page ∷ Html
@@ -116,7 +115,7 @@ jsMain = do
     elBody <- getBodyUnchecked doc
     elHead <- getHeadUnchecked doc
     elDoc <- getDocumentElementUnchecked doc
-    setInnerHTML elDoc $ BSL.unpack $ renderHtml page
+    setInnerHTML elDoc . BSL.unpack $ renderHtml page
     cfe <- jq "#cfe"
     dec <- jq "#dec"
     fracNum <- jq "#frac sup"

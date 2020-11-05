@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Data.Coerce
 import           Unsafe.Coerce
 
@@ -5,10 +6,10 @@ newtype LightState = LightState Bool
 
 data Lights = Off | On deriving (Enum, Eq, Ord, Show)
 
-coerceEnum :: (Enum a, Enum b) => a -> b
+coerceEnum ∷ (Enum a, Enum b) ⇒ a → b
 coerceEnum = toEnum . fromEnum
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print (coerce $ LightState True :: Bool)
     print (unsafeCoerce Off :: Bool)

@@ -32,15 +32,15 @@ yearsAgo ∷ Day → IO Integer
 yearsAgo from = today >>= (return . diffYears from)
 
 data Person = Person {
-    uuid    :: Text,
-    name    :: Text,
-    dob     :: Day,
-    city    :: Text,
+    uuid :: Text,
+    name :: Text,
+    dob :: Day,
+    city :: Text,
     country :: Text
 } deriving (Eq)
 
 instance Show Person where
-    show (Person _ name dob city country) = T.unpack name ++ ", born " ++ show dob ++ ", from " ++ T.unpack city ++ ", " ++ T.unpack country
+    show (Person _ name dob city country) = T.unpack name <> (", born " ++ show dob ++ ", from " ++ T.unpack city ++ ", " ++ T.unpack country)
 
 makePerson ∷ IO Person
 makePerson = do
@@ -68,7 +68,7 @@ data Relationship = Relationship RelationshipType Person Person
 -- TODO stop circulars? Maybe not?
 
 instance Show Relationship where
-    show (Relationship t (Person _ name1 _ _ _) (Person _ name2 _ _ _)) = show t ++ ": " ++ T.unpack name1 ++ " & " ++ T.unpack name2
+    show (Relationship t (Person _ name1 _ _ _) (Person _ name2 _ _ _)) = show t <> (": " ++ T.unpack name1 ++ " & " ++ T.unpack name2)
 
 -- Bidirectional equality
 instance Eq Relationship where

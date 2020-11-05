@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 -- import System.Directory
 
 -- ls :: IO ()
@@ -6,5 +7,5 @@
 -- cat :: String -> IO ()
 -- cat s = readFile s >>= putStrLn
 
-main :: IO ()
+main ∷ IO ()
 main = undefined

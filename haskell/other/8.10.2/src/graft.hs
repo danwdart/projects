@@ -14,9 +14,9 @@ substringPosition ∷ String → String → Maybe Int
 substringPosition haystack = ($ tails haystack) . findIndex . isPrefixOf
 
 foundMsg ∷ Int → Double → Int → String
-foundMsg number root position = "Found " ++ show number ++
-    " at position " ++ show position ++
-    " on " ++ show root
+foundMsg number root position = "Found " <> (show number <> (
+    " at position " <> (show position <> (
+    " on " <> show root))))
 
 intThenLength ∷ Double → Int
 intThenLength = length . show . (\x -> floor x :: Int)

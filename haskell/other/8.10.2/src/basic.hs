@@ -1,2 +1,3 @@
-main :: IO ()
+{-# LANGUAGE UnicodeSyntax #-}
+main ∷ IO ()
 main = putStrLn "Hi"

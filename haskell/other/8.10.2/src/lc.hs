@@ -8,9 +8,9 @@ data Expr = Var Name
     | App Expr Expr
 
 instance Show Expr where
-    show (Var v)     = v
-    show (Lam n e)   = "\\" ++ n ++ "." ++ show e
-    show (App e1 e2) = "(" ++ show e1 ++ " " ++ show e2 ++ ")"
+    show (Var v) = v
+    show (Lam n e) = "\\" <> (n <> ("." <> show e))
+    show (App e1 e2) = "(" <> (show e1 <> (" " <> (show e2 <> ")")))
 
 -- apply
 

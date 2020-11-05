@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 -- discrete/continuous?
 -- validation?
 {-
@@ -25,5 +26,5 @@ compareOrdinal (Ordinal x) (Ordinal y) = case compare x y of
     EQ -> SamePos
     GT -> After
 -}
-main :: IO ()
+main ∷ IO ()
 main = undefined

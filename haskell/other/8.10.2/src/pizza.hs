@@ -154,7 +154,7 @@ defaultHeaders = uaHeader <> xhrHeader
 type Token = BS.ByteString
 
 getXsrfToken :: HC.CookieJar -> Token
-getXsrfToken cj = HC.cookie_value . fromJust $ find (("XSRF-TOKEN" ==) . HC.cookie_name) $ HC.destroyCookieJar cj
+getXsrfToken cj = (HC.cookie_value . fromJust) . find (("XSRF-TOKEN" ==) . HC.cookie_name) $ HC.destroyCookieJar cj
 
 getHomepage :: Req (HC.CookieJar, Token)
 getHomepage = do
@@ -234,7 +234,7 @@ nav = req GET uriNav NoReqBody jsonResponse
 greet :: JsonResponse NavResponse -> Req ()
 greet resNav = do
     let navResponse = responseBody resNav
-    liftIO . putStrLn $ "Hello " ++ userName navResponse ++ ", your local store seems to be " ++ storeName navResponse
+    liftIO . putStrLn $ "Hello " <> (userName navResponse <> (", your local store seems to be " <> storeName navResponse))
 
 -- debugJSON :: JsonResponse Value -> Req ()
 -- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
@@ -266,8 +266,8 @@ reqMain sEmail sPassword = do
     -- resDeals <- dealsInfo
     -- debugPP resDeals
 main :: IO ()
-main = void $ runExceptT $ catchE (
+main = void . runExceptT $ catchE (
     do
-        [sEmail, sPassword] <- liftIO $ sequence $ getEnv <$> ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"]
+        [sEmail, sPassword] <- liftIO . sequence $ (getEnv <$> ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"])
         void . liftIO . runReq defaultHttpConfig $ reqMain sEmail sPassword
-    ) $ const . liftIO . putStrLn $ "Environment variables not present. Needed: DOMINOS_EMAIL, DOMINOS_PASSWORD"
+    ) (const . liftIO . putStrLn $ "Environment variables not present. Needed: DOMINOS_EMAIL, DOMINOS_PASSWORD")

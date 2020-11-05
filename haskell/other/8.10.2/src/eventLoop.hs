@@ -1,4 +1,5 @@
 {-# LANGUAGE BlockArguments #-}
+{-# LANGUAGE UnicodeSyntax  #-}
 
 -- Let's make our own event loop
 -- import Control.Concurrent.Event ( Event )
@@ -6,7 +7,7 @@ import           Control.Concurrent
 import           Control.Concurrent.Async.Lifted
 import qualified Control.Concurrent.Event        as Event
 
-main :: IO ()
+main ∷ IO ()
 main = do
     myNewEvent <- Event.new
     concurrently_ (

@@ -1,4 +1,5 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Main where
 
-main :: IO ()
+main ∷ IO ()
 main = return ()

@@ -1,4 +1,5 @@
-main :: IO ()
+{-# LANGUAGE UnicodeSyntax #-}
+main ∷ IO ()
 main = return ()
 
 newtype ModNine a = ModNine Int

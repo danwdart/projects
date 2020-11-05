@@ -43,7 +43,7 @@ inRange :: Ord a => (a, a) -> a -> Bool
 inRange (from, to) = apply2way (&&) (>= from) (<= to)
 
 replaceListElement :: Int -> a -> [a] -> [a]
-replaceListElement n x xs = take n xs ++ [x] ++ drop (n + 1) xs
+replaceListElement n x xs = take n xs <> ([x] <> drop (n + 1) xs)
 
 isEmpty :: El -> Bool
 isEmpty = (==) emptyElement
@@ -129,7 +129,7 @@ autoPlay = do
 
 moveAndRender :: Move -> Board -> IO ()
 moveAndRender (el, coord) board2 = do
-    putStrLn $ "Move " ++ show el
+    putStrLn $ "Move " <> show el
     putStrLn $ renderBoard board2
     mmb <- move (el, coord) board2
     if isNothing mmb

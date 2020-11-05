@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-
 a = [1,2,3]
 h = head a
@@ -66,5 +67,5 @@ main :: IO ()
 main = putStrLn "Nah"
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = undefined

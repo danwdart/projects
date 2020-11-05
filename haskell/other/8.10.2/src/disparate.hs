@@ -28,10 +28,10 @@ bs = [
     NamedDisparate {name = "Comb2", idn = 2, thing = HiddenDisparate $ (.) (.) }]
 
 cs :: [NamedDisparate]
-cs = map (\n -> NamedDisparate {name = "Bob" ++ show n, idn = n, thing = HiddenDisparate (.) }) [1..5]
+cs = fmap (\n -> NamedDisparate {name = "Bob" <> show n, idn = n, thing = HiddenDisparate (.) }) [1..5]
 
 ds :: [NamedDisparate]
-ds = take 5 $ iterate (\(NamedDisparate n i (HiddenDisparate b)) -> NamedDisparate n (i + 1) (HiddenDisparate b)) $ NamedDisparate "Bob" 1 (HiddenDisparate (.))
+ds = take 5 . iterate (\(NamedDisparate n i (HiddenDisparate b)) -> NamedDisparate n (i + 1) (HiddenDisparate b)) $ NamedDisparate "Bob" 1 (HiddenDisparate (.))
 
 main :: IO ()
 main = do

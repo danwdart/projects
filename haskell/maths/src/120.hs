@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-
 120 has some interesting numbers.
 120 is highly composite.
@@ -40,8 +41,8 @@ result1 = [show a ++ "^" ++ show x ++ " + " ++ show b ++ " = " ++ show c ++ "^" 
 -}
 
 data NextPower = NextPower {
-    power     :: Integer,
-    product   :: Integer,
+    power :: Integer,
+    product :: Integer,
     remainder :: Integer
 } deriving (Show)
 
@@ -81,16 +82,16 @@ result3 = [
     a <- [2..10], b <- [2..10]]
 -}
 
-result4 :: [String]
+result4 ∷ [String]
 result4 = [
     let pwr = a ^ b :: Integer
         pwr2 = floor (logBase (fromInteger c) (fromInteger pwr) :: Double) :: Integer
         res2 =  c ^ pwr2 :: Integer
         res = pwr - res2 :: Integer
     in
-        show a ++ " ^ " ++ show b ++ " - " ++ show c ++ " ^ " ++ show pwr2 ++ " = " ++ show res |
+        show a <> (" ^ " <> (show b <> (" - " <> (show c <> (" ^ " ++ show pwr2 ++ " = " ++ show res))))) |
     a <- [2..10] :: [Integer], b <- [2..10] :: [Integer], c <- [2..10] :: [Integer]]
 
-main :: IO ()
+main ∷ IO ()
 main = mapM_ putStrLn result4
 

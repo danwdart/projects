@@ -1,6 +1,7 @@
+{-# LANGUAGE UnicodeSyntax #-}
 data Foo = One | Two | Three deriving (Eq, Ord, Show, Read, Bounded, Enum)
 
-thing :: Foo
+thing ∷ Foo
 thing = One
 
 {-
@@ -15,5 +16,5 @@ allthings = [minBound .. maxBound]
 allfoos = allthings :: [Foo]
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = print thing

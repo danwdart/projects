@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveAnyClass   #-}
 {-# LANGUAGE DeriveFunctor    #-}
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE UnicodeSyntax    #-}
 {-# OPTIONS_GHC -Wno-missing-methods #-}
 
 import           Control.Monad.Reader
@@ -12,12 +13,12 @@ newtype MyThing a = MyThing {
 } deriving (Functor, Applicative, Monad, MonadState s, MonadWriter w, MonadReader r)
 
 
-foo :: (MonadState Int m, MonadWriter [String] m, MonadReader () m) => m String
+foo ∷ (MonadState Int m, MonadWriter [String] m, MonadReader () m) ⇒ m String
 foo = do
     put (1 :: Int)
     tell ["Hi"]
     ask
     return "Hi"
 
-main :: IO ()
+main ∷ IO ()
 main = print $ runMyThing foo

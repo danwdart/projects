@@ -1,10 +1,11 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE OverloadedStrings    #-}
+{-# LANGUAGE UnicodeSyntax        #-}
 
 import           Database.HDBC
 import           Database.HDBC.MySQL
 
-main :: IO ()
+main ∷ IO ()
 main = do
     mysqlconn <- connectMySQL $ MySQLConnectInfo "172.18.0.3" "sm" "sm" "sm" 3306 "" Nothing
     ts <- quickQuery mysqlconn "show tables;" []

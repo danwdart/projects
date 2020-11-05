@@ -1,6 +1,7 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Text.Regex.TDFA
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print ("BOB" =~ "b" :: Bool)
     print ("BOB" =~ "b" :: Bool)

@@ -1,5 +1,6 @@
 {-# LANGUAGE BinaryLiterals  #-}
 {-# LANGUAGE OverloadedLists #-}
+{-# LANGUAGE UnicodeSyntax   #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Data.Bits
@@ -12,7 +13,7 @@ import           Data.Map
 
 -}
 
-lcdBlock :: Map Int Char
+lcdBlock ∷ Map Int Char
 lcdBlock = [
     (5, '1'),
     (13, '7'),
@@ -44,20 +45,20 @@ lcdBlock = [
     (127, '8')
     ]
 
-toLcdBlock :: Int -> String
-toLcdBlock n = " " ++
-    (if testBit n 3 then "_" else " ") ++
-    "\n" ++
-    (if testBit n 4 then "|" else " ") ++
-    (if testBit n 1 then "_" else " ") ++
+toLcdBlock ∷ Int → String
+toLcdBlock n = " " <> (
+    (if testBit n 3 then "_" else " ") <> (
+    "\n" <> (
+    (if testBit n 4 then "|" else " ") <> (
+    (if testBit n 1 then "_" else " ") <> (
     (if testBit n 2 then "|" else " ") ++
     "\n" ++
     (if testBit n 5 then "|" else " ") ++
     (if testBit n 6 then "_" else " ") ++
-    (if testBit n 0 then "|" else " ")
+    (if testBit n 0 then "|" else " "))))))
 
-printN :: Int -> IO ()
-printN n = putStrLn $ show n ++ " is:\n" ++ toLcdBlock n
+printN ∷ Int → IO ()
+printN n = putStrLn $ show n <> (" is:\n" <> toLcdBlock n)
 
-main :: IO ()
+main ∷ IO ()
 main = mapM_ printN ([1..127] :: [Int])

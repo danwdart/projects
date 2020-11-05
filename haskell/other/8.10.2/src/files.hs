@@ -1,7 +1,8 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           System.Directory
 import           System.IO
 
-main :: IO ()
+main ∷ IO ()
 main = do
     hd <- getHomeDirectory
     putStrLn hd

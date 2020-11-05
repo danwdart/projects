@@ -1,4 +1,5 @@
 {-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE UnicodeSyntax  #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Control.Monad.IO.Class
@@ -8,10 +9,10 @@ import           Data.List.Index
 import           System.Console.ANSI
 import           System.IO
 
-process :: Char -> [Button] -> [Button]
+process ∷ Char → [Button] → [Button]
 process = toggle . pred . read . return
 
-render :: StateT [Button] IO String
+render ∷ StateT [Button] IO String
 render = do
     liftIO resetGame
     st <- get
@@ -27,56 +28,56 @@ data Point2D = Point2D {
 }
 
 data Button = Button {
-    text     :: String,
+    text :: String,
     location :: Point2D,
     selected :: Bool,
-    spacing  :: Int
+    spacing :: Int
 }
 
-padding :: Button -> Int
+padding ∷ Button → Int
 padding _ = 10
 
-number :: Button -> Int
+number ∷ Button → Int
 number _ = 0
 
-borderLeft :: Button -> String
+borderLeft ∷ Button → String
 borderLeft = bool "[[" "<<" . selected
 
-borderRight :: Button -> String
+borderRight ∷ Button → String
 borderRight = bool "]]" ">>" . selected
 
-select :: Int -> [Button] -> [Button]
+select ∷ Int → [Button] → [Button]
 select n = modifyAt n selectButton
 
-unselect :: Int -> [Button] -> [Button]
+unselect ∷ Int → [Button] → [Button]
 unselect n = modifyAt n unselectButton
 
-toggle :: Int -> [Button] -> [Button]
+toggle ∷ Int → [Button] → [Button]
 toggle n = modifyAt n toggleButton
 
-unselectAll :: [Button] -> [Button]
-unselectAll = map unselectButton
+unselectAll ∷ [Button] → [Button]
+unselectAll = fmap unselectButton
 
 -- If only there was some kind of generic functor which worked on any parameter...
 -- Could we make this in TH?
 -- But tbh this would work with a map just fine.
 -- Guess this is what a lens is for.
-selectButton :: Button -> Button
+selectButton ∷ Button → Button
 selectButton x = x {
     selected = True
 }
 
-unselectButton :: Button -> Button
+unselectButton ∷ Button → Button
 unselectButton x = x {
     selected = False
 }
 
-toggleButton :: Button -> Button
+toggleButton ∷ Button → Button
 toggleButton b@Button { selected } = b { selected = not selected }
 
 type AnsiString = String
 
-renderButton :: Button -> AnsiString
+renderButton ∷ Button → AnsiString
 renderButton b@Button {
     text,
     location = Point2D {
@@ -85,19 +86,19 @@ renderButton b@Button {
     },
     spacing
 } =
-    setCursorPositionCode y x ++
-    setSGRCode [SetColor Foreground Vivid $ bool Yellow Green (selected b)] ++
-    borderLeft b ++
-    replicate spacing ' ' ++
-    setSGRCode [Reset] ++
+    setCursorPositionCode y x <> (
+    setSGRCode [SetColor Foreground Vivid $ bool Yellow Green (selected b)] <> (
+    borderLeft b <> (
+    replicate spacing ' ' <> (
+    setSGRCode [Reset] <> (
     text ++
     setSGRCode [SetColor Foreground Vivid $ bool Yellow Green (selected b)] ++
     replicate spacing ' ' ++
     borderRight b ++
-    setSGRCode [Reset]
+    setSGRCode [Reset])))))
 
-makeInitialButtons :: [Button]
-makeInitialButtons = map (
+makeInitialButtons ∷ [Button]
+makeInitialButtons = fmap (
     \n -> Button {
         text = show n,
         location = Point2D (n * 10) 0,
@@ -106,7 +107,7 @@ makeInitialButtons = map (
     }
     ) [1..9]
 
-resetGame :: IO ()
+resetGame ∷ IO ()
 resetGame = do
     hideCursor
     hSetEcho stdin False
@@ -114,10 +115,10 @@ resetGame = do
     clearScreen
     setCursorPosition 0 0
 
-resetTerm :: IO ()
+resetTerm ∷ IO ()
 resetTerm = showCursor
 
-main :: IO ()
+main ∷ IO ()
 main = do
     _ <- runStateT render makeInitialButtons
     resetTerm

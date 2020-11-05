@@ -1,7 +1,8 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad.Trans.State.Lazy
 import           Debug.Trace
 
-st :: StateT Int IO Int
+st ∷ StateT Int IO Int
 st = do
     traceM "Hi" -- no dupe...
     put 2
@@ -9,7 +10,7 @@ st = do
     traceShowM r
     return 1
 
-main :: IO ()
+main ∷ IO ()
 main = do
     r <- trace "ST: " $ runStateT st 1 -- no dupe!
     traceShowM r

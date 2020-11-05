@@ -1,6 +1,7 @@
+{-# LANGUAGE UnicodeSyntax #-}
 -- import           Control.Comonad.Env
 -- import           Control.Comonad.Store
 -- import           Control.Comonad.Traced
 
-main :: IO ()
+main ∷ IO ()
 main = return ()

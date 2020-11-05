@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-
 import Data.Function
 import Data.List
@@ -12,5 +13,5 @@ countfact = [(n, length $ primeFactors n) | n <- [1..1000]]
 -- nubBy (on (==) snd) countfact
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = undefined

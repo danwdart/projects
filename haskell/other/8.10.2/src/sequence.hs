@@ -1,4 +1,5 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Lib.Seq
 
-main :: IO ()
+main ∷ IO ()
 main = getLine >>>= putStrLn >>>= putStrLn >>= putStrLn

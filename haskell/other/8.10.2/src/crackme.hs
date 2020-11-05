@@ -1,6 +1,7 @@
-import System.IO
+{-# LANGUAGE UnicodeSyntax #-}
+import           System.IO
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Crack me!"
     putStr "Enter password: "

@@ -4,7 +4,7 @@ import           AWSLambda
 import           Control.Lens
 import           Data.Aeson
 import           Data.Aeson.Embedded
-import qualified Data.Text                    as T
+import qualified Data.Text           as T
 -- import           Network.AWS.SES
 import           System.Environment
 

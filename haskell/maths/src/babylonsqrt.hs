@@ -1,7 +1,8 @@
-main :: IO ()
+{-# LANGUAGE UnicodeSyntax #-}
+main ∷ IO ()
 main = do
-    print $ take 8 $ iterate (babylonSqrt 16) 2
+    print . take 8 $ iterate (babylonSqrt 16) 2
 
-babylonSqrt :: Double -> Double -> Double
+babylonSqrt ∷ Double → Double → Double
 babylonSqrt operand guess = ((operand / guess) + guess)/2
 

@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Exception
 import           Control.Monad.Fail
 -- import System.IO
@@ -5,10 +6,10 @@ import           Control.Monad.Fail
 
 type IOStrEx = IO (Either SomeException String)
 
-tryRead :: String -> IOStrEx
+tryRead ∷ String → IOStrEx
 tryRead = try.readFile
 
-main :: IO ()
+main ∷ IO ()
 main = do
     tryRead "bob" >>= print
     writeFile "Jim" "Contents"

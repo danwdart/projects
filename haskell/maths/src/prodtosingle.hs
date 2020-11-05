@@ -5,7 +5,7 @@ import           Data.List
 -- charToInteger y = read [y]
 
 integerToDigits :: Integer -> [Integer]
-integerToDigits n = map (\y -> read [y] :: Integer) $ show n
+integerToDigits n = (\y -> read [y] :: Integer) <$> show n
 
 -- digitsToInteger :: [Integer] -> Integer
 -- digitsToInteger xs = read $ concatMap show xs :: Integer
@@ -17,7 +17,7 @@ takeWhileOneMore :: (a -> Bool) -> [a] -> [a]
 takeWhileOneMore p = foldr (\y ys -> if p y then y:ys else [y]) []
 
 intsToPrintList :: [Integer] -> String
-intsToPrintList xs = intercalate  ", " (map show xs)
+intsToPrintList xs = intercalate  ", " (fmap show xs)
 
 -- length $ filter (==0) $ map integerToProd [1..1000]
 
@@ -32,13 +32,13 @@ data MyStruct = MyStruct {
 
 instance Eq MyStruct where (==) = on (==) lbd
 instance Ord MyStruct where compare = on compare lbd
-instance Show MyStruct where show ms = show (x ms) ++ ": " ++ show (lbd ms) ++ " steps: " ++ intsToPrintList (bd ms)
+instance Show MyStruct where show ms = show (x ms) <> (": " <> (show (lbd ms) <> (" steps: " <> intsToPrintList (bd ms))))
 
 myStruct :: Integer -> MyStruct
 myStruct y = MyStruct y (length (breakDown y) - 1) (breakDown y)
 
 outputNaive :: [MyStruct]
-outputNaive = nub $ map myStruct [1..1000000]
+outputNaive = nub $ fmap myStruct [1..1000000]
 
 -- iCombo :: Int -> Int -> [[Int]]
 -- iCombo n m = replicate <$> [0..n] <*> [m]

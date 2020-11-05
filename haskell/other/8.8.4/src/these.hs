@@ -1,15 +1,16 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Data.These
 
-thisOne :: These Int Int
+thisOne ∷ These Int Int
 thisOne = This 1
 
-thatTwo :: These Int Int
+thatTwo ∷ These Int Int
 thatTwo = That 2
 
-these12 :: These Int Int
+these12 ∷ These Int Int
 these12 = These 1 2
 
-main :: IO ()
+main ∷ IO ()
 main = mapM_ putStrLn [
     show these12,
     show thisOne,

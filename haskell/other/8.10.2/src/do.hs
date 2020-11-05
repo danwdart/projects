@@ -7,4 +7,4 @@ main = do
         then putStrLn "exit"
         else putStrLn "Wat?"               -- Note this!
     name <- getLine
-    putStrLn ("Hello " ++ name)
+    putStrLn ("Hello " <> name)

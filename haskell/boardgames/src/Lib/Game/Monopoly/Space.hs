@@ -20,16 +20,16 @@ data Space = GoSpace
     | GoToJailSpace deriving (Eq)
 
 instance Show Space where
-    show GoSpace           = "GO"
+    show GoSpace = "GO"
     show (PropertySpace p) = show p
-    show (RandomSpace r)   = show r
-    show (StationSpace s)  = show s
-    show (UtilitySpace u)  = show u
-    show (TaxSpace t)      = show t
-    show JailSpace         = "In Jail"
+    show (RandomSpace r) = show r
+    show (StationSpace s) = show s
+    show (UtilitySpace u) = show u
+    show (TaxSpace t) = show t
+    show JailSpace = "In Jail"
     show JustVisitingSpace = "Just Visiting"
-    show FreeParkingSpace  = "Free Parking"
-    show GoToJailSpace     = "Go To Jail"
+    show FreeParkingSpace = "Free Parking"
+    show GoToJailSpace = "Go To Jail"
 
 emptyPropertySpace ∷ Colour → String → Int → Space
 emptyPropertySpace c s p = PropertySpace $ emptyProperty c s p

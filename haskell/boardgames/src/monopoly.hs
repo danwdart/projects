@@ -77,18 +77,18 @@ performRound (Game b pl r) = do
     putStrLn "Let's go!"
     -- let numSpaces = length (spaces board)
     players' <- forM pl $ \p -> do
-        putStrLn $ name p ++ " (the " ++ show (token p) ++ ") is on " ++ show (playerSpace (spaces b) p)
+        putStrLn $ name p <> (" (the " <> (show (token p) <> (") is on " <> show (playerSpace (spaces b) p))))
         roll <- (,) <$> randomRIO (1, 6) <*> randomRIO (1, 6) :: IO (Int, Int)
         -- let total = roll <&> uncurry (+)
-        putStrLn $ "Roll: " ++ show roll
+        putStrLn $ "Roll: " <> show roll
         let total = uncurry (+) roll
-        putStrLn $ "Total: " ++ show total
+        putStrLn $ "Total: " <> show total
         let newPosition = position p + total
         --when (newPosition > numSpaces) $ do
         --   print "Passed GO."
         let p' = p {position = newPosition}
         let newSpace = spaces b !! newPosition
-        putStrLn $ "That puts you on position " ++ show newPosition ++ " which is " ++ show newSpace
+        putStrLn $ "That puts you on position " <> (show newPosition <> (" which is " <> show newSpace))
         (_, _) <- processLand p' b newSpace
         -- board'
         return p'

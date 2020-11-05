@@ -1,14 +1,15 @@
+{-# LANGUAGE UnicodeSyntax #-}
 -- Cont demo
 import           Control.Monad.Cont
 import           System.Directory
 import           System.IO
 
 -- It's like a JS callback that can interrupt stuff
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ runCont (cont ($ (34 :: Int))) (*2)
     print $ runCont (ContT ($ (34 :: Int))) Just
-    flip runContT print $ callCC $ \exit -> do
+    flip runContT print . callCC $ (\exit -> do
         liftIO . putStr $ "Enter name of file: "
         fileName <- liftIO getLine
         exists <- liftIO $ doesFileExist fileName
@@ -21,5 +22,5 @@ main = do
             liftIO . putStrLn $ "File isn't readable."
             exit []
         h <- ContT $ withFile fileName ReadMode
-        liftIO $ putStrLn $ "First ten lines of " <> fileName <> ":"
-        replicateM 10 $ liftIO $ hGetLine h
+        liftIO . putStrLn $ ("First ten lines of " <> fileName <> ":")
+        replicateM 10 . liftIO $ hGetLine h)

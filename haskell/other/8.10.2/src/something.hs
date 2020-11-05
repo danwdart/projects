@@ -7,7 +7,7 @@ import           Data.Function
 import           Data.Functor
 import           Data.List
 
-a1 x = x ++ " " ++ show (length x)
+a1 x = x <> (" " <> show (length x))
 
 a2 = unwords . ap [id, show.length] . pure
 

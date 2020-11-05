@@ -1,10 +1,11 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Concurrent
 import           Control.Concurrent.Async
 
-task :: IO ()
+task ∷ IO ()
 task = threadDelay 1000000
 
-main :: IO ()
+main ∷ IO ()
 main = do
     a <- async task
     wait a

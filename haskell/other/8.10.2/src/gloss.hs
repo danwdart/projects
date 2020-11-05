@@ -17,14 +17,11 @@ initialGame = World 0
 
 gameAsPicture ∷ World → Picture
 gameAsPicture World {rot = rotd} = Pictures [
-    Translate (-500) 400 $
-        Color white $
+    Translate (-500) 400 . Color white $
             Text "Airse",
-    Translate 0 0 $
-        Color white $
+    Translate 0 0 . Color white $
             Circle 100,
-    Rotate rotd $
-        Color white $
+    Rotate rotd . Color white $
             Text "Ahhhh!"
     ]
 

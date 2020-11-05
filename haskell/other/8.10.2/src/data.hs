@@ -1,12 +1,13 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Main where
 
 import           Lib.Credential
 import           Lib.Person
 
-myCreds :: Creds
+myCreds ∷ Creds
 myCreds = Creds "Username" "Password"
 
-me :: Person
+me ∷ Person
 me = Person {
     firstName = "Dan",
     lastName = "Dart",
@@ -14,7 +15,7 @@ me = Person {
     hatsOwned = ["Lightbulb Bowler", "Topper", "Spanish", "Pope"]
 }
 
-someone :: Person
+someone ∷ Person
 someone = Person {
     firstName = "Bob",
     lastName = "Frog",
@@ -22,9 +23,9 @@ someone = Person {
     hatsOwned = []
 }
 
-main :: IO ()
+main ∷ IO ()
 main = mapM_ putStrLn [
     printCreds myCreds,
-    "My name is " ++ firstName me,
+    "My name is " <> firstName me,
     describePerson me,
     describePerson someone]

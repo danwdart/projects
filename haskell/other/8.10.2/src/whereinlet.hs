@@ -1,7 +1,7 @@
 {-# LANGUAGE UnicodeSyntax #-}
 -- where is value before, a kind of private state
 wherey ∷ String
-wherey = a ++ b where
+wherey = a <> b where
     a = "a"
     b = "b"
 

@@ -7,6 +7,7 @@
 {-# LANGUAGE PolyKinds                  #-}
 {-# LANGUAGE TypeFamilies               #-}
 {-# LANGUAGE TypeOperators              #-}
+{-# LANGUAGE UnicodeSyntax              #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           GHC.TypeNats (Nat)
@@ -41,11 +42,11 @@ type Volume = Metres ^ 3
 type MPS = Metres / Seconds
 type MPSPS = Metres / Seconds ^ 2
 
-myVel :: MPS
+myVel ∷ MPS
 myVel = Metre 1 :/: Second 1
 
 -- myAcc :: MPSPS
 -- myAcc = (Metre 1.0 :/: Second 1.0) :/: Second 1.0
 
-main :: IO ()
+main ∷ IO ()
 main = return ()

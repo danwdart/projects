@@ -1,6 +1,7 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Flow
 
-main :: IO ()
+main ∷ IO ()
 main = do
     (1 :: Int) |> (+2) |> (+3) |> print
     print <| (+3) <| (+2) <| (1 :: Int)

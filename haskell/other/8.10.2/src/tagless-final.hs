@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-}
 import Control.Monad.IO.Class
 import "mtl" Control.Monad.Reader
@@ -73,5 +74,5 @@ main = do
     print =<< runAppM stuff3 "aeiou" 1
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = return ()

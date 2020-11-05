@@ -16,16 +16,16 @@ processLand player b space = case space of
             let player' = addMoney 200 player
             return (player', b)
         PropertySpace p -> do
-            putStrLn $ "Unimplemented: " ++ show p
+            putStrLn $ "Unimplemented: " <> show p
             return (player, b)
         RandomSpace t -> do
-            putStrLn $ "Unimplemented: " ++ show t
+            putStrLn $ "Unimplemented: " <> show t
             return (player, b)
         StationSpace s -> do
-            putStrLn $ "Unimplemented: " ++ show s
+            putStrLn $ "Unimplemented: " <> show s
             return (player, b)
         UtilitySpace u -> do
-            putStrLn $ "Unimplemented: " ++ show u
+            putStrLn $ "Unimplemented: " <> show u
             return (player, b)
         TaxSpace t -> do
             putStrLn "You hit the tax space!"

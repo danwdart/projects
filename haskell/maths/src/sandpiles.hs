@@ -1,15 +1,15 @@
 {-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GeneralisedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses      #-}
+{-# LANGUAGE UnicodeSyntax              #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-unused-matches #-}
 
 import           Control.Comonad
-import Control.Comonad.Store
-    ( store, ComonadStore(peek, pos), Store )
+import           Control.Comonad.Store (ComonadStore (peek, pos), Store, store)
 
 type Pos = (Int, Int)
 
-initialPos :: Pos
+initialPos ∷ Pos
 initialPos = (0, 0)
 
 newtype Sandpile a = Sandpile { unSandpile :: Store Pos a } deriving (Functor)
@@ -42,51 +42,51 @@ instance (Num a) => Num (Sandpile a) where
     signum = liftW signum
     fromInteger = pure . fromInteger
 
-fromListOfLists :: [[a]] -> Sandpile a
+fromListOfLists ∷ [[a]] → Sandpile a
 fromListOfLists aa = Sandpile $ store f initialPos
     where f (x, y) = aa !! (x + 1) !! (y + 1)
 
-toListOfLists :: Sandpile a -> [[a]]
+toListOfLists ∷ Sandpile a → [[a]]
 toListOfLists s = fmap (fmap (`peek` s)) fullCoords
 
-zero :: Sandpile Int
+zero ∷ Sandpile Int
 zero = pure 0
 
-allThrees :: Sandpile Int
+allThrees ∷ Sandpile Int
 allThrees = pure 3
 
-neighbours4 :: [Pos]
+neighbours4 ∷ [Pos]
 neighbours4 = [(x, y) | x <- [-1,1], y <- [-1,1]]
 
-fullCoords :: [[Pos]]
+fullCoords ∷ [[Pos]]
 fullCoords = [ [(x, y) | y <- [-1..1]] | x <- [-1..1] ]
 
-samplePile :: Sandpile Int
+samplePile ∷ Sandpile Int
 samplePile = fromListOfLists [[1,2,3],[2,3,4],[3,4,5]]
 
-put :: a -> Sandpile a -> Sandpile a
+put ∷ a → Sandpile a → Sandpile a
 put item existingSandpile = undefined
 
-puts :: Pos -> a -> Sandpile a -> Sandpile a
+puts ∷ Pos → a → Sandpile a → Sandpile a
 puts pos item existingSandpile = undefined
 
-putsl :: (Pos -> Pos) -> a -> Sandpile a -> Sandpile a
+putsl ∷ (Pos → Pos) → a → Sandpile a → Sandpile a
 putsl modPos item existingSandpile = undefined
 
-modify :: (a -> b) -> Sandpile a -> Sandpile b
+modify ∷ (a → b) → Sandpile a → Sandpile b
 modify modifier existingSandpile = undefined
 
-modifys :: Pos -> (a -> b) -> Sandpile a -> Sandpile b
+modifys ∷ Pos → (a → b) → Sandpile a → Sandpile b
 modifys pos modifier existingSandpile = undefined
 
-modifysl :: (Pos -> Pos) -> (a -> b) -> Sandpile a -> Sandpile b
+modifysl ∷ (Pos → Pos) → (a → b) → Sandpile a → Sandpile b
 modifysl modPos modVal existingSandpile = undefined
 
-toppleSum :: Sandpile Int -> Sandpile Int -> Sandpile Int
+toppleSum ∷ Sandpile Int → Sandpile Int → Sandpile Int
 toppleSum existing changes = undefined
 
-topple :: Sandpile Int -> Sandpile Int
+topple ∷ Sandpile Int → Sandpile Int
 topple a = undefined
 
-main :: IO ()
+main ∷ IO ()
 main = return ()

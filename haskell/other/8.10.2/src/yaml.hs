@@ -1,10 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 -- import qualified Data.ByteString as B
 import           Data.Yaml
 
-myData :: [[String]]
+myData ∷ [[String]]
 myData = [["Bob", "Jim"], ["Ted"]]
 
-main :: IO ()
+main ∷ IO ()
 main = print $ encode myData

@@ -31,10 +31,8 @@ data Config = Config {
 }
 
 modifier :: (Integer -> Integer) -> String -> Set Integer -> Map Integer String -> Map Integer String
-modifier modNumFn name range changes = M.mapKeys modNumFn $
-    M.map (++name) $
-    M.union changes $
-    M.restrictKeys basics range
+modifier modNumFn name range changes = M.mapKeys modNumFn . M.map (++name) $ M.union changes (
+    M.restrictKeys basics range)
 
 pows :: Map Integer String -> Map Integer String
 pows = M.mapKeys (10^)
@@ -83,8 +81,7 @@ scaledPowTData = M.fromList [
     ]
 
 combPowData :: Map Int String
-combPowData = M.fromList $
-    concatMap (\(k, v) -> M.toList $
+combPowData = M.fromList . concatMap (\(k, v) -> M.toList $
         M.mapKeys ((k +) . (10*)) (
             M.map (v++) scaledPowTData
         )

@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 
 
 module Lib.XPath (processXPath) where
@@ -11,13 +12,13 @@ import           Text.XML.HXT.Core        (IOStateArrow, XmlTree, XmlTrees, no,
 import           Text.XML.HXT.DOM.XmlNode
 import           Text.XML.HXT.XPath
 
-xmlTree :: String -> IOStateArrow s b XmlTree
+xmlTree ∷ String → IOStateArrow s b XmlTree
 xmlTree = readString [withParseHTML yes, withWarnings no]
 
-myParseXPath :: Monad m => String -> [XmlTree] -> m XmlTrees
+myParseXPath ∷ Monad m ⇒ String → [XmlTree] → m XmlTrees
 myParseXPath xpath xs = return . getXPath xpath $ head xs
 
-processXPath :: String -> String -> IO [String]
+processXPath ∷ String → String → IO [String]
 processXPath xpath html = runX (xmlTree html) >>= myParseXPath xpath <&> concatMap getChildren <&> fmap getNode <&> fmap getText <&> catMaybes
 
 -- processXPathMap :: String -> String -> (XmlTree -> a) -> IO [a]

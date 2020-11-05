@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-
 import Data.Biapplicative
 
@@ -26,5 +27,5 @@ tModel = tr <<*>> defModel
 main = print tModel
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = undefined

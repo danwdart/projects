@@ -1,33 +1,34 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-incomplete-patterns #-}
 
-main :: IO ()
+main ∷ IO ()
 main = return ()
 
-primes :: [Integer]
+primes ∷ [Integer]
 primes = sieve [2..] where
     sieve (p:ps) = p : sieve [x | x <- ps, mod x p /= 0]
 
-eitherSides :: [Bool]
-eitherSides = map (==5) $ drop 2 $ map (`mod` 6) primes
+eitherSides ∷ [Bool]
+eitherSides = fmap (==5) . drop 2 $ fmap (`mod` 6) primes
 
-pairs :: [a] -> [(a, a)]
+pairs ∷ [a] → [(a, a)]
 pairs n = zip n (tail n)
 
-primePairs :: [(Integer, Integer)]
+primePairs ∷ [(Integer, Integer)]
 primePairs = pairs primes
 
 -- twin, cousin etc
-diffs :: [Integer]
-diffs = map (`div` 2) $ tail $ map (uncurry subtract) primePairs
+diffs ∷ [Integer]
+diffs = fmap (`div` 2) . tail $ fmap (uncurry subtract) primePairs
 
-aSemiprime :: Integer
+aSemiprime ∷ Integer
 aSemiprime = (primes !! 150) * (primes !! 422)
 
-coprime :: Integer -> Integer -> Bool
+coprime ∷ Integer → Integer → Bool
 coprime a b = 1 == gcd a b
 
-totient :: Integer -> Integer
-totient n = fromIntegral $ length $ filter (coprime n) [1..n]
+totient ∷ Integer → Integer
+totient n = fromIntegral . length $ filter (coprime n) [1..n]
 
-is :: (Integer -> Bool) -> [Integer]
+is ∷ (Integer → Bool) → [Integer]
 is = flip filter [1..]

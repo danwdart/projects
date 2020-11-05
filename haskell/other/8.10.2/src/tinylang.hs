@@ -1,5 +1,6 @@
-{-# LANGUAGE OverloadedLists #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax #-}
+
+
 {-}
 import Data.ByteString.Char8
 import Data.Map
@@ -32,5 +33,5 @@ hW :: ByteString
 hW = ""
 -}
 -- Oh no. Not another one.
-main :: IO ()
+main ∷ IO ()
 main = return ()

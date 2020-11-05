@@ -33,7 +33,7 @@ server = do
         return sock
     loop sock = forever $ do
         (conn, peer) <- accept sock
-        putStrLn $ "Connection from " ++ show peer
+        putStrLn $ "Connection from " <> show peer
         void $ forkFinally (talk conn) (\_ -> close conn)
     talk conn = do
         msg <- recv conn 1024

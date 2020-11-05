@@ -1,20 +1,21 @@
 {-# LANGUAGE ApplicativeDo #-}
+{-# LANGUAGE UnicodeSyntax #-}
 
 import           Data.Functor.Compose
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print . getCompose $ c
     print d
 
-c :: Compose [] [] (Char, Char)
+c ∷ Compose [] [] (Char, Char)
 c = do
     a <- Compose ["aa"]
     b <- Compose ["bb"]
     return (a, b)
 
 -- tbh this could work with monads too
-d :: [Int]
+d ∷ [Int]
 d = do
     a <- [1..5]
     b <- [1..9]

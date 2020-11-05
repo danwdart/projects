@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-
 function saa(n) {
     var ns = Math.pow(n,2),
@@ -28,5 +29,5 @@ main :: IO ()
 main = print $ filter saa [1..10000000]
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = undefined

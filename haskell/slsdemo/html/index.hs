@@ -13,12 +13,11 @@ main = do
     copyDir "static" "public"
     -- Build HTML
     env <- getEnvironment
-    BSL.writeFile "public/index.html" $ renderHtml $ page env
+    BSL.writeFile "public/index.html" . renderHtml $ page env
 
 page ∷ [(String, String)] → Html
 page env = docTypeHtml ! lang "en-GB" $ do
-    H.html $
-        H.head $
+    H.html . H.head $
             H.title "Test"
     H.body $ do
         H.h1 "Test"

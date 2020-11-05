@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 -- {-# LANGUAGE FlexibleContexts, OverloadedStrings, TemplateHaskell, TypeFamilies, QuasiQuotes #-}
 -- import Data.Text
 -- import HSP
@@ -11,5 +12,5 @@
 -- html :: (XMLGenerator m) => XMLGenT m (XMLType m)
 -- html = undefined -- [hsx| <header><h1><% myName %></h1></header> |]
 
-main :: IO ()
+main ∷ IO ()
 main = undefined -- print $ unXMLGenT html

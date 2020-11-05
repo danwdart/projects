@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 -- import Control.Monad
 import           Data.Maybe
@@ -27,7 +28,7 @@ import           System.IO
 
 -- TODO either use the Google Req gen or make own
 
-res :: AccessToken -> [T.Text] -> IO (Maybe TR)
+res ∷ AccessToken → [T.Text] -> IO (Maybe TR)
 res accessToken xs = req POST
     (https "translation.googleapis.com" /: "language" /: "translate" /: "v2")
     (ReqBodyBs (BSL.toStrict (A.encode (makeT xs))))
@@ -37,7 +38,7 @@ res accessToken xs = req POST
     & runReq defaultHttpConfig
 
 data TRT = TRT {
-    model          :: String,
+    model :: String,
     translatedText :: String
 } deriving (FromJSON, Generic, Show)
 
@@ -54,7 +55,7 @@ instance FromJSON TR where
     -- Removes the _ from _data so that it can find the "data" key which I can't use here.
     parseJSON = A.genericParseJSON $ A.defaultOptions { A.fieldLabelModifier = Prelude.tail }
 
-main :: IO ()
+main ∷ IO ()
 main = do
     lgr <- newLogger Trace stdout
     setEnv "GOOGLE_APPLICATION_CREDENTIALS" "./google.json"
@@ -69,7 +70,7 @@ main = do
     --print $ a
     --print $ a^.tlrTranslations
 
-stringsToTranslate :: [T.Text]
+stringsToTranslate ∷ [T.Text]
 stringsToTranslate =
     [ "aaaaaaaaaa aaaaaaaa aaaaaaa aaaaaa aaaaaaa aaaa aaaa aaa aaa aaaaa aaaaaa a a aa aaa aa aaaaaa aaa aa aaaaaaaaaaaaaaaaaaaaaa. aaaaaaaaaa aaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. . aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     , "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -80,7 +81,7 @@ stringsToTranslate =
     , "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeee eeeeeeeeeeeeee"
     ]
 
-makeT :: [T.Text] -> TranslateTextRequest
+makeT ∷ [T.Text] → TranslateTextRequest
 makeT xs = translateTextRequest
     & ttrFormat ?~ "text"
     & ttrSource ?~ "so"

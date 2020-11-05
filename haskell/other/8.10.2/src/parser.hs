@@ -6,7 +6,7 @@ import           Data.Char
 import           Data.Either
 
 main :: IO ()
-main = putStrLn $ either show show $ snd <$> runParser strNumJ " { \"bobby mcgoo\" : 66 : 78,09,87,449,3238626433832795028 }"
+main = putStrLn . either show show $ (snd <$> runParser strNumJ " { \"bobby mcgoo\" : 66 : 78,09,87,449,3238626433832795028 }")
 
 newtype Parser a = Parser {
     runParser :: String -> Either String (String, a)
@@ -29,14 +29,14 @@ instance Alternative (Either String) where
     a <|> b = if isLeft a then b else a
 
 instance Alternative Parser where
-    empty = Parser $ const $ Left "No input"
+    empty = Parser . const $ Left "No input"
     (Parser p1) <|> (Parser p2) = Parser $ \input -> p1 input <|> p2 input
 
 charPFn :: (Char -> Bool) -> Parser Char
 charPFn matchFn = Parser f where
     f (x:xs)
         | matchFn x = Right (xs, x)
-        | otherwise = Left $ "No match matching " ++ xs ++ " at " ++ [x]
+        | otherwise = Left $ "No match matching " <> (xs <> (" at " <> [x]))
     f [] = Left "No input"
 
 spanP :: (Char -> Bool) -> Parser String

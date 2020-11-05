@@ -1,12 +1,13 @@
 {-# LANGUAGE MagicHash     #-}
 {-# LANGUAGE TupleSections #-}
+{-# LANGUAGE UnicodeSyntax #-}
 
 import           GHC.Exts
 -- import GHC.IO
 -- import GHC.Prim
 -- import GHC.Types
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ I# 2#
     print $ C# 'E'#

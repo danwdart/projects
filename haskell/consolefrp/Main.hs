@@ -1,5 +1,6 @@
-{-# LANGUAGE LambdaCase        #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax #-}
+
+
 
 module Main where
 {-
@@ -9,7 +10,7 @@ import           Reflex.Vty
 import           Reflex.Vty.Host
 import           Reflex.Vty.Widget
 -}
-main :: IO ()
+main ∷ IO ()
 main = undefined {-mainWidget $ do
     text "Hello World"
     text "How are you?"

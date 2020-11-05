@@ -71,7 +71,7 @@ instance Pp Suit where
 data Card = Card Value Suit | Joker deriving (Eq, Ord)
 
 instance Pp Card where
-    pp (Card value suit) = pp value ++ pp suit
+    pp (Card value suit) = pp value <> pp suit
     pp Joker             = "🃏"
 
 ov :: Value -> Suit -> Card
@@ -91,7 +91,7 @@ instance Bounded Card where
     maxBound = Joker
 
 instance Show Card where
-    show (Card value suit) = show value ++ " of " ++ show suit
+    show (Card value suit) = show value <> (" of " <> show suit)
     show Joker             = "Joker"
 
 uniq :: Ord a => [a] -> [a]
@@ -124,7 +124,7 @@ mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 -- weighted average
 
 meanDist :: M.Map Int Int -> Double
-meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . map (bimap fromIntegral fromIntegral) . M.toList
+meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . fmap (bimap fromIntegral fromIntegral) . M.toList
 
 eqOrAdj :: Card -> Card -> Bool
 eqOrAdj Joker Joker = True

@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Lib.Credential (
     Creds (..),
     printCreds
@@ -5,5 +6,5 @@ module Lib.Credential (
 
 data Creds = Creds String String deriving (Show)
 
-printCreds :: Creds -> String
-printCreds (Creds a b) = "Your username is " ++ a ++ " and your password is " ++ b
+printCreds ∷ Creds → String
+printCreds (Creds a b) = "Your username is " <> (a <> (" and your password is " <> b))

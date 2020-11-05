@@ -1,17 +1,18 @@
-{-# LANGUAGE DeriveAnyClass #-}
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
-import Data.Binary
-import Data.ByteString.Char8
-import GHC.Generics
+import           Data.Binary
+import           Data.ByteString.Char8
+import           GHC.Generics
 
 data Png = Png {
     magicNumber :: !Word32,
-    version     :: !Word32
+    version :: !Word32
 } deriving (Generic, Binary, Show)
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print (decode "aaaaaaaa" :: Png)
     print . encode $ Png 10 10

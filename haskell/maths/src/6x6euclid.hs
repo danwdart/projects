@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 -- number of combinations
 
 -- get combinations
@@ -9,5 +10,5 @@
     .x. x..
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = return ()

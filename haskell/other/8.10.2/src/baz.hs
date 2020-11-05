@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-caser :: Char -> String
 caser 'a' = "Ah"
 caser 'b' = "Br";
@@ -12,12 +13,12 @@ capital "" = "Empty string, whoops!"
 capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
 -}
 
-casesByGuard :: Int -> String
+casesByGuard ∷ Int → String
 casesByGuard x
     | x >= 2 = ">= two"
     | x >= 1 = ">= one"
-    | otherwise = "under one" ++ show y
+    | otherwise = "under one" <> show y
     where y = x * 2
 
-main :: IO ()
+main ∷ IO ()
 main = putStrLn (casesByGuard 0)

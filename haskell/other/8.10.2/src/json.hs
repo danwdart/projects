@@ -2,6 +2,7 @@
 {-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes       #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 -- import Control.Exception
 -- import qualified Data.ByteString as BS
@@ -12,23 +13,23 @@ import           GHC.Generics
 -- Automatic
 data Person = Person {
       name :: String
-    , age  :: Int
+    , age :: Int
     } deriving (FromJSON ,ToJSON, Generic, Show)
 
-myPerson :: Person
+myPerson ∷ Person
 myPerson = Person {
     name = "Joe",
     age = 42
 }
 
 -- Manual
-myVal :: Value
+myVal ∷ Value
 myVal = Object ("bob" .= String "Ted")
 
-myQQ :: Value
+myQQ ∷ Value
 myQQ = [aesonQQ| { "a": "b", "c": #{show (age myPerson)} } |]
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ encode myPerson
     print (decode "{\"name\":\"Bob\",\"age\":28}" :: Maybe Person)

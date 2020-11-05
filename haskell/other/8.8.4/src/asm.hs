@@ -1,12 +1,13 @@
-{-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE QuasiQuotes #-}
-{-# LANGUAGE UnboxedTuples #-}
 {-# LANGUAGE GHCForeignImportPrim #-}
-{-# LANGUAGE UnliftedFFITypes #-}
+{-# LANGUAGE QuasiQuotes          #-}
+{-# LANGUAGE TemplateHaskell      #-}
+{-# LANGUAGE UnboxedTuples        #-}
+{-# LANGUAGE UnicodeSyntax        #-}
+{-# LANGUAGE UnliftedFFITypes     #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import Language.Asm.Inline
-import Language.Asm.Inline.QQ
+import           Language.Asm.Inline
+import           Language.Asm.Inline.QQ
 
 -- segfaults!
 defineAsmFun "cpuidName"
@@ -19,5 +20,5 @@ defineAsmFun "cpuidName"
   mov {c}, %rcx
   |]
 
-main :: IO ()
+main ∷ IO ()
 main = return ()

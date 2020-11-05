@@ -1,7 +1,8 @@
+{-# LANGUAGE UnicodeSyntax #-}
 --import Control.Monad
 -- import Data.Function
 
-main :: IO ()
+main ∷ IO ()
 -- change = (++ " Bob")
 {-
 Prelude> fmap print Just 1
