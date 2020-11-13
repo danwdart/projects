@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "webgl",
   "version": "2.0.0",
@@ -15,3 +16,22 @@
     "snyk": "^1.424.3"
   }
 }
+=======
+{
+  "name": "webgl",
+  "version": "2.0.0",
+  "description": "WebGL Project v2",
+  "main": "index.js",
+  "scripts": {
+    "test": "snyk test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gl-matrix": "^2.6.1"
+  },
+  "devDependencies": {
+    "snyk": "^1.69.7"
+  }
+}
+>>>>>>> Stashed changes

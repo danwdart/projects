@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 language: node_js
 node_js:
   - "12.2"
@@ -6,3 +7,13 @@ before_script:
   - npm run build
 script:
   - npm test
+=======
+language: node_js
+node_js:
+  - "9.4"
+before_script:
+  - npm install
+  - npm run build
+script:
+  - npm test
+>>>>>>> Stashed changes

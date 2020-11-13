@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "thatthing",
   "version": "0.0.1",
@@ -16,3 +17,23 @@
   },
   "snyk": true
 }
+=======
+{
+  "name": "thatthing",
+  "version": "0.0.1",
+  "main": "src/index.html",
+  "author": "Dan Dart <funky@dandart.co.uk> (http://dandart.co.uk)",
+  "scripts": {
+    "start": "nw .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect",
+    "test": "snyk test"
+  },
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "nw": "^0.28.3",
+    "snyk": "^1.82.1"
+  },
+  "snyk": true
+}
+>>>>>>> Stashed changes

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "memoiser",
   "version": "1.0.0",
@@ -16,3 +17,23 @@
     "@babel/plugin-proposal-decorators": "7.12.1"
   }
 }
+=======
+{
+  "name": "memoiser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel -d js js/src",
+    "start": "node js/index.js",
+    "test": "eslint *.js"
+  },
+  "author": "Dan Dart <npm@dandart.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "7.0.0-beta.54",
+    "@babel/plugin-proposal-decorators": "7.0.0-beta.54"
+  }
+}
+>>>>>>> Stashed changes

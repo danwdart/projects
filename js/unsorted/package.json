@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "js",
   "version": "1.0.0",
@@ -13,3 +14,20 @@
     "eslint": "^7.12.1"
   }
 }
+=======
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "js projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint *"
+  },
+  "author": "Dan Dart <npm@dandart.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^4.19.1"
+  }
+}
+>>>>>>> Stashed changes

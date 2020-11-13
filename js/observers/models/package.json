@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "observers",
   "version": "1.0.0",
@@ -13,3 +14,20 @@
     "eslint": "^7.12.1"
   }
 }
+=======
+{
+  "name": "observers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node --experimental-modules index",
+    "test": "eslint *.mjs"
+  },
+  "author": "Dan Dart <npm@dandart.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.19.1"
+  }
+}
+>>>>>>> Stashed changes

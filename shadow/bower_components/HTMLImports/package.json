@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "HTMLImports",
   "description": "Polyfill for W3C HTMLImports Specification",
@@ -16,3 +17,23 @@
     "mocha": "^7.2.0"
   }
 }
+=======
+{
+  "name": "HTMLImports",
+  "description": "Polyfill for W3C HTMLImports Specification",
+  "version": "0.0.1",
+  "devDependencies": {
+    "chai": "*",
+    "grunt": "^1.0.2",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-yuidoc": "~0.4.0",
+    "grunt-karma": "*",
+    "karma-crbot-reporter": "*",
+    "karma-ie-launcher": "*",
+    "karma-mocha": "*",
+    "karma-safari-launcher": "*",
+    "karma-script-launcher": "*",
+    "mocha": "^5.1.1"
+  }
+}
+>>>>>>> Stashed changes

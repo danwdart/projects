@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "learn",
   "version": "1.0.0",
@@ -16,3 +17,23 @@
     "snyk": "^1.424.3"
   }
 }
+=======
+{
+  "name": "learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node --experimental-modules index",
+    "test": "snyk test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "synaptic": "^1.1.4"
+  },
+  "devDependencies": {
+    "snyk": "^1.69.7"
+  }
+}
+>>>>>>> Stashed changes

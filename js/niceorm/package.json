@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "niceorm",
   "version": "1.0.0",
@@ -17,3 +18,24 @@
   "author": "",
   "license": "ISC"
 }
+=======
+{
+  "name": "niceorm",
+  "version": "1.0.0",
+  "description": "niceorm",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "7.0.0-beta.54",
+    "@babel/core": "7.0.0-beta.54",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.54",
+    "snyk": "^1.69.7"
+  },
+  "scripts": {
+    "build": "babel src -d build",
+    "test": "snyk test"
+  },
+  "author": "",
+  "license": "ISC"
+}
+>>>>>>> Stashed changes

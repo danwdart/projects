@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "name": "html",
   "version": "1.0.0",
@@ -19,3 +20,26 @@
     "webpack": "^5.4.0"
   }
 }
+=======
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dan Dart <npm@dandart.co.uk>",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.2",
+    "css-loader": "^0.28.9",
+    "html-loader": "^0.5.5",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0"
+  }
+}
+>>>>>>> Stashed changes
