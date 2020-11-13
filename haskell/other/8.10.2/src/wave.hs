@@ -190,4 +190,4 @@ main = do
     let myWave = tuneToWave sampleTune sampleRate
     save "sample.bin" myWave
     play "sample.bin"
-    return ()
+    pure ()

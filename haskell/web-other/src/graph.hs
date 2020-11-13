@@ -30,7 +30,7 @@ draw (Line2D (Point2D x0 y0) (Point2D x1 y1)) ctx = do
     C.stroke ctx
 
 drawGrid ∷ C.Context → IO ()
-drawGrid ctx = return () -- do
+drawGrid ctx = pure () -- do
     -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0.0..16.0]
     -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0.0..16.0]
 

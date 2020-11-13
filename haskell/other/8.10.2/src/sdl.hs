@@ -1,3 +1,3 @@
 {-# LANGUAGE UnicodeSyntax #-}
 main ∷ IO ()
-main = return ()
+main = pure ()

@@ -14,4 +14,4 @@ main = do
     mongoconn <- connect $ host "localhost"
     _ <- access mongoconn master "bob" (insert "bobs" ["name"=:("Jim" :: String)] >> find (select [] "bobs") >>= rest)
 
-    return ()
+    pure ()

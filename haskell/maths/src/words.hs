@@ -6,7 +6,7 @@ import           Data.Set        (Set)
 import qualified Data.Set        as S
 
 main :: IO ()
-main = return ()
+main = pure ()
 
 data OhOrZero = Oh | Zero deriving (Eq)
 data HundredPrefix = A | One | NoPrefix deriving (Eq)

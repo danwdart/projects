@@ -13,4 +13,4 @@ main = run 5000 jsMain
 
 jsMain ∷ JSM()
 jsMain = do
-    return ()
+    pure ()

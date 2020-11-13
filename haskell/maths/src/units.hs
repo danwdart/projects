@@ -49,4 +49,4 @@ myVel = Metre 1 :/: Second 1
 -- myAcc = (Metre 1.0 :/: Second 1.0) :/: Second 1.0
 
 main ∷ IO ()
-main = return ()
+main = pure ()

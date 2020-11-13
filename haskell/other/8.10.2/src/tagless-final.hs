@@ -75,4 +75,4 @@ main = do
 -}
 
 main ∷ IO ()
-main = return ()
+main = pure ()

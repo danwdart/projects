@@ -12,7 +12,7 @@ config = Graphics3DConfig
     (WindowG3D 1920 1080 True True False)
 
 logic ∷ GameLogicFunction
-logic = const $ return ()
+logic = const $ pure ()
 
 time ∷ GameTime
 time = TimeSpec 0 0

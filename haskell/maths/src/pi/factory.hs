@@ -9,7 +9,7 @@ import           Factory.Math.Implementations.Pi.BBP.Series
 -- import           Factory.Math.Pi
 
 main ∷ IO ()
-main = return ()
+main = pure ()
 
 dig ∷ Series → [Ratio Integer]
 dig (MkSeries numerators' getDenominators' _ base') = zipWith (*) (iterate (/ fromIntegral base') 1) $ fmap (sum . zipWith (%) numerators' . getDenominators') [0 ..]

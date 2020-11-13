@@ -2,4 +2,4 @@
 -- import           System.IO.MMap
 
 main ∷ IO ()
-main = return ()
+main = pure ()

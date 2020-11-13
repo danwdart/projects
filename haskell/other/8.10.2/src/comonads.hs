@@ -4,4 +4,4 @@
 -- import           Control.Comonad.Traced
 
 main ∷ IO ()
-main = return ()
+main = pure ()

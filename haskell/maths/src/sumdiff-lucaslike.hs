@@ -2,4 +2,4 @@
 -- import           Control.Monad.Random
 
 main ∷ IO ()
-main = return ()
+main = pure ()

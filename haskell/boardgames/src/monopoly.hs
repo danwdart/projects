@@ -100,4 +100,4 @@ main = do
     myGame1 <- performRound myGame
     myGame2 <- performRound myGame1
     print myGame2
-    return ()
+    pure ()

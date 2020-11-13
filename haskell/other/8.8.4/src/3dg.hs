@@ -27,4 +27,4 @@ setup w = do
         runFunction $ alert "Hello World"
         runFunction $ consolelog "Hi Console!"
 
-    return ()
+    pure ()

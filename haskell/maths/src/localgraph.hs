@@ -103,7 +103,7 @@ compositionGraph = fromArcsList [
 
 
 main :: IO ()
-main = return ()
+main = pure ()
 
 -- | Same as 'plotUGraph' but render edge attributes
 plotUGraphEdged :: (Hashable v, Ord v, PrintDot v, Show v, Show e)

@@ -14,4 +14,4 @@ pf :: [Integer]
 pf = fix (\sieve (x:xs) -> x : sieve (filter (notdiv x) xs)) [2..]
 
 main :: IO ()
-main = return ()
+main = pure ()

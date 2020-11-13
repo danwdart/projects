@@ -16,4 +16,4 @@ gamma = biTo gammaI
 unGamma = biFrom gammaI
 
 main :: IO ()
-main = return ()
+main = pure ()

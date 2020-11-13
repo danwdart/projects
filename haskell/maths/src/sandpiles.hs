@@ -89,4 +89,4 @@ topple ∷ Sandpile Int → Sandpile Int
 topple a = undefined
 
 main ∷ IO ()
-main = return ()
+main = pure ()

@@ -107,7 +107,7 @@ calc = do
     cfeStr <- fromJSValUnchecked cfeVal
     let ratio = getCFEDetails cfeStr
     -- dec # ("html" :: String) $ cfeVal
-    return ()
+    pure ()
 
 jsMain ∷ JSM ()
 jsMain = do
@@ -122,7 +122,7 @@ jsMain = do
     fracDen <- jq "#frac sub"
     graph <- jq "canvas#graph"
     liftIO . putStrLn $ "Ready"
-    return ()
+    pure ()
 
 main ∷ IO ()
 main = run 5000 jsMain

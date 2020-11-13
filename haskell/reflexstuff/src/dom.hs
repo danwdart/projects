@@ -32,7 +32,7 @@ main = mainWidgetWithHead (
             text "Your Name: "
             inputElement $ def &
                 initialAttributes .~ "placeholder" =: "John Smith"
-        return ()
+        pure ()
         h1_ $ do
             text "You have clicked "
             display clicks
@@ -51,4 +51,4 @@ main = mainWidgetWithHead (
         dHeld <- holdDyn "" $ gate (current eTogBtn) $ updated $ _inputElement_value elInput
         display dHeld
         text ". Toggle the button to enable live-updates."
-    return ()
+    pure ()

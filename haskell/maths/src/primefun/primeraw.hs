@@ -2,7 +2,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-incomplete-patterns #-}
 
 main ∷ IO ()
-main = return ()
+main = pure ()
 
 primes ∷ [Integer]
 primes = sieve [2..] where

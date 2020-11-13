@@ -13,4 +13,4 @@ for each X
 -}
 
 main ∷ IO ()
-main = return ()
+main = pure ()

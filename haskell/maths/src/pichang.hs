@@ -2,7 +2,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 main ∷ IO ()
-main = return ()
+main = pure ()
 
 type NumHooks = Int
 

@@ -11,7 +11,7 @@ import qualified Data.Map                   as M
 import           System.Random.Shuffle
 
 main :: IO ()
-main = return ()
+main = pure ()
 
 newtype Value = Value Int deriving (Eq)
 

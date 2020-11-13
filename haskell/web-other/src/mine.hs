@@ -68,7 +68,7 @@ main = serve $ do
     drawOnNewCanvas
     body <- getMyBody
     liftIO . putStrLn $ body
-    return ()
+    pure ()
 
 serve ∷ JSM () → IO ()
 serve = run 5000

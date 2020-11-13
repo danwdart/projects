@@ -7,7 +7,7 @@ import           Data.List
 import           Data.Maybe
 
 main :: IO ()
-main = return ()
+main = pure ()
 
 type El = Int
 type Row = [El]

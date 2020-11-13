@@ -1,6 +1,6 @@
 {-# LANGUAGE UnicodeSyntax #-}
 main ∷ IO ()
-main = return ()
+main = pure ()
 
 newtype ModNine a = ModNine Int
 

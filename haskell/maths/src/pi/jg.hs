@@ -4,7 +4,7 @@
 import           Data.Ratio
 
 main :: IO ()
-main = return ()
+main = pure ()
 
 type LFT = (Integer, Integer, Integer, Integer)
 

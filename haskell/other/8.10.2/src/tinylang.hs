@@ -34,4 +34,4 @@ hW = ""
 -}
 -- Oh no. Not another one.
 main ∷ IO ()
-main = return ()
+main = pure ()

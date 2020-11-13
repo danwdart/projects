@@ -13,7 +13,7 @@ main = do
     _ <- subscribeEvents ctx [SubscriptionMaskAll] (\a b -> print a >> print b)
     connRet <- connectContext ctx (Just "localhost") [ContextNoflags]
     print connRet
-    runPulse_ ctx $ return ()
+    runPulse_ ctx $ pure ()
     getServerInfo ctx print
     ret <- doLoop ml
     print ret
