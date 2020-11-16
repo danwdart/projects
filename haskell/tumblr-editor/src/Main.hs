@@ -38,7 +38,7 @@ chromeConfig = defaultConfig {
 
 main :: IO ()
 main = do
-    [email, password, blog] <- getCompose $ pack <$> Compose getArgs
+    [email, password, username, domain, tag, newsource] <- getCompose $ pack <$> Compose getArgs
     runSession firefoxConfig $ do
         setImplicitWait 500000
         openPage "https://tumblr.com"
@@ -58,19 +58,12 @@ main = do
         agreeButton <- findElem (ByCSS "button[mode=primary]")
         click agreeButton
         liftIO (threadDelay 2000000)
-        openPage $ "https://tumblr.com/blog/" <> unpack blog
+        openPage $ "https://tumblr.com/tagged/" <> unpack tag
         editButton <- findElem (ByCSS "[aria-label=\"Edit\"")
         click editButton
-        liftIO (threadDelay 10000000)
-        {-}
-        openPage $ "http://" <> siteName <> ".localhost:" <> show myPort
-        getSession
-        as <- findElems (ByCSS "a[href^=http]")
-        hrefs <- mapM (`attr` "href") as
-        as <- findElems (ByCSS "img[src^=http]")
-        navbar <- findElem $ ByClass "navbar-nav"
-        linkName <- getText linkToClick
-        click linkToClick
-        cards <- findElems $ ByClass "card"
-        -}
+        settingsButton <- findElem (ByClass "post-settings")
+        click settingsButton
+        contentSourceBox <- findElem (ById "sourceUrl_input")
+        sendKeys newsource contentSourceBox
+        liftIO (threadDelay 100000000)
         closeSession
