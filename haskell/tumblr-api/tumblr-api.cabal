@@ -8,8 +8,9 @@ version:             0.1.0.0
 -- synopsis:
 -- description:
 -- bug-reports:
--- license:
-license-file:        LICENSE
+license:             AGPL-3.0
+--  ^ only
+-- license-file:        LICENSE
 author:              Dan Dart
 maintainer:          git@dandart.co.uk
 -- copyright:
