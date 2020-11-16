@@ -59,11 +59,17 @@ main = do
         click agreeButton
         liftIO (threadDelay 2000000)
         openPage $ "https://tumblr.com/tagged/" <> unpack tag
+        -- Get all the posts and then for each post
+        -- use then findElemFrom
         editButton <- findElem (ByCSS "[aria-label=\"Edit\"")
         click editButton
-        settingsButton <- findElem (ByClass "post-settings")
+        liftIO (threadDelay 5000000)
+        settingsButton <- findElem (ByClass "post-form--post-settings-button") -- post-settings
         click settingsButton
         contentSourceBox <- findElem (ById "sourceUrl_input")
         sendKeys newsource contentSourceBox
+        saveButton <- findElem (ByClass "create_post_button")
+        closeButton <- findElem (ByCSS "[data-js-clickableclose]")
+        click saveButton
         liftIO (threadDelay 100000000)
         closeSession
