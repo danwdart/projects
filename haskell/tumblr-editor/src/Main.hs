@@ -3,7 +3,7 @@
 
 module Main where
 
-
+import Control.Monad (forM_)
 import Control.Monad.IO.Class
 import Control.Concurrent
 import Data.Functor.Compose
@@ -54,22 +54,25 @@ main = do
         passwordBox <- findElem (ById "signup_password")
         sendKeys password passwordBox
         click loginButton
-        liftIO (threadDelay 3000000)
         agreeButton <- findElem (ByCSS "button[mode=primary]")
         click agreeButton
-        liftIO (threadDelay 2000000)
         openPage $ "https://tumblr.com/tagged/" <> unpack tag
         -- Get all the posts and then for each post
-        -- use then findElemFrom
-        editButton <- findElem (ByCSS "[aria-label=\"Edit\"")
-        click editButton
-        liftIO (threadDelay 5000000)
-        settingsButton <- findElem (ByClass "post-form--post-settings-button") -- post-settings
-        click settingsButton
-        contentSourceBox <- findElem (ById "sourceUrl_input")
-        sendKeys newsource contentSourceBox
-        saveButton <- findElem (ByClass "create_post_button")
-        closeButton <- findElem (ByCSS "[data-js-clickableclose]")
-        click saveButton
-        liftIO (threadDelay 100000000)
+        postElements <- findElems (ByCSS "[data-id]")
+        forM_ postElements $ \postElement -> do
+            -- use then findElemFrom
+            editButton <- findElemFrom postElement (ByCSS "[aria-label=\"Edit\"")
+            click editButton
+            frame <- findElem (ByCSS "iframe[title=\"Post forms\"]")
+            focusFrame (WithElement frame)
+            settingsButton <- findElem (ByClass "post-settings") -- post-settings
+            click settingsButton
+            contentSourceBox <- findElem (ById "sourceUrl_input")
+            clearInput contentSourceBox
+            sendKeys newsource contentSourceBox
+            saveButton <- findElem (ByClass "create_post_button")
+            closeButton <- findElem (ByCSS "[data-js-clickableclose]")
+            click saveButton
+            focusFrame DefaultFrame
+            liftIO (threadDelay 1000000)
         closeSession
