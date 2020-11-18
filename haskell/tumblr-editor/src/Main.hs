@@ -54,10 +54,10 @@ main = do
         passwordBox <- findElem (ById "signup_password")
         sendKeys password passwordBox
         click loginButton
+        openPage $ "https://tumblr.com/tagged/" <> unpack tag
         agreeButton <- findElem (ByCSS "button[mode=primary]")
         click agreeButton
-        openPage $ "https://tumblr.com/tagged/" <> unpack tag
-        -- Get all the posts and then for each post
+        liftIO (threadDelay 500000)
         postElements <- findElems (ByCSS "[data-id]")
         forM_ postElements $ \postElement -> do
             -- use then findElemFrom
