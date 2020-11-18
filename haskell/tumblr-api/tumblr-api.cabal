@@ -23,6 +23,14 @@ executable tumblr-api
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.14 && <5
-                     , req
+                     , bytestring
+                     , conduit
+                     , dotenv
+                     , http-conduit
+                     , humblr
+                     , monad-control
+                     , mtl
+                     , resourcet
+                     , transformers
   hs-source-dirs:      src
   default-language:    Haskell2010
