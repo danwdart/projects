@@ -6,7 +6,7 @@ import           Lib.Game.Monopoly.Player
 import           Lib.Game.Monopoly.Rules
 
 data Game = Game {
-    board :: Board,
+    board   :: Board,
     players :: [Player],
-    rules :: Rules
+    rules   :: Rules
 } deriving (Eq, Show)

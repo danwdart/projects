@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad
 import qualified Control.Monad.HT           as M
 import           Control.Monad.Loops
@@ -15,19 +16,19 @@ data Yield = Yield | Winner | Continue deriving (Eq, Show)
 
 -- Number of something, actual thing
 
-boardNumbers :: [(Int, Double)]
+boardNumbers ∷ [(Int, Double)]
 boardNumbers = [(1,11/143),(2,18/143),(3,39/143),(4,44/143),(5,20/143),(6,11/143)]
 
-diceNumbers :: [Int]
+diceNumbers ∷ [Int]
 diceNumbers = [1..6]
 
-makeResult :: IO Int -> IO Result
+makeResult ∷ IO Int → IO Result
 makeResult a = fromJust . flip lookup boardPrizes . sum <$> replicateM 8 a
 
-resDice :: IO Result
+resDice ∷ IO Result
 resDice = makeResult . pickOne $ diceNumbers
 
-resMarbles :: IO Result
+resMarbles ∷ IO Result
 resMarbles = makeResult . run . fromFrequencies $ boardNumbers
 
 data GameState = GameState {
@@ -40,7 +41,7 @@ data GameState = GameState {
     yield  :: Yield
 } deriving (Show)
 
-initialGameState :: GameState
+initialGameState ∷ GameState
 initialGameState = GameState {
     score = 0,
     prizes = 0,
@@ -51,7 +52,7 @@ initialGameState = GameState {
     yield = Continue
 }
 
-processRound :: GameState -> IO Result -> IO GameState
+processRound ∷ GameState → IO Result → IO GameState
 processRound gameState res = do
     result <- res
     return $
@@ -70,13 +71,13 @@ processRound gameState res = do
                 yield = Yield
             }
 
-processValidateRound :: GameState -> IO Result -> IO GameState
+processValidateRound ∷ GameState → IO Result → IO GameState
 processValidateRound gameState res
     | money gameState == 0 = return gameState
     | yield gameState == Yield = return gameState
     | otherwise = processRound gameState res
 
-processUntilFinish :: IO Result -> GameState -> IO GameState
+processUntilFinish ∷ IO Result → GameState → IO GameState
 processUntilFinish  = iterateUntilM (\ x -> yield x /= Continue) . flip processValidateRound
 -- Scan ...
 
@@ -85,24 +86,24 @@ processUntilFinish  = iterateUntilM (\ x -> yield x /= Continue) . flip processV
 
 data Result = Points Score | Prize | Zilch | PrizeAndPayDouble deriving (Show)
 
-getPoints :: Result -> Score
+getPoints ∷ Result → Score
 getPoints (Points x) = x
 getPoints _          = 0
 
-getPrize :: Result -> HasPrize
+getPrize ∷ Result → HasPrize
 getPrize Prize             = HasPrize
 getPrize PrizeAndPayDouble = HasPrize
 getPrize _                 = NoPrize
 
-getPrizeIncrement :: HasPrize -> Int
+getPrizeIncrement ∷ HasPrize → Int
 getPrizeIncrement NoPrize  = 0
 getPrizeIncrement HasPrize = 1
 
-getCost :: Result -> Money -> Money
+getCost ∷ Result → Money → Money
 getCost PrizeAndPayDouble m = 2 * m
 getCost _ m                 = m
 
-boardPrizes :: [(Int, Result)]
+boardPrizes ∷ [(Int, Result)]
 boardPrizes = [
     (8, Points 100),
     (9, Points 100),
@@ -147,10 +148,10 @@ boardPrizes = [
     (48, Points 100)
     ]
 
-game :: IO Result -> IO GameState
+game ∷ IO Result → IO GameState
 game = flip processUntilFinish initialGameState
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Dice version"
     game resDice >>= print

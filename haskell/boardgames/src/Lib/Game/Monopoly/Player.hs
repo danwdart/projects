@@ -5,11 +5,11 @@ import           Lib.Game.Monopoly.Property
 import           Lib.Game.Monopoly.Token
 
 data Player = Player {
-    name :: String,
-    token :: Token,
-    position :: Int,
-    money :: Int,
-    properties :: [Property],
+    name                :: String,
+    token               :: Token,
+    position            :: Int,
+    money               :: Int,
+    properties          :: [Property],
     mortgagedProperties :: [Property]
 } deriving (Eq, Show)
 
