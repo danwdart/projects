@@ -7,7 +7,7 @@ bug-reports:    https://github.com/danwdart/projects/issues
 author:         Dan Dart
 maintainer:     stack@dandart.co.uk
 copyright:      2019 Dan Dart
-license:        AGPL-3.0
+license:        AGPL-3.0-only
 build-type:     Simple
 extra-source-files:
     README.md

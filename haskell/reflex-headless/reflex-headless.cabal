@@ -1,7 +1,7 @@
 cabal-version:       >=1.10
 name:                reflex-headless
 version:             0.1.0.0
-license:             AGPL-3.0
+license:             AGPL-3.0-only
 author:              Dan Dart
 maintainer:          git@dandart.co.uk
 build-type:          Simple

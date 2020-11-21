@@ -4,7 +4,7 @@ version:             0.1.0.0
 synopsis:            People Manager Game
 description:         Game to manage people
 -- bug-reports:
-license:             AGPL-3
+license:             AGPL-3.0-only
 license-file:        LICENCE
 author:              Dan Dart
 maintainer:          Dan Dart
