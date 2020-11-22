@@ -34,7 +34,7 @@ packages:
     hackage: toolshed-0.18.0.2@sha256:46185f08910d4b1f904f7befcc9c868df5825ee33c99322ea814d8c9213e78d6,4009
 snapshots:
 - completed:
-    size: 544004
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2020/11/4.yaml
-    sha256: e019d8be6b71a73e1b914d1b3392678e50a7393f8ce1d2f287846c228451dbdd
-  original: nightly-2020-11-04
+    size: 554192
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2020/11/21.yaml
+    sha256: edcf9a543a41632cec3fb981202c7b6fc6bdf5d8b4ef03eded442dcfc56dd74f
+  original: nightly-2020-11-21

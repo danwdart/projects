@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 {-
 v, the current amount of the drug in the system, is a function of
 h (the dosage in mg),
@@ -49,6 +51,7 @@ daysPerMonth = 30
 hoursPerMonth :: Hours
 hoursPerMonth = hoursPerDay * fromIntegral daysPerMonth
 
+zeroWhenNegative :: Floating a => a -> a
 zeroWhenNegative x = sqrt((abs x + x) / 2 * x)
 
 drugAmount :: Drug -> Dosage -> TimeInterval -> DosesPerDay -> DaysToRun -> Hours -> DrugAmount

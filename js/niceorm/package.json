@@ -5,10 +5,10 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "7.12.1",
-    "@babel/core": "7.12.3",
+    "@babel/cli": "7.12.7",
+    "@babel/core": "7.12.7",
     "@babel/plugin-proposal-class-properties": "7.12.1",
-    "snyk": "^1.424.3"
+    "snyk": "^1.430.0"
   },
   "scripts": {
     "build": "babel src -d build",
