@@ -1,6 +1,0 @@
-resolver: lts-16.23 # reflex needs 8.8
-packages:
-  - .
-extra-deps:
-ghc-options:
-  reflexstuff: -j16 -Wall -Werror
