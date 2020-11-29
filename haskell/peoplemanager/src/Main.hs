@@ -58,7 +58,7 @@ makePerson = do
         country
     }
 
-makePeople ∷ Int → IO [Person]
+makePeople ∷ Int → IO (Set Person)
 makePeople number = replicateM number makePerson
 
 data RelationshipType = Married | Couple | Family | Friend | Coworker | Enemy | Indifferent deriving (Eq, Ord, Show)
@@ -74,13 +74,13 @@ instance Show Relationship where
 instance Eq Relationship where
     Relationship t1 p1 q1 == Relationship t2 p2 q2 = t1 == t2 && ((p1 == p2 && q1 == q2) || (p1 == q2 && p2 == q1))
 
-makePairs ∷ [Person] → IO (Set (Person, Person))
+makePairs ∷ Set Person → Set (Person, Person)
 makePairs = undefined
 
 pairToRelationship ∷ RelationshipType → (Person, Person) → Relationship
 pairToRelationship t (p1, p2) = Relationship t p1 p2
 
-makeRelationships ∷ [Person] → IO (Set Relationship)
+makeRelationships ∷ Set Person → IO (Set Relationship)
 makeRelationships = undefined
 
 main ∷ IO ()
