@@ -40,7 +40,7 @@ data Person = Person {
 } deriving (Eq)
 
 instance Show Person where
-    show (Person _ name dob city country) = T.unpack name <> (", born " <> (show dob <> (", from " <> (T.unpack city <> (", " ++ T.unpack country)))))
+    show (Person _ name dob city country) = T.unpack name <> (", born " <> (show dob <> (", from " <> (T.unpack city <> (", " <> T.unpack country)))))
 
 makePerson ∷ IO Person
 makePerson = do
