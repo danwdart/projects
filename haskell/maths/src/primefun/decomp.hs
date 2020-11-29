@@ -20,7 +20,7 @@
 -- printIt x = show x ++ "th prime = " ++ show (primes !! x) ++ ", zecked = " ++ show (zeck (primes !! x)) ++ ", split = " ++ show (primeFactors (weird (primes !! x))) ++ ", elem?: " ++ show (primes !! x `elem` primeFactors (weird (primes !! x)))
 
 main ∷ IO ()
-main = undefined
+main = pure ()
 -- main = mapM_ putStrLn [printIt x | x <- [1..100]]
 
 -- zecked?

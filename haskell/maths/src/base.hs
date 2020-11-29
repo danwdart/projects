@@ -8,4 +8,4 @@
 --revBin = unDigits 2 . digitsRev 2
 
 main ∷ IO ()
-main = undefined
+main = pure ()

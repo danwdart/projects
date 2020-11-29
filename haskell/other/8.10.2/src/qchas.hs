@@ -4,4 +4,4 @@
 -- import Quantum.Qubits
 
 main ∷ IO ()
-main = undefined
+main = pure ()

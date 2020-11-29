@@ -3,4 +3,4 @@
 -- import Optics
 
 main ∷ IO ()
-main = undefined
+main = pure ()

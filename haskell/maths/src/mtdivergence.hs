@@ -1,4 +1,4 @@
 {-# LANGUAGE UnicodeSyntax #-}
 -- MacLaurin Taylor Divergence Test
 main ∷ IO ()
-main = undefined
+main = pure ()

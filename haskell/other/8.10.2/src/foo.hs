@@ -68,4 +68,4 @@ main = putStrLn "Nah"
 -}
 
 main ∷ IO ()
-main = undefined
+main = pure ()

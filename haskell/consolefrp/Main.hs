@@ -11,7 +11,7 @@ import           Reflex.Vty.Host
 import           Reflex.Vty.Widget
 -}
 main ∷ IO ()
-main = undefined {-mainWidget $ do
+main = pure () {-mainWidget $ do
     text "Hello World"
     text "How are you?"
     return $ fforMaybe _ $ \case

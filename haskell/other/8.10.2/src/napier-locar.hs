@@ -30,4 +30,4 @@ symToInt ∷ String → Int
 symToInt = getNumber . fromString
 
 main ∷ IO ()
-main = undefined
+main = pure ()

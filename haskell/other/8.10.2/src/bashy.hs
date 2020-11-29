@@ -8,4 +8,4 @@
 -- cat s = readFile s >>= putStrLn
 
 main ∷ IO ()
-main = undefined
+main = pure ()

@@ -4,4 +4,4 @@
 -- import Data.FixedPoint
 
 main ∷ IO ()
-main = undefined
+main = pure ()

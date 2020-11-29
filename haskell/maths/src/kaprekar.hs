@@ -30,4 +30,4 @@ main = print $ filter saa [1..10000000]
 -}
 
 main ∷ IO ()
-main = undefined
+main = pure ()

@@ -13,4 +13,4 @@
 -- html = undefined -- [hsx| <header><h1><% myName %></h1></header> |]
 
 main ∷ IO ()
-main = undefined -- print $ unXMLGenT html
+main = pure () -- print $ unXMLGenT html

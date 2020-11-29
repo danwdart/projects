@@ -27,4 +27,4 @@ compareOrdinal (Ordinal x) (Ordinal y) = case compare x y of
     GT -> After
 -}
 main ∷ IO ()
-main = undefined
+main = pure ()

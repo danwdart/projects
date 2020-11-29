@@ -28,4 +28,4 @@ main = print tModel
 -}
 
 main ∷ IO ()
-main = undefined
+main = pure ()
