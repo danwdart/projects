@@ -2,6 +2,7 @@
 
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE UnicodeSyntax        #-}
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds #-}
 
 import           Control.Monad
@@ -14,7 +15,7 @@ import qualified Data.Set                   as S
 import           System.Random
 import           System.Random.Shuffle
 
-(...) :: (b -> c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
+(...) ∷ (b → c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
 (...) = (.) . (.)
 
 -- https://wiki.haskell.org/Random_shuffle
@@ -28,7 +29,7 @@ instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) => Random a where
 -- randomElem :: RandomGen g => [a] -> g -> (a, g)
 -- randomElem elems g = elems !! randomR (0, length elems
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Average matches in one round (even-ing out the two lines)"
     avgDist 2000 >>= print . meanDist
@@ -38,7 +39,7 @@ main = do
 class Pp a where
     pp :: a -> String
 
-ppr :: Pp a => a -> IO ()
+ppr ∷ Pp a ⇒ a → IO ()
 ppr = putStrLn . pp
 
 data Value = Ace | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Jack | Queen | King
@@ -74,7 +75,7 @@ instance Pp Card where
     pp (Card value suit) = pp value <> pp suit
     pp Joker             = "🃏"
 
-ov :: Value -> Suit -> Card
+ov ∷ Value → Suit -> Card
 ov = Card
 
 type Deck = [Card]
@@ -94,86 +95,86 @@ instance Show Card where
     show (Card value suit) = show value <> (" of " <> show suit)
     show Joker             = "Joker"
 
-uniq :: Ord a => [a] -> [a]
+uniq ∷ Ord a ⇒ [a] → [a]
 uniq = S.toList . S.fromList
 
-listToPairs :: [a] -> [(a, a)]
+listToPairs ∷ [a] → [(a, a)]
 listToPairs x = zip x (tail x)
 
-pairsToList :: (Ord a) => [(a, a)] -> [a]
+pairsToList ∷ (Ord a) ⇒ [(a, a)] → [a]
 pairsToList = uniq . concatMap biList
 
-adj :: (Enum a) => a -> a -> Bool
+adj ∷ (Enum a) ⇒ a → a -> Bool
 adj a b = 1 == abs (fromEnum a - fromEnum b)
 
-filterOutList :: (Eq a) => [a] -> [a] -> [a]
+filterOutList ∷ (Eq a) ⇒ [a] → [a] -> [a]
 filterOutList bads = filter (not . flip elem bads) -- todo reduce
 
 -- combinator
-countFreq :: (Traversable t, Num n, Ord a) => t a -> M.Map a n
+countFreq ∷ (Traversable t, Num n, Ord a) ⇒ t a → M.Map a n
 countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) M.empty
 
 -- TODO compose for <$>
 
-dist :: MonadRandom m => Int -> m Int -> m (M.Map Int Int)
+dist ∷ MonadRandom m ⇒ Int → m Int -> m (M.Map Int Int)
 dist n x = countFreq <$> replicateM n x
 
-mean :: (Num a, Integral a) => [a] -> Double
+mean ∷ (Num a, Integral a) ⇒ [a] → Double
 mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 
 -- weighted average
 
-meanDist :: M.Map Int Int -> Double
+meanDist ∷ M.Map Int Int → Double
 meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . fmap (bimap fromIntegral fromIntegral) . M.toList
 
-eqOrAdj :: Card -> Card -> Bool
+eqOrAdj ∷ Card → Card -> Bool
 eqOrAdj Joker Joker = True
 eqOrAdj (Card value1 suit1) (Card value2 suit2) = value1 == value2 || (suit1 == suit2 && adj value1 value2)
 eqOrAdj _ _ = False
 
 -- filter out?
 
-adjPairs :: Deck -> [(Card, Card)]
+adjPairs ∷ Deck → [(Card, Card)]
 adjPairs x = filter (uncurry eqOrAdj) (listToPairs x)
 
-pack52 :: Deck
+pack52 ∷ Deck
 pack52 = enumFromTo (Card Ace Hearts) (Card King Clubs)
 
-pack :: Deck
+pack ∷ Deck
 pack = pack52 <> [Joker]
 
-again :: Semigroup c => Int -> c -> c
+again ∷ Semigroup c ⇒ Int → c -> c
 again = foldl1 (<>) ... replicate
 
-fourpacks :: Deck
+fourpacks ∷ Deck
 fourpacks = again 4 pack52
 
-pickRandomCards :: MonadRandom m => Int -> Deck -> m (Deck, Deck)
+pickRandomCards ∷ MonadRandom m ⇒ Int → Deck -> m (Deck, Deck)
 pickRandomCards n p = splitAt n <$> shuffleM p
 
-pokerHand :: MonadRandom m => Deck -> m (Deck, Deck)
+pokerHand ∷ MonadRandom m ⇒ Deck → m (Deck, Deck)
 pokerHand = pickRandomCards 5
 
-adjCards :: Deck -> Deck
+adjCards ∷ Deck → Deck
 adjCards c = pairsToList . filter (uncurry eqOrAdj) $ listToPairs c
 
-extractAdj :: MonadRandom m => Deck -> m Deck
+extractAdj ∷ MonadRandom m ⇒ Deck → m Deck
 extractAdj p = do
     p' <- shuffleM p
     return $ filterOutList (adjCards p') p'
 
-magicNumbers :: MonadRandom m => m Int
+magicNumbers ∷ MonadRandom m ⇒ m Int
 magicNumbers = length <$> HT.nest 30 extractAdj pack
 
-magicDist :: MonadRandom m => Int -> m (M.Map Int Int)
+magicDist ∷ MonadRandom m ⇒ Int → m (M.Map Int Int)
 magicDist n = dist n magicNumbers
 
 -- replicateM 200 magicNumbers
 
-avgNumbers :: MonadRandom m => m Int
+avgNumbers ∷ MonadRandom m ⇒ m Int
 avgNumbers = length . adjCards <$> shuffleM pack
 
-avgDist :: MonadRandom m => Int -> m (M.Map Int Int)
+avgDist ∷ MonadRandom m ⇒ Int → m (M.Map Int Int)
 avgDist n = dist n avgNumbers
 
 -- todo generalise with ints for numbers and decks!

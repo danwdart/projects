@@ -8,7 +8,7 @@ import           Data.List
 
 data Person = Person {
     firstName :: String,
-    lastName :: String,
+    lastName  :: String,
     birthYear :: Int,
     hatsOwned :: [String]
 } deriving (Show)
@@ -17,7 +17,7 @@ data Person = Person {
 wordlist ∷ String → [String] → String
 wordlist whats [] = "no " <> (whats <> "!")
 wordlist whats xs = "a massive array of " <> (whats <> (", including: " <> (
-    intercalate ", " initss <> (" and " <> (lasts ++ "!")))))
+    intercalate ", " initss <> (" and " <> (lasts <> "!")))))
     where initss = init xs
           lasts = last xs
 
@@ -29,5 +29,5 @@ describePerson Person {
     hatsOwned = lHatsOwned
 } = sFirstName <> (" " <> (sLastName <> (
     " was born in " <> (show iBirthYear <> (
-    " and has " ++
+    " and has " <>
     wordlist "hats" lHatsOwned)))))

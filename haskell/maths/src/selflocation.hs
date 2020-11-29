@@ -4,7 +4,7 @@ import           System.IO
 
 fact ∷ CReal → CReal
 fact 0.0 = 1.0
-fact a = a * fact (a - 1.0)
+fact a   = a * fact (a - 1.0)
 
 chudnovsky ∷ CReal → CReal → CReal
 chudnovsky r k = r + numerator / denominator

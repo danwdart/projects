@@ -1,11 +1,12 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-local-binds -Wno-missing-signatures -Wno-type-defaults -Wno-unused-matches #-}
 
-import           Data.Map        (Map)
-import qualified Data.Map        as M
-import           Data.Set        (Set)
-import qualified Data.Set        as S
+import           Data.Map (Map)
+import qualified Data.Map as M
+import           Data.Set (Set)
+import qualified Data.Set as S
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 data OhOrZero = Oh | Zero deriving (Eq)
@@ -18,7 +19,7 @@ type StringLong = String -> String
 type StringShort = String -> String
 type ScaleDetails = (ScaleOffset, ScaleMultiplier, StringLong, Maybe (Int, StringShort))
 
-scaleDetails :: Scale -> ScaleDetails
+scaleDetails ∷ Scale → ScaleDetails
 scaleDetails Long = (0, 6, (++"illion"), Just (3, ("thousand "++) . (++"illion")))
 scaleDetails PeletierLong = (0, 6, (++"illion"), Just (3, (++"illiard")))
 scaleDetails Short = (3, 3, (++"illion"), Nothing)
@@ -30,17 +31,17 @@ data Config = Config {
     scale   :: Scale
 }
 
-modifier :: (Integer -> Integer) -> String -> Set Integer -> Map Integer String -> Map Integer String
+modifier ∷ (Integer → Integer) -> String -> Set Integer -> Map Integer String -> Map Integer String
 modifier modNumFn name range changes = M.mapKeys modNumFn . M.map (++name) $ M.union changes (
     M.restrictKeys basics range)
 
-pows :: Map Integer String -> Map Integer String
+pows ∷ Map Integer String → Map Integer String
 pows = M.mapKeys (10^)
 
-mergeUpMaps :: Map a (Map a c) -> Map a c
+mergeUpMaps ∷ Map a (Map a c) → Map a c
 mergeUpMaps = undefined
 
-scaledPowData :: Map Int String
+scaledPowData ∷ Map Int String
 scaledPowData = M.fromList [
     (1, "m"),
     (2, "b"),
@@ -54,7 +55,7 @@ scaledPowData = M.fromList [
     (10, "dec")
     ]
 
-scaledPowModData :: Map Int String
+scaledPowModData ∷ Map Int String
 scaledPowModData = M.fromList [
     (1, "un"),
     (2, "duo"),
@@ -67,7 +68,7 @@ scaledPowModData = M.fromList [
     (9, "novem")
     ]
 
-scaledPowTData :: Map Int String
+scaledPowTData ∷ Map Int String
 scaledPowTData = M.fromList [
     (2, "vi"),
     (3, "tri"),
@@ -80,14 +81,14 @@ scaledPowTData = M.fromList [
     -}
     ]
 
-combPowData :: Map Int String
+combPowData ∷ Map Int String
 combPowData = M.fromList . concatMap (\(k, v) -> M.toList $
         M.mapKeys ((k +) . (10*)) (
             M.map (v++) scaledPowTData
         )
     ) $ M.toList scaledPowModData
 
-scaledPows :: Scale -> Map Int String -> Map Integer String
+scaledPows ∷ Scale → Map Int String -> Map Integer String
 scaledPows sc datas = M.map sl (M.mapKeys (((10^so)*) . ((10^sm)^)) datas) <>
     maybe M.empty (\(offset, offsetName) -> M.map offsetName (
         M.mapKeys (((10^so)*) . ((10^offset)*) . ((10^sm)^)) datas
@@ -96,10 +97,10 @@ scaledPows sc datas = M.map sl (M.mapKeys (((10^so)*) . ((10^sm)^)) datas) <>
         (so, sm, sl, miss) = scaleDetails sc
 unscaledPows list = []
 
-defWords :: Map Integer String
+defWords ∷ Map Integer String
 defWords = numToWords (Config Zero One Long)
 
-basics :: Map Integer String
+basics ∷ Map Integer String
 basics = M.fromList [
     (1, "one"),
     (2, "two"),
@@ -112,7 +113,7 @@ basics = M.fromList [
     (9, "nine")
     ]
 
-numToWords :: Config -> Map Integer String
+numToWords ∷ Config → Map Integer String
 numToWords (Config o h s) = let (so, sm, sl, miss) = scaleDetails s in
     M.fromList [(0, if o == Oh then "oh" else "zero")] <>
     basics <>

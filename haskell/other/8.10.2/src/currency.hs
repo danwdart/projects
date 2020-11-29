@@ -3,9 +3,9 @@
 
 data Currency = Currency {
     isoCode :: String,
-    symbol :: String,
-    name :: String,
-    rate :: Float
+    symbol  :: String,
+    name    :: String,
+    rate    :: Float
 }
 
 instance Show Currency where
@@ -16,7 +16,7 @@ gbp = Currency "GBP" "£" "Pound Sterling" 1.0
 
 data Money = Money {
     minorAmount :: Int,
-    currency :: Currency
+    currency    :: Currency
 }
 
 instance Show Money where

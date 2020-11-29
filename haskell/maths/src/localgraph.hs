@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
 import           Data.Graph.DGraph
@@ -18,7 +19,7 @@ import           Data.Graph.Inductive.Graph
 import           Data.Graph.Inductive.PatriciaTree
 -- chair is 3m/s = 180m/min = 10.8km/h
 
-walkingGraph :: UGraph String Int
+walkingGraph ∷ UGraph String Int
 walkingGraph = fromEdgesList [
     Edge "Home" "Brewery Lane" 300,
     Edge "Home" "Pub" 200,
@@ -53,24 +54,24 @@ walkingGraph = fromEdgesList [
 
 -- START fgl
 
-vwg :: [String]
+vwg ∷ [String]
 vwg = vertices walkingGraph
 
-walkingFglNodes :: [LNode String]
+walkingFglNodes ∷ [LNode String]
 walkingFglNodes = zip [0..] vwg
 
-walkingFglEdges :: [LEdge Int]
+walkingFglEdges ∷ [LEdge Int]
 walkingFglEdges = (\(a, b, c) -> (fromJust (elemIndex a vwg), fromJust (elemIndex b vwg), c)) <$> edgeTriples walkingGraph
 
-fglGraph :: Gr String Int
+fglGraph ∷ Gr String Int
 fglGraph = mkGraph walkingFglNodes walkingFglEdges
 
 -- END fgl
 
-walkingGraphTimeInMinutes :: UGraph String Double
+walkingGraphTimeInMinutes ∷ UGraph String Double
 walkingGraphTimeInMinutes = (/10) . fromIntegral . round . (/18) . fromIntegral <$> walkingGraph
 
-birdsEyeGraph :: UGraph String Int
+birdsEyeGraph ∷ UGraph String Int
 birdsEyeGraph = fromEdgesList [
     Edge "Home" "Folks" 4300,
     Edge "Folks" "Charles" 5130,
@@ -93,7 +94,7 @@ birdsEyeGraph = fromEdgesList [
     Edge "Magnetic North" "Magnetic South" 16814685
     ]
 
-compositionGraph :: DGraph String String
+compositionGraph ∷ DGraph String String
 compositionGraph = fromArcsList [
     Arc "1C1_1" "1C2_1" "$ 1C1_1",
     Arc "1C1_1" "1C2_1" "& 1C1_1",
@@ -102,31 +103,31 @@ compositionGraph = fromArcsList [
     ]
 
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 -- | Same as 'plotUGraph' but render edge attributes
-plotUGraphEdged :: (Hashable v, Ord v, PrintDot v, Show v, Show e)
- => UGraph v e
- -> IO ThreadId
+plotUGraphEdged ∷ (Hashable v, Ord v, PrintDot v, Show v, Show e)
+ ⇒ UGraph v e
+ → IO ThreadId
 plotUGraphEdged g = forkIO $ runGraphvizCanvas Sfdp (toUndirectedDot True g) Xlib
 
-labeledNodes :: (Data.Graph.Types.Graph g, Show v) => g v e -> [(v, String)]
+labeledNodes ∷ (Data.Graph.Types.Graph g, Show v) ⇒ g v e → [(v, String)]
 labeledNodes g = (\v -> (v, show v)) <$> vertices g
 
-labeledEdges :: (Hashable v, Eq v, Show e) => UGraph v e -> [(v, v, String)]
+labeledEdges ∷ (Hashable v, Eq v, Show e) ⇒ UGraph v e → [(v, v, String)]
 labeledEdges g = (\(Edge v1 v2 attr) -> (v1, v2, show attr)) <$> Data.Graph.UGraph.edges g
 
-toUndirectedDot :: (Hashable v, Ord v, Show v, Show e)
- => Bool -- ^ Label edges
- -> UGraph v e
+toUndirectedDot ∷ (Hashable v, Ord v, Show v, Show e)
+ ⇒ Bool -- ^ Label edges
+ → UGraph v e
  -> DotGraph v
 toUndirectedDot labelEdges g = graphElemsToDot params (labeledNodes g) (labeledEdges g)
     where params = sensibleDotParams True labelEdges -- t
 
 sensibleDotParams
- :: Bool -- ^ Directed
- -> Bool -- ^ Label edges
+ ∷ Bool -- ^ Directed
+ → Bool -- ^ Label edges
  -> GraphvizParams t l String () l
 sensibleDotParams directed edgeLabeled = nonClusteredParams
     { isDirected = directed

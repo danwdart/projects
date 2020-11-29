@@ -1,18 +1,18 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 module Main where
 
-import Control.Monad (forM_)
-import Control.Monad.IO.Class
-import Control.Concurrent
-import Data.Functor.Compose
-import Data.Text (pack, unpack)
-import System.Environment
+import           Control.Concurrent
+import           Control.Monad          (forM_)
+import           Control.Monad.IO.Class
+import           Data.Functor.Compose
+import           Data.Text              (pack, unpack)
+import           System.Environment
 import           Test.WebDriver
 import           Test.WebDriver.Class
-import Test.WebDriver.Session
-import Test.WebDriver.Monad
+import           Test.WebDriver.Monad
+import           Test.WebDriver.Session
 
 firefoxConfig ∷ WDConfig
 firefoxConfig = defaultConfig {-{
@@ -36,7 +36,7 @@ chromeConfig = defaultConfig {
 
 -- Run java -jar /usr/share/selenium-server/selenium-server-standalone.jar
 
-main :: IO ()
+main ∷ IO ()
 main = do
     [email, password, username, domain, tag, newsource] <- getCompose $ pack <$> Compose getArgs
     runSession firefoxConfig $ do

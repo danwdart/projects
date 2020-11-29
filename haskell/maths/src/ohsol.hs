@@ -1,4 +1,5 @@
 {-# LANGUAGE TupleSections #-}
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-incomplete-patterns #-}
 
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
@@ -10,7 +11,7 @@ import           Data.Function
 import qualified Data.Map                   as M
 import           System.Random.Shuffle
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 newtype Value = Value Int deriving (Eq)
@@ -47,28 +48,28 @@ type Game = (Current, InPlay, Discard)
 data GameState = InProgress | Won | Lost deriving (Eq, Show)
 data GameMove = TakeOne | DiscardTwo | DiscardFour | End deriving (Eq, Show)
 
-fullPack :: Deck
+fullPack ∷ Deck
 fullPack = flip Card <$> fmap Suit [1..4] <*> fmap Value [1..13]
 
-initialGameState :: MonadRandom m => m Game
+initialGameState ∷ MonadRandom m ⇒ m Game
 initialGameState = ([], , []) <$> shuffleM fullPack
 
-sameSuit :: Card -> Card -> Bool
+sameSuit ∷ Card → Card -> Bool
 sameSuit = on (==) suit
 
-sameValue :: Card -> Card -> Bool
+sameValue ∷ Card → Card -> Bool
 sameValue = on (==) value
 
-roundStartReady :: Game -> Bool
+roundStartReady ∷ Game → Bool
 roundStartReady (c, _, _) = length c >= 4
 
-gameState :: Game -> GameState
+gameState ∷ Game → GameState
 gameState (c, ip, _)
     | not (null ip) = InProgress
     | not (null c) = Lost
     | otherwise = Won
 
-nextGameMove :: Game -> GameMove
+nextGameMove ∷ Game → GameMove
 nextGameMove ([], [], _) = End
 nextGameMove (_, [], _) = End
 nextGameMove ([], _, _) = TakeOne
@@ -80,26 +81,26 @@ nextGameMove (c1:_:_:c4:_, _, _)
 nextGameMove (c1:c2:c3:_, _, _) = TakeOne
 nextGameMove (c1:c2:_, _, _) = TakeOne
 
-takeOne :: Game -> Game
+takeOne ∷ Game → Game
 takeOne (cs, ip:ips, ds) = (ip:cs, ips, ds)
 
-discardFour :: Game -> Game
+discardFour ∷ Game → Game
 discardFour (c1:c2:c3:c4:cs, ips, ds) = (cs, ips, c1:c2:c3:c4:ds)
 
-discardTwo :: Game -> Game
+discardTwo ∷ Game → Game
 discardTwo (c1:c2:c3:c4:cs, ips, ds) = (c1:c4:cs, ips, c2:c3:ds)
 
-performMove :: Game -> Game
+performMove ∷ Game → Game
 performMove g = case nextGameMove g of
     End         -> g
     TakeOne     -> takeOne g
     DiscardTwo  -> discardTwo g
     DiscardFour -> discardFour g
 
-playUntilEnd :: Game -> Game
+playUntilEnd ∷ Game → Game
 playUntilEnd g = if gameState g == InProgress then playUntilEnd $ performMove g else g
 
-tryGame :: Game -> GameState
+tryGame ∷ Game → GameState
 tryGame = gameState . playUntilEnd
 
 
@@ -107,18 +108,18 @@ tryGame = gameState . playUntilEnd
 
 
 -- combinator
-countFreq :: (Traversable t, Num n, Ord a) => t a -> M.Map a n
+countFreq ∷ (Traversable t, Num n, Ord a) ⇒ t a → M.Map a n
 countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) M.empty
 
 -- TODO compose for <$>
 
-dist :: MonadRandom m => Int -> m Int -> m (M.Map Int Int)
+dist ∷ MonadRandom m ⇒ Int → m Int -> m (M.Map Int Int)
 dist n x = countFreq <$> replicateM n x
 
-mean :: (Num a, Integral a) => [a] -> Double
+mean ∷ (Num a, Integral a) ⇒ [a] → Double
 mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 
 -- weighted average
 
-meanDist :: M.Map Int Int -> Double
+meanDist ∷ M.Map Int Int → Double
 meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . fmap (bimap fromIntegral fromIntegral) . M.toList

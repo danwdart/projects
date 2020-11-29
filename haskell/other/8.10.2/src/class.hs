@@ -10,14 +10,14 @@ data MyEnums = Enum1 | Enum2 | Enum3
 
 instance ThreePlusableToString MyEnums where
     Enum1 +++ Enum2 = "Enum 1 and 2"
-    x +++ y = show x <> (" & " <> show y)
+    x +++ y         = show x <> (" & " <> show y)
 
 instance FourPlusableToString MyEnums
 
 instance Show MyEnums where
     show Enum1 = "One"
     show Enum2 = "Two"
-    show _ = "Other"
+    show _     = "Other"
 
 class (Show a) => ConcatNum a where
     (|+) :: a -> a -> String

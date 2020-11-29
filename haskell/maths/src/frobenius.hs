@@ -4,7 +4,7 @@ import           System.Environment
 import           Text.Read
 
 fromEither ∷ Either a a → a
-fromEither (Left x) = x
+fromEither (Left x)  = x
 fromEither (Right y) = y
 
 frob2 ∷ Int → Int → Either String Int
@@ -24,7 +24,7 @@ validateArgs xs = if areArgsValid xs then sequence xs else Left "Arguments not v
 
 processArgs ∷ Either String [Int] → Either String Int
 processArgs (Right [a, b]) = frob2 a b
-processArgs _ = Left "Can't process args!"
+processArgs _              = Left "Can't process args!"
 
 prog ∷ [String] → String
 prog = fromEither . fmap show . processArgs . validateArgs . parseArgs

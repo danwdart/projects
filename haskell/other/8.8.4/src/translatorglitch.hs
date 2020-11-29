@@ -28,7 +28,7 @@ import           System.IO
 
 -- TODO either use the Google Req gen or make own
 
-res ∷ AccessToken → [T.Text] -> IO (Maybe TR)
+res ∷ AccessToken → [T.Text] → IO (Maybe TR)
 res accessToken xs = req POST
     (https "translation.googleapis.com" /: "language" /: "translate" /: "v2")
     (ReqBodyBs (BSL.toStrict (A.encode (makeT xs))))
@@ -38,7 +38,7 @@ res accessToken xs = req POST
     & runReq defaultHttpConfig
 
 data TRT = TRT {
-    model :: String,
+    model          :: String,
     translatedText :: String
 } deriving (FromJSON, Generic, Show)
 

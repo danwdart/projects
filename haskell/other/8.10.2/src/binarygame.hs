@@ -28,10 +28,10 @@ data Point2D = Point2D {
 }
 
 data Button = Button {
-    text :: String,
+    text     :: String,
     location :: Point2D,
     selected :: Bool,
-    spacing :: Int
+    spacing  :: Int
 }
 
 padding ∷ Button → Int
@@ -91,11 +91,11 @@ renderButton b@Button {
     borderLeft b <> (
     replicate spacing ' ' <> (
     setSGRCode [Reset] <> (
-    text ++
+    text <> (
     setSGRCode [SetColor Foreground Vivid $ bool Yellow Green (selected b)] ++
     replicate spacing ' ' ++
     borderRight b ++
-    setSGRCode [Reset])))))
+    setSGRCode [Reset]))))))
 
 makeInitialButtons ∷ [Button]
 makeInitialButtons = fmap (

@@ -29,7 +29,7 @@ echo ∷ MonadIO m ⇒ String → m ()
 echo = putStrLnL . ("You said: " ++)
 
 
-exitWith ∷ MonadIO m ⇒ (() → IO a) -> m a
+exitWith ∷ MonadIO m ⇒ (() → IO a) → m a
 exitWith aExit = liftIO . aExit $ ()
 
 app ∷ (MonadHeadlessApp t m) ⇒ m (Event t ())

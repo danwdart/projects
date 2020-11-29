@@ -7,10 +7,10 @@ data Combination = Sum Combination Combination |
     Root Int
 
 instance Show Combination where
-    show (Sum c1 c2) = "(" <> (show c1 <> (" + " <> (show c2 <> ")")))
+    show (Sum c1 c2)     = "(" <> (show c1 <> (" + " <> (show c2 <> ")")))
     show (Product c1 c2) = "(" <> (show c1 <> (show c2 <> ")"))
-    show (Plain a) = show a
-    show (Root a) = "√" <> show a
+    show (Plain a)       = show a
+    show (Root a)        = "√" <> show a
 
 instance Num Combination where
     c1 + c2 = undefined

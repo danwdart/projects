@@ -9,7 +9,7 @@ import           GHC.Generics
 
 data Png = Png {
     magicNumber :: !Word32,
-    version :: !Word32
+    version     :: !Word32
 } deriving (Generic, Binary, Show)
 
 main ∷ IO ()
@@ -21,6 +21,6 @@ main = do
 
 data Variable = Variable {
     length :: !Word8,
-    var :: !ByteString,
-    tree :: !Word8
+    var    :: !ByteString,
+    tree   :: !Word8
 } deriving (Generic, Binary, Show)

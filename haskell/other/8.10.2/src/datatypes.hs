@@ -12,9 +12,9 @@ myComputer ∷ Computer
 myComputer = Computer "Dell" "Inspiron"
 
 data Player = Player {
-    name :: String,
+    name     :: String,
     position :: Int,
-    money :: Int
+    money    :: Int
 } deriving (Data, Show)
 
 myPlayer ∷ Player

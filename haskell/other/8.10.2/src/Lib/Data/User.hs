@@ -8,7 +8,7 @@ import           Lib.Data.Name
 import           Lib.Data.Password
 
 data User = User {
-    email :: Email,
+    email    :: Email,
     password :: Password,
-    name :: Name
+    name     :: Name
 } deriving (Show)

@@ -29,11 +29,11 @@ bucketSort = undefined
 -- TODO biap
 taggedBoolBucketSort ∷ ([a], [a]) → (Bool, a) → ([a], [a])
 taggedBoolBucketSort (xs, rs) (False, x) = (x:xs, rs)
-taggedBoolBucketSort (xs, rs) (True, r) = (xs, r:rs)
+taggedBoolBucketSort (xs, rs) (True, r)  = (xs, r:rs)
 
 -- sure it's reversed but idc
 eitherBucketSort ∷ ([x], [r]) → Either x r → ([x], [r])
-eitherBucketSort (xs, rs) (Left x) = (x:xs, rs)
+eitherBucketSort (xs, rs) (Left x)  = (x:xs, rs)
 eitherBucketSort (xs, rs) (Right r) = (xs, r:rs)
 
 -- (a -> b) -> [a] -> b -> b ?

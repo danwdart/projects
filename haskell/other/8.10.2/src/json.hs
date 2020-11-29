@@ -13,7 +13,7 @@ import           GHC.Generics
 -- Automatic
 data Person = Person {
       name :: String
-    , age :: Int
+    , age  :: Int
     } deriving (FromJSON ,ToJSON, Generic, Show)
 
 myPerson ∷ Person

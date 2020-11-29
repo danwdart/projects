@@ -8,8 +8,8 @@ a ∷ (Int, Int, Int)
 a = (1, 2, 3)
 
 data MyStruct = MyStruct {
-    _name :: String,
-    _age :: Int,
+    _name    :: String,
+    _age     :: Int,
     _friends :: [MyStruct]
 } deriving (Show)
 
