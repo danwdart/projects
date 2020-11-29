@@ -4,7 +4,7 @@ module Main where
 
 import           Control.Monad
 -- import qualified Data.Set as S
-import           Data.Set      (Set)
+import           Data.Set      (fromList, Set)
 import           Data.Text     (Text)
 import qualified Data.Text     as T
 import           Data.Time
@@ -37,7 +37,7 @@ data Person = Person {
     dob     :: Day,
     city    :: Text,
     country :: Text
-} deriving (Eq)
+} deriving (Eq, Ord)
 
 instance Show Person where
     show (Person _ name dob city country) = T.unpack name <> (", born " <> (show dob <> (", from " <> (T.unpack city <> (", " <> T.unpack country)))))
@@ -59,7 +59,7 @@ makePerson = do
     }
 
 makePeople ∷ Int → IO (Set Person)
-makePeople number = replicateM number makePerson
+makePeople number = fromList <$> replicateM number makePerson
 
 data RelationshipType = Married | Couple | Family | Friend | Coworker | Enemy | Indifferent deriving (Eq, Ord, Show)
 
