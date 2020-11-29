@@ -9,17 +9,17 @@ main = pure ()
 
 type LFT = (Integer, Integer, Integer, Integer)
 
-extr ∷ LFT → Integer -> Rational
+extr ∷ LFT → Integer → Rational
 extr (q,r,s,t) x = (fromInteger q * x + fromInteger r) % (fromInteger s * x + fromInteger t)
 
 unit ∷ LFT
 unit = (1,0,0,1)
 
-comp ∷ LFT → LFT -> LFT
+comp ∷ LFT → LFT → LFT
 comp (q,r,s,t) (u,v,w,x) = (q*u+r*w,q*v+r*x,s*u+t*w,s*v+t*x)
 
 
-stream ∷ (b→c) -> (b->c->Bool) -> (b->c->b) -> (b->a->b) ->
+stream ∷ (b→c) → (b->c->Bool) -> (b->c->b) -> (b->a->b) ->
            b -> [a] -> [c]
 stream   next safe prod cons z (x:xs)
               = if   safe z y

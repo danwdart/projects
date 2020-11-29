@@ -31,7 +31,7 @@ data Config = Config {
     scale   :: Scale
 }
 
-modifier ∷ (Integer → Integer) -> String -> Set Integer -> Map Integer String -> Map Integer String
+modifier ∷ (Integer → Integer) → String -> Set Integer -> Map Integer String -> Map Integer String
 modifier modNumFn name range changes = M.mapKeys modNumFn . M.map (++name) $ M.union changes (
     M.restrictKeys basics range)
 
@@ -88,7 +88,7 @@ combPowData = M.fromList . concatMap (\(k, v) -> M.toList $
         )
     ) $ M.toList scaledPowModData
 
-scaledPows ∷ Scale → Map Int String -> Map Integer String
+scaledPows ∷ Scale → Map Int String → Map Integer String
 scaledPows sc datas = M.map sl (M.mapKeys (((10^so)*) . ((10^sm)^)) datas) <>
     maybe M.empty (\(offset, offsetName) -> M.map offsetName (
         M.mapKeys (((10^so)*) . ((10^offset)*) . ((10^sm)^)) datas

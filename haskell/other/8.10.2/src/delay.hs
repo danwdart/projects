@@ -7,7 +7,7 @@ import           System.Console.ANSI
 import           System.IO
 import           System.Random
 
-typeDelay ∷ Int → String -> IO ()
+typeDelay ∷ Int → String → IO ()
 typeDelay delay = mapM_ (\c -> threadDelay delay >> putChar c)
 
 typeSlow ∷ String → IO ()

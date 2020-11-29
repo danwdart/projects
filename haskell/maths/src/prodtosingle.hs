@@ -14,7 +14,7 @@ integerToDigits n = (\y -> read [y] :: Integer) <$> show n
 integerToProd ∷ Integer → Integer
 integerToProd = product . integerToDigits
 
-takeWhileOneMore ∷ (a → Bool) -> [a] -> [a]
+takeWhileOneMore ∷ (a → Bool) → [a] -> [a]
 takeWhileOneMore p = foldr (\y ys -> if p y then y:ys else [y]) []
 
 intsToPrintList ∷ [Integer] → String

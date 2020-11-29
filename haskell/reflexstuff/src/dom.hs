@@ -48,7 +48,7 @@ main = mainWidgetWithHead (
         display eTogBtn
     section_ $ do
         text "The text is held at: "
-        dHeld <- holdDyn "" $ gate (current eTogBtn) $ updated $ _inputElement_value elInput
+        dHeld <- holdDyn "" . gate (current eTogBtn) $ (updated $ _inputElement_value elInput)
         display dHeld
         text ". Toggle the button to enable live-updates."
     pure ()

@@ -121,14 +121,14 @@ labeledEdges g = (\(Edge v1 v2 attr) -> (v1, v2, show attr)) <$> Data.Graph.UGra
 toUndirectedDot ∷ (Hashable v, Ord v, Show v, Show e)
  ⇒ Bool -- ^ Label edges
  → UGraph v e
- -> DotGraph v
+ → DotGraph v
 toUndirectedDot labelEdges g = graphElemsToDot params (labeledNodes g) (labeledEdges g)
     where params = sensibleDotParams True labelEdges -- t
 
 sensibleDotParams
  ∷ Bool -- ^ Directed
  → Bool -- ^ Label edges
- -> GraphvizParams t l String () l
+ → GraphvizParams t l String () l
 sensibleDotParams directed edgeLabeled = nonClusteredParams
     { isDirected = directed
     , globalAttributes =

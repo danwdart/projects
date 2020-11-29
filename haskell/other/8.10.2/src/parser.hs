@@ -33,14 +33,14 @@ instance Alternative Parser where
     empty = Parser . const $ Left "No input"
     (Parser p1) <|> (Parser p2) = Parser $ \input -> p1 input <|> p2 input
 
-charPFn ∷ (Char → Bool) -> Parser Char
+charPFn ∷ (Char → Bool) → Parser Char
 charPFn matchFn = Parser f where
     f (x:xs)
         | matchFn x = Right (xs, x)
         | otherwise = Left $ "No match matching " <> (xs <> (" at " <> [x]))
     f [] = Left "No input"
 
-spanP ∷ (Char → Bool) -> Parser String
+spanP ∷ (Char → Bool) → Parser String
 spanP f = Parser $ \input ->
     let (token, rest) = span f input
     in Right (rest, token)
@@ -75,7 +75,7 @@ cb = ws *> charP '}' <* ws
 cl ∷ Parser Char
 cl = ws *> charP ':' <* ws
 
-sepBy ∷ Parser a → Parser b -> Parser [b]
+sepBy ∷ Parser a → Parser b → Parser [b]
 sepBy sep el = (:) <$> el <*> many (sep *> el) <|> pure []
 
 numP ∷ Parser Int

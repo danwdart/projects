@@ -47,7 +47,7 @@ testUB ∷ String → String → String
 -- testUB = b1 uns bis
 -- It works!
 -- And as infix symbols...
-(...) ∷ (c → d) → (a → b → c) → a → b -> d
+(...) ∷ (c → d) → (a → b → c) → a → b → d
 (...) = (.) . (.)
 testUB = uns ... bis
 -- This also works!

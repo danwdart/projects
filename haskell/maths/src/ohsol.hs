@@ -54,10 +54,10 @@ fullPack = flip Card <$> fmap Suit [1..4] <*> fmap Value [1..13]
 initialGameState ∷ MonadRandom m ⇒ m Game
 initialGameState = ([], , []) <$> shuffleM fullPack
 
-sameSuit ∷ Card → Card -> Bool
+sameSuit ∷ Card → Card → Bool
 sameSuit = on (==) suit
 
-sameValue ∷ Card → Card -> Bool
+sameValue ∷ Card → Card → Bool
 sameValue = on (==) value
 
 roundStartReady ∷ Game → Bool
@@ -113,7 +113,7 @@ countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) M.empty
 
 -- TODO compose for <$>
 
-dist ∷ MonadRandom m ⇒ Int → m Int -> m (M.Map Int Int)
+dist ∷ MonadRandom m ⇒ Int → m Int → m (M.Map Int Int)
 dist n x = countFreq <$> replicateM n x
 
 mean ∷ (Num a, Integral a) ⇒ [a] → Double

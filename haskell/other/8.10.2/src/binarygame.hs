@@ -92,10 +92,10 @@ renderButton b@Button {
     replicate spacing ' ' <> (
     setSGRCode [Reset] <> (
     text <> (
-    setSGRCode [SetColor Foreground Vivid $ bool Yellow Green (selected b)] ++
+    setSGRCode [SetColor Foreground Vivid $ bool Yellow Green (selected b)] <> (
     replicate spacing ' ' ++
     borderRight b ++
-    setSGRCode [Reset]))))))
+    setSGRCode [Reset])))))))
 
 makeInitialButtons ∷ [Button]
 makeInitialButtons = fmap (

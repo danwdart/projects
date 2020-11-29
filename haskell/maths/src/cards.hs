@@ -15,7 +15,7 @@ import qualified Data.Set                   as S
 import           System.Random
 import           System.Random.Shuffle
 
-(...) ∷ (b → c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
+(...) ∷ (b → c) → (a1 -> a2 -> b) -> a1 -> a2 -> c
 (...) = (.) . (.)
 
 -- https://wiki.haskell.org/Random_shuffle
@@ -75,7 +75,7 @@ instance Pp Card where
     pp (Card value suit) = pp value <> pp suit
     pp Joker             = "🃏"
 
-ov ∷ Value → Suit -> Card
+ov ∷ Value → Suit → Card
 ov = Card
 
 type Deck = [Card]
@@ -104,10 +104,10 @@ listToPairs x = zip x (tail x)
 pairsToList ∷ (Ord a) ⇒ [(a, a)] → [a]
 pairsToList = uniq . concatMap biList
 
-adj ∷ (Enum a) ⇒ a → a -> Bool
+adj ∷ (Enum a) ⇒ a → a → Bool
 adj a b = 1 == abs (fromEnum a - fromEnum b)
 
-filterOutList ∷ (Eq a) ⇒ [a] → [a] -> [a]
+filterOutList ∷ (Eq a) ⇒ [a] → [a] → [a]
 filterOutList bads = filter (not . flip elem bads) -- todo reduce
 
 -- combinator
@@ -116,7 +116,7 @@ countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) M.empty
 
 -- TODO compose for <$>
 
-dist ∷ MonadRandom m ⇒ Int → m Int -> m (M.Map Int Int)
+dist ∷ MonadRandom m ⇒ Int → m Int → m (M.Map Int Int)
 dist n x = countFreq <$> replicateM n x
 
 mean ∷ (Num a, Integral a) ⇒ [a] → Double
@@ -127,7 +127,7 @@ mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 meanDist ∷ M.Map Int Int → Double
 meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . fmap (bimap fromIntegral fromIntegral) . M.toList
 
-eqOrAdj ∷ Card → Card -> Bool
+eqOrAdj ∷ Card → Card → Bool
 eqOrAdj Joker Joker = True
 eqOrAdj (Card value1 suit1) (Card value2 suit2) = value1 == value2 || (suit1 == suit2 && adj value1 value2)
 eqOrAdj _ _ = False
@@ -143,13 +143,13 @@ pack52 = enumFromTo (Card Ace Hearts) (Card King Clubs)
 pack ∷ Deck
 pack = pack52 <> [Joker]
 
-again ∷ Semigroup c ⇒ Int → c -> c
+again ∷ Semigroup c ⇒ Int → c → c
 again = foldl1 (<>) ... replicate
 
 fourpacks ∷ Deck
 fourpacks = again 4 pack52
 
-pickRandomCards ∷ MonadRandom m ⇒ Int → Deck -> m (Deck, Deck)
+pickRandomCards ∷ MonadRandom m ⇒ Int → Deck → m (Deck, Deck)
 pickRandomCards n p = splitAt n <$> shuffleM p
 
 pokerHand ∷ MonadRandom m ⇒ Deck → m (Deck, Deck)
