@@ -13,6 +13,6 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.14.0",
-    "snyk": "^1.430.0"
+    "snyk": "^1.431.2"
   }
 }
