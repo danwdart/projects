@@ -31,7 +31,7 @@ data Config = Config {
     scale   :: Scale
 }
 
-modifier ∷ (Integer → Integer) → String -> Set Integer -> Map Integer String -> Map Integer String
+modifier ∷ (Integer → Integer) → String → Set Integer -> Map Integer String -> Map Integer String
 modifier modNumFn name range changes = M.mapKeys modNumFn . M.map (++name) $ M.union changes (
     M.restrictKeys basics range)
 

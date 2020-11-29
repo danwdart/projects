@@ -15,7 +15,7 @@ import qualified Data.Set                   as S
 import           System.Random
 import           System.Random.Shuffle
 
-(...) ∷ (b → c) → (a1 -> a2 -> b) -> a1 -> a2 -> c
+(...) ∷ (b → c) → (a1 → a2 -> b) -> a1 -> a2 -> c
 (...) = (.) . (.)
 
 -- https://wiki.haskell.org/Random_shuffle

@@ -26,7 +26,7 @@ moonAddWith fn a b = reverse . take (maxLength a b) $ zipWith fn (rppZeroes a) (
     zeroes = repeat 0
     rppZeroes n = reverse n <> zeroes
 
-moonMulWith ∷ (Int → Int → Int) → (Int → Int → Int) → [Int] → [Int] -> [Int]
+moonMulWith ∷ (Int → Int → Int) → (Int → Int → Int) → [Int] → [Int] → [Int]
 moonMulWith fnMul fnAdd a b = foldl1 (moonAddWith fnAdd) (mulTwo fnMul a b)
 
 mulTwo ∷ Num a1 ⇒ (a2 → a2 → a1) → [a2] → [a2] → [[a1]]
