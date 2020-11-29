@@ -94,7 +94,7 @@ renderButton b@Button {
     text <> (
     setSGRCode [SetColor Foreground Vivid $ bool Yellow Green (selected b)] <> (
     replicate spacing ' ' <> (
-    borderRight b ++
+    borderRight b <>
     setSGRCode [Reset]))))))))
 
 makeInitialButtons ∷ [Button]
