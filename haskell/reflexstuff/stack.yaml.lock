@@ -12,12 +12,19 @@ packages:
   original:
     hackage: reflex-dom-0.6.1.0@sha256:57f3f0a80d61e434cd1b00c08c9cef4b8d31c55fe8627b1798000e395cabdadb,6298
 - completed:
-    hackage: jsaddle-webkit2gtk-0.9.7.1@sha256:85c917ae405296b37b942fcf542859958e292c0e2fe2bbfb3f4867ac6a1b2963,1483
+    hackage: jsaddle-0.9.7.1@sha256:711e48fa92c04d373fc18f058743dd9a53aecd048c851a47c932ff7d9bff2c82,4418
     pantry-tree:
-      size: 249
-      sha256: 2393840f90688ed3c7334eccd71e6c489043f0300b865d3c0528b46b70134c0d
+      size: 4329
+      sha256: 5d47086288813d1b0387a37c7b4095eaf90b40150913548b2da43f54fce1f74a
   original:
-    hackage: jsaddle-webkit2gtk-0.9.7.1@sha256:85c917ae405296b37b942fcf542859958e292c0e2fe2bbfb3f4867ac6a1b2963,1483
+    hackage: jsaddle-0.9.7.1@sha256:711e48fa92c04d373fc18f058743dd9a53aecd048c851a47c932ff7d9bff2c82,4418
+- completed:
+    hackage: jsaddle-warp-0.9.7.1@sha256:a97fc8ed87b3be01b02fa1c3dd5309229ced107e806fe0a2b3efcf970aae7d9a,2713
+    pantry-tree:
+      size: 475
+      sha256: 1a232daaa014ac55ed3d9fb8147eb6e78364be717af2a143a13957ea6dfe5dd2
+  original:
+    hackage: jsaddle-warp-0.9.7.1@sha256:a97fc8ed87b3be01b02fa1c3dd5309229ced107e806fe0a2b3efcf970aae7d9a,2713
 - completed:
     hackage: reflex-0.8.0.0@sha256:e50de03568818072e2811211431ffe9811aeed69f3b24104b1dafb1b6fd0a525,11942
     pantry-tree:
@@ -68,27 +75,6 @@ packages:
   original:
     hackage: ghcjs-dom-0.9.4.0@sha256:c2b3d25145e24b66a8a5078c0d750305b577aeff05957cf282d74f6e8d2424dd,32082
 - completed:
-    hackage: gi-javascriptcore-4.0.22@sha256:525e7087beb8a57d6bf42d37239144b59e8a830bed384ff3939762445826a853,4028
-    pantry-tree:
-      size: 312
-      sha256: bbfdb1e838ba644765c3064e4573bd61bf6bfe4b77911b622bf96a57165acda9
-  original:
-    hackage: gi-javascriptcore-4.0.22@sha256:525e7087beb8a57d6bf42d37239144b59e8a830bed384ff3939762445826a853,4028
-- completed:
-    hackage: gi-webkit2-4.0.26@sha256:813cd65e95fdea83fe44043c06f8330f7f25e6492f473df9a1c7db43ed1f01b0,11288
-    pantry-tree:
-      size: 366
-      sha256: d48d35809ac0cc87d0ffb1b54265269fdf30c4445d9b989d2f7c90df5a10bb21
-  original:
-    hackage: gi-webkit2-4.0.26@sha256:813cd65e95fdea83fe44043c06f8330f7f25e6492f473df9a1c7db43ed1f01b0,11288
-- completed:
-    hackage: jsaddle-0.9.7.1@sha256:711e48fa92c04d373fc18f058743dd9a53aecd048c851a47c932ff7d9bff2c82,4418
-    pantry-tree:
-      size: 4329
-      sha256: 5d47086288813d1b0387a37c7b4095eaf90b40150913548b2da43f54fce1f74a
-  original:
-    hackage: jsaddle-0.9.7.1@sha256:711e48fa92c04d373fc18f058743dd9a53aecd048c851a47c932ff7d9bff2c82,4418
-- completed:
     hackage: monoidal-containers-0.6.0.1@sha256:ffdfae0fde7a08e9e314667a78d86454d2d23137d85f226ec6e757c190fb28ad,2583
     pantry-tree:
       size: 569
@@ -117,13 +103,6 @@ packages:
   original:
     hackage: ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
 - completed:
-    hackage: webkit2gtk3-javascriptcore-0.14.4.1@sha256:bef2b02631631524d29fac42bfdd8655d45d7dba211d740af152e9d4bbe08db3,2104
-    pantry-tree:
-      size: 814
-      sha256: 0b244a4b1f98781faef97d87b26094a9b51601e33adf1166a5d5ffeb65ebf51f
-  original:
-    hackage: webkit2gtk3-javascriptcore-0.14.4.1@sha256:bef2b02631631524d29fac42bfdd8655d45d7dba211d740af152e9d4bbe08db3,2104
-- completed:
     hackage: witherable-0.3.5@sha256:6590a15735b50ac14dcc138d4265ff1585d5f3e9d3047d5ebc5abf4cd5f50084,1476
     pantry-tree:
       size: 271
@@ -144,20 +123,6 @@ packages:
       sha256: 3f665a5e70fab961bf236e5c672f497901632785d403024d7bab1785444a0816
   original:
     hackage: ghcjs-dom-jsaddle-0.9.4.0@sha256:31ddfc5ebcbb4811b0c956fd5fcf106643012b46bb4e0bc2f15d09db1d116fbb,39525
-- completed:
-    hackage: gi-soup-2.4.23@sha256:1487ea6a8e4d88f6e998ca23dc466503fe55dd19b0f35da0040bec960ac2877e,8957
-    pantry-tree:
-      size: 358
-      sha256: ea14c726bd84eee0803b9adbdbd94d4d497a5cbd88a0afd3f75fe46026a7a3d7
-  original:
-    hackage: gi-soup-2.4.23@sha256:1487ea6a8e4d88f6e998ca23dc466503fe55dd19b0f35da0040bec960ac2877e,8957
-- completed:
-    hackage: gtk2hs-buildtools-0.13.8.0@sha256:132f38155fc677430a47ea750918973161c876fb6f281d342ac2f07eb99229ce,5238
-    pantry-tree:
-      size: 3588
-      sha256: 4552e3c0f2ef0f16285c38898d7e2b6aeea67d4e37cd203b0c82f70592096c45
-  original:
-    hackage: gtk2hs-buildtools-0.13.8.0@sha256:132f38155fc677430a47ea750918973161c876fb6f281d342ac2f07eb99229ce,5238
 - completed:
     hackage: jsaddle-dom-0.9.4.1@sha256:c769ab7d568c6fa9d0ecc9fa1c83091bfd3277c48e7f109a056cd088f399505f,75700
     pantry-tree:

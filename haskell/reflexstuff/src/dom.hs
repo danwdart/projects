@@ -1,54 +1,52 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecursiveDo       #-}
 {-# LANGUAGE UnicodeSyntax     #-}
+{-# OPTIONS_GHC -Wno-type-defaults #-}
 
 import           Reflex.Dom
-import           Reflex.Tags as T
-
--- reflex-dom-helpers is too old for reflex.
 
 main ∷ IO ()
 main = mainWidgetWithHead (
     do
-        title_ $ text "Hello World!"
+        el "title" $ text "Hello World!"
         elAttr "meta" ("name" =: "shortcut-icon" <> "content" =: "sample.png") blank
     ) $ mdo
-    h1_ $ text "Hi!"
+    el "h1" $ text "Hi!"
     text "Hello, world!"
     elInput <- inputElement $ def & inputElementConfig_initialValue .~ "Hi!"
     dynText $ _inputElement_value elInput
-    (elBtn, _) <- button' $ text "Click me!"
+    (elBtn, _) <- el' "button" $ text "Click me!"
     let eClick = domEvent Click elBtn
     clicks <- count eClick
     display clicks
-    section_ $ mdo
-        p_ $ text "Section 1"
-        br_ blank
-        p_ $ mdo
+    el "section" $ mdo
+        el "p" $ text "Section 1"
+        el "br" blank
+        el "p" $ mdo
             text "Your name is "
             dynText $ _inputElement_value dName
             text "!"
-        dName <- label_ $ mdo
+        dName <- el "label" $ mdo
             text "Your Name: "
             inputElement $ def &
                 initialAttributes .~ "placeholder" =: "John Smith"
         pure ()
-        h1_ $ do
+        el "h1" $ do
             text "You have clicked "
             display clicks
             text " times!"
-    section_ $ do
-        h1_ $ text "Hello World."
-        h2_ $ text "Something."
-    (elBtn2, _) <- button' $ display eTogBtn
+    el "section" $ do
+        el "h1" $ text "Hello World."
+        el "h2" $ text "Something."
+    (elBtn2, _) <- el' "button" $ display eTogBtn
     let eBtnClick = domEvent Click elBtn2
     eTogBtn <- toggle False eBtnClick
-    section_ $ do
+    el "section" $ do
         text "The button is "
         display eTogBtn
-    section_ $ do
+    el "section" $ do
         text "The text is held at: "
-        dHeld <- holdDyn "" . gate (current eTogBtn) $ (updated $ _inputElement_value elInput)
+        dHeld <- holdDyn "" . gate (current eTogBtn) . updated $ _inputElement_value elInput
         display dHeld
         text ". Toggle the button to enable live-updates."
     pure ()
