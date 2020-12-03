@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver nightly-2020-11-28 script
+-- stack --resolver nightly-2020-12-03 script
 
 {-# LANGUAGE OverloadedLists#-}
 
