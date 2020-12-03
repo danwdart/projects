@@ -1,4 +1,5 @@
-resolver: lts-16.23
+ghc-options:
+  reflex-headless: -j16 -Wall -Werror
 extra-deps:
 - reflex-0.7.1.0@sha256:6d224466f0daabd44fef0fa559a09151126452bf857aeaa37692bccb259d5c5d,11227
 - constraints-extras-0.3.0.2@sha256:013b8d0392582c6ca068e226718a4fe8be8e22321cc0634f6115505bf377ad26,1853
@@ -11,5 +12,4 @@ extra-deps:
 - ref-tf-0.4.0.2@sha256:69de3550250e0cd69f45d080359cb314a9487c915024349c75b78732bbee9332,1134
 - these-1.0.1@sha256:58dba2446b57dde711c5e7f63910d18bc28b9a5831a89772986bb184a3e7851b,3266
 - witherable-0.3.1@sha256:ed3d5bc9eb1c08fa9704d9e143cdf622e1bd80b847cd5ede8c07da7bc7981ab9,1313
-ghc-options:
-  reflex-headless: -j16 -Wall -Werror
+resolver: lts-16.24

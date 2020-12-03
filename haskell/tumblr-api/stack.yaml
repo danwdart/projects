@@ -1,8 +1,7 @@
-resolver: nightly-2020-11-28
 packages:
 - .
 extra-deps:
--
-  git: https://github.com/danwdart/humblr.git
+- git: https://github.com/danwdart/humblr.git
   commit: c3fbbec08fdb66804258c95e06b33c9d3373d318
 - attoparsec-conduit-1.1.0@sha256:00aeee08f025b5386b994a0d6409ca578b0227a0d8445955847c186c31c63caa,692
+resolver: nightly-2020-12-03

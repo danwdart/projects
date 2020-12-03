@@ -24,7 +24,7 @@ packages:
     hackage: attoparsec-conduit-1.1.0@sha256:00aeee08f025b5386b994a0d6409ca578b0227a0d8445955847c186c31c63caa,692
 snapshots:
 - completed:
-    size: 554409
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2020/11/28.yaml
-    sha256: c41a5ef1c4fc0d5d55cf84e3ffa4481c3594226d1a404ffe090478d15069d35b
-  original: nightly-2020-11-28
+    size: 555280
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2020/12/3.yaml
+    sha256: f0c88c9cb1e626b5f6ac3e8126d361201e9e3eb5570a556e0469e7f2cc34c086
+  original: nightly-2020-12-03
