@@ -27,7 +27,7 @@ packages:
     hackage: serial-0.2.7@sha256:7138d32ad74d4d360023455edd3b5bc112b6462eddb73bf2e57f888a0301f065,717
 snapshots:
 - completed:
-    size: 555280
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2020/12/3.yaml
-    sha256: f0c88c9cb1e626b5f6ac3e8126d361201e9e3eb5570a556e0469e7f2cc34c086
-  original: nightly-2020-12-03
+    size: 556553
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2020/12/7.yaml
+    sha256: f52a57e6396150023b94005171a81c298457ac8785da76591c02f50ebdfd0b7c
+  original: nightly-2020-12-07
