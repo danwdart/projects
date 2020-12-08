@@ -3,4 +3,4 @@ ghc-options:
 packages:
 - .
 extra-deps: null
-resolver: nightly-2020-12-07
+resolver: nightly-2020-12-08
