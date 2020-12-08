@@ -1,3 +1,4 @@
+cabal-version:       3.0
 name:                boardgames
 version:             0.1.0.0
 -- synopsis:
@@ -10,7 +11,6 @@ maintainer:          cabal@dandart.co.uk
 copyright:           2019 Dan Dart
 category:            Web
 build-type:          Simple
-cabal-version:       >=1.10
 extra-source-files:  README.md
 
 executable 10x10grid
