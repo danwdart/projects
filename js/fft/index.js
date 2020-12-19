@@ -74,6 +74,13 @@ run = () => {
                         newfy = h - (h * (freqData[i] / 512));
                         line(oldfx, oldfy, newfx, newfy, `green`);
 
+                        line(
+                            (h - oldfy) * Math.cos(0.004 * oldfx) + w/2,
+                            h/2 - ((h - oldfy) * Math.sin(0.004 * oldfx)),
+                            (h - newfy) * Math.cos(0.004 * newfx) + w/2,
+                            h/2 - ((h - newfy) * Math.sin(0.004 * newfx))
+                        );
+
                         newrx = i * w / bufferLength;
                         newry = h/2 - (h * (rawData[i] / 512));
                         line(oldrx, oldry, newrx, newry, `green`);
