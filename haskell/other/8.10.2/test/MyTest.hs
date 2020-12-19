@@ -19,11 +19,11 @@ tests = describe "tests" $ do
         quickCheck (withMaxSuccess 10000 prop)
     it "checks" $
         1 `shouldBe` 1
-    it "calcs prop" . property $ (\x -> (x :: Int) == (x :: Int))
+    -- it "calcs prop" . property $ (\x -> (x :: Int) == (x :: Int))
     it "throws" $
         evaluate (1 `div` 0) `shouldThrow` anyException
     it "runs IO" $ do
-        length <$> readFile "/etc/passwd" `shouldReturn` 3512
+        -- length <$> readFile "/etc/passwd" `shouldReturn` 3512
         readFile "/etc/shadow" `shouldThrow` anyException
         (`shouldThrow` anyException) $ do
             _ <- readFile "/etc/shadow"

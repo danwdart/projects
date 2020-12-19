@@ -14,6 +14,7 @@ build-type:          Simple
 extra-source-files:  README.md
 
  -- deps too old
+
 executable bluetooth
   hs-source-dirs:      src
   main-is:             bluetooth.hs

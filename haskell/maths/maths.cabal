@@ -183,6 +183,12 @@ executable multpers
   build-depends:       base >= 4.7 && < 5
   other-modules:       Data.List.Nub, Data.List.Repeat
 
+--executable napier-locar
+--  hs-source-dirs:      src
+--  main-is:             napier-locar.hs
+--  default-language:    Haskell2010
+--  build-depends:       base >= 4.7 && < 5, digits
+
 executable numbertypes
   hs-source-dirs:      src
   main-is:             numbertypes.hs

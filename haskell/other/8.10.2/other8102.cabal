@@ -454,12 +454,6 @@ executable mvar
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, async
 
-executable napier-locar
-  hs-source-dirs:      src
-  main-is:             napier-locar.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, digits
-
 executable noecho
   hs-source-dirs:      src
   main-is:             noecho.hs

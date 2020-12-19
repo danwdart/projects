@@ -1,15 +1,15 @@
 { nixpkgs ? import <nixpkgs> {},
-  compiler ? "ghc8102" }:
+  compiler ? "ghc884" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      websites = self.callCabal2nix "boardgames" (gitignore ./.) {};
+      reflexstuff = self.callCabal2nix "reflexstuff" (gitignore ./.) {};
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.websites
+      p.reflexstuff
     ];
     buildInputs = [
       nixpkgs.haskellPackages.cabal-install
@@ -20,11 +20,11 @@ let
     ];
     withHoogle = true;
   };
-  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.websites);
+  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.reflexstuff);
 in
 {
   inherit shell;
   inherit exe;
   inherit myHaskellPackages;
-  websites = myHaskellPackages.websites;
+  reflexstuff = myHaskellPackages.reflexstuff;
 }
