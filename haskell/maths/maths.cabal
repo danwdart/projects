@@ -44,11 +44,11 @@ executable 6x6euclid
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable ai
-  hs-source-dirs:      src
-  main-is:             ai.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, containers, data-default, digits
+-- executable ai
+--   hs-source-dirs:      src
+--   main-is:             ai.hs
+--   default-language:    Haskell2010
+--   build-depends:       base >= 4.7 && < 5, containers, data-default, digits
 
 executable arithmoi
   hs-source-dirs:      src
@@ -62,11 +62,11 @@ executable babylonsqrt
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable base
-  hs-source-dirs:      src
-  main-is:             base.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, digits
+-- executable base
+--   hs-source-dirs:      src
+--   main-is:             base.hs
+--   default-language:    Haskell2010
+--   build-depends:       base >= 4.7 && < 5, digits
 
 executable cardord
   hs-source-dirs:      src
@@ -86,17 +86,17 @@ executable currency-and-units
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable dungeon
-  hs-source-dirs:      src
-  main-is:             dungeon.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, digits
+-- executable dungeon
+--   hs-source-dirs:      src
+--   main-is:             dungeon.hs
+--   default-language:    Haskell2010
+--   build-depends:       base >= 4.7 && < 5, digits
 
-executable eightytwothousand
-  hs-source-dirs:      src
-  main-is:             82000.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, digits
+-- executable eightytwothousand
+--   hs-source-dirs:      src
+--   main-is:             82000.hs
+--   default-language:    Haskell2010
+--   build-depends:       base >= 4.7 && < 5, digits
 
 executable fibsums
   hs-source-dirs:      src
