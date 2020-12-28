@@ -5,7 +5,7 @@ const $cfe = $(`#cfe`),
     $graph = $(`canvas#graph`);
 
 const getCFEDetails = cfe => {
-    const arr = cfe.split(/[;,]/).filter(v => 0 != v).map(str => Number(str)),
+    const arr = cfe.split(/[;,]/).map(str => Number(str)),
         revarr = arr.reverse(),
         value = revarr.length ? revarr.reduce((t, n) => n + (1 / t)) : 1,
         frac = revarr.length ? revarr.reduce(([n, d], m) => [d + (n * m), n], [1, 0]) : [1, 1];
