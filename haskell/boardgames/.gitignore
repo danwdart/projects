@@ -6,3 +6,5 @@ google.json
 *.hi
 *.o
 .env
+result*
+.direnv
