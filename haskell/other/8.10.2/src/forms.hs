@@ -45,18 +45,15 @@ data Form = Form {
 
 elementParser :: Parsec Text u FormElement
 elementParser = do
-    label <- T.pack <$> manyTill anyChar newline
-    traceM "Label is: "
-    traceShowM label
+    label <- T.pack <$> many1 (noneOf "\n") <* optional newline
     pure $ FormElement label FreeText
 
 formParser :: Parsec Text u Form
 formParser = do
-    formTitle' <- T.pack <$> manyTill anyChar newline
-    els <- sepBy1 newline elementParser
-    traceM "Els are: "
-    traceShowM els
-    pure $ Form formTitle' [] -- els
+    formTitle' <- T.pack <$> many1 (noneOf "\n") <* newline
+    newline
+    els <- many1 (elementParser <* optional newline)
+    pure $ Form formTitle' els
 
 main ∷ IO ()
 main = do
