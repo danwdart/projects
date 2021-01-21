@@ -44,11 +44,11 @@ executable 6x6euclid
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
--- executable ai
---   hs-source-dirs:      src
---   main-is:             ai.hs
---   default-language:    Haskell2010
---   build-depends:       base >= 4.7 && < 5, containers, data-default, digits
+executable ai
+  hs-source-dirs:      src
+  main-is:             ai.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
 
 executable arithmoi
   hs-source-dirs:      src
@@ -182,6 +182,12 @@ executable multpers
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
   other-modules:       Data.List.Nub, Data.List.Repeat
+
+executable neural
+  hs-source-dirs:      src
+  main-is:             neural.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
 
 --executable napier-locar
 --  hs-source-dirs:      src
