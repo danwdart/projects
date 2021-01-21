@@ -14,8 +14,8 @@ import Language.Haskell.TH.Syntax
 import Text.Parsec
 import Text.Parsec.Text
 
-data IsDropdown = Dropdown | NotDropdown deriving (Show)
-data IsMulti = Multi | NotMulti deriving (Show)
+data IsDropdown = NotDropdown | Dropdown  deriving (Enum, Show)
+data IsMulti = NotMulti | Multi deriving (Enum, Show)
 
 data FormOption = FormOption {
     formOptionValue :: Text, -- TODO definable
@@ -24,7 +24,7 @@ data FormOption = FormOption {
 
 type FormOptions = [FormOption]
 
-data FormType = FreeText -- Maybe FormAttributes -- TODO ResultTypeType eg Text
+data FormElementType = FreeText -- Maybe FormAttributes -- TODO ResultTypeType eg Text
     | Number
     | Date
     | Time
@@ -33,7 +33,7 @@ data FormType = FreeText -- Maybe FormAttributes -- TODO ResultTypeType eg Text
 
 data FormElement = FormElement {
     formElementLabel :: Text,
-    formElementType :: FormType
+    formElementType :: FormElementType
 } deriving (Show)
 
 type FormElements = [FormElement]
@@ -43,14 +43,26 @@ data Form = Form {
     formElements :: FormElements
 } deriving (Show)
 
+elementTypeParser :: Parsec Text u FormElementType
+elementTypeParser =
+    (FreeText <$ string "(free text)") <|>
+    (Number <$ string "(number)") <|>
+    (Date <$ string "(date)") <|>
+    (Time <$ string "(time)") <|>
+    (FreeText <$ string "...")
+
 elementParser :: Parsec Text u FormElement
 elementParser = do
-    label <- T.pack <$> many1 (noneOf "\n") <* optional newline
-    pure $ FormElement label FreeText
+    label <- T.pack <$> many1 (noneOf "\n(.")
+    optional spaces
+    elementType <- elementTypeParser
+    optional newline
+    pure $ FormElement label elementType
 
 formParser :: Parsec Text u Form
 formParser = do
-    formTitle' <- T.pack <$> many1 (noneOf "\n") <* newline
+    formTitle' <- T.pack <$> many1 (noneOf "\n")
+    newline
     newline
     els <- many1 (elementParser <* optional newline)
     pure $ Form formTitle' els
