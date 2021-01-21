@@ -7,4 +7,5 @@ google.json
 *.o
 .env
 result*
+
 .direnv
