@@ -1,2 +1,4 @@
 app.nw
 node_modules
+.direnv
+result*
