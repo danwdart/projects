@@ -542,6 +542,12 @@ executable random
   main-is:             random.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, random
+
+executable read
+  hs-source-dirs:      src
+  main-is:             read.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
   
 executable reader
   hs-source-dirs:      src
