@@ -7,4 +7,4 @@ import           Data.Elf
 import           Data.Functor
 
 main ∷ IO ()
-main = (BS.readFile "/usr/bin/apt" <&> parseElf) >>= print . elfMachine
+main = (BS.readFile "/bin/sh" <&> parseElf) >>= print . elfMachine
