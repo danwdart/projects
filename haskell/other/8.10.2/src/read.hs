@@ -7,17 +7,20 @@ import Text.ParserCombinators.ReadP
 import Text.ParserCombinators.ReadPrec (lift)
 import Debug.Trace
 
+personParser :: (String -> Int -> a) -> ReadP a
+personParser c = do        
+    name <- manyTill get (char ',')
+    skipSpaces
+    age <- read <$> munch1 isDigit
+    pure $ c name age
+
 data Person = Person {
     name :: String,
     age :: Int
 } deriving (Show)
 
 instance Read Person where
-    readsPrec _ = readP_to_S $ do        
-        name <- manyTill get (char ',')
-        skipSpaces
-        age <- read <$> munch1 isDigit
-        pure $ Person name age
+    readsPrec _ = readP_to_S $ personParser Person
 
 data Person2 = Person2 {
     name2 :: String,
@@ -25,11 +28,7 @@ data Person2 = Person2 {
 } deriving (Show)
 
 instance Read Person2 where
-    readPrec = lift $ do        
-        name <- manyTill get (char ',')
-        skipSpaces
-        age <- read <$> munch1 isDigit
-        pure $ Person2 name age
+    readPrec = lift $ personParser Person2
 
 desc :: String
 desc = "Dan, 29"
