@@ -1,8 +1,9 @@
 { nixpkgs ? import <nixpkgs> {},
-  compiler ? "ghcjs" }:
+  ghcjs ? "ghcjs86",
+  compiler ? "ghc865" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
-  myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
+  myHaskellPackages = nixpkgs.pkgs.haskell.packages.${ghcjs}.override {
     overrides = self: super: rec {
       ghcjs-stuff = self.callCabal2nix "ghcjs-stuff" (gitignore ./.) {};
     };
@@ -19,7 +20,7 @@ let
       nixpkgs.haskellPackages.stylish-haskell
       nixpkgs.haskellPackages.hlint
     ];
-    withHoogle = true;
+    # withHoogle = true;
   };
   exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.ghcjs-stuff);
 in
