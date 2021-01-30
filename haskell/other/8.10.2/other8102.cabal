@@ -536,7 +536,13 @@ executable qchas
   main-is:             qchas.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, qchas
-  
+
+executable quine
+  hs-source-dirs:      src
+  main-is:             quine.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable random
   hs-source-dirs:      src
   main-is:             random.hs
@@ -628,11 +634,23 @@ executable shop
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
+executable something
+  hs-source-dirs:      src
+  main-is:             something.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
 executable sound
   hs-source-dirs:      src
   main-is:             sound.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, pulseaudio, jack
+
+executable sql
+  hs-source-dirs:      src
+  main-is:             sql.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, HDBC
 
 executable st
   hs-source-dirs:      src
@@ -733,7 +751,7 @@ executable unicode
   hs-source-dirs:      src
   main-is:             unicode.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, mtl
+  build-depends:       base >= 4.7 && < 5, mtl, base-unicode-symbols
 
 executable unlift
   hs-source-dirs:      src
@@ -770,12 +788,19 @@ executable writer
   main-is:             writer.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
-
---executable vulkan
---  hs-source-dirs:      src
---  main-is:             vulkan.hs
---  default-language:    Haskell2010
---  build-depends:       base >= 4.7 && < 5, vulkan
+  
+executable xpath
+  hs-source-dirs:      src
+  main-is:             xpath.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, hxt
+  
+executable yaml
+  hs-source-dirs:      src
+  main-is:             yaml.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, yaml
+  
 
 test-suite quickcheck
   type:                exitcode-stdio-1.0
