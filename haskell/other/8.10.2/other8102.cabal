@@ -537,11 +537,12 @@ executable qchas
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, qchas
 
-executable quine
-  hs-source-dirs:      src
-  main-is:             quine.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+-- will not compile
+-- executable quine
+--   hs-source-dirs:      src
+--   main-is:             quine.hs
+--   default-language:    Haskell2010
+--   build-depends:       base >= 4.7 && < 5
 
 executable random
   hs-source-dirs:      src
@@ -646,11 +647,11 @@ executable sound
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, pulseaudio, jack
 
-executable sql
-  hs-source-dirs:      src
-  main-is:             sql.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, HDBC
+-- executable sql
+--   hs-source-dirs:      src
+--   main-is:             sql.hs
+--   default-language:    Haskell2010
+--   build-depends:       base >= 4.7 && < 5, HDBC, HDBC-mysql
 
 executable st
   hs-source-dirs:      src
@@ -793,7 +794,8 @@ executable xpath
   hs-source-dirs:      src
   main-is:             xpath.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, hxt
+  build-depends:       base >= 4.7 && < 5, safe-foldable, hxt, hxt-xpath
+  other-modules:       Lib.XPath
   
 executable yaml
   hs-source-dirs:      src

@@ -18,3 +18,4 @@ b1 = undefined
 main1 = getLine <&> fmap toUpper <&> words <&> intercalate "-" <&> replicate 2 <&> unwords <&> a2
 
 -- main2 =
+main = pure ()
