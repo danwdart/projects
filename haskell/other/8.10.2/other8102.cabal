@@ -176,11 +176,17 @@ executable contravariant
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
 
-executable icpp
+executable cplusplus
   hs-source-dirs:      src
-  main-is:             cpp.hs
+  main-is:             cplusplus.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, inline-c-cpp
+
+executable cpostprocess
+  hs-source-dirs:      src
+  main-is:             cpostprocess.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
 
 executable crackme
   hs-source-dirs:      src
