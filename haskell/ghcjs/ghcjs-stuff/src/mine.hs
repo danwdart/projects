@@ -74,7 +74,7 @@ serve ∷ JSM () → IO ()
 serve = run 5000
 
 logHere ∷ JSM ()
-logHere = void . jsg "console" # "log" $ ["Hi folks!"]
+logHere = void . (jsg "console" # "log") $ ["Hi folks!"]
 
 -- Prints Maybe Bool properly - but there's no answer if not that
 getConfirmFromClient ∷ JSM Bool
