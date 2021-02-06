@@ -6,3 +6,5 @@ nix-build -o result-reflexstuff -A ghcjs.reflexstuff
 
 nix-bulid -o result-jsaddle-stuff-ghc -A ghc.jsaddle-stuff
 nix-build -o result-reflexstuff-ghc -A ghc.reflexstuff
+
+nix-build -o android-result -A android.reflexstuff
