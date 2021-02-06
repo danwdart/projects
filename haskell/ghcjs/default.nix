@@ -13,7 +13,7 @@
   # useWarp = true;
 
   android.reflexstuff = {
-    executableName = "reflexstuff";
+    executableName = "dom";
     applicationId = "com.jolharg.reflexstuff";
     displayName = "Reflex Stuff";
   };
