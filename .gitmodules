@@ -1,3 +1,6 @@
 [submodule "haskell/ghcjs/reflex-platform"]
 	path = haskell/ghcjs/reflex-platform
 	url = https://github.com/reflex-frp/reflex-platform
+[submodule "haskell/wasm/wasm-cross"]
+	path = haskell/wasm/wasm-cross
+	url = git@github.com:WebGHC/wasm-cross.git
