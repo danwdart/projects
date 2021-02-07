@@ -11,7 +11,7 @@
   };
 
   # useWarp = true;
-
+  
   android.reflexstuff = {
     executableName = "dom";
     applicationId = "com.jolharg.reflexstuff";
@@ -19,8 +19,8 @@
   };
 
   shells = {
-    ghc = ["basestuff" "jsaddle-stuff" "reflexstuff"];
-    ghcjs = ["basestuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
-    wasm = ["basestuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
+    ghc = ["base-stuff" "jsaddle-stuff" "reflexstuff"];
+    ghcjs = ["base-stuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
+    wasm = ["base-stuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
   };
 })
