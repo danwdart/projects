@@ -7,17 +7,10 @@
     base-stuff = ./base-stuff;
     ghcjs-stuff = ./ghcjs-stuff;
     jsaddle-stuff = ./jsaddle-stuff;
-    misostuff = ./misostuff;
     reflexstuff = ./reflexstuff;
   };
 
   # useWarp = true;
-
-  android.misostuff = {
-    executableName = "misostuff";
-    applicationId = "com.jolharg.misostuff";
-    displayName = "Miso Stuff";
-  };
 
   android.reflexstuff = {
     executableName = "dom";
@@ -27,7 +20,7 @@
 
   shells = {
     ghc = ["basestuff" "jsaddle-stuff" "reflexstuff"];
-    ghcjs = ["basestuff" "ghcjs-stuff" "jsaddle-stuff" "misostuff" "reflexstuff"];
-    wasm = ["basestuff" "ghcjs-stuff" "jsaddle-stuff" "misostuff" "reflexstuff"];
+    ghcjs = ["basestuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
+    wasm = ["basestuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
   };
 })
