@@ -13,54 +13,47 @@ category:            Web
 build-type:          Simple
 extra-source-files:  README.md
 
+common shared-properties
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options:       -dedupe
+
 -- euler
 executable euler1
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             euler/1.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-
+  
 executable euler2
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             euler/2.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable euler3
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             euler/3.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
 executable euler4
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             euler/4.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable 6x6euclid
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             6x6euclid.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable ai
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             ai.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable arithmoi
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             ai.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, arithmoi
 
 executable babylonsqrt
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             babylonsqrt.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 -- executable base
 --   hs-source-dirs:      src
@@ -69,22 +62,18 @@ executable babylonsqrt
 --   build-depends:       base >= 4.7 && < 5, digits
 
 executable cardord
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cardord.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable cards
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cards.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
 
 executable currency-and-units
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             currency-and-units.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 -- executable dungeon
 --   hs-source-dirs:      src
@@ -99,95 +88,69 @@ executable currency-and-units
 --   build-depends:       base >= 4.7 && < 5, digits
 
 executable fibsums
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             fibsums.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable fibvslucasmod
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             fibvslucasmod.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable frobenius
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             frobenius.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable gamma
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             gamma.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, invertible
 
 executable gol
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             gol.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable harmonic
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             harmonic.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, extra
 
 executable hashparker
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             hashparker.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable kaprekar
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             kaprekar.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable localgraph
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             localgraph.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, fgl, graphite, graphviz, hashable, text
 
 executable lucas
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             lucas.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable mod
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             mod.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable more
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             more.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, egyptian-fractions, numbers, FixedPoint-simple
 
 executable mtdivergence
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             mtdivergence.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable multpers
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             multpers.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
   other-modules:       Data.List.Nub, Data.List.Repeat
 
 executable neural
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             neural.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 --executable napier-locar
 --  hs-source-dirs:      src
@@ -196,21 +159,16 @@ executable neural
 --  build-depends:       base >= 4.7 && < 5, digits
 
 executable numbertypes
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             numbertypes.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable numerators
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             numerators.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable oeis
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             oeis.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                       , aeson
                       , aeson-pretty
@@ -224,122 +182,91 @@ executable oeis
                       , vector
 
 executable ohsol
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             ohsol.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers, MonadRandom, random-shuffle, utility-ht
 
 executable onetwenty
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             120.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable pichang
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             pichang.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5    
 
 executable pi-jg
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             pi/jg.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5    
 
 executable pi-factory
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             pi/factory.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, factory
 
 executable pills
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             pills.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable prodtosingle
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             prodtosingle.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable sandpiles
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             sandpiles.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, comonad
 
 executable selflocation
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             selflocation.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, numbers
 
 executable sumdiff-lucaslike
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             sumdiff-lucaslike.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, MonadRandom
 
 executable surds
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             surds.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable units
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             units.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable vaneck
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             vaneck.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable words
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             words.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers, mtl, profunctors
 
 executable decomp
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             primefun/decomp.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
 -- Primes
 executable primemod
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             primefun/primemod.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable primefun
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             primefun/primefun.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
 executable primeraw
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             primefun/primeraw.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable primey
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             primefun/primey.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, primes
 
 executable raw
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             primefun/raw.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5

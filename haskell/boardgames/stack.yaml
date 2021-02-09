@@ -1,6 +1,0 @@
-ghc-options:
-  boardgames: -j16 -Wall -Werror
-packages:
-- .
-extra-deps: null
-resolver: nightly-2020-12-09

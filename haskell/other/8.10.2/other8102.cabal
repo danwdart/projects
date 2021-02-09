@@ -13,491 +13,373 @@ category:            Web
 build-type:          Simple
 extra-source-files:  README.md
 
-executable intro
+common shared-properties
   hs-source-dirs:      src
-  main-is:             Main.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options:       -dedupe
+
+executable intro
+  import: shared-properties
+  main-is:             Main.hs
 
 executable algsys
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             algebra-systems.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable alltypes
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             alltypes.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable applicativedo
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             applicativedo.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable array
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             array.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, array
 
 executable async
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             async.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, async
 
 executable bar
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             bar.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
   other-modules:       Lib.SafeDiv
 
 executable bashy
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             bashy.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, directory
 
 executable basic
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             basic.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable baz
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             baz.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable betterbools
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             betterbools.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable bifunctor
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             bifunctor.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, bifunctors
 
 executable binarygame
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             binarygame.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, ansi-terminal, ilist, transformers
 
 executable breakeverything
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             breakeverything.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable c
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             c.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, inline-c
 
 executable chain
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             chain.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable cipher
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cipher.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl, transformers
 
 executable class
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             class.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable cli_contt
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cli_contt.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
 executable cli
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cli.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable comonads
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             comonads.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, comonad, containers
 
 executable complex
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             complex.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable composefunctors
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             composefunctors.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, template-haskell
 
 executable composition-eta
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             composition-eta.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable cont
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cont.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, directory, mtl
 
 executable cont-variadic
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cont-variadic.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, mtl
 
 executable contravariant
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             contravariant.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable cplusplus
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cplusplus.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, inline-c-cpp
 
 executable cpostprocess
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cpostprocess.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable crackme
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             crackme.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable currency
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             currency.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable cyclesinmixedset
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             cyclesinmixedset.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
 executable data
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             data.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
   other-modules:       Lib.Credential, Lib.Person
 
 executable data2
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             data2.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable datatypes
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             datatypes.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable delay
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             delay.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, ansi-terminal, random
 
 executable disparate
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             disparate.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable do
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             do.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable dokis
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             dokis.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable dorar
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             dorar.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable echo
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             echo.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable elf
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             elf.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, elf, bytestring
 
 executable enum
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             enum.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable error-collection
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             error-collection.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, bifunctors, containers
 
 executable eventloop
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             eventLoop.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, async, concurrent-extra, lifted-async
 
 executable exception-safety
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             exception-safety.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable existentialism
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             existentialism.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable fake
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             fake.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, fakedata, text
 
 executable feistel
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             feistel.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable ffi
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             ffi.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable fieldTrans
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             fieldTrans.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, aeson, containers, mtl
 
 executable fileformat
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             fileformat.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, binary, bytestring
 
 executable files
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             files.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, directory
 
 executable fix
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             fix.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable flow
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             flow.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, flow
 
 executable foo
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             foo.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable forms
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             forms.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, parsec, template-haskell, text
 
 executable frp
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             frp.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable generics
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             generics.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable gifencode
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             gifencode.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, gd
   other-modules:       Lib.Seq
 
 executable gl
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             gl.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, OpenGL
 
 executable gloss
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             gloss.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, gloss
 
 executable graft
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             graft.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable heact
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             heact.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers
 
 executable interact
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             interact.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable ioref
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             ioref.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable json
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             json.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, aeson, aeson-qq, bytestring, mtl
 
 executable lc
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             lc.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable lcdblock
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             lcdblock.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, containers
 
 executable lenses
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             lenses.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, lens
 
 executable mmio
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             mmio.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mmap
 
 executable moonmadness
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             moonmadness.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable monad
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             monad.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable mtl
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             mtl.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
 executable mvar
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             mvar.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, async
 
 executable noecho
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             noecho.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable optics
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             optics.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, optics
 
 executable parsec
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             parsec.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, ansi-terminal, parsec
 
 executable parser
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             parser.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable pipeline
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             pipeline.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable pizza
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             pizza.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
@@ -514,33 +396,27 @@ executable pizza
                       , vector
 
 executable ports
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             ports.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable prim
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             prim.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, ghc-prim
   
 executable profunctor
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             profunctor.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, profunctors
   
 executable python5
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             python5.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, array
   
 executable qchas
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             qchas.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, qchas
 
 -- will not compile
@@ -551,106 +427,81 @@ executable qchas
 --   build-depends:       base >= 4.7 && < 5
 
 executable random
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             random.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, random
 
 executable read
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             read.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
   
 executable reader
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             reader.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
 executable rebindable
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             rebindable.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable recursion
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             recursion.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
   
 executable regex
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             regex.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, regex-tdfa
 
 executable req
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             req.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, aeson, bytestring, mtl, req, retry, text
 
 executable rws
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             rws.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl, transformers, monads-tf
 
 executable scrapetumblr
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             scrapetumblr.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable sdl
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             sdl.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, sdl2, sdl2-ttf, sdl2-image, sdl2-mixer, sdl2-gfx
 
 executable sequence
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             sequence.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
   other-modules:       Lib.Seq
 
 executable sequences
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             sequences.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable serial
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             serial.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, serial
 
 executable shell
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             shell.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, shell-conduit
 
 executable shop
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             shop.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable something
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             something.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable sound
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             sound.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, pulseaudio, jack
 
 -- executable sql
@@ -660,94 +511,72 @@ executable sound
 --   build-depends:       base >= 4.7 && < 5, HDBC, HDBC-mysql
 
 executable st
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             st.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable state
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             state.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
 
 executable stm
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             stm.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, stm
 
 executable tagless-final
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             tagless-final.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl, text
 
 executable tardis
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             tardis.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, tardis
 
 executable terrain
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             terrain.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, random
 
 executable texttodec
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             textToDec.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable texttodeccrazy
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             textToDecCrazy.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable tinylang
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             tinylang.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, bytestring, containers, parsec
 
 executable trace
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             trace.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl, transformers
 
 executable transformers
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             transformers.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, transformers
 
 executable trip
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             trip.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable typeable
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             typeable.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable typeapplications
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             typeapplications.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable types
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             types.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
   other-modules:       Lib.Auth
                       , Lib.Data.Email
                       , Lib.Data.Name
@@ -755,61 +584,49 @@ executable types
                       , Lib.Data.User
 
 executable unicode
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             unicode.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl, base-unicode-symbols
 
 executable unlift
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             unlift.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, lifted-base, relude, unliftio-core
 
 executable variadic
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             variadic.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable wai
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             wai.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, http-types, wai, warp
 
 executable wave
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             wave.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, fft
 
 executable whereinlet
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             whereinlet.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
 
 executable writer
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             writer.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, mtl
   
 executable xpath
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             xpath.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, safe-foldable, hxt, hxt-xpath
   other-modules:       Lib.XPath
   
 executable yaml
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             yaml.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, yaml
   
-
 test-suite quickcheck
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test

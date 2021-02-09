@@ -12,3 +12,5 @@ executable dom
   hs-source-dirs:      src
   build-depends:       base >=4 && <5, reflex-dom
   default-language:    Haskell2010
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  cpp-options:         -DGHCJS_BROWSER

@@ -17,11 +17,16 @@ source-repository head
   type: git
   location: https://github.com/danwdart/sls
 
+common shared-properties
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options:       -dedupe
+
 executable githubpr
+  import: shared-properties
   main-is: github-pr.hs
-  hs-source-dirs:
-      src
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
     , base >=4.7 && <5
@@ -31,13 +36,10 @@ executable githubpr
     , lens
     , serverless-haskell
     , text
-  default-language: Haskell2010
 
 executable emailme
+  import: shared-properties
   main-is: emailme.hs
-  hs-source-dirs:
-      src
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
     , base >=4.7 && <5
@@ -47,9 +49,9 @@ executable emailme
     , amazonka-ses
     , serverless-haskell
     , text
-  default-language: Haskell2010
 
 executable html
+  import: shared-properties
   main-is: index.hs
   hs-source-dirs:
       html
@@ -63,4 +65,3 @@ executable html
     , fsutils
     , req
     , text
-  default-language: Haskell2010

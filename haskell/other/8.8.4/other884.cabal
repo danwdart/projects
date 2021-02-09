@@ -13,57 +13,56 @@ category:            Web
 build-type:          Simple
 extra-source-files:  README.md
 
+common shared-properties
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options:       -dedupe
+
  -- too new!
 executable bijections
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             bijections.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, invertible
 
 executable asm
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             asm.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, inline-asm
 
 executable langparse
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             langparse.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, parsec, language-c, language-javascript
 
 -- needs older dbus
 executable mdns
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             mdns.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, avahi
 
 -- broken on newer deps
 executable sockets
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             sockets.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, async, bytestring, network
 
 executable these
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             these.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, these
 
 -- needs older transformers
 executable threedeegee
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             3dg.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, threepenny-gui
 
 -- gogol requires older base
 executable translatorglitch
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             translatorglitch.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                       , aeson
                       , bytestring

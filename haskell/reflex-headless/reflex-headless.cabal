@@ -7,14 +7,19 @@ maintainer:          git@dandart.co.uk
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
-executable reflex
-  main-is:             reflex.hs
+common shared-properties
   hs-source-dirs:      src
-  build-depends:       base >=4.12 && <5, async, reflex
   default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options:       -dedupe
+
+executable reflex
+  import: shared-properties
+  main-is:             reflex.hs
+  build-depends:       base >=4.12 && <5, async, reflex
 
 executable minishop
+  import: shared-properties
   main-is:             minishop.hs
-  hs-source-dirs:      src
   build-depends:       base >=4.12 && <5, ansi-terminal, async, reflex
-  default-language:    Haskell2010

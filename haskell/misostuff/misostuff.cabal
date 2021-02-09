@@ -20,10 +20,9 @@ executable misostuff
   main-is:             todo.hs
   hs-source-dirs:      src
   default-language:    Haskell2010
-  ghcjs-options:
-    -dedupe
-  cpp-options:
-    -DGHCJS_BROWSER
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options: -dedupe
+  cpp-options: -DGHCJS_BROWSER
   build-depends:
     aeson,
     base < 5,
