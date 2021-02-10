@@ -10,9 +10,6 @@ import           Data.Functor.Compose
 import           Data.Text              (pack, unpack)
 import           System.Environment
 import           Test.WebDriver
-import           Test.WebDriver.Class
-import           Test.WebDriver.Monad
-import           Test.WebDriver.Session
 
 firefoxConfig ∷ WDConfig
 firefoxConfig = defaultConfig {-{
@@ -38,7 +35,7 @@ chromeConfig = defaultConfig {
 
 main ∷ IO ()
 main = do
-    [email, password, username, domain, tag, newsource] <- getCompose $ pack <$> Compose getArgs
+    [email, password, _, _, tag, newsource] <- getCompose $ pack <$> Compose getArgs
     runSession firefoxConfig $ do
         setImplicitWait 500000
         openPage "https://tumblr.com"
@@ -71,7 +68,7 @@ main = do
             clearInput contentSourceBox
             sendKeys newsource contentSourceBox
             saveButton <- findElem (ByClass "create_post_button")
-            closeButton <- findElem (ByCSS "[data-js-clickableclose]")
+            _ <- findElem (ByCSS "[data-js-clickableclose]")
             click saveButton
             focusFrame DefaultFrame
             liftIO (threadDelay 1000000)
