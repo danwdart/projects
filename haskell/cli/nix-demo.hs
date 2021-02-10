@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i runghc -p haskell.compiler.ghc8102
+#! nix-shell -i runghc -p haskell.compiler.ghc8103
 
 {-# LANGUAGE OverloadedLists #-}
 
