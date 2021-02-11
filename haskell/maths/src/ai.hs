@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-
+{-# OPTIONS_GHC -Wno-unused-local-binds -Wno-unused-top-binds -Wunused-matches #-}
 -- Neural Network
 
 -- @see https://victorzhou.com/blog/intro-to-neural-networks/
@@ -56,7 +56,7 @@ train data' allYTrues network@Network {
                 yPred = ffLayer xs network
                 d_L_d_ypred = -2 * (yTrue - yPred)
                 dOutputs = derivSigmoid (sumOutput !! 0)
-                dHiddens = fmap ((*) dOutputs) sigHidden
+                -- dHiddens = fmap ((*) dOutputs) sigHidden
 
                 -- d_ypred_d_w5 = (hiddenLayer' !! 0) * derivSigmoid(sum_o1)
             in 1
