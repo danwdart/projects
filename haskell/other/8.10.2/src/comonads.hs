@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveFoldable  #-}
 {-# LANGUAGE DeriveFunctor   #-}
 {-# LANGUAGE UnicodeSyntax   #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches -Wno-type-defaults #-}
 
 import           Control.Comonad
 import           Control.Comonad.Env
@@ -95,7 +96,7 @@ warehouse :: Store Int (Maybe String)
 warehouse = store (\shelf -> M.lookup shelf inventory) 1
 
 squared :: Store Int Int
-squared = store (\x -> x ^ 2) 10
+squared = store (\x -> x ^ (2 :: Int)) 10
 
 aboveZero :: Int -> Maybe Int
 aboveZero n | n > 0 = Just n
@@ -175,8 +176,8 @@ main = do
         print $ experiment neighbourLocations $ step $ step startingGrid
         print $ experiment neighbourLocations $ step $ step $ step startingGrid
     do
-        print $ ask (env 42 "Hello")
-        print $ asks succ (env 42 "Hello")
+        print $ ask (env (42 :: Int) "Hello")
+        print $ asks succ (env (42 :: Int) "Hello")
         -- TODO abuse do
     do
         print $ trace [1, 2, 3] $ traced (sum :: [Int] -> Int)

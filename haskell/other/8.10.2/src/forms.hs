@@ -7,10 +7,6 @@
 
 import qualified Data.Text as T
 import Data.Text (Text)
-import qualified Data.Text.IO as T
-import Debug.Trace
-import GHC.TypeLits
-import Language.Haskell.TH.Syntax
 import Text.Parsec
 import Text.Parsec.Text
 
@@ -53,17 +49,17 @@ elementTypeParser =
 
 elementParser :: Parsec Text u FormElement
 elementParser = do
-    label <- T.pack <$> many1 (noneOf "\n(.")
+    label' <- T.pack <$> many1 (noneOf "\n(.")
     optional spaces
     elementType <- elementTypeParser
     optional newline
-    pure $ FormElement label elementType
+    pure $ FormElement label' elementType
 
 formParser :: Parsec Text u Form
 formParser = do
     formTitle' <- T.pack <$> many1 (noneOf "\n")
-    newline
-    newline
+    _ <- newline
+    _ <- newline
     els <- many1 (elementParser <* optional newline)
     pure $ Form formTitle' els
 

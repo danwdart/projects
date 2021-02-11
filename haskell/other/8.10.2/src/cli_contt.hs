@@ -16,10 +16,10 @@ main ∷ IO ()
 main = do
     putStrLn welcome
     putStr "arsvx login: "
-    login <- getLine
+    _ <- getLine
     putStr "Password: "
     hSetEcho stdin False
-    pw <- getLine
+    _ <- getLine
     hSetEcho stdin True
     putStrLn "\nSystem is healthy.\n"
     shell

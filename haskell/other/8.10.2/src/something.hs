@@ -1,21 +1,20 @@
 {-# LANGUAGE UnicodeSyntax #-}
-import           Control.Applicative
-import           Control.Arrow
-import           Control.Monad
-import           Data.Char
-import           Data.Function
-import           Data.Functor
-import           Data.List
+-- import           Control.Arrow
+-- import           Control.Monad
+-- import           Data.Char
+-- import           Data.Functor
+-- import           Data.List
 
-a1 x = x <> (" " <> show (length x))
+-- a1 x = x <> (" " <> show (length x))
 
-a2 = unwords . ap [id, show.length] . pure
+-- a2 :: String -> String
+-- a2 = unwords . ap [id, show.length] . pure
 
-a3 = pure >>> ap [id, show.length] >>> unwords
+-- a3 :: String -> String
+-- a3 = pure >>> ap [id, show.length] >>> unwords
 
-b1 = undefined
+-- main1 :: IO String
+-- main1 = getLine <&> fmap toUpper <&> words <&> intercalate "-" <&> replicate 2 <&> unwords <&> a2
 
-main1 = getLine <&> fmap toUpper <&> words <&> intercalate "-" <&> replicate 2 <&> unwords <&> a2
-
--- main2 =
+main :: IO ()
 main = pure ()

@@ -1,4 +1,6 @@
 {-# LANGUAGE UnicodeSyntax #-}
+{-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-matches -Wno-name-shadowing #-}
+
 {- TODO: Deriving -}
 
 newtype Bob a = Bob a deriving (Show)
@@ -18,7 +20,7 @@ a :: [Int]
 a = do
     a <- pure 1 -- Arrow an element, you get it back.
     b <- pure 2
-    pure a -- ignored!
+    -- pure a -- ignored!
     pure b -- Passed if last, and embedded.
 
 b :: [Int]
@@ -39,10 +41,10 @@ c2 = do
 
 d :: [Int]
 d = do
-    a <- [1..10]
-    b <- [1..2]
-    c <- [1..20]
-    [1..5] -- you get all of the lists' lengths multiplied, with the values here.
+    a <- ([1..10] :: [Int])
+    b <- ([1..2] :: [Int])
+    c <- ([1..20] :: [Int])
+    [1..5] :: [Int] -- you get all of the lists' lengths multiplied, with the values here.
     -- Quite surprising!
 
 main ∷ IO ()

@@ -5,14 +5,13 @@ import Data.Char
 import GHC.Read
 import Text.ParserCombinators.ReadP
 import Text.ParserCombinators.ReadPrec (lift)
-import Debug.Trace
 
 personParser :: (String -> Int -> a) -> ReadP a
 personParser c = do        
-    name <- manyTill get (char ',')
+    name' <- manyTill get (char ',')
     skipSpaces
-    age <- read <$> munch1 isDigit
-    pure $ c name age
+    age' <- read <$> munch1 isDigit
+    pure $ c name' age'
 
 data Person = Person {
     name :: String,

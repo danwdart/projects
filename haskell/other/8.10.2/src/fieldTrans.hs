@@ -4,6 +4,7 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE UnicodeSyntax #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import Control.Monad.Identity
 import Data.Aeson
@@ -133,8 +134,7 @@ instance (FromJSON (a b c)) => FromJSON (Person5 a b c)
 
 instance (ToJSON (a b c)) => ToJSON (Person5 a b c)
 
-
-
+p5 :: Person5 (->) b b
 p5 = Person5 {
     name5 = id
 }
