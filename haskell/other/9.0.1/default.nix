@@ -1,15 +1,15 @@
 { nixpkgs ? import <nixpkgs> {},
-  compiler ? "ghc8102" }:
+  compiler ? "ghc901" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      other8102 = self.callCabal2nix "other8102" (gitignore ./.) {};
+      other901 = self.callCabal2nix "other901" (gitignore ./.) {};
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other8102
+      p.other901
     ];
     buildInputs = [
       nixpkgs.haskellPackages.cabal-install
@@ -19,13 +19,13 @@ let
       nixpkgs.haskellPackages.stylish-haskell
       nixpkgs.haskellPackages.hlint
     ];
-    withHoogle = true;
+    withHoogle = false;
   };
-  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.other8102);
+  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.other901);
 in
 {
   inherit shell;
   inherit exe;
   inherit myHaskellPackages;
-  other8102 = myHaskellPackages.other8102;
+  other901 = myHaskellPackages.other901;
 }
