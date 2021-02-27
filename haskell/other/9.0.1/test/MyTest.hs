@@ -22,7 +22,7 @@ tests = describe "tests" $ do
     -- it "calcs prop" . property $ (\x -> (x :: Int) == (x :: Int))
     it "throws" $
         evaluate (1 `div` 0) `shouldThrow` anyException
-    it "runs IO" $ do
+    xit "runs IO" $ do
         -- length <$> readFile "/etc/passwd" `shouldReturn` 3512
         readFile "/etc/shadow" `shouldThrow` anyException
         (`shouldThrow` anyException) $ do
