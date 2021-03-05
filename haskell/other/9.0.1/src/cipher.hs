@@ -42,7 +42,7 @@ cyclingCipher :: String -> String
 cyclingCipher str = do
     ch <- zip [1..] str
     let (Just ch2) = uncurry cipherChar ch
-    return ch2
+    pure ch2
 
 main :: IO ()
 main = do

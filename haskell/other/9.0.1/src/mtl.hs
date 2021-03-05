@@ -18,7 +18,7 @@ foo = do
     put (1 :: Int)
     tell ["Hi"]
     ask
-    return "Hi"
+    pure "Hi"
 
 main ∷ IO ()
 main = print $ runMyThing foo

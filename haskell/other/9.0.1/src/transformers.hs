@@ -11,7 +11,7 @@ myTResult = runWriterT $ do
     x <- myT "Hi"
     tell ["His name was " <> x]
     tell ["It was indeed " <> x]
-    return $ "My name is " <> x
+    pure $ "My name is " <> x
 
 myTFirst ∷ Maybe String
 myTFirst = fmap fst myTResult

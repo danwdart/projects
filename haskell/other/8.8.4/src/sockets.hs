@@ -21,7 +21,7 @@ server = do
               , addrSocketType = Stream
               }
         addr:_ <- getAddrInfo (Just hints) Nothing (Just port)
-        return addr
+        pure addr
     open addr = do
         sock <- socket (addrFamily addr) (addrSocketType addr) (addrProtocol addr)
         setSocketOption sock ReuseAddr 1
@@ -30,7 +30,7 @@ server = do
         withFdSocket sock setCloseOnExecIfNeeded
         bind sock (addrAddress addr)
         listen sock 10
-        return sock
+        pure sock
     loop sock = forever $ do
         (conn, peer) <- accept sock
         putStrLn $ "Connection from " <> show peer
@@ -49,11 +49,11 @@ client = do
     resolve host port = do
         let hints = defaultHints { addrSocketType = Stream }
         addr:_ <- getAddrInfo (Just hints) (Just host) (Just port)
-        return addr
+        pure addr
     open addr = do
         sock <- socket (addrFamily addr) (addrSocketType addr) (addrProtocol addr)
         connect sock $ addrAddress addr
-        return sock
+        pure sock
     talk sock = do
         sendAll sock "Hello, world!"
         msg <- recv sock 1024

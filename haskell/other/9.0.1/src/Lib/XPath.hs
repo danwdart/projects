@@ -16,7 +16,7 @@ xmlTree ∷ String → IOStateArrow s b XmlTree
 xmlTree = readString [withParseHTML yes, withWarnings no]
 
 myParseXPath ∷ Monad m ⇒ String → [XmlTree] → m XmlTrees
-myParseXPath xpath xs = return . getXPath xpath $ head xs
+myParseXPath xpath xs = pure . getXPath xpath $ head xs
 
 processXPath ∷ String → String → IO [String]
 processXPath xpath html = runX (xmlTree html) >>= myParseXPath xpath <&> concatMap getChildren <&> fmap getNode <&> fmap getText <&> catMaybes

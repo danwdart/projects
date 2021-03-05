@@ -25,7 +25,7 @@ main = do
     shell
 
 shell ∷ IO ()
-shell = void . flip runContT return $ callCC $ \k -> do
+shell = void . flip runContT pure $ callCC $ \k -> do
     liftIO . putStr $ "default@arsvx:~$ "
     line <- liftIO getLine
     when (line == "q" || line == "\EOT") $ k ()

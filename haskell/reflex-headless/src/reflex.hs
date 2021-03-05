@@ -16,4 +16,4 @@ main = runHeadlessApp $ do
     e8 <- performEvent (liftIO . putStrLn . ("You said: " ++) <$> e7)
     _ <- performEvent ((liftIO . aExit $ ()) <$ e8)
     -- Now todo experiment on behaviours etc
-    return eExit -- When do we exit?
+    pure eExit -- When do we exit?

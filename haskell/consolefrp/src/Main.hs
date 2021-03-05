@@ -14,6 +14,6 @@ main = mainWidget $ do
     text "Hello World"
     text "How are you?"
     inp <- input
-    return . fforMaybe inp $ \case
+    pure . fforMaybe inp $ \case
         V.EvKey (V.KChar 'c') [V.MCtrl] -> Just ()
         _ -> Nothing

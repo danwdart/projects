@@ -17,7 +17,7 @@ myHttpConfig = defaultHttpConfig {
 isUsernameValid ∷ Text → Req Bool
 isUsernameValid username = do
     r <- req GET (https "twitter.com" /: username) NoReqBody bsResponse mempty
-    return $ 200 == responseStatusCode r
+    pure $ 200 == responseStatusCode r
 
 doesUserExist ∷ Text → IO Bool
 doesUserExist = runReq myHttpConfig . isUsernameValid
@@ -25,7 +25,7 @@ doesUserExist = runReq myHttpConfig . isUsernameValid
 prettyPrintDoesUserExist ∷ Text → IO Text
 prettyPrintDoesUserExist username = do
     userExists <- doesUserExist username
-    return $ username `append` (if userExists then " exists." else " does not exist.")
+    pure $ username `append` (if userExists then " exists." else " does not exist.")
 
 
 thePopesUsername ∷ Text

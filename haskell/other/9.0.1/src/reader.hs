@@ -47,7 +47,7 @@ r3 ∷ Reader String String
 r3 = do
     a <- ask
     let b = runReader r2 a
-    return $ runReader r1 b
+    pure $ runReader r1 b
 
 mergeReaders ∷ Reader a b → Reader b c → Reader a c
 mergeReaders a b = asks $ runReader b . runReader a

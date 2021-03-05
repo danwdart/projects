@@ -91,9 +91,9 @@ performRound (Game b pl r) = do
         putStrLn $ "That puts you on position " <> (show newPosition <> (" which is " <> show newSpace))
         (_, _) <- processLand p' b newSpace
         -- board'
-        return p'
+        pure p'
 
-    return $ Game b players' r
+    pure $ Game b players' r
 
 main ∷ IO ()
 main = do

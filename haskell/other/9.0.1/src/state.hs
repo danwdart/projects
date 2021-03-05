@@ -21,7 +21,7 @@ stateProcessByDo = do
     _ <- stateModifier x
     _ <- get
     _ <- put [1, 2]
-    return 1
+    pure 1
 
 main ∷ IO ()
 main = mapM_ print [

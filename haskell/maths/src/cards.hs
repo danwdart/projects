@@ -161,7 +161,7 @@ adjCards c = pairsToList . filter (uncurry eqOrAdj) $ listToPairs c
 extractAdj ∷ MonadRandom m ⇒ Deck → m Deck
 extractAdj p = do
     p' <- shuffleM p
-    return $ filterOutList (adjCards p') p'
+    pure $ filterOutList (adjCards p') p'
 
 magicNumbers ∷ MonadRandom m ⇒ m Int
 magicNumbers = length <$> HT.nest 30 extractAdj pack

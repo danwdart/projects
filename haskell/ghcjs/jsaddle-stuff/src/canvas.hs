@@ -24,7 +24,7 @@ line (x1, y1) (x2, y2) ctx = do
     stroke ctx
 {-
 -- Retrieve the conXYZ-ascending-index pairs from a list
--- and return them in another list
+-- and pure them in another list
 -- e.g. [1,2,3] -> [(1, 2), (2, 3)]
 -}
 pairs ∷ [a] → [(a,a)]
@@ -65,7 +65,7 @@ newCanvas doc = do
     setAttribute canvas "width" "1600px"
     setAttribute canvas "height" "800px"
     setAttribute canvas "style" "width: 1600px; height: 800px"
-    return canvas
+    pure canvas
 
 getCanvasContext ∷ HTMLCanvasElement → JSM CanvasRenderingContext2D
 getCanvasContext canvas = fromJSValUnchecked =<< toJSVal =<< getContextUnchecked canvas "2d" ([] :: [String])

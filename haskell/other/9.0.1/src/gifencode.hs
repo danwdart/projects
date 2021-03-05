@@ -14,7 +14,7 @@ main2 = do
     saveGifFile "bob.gif" i
 -}
 
-    -- so what about a combinator for \f x -> f x >> return x for things that return IO () but I want the result from?
+    -- so what about a combinator for \f x -> f x >> pure x for things that pure IO () but I want the result from?
     -- idk maybe better in the state monad or the env monad?
 main ∷ IO ()
 main = newImage (256, 256) >>>=

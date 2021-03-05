@@ -42,7 +42,7 @@ app = newTriggerEvent >>=
     performEvent . (getLineL <$) >>=
     performEvent . (echo <$>) >>=
     performEvent . (exitWith a <$) >>
-    return e
+    pure e
 
 data AppState = AppState
 

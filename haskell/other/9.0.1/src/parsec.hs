@@ -31,7 +31,7 @@ danParserMonadic = do
     pixels <- sepBy (sepBy (toEnum . read <$> many digit) (char ',')) newline
     when (height /= length pixels) $ fail "Height not correct"
     when (width /= length (head pixels)) $ fail "Width not correct"
-    return $ DanImage pixels
+    pure $ DanImage pixels
 
 main ∷ IO ()
 main = do

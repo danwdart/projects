@@ -13,7 +13,7 @@ stringToInteger ∷ String → Integer
 stringToInteger string = fst $ head (readHex $ concatMap ((`showHex` "") . ord) (filter notSpaces string)) where
     notSpaces = (/=' ')
 
--- args = return ["Foo"] :: IO [String]
+-- args = pure ["Foo"] :: IO [String]
 
 foo ∷ IO [String] → IO (Maybe String)
 foo = fmap (maybeIndex 0)

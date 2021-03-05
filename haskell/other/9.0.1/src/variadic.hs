@@ -6,7 +6,7 @@ class PrintAllType t where
 
 instance PrintAllType (IO a) where
     printAll' acc = do print acc
-                       return undefined
+                       pure undefined
 
 instance (Show a, PrintAllType r) => PrintAllType (a -> r) where
     printAll' acc x = printAll' (acc <> [show x])

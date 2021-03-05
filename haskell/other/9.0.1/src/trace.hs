@@ -8,7 +8,7 @@ st = do
     put 2
     r <- get
     traceShowM r
-    return 1
+    pure 1
 
 main ∷ IO ()
 main = do

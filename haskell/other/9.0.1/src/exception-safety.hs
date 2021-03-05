@@ -14,6 +14,6 @@ main = do
     tryRead "bob" >>= print
     writeFile "Jim" "Contents"
     tryRead "Jim" >>= print
-    _ <- return (try $ Control.Monad.Fail.fail "Bob" :: IOStrEx)
+    _ <- pure (try $ Control.Monad.Fail.fail "Bob" :: IOStrEx)
     pure ()
     -- userError "Bob"

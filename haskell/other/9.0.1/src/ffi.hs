@@ -21,14 +21,14 @@ foreign import ccall "sprintf" c_sprintf2 :: CString → CString → CString →
 
 -- foreign import ccall "wrapper" createAddPtr :: (Int -> Int) -> IO (FunPtr (Int -> Int))
 
--- wrapperFunPtr = return (+) >>= createAddPtr >>= {- do stuff >>= -} freeHaskellFunPtr
+-- wrapperFunPtr = pure (+) >>= createAddPtr >>= {- do stuff >>= -} freeHaskellFunPtr
 
 --memAlloca = do
 --    allocaBytes 128 $ \ptr -> do
 --        print ptr
         -- do stuff with the pointer ptr...
         -- ...
-        -- do not return "ptr" in any way because it will become an invalid pointer
+        -- do not pure "ptr" in any way because it will become an invalid pointer
     -- here the 128 bytes have been released and should not be accessed
 
 -- lowLevelAlloca = do

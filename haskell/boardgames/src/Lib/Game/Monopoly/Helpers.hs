@@ -14,35 +14,35 @@ processLand player b space = case space of
         GoSpace -> do
             putStrLn "You win some money."
             let player' = addMoney 200 player
-            return (player', b)
+            pure (player', b)
         PropertySpace p -> do
             putStrLn $ "Unimplemented: " <> show p
-            return (player, b)
+            pure (player, b)
         RandomSpace t -> do
             putStrLn $ "Unimplemented: " <> show t
-            return (player, b)
+            pure (player, b)
         StationSpace s -> do
             putStrLn $ "Unimplemented: " <> show s
-            return (player, b)
+            pure (player, b)
         UtilitySpace u -> do
             putStrLn $ "Unimplemented: " <> show u
-            return (player, b)
+            pure (player, b)
         TaxSpace t -> do
             putStrLn "You hit the tax space!"
             let (player', b') = taxMoney t player b
-            return (player', b')
+            pure (player', b')
         JailSpace -> do
             putStrLn "You are in jail."
-            return (player, b)
+            pure (player, b)
         JustVisitingSpace -> do
             putStrLn "Just visiting right now..."
-            return (player, b)
+            pure (player, b)
         FreeParkingSpace -> do
             putStrLn "You receive all of the money."
-            return (player, b)
+            pure (player, b)
         GoToJailSpace -> do
             putStrLn "You must go to jail now."
-            return (player, b)
+            pure (player, b)
 
 addMoney ∷ Int → Player → Player
 addMoney income player = player {money = money player + income}

@@ -161,7 +161,7 @@ getHomepage = do
     resPage <- req GET uriGetLogin NoReqBody bsResponse uaHeader
     let jar = responseCookieJar resPage
     let token = getXsrfToken jar
-    return (jar, token)
+    pure (jar, token)
 
 login :: Email -> Password -> Token -> HC.CookieJar -> Req (HC.CookieJar, Token, LoginResponseData)
 login sEmail sPassword xsrfToken jar = do
@@ -176,7 +176,7 @@ login sEmail sPassword xsrfToken jar = do
     let loggedInJar = responseCookieJar resLogin
     let loggedInXsrfToken = getXsrfToken loggedInJar
     let stateObject = fromJust . _data $ response
-    return (loggedInJar, loggedInXsrfToken, stateObject)
+    pure (loggedInJar, loggedInXsrfToken, stateObject)
 
 
 processLogin :: LoginResponseData -> Token -> HC.CookieJar -> Req HC.CookieJar
@@ -188,14 +188,14 @@ processLogin stateObject xsrfToken loggedInJar = do
             header "Referer" (BS.pack . show $ uriGetLogin) <>
             cookieJar loggedInJar
         )
-    return $ responseCookieJar resProcess
+    pure $ responseCookieJar resProcess
 
 basket :: HC.CookieJar -> Req (HC.CookieJar, Token)
 basket processedJar = do
     resBasket <- req GET uriBasket NoReqBody bsResponse (cookieJar processedJar)
     let basketJar = responseCookieJar resBasket
     let basketXsrfToken = getXsrfToken basketJar
-    return (basketJar, basketXsrfToken)
+    pure (basketJar, basketXsrfToken)
 
 createDefaultHeaders :: HC.CookieJar -> Token -> Option 'Https
 createDefaultHeaders basketJar basketXsrfToken = defaultHeaders <>

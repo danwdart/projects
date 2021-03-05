@@ -2,7 +2,7 @@
 import           Lib.Seq
 
 with :: String -> IO ()
-with a = return a >>>= putStrLn >>>= putStrLn >>= putStrLn
+with a = pure a >>>= putStrLn >>>= putStrLn >>= putStrLn
 
 main ∷ IO ()
 main = do

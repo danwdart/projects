@@ -50,7 +50,7 @@ makePerson = do
     [name, city, country] <- sequence $ generateND <$> [FN.name, FA.city, FA.country]
     uuid <- toText <$> nextRandom
     dob <- ModifiedJulianDay <$> randomRIO (20000, 50000)
-    return Person {
+    pure Person {
         uuid,
         name,
         dob,

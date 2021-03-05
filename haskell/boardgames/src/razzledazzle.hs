@@ -55,7 +55,7 @@ initialGameState = GameState {
 processRound ∷ GameState → IO Result → IO GameState
 processRound gameState res = do
     result <- res
-    return $
+    pure $
         if money gameState > cost gameState then
             GameState {
                 score = score gameState + getPoints result,
@@ -73,8 +73,8 @@ processRound gameState res = do
 
 processValidateRound ∷ GameState → IO Result → IO GameState
 processValidateRound gameState res
-    | money gameState == 0 = return gameState
-    | yield gameState == Yield = return gameState
+    | money gameState == 0 = pure gameState
+    | yield gameState == Yield = pure gameState
     | otherwise = processRound gameState res
 
 processUntilFinish ∷ IO Result → GameState → IO GameState

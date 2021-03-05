@@ -42,7 +42,7 @@ instance Applicative Fake where
     Fake a <*> Fake b = Fake (a b)
 
 instance Monad Fake where
-    return = Fake
+    pure = Fake
     Fake a >>= f = f a
 
 newtype AppM a = AppM {

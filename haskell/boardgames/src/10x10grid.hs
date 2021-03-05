@@ -106,10 +106,10 @@ move (lastMoveElement, lastMoveCoords) board = do
     nextMoveCoords <- uniform $ validMoves lastMoveCoords
     let nextElement = nextEl lastMoveElement
     if isPresent $ getEl nextMoveCoords board then
-        return Nothing
+        pure Nothing
     else do
         let board2 = replaceEl nextMoveCoords nextElement board
-        return . Just $ ((nextElement, nextMoveCoords), board2)
+        pure . Just $ ((nextElement, nextMoveCoords), board2)
 
 moveManualOptions :: Move -> Board -> Maybe (El, [Coords], Board)
 moveManualOptions (lastMoveElement, lastMoveCoords) board = do

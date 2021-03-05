@@ -7,12 +7,12 @@ main ∷ IO ()
 {-
 Prelude> fmap print Just 1
 Just 1
-Prelude> return print Just 1
+Prelude> pure print Just 1
 1
 -}
 
 -- main = getLine >>= putStrLn
--- main = return getLine putStrLn
+-- main = pure getLine putStrLn
 
 -- (...) = (.) . (.)
 
@@ -22,9 +22,9 @@ Prelude> return print Just 1
 -- main = (...) join fmap putStrLn getLine
 
 -- main = fmap change getLine >>= putStrLn
--- main = return (fmap change getLine) putStrLn
+-- main = pure (fmap change getLine) putStrLn
 
--- main = return (fmap change (fmap change getLine)) putStrLn
+-- main = pure (fmap change (fmap change getLine)) putStrLn
 -- main = fmap change (fmap change getLine) >>= putStrLn
 -- main = ((fmap change) . (fmap change)) getLine
 -- main = ((.) (fmap change) (fmap change)) getLine

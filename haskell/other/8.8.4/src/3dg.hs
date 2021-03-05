@@ -15,7 +15,7 @@ consolelog = ffi "console.log(%1)"
 
 setup ∷ Window → UI ()
 setup w = do
-    _ <- return w # set title "Hi"
+    _ <- pure w # set title "Hi"
 
     eTitle <- UI.h1 #. "title"
         # set style [("color","grey")]
