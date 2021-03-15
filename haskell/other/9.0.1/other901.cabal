@@ -467,10 +467,10 @@ executable writer
   main-is:             writer.hs
   build-depends:       base >= 4.7 && < 5, mtl
   
-test-suite quickcheck
+test-suite test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
-  main-is:             MyTest.hs
+  main-is:             Spec.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, hspec, QuickCheck
 

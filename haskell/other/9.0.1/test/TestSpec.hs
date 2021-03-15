@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Main where
+module TestSpec where
 
 import           Control.Exception (evaluate)
 import           Test.Hspec
@@ -11,8 +11,8 @@ prop x y = collect (length x) $ length x > 3 ==> x ++ y === y ++ x
 prop2 x y = collect (length x) $ length x > 3 ==> x ++ y === y ++ x
     where types = (x :: [Int], y :: [Int])
 
-tests ∷ Spec
-tests = describe "tests" $ do
+spec ∷ Spec
+spec = describe "tests" $ do
     it "runs" $
         quickCheck prop
     it "runs 10000 times" $
@@ -28,10 +28,3 @@ tests = describe "tests" $ do
         (`shouldThrow` anyException) $ do
             _ <- readFile "/etc/shadow"
             readFile "/etc/passwd"
-        flip shouldThrow anyException $ do
-            _ <- readFile "/etc/shadow"
-            readFile "/etc/passwd"
-
-main ∷ IO ()
-main = hspec tests
-
