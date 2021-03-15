@@ -3,9 +3,9 @@ version: "3.8"
 services:
 
   nixos:
-    image: dandart/nixos:alpine
-    build: .
+    image: nixos/nix
     working_dir: /app
     volumes:
       - .:/app
       - ~/.ssh:/root/.ssh
+    command: nix-shell
