@@ -1,13 +1,15 @@
 { nixpkgs ? import <nixpkgs> {},
-  compiler ? "ghc884" }:
+  compiler ? "ghc8104" }: # basement's base is 4.14 and can't be jailbroken because of unsafeCoerce#
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      factory = self.callCabal2nix "factory" (builtins.fetchGit {
-        url = "https://github.com/functionalley/Factory.git";
-        rev = "fb3bac4d3722320d5de50943fc3bbb79a7de11f7";
-      }) {};
+      digits = (self.callHackage "digits" "0.3.1" {}).overrideDerivation (self: {
+        prePatch = ''
+          echo -e "> import Distribution.Simple\n> main = defaultMain" > Setup.lhs
+        '';
+      });
+      factory = self.callHackage "factory" "0.3.2.2" {};
       maths = self.callCabal2nix "maths" (gitignore ./.) {};
     };
   };
