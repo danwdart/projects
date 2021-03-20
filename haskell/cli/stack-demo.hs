@@ -1,7 +1,7 @@
 #!/usr/bin/env stack
 -- stack --resolver nightly-2020-12-03 script
 
-{-# LANGUAGE OverloadedLists#-}
+{-# LANGUAGE OverloadedLists #-}
 
 import Data.Map ( Map )
 
