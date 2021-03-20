@@ -20,50 +20,15 @@ common shared-properties
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
-executable async
-  import: shared-properties
-  main-is:             async.hs
-  build-depends:       base >= 4.7 && < 5, async
-
 executable binarygame
   import: shared-properties
   main-is:             binarygame.hs
   build-depends:       base >= 4.7 && < 5, ansi-terminal, ilist, transformers
 
-executable c
-  import: shared-properties
-  main-is:             c.hs
-  build-depends:       base >= 4.7 && < 5, inline-c
-
-executable cplusplus
-  import: shared-properties
-  main-is:             cplusplus.hs
-  build-depends:       base >= 4.7 && < 5, inline-c-cpp
-
-executable eventloop
-  import: shared-properties
-  main-is:             eventLoop.hs
-  build-depends:       base >= 4.7 && < 5, async, concurrent-extra, lifted-async
-
 -- executable fake
 --   import: shared-properties
 --   main-is:             fake.hs
 --   build-depends:       base >= 4.7 && < 5, fakedata, text
-
-executable fieldTrans
-  import: shared-properties
-  main-is:             fieldTrans.hs
-  build-depends:       base >= 4.7 && < 5, aeson, containers, mtl
-
-executable gl
-  import: shared-properties
-  main-is:             gl.hs
-  build-depends:       base >= 4.7 && < 5, OpenGL
-
-executable gloss
-  import: shared-properties
-  main-is:             gloss.hs
-  build-depends:       base >= 4.7 && < 5, gloss
 
 executable json
   import: shared-properties
@@ -74,11 +39,6 @@ executable lenses
   import: shared-properties
   main-is:             lenses.hs
   build-depends:       base >= 4.7 && < 5, lens
-
-executable mvar
-  import: shared-properties
-  main-is:             mvar.hs
-  build-depends:       base >= 4.7 && < 5, async
 
 executable optics
   import: shared-properties
@@ -102,7 +62,6 @@ executable pizza
                       , unordered-containers
                       , vector
 
-
 executable profunctor
   import: shared-properties
   main-is:             profunctor.hs
@@ -112,11 +71,6 @@ executable qchas
   import: shared-properties
   main-is:             qchas.hs
   build-depends:       base >= 4.7 && < 5, qchas
-
-executable regex
-  import: shared-properties
-  main-is:             regex.hs
-  build-depends:       base >= 4.7 && < 5, regex-tdfa
 
 executable req
   import: shared-properties
@@ -133,21 +87,11 @@ executable shell
   main-is:             shell.hs
   build-depends:       base >= 4.7 && < 5, shell-conduit
 
-executable sound
-  import: shared-properties
-  main-is:             sound.hs
-  build-depends:       base >= 4.7 && < 5, pulseaudio, jack
-
 -- executable sql
 --   hs-source-dirs:      src
 --   main-is:             sql.hs
 --   default-language:    Haskell2010
 --   build-depends:       base >= 4.7 && < 5, HDBC, HDBC-mysql
-
-executable tardis
-  import: shared-properties
-  main-is:             tardis.hs
-  build-depends:       base >= 4.7 && < 5, tardis
 
 executable unlift
   import: shared-properties
@@ -159,18 +103,8 @@ executable wai
   main-is:             wai.hs
   build-depends:       base >= 4.7 && < 5, http-types, wai, warp
 
-executable wave
-  import: shared-properties
-  main-is:             wave.hs
-  build-depends:       base >= 4.7 && < 5, fft
-
 executable xpath
   import: shared-properties
   main-is:             xpath.hs
   build-depends:       base >= 4.7 && < 5, safe-foldable, hxt, hxt-xpath
   other-modules:       Lib.XPath
-
-executable yaml
-  import: shared-properties
-  main-is:             yaml.hs
-  build-depends:       base >= 4.7 && < 5, yaml

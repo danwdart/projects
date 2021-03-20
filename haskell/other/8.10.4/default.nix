@@ -1,5 +1,11 @@
-{ nixpkgs ? import <nixpkgs> {},
+{ nixpkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz) {},
   compiler ? "ghc8104" }:
+  # ilist
+  # th-expand-syns from aeson-qq
+  # profunctors from lenses, sdl, shell-conduit and qchas
+  # th from optics-th from optics and from hedgehog from unlift
+  # basement from pizza, req and wai
+  # hxt
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {

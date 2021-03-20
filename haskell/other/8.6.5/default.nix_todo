@@ -1,0 +1,47 @@
+{ nixpkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/tags/20.09.tar.gz) {},
+  compiler ? "ghc865" }:
+let
+  gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
+  myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
+    overrides = self: super: rec {
+      network = self.callHackage "network" "2.8.0.0" {};
+      hashable = self.callHackage "hashable" "1.2.7.0" {};
+      #simple-bluetooth = self.callHackage "simple-bluetooth" "0.1.0.0" {
+      #  bluetooth = nixpkgs.bluez;
+      #};
+      propellor = self.callCabal2nix "propellor" (builtins.fetchGit {
+        url = "https://git.joeyh.name/git/propellor.git";
+        rev = "d21917b2133bdf33d5f7c7245702981ddf16b009";
+      }) {};
+      bson = self.callHackage "bson" "0.4.0.1" {};
+      mongoDB = self.callHackage "mongoDB" "2.7.0.0" {};
+      haxl = self.callHackage "haxl" "2.1.2.0" {};
+      HaskellNet = self.callCabal2nix "HaskellNet" (builtins.fetchGit {
+        url = "https://github.com/qnikst/HaskellNet.git";
+        rev = "34e3ec8fb2e5071ecff574fc951dbfe356f87bed"; # 0.6
+      }) {};
+      other865 = self.callCabal2nix "other865" (gitignore ./.) {};
+    };
+  };
+  shell = myHaskellPackages.shellFor {
+    packages = p: [
+      p.other865
+    ];
+    buildInputs = [
+      nixpkgs.haskellPackages.cabal-install
+      nixpkgs.wget
+      nixpkgs.haskellPackages.stack
+      nixpkgs.haskellPackages.ghcid
+      nixpkgs.haskellPackages.stylish-haskell
+      nixpkgs.haskellPackages.hlint
+    ];
+    withHoogle = true;
+  };
+  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.other865);
+in
+{
+  inherit shell;
+  inherit exe;
+  inherit myHaskellPackages;
+  other865 = myHaskellPackages.other865;
+}

@@ -41,6 +41,11 @@ executable array
   main-is:             array.hs
   build-depends:       base >= 4.7 && < 5, array
 
+executable async
+  import: shared-properties
+  main-is:             async.hs
+  build-depends:       base >= 4.7 && < 5, async
+
 executable bar
   import: shared-properties
   main-is:             bar.hs
@@ -71,6 +76,11 @@ executable bifunctor
 executable breakeverything
   import: shared-properties
   main-is:             breakeverything.hs
+
+executable c
+  import: shared-properties
+  main-is:             c.hs
+  build-depends:       base >= 4.7 && < 5, inline-c
 
 executable chain
   import: shared-properties
@@ -125,6 +135,11 @@ executable cont-variadic
 executable contravariant
   import: shared-properties
   main-is:             contravariant.hs
+
+executable cplusplus
+  import: shared-properties
+  main-is:             cplusplus.hs
+  build-depends:       base >= 4.7 && < 5, inline-c-cpp
 
 executable cpostprocess
   import: shared-properties
@@ -195,6 +210,11 @@ executable error-collection
   main-is:             error-collection.hs
   build-depends:       base >= 4.7 && < 5, bifunctors, containers
 
+executable eventloop
+  import: shared-properties
+  main-is:             eventLoop.hs
+  build-depends:       base >= 4.7 && < 5, async, concurrent-extra, lifted-async
+
 executable exception-safety
   import: shared-properties
   main-is:             exception-safety.hs
@@ -210,6 +230,11 @@ executable feistel
 executable ffi
   import: shared-properties
   main-is:             ffi.hs
+
+executable fieldTrans
+  import: shared-properties
+  main-is:             fieldTrans.hs
+  build-depends:       base >= 4.7 && < 5, aeson, containers, mtl
 
 executable fileformat
   import: shared-properties
@@ -252,6 +277,16 @@ executable gifencode
   main-is:             gifencode.hs
   build-depends:       base >= 4.7 && < 5, gd
   other-modules:       Lib.Seq
+
+executable gl
+  import: shared-properties
+  main-is:             gl.hs
+  build-depends:       base >= 4.7 && < 5, OpenGL
+
+executable gloss
+  import: shared-properties
+  main-is:             gloss.hs
+  build-depends:       base >= 4.7 && < 5, gloss
 
 executable graft
   import: shared-properties
@@ -296,6 +331,11 @@ executable mtl
   import: shared-properties
   main-is:             mtl.hs
   build-depends:       base >= 4.7 && < 5, mtl
+
+executable mvar
+  import: shared-properties
+  main-is:             mvar.hs
+  build-depends:       base >= 4.7 && < 5, async
 
 executable noecho
   import: shared-properties
@@ -349,7 +389,12 @@ executable rebindable
 executable recursion
   import: shared-properties
   main-is:             recursion.hs
-  
+
+executable regex
+  import: shared-properties
+  main-is:             regex.hs
+  build-depends:       base >= 4.7 && < 5, regex-tdfa
+
 executable rws
   import: shared-properties
   main-is:             rws.hs
@@ -381,6 +426,11 @@ executable something
   import: shared-properties
   main-is:             something.hs
 
+executable sound
+  import: shared-properties
+  main-is:             sound.hs
+  build-depends:       base >= 4.7 && < 5, pulseaudio, jack
+
 executable st
   import: shared-properties
   main-is:             st.hs
@@ -399,6 +449,11 @@ executable tagless-final
   import: shared-properties
   main-is:             tagless-final.hs
   build-depends:       base >= 4.7 && < 5, mtl, text
+
+executable tardis
+  import: shared-properties
+  main-is:             tardis.hs
+  build-depends:       base >= 4.7 && < 5, tardis
 
 executable terrain
   import: shared-properties
@@ -457,6 +512,11 @@ executable unicode
 executable variadic
   import: shared-properties
   main-is:             variadic.hs
+
+executable wave
+  import: shared-properties
+  main-is:             wave.hs
+  build-depends:       base >= 4.7 && < 5, fft
 
 executable whereinlet
   import: shared-properties

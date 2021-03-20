@@ -1,13 +1,14 @@
-{ nixpkgs ? import <nixpkgs> {},
+{ nixpkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz) {},
   compiler ? "ghc884" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      inline-asm = self.callCabal2nix "inline-asm" (builtins.fetchGit {
-        url = "https://github.com/0xd34df00d/inline-asm.git";
-        rev = "f41ce27170fd919bd711d6b78a9f614f7d978b6e";
-      }) {};
+      inline-asm = self.callHackage "inline-asm" "0.4.0.2" {};
+      gogol-core = self.callCabal2nixWithOptions "gogol-core" (builtins.fetchGit { # not yet released
+        url = "https://github.com/brendanhay/gogol";
+        rev = "d7c7d71fc985cd96fb5f05173da6c607da362b74";
+      }) "--subpath core" {};
       other884 = self.callCabal2nix "other884" (gitignore ./.) {};
     };
   };
