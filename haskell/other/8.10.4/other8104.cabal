@@ -30,6 +30,11 @@ executable binarygame
 --   main-is:             fake.hs
 --   build-depends:       base >= 4.7 && < 5, fakedata, text
 
+executable fieldTrans
+  import: shared-properties
+  main-is:             fieldTrans.hs
+  build-depends:       base >= 4.7 && < 5, aeson, barbies, containers, mtl
+
 executable json
   import: shared-properties
   main-is:             json.hs
