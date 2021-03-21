@@ -1,23 +1,22 @@
-{-# LANGUAGE DeriveAnyClass #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE DeriveGeneric        #-}
+{-# LANGUAGE NamedFieldPuns       #-}
+{-# LANGUAGE RankNTypes           #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE UnicodeSyntax        #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import Control.Monad.Identity
-import Data.Aeson
-import GHC.Generics
+import           Control.Monad.Identity
+import           Data.Aeson
+import           GHC.Generics
 
 data Person f = Person {
-    name :: f String,
-    age :: f Int,
+    name       :: f String,
+    age        :: f Int,
     profession :: f String
 } deriving (Generic)
 
 instance (Show (f String), Show (f Int)) => Show (Person f) where
-    show (Person {name, age, profession}) =
+    show Person {name, age, profession} =
         "Person { name = " <> show name <>
         ", age = " <> show age <>
         ", profession = " <> show profession <>
@@ -30,13 +29,13 @@ instance (ToJSON (f String), ToJSON (f Int)) => ToJSON (Person f)
 {- PERSON 2 -}
 
 data Person2 f s i = Person2 {
-    name2 :: f s,
-    age2 :: f i,
+    name2       :: f s,
+    age2        :: f i,
     profession2 :: f s
 } deriving (Generic)
 
 instance (Show (f s), Show (f i)) => Show (Person2 f s i) where
-    show (Person2 {name2, age2, profession2}) =
+    show Person2 {name2, age2, profession2} =
         "Person2 { name2 = " <> show name2 <>
         ", age2 = " <> show age2 <>
         ", profession2 = " <> show profession2 <>
@@ -49,13 +48,13 @@ instance (ToJSON (f s), ToJSON (f i)) => ToJSON (Person2 f s i)
 {- PERSON 3 -}
 
 data Person3 f g = Person3 {
-    name3 :: f String,
-    age3 :: g Int,
+    name3       :: f String,
+    age3        :: g Int,
     profession3 :: f String
 } deriving (Generic)
 
 instance (Show (f String), Show (g Int)) => Show (Person3 f g) where
-    show (Person3 {name3, age3, profession3}) =
+    show Person3 {name3, age3, profession3} =
         "Person3 { name3 = " <> show name3 <>
         ", age3 = " <> show age3 <>
         ", profession3 = " <> show profession3 <>
@@ -84,13 +83,13 @@ pt3 = fmap3 ptrans3 p3
 {- PERSON 4 -}
 
 data Person4 f g s i = Person4 {
-    name4 :: f s,
-    age4 :: g i,
+    name4       :: f s,
+    age4        :: g i,
     profession4 :: f s
 } deriving (Generic)
 
 instance (Show (f s), Show (g i)) => Show (Person4 f g s i) where
-    show (Person4 {name4, age4, profession4}) =
+    show Person4 {name4, age4, profession4} =
         "Person4 { name4 = " <> show name4 <>
         ", age4 = " <> show age4 <>
         ", profession4 = " <> show profession4 <>
@@ -122,7 +121,7 @@ type ToSame a = a -> a
 
 -- It's a wrapper for... binary things?
 
-data Person5 a b c = Person5 {
+newtype Person5 a b c = Person5 {
     name5 :: a b c
 } deriving (Generic)
 
@@ -146,7 +145,7 @@ p5t = Person5 {
 
 p5s :: Person5 (->) a String
 p5s = Person5 {
-    name5 = const "Bob" 
+    name5 = const "Bob"
 }
 
 app5 :: Person5 (->) (a1 b1 c1) (a2 b2 c2) -> Person5 a1 b1 c1 -> Person5 a2 b2 c2
