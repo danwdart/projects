@@ -5,6 +5,7 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       inline-asm = self.callHackage "inline-asm" "0.4.0.2" {};
+      # https://github.com/brendanhay/gogol/issues/148
       gogol-core = self.callCabal2nixWithOptions "gogol-core" (builtins.fetchGit { # not yet released
         url = "https://github.com/brendanhay/gogol";
         rev = "d7c7d71fc985cd96fb5f05173da6c607da362b74";

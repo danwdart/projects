@@ -10,6 +10,7 @@ let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
+      higgledy = self.callHackage "higgledy" "0.4.1.0" {};
       other8104 = self.callCabal2nix "other8104" (gitignore ./.) {};
     };
   };
