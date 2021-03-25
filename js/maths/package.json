@@ -9,7 +9,7 @@
     "esm": "^3.2.25",
     "gl-matrix": "^3.3.0",
     "node-fetch": "^3.0.0-beta.6-exportfix",
-    "snyk": "^1.434.4",
+    "snyk": "^1.465.0",
     "typescript": "^4.2.0-dev.20201209"
   },
   "devDependencies": {
