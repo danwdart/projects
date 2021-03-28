@@ -1,4 +1,4 @@
-{pkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz) {
+{pkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz) {
     inherit system;
   }, system ? builtins.currentSystem, noDev ? false}:
 
