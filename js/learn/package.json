@@ -13,6 +13,6 @@
     "synaptic": "^1.1.4"
   },
   "devDependencies": {
-    "snyk": "^1.465.0"
+    "snyk": "^1.518.0"
   }
 }
