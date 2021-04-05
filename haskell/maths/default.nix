@@ -1,4 +1,4 @@
-{ nixpkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz) {},
+{ nixpkgs ? import <unstable> {},
   compiler ? "ghc8104" }: # basement's base is 4.14 and can't be jailbroken because of unsafeCoerce#
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];

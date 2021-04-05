@@ -1,4 +1,4 @@
-{ nixpkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz) {},
+{ nixpkgs ? import <unstable> {},
   compiler ? "ghc884" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
