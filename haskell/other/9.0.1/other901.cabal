@@ -201,6 +201,11 @@ executable elf
   main-is:             elf.hs
   build-depends:       base >= 4.7 && < 5, elf, bytestring
 
+executable endo
+  import: shared-properties
+  main-is:             endo.hs
+  build-depends:       base >= 4.7 && < 5, text
+
 executable enum
   import: shared-properties
   main-is:             enum.hs
@@ -304,6 +309,11 @@ executable interact
 executable ioref
   import: shared-properties
   main-is:             ioref.hs
+
+executable iso
+  import: shared-properties
+  main-is:             iso.hs
+  build-depends:       base >= 4.7 && < 5, semigroupoids
 
 executable lc
   import: shared-properties
