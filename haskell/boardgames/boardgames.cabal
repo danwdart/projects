@@ -22,6 +22,11 @@ executable 10x10grid
   main-is:             10x10grid.hs
   build-depends:       base >= 4.7 && < 5, bifunctors, MonadRandom
 
+executable 2048
+  import: shared-properties
+  main-is:             2048.hs
+  build-depends:       base >= 4.7 && < 5, MonadRandom, random
+
 executable battleships
   import: shared-properties
   main-is:             battleships.hs
