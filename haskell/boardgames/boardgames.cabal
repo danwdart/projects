@@ -17,6 +17,11 @@ common shared-properties
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
+executable 1010
+  import: shared-properties
+  main-is:             1010.hs
+  build-depends:       base >= 4.7 && < 5, containers, MonadRandom
+
 executable 10x10grid
   import: shared-properties
   main-is:             10x10grid.hs
