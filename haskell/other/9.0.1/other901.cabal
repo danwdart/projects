@@ -478,6 +478,11 @@ executable texttodeccrazy
   import: shared-properties
   main-is:             textToDecCrazy.hs
 
+executable th
+  import: shared-properties
+  main-is:             th.hs
+  build-depends:       base >= 4.7 && < 5, template-haskell
+
 executable tinylang
   import: shared-properties
   main-is:             tinylang.hs
