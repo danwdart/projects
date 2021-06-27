@@ -2,10 +2,10 @@
 
 import Language.Haskell.TH
 
-evilAlien :: String
-evilAlien = [d|
-    readFile "th.hs"
-    |]
+evilAlien :: Q String
+evilAlien = runIO $ readFile "th.hs"
 
 main :: IO ()
-main = pure ()
+main = do
+    let ea = $(evilAlien)
+    print ea
