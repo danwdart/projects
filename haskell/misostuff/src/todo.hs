@@ -1,4 +1,4 @@
-{-# LANGUAGE TypeOperators              #-}
+
 {-# LANGUAGE OverloadedStrings          #-}
 {-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE TypeFamilies               #-}
@@ -6,9 +6,9 @@
 {-# LANGUAGE DeriveGeneric              #-}
 {-# LANGUAGE ScopedTypeVariables        #-}
 {-# LANGUAGE RecordWildCards            #-}
-{-# LANGUAGE LambdaCase                 #-}
+
 {-# LANGUAGE MultiParamTypeClasses      #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+
 {-# LANGUAGE ExtendedDefaultRules       #-}
 {-# LANGUAGE CPP                        #-}
 module Main where

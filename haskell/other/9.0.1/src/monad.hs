@@ -18,8 +18,8 @@ instance Monad Bob where
 -- List's a monad. What can we do with it?
 a :: [Int]
 a = do
-    a <- pure 1 -- Arrow an element, you get it back.
-    b <- pure 2
+    let a = 1 -- Arrow an element, you get it back.
+    let b = 2
     -- pure a -- ignored!
     pure b -- Passed if last, and embedded.
 

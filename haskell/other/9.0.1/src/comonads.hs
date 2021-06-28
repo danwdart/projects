@@ -1,6 +1,6 @@
-{-# LANGUAGE DeriveFoldable  #-}
-{-# LANGUAGE DeriveFunctor   #-}
-{-# LANGUAGE UnicodeSyntax   #-}
+{-# LANGUAGE DeriveFoldable #-}
+{-# LANGUAGE DeriveFunctor  #-}
+{-# LANGUAGE UnicodeSyntax  #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches -Wno-type-defaults #-}
 
 import           Control.Comonad
@@ -8,10 +8,10 @@ import           Control.Comonad.Env
 import           Control.Comonad.Store
 import           Control.Comonad.Traced
 import           Data.Foldable
-import           Data.Map (Map)
-import qualified Data.Map as M
-import           Data.Set (Set)
-import qualified Data.Set as S
+import           Data.Map               (Map)
+import qualified Data.Map               as M
+import           Data.Set               (Set)
+import qualified Data.Set               as S
 
 data MyComonad a = MyComonad a deriving (Functor, Show)
 
@@ -43,13 +43,13 @@ data Stream a = a :> Stream a deriving (Functor, Foldable)
 
 -- A guess
 instance (Show a) => Show (Stream a) where
-    show (a :> (b :> (c :> (d :> (e :> _))))) = 
-        show a <> " :> " <> show b <> " :> " <> show c <> " :> " <> show d <> " :> " <> show e <> " ..." 
+    show (a :> (b :> (c :> (d :> (e :> _))))) =
+        show a <> " :> " <> show b <> " :> " <> show c <> " :> " <> show d <> " :> " <> show e <> " ..."
 
 instance Comonad Stream where
     extract (a :> _) = a
     -- A guess
-    duplicate s@(_ :> b) = s :> duplicate b 
+    duplicate s@(_ :> b) = s :> duplicate b
 
 fromList :: [a] -> Stream a
 fromList xs = go (cycle xs)
@@ -93,7 +93,7 @@ inventory = M.fromList [
     ]
 
 warehouse :: Store Int (Maybe String)
-warehouse = store (\shelf -> M.lookup shelf inventory) 1
+warehouse = store (`M.lookup` inventory) 1
 
 squared :: Store Int Int
 squared = store (\x -> x ^ (2 :: Int)) 10
@@ -123,17 +123,17 @@ neighbourLocations location = mappend location <$> [
     ]
 
 numLivingNeighbours :: Store (Sum Int, Sum Int) Bool -> Int
-numLivingNeighbours w = getSum . foldMap toCount . experiment neighbourLocations $ w
+numLivingNeighbours = getSum . foldMap toCount . experiment neighbourLocations
     where
         toCount :: Bool -> Sum Int
         toCount False = Sum 0
-        toCount True = Sum 1
+        toCount True  = Sum 1
 
 checkCellAlive :: Store (Sum Int, Sum Int) Bool -> Bool
 checkCellAlive grid = case (extract grid, numLivingNeighbours grid) of
     (True, 3) -> True
-    (_, 3) -> True
-    _ -> False
+    (_, 3)    -> True
+    _         -> False
 
 step :: Store (Sum Int, Sum Int) Bool -> Store (Sum Int, Sum Int) Bool
 step = extend checkCellAlive
@@ -166,7 +166,7 @@ main = do
         print $ experiment (\x -> [x, x + 1, x + 2]) warehouse
     do
         print $ experiment (\x -> [x, x + 1, x + 2]) squared
-        print $ experiment aboveZero (seek (10) squared)
+        print $ experiment aboveZero (seek 10 squared)
         print $ experiment aboveZero (seek (-10) squared)
         print $ extract withN
         print $ peek 5 withN

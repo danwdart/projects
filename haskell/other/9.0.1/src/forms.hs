@@ -1,14 +1,14 @@
 {-# LANGUAGE ExistentialQuantification #-}
+{-# LANGUAGE FlexibleContexts          #-}
 {-# LANGUAGE OverloadedStrings         #-}
-{-# LANGUAGE FlexibleContexts         #-}
-{-# LANGUAGE RankNTypes             #-}
-{-# LANGUAGE TemplateHaskell             #-}
+{-# LANGUAGE RankNTypes                #-}
+
 {-# LANGUAGE UnicodeSyntax             #-}
 
-import qualified Data.Text as T
-import Data.Text (Text)
-import Text.Parsec
-import Text.Parsec.Text
+import           Data.Text        (Text)
+import qualified Data.Text        as T
+import           Text.Parsec
+import           Text.Parsec.Text
 
 data IsDropdown = NotDropdown | Dropdown  deriving (Enum, Show)
 data IsMulti = NotMulti | Multi deriving (Enum, Show)
@@ -29,13 +29,13 @@ data FormElementType = FreeText -- Maybe FormAttributes -- TODO ResultTypeType e
 
 data FormElement = FormElement {
     formElementLabel :: Text,
-    formElementType :: FormElementType
+    formElementType  :: FormElementType
 } deriving (Show)
 
 type FormElements = [FormElement]
 
 data Form = Form {
-    formTitle :: Text,
+    formTitle    :: Text,
     formElements :: FormElements
 } deriving (Show)
 

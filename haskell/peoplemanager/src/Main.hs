@@ -4,7 +4,7 @@ module Main where
 
 import           Control.Monad
 -- import qualified Data.Set as S
-import           Data.Set      (fromList, Set)
+import           Data.Set      (Set, fromList)
 import           Data.Text     (Text)
 import qualified Data.Text     as T
 import           Data.Time
@@ -29,7 +29,7 @@ diffYears ∷ Day → Day → Integer
 diffYears to from = diffDays from to `div` 365
 
 yearsAgo ∷ Day → IO Integer
-yearsAgo from = today >>= (return . diffYears from)
+yearsAgo from = today Data.Functor.<&> diffYears from
 
 data Person = Person {
     uuid    :: Text,

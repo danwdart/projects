@@ -5,7 +5,7 @@
 -- @see https://victorzhou.com/blog/intro-to-neural-networks/
 
 sigmoid :: Double -> Double
-sigmoid x = 1 / (1 + exp (0 - x))
+sigmoid x = 1 / (1 + exp (negate x))
 
 derivSigmoid :: Double -> Double
 derivSigmoid x = s * (1 - s)
@@ -13,11 +13,11 @@ derivSigmoid x = s * (1 - s)
 
 dot :: [Double] -> [Double] -> Double
 dot [a, b] [c, d] = a * c + b * d
-dot _ _ = error "Not implemented"
+dot _ _           = error "Not implemented"
 
 data Neuron = Neuron {
     weights :: [Double],
-    bias :: Double
+    bias    :: Double
 } deriving (Show)
 
 mseLoss :: [Double] -> [Double] -> Double
@@ -29,7 +29,7 @@ data Network = Network {
 } deriving (Show)
 
 dots :: [Double] -> Neuron -> Double
-dots inputs neuron = dot (weights neuron) inputs + (bias neuron)
+dots inputs neuron = dot (weights neuron) inputs + bias neuron
 
 feedforward :: [Double] -> Neuron -> Double
 feedforward inputs neuron = sigmoid $ dots inputs neuron
@@ -55,7 +55,7 @@ train data' allYTrues network@Network {
                 sigOutput = fmap sigmoid sumOutput
                 yPred = ffLayer xs network
                 d_L_d_ypred = -2 * (yTrue - yPred)
-                dOutputs = derivSigmoid (sumOutput !! 0)
+                dOutputs = derivSigmoid (head sumOutput)
                 -- dHiddens = fmap ((*) dOutputs) sigHidden
 
                 -- d_ypred_d_w5 = (hiddenLayer' !! 0) * derivSigmoid(sum_o1)

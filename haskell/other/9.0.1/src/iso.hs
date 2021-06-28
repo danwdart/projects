@@ -1,4 +1,4 @@
-import Data.Isomorphism
+import           Data.Isomorphism
 
 staticIso :: Iso (,) Int String
 staticIso = Iso (1,"b") ("b",1)

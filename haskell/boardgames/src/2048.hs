@@ -1,9 +1,9 @@
 {-# LANGUAGE TypeApplications #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
 
-import Control.Monad.Random
-import Data.List
-import Data.Maybe
+import           Control.Monad.Random
+import           Data.List
+import           Data.Maybe
 -- import System.Random
 
 default (Int)
@@ -17,7 +17,7 @@ newtype Space = Space (Maybe Tile)
 
 instance Show Space where
     show (Space Nothing) = "_"
-    show (Space x) = show x
+    show (Space x)       = show x
 
 type Coord = (Int, Int)
 type Coords = [Coord]

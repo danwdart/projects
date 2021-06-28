@@ -13,4 +13,4 @@ findImages :: String -> IO [String]
 findImages = processXPath xpath
 
 main :: IO ()
-main = (findImages html <&> defaulting "No results" (intercalate ", ")) >>= putStrLn . ("Results: " ++)
+main = findImages html >>= (putStrLn . ("Results: " ++)) . defaulting "No results" (intercalate ", ")

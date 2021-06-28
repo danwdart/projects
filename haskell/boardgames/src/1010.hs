@@ -1,14 +1,14 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE DataKinds                  #-}
+{-# LANGUAGE DerivingStrategies         #-}
 {-# LANGUAGE GeneralisedNewtypeDeriving #-}
-{-# LANGUAGE OverloadedLists #-}
+{-# LANGUAGE OverloadedLists            #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
 
-import Data.Monoid
-import           Data.Map (Map)
-import qualified Data.Map as M
-import           Data.Set (Set)
-import qualified Data.Set as S
+import           Data.Map    (Map)
+import qualified Data.Map    as M
+import           Data.Monoid
+import           Data.Set    (Set)
+import qualified Data.Set    as S
 
 height, width :: Int
 height = 10

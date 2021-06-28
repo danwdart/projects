@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-import System.Directory
+import           System.Directory
 
 ls :: IO ()
 ls = getCurrentDirectory >>= listDirectory >>= mapM_ putStrLn

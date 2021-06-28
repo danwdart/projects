@@ -12,7 +12,7 @@ x (the current time in hours).
 Everything's in hours.
 -}
 
-import Debug.Trace
+import           Debug.Trace
 
 -- Formula: -- v\left(h,m,r,i,j,x\right)=\sqrt{\frac{\left|x\right|}{x}}\sum_{o=0}^{j-1}\sum_{n=0}^{i-1}\sqrt{\frac{\left|x-rn-24o\right|+x-rn-24o}{2\left(x-rn-24o\right)}}he^{-\frac{\left(x-rn-24o\right)}{2m\ln2}}
 
@@ -26,7 +26,7 @@ type Hours = Float
 type DrugAmount = Float
 
 data Drug = Drug {
-    name :: String,
+    name     :: String,
     halfLife :: HalfLife
 }
 
@@ -63,7 +63,7 @@ drugAmount drug dosage timeBetweenDoses dosesPerDay daysToRun time =
                                re = (t / (log 2 * halfLife drug))
                                r = exp (negate re)
                                answer = t * dosage * r
-                            in 
+                            in
                                 trace (
                                     "Dose " <> show doseNumber <>
                                     ": dosage = " <> show dosage <>
@@ -72,7 +72,7 @@ drugAmount drug dosage timeBetweenDoses dosesPerDay daysToRun time =
                                     ) answer
             ) [0..dosesPerDay - 1]
         ) [0..daysToRun - 1]
-        
+
 
 -- I think sum between n = 1 and x is sum . fmap (\n -> ...) [1..x]?
 

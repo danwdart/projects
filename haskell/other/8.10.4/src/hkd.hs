@@ -2,7 +2,7 @@
 {-# LANGUAGE DeriveGeneric        #-}
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE StandaloneDeriving   #-}
-{-# LANGUAGE TypeApplications     #-}
+
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wwarn #-}
 

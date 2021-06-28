@@ -29,6 +29,6 @@ shell = void . flip runContT pure $ callCC $ \k -> do
     liftIO . putStr $ "default@arsvx:~$ "
     line <- liftIO getLine
     when (line == "q" || line == "\EOT") $ k ()
-    when (length (words line) > 0) $
+    when (not (null (words line))) $
         liftIO . putStrLn $ process line
     liftIO shell
