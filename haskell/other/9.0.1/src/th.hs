@@ -1,11 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 
 import Language.Haskell.TH
-
-evilAlien :: Q String
-evilAlien = runIO $ readFile "th.hs"
+import Lib.TH
 
 main :: IO ()
-main = do
-    let ea = $(evilAlien)
-    print ea
+main = print $$(evilAlien)
