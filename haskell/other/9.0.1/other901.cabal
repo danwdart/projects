@@ -20,195 +20,35 @@ common shared-properties
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
-executable intro
-  import: shared-properties
-  main-is:             Main.hs
-
-executable algsys
-  import: shared-properties
-  main-is:             algebra-systems.hs
-
-executable alltypes
-  import: shared-properties
-  main-is:             alltypes.hs
-
-executable applicativedo
-  import: shared-properties
-  main-is:             applicativedo.hs
-
-executable array
-  import: shared-properties
-  main-is:             array.hs
-  build-depends:       base >= 4.7 && < 5, array
-
-executable async
-  import: shared-properties
-  main-is:             async.hs
-  build-depends:       base >= 4.7 && < 5, async
-
-executable bar
-  import: shared-properties
-  main-is:             bar.hs
-  other-modules:       Lib.SafeDiv
-
-executable bashy
-  import: shared-properties
-  main-is:             bashy.hs
-  build-depends:       base >= 4.7 && < 5, directory
-
-executable basic
-  import: shared-properties
-  main-is:             basic.hs
-
-executable baz
-  import: shared-properties
-  main-is:             baz.hs
-
-executable betterbools
-  import: shared-properties
-  main-is:             betterbools.hs
-
 executable bifunctor
   import: shared-properties
   main-is:             bifunctor.hs
   build-depends:       base >= 4.7 && < 5, bifunctors
-
-executable breakeverything
-  import: shared-properties
-  main-is:             breakeverything.hs
 
 executable c
   import: shared-properties
   main-is:             c.hs
   build-depends:       base >= 4.7 && < 5, inline-c
 
-executable chain
-  import: shared-properties
-  main-is:             chain.hs
-
-executable cipher
-  import: shared-properties
-  main-is:             cipher.hs
-  build-depends:       base >= 4.7 && < 5, mtl, transformers
-
-executable class
-  import: shared-properties
-  main-is:             class.hs
-
-executable cli_contt
-  import: shared-properties
-  main-is:             cli_contt.hs
-  build-depends:       base >= 4.7 && < 5, mtl
-
-executable cli
-  import: shared-properties
-  main-is:             cli.hs
-
 executable comonads
   import: shared-properties
   main-is:             comonads.hs
   build-depends:       base >= 4.7 && < 5, comonad, containers
-
-executable complex
-  import: shared-properties
-  main-is:             complex.hs
-
-executable composefunctors
-  import: shared-properties
-  main-is:             composefunctors.hs
-  build-depends:       base >= 4.7 && < 5, template-haskell
-
-executable composition-eta
-  import: shared-properties
-  main-is:             composition-eta.hs
-
-executable cont
-  import: shared-properties
-  main-is:             cont.hs
-  build-depends:       base >= 4.7 && < 5, directory, mtl
-
-executable cont-variadic
-  import: shared-properties
-  main-is:             cont-variadic.hs
-  build-depends:       base >= 4.7 && < 5, mtl
-
-executable contravariant
-  import: shared-properties
-  main-is:             contravariant.hs
 
 executable cplusplus
   import: shared-properties
   main-is:             cplusplus.hs
   build-depends:       base >= 4.7 && < 5, inline-c-cpp
 
-executable cpostprocess
-  import: shared-properties
-  main-is:             cpostprocess.hs
-
-executable crackme
-  import: shared-properties
-  main-is:             crackme.hs
-
-executable currency
-  import: shared-properties
-  main-is:             currency.hs
-
-executable cyclesinmixedset
-  import: shared-properties
-  main-is:             cyclesinmixedset.hs
-  build-depends:       base >= 4.7 && < 5, mtl
-
-executable data
-  import: shared-properties
-  main-is:             data.hs
-  other-modules:       Lib.Credential, Lib.Person
-
-executable data2
-  import: shared-properties
-  main-is:             data2.hs
-
-executable datatypes
-  import: shared-properties
-  main-is:             datatypes.hs
-
 executable delay
   import: shared-properties
   main-is:             delay.hs
   build-depends:       base >= 4.7 && < 5, ansi-terminal, random
 
-executable disparate
-  import: shared-properties
-  main-is:             disparate.hs
-
-executable do
-  import: shared-properties
-  main-is:             do.hs
-
-executable dokis
-  import: shared-properties
-  main-is:             dokis.hs
-
-executable dorar
-  import: shared-properties
-  main-is:             dorar.hs
-
-executable echo
-  import: shared-properties
-  main-is:             echo.hs
-
 executable elf
   import: shared-properties
   main-is:             elf.hs
   build-depends:       base >= 4.7 && < 5, elf, bytestring
-
-executable endo
-  import: shared-properties
-  main-is:             endo.hs
-  build-depends:       base >= 4.7 && < 5, text
-
-executable enum
-  import: shared-properties
-  main-is:             enum.hs
 
 executable error-collection
   import: shared-properties
@@ -220,22 +60,6 @@ executable eventloop
   main-is:             eventLoop.hs
   build-depends:       base >= 4.7 && < 5, async, concurrent-extra, lifted-async
 
-executable exception-safety
-  import: shared-properties
-  main-is:             exception-safety.hs
-
-executable existentialism
-  import: shared-properties
-  main-is:             existentialism.hs
-
-executable feistel
-  import: shared-properties
-  main-is:             feistel.hs
-
-executable ffi
-  import: shared-properties
-  main-is:             ffi.hs
-
 executable fieldTrans
   import: shared-properties
   main-is:             fieldTrans.hs
@@ -246,36 +70,10 @@ executable fileformat
   main-is:             fileformat.hs
   build-depends:       base >= 4.7 && < 5, binary, bytestring
 
-executable files
-  import: shared-properties
-  main-is:             files.hs
-  build-depends:       base >= 4.7 && < 5, directory
-
-executable fix
-  import: shared-properties
-  main-is:             fix.hs
-
 executable flow
   import: shared-properties
   main-is:             flow.hs
   build-depends:       base >= 4.7 && < 5, flow
-
-executable foo
-  import: shared-properties
-  main-is:             foo.hs
-
-executable forms
-  import: shared-properties
-  main-is:             forms.hs
-  build-depends:       base >= 4.7 && < 5, parsec, template-haskell, text
-
-executable frp
-  import: shared-properties
-  main-is:             frp.hs
-
-executable generics
-  import: shared-properties
-  main-is:             generics.hs
 
 executable gifencode
   import: shared-properties
@@ -283,122 +81,30 @@ executable gifencode
   build-depends:       base >= 4.7 && < 5, gd
   other-modules:       Lib.Seq
 
-executable gl
-  import: shared-properties
-  main-is:             gl.hs
-  build-depends:       base >= 4.7 && < 5, OpenGL
-
 executable gloss
   import: shared-properties
   main-is:             gloss.hs
   build-depends:       base >= 4.7 && < 5, gloss
-
-executable graft
-  import: shared-properties
-  main-is:             graft.hs
-
-executable heact
-  import: shared-properties
-  main-is:             heact.hs
-  build-depends:       base >= 4.7 && < 5, containers
-
-executable interact
-  import: shared-properties
-  main-is:             interact.hs
-
-executable ioref
-  import: shared-properties
-  main-is:             ioref.hs
 
 executable iso
   import: shared-properties
   main-is:             iso.hs
   build-depends:       base >= 4.7 && < 5, semigroupoids
 
-executable lc
-  import: shared-properties
-  main-is:             lc.hs
-
-executable lcdblock
-  import: shared-properties
-  main-is:             lcdblock.hs
-  build-depends:       base >= 4.7 && < 5, containers
-
 executable mmio
   import: shared-properties
   main-is:             mmio.hs
   build-depends:       base >= 4.7 && < 5, mmap
-
-executable moonmadness
-  import: shared-properties
-  main-is:             moonmadness.hs
-
-executable monad
-  import: shared-properties
-  main-is:             monad.hs
-
-executable mtl
-  import: shared-properties
-  main-is:             mtl.hs
-  build-depends:       base >= 4.7 && < 5, mtl
-
-executable mvar
-  import: shared-properties
-  main-is:             mvar.hs
-  build-depends:       base >= 4.7 && < 5, async
-
-executable noecho
-  import: shared-properties
-  main-is:             noecho.hs
 
 executable parsec
   import: shared-properties
   main-is:             parsec.hs
   build-depends:       base >= 4.7 && < 5, ansi-terminal, parsec
 
-executable parser
-  import: shared-properties
-  main-is:             parser.hs
-
-executable pipeline
-  import: shared-properties
-  main-is:             pipeline.hs
-
-executable ports
-  import: shared-properties
-  main-is:             ports.hs
-
 executable prim
   import: shared-properties
   main-is:             prim.hs
   build-depends:       base >= 4.7 && < 5, ghc-prim
-  
-executable python5
-  import: shared-properties
-  main-is:             python5.hs
-  build-depends:       base >= 4.7 && < 5, array
-  
-executable random
-  import: shared-properties
-  main-is:             random.hs
-  build-depends:       base >= 4.7 && < 5, random
-
-executable read
-  import: shared-properties
-  main-is:             read.hs
-  
-executable reader
-  import: shared-properties
-  main-is:             reader.hs
-  build-depends:       base >= 4.7 && < 5, mtl
-
-executable rebindable
-  import: shared-properties
-  main-is:             rebindable.hs
-
-executable recursion
-  import: shared-properties
-  main-is:             recursion.hs
 
 executable regex
   import: shared-properties
@@ -410,138 +116,31 @@ executable rws
   main-is:             rws.hs
   build-depends:       base >= 4.7 && < 5, mtl, transformers, monads-tf
 
-executable scrapetumblr
-  import: shared-properties
-  main-is:             scrapetumblr.hs
-
-executable sequence
-  import: shared-properties
-  main-is:             sequence.hs
-  other-modules:       Lib.Seq
-
-executable sequences
-  import: shared-properties
-  main-is:             sequences.hs
-
 executable serial
   import: shared-properties
   main-is:             serial.hs
   build-depends:       base >= 4.7 && < 5, serial
-
-executable shop
-  import: shared-properties
-  main-is:             shop.hs
-
-executable something
-  import: shared-properties
-  main-is:             something.hs
 
 executable sound
   import: shared-properties
   main-is:             sound.hs
   build-depends:       base >= 4.7 && < 5, pulseaudio, jack
 
-executable st
-  import: shared-properties
-  main-is:             st.hs
-
-executable state
-  import: shared-properties
-  main-is:             state.hs
-  build-depends:       base >= 4.7 && < 5, mtl
-
-executable stm
-  import: shared-properties
-  main-is:             stm.hs
-  build-depends:       base >= 4.7 && < 5, stm
-
-executable tagless-final
-  import: shared-properties
-  main-is:             tagless-final.hs
-  build-depends:       base >= 4.7 && < 5, mtl, text
-
 executable tardis
   import: shared-properties
   main-is:             tardis.hs
   build-depends:       base >= 4.7 && < 5, tardis
-
-executable terrain
-  import: shared-properties
-  main-is:             terrain.hs
-  build-depends:       base >= 4.7 && < 5, random
-
-executable texttodec
-  import: shared-properties
-  main-is:             textToDec.hs
-
-executable texttodeccrazy
-  import: shared-properties
-  main-is:             textToDecCrazy.hs
-
-executable th
-  import: shared-properties
-  main-is:             th.hs
-  build-depends:       base >= 4.7 && < 5, template-haskell
-
-executable tinylang
-  import: shared-properties
-  main-is:             tinylang.hs
-  build-depends:       base >= 4.7 && < 5, bytestring, containers, parsec
-
-executable trace
-  import: shared-properties
-  main-is:             trace.hs
-  build-depends:       base >= 4.7 && < 5, mtl, transformers
-
-executable transformers
-  import: shared-properties
-  main-is:             transformers.hs
-  build-depends:       base >= 4.7 && < 5, transformers
-
-executable trip
-  import: shared-properties
-  main-is:             trip.hs
-
-executable typeable
-  import: shared-properties
-  main-is:             typeable.hs
-
-executable typeapplications
-  import: shared-properties
-  main-is:             typeapplications.hs
-
-executable types
-  import: shared-properties
-  main-is:             types.hs
-  other-modules:       Lib.Auth
-                      , Lib.Data.Email
-                      , Lib.Data.Name
-                      , Lib.Data.Password
-                      , Lib.Data.User
 
 executable unicode
   import: shared-properties
   main-is:             unicode.hs
   build-depends:       base >= 4.7 && < 5, mtl, base-unicode-symbols
 
-executable variadic
-  import: shared-properties
-  main-is:             variadic.hs
-
 executable wave
   import: shared-properties
   main-is:             wave.hs
   build-depends:       base >= 4.7 && < 5, fft
 
-executable whereinlet
-  import: shared-properties
-  main-is:             whereinlet.hs
-
-executable writer
-  import: shared-properties
-  main-is:             writer.hs
-  build-depends:       base >= 4.7 && < 5, mtl
-  
 test-suite test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test

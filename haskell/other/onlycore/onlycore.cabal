@@ -1,0 +1,141 @@
+cabal-version:       3.0
+name:                onlycore
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/projects#readme
+license:             AGPL-3.0-only
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+
+common shared-properties
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options:       -dedupe
+
+executable array
+  import: shared-properties
+  main-is:             array.hs
+  build-depends:       base >= 4.7 && < 5, array
+
+executable bashy
+  import: shared-properties
+  main-is:             bashy.hs
+  build-depends:       base >= 4.7 && < 5, directory
+
+executable cipher
+  import: shared-properties
+  main-is:             cipher.hs
+  build-depends:       base >= 4.7 && < 5, mtl, transformers
+
+executable cli_contt
+  import: shared-properties
+  main-is:             cli_contt.hs
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable composefunctors
+  import: shared-properties
+  main-is:             composefunctors.hs
+  build-depends:       base >= 4.7 && < 5, template-haskell
+
+executable cont
+  import: shared-properties
+  main-is:             cont.hs
+  build-depends:       base >= 4.7 && < 5, directory, mtl
+
+executable cont-variadic
+  import: shared-properties
+  main-is:             cont-variadic.hs
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable cyclesinmixedset
+  import: shared-properties
+  main-is:             cyclesinmixedset.hs
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable endo
+  import: shared-properties
+  main-is:             endo.hs
+  build-depends:       base >= 4.7 && < 5, text
+
+executable files
+  import: shared-properties
+  main-is:             files.hs
+  build-depends:       base >= 4.7 && < 5, directory
+
+executable forms
+  import: shared-properties
+  main-is:             forms.hs
+  build-depends:       base >= 4.7 && < 5, parsec, template-haskell, text
+
+executable heact
+  import: shared-properties
+  main-is:             heact.hs
+  build-depends:       base >= 4.7 && < 5, containers
+
+executable lcdblock
+  import: shared-properties
+  main-is:             lcdblock.hs
+  build-depends:       base >= 4.7 && < 5, containers
+
+executable mtl
+  import: shared-properties
+  main-is:             mtl.hs
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable python5
+  import: shared-properties
+  main-is:             python5.hs
+  build-depends:       base >= 4.7 && < 5, array
+
+executable reader
+  import: shared-properties
+  main-is:             reader.hs
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable state
+  import: shared-properties
+  main-is:             state.hs
+  build-depends:       base >= 4.7 && < 5, mtl
+
+executable stm
+  import: shared-properties
+  main-is:             stm.hs
+  build-depends:       base >= 4.7 && < 5, stm
+
+executable tagless-final
+  import: shared-properties
+  main-is:             tagless-final.hs
+  build-depends:       base >= 4.7 && < 5, mtl, text
+
+executable th
+  import: shared-properties
+  main-is:             th.hs
+  build-depends:       base >= 4.7 && < 5, template-haskell
+
+executable tinylang
+  import: shared-properties
+  main-is:             tinylang.hs
+  build-depends:       base >= 4.7 && < 5, bytestring, containers, parsec
+
+executable trace
+  import: shared-properties
+  main-is:             trace.hs
+  build-depends:       base >= 4.7 && < 5, mtl, transformers
+
+executable transformers
+  import: shared-properties
+  main-is:             transformers.hs
+  build-depends:       base >= 4.7 && < 5, transformers
+
+executable writer
+  import: shared-properties
+  main-is:             writer.hs
+  build-depends:       base >= 4.7 && < 5, mtl
