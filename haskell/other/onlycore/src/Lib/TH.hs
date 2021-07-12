@@ -1,6 +1,14 @@
 module Lib.TH where
 
 import           Language.Haskell.TH
+import           Language.Haskell.TH.Syntax
 
-evilAlien :: Q String
-evilAlien = runIO $ readFile "th.hs"
+self :: Q Exp
+self = do
+    f <- runIO $ readFile "src/th.hs"
+    stringE f
+
+selfTyped :: Code Q String
+selfTyped = liftCode . unsafeTExpCoerce $ do
+    f <- runIO $ readFile "src/th.hs"
+    stringE f
