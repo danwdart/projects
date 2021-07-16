@@ -1,5 +1,7 @@
 {-# LANGUAGE CPP           #-}
 {-# LANGUAGE UnicodeSyntax #-}
 
-main ∷ IO ()
-main = pure ()
+#define say putStrLn
+#define now main ∷ IO (); main =
+
+now say "bob"
