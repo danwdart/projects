@@ -243,12 +243,19 @@ executable words
   main-is:             words.hs
   build-depends:       base >= 4.7 && < 5, containers, mtl, profunctors
 
+
+-- Primes
+
 executable decomp
   import: shared-properties
   main-is:             primefun/decomp.hs
   build-depends:       base >= 4.7 && < 5, primes
 
--- Primes
+executable gapfreq
+  import: shared-properties
+  main-is:             primefun/gapfreq.hs
+  build-depends:       base >= 4.7 && < 5, containers, primes
+
 executable primemod
   import: shared-properties
   main-is:             primefun/primemod.hs
