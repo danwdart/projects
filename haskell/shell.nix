@@ -1,5 +1,5 @@
 with import <nixpkgs> {};
-runCommand "VMs" {
+runCommand "haskell" {
     buildInputs = [
         haskell.compiler.ghc901
         cabal-install
