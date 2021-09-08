@@ -10,12 +10,12 @@ let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      other8104 = self.callCabal2nix "other8104" (gitignore ./.) {};
+      other8107 = self.callCabal2nix "other8107" (gitignore ./.) {};
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other8104
+      p.other8107
     ];
     buildInputs = [
       nixpkgs.haskellPackages.cabal-install
@@ -26,11 +26,11 @@ let
     ];
     withHoogle = true;
   };
-  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.other8104);
+  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.other8107);
 in
 {
   inherit shell;
   inherit exe;
   inherit myHaskellPackages;
-  other8104 = myHaskellPackages.other8104;
+  other8107 = myHaskellPackages.other8107;
 }
