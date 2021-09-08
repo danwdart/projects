@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-{-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-matches -Wno-name-shadowing #-}
+{-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-matches -Wno-unused-local-binds -Wno-name-shadowing #-}
 
 {- TODO: Deriving -}
 
