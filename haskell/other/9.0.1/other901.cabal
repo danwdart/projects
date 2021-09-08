@@ -75,11 +75,11 @@ executable flow
   main-is:             flow.hs
   build-depends:       base >= 4.7 && < 5, flow
 
-executable gifencode
-  import: shared-properties
-  main-is:             gifencode.hs
-  build-depends:       base >= 4.7 && < 5, gd
-  other-modules:       Lib.Seq
+-- executable gifencode
+--   import: shared-properties
+--   main-is:             gifencode.hs
+--   build-depends:       base >= 4.7 && < 5, gd
+--   other-modules:       Lib.Seq
 
 executable gloss
   import: shared-properties
@@ -126,10 +126,10 @@ executable shellmet
   main-is:             shellmet.hs
   build-depends:       base >= 4.7 && < 5, shellmet
 
-executable sound
-  import: shared-properties
-  main-is:             sound.hs
-  build-depends:       base >= 4.7 && < 5, pulseaudio, jack
+-- executable sound
+--   import: shared-properties
+--   main-is:             sound.hs
+--   build-depends:       base >= 4.7 && < 5, pulseaudio, jack
 
 executable tardis
   import: shared-properties
