@@ -166,6 +166,10 @@ executable graft
   import: shared-properties
   main-is:             graft.hs
 
+executable holup
+  import: shared-properties
+  main-is:             holup.hs
+
 executable interact
   import: shared-properties
   main-is:             interact.hs
