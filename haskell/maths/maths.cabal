@@ -48,7 +48,7 @@ executable ai
 
 executable arithmoi
   import: shared-properties
-  main-is:             ai.hs
+  main-is:             arithmoi.hs
   build-depends:       base >= 4.7 && < 5, arithmoi
 
 executable babylonsqrt
