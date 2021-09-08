@@ -25,10 +25,11 @@ executable async
   main-is:             async.hs
   build-depends:       base >= 4.7 && < 5, async
 
-executable gl
-  import: shared-properties
-  main-is:             gl.hs
-  build-depends:       base >= 4.7 && < 5, OpenGL
+-- takes too long to rebuild OpenGL
+--executable gl
+--  import: shared-properties
+--  main-is:             gl.hs
+--  build-depends:       base >= 4.7 && < 5, OpenGL
 
 executable mvar
   import: shared-properties
