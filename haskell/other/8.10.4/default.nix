@@ -1,5 +1,5 @@
-{ nixpkgs ? import <unstable> {},
-  compiler ? "ghc8104" }:
+{ nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
+  compiler ? "ghc8107" }:
   # ilist
   # th-expand-syns from aeson-qq
   # profunctors from lenses, sdl, shell-conduit and qchas
