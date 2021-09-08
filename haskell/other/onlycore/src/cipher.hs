@@ -1,4 +1,5 @@
 {-# LANGUAGE DeriveFunctor #-}
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
 
 import           Control.Applicative
 import           Control.Monad
