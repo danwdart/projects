@@ -1,5 +1,8 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i runghc -p haskell.compiler.ghc901
+#! nix-shell \
+#! -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.tar.gz \
+#! -p haskell.compiler.ghc921 \
+#! -i runghc
 
 {-# LANGUAGE OverloadedLists #-}
 
