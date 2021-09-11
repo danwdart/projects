@@ -24,7 +24,7 @@ let
       nixpkgs.haskellPackages.stylish-haskell
       nixpkgs.haskellPackages.hlint
     ];
-    withHoogle = true;
+    withHoogle = false;
   };
   exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.maths);
 in
