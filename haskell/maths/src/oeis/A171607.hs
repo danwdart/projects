@@ -1,4 +1,6 @@
+import           Data.List
 import           Data.Set
+
 
 main :: IO ()
 main = print values
