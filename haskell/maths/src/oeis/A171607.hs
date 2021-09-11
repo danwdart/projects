@@ -1,4 +1,4 @@
-import Data.Set
+import           Data.Set
 
 main :: IO ()
 main = print values
