@@ -38,6 +38,10 @@ executable euler4
   import: shared-properties
   main-is:             euler/4.hs
 
+executable oeisA171607
+  import: shared-properties
+  main-is:             oeis/A171607.hs
+
 executable 6x6euclid
   import: shared-properties
   main-is:             6x6euclid.hs
@@ -189,6 +193,11 @@ executable ohsol
 executable onetwenty
   import: shared-properties
   main-is:             120.hs
+
+executable origami
+  import: shared-properties
+  main-is:             origami.hs
+  build-depends:       base >= 4.7 && <5, cyclotomic
 
 executable pichang
   import: shared-properties
