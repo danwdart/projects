@@ -29,31 +29,13 @@ executable euler2
   import: shared-properties
   main-is:             euler/2.hs
 
-executable euler3
-  import: shared-properties
-  main-is:             euler/3.hs
-  build-depends:       base >= 4.7 && < 5, primes
-
-executable euler4
-  import: shared-properties
-  main-is:             euler/4.hs
-
 executable oeisA171607
   import: shared-properties
   main-is:             oeis/A171607.hs
 
-executable 6x6euclid
-  import: shared-properties
-  main-is:             6x6euclid.hs
-
 executable ai
   import: shared-properties
   main-is:             ai.hs
-
-executable arithmoi
-  import: shared-properties
-  main-is:             arithmoi.hs
-  build-depends:       base >= 4.7 && < 5, arithmoi
 
 executable babylonsqrt
   import: shared-properties
@@ -74,31 +56,6 @@ executable cards
   main-is:             cards.hs
   build-depends:       base >= 4.7 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
 
-executable currency-and-units
-  import: shared-properties
-  main-is:             currency-and-units.hs
-  default-language:    Haskell2010
-
-executable dungeon
-  hs-source-dirs:      src
-  main-is:             dungeon.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, digits
-
-executable eightytwothousand
-  hs-source-dirs:      src
-  main-is:             82000.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, digits
-
-executable fibsums
-  import: shared-properties
-  main-is:             fibsums.hs
-
-executable fibvslucasmod
-  import: shared-properties
-  main-is:             fibvslucasmod.hs
-
 executable frobenius
   import: shared-properties
   main-is:             frobenius.hs
@@ -107,10 +64,6 @@ executable gamma
   import: shared-properties
   main-is:             gamma.hs
   build-depends:       base >= 4.7 && < 5, invertible
-
-executable gol
-  import: shared-properties
-  main-is:             gol.hs
 
 executable harmonic
   import: shared-properties
@@ -138,23 +91,10 @@ executable mod
   import: shared-properties
   main-is:             mod.hs
 
-executable more
-  import: shared-properties
-  main-is:             more.hs
-  build-depends:       base >= 4.7 && < 5, egyptian-fractions, numbers, FixedPoint-simple
-
-executable mtdivergence
-  import: shared-properties
-  main-is:             mtdivergence.hs
-
 executable multpers
   import: shared-properties
   main-is:             multpers.hs
   other-modules:       Data.List.Nub, Data.List.Repeat
-
-executable neural
-  import: shared-properties
-  main-is:             neural.hs
 
 executable napier-locar
   hs-source-dirs:      src
@@ -229,11 +169,6 @@ executable selflocation
   import: shared-properties
   main-is:             selflocation.hs
   build-depends:       base >= 4.7 && < 5, numbers
-
-executable sumdiff-lucaslike
-  import: shared-properties
-  main-is:             sumdiff-lucaslike.hs
-  build-depends:       base >= 4.7 && < 5, MonadRandom
 
 executable surds
   import: shared-properties

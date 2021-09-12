@@ -20,10 +20,6 @@ common shared-properties
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
-executable intro
-  import: shared-properties
-  main-is:             Main.hs
-
 executable algsys
   import: shared-properties
   main-is:             algebra-systems.hs
@@ -40,10 +36,6 @@ executable bar
   import: shared-properties
   main-is:             bar.hs
   other-modules:       Lib.SafeDiv
-
-executable basic
-  import: shared-properties
-  main-is:             basic.hs
 
 executable baz
   import: shared-properties
@@ -138,10 +130,6 @@ executable existentialism
   import: shared-properties
   main-is:             existentialism.hs
 
-executable feistel
-  import: shared-properties
-  main-is:             feistel.hs
-
 executable ffi
   import: shared-properties
   main-is:             ffi.hs
@@ -202,10 +190,6 @@ executable pipeline
   import: shared-properties
   main-is:             pipeline.hs
 
-executable ports
-  import: shared-properties
-  main-is:             ports.hs
-  
 executable read
   import: shared-properties
   main-is:             read.hs
@@ -213,14 +197,6 @@ executable read
 executable rebindable
   import: shared-properties
   main-is:             rebindable.hs
-
-executable recursion
-  import: shared-properties
-  main-is:             recursion.hs
-
-executable scrapetumblr
-  import: shared-properties
-  main-is:             scrapetumblr.hs
 
 executable sequence
   import: shared-properties

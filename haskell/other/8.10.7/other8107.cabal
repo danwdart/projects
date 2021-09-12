@@ -45,11 +45,6 @@ executable lenses
   main-is:             lenses.hs
   build-depends:       base >= 4.7 && < 5, lens
 
-executable optics
-  import: shared-properties
-  main-is:             optics.hs
-  build-depends:       base >= 4.7 && < 5, optics
-
 executable pizza
   import: shared-properties
   main-is:             pizza.hs
@@ -72,20 +67,10 @@ executable profunctor
   main-is:             profunctor.hs
   build-depends:       base >= 4.7 && < 5, profunctors
 
-executable qchas
-  import: shared-properties
-  main-is:             qchas.hs
-  build-depends:       base >= 4.7 && < 5, qchas
-
 executable req
   import: shared-properties
   main-is:             req.hs
   build-depends:       base >= 4.7 && < 5, aeson, bytestring, mtl, req, retry, text
-
-executable sdl
-  import: shared-properties
-  main-is:             sdl.hs
-  build-depends:       base >= 4.7 && < 5, sdl2, sdl2-ttf, sdl2-image, sdl2-mixer, sdl2-gfx
 
 executable shell
   import: shared-properties
@@ -97,11 +82,6 @@ executable shell
 --   main-is:             sql.hs
 --   default-language:    Haskell2010
 --   build-depends:       base >= 4.7 && < 5, HDBC, HDBC-mysql
-
-executable unlift
-  import: shared-properties
-  main-is:             unlift.hs
-  build-depends:       base >= 4.7 && < 5, lifted-base, relude, unliftio-core
 
 executable wai
   import: shared-properties

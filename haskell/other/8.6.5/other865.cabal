@@ -28,12 +28,6 @@ common shared-properties
 --   main-is:             bluetooth.hs
 --   build-depends:       base >= 4.7 && < 5, simple-bluetooth
 
--- needs time 1.8
-executable haxl
-  import: shared-properties
-  main-is:             haxl.hs
-  build-depends:       base >= 4.7 && < 5, haxl
-  
 executable hnet
   import: shared-properties
   main-is:             hnet.hs
@@ -43,8 +37,3 @@ executable mongo
   import: shared-properties
   main-is:             mongo.hs
   build-depends:       base >= 4.7 && < 5, mongoDB, text, mtl
-
-executable propellor
-  import: shared-properties
-  main-is:             propellor.hs
-  build-depends:       base >= 4.7 && < 5, propellor

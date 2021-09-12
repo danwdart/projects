@@ -1,0 +1,4 @@
+battleships
+minesweeper
+scrabble
+ur

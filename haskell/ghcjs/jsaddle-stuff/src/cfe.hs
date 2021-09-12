@@ -94,7 +94,7 @@ cfToRatio = foldl1 (\t n -> n + (1 / t))
 -- cfToFrac = foldl (\(n, d) m -> (d + (n * m), n)) (1, 1)
 
 getCFEDetails ∷ JSString → Ratio Int
-getCFEDetails str = cfToRatio . fmap intToRatio . reverse . splitIntoNumbers $ fromJSString str
+getCFEDetails str = cfToRatio . fmap fromIntegral . reverse . splitIntoNumbers $ fromJSString str
 
 callEmptyMethod ∷ String → JSVal → JSM JSVal
 callEmptyMethod m o = o # m $ ([] :: [String])

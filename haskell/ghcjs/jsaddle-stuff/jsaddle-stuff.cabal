@@ -23,18 +23,9 @@ common shared-properties
   ghcjs-options:       -dedupe
   cpp-options:         -DGHCJS_BROWSER
 
-executable tumblreasyswitch
-  import: shared-properties
-  main-is:             extension/tumblreasyswitch.hs
-  build-depends:       base >= 4.7 && < 5, containers, jsaddle
-  
 executable canvas
   main-is:             canvas.hs
   build-depends:       base >= 4.7 && < 5, containers, jsaddle, jsaddle-dom, jsaddle-warp
-  
-executable cardioid
-  main-is:             cardioid.hs
-  build-depends:       base >= 4.7 && < 5, containers, jsaddle
   
 executable cfe
   main-is:             cfe.hs

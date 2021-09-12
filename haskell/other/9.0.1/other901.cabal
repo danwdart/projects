@@ -91,11 +91,6 @@ executable iso
   main-is:             iso.hs
   build-depends:       base >= 4.7 && < 5, semigroupoids
 
-executable mmio
-  import: shared-properties
-  main-is:             mmio.hs
-  build-depends:       base >= 4.7 && < 5, mmap
-
 executable parsec
   import: shared-properties
   main-is:             parsec.hs
@@ -120,11 +115,6 @@ executable serial
   import: shared-properties
   main-is:             serial.hs
   build-depends:       base >= 4.7 && < 5, serial
-
-executable shellmet
-  import: shared-properties
-  main-is:             shellmet.hs
-  build-depends:       base >= 4.7 && < 5, shellmet
 
 -- executable sound
 --   import: shared-properties
