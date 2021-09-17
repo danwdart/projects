@@ -3,6 +3,7 @@
 module Main where
 
 import           Control.Monad
+import           Data.Functor
 -- import qualified Data.Set as S
 import           Data.Set      (Set, fromList)
 import           Data.Text     (Text)
