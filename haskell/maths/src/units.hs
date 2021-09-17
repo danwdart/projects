@@ -10,6 +10,7 @@
 {-# LANGUAGE UnicodeSyntax              #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+import           Data.Kind
 import           GHC.TypeNats (Nat)
 
 class Unit x
@@ -35,7 +36,7 @@ data (a / b) = a :/: b deriving (Show)
 
 data family (^) (a :: k) (b :: Nat) :: k
 
-type family Pow (a :: *) (b :: Nat) :: *
+type family Pow (a :: Type) (b :: Nat) :: Type
 
 type Area = Metres ^ 2
 type Volume = Metres ^ 3
