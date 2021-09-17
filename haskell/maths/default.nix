@@ -1,5 +1,5 @@
 { nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc8107" }: # basement's base is 4.14 and can't be jailbroken because of unsafeCoerce#
+  compiler ? "ghc901" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
@@ -10,6 +10,12 @@ let
         '';
       });
       factory = self.callHackage "factory" "0.3.2.2" {};
+      partial-isomorphisms = self.callHackage "partial-isomorphisms" "0.2.3.0" {};
+      exact-pi = nixpkgs.pkgs.haskell.lib.doJailbreak super.exact-pi;
+      req = nixpkgs.pkgs.haskell.lib.doJailbreak (self.callHackage "req" "3.9.1" {});
+      text-short = nixpkgs.pkgs.haskell.lib.overrideCabal super.text-short (drv: {
+        doCheck = false;
+      });
       maths = self.callCabal2nix "maths" (gitignore ./.) {};
     };
   };
