@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Utility where
+module Game.Monopoly.Utility where
 
 utilityPrice ∷ Int
 utilityPrice = 150

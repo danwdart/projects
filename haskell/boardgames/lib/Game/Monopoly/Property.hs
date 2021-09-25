@@ -1,8 +1,8 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Property where
+module Game.Monopoly.Property where
 
-import           Lib.Game.Monopoly.Addons
-import           Lib.Game.Monopoly.Colour
+import           Game.Monopoly.Addons
+import           Game.Monopoly.Colour
 
 data Property = Property {
     name       :: String,

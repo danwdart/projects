@@ -1,7 +1,7 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Board where
+module Game.Monopoly.Board where
 
-import           Lib.Game.Monopoly.Space
+import           Game.Monopoly.Space
 
 data Board = Board {
     spaces           :: [Space],

@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Rules where
+module Game.Monopoly.Rules where
 
 import           Data.Set (Set)
 

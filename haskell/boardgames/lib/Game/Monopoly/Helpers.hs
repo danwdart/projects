@@ -1,10 +1,10 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Helpers where
+module Game.Monopoly.Helpers where
 
-import           Lib.Game.Monopoly.Board
-import           Lib.Game.Monopoly.Player
-import           Lib.Game.Monopoly.Space
-import           Lib.Game.Monopoly.Tax
+import           Game.Monopoly.Board
+import           Game.Monopoly.Player
+import           Game.Monopoly.Space
+import           Game.Monopoly.Tax
 
 playerSpace ∷ [Space] → Player → Space
 playerSpace s player = s !! position player

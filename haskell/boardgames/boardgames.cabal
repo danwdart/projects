@@ -10,6 +10,27 @@ category:            Web
 build-type:          Simple
 extra-source-files:  README.md
 
+library
+  hs-source-dirs: lib
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, containers
+  exposed-modules:
+      Game.Bounce
+    , Game.Monopoly.Addons
+    , Game.Monopoly.Board
+    , Game.Monopoly.Colour
+    , Game.Monopoly.Game
+    , Game.Monopoly.Helpers
+    , Game.Monopoly.Player
+    , Game.Monopoly.Property
+    , Game.Monopoly.Random
+    , Game.Monopoly.Rules
+    , Game.Monopoly.Space
+    , Game.Monopoly.Station
+    , Game.Monopoly.Tax
+    , Game.Monopoly.Token
+    , Game.Monopoly.Utility
+
 common shared-properties
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -32,6 +53,11 @@ executable 2048
   main-is:             2048.hs
   build-depends:       base >= 4.7 && < 5, MonadRandom, random
 
+executable bounce
+  import: shared-properties
+  main-is:             bounce.hs
+  build-depends:       base >= 4.7 && < 5, boardgames
+
 executable frog
   import: shared-properties
   main-is:             frog.hs
@@ -40,24 +66,27 @@ executable frog
 executable monopoly
   import: shared-properties
   main-is:             monopoly.hs
-  build-depends:       base >= 4.7 && < 5, containers, random
-  other-modules:       Lib.Game.Monopoly.Addons
-    , Lib.Game.Monopoly.Board
-    , Lib.Game.Monopoly.Colour
-    , Lib.Game.Monopoly.Game
-    , Lib.Game.Monopoly.Helpers
-    , Lib.Game.Monopoly.Player
-    , Lib.Game.Monopoly.Property
-    , Lib.Game.Monopoly.Random
-    , Lib.Game.Monopoly.Rules
-    , Lib.Game.Monopoly.Space
-    , Lib.Game.Monopoly.Station
-    , Lib.Game.Monopoly.Tax
-    , Lib.Game.Monopoly.Token
-    , Lib.Game.Monopoly.Utility
+  build-depends:       base >= 4.7 && < 5, boardgames, containers, random
 
 --executable razzledazzle
 --  hs-source-dirs:      src
 --  main-is:             razzledazzle.hs
 --  default-language:    Haskell2010
 --  build-depends:       base >= 4.7 && < 5, monad-loops, probability, random, rando, utility-ht
+
+test-suite boardgames-test
+  import: shared-properties
+  hs-source-dirs:      test
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  other-modules:
+    Game.BounceSpec
+  build-tool-depends:
+    hspec-discover:hspec-discover
+  build-depends:
+      base >= 4.7 && < 5
+    , boardgames
+    , hspec
+    , hspec-core
+    , hspec-expectations
+    , QuickCheck

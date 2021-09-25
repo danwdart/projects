@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Addons where
+module Game.Monopoly.Addons where
 
 data Addons = NoAddons | Houses Int | Hotel deriving (Eq)
 

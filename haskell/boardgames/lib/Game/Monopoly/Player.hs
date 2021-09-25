@@ -1,8 +1,8 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Player where
+module Game.Monopoly.Player where
 
-import           Lib.Game.Monopoly.Property
-import           Lib.Game.Monopoly.Token
+import           Game.Monopoly.Property
+import           Game.Monopoly.Token
 
 data Player = Player {
     name                :: String,

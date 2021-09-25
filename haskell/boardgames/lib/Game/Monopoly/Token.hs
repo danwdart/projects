@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Token where
+module Game.Monopoly.Token where
 
 data Token = Dog | TopHat | Wheelbarrow | RacingCar | Boot | Iron | Battleship | Thimble deriving (Eq)
 

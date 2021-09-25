@@ -2,15 +2,15 @@
 import           Control.Monad
 import qualified Data.Set                  as Set
 
-import           Lib.Game.Monopoly.Board
-import           Lib.Game.Monopoly.Colour
-import           Lib.Game.Monopoly.Game
-import           Lib.Game.Monopoly.Helpers
-import           Lib.Game.Monopoly.Player
-import           Lib.Game.Monopoly.Random
-import           Lib.Game.Monopoly.Rules
-import           Lib.Game.Monopoly.Space
-import           Lib.Game.Monopoly.Token
+import           Game.Monopoly.Board
+import           Game.Monopoly.Colour
+import           Game.Monopoly.Game
+import           Game.Monopoly.Helpers
+import           Game.Monopoly.Player
+import           Game.Monopoly.Random
+import           Game.Monopoly.Rules
+import           Game.Monopoly.Space
+import           Game.Monopoly.Token
 
 import           System.Random
 

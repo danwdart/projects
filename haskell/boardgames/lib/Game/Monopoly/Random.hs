@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Random where
+module Game.Monopoly.Random where
 
 data RandomType = Chance | CommunityChest deriving (Eq)
 

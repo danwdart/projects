@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-module Lib.Game.Monopoly.Tax where
+module Game.Monopoly.Tax where
 
 data Tax = Tax {
     name  :: String,
