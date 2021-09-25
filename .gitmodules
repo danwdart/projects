@@ -1,3 +1,12 @@
 [submodule "haskell/ghcjs/reflex-platform"]
 	path = haskell/ghcjs/reflex-platform
 	url = https://github.com/reflex-frp/reflex-platform
+[submodule "haskell/uefi/posix-uefi"]
+	path = haskell/uefi/posix-uefi
+	url = git@gitlab.com:bztsrc/posix-uefi.git
+[submodule "haskell/wasm/wasm-cross"]
+	path = haskell/wasm/wasm-cross
+	url = git@github.com:WebGHC/wasm-cross.git
+[submodule "haskell/wasm/reflex-platform"]
+	path = haskell/wasm/reflex-platform
+	url = git@github.com:reflex-frp/reflex-platform.git
