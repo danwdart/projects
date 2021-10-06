@@ -52,10 +52,13 @@ executable babylonsqrt
   main-is:             babylonsqrt.hs
 
 executable base
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             base.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, digits
+
+executable base-own
+  import: shared-properties
+  main-is:             base-own.hs
 
 executable cardord
   import: shared-properties
@@ -111,9 +114,8 @@ executable multpers
   build-depends:       base >= 4.7 && <5, maths
 
 executable napier-locar
-  hs-source-dirs:      src
+  import: shared-properties
   main-is:             napier-locar.hs
-  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, digits
 
 executable numbertypes
