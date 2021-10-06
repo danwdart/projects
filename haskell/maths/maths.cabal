@@ -20,6 +20,15 @@ common shared-properties
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
+library
+  hs-source-dirs:      lib
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Wall -Werror
+  ghcjs-options:       -dedupe
+  exposed-modules:     Data.List.Nub
+                     , Data.List.Repeat
+
 -- euler
 executable euler1
   import: shared-properties
@@ -56,6 +65,10 @@ executable cards
   import: shared-properties
   main-is:             cards.hs
   build-depends:       base >= 4.7 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+
+executable diffy
+  import: shared-properties
+  main-is:             diffy.hs
 
 executable frobenius
   import: shared-properties
@@ -95,7 +108,7 @@ executable mod
 executable multpers
   import: shared-properties
   main-is:             multpers.hs
-  other-modules:       Data.List.Nub, Data.List.Repeat
+  build-depends:       base >= 4.7 && <5, maths
 
 executable napier-locar
   hs-source-dirs:      src
