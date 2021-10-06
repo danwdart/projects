@@ -1,0 +1,2 @@
+-- https://en.wikipedia.org/wiki/Octal
+-- Charles XII of Sweden
