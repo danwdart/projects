@@ -98,6 +98,10 @@ executable datatypes
   import: shared-properties
   main-is:             datatypes.hs
 
+executable dci
+  import: shared-properties
+  main-is:             dci.hs
+
 executable disparate
   import: shared-properties
   main-is:             disparate.hs
