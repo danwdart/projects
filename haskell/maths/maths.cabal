@@ -237,3 +237,8 @@ executable primey
 executable raw
   import: shared-properties
   main-is:             primefun/raw.hs
+
+executable semiprime
+  import: shared-properties
+  main-is:             primefun/semiprime.hs
+  build-depends:       base >= 4.7 && < 5, primes
