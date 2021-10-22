@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import           Data.Foldable.Safe
-import           Data.Functor
 import           Data.List
 import           Lib.XPath
 
