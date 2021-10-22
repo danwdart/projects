@@ -11,7 +11,7 @@ using "namespace std"
 include "<iostream>"
 
 b ∷ IO CInt
-b = [block| int { pure 2; } |]
+b = [block| int { return 2; } |]
 
 main ∷ IO ()
 main = [block| void {
