@@ -142,6 +142,8 @@ test-suite test
   main-is:             Spec.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, hspec, QuickCheck
+  other-modules:       TestSpec
+                     , Test2Spec
 
 --test-suite quickcheck-detailed
 --  type:                detailed-0.9
