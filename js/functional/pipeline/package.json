@@ -16,7 +16,7 @@
     "@babel/cli": "^7.12.8",
     "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-pipeline-operator": "^7.12.1",
-    "babel-eslint": "^11.0.0-beta.2",
+    "@babel/eslint": "^11.0.0-beta.2",
     "eslint": "^7.15.0"
   }
 }
