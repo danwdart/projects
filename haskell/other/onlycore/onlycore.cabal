@@ -100,6 +100,11 @@ executable reader
   main-is:             reader.hs
   build-depends:       base >= 4.7 && < 5, mtl
 
+executable sha
+  import: shared-properties
+  main-is:             sha.hs
+  build-depends:       base >= 4.7 && < 5, bytestring
+
 executable state
   import: shared-properties
   main-is:             state.hs
