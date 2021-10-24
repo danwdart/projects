@@ -1,5 +1,5 @@
 {-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds #-}
 
 import           GHC.Read

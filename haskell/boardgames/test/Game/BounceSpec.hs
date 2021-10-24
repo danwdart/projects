@@ -1,16 +1,16 @@
 {-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TemplateHaskell   #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-orphans #-}
 
 module Game.BounceSpec where
 
-import Control.Monad.IO.Class
-import Game.Bounce
-import Test.Hspec
-import Test.Hspec.QuickCheck
-import Test.QuickCheck
-import Test.QuickCheck.Arbitrary
-import Test.QuickCheck.Monadic
+import           Control.Monad.IO.Class
+import           Game.Bounce
+import           Test.Hspec
+import           Test.Hspec.QuickCheck
+import           Test.QuickCheck
+import           Test.QuickCheck.Arbitrary
+import           Test.QuickCheck.Monadic
 
 instance Arbitrary Corner where
     arbitrary = arbitraryBoundedEnum

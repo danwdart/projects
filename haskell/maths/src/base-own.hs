@@ -80,7 +80,7 @@ toBase b n = m : if d == 0 then [] else toBase b d
     where (d, m) = divMod n b
 
 fromBase :: Integer -> [Integer] -> Integer
-fromBase _ [] = 0
+fromBase _ []     = 0
 fromBase b (n:ns) = n + b * fromBase b ns
 
 fromBaseStrict :: Integer -> [Integer] -> Maybe Integer

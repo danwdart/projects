@@ -51,11 +51,11 @@ cornerToCoord (width, height) = \case
 
 coordToMaybeCorner :: Size -> Coord -> Maybe Corner
 coordToMaybeCorner (width, height) = \case
-    (0, 0) -> Just A
-    (widthminus1, 0) -> Just B
-    (0, heightminus1) -> Just C
+    (0, 0)                      -> Just A
+    (widthminus1, 0)            -> Just B
+    (0, heightminus1)           -> Just C
     (widthminus1, heightminus1) -> Just D
-    _ -> Nothing
+    _                           -> Nothing
     where
         widthminus1 = width - 1 -- what?
         heightminus1 = height - 1 -- huh?

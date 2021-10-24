@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds #-}
 
 shl :: [a] -> [a]
-shl [] = []
+shl []     = []
 shl (x:xs) = xs <> [x]
 
 diffy :: [Int] -> [Int]
@@ -11,7 +11,7 @@ isAllZeros :: [Int] -> Bool
 isAllZeros = all (== 0)
 
 allEqual :: (Eq a) => [a] -> Bool
-allEqual [] = True
+allEqual []     = True
 allEqual (x:xs) = all (== x) xs
 
 iterUntil :: (Eq a) => (a -> Bool) -> (a -> a) -> a -> a

@@ -1,6 +1,6 @@
 {-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad
-import qualified Data.Set                  as Set
+import qualified Data.Set              as Set
 
 import           Game.Monopoly.Board
 import           Game.Monopoly.Colour
