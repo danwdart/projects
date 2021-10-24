@@ -83,9 +83,8 @@ step5 = extend step4 where
         (xs !! (P.length xs - 8)) `xor`
         (xs !! (P.length xs - 14)) `xor`
         (xs !! (P.length xs - 16)))
-        `rl` 1
+        `rotateL` 1
         ]
-    rl = flip rotateL
 
 lstr :: Int
 lstr = B.length str

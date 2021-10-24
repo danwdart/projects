@@ -60,6 +60,11 @@ executable cyclesinmixedset
   main-is:             cyclesinmixedset.hs
   build-depends:       base >= 4.7 && < 5, mtl
 
+executable embed
+  import: shared-properties
+  main-is:             embed.hs
+  build-depends:       base >= 4.7 && < 5, template-haskell
+
 executable endo
   import: shared-properties
   main-is:             endo.hs
