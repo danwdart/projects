@@ -28,6 +28,7 @@ library
   ghcjs-options:       -dedupe
   exposed-modules:     Data.List.Nub
                      , Data.List.Repeat
+                     , Ulam
 
 -- euler
 executable euler1
@@ -204,6 +205,11 @@ executable words
   build-depends:       base >= 4.7 && < 5, containers, mtl, profunctors
 
 
+executable ulam
+  import: shared-properties
+  main-is:             ulam.hs
+  build-depends:       base >= 4.7 && < 5, maths
+
 -- Primes
 
 executable decomp
@@ -242,3 +248,20 @@ executable semiprime
   import: shared-properties
   main-is:             primefun/semiprime.hs
   build-depends:       base >= 4.7 && < 5, primes
+
+test-suite maths-test
+  import: shared-properties
+  hs-source-dirs:      test
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  other-modules:
+    UlamSpec
+  build-tool-depends:
+    hspec-discover:hspec-discover
+  build-depends:
+      base >= 4.7 && < 5
+    , maths
+    , hspec
+    , hspec-core
+    , hspec-expectations
+    , QuickCheck

@@ -1,1 +1,1 @@
--l -a --command=stack ghci
+-l -a
