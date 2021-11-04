@@ -2,6 +2,7 @@
   compiler ? "ghc901" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
+  lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       digits = (self.callHackage "digits" "0.3.1" {}).overrideDerivation (self: {
@@ -11,9 +12,9 @@ let
       });
       factory = self.callHackage "factory" "0.3.2.2" {};
       partial-isomorphisms = self.callHackage "partial-isomorphisms" "0.2.3.0" {};
-      exact-pi = nixpkgs.pkgs.haskell.lib.doJailbreak super.exact-pi;
-      req = nixpkgs.pkgs.haskell.lib.doJailbreak (self.callHackage "req" "3.9.1" {});
-      text-short = nixpkgs.pkgs.haskell.lib.overrideCabal super.text-short (drv: {
+      exact-pi = lib.doJailbreak super.exact-pi;
+      req = lib.doJailbreak (self.callHackage "req" "3.9.1" {});
+      text-short = lib.overrideCabal super.text-short (drv: {
         doCheck = false;
       });
       maths = self.callCabal2nix "maths" (gitignore ./.) {};
@@ -23,16 +24,24 @@ let
     packages = p: [
       p.maths
     ];
-    buildInputs = [
-      nixpkgs.haskellPackages.cabal-install
-      nixpkgs.wget
-      nixpkgs.haskellPackages.ghcid
-      nixpkgs.haskellPackages.stylish-haskell
-      nixpkgs.haskellPackages.hlint
+    shellHook = ''
+      gen-hie > hie.yaml
+      for i in $(find -type f); do krank $i; done
+    '';
+    buildInputs = with nixpkgs; with haskellPackages; [
+      apply-refact
+      cabal-install
+      ghcid
+      hlint
+      implicit-hie
+      krank
+      stan
+      stylish-haskell
+      weeder
     ];
     withHoogle = false;
   };
-  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.maths);
+  exe = lib.justStaticExecutables (myHaskellPackages.maths);
 in
 {
   inherit shell;

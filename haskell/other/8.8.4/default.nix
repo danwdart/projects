@@ -2,6 +2,7 @@
   compiler ? "ghc884" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
+  lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       inline-asm = self.callHackage "inline-asm" "0.4.0.2" {};
@@ -17,16 +18,24 @@ let
     packages = p: [
       p.other884
     ];
-    buildInputs = [
-      nixpkgs.haskellPackages.cabal-install
-      nixpkgs.wget
-      nixpkgs.haskellPackages.ghcid
-      nixpkgs.haskellPackages.stylish-haskell
-      nixpkgs.haskellPackages.hlint
+    shellHook = ''
+      gen-hie > hie.yaml
+      for i in $(find -type f); do krank $i; done
+    '';
+    buildInputs = with nixpkgs; with haskellPackages; [
+      apply-refact
+      cabal-install
+      ghcid
+      hlint
+      implicit-hie
+      krank
+      stan
+      stylish-haskell
+      weeder
     ];
     withHoogle = false;
   };
-  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.other884);
+  exe = lib.justStaticExecutables (myHaskellPackages.other884);
 in
 {
   inherit shell;

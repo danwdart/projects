@@ -2,6 +2,7 @@
   compiler ? "ghc901" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
+  lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       humblr = self.callCabal2nix "humblr" (builtins.fetchGit {
@@ -15,16 +16,24 @@ let
     packages = p: [
       p.tumblr-api
     ];
-    buildInputs = [
-      nixpkgs.haskellPackages.cabal-install
-      nixpkgs.wget
-      nixpkgs.haskellPackages.ghcid
-      nixpkgs.haskellPackages.stylish-haskell
-      nixpkgs.haskellPackages.hlint
+    shellHook = ''
+      gen-hie > hie.yaml
+      for i in $(find -type f); do krank $i; done
+    '';
+    buildInputs = with nixpkgs; with haskellPackages; [
+      apply-refact
+      cabal-install
+      ghcid
+      hlint
+      implicit-hie
+      krank
+      stan
+      stylish-haskell
+      weeder
     ];
     withHoogle = false;
   };
-  exe = nixpkgs.haskell.lib.justStaticExecutables (myHaskellPackages.tumblr-api);
+  exe = lib.justStaticExecutables (myHaskellPackages.tumblr-api);
 in
 {
   inherit shell;
