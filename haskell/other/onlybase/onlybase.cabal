@@ -194,6 +194,10 @@ executable pipeline
   import: shared-properties
   main-is:             pipeline.hs
 
+executable postfixops
+  import: shared-properties
+  main-is:             postfixops.hs
+
 executable read
   import: shared-properties
   main-is:             read.hs
