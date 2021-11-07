@@ -1,4 +1,5 @@
 cabal-version:       3.0
+-- Newer versions complain
 name:                other884
 version:             0.1.0.0
 -- synopsis:
@@ -16,48 +17,48 @@ extra-source-files:  README.md
 common shared-properties
   hs-source-dirs:      src
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.13 && < 5
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
 executable asm
   import: shared-properties
   main-is:             asm.hs
-  build-depends:       base >= 4.7 && < 5, inline-asm
+  build-depends:       base >= 4.13 && < 5, inline-asm
 
 executable langparse
   import: shared-properties
   main-is:             langparse.hs
-  build-depends:       base >= 4.7 && < 5, parsec, language-c, language-javascript
+  build-depends:       base >= 4.13 && < 5, parsec, language-c, language-javascript
 
 -- needs older dbus
 executable mdns
   import: shared-properties
   main-is:             mdns.hs
-  build-depends:       base >= 4.7 && < 5, avahi
+  build-depends:       base >= 4.13 && < 5, avahi
 
 -- broken on newer deps
 executable sockets
   import: shared-properties
   main-is:             sockets.hs
-  build-depends:       base >= 4.7 && < 5, async, bytestring, network
+  build-depends:       base >= 4.13 && < 5, async, bytestring, network
 
 executable these
   import: shared-properties
   main-is:             these.hs
-  build-depends:       base >= 4.7 && < 5, these
+  build-depends:       base >= 4.13 && < 5, these
 
 -- needs older transformers
 executable threedeegee
   import: shared-properties
   main-is:             3dg.hs
-  build-depends:       base >= 4.7 && < 5, threepenny-gui
+  build-depends:       base >= 4.13 && < 5, threepenny-gui
 
 -- gogol requires older base
 executable translatorglitch
   import: shared-properties
   main-is:             translatorglitch.hs
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.13 && < 5
                       , aeson
                       , bytestring
                       , gogol

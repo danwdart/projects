@@ -1,4 +1,5 @@
 cabal-version:       3.0
+-- Newer versions complain
 name:                other901
 version:             0.1.0.0
 -- synopsis:
@@ -16,132 +17,132 @@ extra-source-files:  README.md
 common shared-properties
   hs-source-dirs:      src
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.15 && < 5
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
 executable bifunctor
   import: shared-properties
   main-is:             bifunctor.hs
-  build-depends:       base >= 4.7 && < 5, bifunctors
+  build-depends:       base >= 4.15 && < 5, bifunctors
 
 executable c
   import: shared-properties
   main-is:             c.hs
-  build-depends:       base >= 4.7 && < 5, inline-c
+  build-depends:       base >= 4.15 && < 5, inline-c
 
 executable comonads
   import: shared-properties
   main-is:             comonads.hs
-  build-depends:       base >= 4.7 && < 5, comonad, containers
+  build-depends:       base >= 4.15 && < 5, comonad, containers
 
 executable cplusplus
   import: shared-properties
   main-is:             cplusplus.hs
-  build-depends:       base >= 4.7 && < 5, inline-c-cpp
+  build-depends:       base >= 4.15 && < 5, inline-c-cpp
 
 executable delay
   import: shared-properties
   main-is:             delay.hs
-  build-depends:       base >= 4.7 && < 5, ansi-terminal, random
+  build-depends:       base >= 4.15 && < 5, ansi-terminal, random
 
 executable elf
   import: shared-properties
   main-is:             elf.hs
-  build-depends:       base >= 4.7 && < 5, elf, bytestring
+  build-depends:       base >= 4.15 && < 5, elf, bytestring
 
 executable error-collection
   import: shared-properties
   main-is:             error-collection.hs
-  build-depends:       base >= 4.7 && < 5, bifunctors, containers
+  build-depends:       base >= 4.15 && < 5, bifunctors, containers
 
 executable eventloop
   import: shared-properties
   main-is:             eventLoop.hs
-  build-depends:       base >= 4.7 && < 5, async, concurrent-extra, lifted-async
+  build-depends:       base >= 4.15 && < 5, async, concurrent-extra, lifted-async
 
 executable fieldTrans
   import: shared-properties
   main-is:             fieldTrans.hs
-  build-depends:       base >= 4.7 && < 5, aeson, containers, mtl
+  build-depends:       base >= 4.15 && < 5, aeson, containers, mtl
 
 executable fileformat
   import: shared-properties
   main-is:             fileformat.hs
-  build-depends:       base >= 4.7 && < 5, binary, bytestring
+  build-depends:       base >= 4.15 && < 5, binary, bytestring
 
 executable flow
   import: shared-properties
   main-is:             flow.hs
-  build-depends:       base >= 4.7 && < 5, flow
+  build-depends:       base >= 4.15 && < 5, flow
 
 -- executable gifencode
 --   import: shared-properties
 --   main-is:             gifencode.hs
---   build-depends:       base >= 4.7 && < 5, gd
+--   build-depends:       base >= 4.15 && < 5, gd
 --   other-modules:       Lib.Seq
 
 executable gloss
   import: shared-properties
   main-is:             gloss.hs
-  build-depends:       base >= 4.7 && < 5, gloss
+  build-depends:       base >= 4.15 && < 5, gloss
 
 executable iso
   import: shared-properties
   main-is:             iso.hs
-  build-depends:       base >= 4.7 && < 5, semigroupoids
+  build-depends:       base >= 4.15 && < 5, semigroupoids
 
 executable parsec
   import: shared-properties
   main-is:             parsec.hs
-  build-depends:       base >= 4.7 && < 5, ansi-terminal, parsec
+  build-depends:       base >= 4.15 && < 5, ansi-terminal, parsec
 
 executable prim
   import: shared-properties
   main-is:             prim.hs
-  build-depends:       base >= 4.7 && < 5, ghc-prim
+  build-depends:       base >= 4.15 && < 5, ghc-prim
 
 executable regex
   import: shared-properties
   main-is:             regex.hs
-  build-depends:       base >= 4.7 && < 5, regex-tdfa
+  build-depends:       base >= 4.15 && < 5, regex-tdfa
 
 executable rws
   import: shared-properties
   main-is:             rws.hs
-  build-depends:       base >= 4.7 && < 5, mtl, transformers, monads-tf
+  build-depends:       base >= 4.15 && < 5, mtl, transformers, monads-tf
 
 executable serial
   import: shared-properties
   main-is:             serial.hs
-  build-depends:       base >= 4.7 && < 5, serial
+  build-depends:       base >= 4.15 && < 5, serial
 
 -- executable sound
 --   import: shared-properties
 --   main-is:             sound.hs
---   build-depends:       base >= 4.7 && < 5, pulseaudio, jack
+--   build-depends:       base >= 4.15 && < 5, pulseaudio, jack
 
 executable tardis
   import: shared-properties
   main-is:             tardis.hs
-  build-depends:       base >= 4.7 && < 5, tardis
+  build-depends:       base >= 4.15 && < 5, tardis
 
 executable unicode
   import: shared-properties
   main-is:             unicode.hs
-  build-depends:       base >= 4.7 && < 5, mtl, base-unicode-symbols
+  build-depends:       base >= 4.15 && < 5, mtl, base-unicode-symbols
 
 executable wave
   import: shared-properties
   main-is:             wave.hs
-  build-depends:       base >= 4.7 && < 5, fft
+  build-depends:       base >= 4.15 && < 5, fft
 
 test-suite test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5, hspec, QuickCheck
+  build-depends:       base >= 4.15 && < 5, hspec, QuickCheck
   other-modules:       TestSpec
                      , Test2Spec
 
@@ -150,4 +151,4 @@ test-suite test
 --  hs-source-dirs:      test
 --  test-module:         MyTest
 --  default-language:    Haskell2010
---  build-depends:       base >= 4.7 && < 5, hspec, QuickCheck, Cabal
+--  build-depends:       base >= 4.15 && < 5, hspec, QuickCheck, Cabal
