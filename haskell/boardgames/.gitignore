@@ -7,5 +7,5 @@ google.json
 *.o
 .env
 result*
-
 .direnv
+hie.yaml
