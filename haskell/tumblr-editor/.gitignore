@@ -1,5 +1,5 @@
 .stack-work
 secret
 result*
-
 .direnv
+hie.yaml
