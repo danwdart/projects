@@ -25,7 +25,7 @@ executable misostuff
   cpp-options: -DGHCJS_BROWSER
   build-depends:
     aeson,
-    base < 5,
+    base > 4.12 && < 5,
     containers,
     jsaddle,
     jsaddle-warp,

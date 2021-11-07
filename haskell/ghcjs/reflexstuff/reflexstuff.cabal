@@ -1,4 +1,4 @@
-cabal-version:       2.0
+cabal-version:       2.4
 name:                reflexstuff
 version:             0.1.0.0
 license:             AGPL-3.0-only
@@ -10,7 +10,7 @@ extra-source-files:  CHANGELOG.md
 executable dom
   main-is:             dom.hs
   hs-source-dirs:      src
-  build-depends:       base >=4 && <5, reflex-dom
+  build-depends:       base >=4.12 && <5, reflex-dom
   default-language:    Haskell2010
   ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
   cpp-options:         -DGHCJS_BROWSER
