@@ -1,4 +1,5 @@
 cabal-version:       3.0
+-- Newer versions complain
 name:                tumblr-editor
 version:             0.1.0.0
 license:             AGPL-3.0-only
@@ -9,7 +10,7 @@ extra-source-files:  CHANGELOG.md
 
 executable tumblr-editor
   main-is:             Main.hs
-  build-depends:       base >=4.9 && <5
+  build-depends:       base >=4.14.1.0 && <5
                      , text
                      , webdriver
   hs-source-dirs: src
