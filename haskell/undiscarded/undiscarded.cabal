@@ -1,0 +1,27 @@
+cabal-version:      3.0
+name:               undiscarded
+description:        Non-discarded monads
+version:            0.1.0.0
+license:            MIT
+license-file:       LICENSE
+author:             Dan Dart
+maintainer:         git@dandart.co.uk
+extra-source-files:
+    CHANGELOG.md
+    README.md
+
+library
+    exposed-modules:  Control.Concurrent.Async.Undiscarded
+                    , Control.Monad.State.Disparate
+                    , Control.Monad.Trans.State.Disparate
+                    , Control.Monad.Trans.State.Undiscarded
+    build-depends:    base >= 4.14 && < 5, mtl, transformers
+    hs-source-dirs:   lib
+    default-language: Haskell2010
+
+test-suite undiscarded-test
+    type:             exitcode-stdio-1.0
+    build-depends:    base >= 4.14 && < 5
+    hs-source-dirs:   test
+    main-is:          Spec.hs
+    default-language: Haskell2010
