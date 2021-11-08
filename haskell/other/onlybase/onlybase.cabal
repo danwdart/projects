@@ -151,6 +151,10 @@ executable frp
   import: shared-properties
   main-is:             frp.hs
 
+executable gadts
+  import: shared-properties
+  main-is:             gadts.hs
+
 executable generics
   import: shared-properties
   main-is:             generics.hs
