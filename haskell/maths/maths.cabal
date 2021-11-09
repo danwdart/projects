@@ -29,6 +29,7 @@ library
   ghcjs-options:       -dedupe
   exposed-modules:     Data.List.Nub
                      , Data.List.Repeat
+                     , Frobenius
                      , Ulam
 
 -- euler
@@ -78,6 +79,7 @@ executable diffy
 executable frobenius
   import: shared-properties
   main-is:             frobenius.hs
+  build-depends:       base >= 4.15 && < 5, errors, extra, maths
 
 executable gamma
   import: shared-properties
@@ -257,8 +259,8 @@ test-suite maths-test
   main-is:             Spec.hs
   other-modules:
     UlamSpec
-  build-tool-depends:
-    hspec-discover:hspec-discover
+  -- build-tool-depends:
+  --  hspec-discover:hspec-discover
   build-depends:
       base >= 4.15 && < 5
     , maths
