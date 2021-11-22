@@ -1,5 +1,5 @@
 { nixpkgs ? import  (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc901" }: # splitmix doesn't support 921 yet
+  compiler ? "ghc921" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -16,16 +16,17 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f); do krank $i; done
     '';
-    buildInputs = with nixpkgs; with haskellPackages; [
+    buildInputs = with myHaskellPackages; with nixpkgs; with haskellPackages; [
       apply-refact
       cabal-install
       ghcid
+      haskell-language-server
       hlint
       implicit-hie
       krank
       stan
       stylish-haskell
-      weeder
+      haskellPackages.weeder # not on ghc 9.2 because of generic-lens-core issues
     ];
     withHoogle = false;
   };

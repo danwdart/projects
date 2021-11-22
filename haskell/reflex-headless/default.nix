@@ -16,10 +16,11 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f); do krank $i; done
     '';
-    buildInputs = with nixpkgs; with haskellPackages; [
+    buildInputs = with myHaskellPackages; with nixpkgs; [
       apply-refact
       cabal-install
       ghcid
+      haskell-language-server
       hlint
       implicit-hie
       krank

@@ -8,5 +8,5 @@ executable uefi
     main-is:          Main.hs
     hs-source-dirs:   src
     default-language: Haskell2010
-    ghc-options:         -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+    ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     ghcjs-options:       -dedupe

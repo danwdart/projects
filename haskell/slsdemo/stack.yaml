@@ -1,5 +1,5 @@
 ghc-options:
-  slsdemo: -j16 -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+  slsdemo: -j16 -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 packages:
 - .
 extra-deps:
