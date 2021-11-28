@@ -20,7 +20,16 @@ withDo = do
     tell ["Hmm..."]
     logArith2 x
 
+newExample :: Writer [String] String
+newExample = do
+    tell ["One"]
+    tell ["Two"]
+    pure "Three!"
+
 main ∷ IO ()
-main = mapM_ print [
-    runWriter withFns,
-    runWriter withDo ]
+main = do
+    mapM_ print [
+        runWriter withFns,
+        runWriter withDo
+        ]
+    print $ runWriter newExample
