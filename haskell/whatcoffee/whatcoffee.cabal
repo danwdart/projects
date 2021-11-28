@@ -1,0 +1,23 @@
+cabal-version:       3.0
+-- Newer versions complain
+name:                whatcoffee
+version:             0.1.0.0
+license:             AGPL-3.0-only
+author:              Dan Dart
+maintainer:          git@dandart.co.uk
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+library
+  hs-source-dirs:      lib
+  default-language:    Haskell2010
+  build-depends:       base >= 4.16 && < 5, jwt
+  exposed-modules:     
+  ghc-options:         -Wall -Werror -haddock
+
+executable whatcoffee
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.16 && < 5, jwt
+  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
