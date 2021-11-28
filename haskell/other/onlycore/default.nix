@@ -16,16 +16,18 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f); do krank $i; done
     '';
-    buildInputs = with nixpkgs; with haskellPackages; [
+    buildInputs = with myHaskellPackages; with nixpkgs; with haskellPackages; [
       apply-refact
       cabal-install
       ghcid
+      haskell-language-server
+      hasktags
       hlint
       implicit-hie
       krank
       stan
       stylish-haskell
-      weeder
+      haskellPackages.weeder # not on ghc 9.2 because of generic-lens-core issues
     ];
     withHoogle = false;
   };
