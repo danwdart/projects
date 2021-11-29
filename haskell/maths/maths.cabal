@@ -41,6 +41,11 @@ executable euler2
   import: shared-properties
   main-is:             euler/2.hs
 
+executable oeisA133058
+  import: shared-properties
+  main-is:             oeis/A133058.hs
+  build-depends:       base >= 4.15 && < 5
+
 executable oeisA171607
   import: shared-properties
   main-is:             oeis/A171607.hs
