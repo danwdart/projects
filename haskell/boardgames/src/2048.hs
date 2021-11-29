@@ -31,7 +31,7 @@ instance Show Board where
 data Direction = U | D | L | R
 
 blankBoard :: Int -> Int -> Board
-blankBoard rows cols = Board $ replicate rows $ replicate cols (Space Nothing)
+blankBoard rows cols = Board . replicate rows $ replicate cols (Space Nothing)
 
 iter :: Int -> (a -> a) -> a -> a
 iter 0 _ x = x
