@@ -11,7 +11,8 @@ extra-source-files:  CHANGELOG.md
 library
   hs-source-dirs:      lib
   default-language:    Haskell2010
-  build-depends:       base >= 4.16 && < 5, jwt
+  -- can't use base64 because of errors
+  build-depends:       base >= 4.15 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
   exposed-modules:     
   ghc-options:         -Wall -Werror -haddock
 
@@ -19,5 +20,5 @@ executable whatcoffee
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.16 && < 5, jwt
+  build-depends:       base >= 4.15 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N

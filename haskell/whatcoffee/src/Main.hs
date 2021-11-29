@@ -1,11 +1,101 @@
+{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards   #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
 module Main where
 
-import System.Environment
-import Web.JWT
+import qualified Data.Aeson             as A
+import           Data.Aeson.Types
+import qualified Data.ByteString.Base64 as B64
+import qualified Data.ByteString.Char8  as B
+import qualified Data.ByteString.Lazy   as BL
+import           Data.Either
+import           Data.Maybe
+import           Data.Text              (Text)
+import qualified Data.Text              as T
+import qualified Data.Text.Encoding     as TE
+import           Data.Time
+import           Data.UUID.Types        (UUID)
+import           GHC.Generics
+import           System.Environment
+import           Text.Printf            (printf)
+-- import qualified Web.JWT as JWT
 
-main :: IO ()
+newtype Id = Id Integer deriving (Eq, Show)
+
+instance A.FromJSON Id where
+    parseJSON (A.String a) = pure $ Id (read (T.unpack a))
+    -- @TODO parse with better encoder?
+    parseJSON (A.Number a) = pure $ Id (round a)
+    parseJSON invalid = prependFailure "parsing Id failed, " (typeMismatch "String | Number" invalid)
+
+data Coffee = Coffee {
+    machineNo :: Text,
+    amount    :: Int,
+    keyId     :: Id,
+    guid      :: UUID,
+    drinkId   :: Text,
+    currency  :: Text,
+    timestamp :: Text, -- TODO decode timestamp
+    siteId    :: Id
+} deriving (Show, Eq, Generic, A.FromJSON)
+
+prettyPrintMachine ∷ Text → Text
+prettyPrintMachine "11317961" = "Co-Op Shepton Mallet"
+prettyPrintMachine "21105919" = "Tesco Shepton Mallet"
+prettyPrintMachine a          = a
+
+prettyPrintSite ∷ Id → Text
+prettyPrintSite (Id 60502008)  = "Co-Op Shepton Mallet"
+prettyPrintSite (Id 600022459) = "Tesco Shepton Mallet"
+prettyPrintSite (Id a)         = T.pack (show a)
+
+prettyPrintKey ∷ Id → Text
+prettyPrintKey (Id 119301018123828)  = "Co-Op Shepton Mallet"
+prettyPrintKey (Id 114141220125232) = "Tesco Shepton Mallet"
+prettyPrintKey (Id a)         = T.pack (show a)
+
+-- @TODO parse properly
+prettyPrintDrink ∷ Text → Text
+prettyPrintDrink "LATT-LC1-H-1CAR-C-SC01" = "Caramel Latte SC"
+prettyPrintDrink "LATT-LC1-H-1CAR-C-BF01" = "Caramel Latte BF"
+prettyPrintDrink "LATT-LC1-H-1VAN-C-SC01" = "Vanilla Latte"
+prettyPrintDrink "LATT-LC1-H-1VEL-C-SC01" = "Velvet Latte?"
+prettyPrintDrink "CAPP-LC1-H-0000-C-SC01" = "Cappucino"
+prettyPrintDrink "CAPP-LC1-H-1CAR-C-SC01" = "Caramel Cappucino"
+prettyPrintDrink "AMEB-LC1-0-0000-C-SC01" = "Americano?"
+prettyPrintDrink a                        = a
+
+prettyPrintCoffee ∷ Coffee → Text
+prettyPrintCoffee Coffee {..} =
+    "Machine = " <> prettyPrintMachine machineNo <>
+    ", price = " <> currency <> " " <> T.pack (printf "%.2g" ((fromIntegral amount :: Double) / 100) :: String) <>
+    ", key = from " <> prettyPrintKey keyId <>
+    ", GUID = " <> T.pack (show guid) <>
+    ", drink = " <> prettyPrintDrink drinkId <>
+    ", time = " <> timestamp <>
+    ", site = " <> prettyPrintSite siteId
+
+main ∷ IO ()
 main = do
-    file <- (!! 2) <$> getArgs 
-    putStrLn file
+    files <- getArgs
+    toRead <- if null files || "-" == head files
+        then
+            getContents
+        else
+            readFile $ head files
+    mapM_ (\jwt -> do
+        let jwtSegments = T.split (== '.') jwt
+        -- let jwtToDecode = T.intercalate "." $ tail jwtSegments
+        -- print jwtToDecode
+        let jsonBase64 = jwtSegments !! 2
+        let (Right json) = B64.decode (TE.encodeUtf8 jsonBase64)
+        let decodedCoffee = A.eitherDecode (BL.fromStrict json) :: Either String Coffee
+        -- print decodedCoffee
+        putStrLn . T.unpack . fromRight "" $ prettyPrintCoffee <$> decodedCoffee
+        -- let decoded = JWT.decode jwtToDecode
+        -- print decoded
+        ) $ T.pack <$> lines toRead
