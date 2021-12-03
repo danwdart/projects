@@ -269,6 +269,11 @@ executable whereinlet
   import: shared-properties
   main-is:             whereinlet.hs
 
+
+executable weird-calls
+  import: shared-properties
+  main-is:             weird-calls.hs
+
 executable weird-instances
   import: shared-properties
   main-is:             weird-instances.hs
