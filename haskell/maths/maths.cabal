@@ -81,11 +81,6 @@ executable diffy
   import: shared-properties
   main-is:             diffy.hs
 
-executable flystraightdammit
-  import: shared-properties
-  main-is:             flystraightdammit.hs
-  build-depends:       base >= 4.15 && < 5, ilist, maths
-
 executable frobenius
   import: shared-properties
   main-is:             frobenius.hs
