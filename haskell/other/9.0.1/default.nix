@@ -9,6 +9,7 @@ let
       carray = lib.doJailbreak super.carray;
       flow = lib.doJailbreak super.flow;
       OpenGLRaw = lib.doJailbreak super.OpenGLRaw;
+      OpenGL = lib.doJailbreak super.OpenGL;
       other901 = self.callCabal2nix "other901" (gitignore ./.) {};
     };
   };
