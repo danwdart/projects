@@ -4,6 +4,7 @@
 import           Data.Map.Lazy       (Map, fromListWith)
 import           Data.Numbers.Primes
 
+-- A001223
 gaps :: [Integer]
 gaps = uncurry (-) <$> zip (tail primes) primes
 

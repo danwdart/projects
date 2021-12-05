@@ -12,4 +12,4 @@ pers ∷ Integer → Int
 pers = pred . length . takeUntilRepeat . iterate step
 
 records ∷ Integer → [(Integer, Int)]
-records n = nubOn snd $ ((,) <$> id <*> pers) <$> [1..n]
+records n = nubOn snd $ ((,) <$> id <*> pers) <$> [0..n]

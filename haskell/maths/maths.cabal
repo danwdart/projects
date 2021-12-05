@@ -30,6 +30,7 @@ library
   exposed-modules:     Data.List.Nub
                      , Data.List.Repeat
                      , Frobenius
+                     , NumList
                      , Ulam
 
 -- euler
@@ -41,6 +42,31 @@ executable euler2
   import: shared-properties
   main-is:             euler/2.hs
 
+executable oeisA001222
+  import: shared-properties
+  main-is:             oeis/A001222.hs
+  build-depends:       base >= 4.15 && < 5, primes
+
+executable oeisA001223
+  import: shared-properties
+  main-is:             oeis/A001223.hs
+  build-depends:       base >= 4.15 && < 5, containers, primes
+
+executable oeisA001414
+  import: shared-properties
+  main-is:             oeis/A001414.hs
+  build-depends:       base >= 4.15 && < 5, primes
+
+executable oeisA003001
+  import: shared-properties
+  main-is:             oeis/A003001.hs
+  build-depends:       base >= 4.15 && < 5, maths
+
+executable oeisA112544
+  import: shared-properties
+  main-is:             oeis/A112544.hs
+  build-depends:       base >= 4.15 && < 5, maths
+
 executable oeisA133058
   import: shared-properties
   main-is:             oeis/A133058.hs
@@ -50,6 +76,32 @@ executable oeisA171607
   import: shared-properties
   main-is:             oeis/A171607.hs
   build-depends:       base >= 4.15 && < 5, containers
+
+executable oeisA181391
+  import: shared-properties
+  main-is:             oeis/A181391.hs
+
+executable oeisA275124
+  import: shared-properties
+  main-is:             oeis/A275124.hs
+
+executable oeisA275167
+  import: shared-properties
+  main-is:             oeis/A275167.hs
+
+executable oeisA308267
+  import: shared-properties
+  main-is:             oeis/A308267.hs
+  build-depends:       base >= 4.15 && < 5
+
+executable oeisA309979
+  import: shared-properties
+  main-is:             oeis/A309979.hs
+
+executable oeisA332049
+  import: shared-properties
+  main-is:             oeis/A332049.hs
+  build-depends:       base >= 4.15 && < 5, maths
 
 executable ai
   import: shared-properties
@@ -96,10 +148,6 @@ executable harmonic
   main-is:             harmonic.hs
   build-depends:       base >= 4.15 && < 5, extra
 
-executable hashparker
-  import: shared-properties
-  main-is:             hashparker.hs
-
 executable kaprekar
   import: shared-properties
   main-is:             kaprekar.hs
@@ -117,11 +165,6 @@ executable mod
   import: shared-properties
   main-is:             mod.hs
 
-executable multpers
-  import: shared-properties
-  main-is:             multpers.hs
-  build-depends:       base >= 4.15 && < 5, maths
-
 executable napier-locar
   import: shared-properties
   main-is:             napier-locar.hs
@@ -130,10 +173,6 @@ executable napier-locar
 executable numbertypes
   import: shared-properties
   main-is:             numbertypes.hs
-
-executable numerators
-  import: shared-properties
-  main-is:             numerators.hs
 
 executable oeis
   import: shared-properties
@@ -203,10 +242,6 @@ executable units
   import: shared-properties
   main-is:             units.hs
 
-executable vaneck
-  import: shared-properties
-  main-is:             vaneck.hs
-
 executable words
   import: shared-properties
   main-is:             words.hs
@@ -225,19 +260,9 @@ executable decomp
   main-is:             primefun/decomp.hs
   build-depends:       base >= 4.15 && < 5, primes
 
-executable gapfreq
-  import: shared-properties
-  main-is:             primefun/gapfreq.hs
-  build-depends:       base >= 4.15 && < 5, containers, primes
-
 executable primemod
   import: shared-properties
   main-is:             primefun/primemod.hs
-
-executable primefun
-  import: shared-properties
-  main-is:             primefun/primefun.hs
-  build-depends:       base >= 4.15 && < 5, primes
 
 executable primeraw
   import: shared-properties
