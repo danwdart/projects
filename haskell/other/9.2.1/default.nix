@@ -1,5 +1,5 @@
-{ nixpkgs ? import  (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc921" }: # bmp requires old bytestring 
+{ nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
+  compiler ? "ghc921" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -10,12 +10,14 @@ let
       flow = lib.doJailbreak super.flow;
       OpenGLRaw = lib.doJailbreak super.OpenGLRaw;
       OpenGL = lib.doJailbreak super.OpenGL;
-      other901 = self.callCabal2nix "other901" (gitignore ./.) {};
+      gloss-rendering = lib.doJailbreak super.gloss-rendering;
+      gloss = lib.doJailbreak super.gloss;
+      other921 = self.callCabal2nix "other921" (gitignore ./.) {};
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other901
+      p.other921
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -36,11 +38,11 @@ let
     ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other901);
+  exe = lib.justStaticExecutables (myHaskellPackages.other921);
 in
 {
   inherit shell;
   inherit exe;
   inherit myHaskellPackages;
-  other901 = myHaskellPackages.other901;
+  other921 = myHaskellPackages.other921;
 }
