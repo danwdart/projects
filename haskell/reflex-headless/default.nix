@@ -16,7 +16,7 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f); do krank $i; done
     '';
-    buildInputs = with myHaskellPackages; with nixpkgs; [
+    buildInputs = with myHaskellPackages; with nixpkgs; with haskellPackages; [
       apply-refact
       cabal-install
       ghcid
