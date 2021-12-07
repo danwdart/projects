@@ -19,7 +19,7 @@ executable peoplemanager
   hs-source-dirs:      src
   -- other-modules:
   -- other-extensions:
-  build-depends:       base >=4.15 && <5
+  build-depends:       base >=4.16 && <5
     , brick
     , containers
     , fakedata

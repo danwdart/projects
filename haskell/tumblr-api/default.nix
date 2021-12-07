@@ -1,5 +1,5 @@
 { nixpkgs ? import(builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc901" }:
+  compiler ? "ghc921" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -9,6 +9,8 @@ let
         url = "https://github.com/danwdart/humblr.git";
         rev = "22b065ead87cb1c3c19545c54f8ff90fb1e314e9";
       }) {};
+      # https://github.com/AndrewRademacher/aeson-casing/issues/7
+      aeson-casing = lib.dontCheck super.aeson-casing;
       tumblr-api = self.callCabal2nix "tumblr-api" (gitignore ./.) {};
     };
   };

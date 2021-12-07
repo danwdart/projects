@@ -92,10 +92,13 @@ main = do
         -- let jwtToDecode = T.intercalate "." $ tail jwtSegments
         -- print jwtToDecode
         let jsonBase64 = jwtSegments !! 2
-        let (Right json) = B64.decode (TE.encodeUtf8 jsonBase64)
-        let decodedCoffee = A.eitherDecode (BL.fromStrict json) :: Either String Coffee
-        -- print decodedCoffee
-        putStrLn . T.unpack . fromRight "" $ prettyPrintCoffee <$> decodedCoffee
-        -- let decoded = JWT.decode jwtToDecode
-        -- print decoded
+        let eitherJson = B64.decode (TE.encodeUtf8 jsonBase64)
+        case eitherJson of
+            Right json -> do
+                let decodedCoffee = A.eitherDecode (BL.fromStrict json) :: Either String Coffee
+                -- print decodedCoffee
+                putStrLn . T.unpack . fromRight "" $ prettyPrintCoffee <$> decodedCoffee
+                -- let decoded = JWT.decode jwtToDecode
+                -- print decoded
+            _ -> putStrLn "Error decoding JSON"
         ) $ T.pack <$> lines toRead
