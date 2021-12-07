@@ -1,5 +1,5 @@
 { nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc901" }:
+  compiler ? "ghc921" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -17,6 +17,9 @@ let
       text-short = lib.overrideCabal super.text-short (drv: {
         doCheck = false;
       });
+      modern-uri = lib.doJailbreak super.modern-uri;
+      wl-pprint-text = lib.doJailbreak super.wl-pprint-text;
+      graphviz = lib.doJailbreak super.graphviz;
       maths = self.callCabal2nix "maths" (gitignore ./.) {};
     };
   };
