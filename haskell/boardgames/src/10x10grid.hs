@@ -135,7 +135,7 @@ moveAndRender (el, coord) board2 = do
     if isNothing mmb
         then putStrLn "Done"
         else do
-            let Just (lastMove, lastBoard) = mmb
+            let (lastMove, lastBoard) = fromJust mmb
             moveAndRender lastMove lastBoard
 
 renderBoard :: Board -> String
