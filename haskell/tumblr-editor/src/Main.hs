@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE UnicodeSyntax     #-}
+{-# OPTIONS_GHC -Wno-incomplete-record-updates #-}
+{- Above is for saying chrome {..} -}
 
 module Main where
 
