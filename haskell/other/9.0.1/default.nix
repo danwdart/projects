@@ -1,5 +1,5 @@
 { nixpkgs ? import  (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc884" }:
+  compiler ? "ghc901" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -11,12 +11,14 @@ let
         url = "https://github.com/brendanhay/gogol";
         rev = "d7c7d71fc985cd96fb5f05173da6c607da362b74";
       }) "--subpath core" {};
-      other884 = self.callCabal2nix "other884" (gitignore ./.) {};
+      dbus = lib.doJailbreak super.dbus;
+      req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
+      other901 = self.callCabal2nix "other901" (gitignore ./.) {};
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other884
+      p.other901
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -37,11 +39,11 @@ let
     ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other884);
+  exe = lib.justStaticExecutables (myHaskellPackages.other901);
 in
 {
   inherit shell;
   inherit exe;
   inherit myHaskellPackages;
-  other884 = myHaskellPackages.other884;
+  other901 = myHaskellPackages.other901;
 }

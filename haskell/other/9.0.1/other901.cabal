@@ -1,6 +1,6 @@
 cabal-version:       3.0
 -- Newer versions complain
-name:                other884
+name:                other901
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -31,30 +31,11 @@ executable langparse
   main-is:             langparse.hs
   build-depends:       base >= 4.13 && < 5, parsec, language-c, language-javascript
 
--- needs older dbus
 executable mdns
   import: shared-properties
   main-is:             mdns.hs
   build-depends:       base >= 4.13 && < 5, avahi
 
--- broken on newer deps
-executable sockets
-  import: shared-properties
-  main-is:             sockets.hs
-  build-depends:       base >= 4.13 && < 5, async, bytestring, network
-
-executable these
-  import: shared-properties
-  main-is:             these.hs
-  build-depends:       base >= 4.13 && < 5, these
-
--- needs older transformers
-executable threedeegee
-  import: shared-properties
-  main-is:             3dg.hs
-  build-depends:       base >= 4.13 && < 5, threepenny-gui
-
--- gogol requires older base
 executable translatorglitch
   import: shared-properties
   main-is:             translatorglitch.hs

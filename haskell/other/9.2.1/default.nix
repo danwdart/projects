@@ -12,6 +12,28 @@ let
       OpenGL = lib.doJailbreak super.OpenGL;
       gloss-rendering = lib.doJailbreak super.gloss-rendering;
       gloss = lib.doJailbreak super.gloss;
+      # https://github.com/jcpetruzza/barbies/issues/41
+      barbies = lib.dontCheck super.barbies;
+      # https://github.com/sjakobi/bsb-http-chunked/issues/38
+      bsb-http-chunked = lib.dontCheck super.bsb-http-chunked;
+      # 3.9.0 only in Nix
+      req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
+      readable = lib.doJailbreak super.readable;
+      # https://github.com/well-typed/generics-sop/pull/147
+      sop-core = (lib.doJailbreak (self.callCabal2nixWithOptions "sop-core" (builtins.fetchGit {
+        url = "https://github.com/danwdart/generics-sop.git";
+        rev = "39386037d49bd21871a6479eaba9f4d5f4dbdf10";
+      }) "--subpath sop-core" {}));
+      io-streams-haproxy = lib.doJailbreak super.io-streams-haproxy;
+      openssl-streams = lib.doJailbreak super.openssl-streams;
+      # https://github.com/snapframework/snap-core/issues/311
+      # https://github.com/snapframework/snap-core/pull/312
+      snap-core = lib.dontCheck (lib.doJailbreak (self.callCabal2nix "snap-core" (builtins.fetchGit {
+        url = "https://github.com/brandon-leapyear/snap-core.git";
+        ref = "b87aed3ca64b88c7ab71b5bf460a3c4e8cb70a9b";
+      }) {}));
+      snap-server = lib.doJailbreak super.snap-server;
+      websockets-snap = lib.doJailbreak super.websockets-snap;
       other921 = self.callCabal2nix "other921" (gitignore ./.) {};
     };
   };
