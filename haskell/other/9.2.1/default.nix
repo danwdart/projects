@@ -30,7 +30,7 @@ let
       # https://github.com/snapframework/snap-core/pull/312
       snap-core = lib.dontCheck (lib.doJailbreak (self.callCabal2nix "snap-core" (builtins.fetchGit {
         url = "https://github.com/brandon-leapyear/snap-core.git";
-        ref = "b87aed3ca64b88c7ab71b5bf460a3c4e8cb70a9b";
+        ref = "379cc04a3e81a87c09ac47021fffb032a642e529";
       }) {}));
       snap-server = lib.doJailbreak super.snap-server;
       websockets-snap = lib.doJailbreak super.websockets-snap;
