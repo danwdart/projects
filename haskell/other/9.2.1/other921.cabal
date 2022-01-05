@@ -63,7 +63,7 @@ executable error-collection
 
 executable eventloop
   import: shared-properties
-  main-is:             eventLoop.hs
+  main-is:             event-loop.hs
   build-depends:       base >= 4.16 && < 5, async, concurrent-extra, lifted-async
 
 -- executable fake
