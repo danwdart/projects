@@ -1,5 +1,5 @@
-{ nixpkgs ? import  (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc901" }:
+{ nixpkgs ? import  (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
+  compiler ? "ghc902" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -13,12 +13,12 @@ let
       }) "--subpath core" {};
       dbus = lib.doJailbreak super.dbus;
       req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
-      other901 = self.callCabal2nix "other901" (gitignore ./.) {};
+      other902 = self.callCabal2nix "other902" (gitignore ./.) {};
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other901
+      p.other902
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -39,11 +39,11 @@ let
     ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other901);
+  exe = lib.justStaticExecutables (myHaskellPackages.other902);
 in
 {
   inherit shell;
   inherit exe;
   inherit myHaskellPackages;
-  other901 = myHaskellPackages.other901;
+  other902 = myHaskellPackages.other902;
 }
