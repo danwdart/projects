@@ -22,13 +22,16 @@ maxY = 1
 cartesianToPixel :: (Double, Double) -> (Int, Int)
 cartesianToPixel (x, y) = (
     round (fromIntegral screenWidth * ((x - minX) / (maxX - minX))),
-    round (fromIntegral screenHeight * ((maxY - y) / (maxY - minY))))
+    round (fromIntegral screenHeight * ((y - minY) / (maxY - minY))))
 
 quantiseByResolution :: Double -> [Double]
 quantiseByResolution resolution = enumFromThenTo minX (minX + resolution) maxX
 
+fn :: Double -> Double
+fn = sin . (* 3)
+
 coords :: [(Int, Int)]
-coords = fmap cartesianToPixel $ fmap (\x -> (x, sin (x * 3))) $ quantiseByResolution 0.01
+coords = fmap cartesianToPixel $ fmap (\x -> (x, fn x)) $ quantiseByResolution 0.01
 
 showCoord :: (Int, Int) -> String
 showCoord (x, y) = show x <> ", " <> show y
