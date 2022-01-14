@@ -1,0 +1,73 @@
+cabal-version:       3.0
+-- Newer versions complain
+name:                cards
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/dansstuff#readme
+license:             AGPL-3.0-only
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+
+common shared-properties
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.16 && < 5
+  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+  ghcjs-options:       -dedupe
+
+library
+  hs-source-dirs:      lib
+  default-language:    Haskell2010
+  build-depends:       base >= 4.16 && < 5, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+  ghc-options:         -Wall -Werror -haddock
+  ghcjs-options:       -dedupe
+  exposed-modules:     Suit.Bounded.Standard
+                     , Suit.Class
+                     , Suit.Unbounded
+                     , Value.Bounded.Jill
+                     , Value.Bounded.Standard
+                     , Value.Class
+                     , Value.Unbounded
+                     , Card
+                     , Deck
+                     , Instances
+                     , Ordering
+                     , Shuffle
+                     , Symbol
+
+executable cards
+  import: shared-properties
+  main-is:             cards.hs
+  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+
+executable demo
+  import: shared-properties
+  main-is:             demo.hs
+  build-depends:       base >= 4.16 && < 5, cards
+  
+executable ohsol
+  import: shared-properties
+  main-is:             ohsol.hs
+  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
+
+test-suite cards-test
+  import: shared-properties
+  hs-source-dirs:      test
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  other-modules:
+  -- build-tool-depends:
+  --  hspec-discover:hspec-discover
+  build-depends:
+      base >= 4.16 && < 5
+    , cards
+    , hspec
+    , hspec-core
+    , hspec-expectations
+    , QuickCheck
