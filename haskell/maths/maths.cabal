@@ -124,11 +124,6 @@ executable cardord
   import: shared-properties
   main-is:             cardord.hs
 
-executable cards
-  import: shared-properties
-  main-is:             cards.hs
-  build-depends:       base >= 4.16 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
-
 executable diffy
   import: shared-properties
   main-is:             diffy.hs
@@ -143,6 +138,11 @@ executable frobenius
 --   import: shared-properties
 --   main-is:             gamma.hs
 --   build-depends:       base >= 4.16 && < 5, invertible
+
+executable graphs
+  import: shared-properties
+  main-is:             graphs.hs
+  build-depends:       base >= 4.16 && < 5, graphviz
 
 executable harmonic
   import: shared-properties
@@ -189,11 +189,6 @@ executable oeis
                       , text
                       , unordered-containers
                       , vector
-
-executable ohsol
-  import: shared-properties
-  main-is:             ohsol.hs
-  build-depends:       base >= 4.16 && < 5, containers, MonadRandom, random-shuffle, utility-ht
 
 executable onetwenty
   import: shared-properties
