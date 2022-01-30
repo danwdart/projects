@@ -34,6 +34,8 @@ let
       }) {}));
       snap-server = lib.doJailbreak super.snap-server;
       websockets-snap = lib.doJailbreak super.websockets-snap;
+      # Atm Nix breaks this.
+      haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
       other921 = self.callCabal2nix "other921" (gitignore ./.) {};
     };
   };
