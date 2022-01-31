@@ -1,7 +1,15 @@
 {-# LANGUAGE DeriveFoldable #-}
 {-# LANGUAGE DeriveFunctor  #-}
+{-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE UnicodeSyntax  #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches -Wno-type-defaults #-}
+{-# OPTIONS_GHC
+    -Wno-unused-top-binds
+    -Wno-name-shadowing
+    -Wno-incomplete-patterns
+    -Wno-unused-matches
+    -Wno-type-defaults
+    -Wno-unused-imports
+#-}
 
 import           Control.Comonad
 import           Control.Comonad.Env
@@ -12,14 +20,16 @@ import           Data.Map               (Map)
 import qualified Data.Map               as M
 import           Data.Set               (Set)
 import qualified Data.Set               as S
+import           Data.List.NonEmpty     (NonEmpty)
+import qualified Data.List.NonEmpty     as LNE
 
-data MyComonad a = MyComonad a deriving (Functor, Show)
+newtype MyComonad a = MyComonad a deriving (Functor, Show)
 
 instance Comonad MyComonad where
     extract (MyComonad a) = a
     duplicate = MyComonad
 
-data MyComonad2 a = MyComonad2 a deriving (Functor, Show)
+newtype MyComonad2 a = MyComonad2 a deriving (Functor, Show)
 
 instance Comonad MyComonad2 where
     extract (MyComonad2 a) = a
@@ -155,31 +165,32 @@ main = do
     print $ countStream =>> ix 2 =>> ix 2
     print $ countStream =>> ix 2 =>> takeS 3
     print . extract $ countStream =>> ix 2 =>> takeS 3
-    print $ ix 2 =>= ix 2 =>= ix 2 $ countStream
-    print $ ix 2 =>= takeS 3 $ countStream
+    print . (ix 2 =>= ix 2 =>= ix 2) $ countStream
+    print . (ix 2 =>= takeS 3) $ countStream
     do
         print $ pos warehouse
         print $ peek 0 warehouse
         print $ peeks (+1) warehouse
-        print $ pos $ seek 3 warehouse
-        print $ extract $ seeks (+2) warehouse
-        print $ experiment (\x -> [x, x + 1, x + 2]) warehouse
+        print . pos $ seek 3 warehouse
+        print . extract $ seeks (+2) warehouse
+        print $ experiment (\x -> ([x, x + 1, x + 2] :: [Int])) warehouse
     do
-        print $ experiment (\x -> [x, x + 1, x + 2]) squared
+        print $ experiment (\x -> ([x, x + 1, x + 2] :: [Int])) squared
         print $ experiment aboveZero (seek 10 squared)
         print $ experiment aboveZero (seek (-10) squared)
         print $ extract withN
         print $ peek 5 withN
     do
         print $ peek (Sum 0, Sum 0) startingGrid
-        print $ experiment neighbourLocations $ step startingGrid
-        print $ experiment neighbourLocations $ step $ step startingGrid
-        print $ experiment neighbourLocations $ step $ step $ step startingGrid
+        print . experiment neighbourLocations $ step startingGrid
+        print (experiment neighbourLocations . step $ step startingGrid)
+        print (experiment neighbourLocations . step . step $ step startingGrid)
     do
         print $ ask (env (42 :: Int) "Hello")
         print $ asks succ (env (42 :: Int) "Hello")
         -- TODO abuse do
     do
-        print $ trace [1, 2, 3] $ traced (sum :: [Int] -> Int)
-        print $ (trace ["Hi"] =>= trace ["Bob"]) $ traced concat
+        print . trace [1, 2, 3] $ traced (sum :: [Int] -> Int)
+        print . (trace (["Hi"] :: [String]) =>= trace (["Bob"] :: [String])) $ traced concat
     -- TODO https://www.youtube.com/watch?v=jTVVtJGu3D0
+    -- TODO NonEmpty

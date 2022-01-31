@@ -1,4 +1,4 @@
-import Data.GraphViz
+-- import Data.GraphViz
 
 main :: IO ()
 main = pure ()
