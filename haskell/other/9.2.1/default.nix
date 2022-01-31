@@ -12,10 +12,6 @@ let
       OpenGL = lib.doJailbreak super.OpenGL;
       gloss-rendering = lib.doJailbreak super.gloss-rendering;
       gloss = lib.doJailbreak super.gloss;
-      # https://github.com/jcpetruzza/barbies/issues/41
-      barbies = lib.dontCheck super.barbies;
-      # https://github.com/sjakobi/bsb-http-chunked/issues/38
-      bsb-http-chunked = lib.dontCheck super.bsb-http-chunked;
       # 3.9.0 only in Nix
       req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
       readable = lib.doJailbreak super.readable;
