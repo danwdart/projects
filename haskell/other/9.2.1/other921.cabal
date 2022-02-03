@@ -86,6 +86,11 @@ executable flow
   main-is:             flow.hs
   build-depends:       base >= 4.16 && < 5, flow
 
+executable free-monads
+  import: shared-properties
+  main-is:             free-monads.hs
+  build-depends:       base >= 4.16 && < 5, free, mtl
+
 -- executable gd
 --   import: shared-properties
 --   main-is:             gd.hs
