@@ -62,6 +62,11 @@ executable oeisA003001
   main-is:             oeis/A003001.hs
   build-depends:       base >= 4.16 && < 5, maths
 
+executable oeisA003001-otherbases
+  import: shared-properties
+  main-is:             oeis/A003001-otherbases.hs
+  build-depends:       base >= 4.16 && < 5, maths, digits
+
 executable oeisA025281
   import: shared-properties
   main-is:             oeis/A025281.hs
@@ -149,6 +154,11 @@ executable graphs
   main-is:             graphs.hs
   build-depends:       base >= 4.16 && < 5, graphviz
 
+executable happy
+  import: shared-properties
+  main-is:             happy.hs
+  build-depends:       base >= 4.16 && < 5, digits
+
 executable harmonic
   import: shared-properties
   main-is:             harmonic.hs
@@ -220,6 +230,11 @@ executable pi-factory
 executable pills
   import: shared-properties
   main-is:             pills.hs
+
+executable plotter
+  import: shared-properties
+  main-is:             plotter.hs
+  build-depends:       base >= 4.16 && < 5, JuicyPixels, primes
 
 executable prodtosingle
   import: shared-properties

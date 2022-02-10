@@ -12,3 +12,4 @@ hie.yaml
 jwt.secret
 .hie
 stan.html
+*.png
