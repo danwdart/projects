@@ -1,26 +1,42 @@
-{ system ? builtins.currentSystem }:
-(import ./reflex-platform {
+{ system ? builtins.currentSystem,
+  nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
+  lib ? nixpkgs.pkgs.haskell.lib }:
+(import ./external/reflex-platform {
   inherit system;
   config.android_sdk.accept_license = true;
 }).project ({ pkgs, ... }: {
   packages = {
-    base-stuff = ./base-stuff;
     ghcjs-stuff = ./ghcjs-stuff;
     jsaddle-stuff = ./jsaddle-stuff;
-    reflexstuff = ./reflexstuff;
+    reflex-stuff = ./reflex-stuff;
   };
 
-  # useWarp = true;
+  shellToolOverrides = ghc: super: {
+    inherit (nixpkgs.haskellPackages) apply-refact stylish-haskell wai-app-static;
+    inherit (nixpkgs) inotify-tools;
+  };
+
+  overrides = self: super: {
+    # ghcjs = nixpkgs.haskell.compilers.ghcjs810
+    # In pqueue 1.4.1.3, files are missing
+    pqueue = self.callHackage "pqueue" "1.4.1.4" {};
+    reactive-banana = self.callHackage "reactive-banana" "1.2.2.0" {};
+  };
+
+  useWarp = true;
+  withHoogle = false;
   
-  android.reflexstuff = {
-    executableName = "dom";
-    applicationId = "com.jolharg.reflexstuff";
-    displayName = "Reflex Stuff";
+  android = {
+    reflex-stuff = {
+      executableName = "dom";
+      applicationId = "com.jolharg.reflexstuff.dom";
+      displayName = "Reflex DOM Demo";
+    };
   };
 
   shells = {
-    ghc = ["base-stuff" "jsaddle-stuff" "reflexstuff"];
-    ghcjs = ["base-stuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
-    wasm = ["base-stuff" "ghcjs-stuff" "jsaddle-stuff" "reflexstuff"];
+    ghc = ["jsaddle-stuff" "reflex-stuff"];
+    ghcjs = ["ghcjs-stuff" "jsaddle-stuff" "reflex-stuff"];
+    wasm = ["ghcjs-stuff" "jsaddle-stuff" "reflex-stuff"];
   };
 })

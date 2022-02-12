@@ -1,5 +1,5 @@
 cabal-version:       2.4
-name:                reflexstuff
+name:                reflex-stuff
 version:             0.1.0.0
 license:             AGPL-3.0-only
 author:              Dan Dart

@@ -1,17 +1,27 @@
 #!/usr/bin/env bash
-set -x
-set +e
+set -euo pipefail
+# Show where we were when there was a problem.
+# TODO
+trap pwd ERR
 
-nix-build -o result/base-stuff-ghc -A ghc.base-stuff | cachix push websites
-nix-build -o result/jsaddle-stuff-ghc -A ghc.jsaddle-stuff | cachix push websites
-nix-build -o result/reflexstuff-ghc -A ghc.reflexstuff | cachix push websites
+nix-build -o result/jsaddle-stuff/ghc -A ghc.jsaddle-stuff
+nix-build -o result/reflex-stuff/ghc -A ghc.reflex-stuff
 
-nix-build -o result/base-stuff-ghcjs -A ghcjs.base-stuff | cachix push websites
-nix-build -o result/ghcjs-stuff-ghcjs  -A ghcjs.ghcjs-stuff | cachix push websites
-nix-build -o result/jsaddle-stuff-ghcjs -A ghcjs.jsaddle-stuff | cachix push websites
-nix-build -o result/reflexstuff-ghcjs -A ghcjs.reflexstuff | cachix push websites # cache broken
+nix-build -o result/ghcjs-stuff/ghcjs  -A ghcjs.ghcjs-stuff
+nix-build -o result/jsaddle-stuff/ghcjs -A ghcjs.jsaddle-stuff
+nix-build -o result/reflex-stuff/ghcjs -A ghcjs.reflex-stuff # cache broken
 
-nix-build -o result/reflexstuff-android -A android.reflexstuff | cachix push websites
+nix-build -o result/reflex-stuff/android -A android.reflex-stuff
+
+nix-store -qR --include-outputs $(nix-instantiate -A shells.ghc) | cachix push websites
+nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | cachix push websites
+
+nix-store -qR --include-outputs $(nix-instantiate -A ghc.jsaddle-stuff) | cachix push websites
+nix-store -qR --include-outputs $(nix-instantiate -A ghc.reflex-stuff) | cachix push websites
+nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | cachix push websites
+nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.jsaddle-stuff) | cachix push websites
+nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | cachix push websites
+# nix-store -qR --include-outputs $(nix-instantiate -A android.reflex-stuff) | cachix push websites
 
 # TODO figure out how to make this not have to boot and take ages
 #nix-build -o result/basestuff-wasm -A wasm.basestuff

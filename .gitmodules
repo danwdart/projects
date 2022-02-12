@@ -10,3 +10,6 @@
 [submodule "haskell/wasm/reflex-platform"]
 	path = haskell/wasm/reflex-platform
 	url = git@github.com:reflex-frp/reflex-platform.git
+[submodule "haskell/ghcjs/external/reflex-platform"]
+	path = haskell/ghcjs/external/reflex-platform
+	url = git@github.com:reflex-frp/reflex-platform.git

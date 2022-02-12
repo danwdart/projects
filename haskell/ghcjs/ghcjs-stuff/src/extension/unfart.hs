@@ -1,6 +1,7 @@
 {-# LANGUAGE JavaScriptFFI     #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE UnicodeSyntax     #-}
+{-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
 
 {-
 const doReplaceName = replacements.forEach(
@@ -48,7 +49,7 @@ performReplacements = do
     replaceTweets
 
 onLoad ∷ IO () → IO ()
-onLoad action = undefined
+onLoad _ = undefined
 
 main ∷ IO ()
 main =

@@ -18,8 +18,7 @@ common shared-properties
   build-depends:       base >= 4.12 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
-  cpp-options:         -DGHCJS_BROWSER
-
+  cpp-options:         -DGHCJS_BROWSE
 
 executable unfart
   import: shared-properties
@@ -27,17 +26,21 @@ executable unfart
   build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, containers, jsaddle, ghcjs-base, ghcjs-dom
 
 executable frp
+  import: shared-properties
   main-is:             frp.hs
   build-depends:       base >= 4.12 && < 5, blaze-html, blaze-markup, bytestring, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp, reactive-banana
 
 executable graph
+  import: shared-properties
   main-is:             graph.hs
   build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, ghcjs-base, ghcjs-dom, jsaddle
 
 executable helloworld
+  import: shared-properties
   main-is:             HelloMain.hs
   build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
 
 executable mine
+  import: shared-properties
   main-is:             mine.hs
   build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
