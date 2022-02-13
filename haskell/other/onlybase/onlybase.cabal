@@ -54,6 +54,10 @@ executable chain
   import: shared-properties
   main-is:             chain.hs
 
+executable church
+  import: shared-properties
+  main-is:             church.hs
+
 executable class
   import: shared-properties
   main-is:             class.hs
