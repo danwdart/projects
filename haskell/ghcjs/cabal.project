@@ -1,0 +1,4 @@
+packages:
+    jsaddle-stuff/jsaddle-stuff.cabal
+    reflex-stuff/reflex-stuff.cabal
+tests: True
