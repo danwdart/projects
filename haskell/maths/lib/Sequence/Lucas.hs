@@ -1,7 +1,8 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Sequence.Lucas where
 
-fibs :: [Integer]
+fibs ∷ [Integer]
 fibs = undefined
 
-fibsModN :: [Integer]
+fibsModN ∷ [Integer]
 fibsModN = undefined

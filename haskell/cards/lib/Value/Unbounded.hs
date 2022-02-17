@@ -1,6 +1,7 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Value.Unbounded where
 
-import Symbol
+import           Symbol
 
 newtype Value = Value Int deriving (Eq, Ord)
 

@@ -20,7 +20,7 @@ withDo = do
     tell ["Hmm..."]
     logArith2 x
 
-newExample :: Writer [String] String
+newExample ∷ Writer [String] String
 newExample = do
     tell ["One"]
     tell ["Two"]

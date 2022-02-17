@@ -1,7 +1,7 @@
 {-# LANGUAGE UnicodeSyntax #-}
 import           Lib.Seq
 
-with :: String -> IO ()
+with ∷ String → IO ()
 with a = pure a >>>= putStrLn >>>= putStrLn >>= putStrLn
 
 main ∷ IO ()

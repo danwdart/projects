@@ -8,7 +8,7 @@ import           Data.List.Repeat
 
 {-# ANN module "HLint: ignore" #-}
 
-largest :: Integer
+largest ∷ Integer
 largest = 1000000
 
 main ∷ IO ()
@@ -44,20 +44,20 @@ main = do
     -- 132161
     -- mapM_ print $ recordsInBase 20 100000
 
-findViableUpToInBase :: Integer -> Integer -> [Integer]
+findViableUpToInBase ∷ Integer → Integer → [Integer]
 findViableUpToInBase base n = [0..n]
 
-recordsInBase ∷ Integer -> Integer → [(Integer, Int)]
+recordsInBase ∷ Integer → Integer → [(Integer, Int)]
 recordsInBase base n = tail $ nubOn snd $ ((,) <$> id <*> pers base) <$> findViableUpToInBase base n
 
-step ∷ Integer -> Integer → Integer
+step ∷ Integer → Integer → Integer
 step base = product . digits base
 
-takeUntilCond :: (a -> Bool) -> [a] -> [a]
+takeUntilCond ∷ (a → Bool) → [a] → [a]
 takeUntilCond _ [] = []
 takeUntilCond f (x:xs)
     | f x = [x]
     | otherwise = x:takeUntilCond f xs
 
-pers ∷ Integer -> Integer → Int
+pers ∷ Integer → Integer → Int
 pers base = pred . length . takeUntilCond (< base) . iterate (step base)

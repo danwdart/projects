@@ -4,12 +4,12 @@
 {-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-local-binds -Wno-unused-top-binds #-}
 
-import           Clay as C
+import           Clay           as C
 import           Data.Text
 import           Data.Text.Lazy (toStrict)
 import           Reflex.Dom
 
-css :: Css
+css ∷ Css
 css = do
     star ? do
         padding nil nil nil nil
@@ -40,14 +40,14 @@ css = do
         backgroundColor grey
 
 
-greenBox :: (DomBuilder t m) => Text -> m ()
-greenBox = divClass "box green" . text 
+greenBox ∷ (DomBuilder t m) ⇒ Text → m ()
+greenBox = divClass "box green" . text
 
-yellowBox :: (DomBuilder t m) => Text -> m ()
-yellowBox = divClass "box yellow" . text 
+yellowBox ∷ (DomBuilder t m) ⇒ Text → m ()
+yellowBox = divClass "box yellow" . text
 
-greyBox :: (DomBuilder t m) => Text -> m ()
-greyBox = divClass "box grey" . text 
+greyBox ∷ (DomBuilder t m) ⇒ Text → m ()
+greyBox = divClass "box grey" . text
 
 main ∷ IO ()
 main = mainWidgetWithHead (

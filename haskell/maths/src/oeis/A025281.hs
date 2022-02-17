@@ -1,16 +1,17 @@
 {-# LANGUAGE PostfixOperators #-}
+{-# LANGUAGE UnicodeSyntax    #-}
 
-import Data.List
-import Data.Numbers.Primes
+import           Data.List
+import           Data.Numbers.Primes
 
-(!) :: Integer -> Integer
+(!) ∷ Integer → Integer
 (!) 0 = 1
 (!) 1 = 1
 (!) n = n * ((n-1) !)
 
-values :: [Integer]
+values ∷ [Integer]
 values = sum .
-    (\n -> 
+    (\n ->
         fmap (
             (\(x, r) -> x * fromIntegral r) .
             (\xs -> (head xs, length xs))
@@ -19,5 +20,5 @@ values = sum .
     ) <$> [1..20]
 
 
-main :: IO ()
+main ∷ IO ()
 main = print values

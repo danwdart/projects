@@ -118,7 +118,7 @@ updateModel Add model@Model{..} =
 updateModel (UpdateField str) model = noEff model { field = str }
 updateModel (EditingEntry id' isEditing) model@Model{..} =
   model { entries = newEntries } <# do
-    focus $ S.pack $ "todo-" ++ show id'
+    focus . S.pack $ ("todo-" <> show id')
     pure NoOp
     where
       newEntries = filterMap entries (\t -> eid t == id') $
@@ -201,9 +201,7 @@ viewEntries visibility entries =
       , label_
         [ for_ "toggle-all" ]
           [ text $ S.pack "Mark all as complete" ]
-      , ul_ [ class_ "todo-list" ] $
-         flip map (filter isVisible entries) $ \t ->
-           viewKeyedEntry t
+      , ul_ [ class_ "todo-list" ] . flip fmap (filter isVisible entries) $ viewKeyedEntry
       ]
   where
     cssVisibility = bool "visible" "hidden" (null entries)
@@ -219,8 +217,8 @@ viewKeyedEntry = viewEntry
 
 viewEntry :: Entry -> View Msg
 viewEntry Entry {..} = liKeyed_ (toKey eid)
-    [ class_ $ S.intercalate " " $
-       [ "completed" | completed ] <> [ "editing" | editing ]
+    [ class_ . S.intercalate " " $ (
+       [ "completed" | completed ] <> [ "editing" | editing ])
     ]
     [ div_
         [ class_ "view" ]

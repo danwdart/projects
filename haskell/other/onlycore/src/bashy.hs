@@ -1,10 +1,10 @@
 {-# LANGUAGE UnicodeSyntax #-}
 import           System.Directory
 
-ls :: IO ()
+ls ∷ IO ()
 ls = getCurrentDirectory >>= listDirectory >>= mapM_ putStrLn
 
-cat :: String -> IO ()
+cat ∷ String → IO ()
 cat s = readFile s >>= putStrLn
 
 main ∷ IO ()

@@ -64,20 +64,20 @@ instance (FromJSON (f String), FromJSON (g Int)) => FromJSON (Person3 f g)
 
 instance (ToJSON (f String), ToJSON (g Int)) => ToJSON (Person3 f g)
 
-p3 :: Person3 Identity Identity
+p3 ∷ Person3 Identity Identity
 p3 = Person3 (Identity "Dan") (Identity 29) (Identity "Coder")
 
-ptrans3 :: Person3 ((->) String) ((->) Int)
+ptrans3 ∷ Person3 ((→) String) ((→) Int)
 ptrans3 = Person3 {
     name3 = (<> "!"),
     age3 = succ,
     profession3 = (<> ".")
 }
 
-fmap3 :: (Functor f, Functor g) => Person3 ((->) String) ((->) Int) -> Person3 f g -> Person3 f g
+fmap3 ∷ (Functor f, Functor g) ⇒ Person3 ((→) String) ((→) Int) → Person3 f g → Person3 f g
 fmap3 (Person3 nt at pt) (Person3 n a p) = Person3 (nt <$> n) (at <$> a) (pt <$> p)
 
-pt3 :: Person3 Identity Identity
+pt3 ∷ Person3 Identity Identity
 pt3 = fmap3 ptrans3 p3
 
 {- PERSON 4 -}
@@ -99,20 +99,20 @@ instance (FromJSON (f s), FromJSON (g i)) => FromJSON (Person4 f g s i)
 
 instance (ToJSON (f s), ToJSON (g i)) => ToJSON (Person4 f g s i)
 
-p4 :: Person4 Identity Identity String Int
+p4 ∷ Person4 Identity Identity String Int
 p4 = Person4 (Identity "Dan") (Identity 29) (Identity "Coder")
 
-ptrans4 :: Person4 ((->) String) ((->) Int) String Int
+ptrans4 ∷ Person4 ((→) String) ((→) Int) String Int
 ptrans4 = Person4 {
     name4 = (<> "!"),
     age4 = succ :: (Int -> Int),
     profession4 = (<> ".")
 }
 
-fmap4 :: (Functor f, Functor g) => Person4 ((->) s) ((->) i) s i -> Person4 f g s i -> Person4 f g s i
+fmap4 ∷ (Functor f, Functor g) ⇒ Person4 ((→) s) ((→) i) s i → Person4 f g s i → Person4 f g s i
 fmap4 (Person4 nt at pt) (Person4 n a p) = Person4 (nt <$> n) (at <$> a) (pt <$> p)
 
-pt4 :: Person4 Identity Identity String Int
+pt4 ∷ Person4 Identity Identity String Int
 pt4 = fmap4 ptrans4 p4
 
 {- PERSON 5 -}
@@ -133,30 +133,30 @@ instance (FromJSON (a b c)) => FromJSON (Person5 a b c)
 
 instance (ToJSON (a b c)) => ToJSON (Person5 a b c)
 
-p5 :: Person5 (->) b b
+p5 ∷ Person5 (→) b b
 p5 = Person5 {
     name5 = id
 }
 
-p5t :: Person5 (->) String String
+p5t ∷ Person5 (→) String String
 p5t = Person5 {
     name5 = (<> "!")
 }
 
-p5s :: Person5 (->) a String
+p5s ∷ Person5 (→) a String
 p5s = Person5 {
     name5 = const "Bob"
 }
 
-app5 :: Person5 (->) (a1 b1 c1) (a2 b2 c2) -> Person5 a1 b1 c1 -> Person5 a2 b2 c2
+app5 ∷ Person5 (→) (a1 b1 c1) (a2 b2 c2) → Person5 a1 b1 c1 → Person5 a2 b2 c2
 app5 (Person5 nt) (Person5 n) = Person5 (nt n)
 
-fmap5 :: Functor (a b) => Person5 (->) d c -> Person5 a b d -> Person5 a b c
+fmap5 ∷ Functor (a b) ⇒ Person5 (→) d c → Person5 a b d → Person5 a b c
 fmap5 (Person5 nt) (Person5 n) = Person5 (nt <$> n)
 
 {- MAIN STUFF -}
 
-printAndEncode :: (Show a, ToJSON a) => a -> IO ()
+printAndEncode ∷ (Show a, ToJSON a) ⇒ a → IO ()
 printAndEncode x = do
     print x
     print . encode $ x

@@ -16,7 +16,7 @@ primes = sieve [2..]
 pf ∷ [Integer]
 pf = fix helper [2..]
     where
-        helper _ [] = []
+        helper _ []         = []
         helper sieve (x:xs) = x : sieve (filter (notdiv x) xs)
 
 main ∷ IO ()

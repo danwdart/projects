@@ -16,30 +16,30 @@ instance Monad Bob where
     (Bob x) >>= f = f x
 
 -- List's a monad. What can we do with it?
-a :: [Int]
+a ∷ [Int]
 a = do
     let a = 1 -- Arrow an element, you get it back.
     let b = 2
     -- pure a -- ignored!
     pure b -- Passed if last, and embedded.
 
-b :: [Int]
+b ∷ [Int]
 b = do
     a <- [1..5] -- Arrow a list, you get it back.
     pure a
 
-c1 :: [Int]
+c1 ∷ [Int]
 c1 = do
     a <- [1..5]
     b <- [1..10]
     pure a -- pure a, b times each, e.g. a1 a1 a1 a2 a2 a2
 
-c2 :: [Int]
+c2 ∷ [Int]
 c2 = do
     a <- [1..5]
     [1..10] -- this, but a times, flattened, e.g. b1 b2 b3 b1 b2 b3
 
-d :: [Int]
+d ∷ [Int]
 d = do
     a <- ([1..10] :: [Int])
     b <- ([1..2] :: [Int])

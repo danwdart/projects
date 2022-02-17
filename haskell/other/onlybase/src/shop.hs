@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-
 Main screen options
 
@@ -22,5 +23,5 @@ Order in
 
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

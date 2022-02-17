@@ -1,5 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
-import Control.Monad.IO.Class
+import           Control.Monad.IO.Class
 import           Control.Monad.Trans.Writer.Lazy
 -- import Control.Monad.Trans.State.Lazy
 -- import Control.Monad.Trans.Maybe
@@ -7,7 +7,7 @@ import           Control.Monad.Trans.Writer.Lazy
 myT ∷ String → WriterT [String] Maybe String
 myT start = WriterT (Just (start, []))
 
-myT2 :: WriterT [String] Maybe String
+myT2 ∷ WriterT [String] Maybe String
 myT2 = do
     x <- myT "Hi"
     let y = pure "i"
@@ -25,7 +25,7 @@ myTFirst = fmap fst myTResult
 myTLog ∷ Maybe [String]
 myTLog = fmap snd myTResult
 
-newExample :: WriterT [String] IO String
+newExample ∷ WriterT [String] IO String
 newExample = do
     tell ["Hi"]
     -- This won't return the original tell... so what's the use?

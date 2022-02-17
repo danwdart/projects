@@ -46,8 +46,7 @@ scripts = do
 
 myBody ∷ Html
 myBody = body ! class_ "bg-dark" $ do
-    (H.main ! class_ "container-fluid") . (H.div ! class_ "row") $ (
-            H.div ! class_ "col-md-8 my-5 pt-3 pb-2 bg-light offset-md-2" $ do
+    ((H.main ! class_ "container-fluid") . (H.div ! class_ "row")) . (H.div ! class_ "col-md-8 my-5 pt-3 pb-2 bg-light offset-md-2") $ (do
                 h1 "Continued Fraction Expander"
                 H.form $ do
                     H.div ! class_ "form-group" $ do

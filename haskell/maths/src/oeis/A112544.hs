@@ -1,7 +1,7 @@
 {-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import NumList
+import           NumList
 
 -- A112544
 bigList ∷ [Int]

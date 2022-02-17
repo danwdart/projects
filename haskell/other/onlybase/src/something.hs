@@ -16,5 +16,5 @@
 -- main1 :: IO String
 -- main1 = getLine <&> fmap toUpper <&> words <&> intercalate "-" <&> replicate 2 <&> unwords <&> a2
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

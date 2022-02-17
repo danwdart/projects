@@ -1,7 +1,8 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Ordering where
 
-import Card
-import Instances()
+import           Card
+import           Instances ()
 
 newtype BySuitThenValue v s = BySuitThenValue (Card v s)
     deriving (Eq, Show)
@@ -10,7 +11,7 @@ instance (Ord v, Ord s) => Ord (BySuitThenValue v s) where
     compare (BySuitThenValue (Card val1 suit1)) (BySuitThenValue (Card val2 suit2)) =
         case compare suit1 suit2 of
             EQ -> compare val1 val2
-            a -> a
+            a  -> a
 
 instance (Enum v, Enum s) => Enum (BySuitThenValue v s) where
     fromEnum (BySuitThenValue (Card v s)) = 13 * fromEnum s + fromEnum v
@@ -38,4 +39,4 @@ instance (Ord v, Ord s) => Ord (ByValueThenSuit v s) where
     compare (ByValueThenSuit (Card val1 suit1)) (ByValueThenSuit (Card val2 suit2)) =
         case compare val1 val2 of
             EQ -> compare suit1 suit2
-            a -> a
+            a  -> a

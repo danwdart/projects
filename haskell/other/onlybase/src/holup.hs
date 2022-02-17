@@ -1,7 +1,8 @@
-main :: IO ()
+{-# LANGUAGE UnicodeSyntax #-}
+main ∷ IO ()
 main = putStrLn holup
 
-holup :: String
+holup ∷ String
 holup = sequenceA [
     head,
     last,

@@ -1,7 +1,8 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Suit.Unbounded where
 
-import Symbol
 import qualified Suit.Class as SuitClass
+import           Symbol
 
 newtype Suit = Suit Int deriving (Eq, Ord)
 

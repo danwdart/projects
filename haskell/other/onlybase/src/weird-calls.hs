@@ -1,8 +1,9 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Main where
 
-import Control.Monad
+import           Control.Monad
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ dupMonad (+) 12
     print $ bindFnInt succ (+) 2
@@ -12,15 +13,15 @@ main = do
  join @((->) Int)
   :: Monad ((->) Int) => (Int -> (Int -> a)) -> Int -> a
 -}
-dupMonad :: (Int -> Int -> Int) -> Int -> Int
+dupMonad ∷ (Int → Int → Int) → Int → Int
 dupMonad = join
 
 {-
  $> :t (>>=) @((->) Int)
  (>>=) @((->) Int) :: (Int -> a) -> (a -> Int -> b) -> Int -> b
 -}
-bindFn :: (a -> b) -> (b -> a -> c) -> a -> c
+bindFn ∷ (a → b) → (b → a → c) → a -> c
 bindFn = (>>=)
 
-bindFnInt :: (Int -> Int) -> (Int -> Int -> Int) -> Int -> Int
+bindFnInt ∷ (Int → Int) → (Int → Int → Int) → Int -> Int
 bindFnInt = (>>=)

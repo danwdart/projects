@@ -60,8 +60,8 @@ hexadecimal = 16
 type Notation = String
 
 base36LowerNotation, base36UpperNotation, hexLowerNotation, hexUpperNotation, swedenborgUNotation, swedenborgVNotation, dozenalABNotation, dozenalUSNotation, dozenalGBNotation, binaryDotNotation :: Notation
-base36LowerNotation = ['0'..'9'] ++ ['a'..'z']
-base36UpperNotation = ['0'..'9'] ++ ['A'..'Z']
+base36LowerNotation = ['0'..'9'] <> ['a'..'z']
+base36UpperNotation = ['0'..'9'] <> ['A'..'Z']
 -- @TODO TH the below using the above
 hexLowerNotation = take 16 base36LowerNotation
 hexUpperNotation = take 16 base36UpperNotation
@@ -69,8 +69,8 @@ hexUpperNotation = take 16 base36UpperNotation
 swedenborgUNotation = "olsnmtfu"
 swedenborgVNotation = "olsnmtfv"
 dozenalABNotation = take 12 base36UpperNotation
-dozenalUSNotation = ['0'..'9'] ++ "XE"
-dozenalGBNotation = ['0'..'9'] ++ "↊↋"
+dozenalUSNotation = ['0'..'9'] <> "XE"
+dozenalGBNotation = ['0'..'9'] <> "↊↋"
 binaryDotNotation = " ."
 
 type ErrorMessage = String
@@ -100,10 +100,10 @@ parseStrIn = undefined
 
 main :: IO ()
 main = do
-    print $ fromBase 2 $ toBase 2 129
-    print $ renderBase base36LowerNotation $ toBase 8 123
-    print $ renderBase swedenborgUNotation $ toBase 8 512
-    print $ renderBase base36UpperNotation $ toBase 16 1000
-    print $ renderBase dozenalGBNotation $ toBase 12 2012
-    print $ renderBase binaryDotNotation $ toBase 2 12087
-    print $ renderBase binaryDotNotation $ toBase 18 1963
+    print . fromBase 2 $ toBase 2 129
+    print . renderBase base36LowerNotation $ toBase 8 123
+    print . renderBase swedenborgUNotation $ toBase 8 512
+    print . renderBase base36UpperNotation $ toBase 16 1000
+    print . renderBase dozenalGBNotation $ toBase 12 2012
+    print . renderBase binaryDotNotation $ toBase 2 12087
+    print . renderBase binaryDotNotation $ toBase 18 1963

@@ -1,5 +1,6 @@
+{-# LANGUAGE UnicodeSyntax #-}
 module Suit.Class where
 
-import Symbol
+import           Symbol
 
 class Symbol a => Suit a

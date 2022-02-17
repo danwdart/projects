@@ -59,7 +59,7 @@ word8sToWord32LE [a,b,c,d] = ((((fromIntegral d * 256) + fromIntegral c) * 256) 
 word8sToWord32LE _ = error "Need 4 Word8s"
 
 chunksOf :: Int -> [e] -> [[e]]
-chunksOf i ls = P.map (P.take i) (build (splitter ls)) where
+chunksOf i ls = fmap (P.take i) (build (splitter ls)) where
     splitter :: [e] -> ([e] -> a -> a) -> a -> a
     splitter [] _ n = n
     splitter l c n  = l `c` splitter (P.drop i l) c n
@@ -73,7 +73,7 @@ step3AsBin :: [Word8]
 step3AsBin = B.unpack step3
 
 step4 :: [Word32]
-step4 = P.map word8sToWord32BE (chunksOf 4 step3AsBin)
+step4 = fmap word8sToWord32BE (chunksOf 4 step3AsBin)
 
 step5 :: [Word32]
 step5 = extend step4 where

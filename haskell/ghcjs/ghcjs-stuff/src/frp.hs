@@ -51,7 +51,7 @@ jsMain ∷ JSM ()
 jsMain = do
     doc <- currentDocumentUnchecked
     elBody <- getBodyUnchecked doc
-    setInnerHTML elBody $ BSL.unpack $ renderHtml page
+    setInnerHTML elBody . BSL.unpack $ renderHtml page
 
 main ∷ IO ()
 main = run 5000 jsMain

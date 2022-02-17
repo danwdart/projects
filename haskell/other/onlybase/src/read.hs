@@ -6,7 +6,7 @@ import           GHC.Read
 import           Text.ParserCombinators.ReadP
 import           Text.ParserCombinators.ReadPrec (lift)
 
-personParser :: (String -> Int -> a) -> ReadP a
+personParser ∷ (String → Int → a) → ReadP a
 personParser c = do
     name' <- manyTill get (char ',')
     skipSpaces
@@ -29,13 +29,13 @@ data Person2 = Person2 {
 instance Read Person2 where
     readPrec = lift $ personParser Person2
 
-desc :: String
+desc ∷ String
 desc = "Dan, 29"
 
-me :: Person
+me ∷ Person
 me = read desc
 
-me2 :: Person2
+me2 ∷ Person2
 me2 = read desc
 
 main ∷ IO ()

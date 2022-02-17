@@ -54,9 +54,9 @@ prettyPrintSite (Id 600022459) = "Tesco Shepton Mallet"
 prettyPrintSite (Id a)         = T.pack (show a)
 
 prettyPrintKey ∷ Id → Text
-prettyPrintKey (Id 119301018123828)  = "Co-Op Shepton Mallet"
+prettyPrintKey (Id 119301018123828) = "Co-Op Shepton Mallet"
 prettyPrintKey (Id 114141220125232) = "Tesco Shepton Mallet"
-prettyPrintKey (Id a)         = T.pack (show a)
+prettyPrintKey (Id a)               = T.pack (show a)
 
 -- @TODO parse properly
 prettyPrintDrink ∷ Text → Text

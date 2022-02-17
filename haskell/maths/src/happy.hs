@@ -5,10 +5,10 @@ import           Data.Digits
 
 {-# ANN module "HLint: ignore" #-}
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 -- $>  (,) <$> id <*> happify 3 10 <$> [1..1000]
 
-happify :: Int -> Int -> Int -> Int
+happify ∷ Int → Int → Int → Int
 happify power base = sum . fmap (^ power) . digits base

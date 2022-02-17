@@ -2,6 +2,7 @@
 {-# LANGUAGE DeriveGeneric        #-}
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE StandaloneDeriving   #-}
+{-# LANGUAGE UnicodeSyntax        #-}
 
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wwarn #-}
@@ -24,21 +25,21 @@ deriving instance AllBF Read f Person => Read (Person f)
 deriving instance AllBF Show f Person => Show (Person f)
 deriving instance AllBF Eq   f Person => Eq   (Person f)
 
-c :: Const String Int
+c ∷ Const String Int
 c = Const "1"
 
-i :: Identity Int
+i ∷ Identity Int
 i = Identity . read . getConst $ c
 
-personRaw :: Person (Const String)
+personRaw ∷ Person (Const String)
 personRaw = Person {
     name = Const "Bob",
     profession = Const "Coder"
 }
 
-personContainer :: Container Person String
+personContainer ∷ Container Person String
 personContainer = Container personRaw
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print personRaw

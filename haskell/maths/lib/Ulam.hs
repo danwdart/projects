@@ -1,9 +1,10 @@
 {-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE UnicodeSyntax  #-}
 
 module Ulam where
 
-import Data.List
-import Data.Maybe
+import           Data.List
+import           Data.Maybe
 
 type X = Int
 type Y = Int
@@ -15,28 +16,28 @@ type Loc = (X, Y)
 type DiffLoc = (Dx, Dy)
 
 data Item = Item {
-    num :: Number,
-    loc :: Loc,
+    num     :: Number,
+    loc     :: Loc,
     diffLoc :: DiffLoc
 } deriving (Eq, Show)
 
 type Grid = [Item]
 
-initGrid :: Grid
+initGrid ∷ Grid
 initGrid = [Item 0 (0, 0) (1, 0)]
 
-iter :: Int -> (a -> a) -> a -> a
+iter ∷ Int → (a → a) → a → a
 iter 0 _ x = x
 iter n f x = iter (n-1) f (f x)
 
-continueGrid :: Grid -> Grid
+continueGrid ∷ Grid → Grid
 continueGrid grid = grid <> [newitem] where
     lg = last grid
-    turn (1, 0) = (0, 1)
-    turn (0, 1) = (-1, 0)
+    turn (1, 0)  = (0, 1)
+    turn (0, 1)  = (-1, 0)
     turn (-1, 0) = (0, -1)
     turn (0, -1) = (1, 0)
-    turn a = error $ "Invalid turn " <> show a
+    turn a       = error $ "Invalid turn " <> show a
     search g dl = find (\i -> diffLoc i == dl) g
     getDiffLoc g diffLoc =
         if isJust (search g (turn diffLoc)) then
@@ -50,5 +51,5 @@ continueGrid grid = grid <> [newitem] where
     }
     newitem = nextItem lg
 
-writeGrid :: Int -> Grid
+writeGrid ∷ Int → Grid
 writeGrid n = iter n continueGrid initGrid

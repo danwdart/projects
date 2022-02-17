@@ -1,9 +1,10 @@
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE UnicodeSyntax   #-}
 
-import Language.Haskell.TH
+import           Language.Haskell.TH
 
-main :: IO ()
+main ∷ IO ()
 main = putStrLn bob
 
-bob :: String
+bob ∷ String
 bob = $(stringE =<< runIO (readFile "onlycore.cabal"))

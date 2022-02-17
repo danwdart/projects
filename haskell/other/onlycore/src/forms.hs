@@ -39,7 +39,7 @@ data Form = Form {
     formElements :: FormElements
 } deriving (Show)
 
-elementTypeParser :: Parsec Text u FormElementType
+elementTypeParser ∷ Parsec Text u FormElementType
 elementTypeParser =
     (FreeText <$ string "(free text)") <|>
     (Number <$ string "(number)") <|>
@@ -47,7 +47,7 @@ elementTypeParser =
     (Time <$ string "(time)") <|>
     (FreeText <$ string "...")
 
-elementParser :: Parsec Text u FormElement
+elementParser ∷ Parsec Text u FormElement
 elementParser = do
     label' <- T.pack <$> many1 (noneOf "\n(.")
     optional spaces
@@ -55,7 +55,7 @@ elementParser = do
     optional newline
     pure $ FormElement label' elementType
 
-formParser :: Parsec Text u Form
+formParser ∷ Parsec Text u Form
 formParser = do
     formTitle' <- T.pack <$> many1 (noneOf "\n")
     _ <- newline

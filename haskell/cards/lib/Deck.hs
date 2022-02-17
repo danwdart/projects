@@ -1,4 +1,5 @@
 {-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE UnicodeSyntax #-}
 
 module Deck where
 

@@ -1,6 +1,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeFamilies      #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-orphans #-}
 
 import           Data.String
@@ -23,6 +24,6 @@ instance (a ~ String, b ~ IO ()) => IsString (a -> b) where
         putStrLn a
         putStrLn b
 
-main :: IO ()
+main ∷ IO ()
 main = do
     "hi" "hey"

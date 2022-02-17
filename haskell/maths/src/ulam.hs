@@ -1,4 +1,5 @@
-import Ulam
+{-# LANGUAGE UnicodeSyntax #-}
+import           Ulam
 
-main :: IO ()
+main ∷ IO ()
 main = print $ writeGrid 10

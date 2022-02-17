@@ -1,5 +1,6 @@
+{-# LANGUAGE UnicodeSyntax #-}
 -- TODO
--- Pisano periods of A275124. 
+-- Pisano periods of A275124.
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

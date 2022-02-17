@@ -4,14 +4,14 @@
 
 -- @see https://victorzhou.com/blog/intro-to-neural-networks/
 
-sigmoid :: Double -> Double
+sigmoid ∷ Double → Double
 sigmoid x = 1 / (1 + exp (negate x))
 
-derivSigmoid :: Double -> Double
+derivSigmoid ∷ Double → Double
 derivSigmoid x = s * (1 - s)
     where s = sigmoid x
 
-dot :: [Double] -> [Double] -> Double
+dot ∷ [Double] → [Double] → Double
 dot [a, b] [c, d] = a * c + b * d
 dot _ _           = error "Not implemented"
 
@@ -20,7 +20,7 @@ data Neuron = Neuron {
     bias    :: Double
 } deriving (Show)
 
-mseLoss :: [Double] -> [Double] -> Double
+mseLoss ∷ [Double] → [Double] → Double
 mseLoss trues preds = sum (fmap (**2) (zipWith (-) trues preds)) / fromIntegral (length trues)
 
 data Network = Network {
@@ -28,19 +28,19 @@ data Network = Network {
     outputLayer :: [Neuron]
 } deriving (Show)
 
-dots :: [Double] -> Neuron -> Double
+dots ∷ [Double] → Neuron → Double
 dots inputs neuron = dot (weights neuron) inputs + bias neuron
 
-feedforward :: [Double] -> Neuron -> Double
+feedforward ∷ [Double] → Neuron → Double
 feedforward inputs neuron = sigmoid $ dots inputs neuron
 
-ffLayer :: [Double] -> Network -> Double
+ffLayer ∷ [Double] → Network → Double
 ffLayer inputs (Network hiddens outputs) = feedforward (fmap (feedforward inputs) hiddens) (head outputs)
 
-learnRate :: Double
+learnRate ∷ Double
 learnRate = 0.1
 
-epochs :: Int
+epochs ∷ Int
 epochs = 1000
 
 train data' allYTrues network@Network {
@@ -65,7 +65,7 @@ train data' allYTrues network@Network {
         ) [1..epochs]
 
 
-defaultNetwork :: Network
+defaultNetwork ∷ Network
 defaultNetwork = Network {
     hiddenLayer = [
         Neuron [0, 1] 0,

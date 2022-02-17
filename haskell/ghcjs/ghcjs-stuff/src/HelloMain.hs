@@ -53,7 +53,7 @@ helloMain = do
     _ <- on doc click $ do
         (x, y) <- mouseClientXY
         newParagraph <- uncheckedCastTo HTMLParagraphElement <$> createElement doc "p"
-        text <- createTextNode doc $ "Click " ++ show (x, y)
+        text <- createTextNode doc $ "Click " <> show (x, y)
         appendChild_ newParagraph text
         appendChild_ body newParagraph
 
