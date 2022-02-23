@@ -2,6 +2,7 @@
 {-# LANGUAGE UnicodeSyntax   #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+import Data.List
 -- import Control.Monad
 import           Control.Lens
 
@@ -40,6 +41,20 @@ data Date = Date {
 
 makeLenses ''Date
 
+fullDate :: Getter Date String
+fullDate = to (
+    \d ->
+        d ^. year . to show
+        <>
+        "-"
+        <>
+        d ^. month . to show
+        <>
+        "-"
+        <>
+        d ^. day . to show
+    )
+
 data Name = Name {
     _title :: Title,
     _givenName :: String,
@@ -59,6 +74,12 @@ data Attributes = Attributes {
     _dob :: Date,
     _events :: [(Date, Event)]
 } deriving (Show)
+
+date :: Lens' (Date, Event) Date
+date = _1
+
+event :: Lens' (Date, Event) Event
+event = _2
 
 makeLenses ''Attributes
 
@@ -87,27 +108,24 @@ defaultPerson = Person (
 
 newman :: Person
 newman = defaultPerson
-    & name . givenName .~ "Bobby"
-    & name . officialName .~ "Bobby Jimbo III" -- TODO shortcut
+    & name %~ (
+        (givenName .~ "Bobby") .
+        (officialName .~ "Bobby Jimbo III")
+    )
+    & attributes . events %~ (
+        (traverse . date %~ (
+            (year %~ succ) .
+            (day .~ 24)
+        )) .
+        (ix 0 . event . description .~ "Actually...")
+        .
+        (<> [(Date 1990 1 1, Event "Did a thing" "More about the thing.")])
+    )
+    & attributes . dob .~ Date 1980 1 8
+    & attributes . events <>~ [(Date 1991 2 2, Event "Did another thing" "More about the other thing.")]
 
 main ∷ IO ()
 main = do
-    putStrLn $ newman ^. name . officialName
-{-}
-    putStrLn $
-        show (name . title ^. newman)
-        <>
-        " "
-        <>
-        (name . givenName ^. newman)
-        <>
-        ", also known as "
-        <>
-        (name . officialName ^. newman)
-        <>
-        " was set upon."
-    -}
-    {-}
     print a
     print $ a^._2
     print $ set _2 (42 :: Int) a
@@ -117,4 +135,29 @@ main = do
     print $ view _2 ((1, 2) :: (Int, Int))
     print $ (((1,0),(2,"Two"),(3,0)) :: ((Int, Int), (Int, String), (Int, Int)) )^._2._2.to length
     print $ (bob^.namest) <> (show (bob^.age) <> (bob^.friends.ix 0.namest))
-    -}
+    putStrLn $
+        show (newman ^. name . title)
+        <>
+        " "
+        <>
+        (newman ^. name . givenName)
+        <>
+        ", also known as "
+        <>
+        (newman ^. name . officialName)
+        <>
+        ", born on "
+        <>
+        (newman ^. attributes . dob . fullDate)
+        <>
+        " was set upon in "
+        <>
+        newman ^. attributes . events . partsOf (traverse . date . year . to show) . to (intercalate ", ")
+        <>
+        " and decided respectively: "
+        <>
+        newman ^. attributes . events . partsOf (traverse . event . summary) . to (intercalate ", ")
+        <>
+        ". These were the dates: "
+        <>
+        newman ^. attributes . events . partsOf (traverse . date . fullDate) . to (intercalate ", ")
