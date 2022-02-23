@@ -191,6 +191,10 @@ executable monad
   import: shared-properties
   main-is:             monad.hs
 
+executable mylens
+  import: shared-properties
+  main-is:             mylens.hs
+
 executable noecho
   import: shared-properties
   main-is:             noecho.hs
