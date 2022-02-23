@@ -22,11 +22,11 @@ let
       }) "--subpath sop-core" {}));
       io-streams-haproxy = lib.doJailbreak super.io-streams-haproxy;
       openssl-streams = lib.doJailbreak super.openssl-streams;
-      # https://github.com/snapframework/snap-core/issues/311
-      # https://github.com/snapframework/snap-core/pull/312
+      # Setup: Encountered missing or private dependencies:
+      # hashable >=1.2.0.6 && <1.4
       snap-core = lib.dontCheck (lib.doJailbreak (self.callCabal2nix "snap-core" (builtins.fetchGit {
-        url = "https://github.com/brandon-leapyear/snap-core.git";
-        ref = "379cc04a3e81a87c09ac47021fffb032a642e529";
+        url = "https://github.com/snapframework/snap-core.git";
+        ref = "bd2f6ec93d509c986010da5a6fc32d79cf686621";
       }) {}));
       snap-server = lib.doJailbreak super.snap-server;
       websockets-snap = lib.doJailbreak super.websockets-snap;
