@@ -1,8 +1,9 @@
 #include <uefi.h>
-#include <HsFFI.h>
+#include "hsmain_stub.h"
 
 int main(void) {
-    hs_init();
-    hs_run();
+    hs_init(void 0, void 0);
+    /* hs_run(); */
+    kmain();
     return 0;
 }
