@@ -76,6 +76,11 @@ executable files
   main-is:             files.hs
   build-depends:       base >= 4.16 && < 5, directory
 
+executable fixedlength
+  import: shared-properties
+  main-is:             fixedlength.hs
+  build-depends:       base >= 4.16 && < 5, array
+  
 executable forms
   import: shared-properties
   main-is:             forms.hs
@@ -104,6 +109,11 @@ executable python5
 executable reader
   import: shared-properties
   main-is:             reader.hs
+  build-depends:       base >= 4.16 && < 5, mtl
+
+executable reader-fn
+  import: shared-properties
+  main-is:             reader-fn.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
 executable sha
