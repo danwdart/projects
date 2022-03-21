@@ -65,12 +65,12 @@ genDemo2 x y
 
 genDemo3 :: Int -> Int -> PixelRGB8
 genDemo3 x y
-    | sin x == y = black
+    | round (sin (fromIntegral x) :: Double) == y = black
     | otherwise = white
 
 genSines :: Int -> Int -> PixelRGB8
 genSines x y = black
-    where n = matrixToLinear (x, y)
+    -- where n = matrixToLinear (x, y)
 
 main :: IO ()
 main = do
