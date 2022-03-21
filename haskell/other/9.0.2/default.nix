@@ -1,18 +1,27 @@
-{ nixpkgs ? import  (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
-  compiler ? "ghc902" }:
+{
+  nixpkgs ? import  (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
+  haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {},
+  compiler ? "ghc902"
+}:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
+  tools = haskell-tools compiler;
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       inline-asm = self.callHackage "inline-asm" "0.4.0.2" {};
       # https://github.com/brendanhay/gogol/issues/148
-      gogol-core = self.callCabal2nixWithOptions "gogol-core" (builtins.fetchGit { # not yet released
-        url = "https://github.com/brendanhay/gogol";
-        rev = "d7c7d71fc985cd96fb5f05173da6c607da362b74";
-      }) "--subpath core" {};
+      #gogol-core = self.callCabal2nixWithOptions "gogol-core" (builtins.fetchGit { # not yet released
+      #  url = "https://github.com/brendanhay/gogol";
+      #  rev = "d7c7d71fc985cd96fb5f05173da6c607da362b74";
+      #}) "--subpath core" {};
+      patch = lib.doJailbreak super.patch;
       dbus = lib.doJailbreak super.dbus;
       req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
+      reflex-gloss = self.callCabal2nix "reflex-gloss" (builtins.fetchGit {
+        url = "https://github.com/noughtmare/reflex-gloss.git";
+        ref = "2fbc06753a212d4035886ba8654d33cf373aeb53";
+      }) {};
       other902 = self.callCabal2nix "other902" (gitignore ./.) {};
     };
   };
@@ -24,20 +33,7 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f); do krank $i; done
     '';
-    buildInputs = with myHaskellPackages; with nixpkgs; with haskellPackages; [
-      apply-refact
-      cabal-install
-      ghcid
-      # ghcide # issue with 9.0.2
-      # haskell-language-server # issue with 9.0.2
-      hasktags
-      hlint
-      implicit-hie
-      krank
-      stan
-      stylish-haskell
-      weeder
-    ];
+    buildInputs = tools.defaultBuildTools;
     withHoogle = false;
   };
   exe = lib.justStaticExecutables (myHaskellPackages.other902);
