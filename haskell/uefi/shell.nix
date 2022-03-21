@@ -2,7 +2,7 @@ with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/mas
 runCommand "uefi" {
     buildInputs = [
         gcc
-        haskell.compiler.ghc921
+        haskell.compiler.ghc922
         cabal-install
     ];
 } ""
