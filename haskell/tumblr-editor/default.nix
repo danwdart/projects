@@ -1,7 +1,11 @@
-{ nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc921" }:
+{
+  nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
+  haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {},
+  compiler ? "ghc922"
+}:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
+  tools = haskell-tools compiler;
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
@@ -21,19 +25,7 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f); do krank $i; done
     '';
-    buildInputs = with myHaskellPackages; with nixpkgs; [
-      haskellPackages.apply-refact # not on ghc 9.2 because of ghc-exactprint
-      cabal-install
-      ghcid
-      haskell-language-server
-      haskellPackages.hasktags # not on ghc 9.2 because of ghc-exactprint
-      hlint
-      implicit-hie
-      krank
-      haskellPackages.stan # base64 issues
-      stylish-haskell
-      haskellPackages.weeder # not on ghc 9.2 because of generic-lens-core issues
-    ];
+    buildInputs = tools.defaultBuildTools;
     withHoogle = false;
   };
   exe = lib.justStaticExecutables (myHaskellPackages.tumblr-editor);
