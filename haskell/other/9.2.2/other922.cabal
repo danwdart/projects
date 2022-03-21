@@ -1,6 +1,6 @@
 cabal-version:       3.0
 -- Newer versions complain
-name:                other921
+name:                other922
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -20,6 +20,11 @@ common shared-properties
   build-depends:       base >= 4.16 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
+
+executable async
+  import: shared-properties
+  main-is:             async.hs
+  build-depends:       base >= 4.16 && < 5, async
 
 executable bifunctor
   import: shared-properties
@@ -107,6 +112,11 @@ executable gloss
   main-is:             gloss.hs
   build-depends:       base >= 4.16 && < 5, gloss
 
+executable glut
+  import: shared-properties
+  main-is:             glut.hs
+  build-depends:       base >= 4.16 && < 5, GLUT, OpenGL
+
 executable hkd
   import: shared-properties
   main-is:             hkd.hs
@@ -127,11 +137,15 @@ executable lenses
   main-is:             lenses.hs
   build-depends:       base >= 4.16 && < 5, lens
 
+executable mvar
+  import: shared-properties
+  main-is:             mvar.hs
+  build-depends:       base >= 4.16 && < 5, async
+
 executable parsec
   import: shared-properties
   main-is:             parsec.hs
   build-depends:       base >= 4.16 && < 5, ansi-terminal, parsec
-
 
 executable pizza
   import: shared-properties
@@ -160,11 +174,15 @@ executable profunctor
   main-is:             profunctor.hs
   build-depends:       base >= 4.16 && < 5, profunctors
 
+executable random
+  import: shared-properties
+  main-is:             random.hs
+  build-depends:       base >= 4.16 && < 5, random
+
 executable regex
   import: shared-properties
   main-is:             regex.hs
   build-depends:       base >= 4.16 && < 5, regex-tdfa
-
 
 executable req
   import: shared-properties
@@ -175,6 +193,12 @@ executable rws
   import: shared-properties
   main-is:             rws.hs
   build-depends:       base >= 4.16 && < 5, mtl, transformers, monads-tf
+
+executable sdl
+  import: shared-properties
+  main-is:             sdl.hs
+  build-depends:       base >= 4.16 && < 5, OpenGL, sdl2
+  -- reflex-sdl2
 
 executable serial
   import: shared-properties
@@ -200,27 +224,37 @@ executable shell
 executable sockets
   import: shared-properties
   main-is:             sockets.hs
-  build-depends:       base >= 4.13 && < 5, async, bytestring, network
+  build-depends:       base >= 4.16 && < 5, async, bytestring, network
 
 executable tardis
   import: shared-properties
   main-is:             tardis.hs
   build-depends:       base >= 4.16 && < 5, tardis
 
+executable terrain
+  import: shared-properties
+  main-is:             terrain.hs
+  build-depends:       base >= 4.16 && < 5, random
+
+executable text-display
+  import: shared-properties
+  main-is:             text-display.hs
+  build-depends:       base >= 4.16 && < 5, text-display
+
 executable these
   import: shared-properties
   main-is:             these.hs
-  build-depends:       base >= 4.13 && < 5, these
-
-executable threedeegee
-  import: shared-properties
-  main-is:             3dg.hs
-  build-depends:       base >= 4.13 && < 5, threepenny-gui
+  build-depends:       base >= 4.16 && < 5, these
 
 executable unicode
   import: shared-properties
   main-is:             unicode.hs
   build-depends:       base >= 4.16 && < 5, mtl, base-unicode-symbols
+
+executable vector
+  import: shared-properties
+  main-is:             vector.hs
+  build-depends:       base >= 4.16 && < 5, vector
 
 executable wai
   import: shared-properties
@@ -231,6 +265,11 @@ executable wave
   import: shared-properties
   main-is:             wave.hs
   build-depends:       base >= 4.16 && < 5, fft
+
+executable wikidata
+  import: shared-properties
+  main-is:             wikidata.hs
+  build-depends:       base >= 4.16 && < 5, graphql, http-client, http-client-tls, req
 
 executable xpath
   import: shared-properties
