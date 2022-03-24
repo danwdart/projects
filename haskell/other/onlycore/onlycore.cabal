@@ -86,6 +86,11 @@ executable forms
   main-is:             forms.hs
   build-depends:       base >= 4.16 && < 5, parsec, template-haskell, text
 
+executable free-monads
+  import: shared-properties
+  main-is:             free-monads.hs
+  build-depends:       base >= 4.16 && < 5, mtl
+
 executable heact
   import: shared-properties
   main-is:             heact.hs
@@ -156,6 +161,11 @@ executable transformers
   import: shared-properties
   main-is:             transformers.hs
   build-depends:       base >= 4.16 && < 5, mtl, transformers
+
+executable world
+  import: shared-properties
+  main-is:             world.hs
+  build-depends:       base >= 4.16 && < 5, mtl
 
 executable writer
   import: shared-properties
