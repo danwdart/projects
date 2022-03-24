@@ -9,9 +9,9 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      fakedata = self.callHackage "fakedata" "1.0.1" {};
+      fakedata = self.callHackage "fakedata" "1.0.2" {};
       brick = lib.doJailbreak super.brick;
-      peoplemanager = self.callCabal2nix "peoplemanager" (gitignore ./.) {};
+      peoplemanager = lib.dontHaddock (self.callCabal2nix "peoplemanager" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

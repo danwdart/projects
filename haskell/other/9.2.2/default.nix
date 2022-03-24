@@ -19,7 +19,7 @@ let
       linear = self.callHackage "linear" "1.21.8" {};
       readable = lib.doJailbreak super.readable;
       # 3.9.0 only in Nix
-      req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
+      req = lib.doJailbreak (self.callHackage "req" "3.10.0" {});
       sdl2 = lib.doJailbreak super.sdl2; # reflex it!
       # https://github.com/well-typed/generics-sop/pull/147
       sop-core = (lib.doJailbreak (self.callCabal2nixWithOptions "sop-core" (builtins.fetchGit {
@@ -38,7 +38,7 @@ let
       websockets-snap = lib.doJailbreak super.websockets-snap;
       # Atm Nix breaks this.
       haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
-      other922 = self.callCabal2nix "other922" (gitignore ./.) {};
+      other922 = lib.dontHaddock (self.callCabal2nix "other922" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

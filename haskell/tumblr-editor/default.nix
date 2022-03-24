@@ -9,7 +9,7 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      tumblr-editor = self.callCabal2nix "tumblr-editor" (gitignore ./.) {};
+      tumblr-editor = lib.dontHaddock (self.callCabal2nix "tumblr-editor" (gitignore ./.) {});
       colourista = lib.doJailbreak super.colourista;
       webdriver = self.callCabal2nix "webdriver" (builtins.fetchGit {
         url = "https://github.com/danwdart/hs-webdriver.git";

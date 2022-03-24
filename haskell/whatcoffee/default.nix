@@ -9,7 +9,7 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      whatcoffee = self.callCabal2nix "whatcoffee" (gitignore ./.) {};
+      whatcoffee = lib.dontHaddock (self.callCabal2nix "whatcoffee" (gitignore ./.) {});
       # for stan
       cabal-doctest = lib.doJailbreak (self.callCabal2nix "cabal-doctest" (builtins.fetchGit {
         url = "https://github.com/haskellari/cabal-doctest.git";

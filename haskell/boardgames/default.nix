@@ -9,7 +9,7 @@ let
   tools = haskell-tools compiler;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      boardgames = self.callCabal2nix "boardgames" (gitignore ./.) {};
+      boardgames = lib.dontHaddock (self.callCabal2nix "boardgames" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

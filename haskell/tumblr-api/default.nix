@@ -15,7 +15,7 @@ let
       }) {};
       # https://github.com/AndrewRademacher/aeson-casing/issues/7
       aeson-casing = lib.dontCheck super.aeson-casing;
-      tumblr-api = self.callCabal2nix "tumblr-api" (gitignore ./.) {};
+      tumblr-api = lib.dontHaddock (self.callCabal2nix "tumblr-api" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

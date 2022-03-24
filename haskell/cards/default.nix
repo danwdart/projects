@@ -9,7 +9,7 @@ let
   tools = haskell-tools compiler;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      cards = self.callCabal2nix "cards" (gitignore ./.) {};
+      cards = lib.dontHaddock (self.callCabal2nix "cards" (gitignore ./.) {});
       # for stan
       cabal-doctest = lib.doJailbreak (self.callCabal2nix "cabal-doctest" (builtins.fetchGit {
         url = "https://github.com/haskellari/cabal-doctest.git";

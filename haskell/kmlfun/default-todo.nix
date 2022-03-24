@@ -7,7 +7,7 @@ let
     overrides = self: super: rec {
       gpx-conduit = lib.doJailbreak (self.callHackage "gpx-conduit" "0.1.1" {});
       gps = lib.doJailbreak (self.callHackage "gps" "1.2" {});
-      kmlfun = self.callCabal2nix "kmlfun" (gitignore ./.) {};
+      kmlfun = lib.dontHaddock (self.callCabal2nix "kmlfun" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

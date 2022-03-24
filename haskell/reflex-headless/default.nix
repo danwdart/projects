@@ -9,7 +9,7 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      reflex-headless = self.callCabal2nix "reflex-headless" (gitignore ./.) {};
+      reflex-headless = lib.dontHaddock (self.callCabal2nix "reflex-headless" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

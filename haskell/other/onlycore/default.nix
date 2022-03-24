@@ -9,7 +9,7 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      onlycore = self.callCabal2nix "onlycore" (gitignore ./.) {};
+      onlycore = lib.dontHaddock (self.callCabal2nix "onlycore" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

@@ -17,12 +17,12 @@ let
       #}) "--subpath core" {};
       patch = lib.doJailbreak super.patch;
       dbus = lib.doJailbreak super.dbus;
-      req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
+      req = lib.doJailbreak (self.callHackage "req" "3.10.0" {});
       reflex-gloss = self.callCabal2nix "reflex-gloss" (builtins.fetchGit {
         url = "https://github.com/noughtmare/reflex-gloss.git";
         ref = "2fbc06753a212d4035886ba8654d33cf373aeb53";
       }) {};
-      other902 = self.callCabal2nix "other902" (gitignore ./.) {};
+      other902 = lib.dontHaddock (self.callCabal2nix "other902" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {

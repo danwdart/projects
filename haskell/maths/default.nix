@@ -17,14 +17,14 @@ let
       factory = self.callHackage "factory" "0.3.2.2" {};
       partial-isomorphisms = self.callHackage "partial-isomorphisms" "0.2.3.0" {};
       exact-pi = lib.doJailbreak super.exact-pi;
-      req = lib.doJailbreak (self.callHackage "req" "3.9.2" {});
+      req = lib.doJailbreak (self.callHackage "req" "3.10.0" {});
       text-short = lib.overrideCabal super.text-short (drv: {
         doCheck = false;
       });
       modern-uri = lib.doJailbreak super.modern-uri;
       wl-pprint-text = lib.doJailbreak super.wl-pprint-text;
       graphviz = lib.doJailbreak super.graphviz;
-      maths = self.callCabal2nix "maths" (gitignore ./.) {};
+      maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {
