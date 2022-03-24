@@ -273,11 +273,6 @@ executable variadic
   import: shared-properties
   main-is:             variadic.hs
 
-executable whereinlet
-  import: shared-properties
-  main-is:             whereinlet.hs
-
-
 executable weird-calls
   import: shared-properties
   main-is:             weird-calls.hs
@@ -285,3 +280,7 @@ executable weird-calls
 executable weird-instances
   import: shared-properties
   main-is:             weird-instances.hs
+
+executable whereinlet
+  import: shared-properties
+  main-is:             whereinlet.hs
