@@ -1,7 +1,8 @@
 {
   nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
   haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {},
-  compiler ? "ghc8107"
+  # https://github.com/reflex-frp/patch/issues/42
+  compiler ? "ghc902"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -10,6 +11,9 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       reflex-headless = lib.dontHaddock (self.callCabal2nix "reflex-headless" (gitignore ./.) {});
+      # 9.0.2 -> 9.2.2
+      # monoidal-containers = lib.doJailbreak super.monoidal-containers;
+      # patch = lib.doJailbreak super.patch;
     };
   };
   shell = myHaskellPackages.shellFor {

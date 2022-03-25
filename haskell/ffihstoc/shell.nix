@@ -1,4 +1,4 @@
-with import <nixpkgs> {};
+with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {};
 runCommand "uefi" {
     buildInputs = [
         gcc
