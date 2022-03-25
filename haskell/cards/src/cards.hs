@@ -31,7 +31,7 @@ main = do
     magicDist 2000 >>= print . meanDist
 
 class Pp a where
-    pp :: a -> String
+    pp :: a → String
 
 ppr ∷ Pp a ⇒ a → IO ()
 ppr = putStrLn . pp

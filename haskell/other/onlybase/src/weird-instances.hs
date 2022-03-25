@@ -19,7 +19,7 @@ instance IsString (String -> IO ()) where
 -- instance IsString (IO ()) where
 --     fromString a = putStrLn a
 
-instance (a ~ String, b ~ IO ()) => IsString (a -> b) where
+instance (a ~ String, b ~ IO ()) ⇒ IsString (a → b) where
     fromString a b = do
         putStrLn a
         putStrLn b

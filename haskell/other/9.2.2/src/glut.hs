@@ -1,10 +1,11 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
-import Graphics.UI.GLUT
-import Graphics.UI.GLUT.Begin
-import Graphics.UI.GLUT.Initialization
+import           Graphics.UI.GLUT
+import           Graphics.UI.GLUT.Begin
+import           Graphics.UI.GLUT.Initialization
 
-main :: IO ()
+main ∷ IO ()
 main = do
     initialWindowPosition $= Position 100 100
     initialWindowSize $= Size 900 500
@@ -13,14 +14,12 @@ main = do
     displayCallback $= do
         putStrLn "Display!"
         pure ()
-    closeCallback $= (Just $ do
+    closeCallback $= Just (do
         putStrLn "Close."
-        exit
-        )
-    positionCallback $= (Just $ \pos -> do
-        print pos
-        )
-    
+        exit)
+    positionCallback $= Just (\pos -> do
+        print pos)
+
     -- windowPosition $= Position 100 100
     -- windowSize $= Size 900 500
     -- cursor $= Spray

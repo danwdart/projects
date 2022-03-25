@@ -1,9 +1,9 @@
 {-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 module Card where
 
-import Data.Char
+import           Data.Char
 import qualified Suit.Bounded.Standard  as SuitStandard
 import qualified Suit.Unbounded         as SuitUnbounded
 import           Symbol
@@ -15,7 +15,7 @@ data Card value suit = Card {
     suit  :: suit
 } deriving (Eq, Show)
 
-unicodeOffset, unicodeSuitMultiplier :: Int
+unicodeOffset, unicodeSuitMultiplier ∷ Int
 unicodeOffset = 0x1f0a1
 unicodeSuitMultiplier = 0x10
 
@@ -26,7 +26,7 @@ instance (Show v, Show s) => Show (Card v s) where
 -}
 
 instance Symbol (Card ValueStandard.Value SuitStandard.Suit) where
-    symbol (Card value' suit') = 
+    symbol (Card value' suit') =
         [chr $
             unicodeOffset +
             unicodeSuitMultiplier * fromEnum suit' +

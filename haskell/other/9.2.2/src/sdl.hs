@@ -1,14 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE TypeApplications  #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-matches #-}
 
-import Graphics.Rendering.OpenGL.GL as GL
-import Graphics.Rendering.OpenGL.GL.Framebuffer as GLFB
-import SDL as SDL
-import SDL.Video.OpenGL as SDLGL
-import SDL.Video.Vulkan
+import           Graphics.Rendering.OpenGL.GL             as GL
+import           Graphics.Rendering.OpenGL.GL.Framebuffer as GLFB
+import           SDL
+import           SDL.Video.OpenGL                         as SDLGL
+import           SDL.Video.Vulkan
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Initialising"
     initializeAll
@@ -23,7 +24,7 @@ main = do
         },
         windowPosition = Centered
     }
-    -- surface <- vkCreateSurface window 
+    -- surface <- vkCreateSurface window
     putStrLn "Creating context"
     glCtx <- glCreateContext window
     putStrLn "Getting drawable size"

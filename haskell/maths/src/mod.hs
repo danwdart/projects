@@ -4,7 +4,7 @@ main = pure ()
 
 newtype ModNine a = ModNine Int
 
-instance (Num a) => Num (ModNine a) where
+instance (Num a) ⇒ Num (ModNine a) where
     ModNine a + ModNine b = ModNine $ mod (a + b) 9
     ModNine a - ModNine b = ModNine $ mod (a - b) 9
     ModNine a * ModNine b = ModNine $ mod (a * b) 9
@@ -13,5 +13,5 @@ instance (Num a) => Num (ModNine a) where
     signum _ = 1
     fromInteger a = ModNine $ mod (fromInteger a) 9
 
-instance (Show a) => Show (ModNine a) where
+instance (Show a) ⇒ Show (ModNine a) where
     show (ModNine a) = show $ mod a 9

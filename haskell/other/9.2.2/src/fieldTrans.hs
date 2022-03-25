@@ -15,16 +15,16 @@ data Person f = Person {
     profession :: f String
 } deriving (Generic)
 
-instance (Show (f String), Show (f Int)) => Show (Person f) where
+instance (Show (f String), Show (f Int)) ⇒ Show (Person f) where
     show Person {name, age, profession} =
         "Person { name = " <> show name <>
         ", age = " <> show age <>
         ", profession = " <> show profession <>
         "}"
 
-instance (FromJSON (f String), FromJSON (f Int)) => FromJSON (Person f)
+instance (FromJSON (f String), FromJSON (f Int)) ⇒ FromJSON (Person f)
 
-instance (ToJSON (f String), ToJSON (f Int)) => ToJSON (Person f)
+instance (ToJSON (f String), ToJSON (f Int)) ⇒ ToJSON (Person f)
 
 {- PERSON 2 -}
 
@@ -34,16 +34,16 @@ data Person2 f s i = Person2 {
     profession2 :: f s
 } deriving (Generic)
 
-instance (Show (f s), Show (f i)) => Show (Person2 f s i) where
+instance (Show (f s), Show (f i)) ⇒ Show (Person2 f s i) where
     show Person2 {name2, age2, profession2} =
         "Person2 { name2 = " <> show name2 <>
         ", age2 = " <> show age2 <>
         ", profession2 = " <> show profession2 <>
         "}"
 
-instance (FromJSON (f s), FromJSON (f i)) => FromJSON (Person2 f s i)
+instance (FromJSON (f s), FromJSON (f i)) ⇒ FromJSON (Person2 f s i)
 
-instance (ToJSON (f s), ToJSON (f i)) => ToJSON (Person2 f s i)
+instance (ToJSON (f s), ToJSON (f i)) ⇒ ToJSON (Person2 f s i)
 
 {- PERSON 3 -}
 
@@ -53,16 +53,16 @@ data Person3 f g = Person3 {
     profession3 :: f String
 } deriving (Generic)
 
-instance (Show (f String), Show (g Int)) => Show (Person3 f g) where
+instance (Show (f String), Show (g Int)) ⇒ Show (Person3 f g) where
     show Person3 {name3, age3, profession3} =
         "Person3 { name3 = " <> show name3 <>
         ", age3 = " <> show age3 <>
         ", profession3 = " <> show profession3 <>
         "}"
 
-instance (FromJSON (f String), FromJSON (g Int)) => FromJSON (Person3 f g)
+instance (FromJSON (f String), FromJSON (g Int)) ⇒ FromJSON (Person3 f g)
 
-instance (ToJSON (f String), ToJSON (g Int)) => ToJSON (Person3 f g)
+instance (ToJSON (f String), ToJSON (g Int)) ⇒ ToJSON (Person3 f g)
 
 p3 ∷ Person3 Identity Identity
 p3 = Person3 (Identity "Dan") (Identity 29) (Identity "Coder")
@@ -88,16 +88,16 @@ data Person4 f g s i = Person4 {
     profession4 :: f s
 } deriving (Generic)
 
-instance (Show (f s), Show (g i)) => Show (Person4 f g s i) where
+instance (Show (f s), Show (g i)) ⇒ Show (Person4 f g s i) where
     show Person4 {name4, age4, profession4} =
         "Person4 { name4 = " <> show name4 <>
         ", age4 = " <> show age4 <>
         ", profession4 = " <> show profession4 <>
         "}"
 
-instance (FromJSON (f s), FromJSON (g i)) => FromJSON (Person4 f g s i)
+instance (FromJSON (f s), FromJSON (g i)) ⇒ FromJSON (Person4 f g s i)
 
-instance (ToJSON (f s), ToJSON (g i)) => ToJSON (Person4 f g s i)
+instance (ToJSON (f s), ToJSON (g i)) ⇒ ToJSON (Person4 f g s i)
 
 p4 ∷ Person4 Identity Identity String Int
 p4 = Person4 (Identity "Dan") (Identity 29) (Identity "Coder")
@@ -105,7 +105,7 @@ p4 = Person4 (Identity "Dan") (Identity 29) (Identity "Coder")
 ptrans4 ∷ Person4 ((→) String) ((→) Int) String Int
 ptrans4 = Person4 {
     name4 = (<> "!"),
-    age4 = succ :: (Int -> Int),
+    age4 = succ :: (Int → Int),
     profession4 = (<> ".")
 }
 
@@ -117,7 +117,7 @@ pt4 = fmap4 ptrans4 p4
 
 {- PERSON 5 -}
 
-type ToSame a = a -> a
+type ToSame a = a → a
 
 -- It's a wrapper for... binary things?
 
@@ -125,13 +125,13 @@ newtype Person5 a b c = Person5 {
     name5 :: a b c
 } deriving (Generic)
 
-instance (Show (a b c)) => Show (Person5 a b c) where
+instance (Show (a b c)) ⇒ Show (Person5 a b c) where
     show (Person5 n) =
         "Person5 { name5 = " <> show n <> " }"
 
-instance (FromJSON (a b c)) => FromJSON (Person5 a b c)
+instance (FromJSON (a b c)) ⇒ FromJSON (Person5 a b c)
 
-instance (ToJSON (a b c)) => ToJSON (Person5 a b c)
+instance (ToJSON (a b c)) ⇒ ToJSON (Person5 a b c)
 
 p5 ∷ Person5 (→) b b
 p5 = Person5 {

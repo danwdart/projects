@@ -19,7 +19,7 @@ instance Comonad Sandpile where
     duplicate (Sandpile a) = Sandpile $ fmap Sandpile (duplicate a)
 
 -- Only works with numbers atm
-instance (Show a) => Show (Sandpile a) where
+instance (Show a) ⇒ Show (Sandpile a) where
     show (Sandpile x) = unlines $ fmap (show .fmap (`peek` x)) fullCoords
 
 instance ComonadStore Pos Sandpile where
@@ -33,7 +33,7 @@ instance Applicative Sandpile where
 
 instance ComonadApply Sandpile
 
-instance (Num a) => Num (Sandpile a) where
+instance (Num a) ⇒ Num (Sandpile a) where
     (+) = liftW2 (+)
     (-) = liftW2 (-)
     (*) = liftW2 (*)

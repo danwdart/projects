@@ -1,12 +1,13 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
 import           Data.Profunctor
 
-l, r :: Either Int Int
+l, r ∷ Either Int Int
 l = Left 1
 r = Right 1
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Choice -> - only maps on the particular side of an Either"
     print $ left' show l

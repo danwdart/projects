@@ -11,4 +11,4 @@ main ∷ IO ()
 main = do
     print $ I# 2#
     print $ C# 'E'#
-    print $ (, 2 :: Int) (2 :: Int)
+    print $ (2 :: Int, 2 :: Int)

@@ -3,7 +3,7 @@
 import           Data.Bifunctor
 
 type ESI = Either String Int
-type EtoE = ESI -> ESI
+type EtoE = ESI → ESI
 
 myResult1 ∷ ESI
 myResult1 = Left "Oh no, something bad happened."

@@ -20,7 +20,7 @@ comp (q,r,s,t) (u,v,w,x) = (q*u+r*w,q*v+r*x,s*u+t*w,s*v+t*x)
 
 
 stream ∷ (b→c) → (b→c→Bool) → (b→c→b) → (b→a→b) →
-           b → [a] -> [c]
+           b → [a] → [c]
 stream   next safe prod cons z (x:xs)
               = if   safe z y
      then y : stream next safe prod cons (prod z y) (x:xs)

@@ -13,8 +13,8 @@ import           Language.Javascript.JSaddle      hiding ((!))
 import           Language.Javascript.JSaddle.Warp
 
 import           Text.Blaze.Html.Renderer.Utf8
-import           Text.Blaze.Html5                 as H hiding (main)
 import qualified Text.Blaze.Html5                 as H (main)
+import           Text.Blaze.Html5                 as H hiding (main)
 import           Text.Blaze.Html5.Attributes      as A
 
 page ∷ Html

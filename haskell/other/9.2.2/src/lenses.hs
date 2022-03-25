@@ -2,7 +2,7 @@
 {-# LANGUAGE UnicodeSyntax   #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import Data.List
+import           Data.List
 -- import Control.Monad
 import           Control.Lens
 
@@ -10,7 +10,7 @@ a ∷ (Int, Int, Int)
 a = (1, 2, 3)
 
 data MyStruct = MyStruct {
-    _namest    :: String,
+    _namest  :: String,
     _age     :: Int,
     _friends :: [MyStruct]
 } deriving (Show)
@@ -34,14 +34,14 @@ bob = MyStruct {
 data Title = Citizen | Professor | Doctor deriving (Show)
 
 data Date = Date {
-    _year :: Int,
+    _year  :: Int,
     _month :: Int,
-    _day :: Int
+    _day   :: Int
 } deriving (Show)
 
 makeLenses ''Date
 
-fullDate :: Getter Date String
+fullDate ∷ Getter Date String
 fullDate = to (
     \d ->
         d ^. year . to show
@@ -56,41 +56,41 @@ fullDate = to (
     )
 
 data Name = Name {
-    _title :: Title,
-    _givenName :: String,
+    _title        :: Title,
+    _givenName    :: String,
     _officialName :: String
 } deriving (Show)
 
 makeLenses ''Name
 
 data Event = Event {
-    _summary :: String,
+    _summary     :: String,
     _description :: String
 } deriving (Show)
 
 makeLenses ''Event
 
 data Attributes = Attributes {
-    _dob :: Date,
+    _dob    :: Date,
     _events :: [(Date, Event)]
 } deriving (Show)
 
-date :: Lens' (Date, Event) Date
+date ∷ Lens' (Date, Event) Date
 date = _1
 
-event :: Lens' (Date, Event) Event
+event ∷ Lens' (Date, Event) Event
 event = _2
 
 makeLenses ''Attributes
 
 data Person = Person {
-    _name :: Name,
+    _name       :: Name,
     _attributes :: Attributes
 } deriving (Show)
 
 makeLenses ''Person
 
-defaultPerson :: Person
+defaultPerson ∷ Person
 defaultPerson = Person (
         Name Doctor "Pickle" "James Robert Pickle"
     ) (
@@ -106,7 +106,7 @@ defaultPerson = Person (
             ]
     )
 
-newman :: Person
+newman ∷ Person
 newman = defaultPerson
     & name %~ (
         (givenName .~ "Bobby") .

@@ -1,9 +1,9 @@
 {-# LANGUAGE UnicodeSyntax #-}
 class (Show a) => ThreePlusableToString a where
-    (+++) :: a -> a -> String
+    (+++) :: a → a → String
 
 class (Show a) => FourPlusableToString a where
-    (++++) :: a -> a -> String
+    (++++) :: a → a → String
     x ++++ y = "1: " <> (show x <> (" 2: " <> show y))
 
 data MyEnums = Enum1 | Enum2 | Enum3
@@ -20,7 +20,7 @@ instance Show MyEnums where
     show _     = "Other"
 
 class (Show a) => ConcatNum a where
-    (|+) :: a -> a -> String
+    (|+) :: a → a → String
     x |+ y = show x <> show y
 
 instance ConcatNum Int

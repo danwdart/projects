@@ -2,6 +2,7 @@
 {-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
 
 -- Order me a pizza
@@ -130,10 +131,10 @@ newtype DealsResponse = DealsResponse {
     storeDeals :: [StoreDealsResponse]
 } deriving (Eq, FromJSON, Generic, Out, Show)
 
-host :: Url 'Https
+host ∷ Url 'Https
 host = https "www.dominos.co.uk"
 
-uriGetLogin, uriPostLogin, uriProcessLogin, uriNav, uriBasket :: Url 'Https
+uriGetLogin, uriPostLogin, uriProcessLogin, uriNav, uriBasket ∷ Url 'Https
 uriGetLogin = host /: "user" /: "login"
 uriPostLogin = host /: "Account" /: "Login"
 uriProcessLogin = host /: "Account" /: "ProcessLogin"
@@ -143,10 +144,10 @@ uriNav = host /: "Navigation" /: "GetNavigationInfo"
 uriBasket = host /: "basketdetails" /: "show"
 -- uriGetBasket = host /: "CheckoutBasket" /: "GetBasket"
 
-ua :: BS.ByteString
+ua ∷ BS.ByteString
 ua = "Firefox/100"
 
-uaHeader, xhrHeader, defaultHeaders :: Option scheme
+uaHeader, xhrHeader, defaultHeaders ∷ Option scheme
 uaHeader = header "User-Agent" ua
 xhrHeader = header "X-Requested-With" "XMLHttpRequest"
 
@@ -154,17 +155,17 @@ defaultHeaders = uaHeader <> xhrHeader
 
 type Token = BS.ByteString
 
-getXsrfToken :: HC.CookieJar -> Token
+getXsrfToken ∷ HC.CookieJar → Token
 getXsrfToken cj = (HC.cookie_value . fromJust) . find (("XSRF-TOKEN" ==) . HC.cookie_name) $ HC.destroyCookieJar cj
 
-getHomepage :: Req (HC.CookieJar, Token)
+getHomepage ∷ Req (HC.CookieJar, Token)
 getHomepage = do
     resPage <- req GET uriGetLogin NoReqBody bsResponse uaHeader
     let jar = responseCookieJar resPage
     let token = getXsrfToken jar
     pure (jar, token)
 
-login :: Email -> Password -> Token -> HC.CookieJar -> Req (HC.CookieJar, Token, LoginResponseData)
+login ∷ Email → Password → Token → HC.CookieJar → Req (HC.CookieJar, Token, LoginResponseData)
 login sEmail sPassword xsrfToken jar = do
     resLogin <- req POST uriPostLogin (ReqBodyJson (Login sEmail sPassword)) jsonResponse
         (
@@ -180,7 +181,7 @@ login sEmail sPassword xsrfToken jar = do
     pure (loggedInJar, loggedInXsrfToken, stateObject)
 
 
-processLogin :: LoginResponseData -> Token -> HC.CookieJar -> Req HC.CookieJar
+processLogin ∷ LoginResponseData → Token → HC.CookieJar → Req HC.CookieJar
 processLogin stateObject xsrfToken loggedInJar = do
     resProcess <- req POST uriProcessLogin (ReqBodyJson stateObject) ignoreResponse
         (
@@ -191,14 +192,14 @@ processLogin stateObject xsrfToken loggedInJar = do
         )
     pure $ responseCookieJar resProcess
 
-basket :: HC.CookieJar -> Req (HC.CookieJar, Token)
+basket ∷ HC.CookieJar → Req (HC.CookieJar, Token)
 basket processedJar = do
     resBasket <- req GET uriBasket NoReqBody bsResponse (cookieJar processedJar)
     let basketJar = responseCookieJar resBasket
     let basketXsrfToken = getXsrfToken basketJar
     pure (basketJar, basketXsrfToken)
 
-createDefaultHeaders :: HC.CookieJar -> Token -> Option 'Https
+createDefaultHeaders ∷ HC.CookieJar → Token → Option 'Https
 createDefaultHeaders basketJar basketXsrfToken = defaultHeaders <>
     header "X-XSRF-TOKEN" basketXsrfToken <>
     header "Referer" "https://www.dominos.co.uk/basketdetails/show" <>
@@ -229,10 +230,10 @@ dealsInfo = req GET uriDeals NoReqBody jsonResponse (
     )
 -}
 
-nav :: Option 'Https -> Req (JsonResponse NavResponse)
+nav ∷ Option 'Https → Req (JsonResponse NavResponse)
 nav = req GET uriNav NoReqBody jsonResponse
 
-greet :: JsonResponse NavResponse -> Req ()
+greet ∷ JsonResponse NavResponse → Req ()
 greet resNav = do
     let navResponse = responseBody resNav
     liftIO . putStrLn $ "Hello " <> (userName navResponse <> (", your local store seems to be " <> storeName navResponse))
@@ -252,7 +253,7 @@ greet resNav = do
 -- valueToArray :: Value -> Array
 -- valueToArray (Array a) = a
 
-reqMain :: Email -> Password -> Req ()
+reqMain ∷ Email → Password → Req ()
 reqMain sEmail sPassword = do
     (jar, xsrfToken) <- getHomepage
     (loggedInJar, _, stateObject) <- login sEmail sPassword xsrfToken jar
@@ -266,7 +267,7 @@ reqMain sEmail sPassword = do
     greet resNav
     -- resDeals <- dealsInfo
     -- debugPP resDeals
-main :: IO ()
+main ∷ IO ()
 main = void . runExceptT $ catchE (
     do
         [sEmail, sPassword] <- liftIO . sequence $ (getEnv <$> ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"])

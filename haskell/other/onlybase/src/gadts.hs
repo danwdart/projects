@@ -23,11 +23,11 @@ infixr 5 :>
 instance Show (L '[]) where
     show _ = "that's it"
 
-instance (Show a, Show (L t)) => Show (L (a ': t)) where
+instance (Show a, Show (L t)) ⇒ Show (L (a ': t)) where
     show (a :> t) = show a <> " and " <> show t
 
 data Arrow a b where
-    Fn :: (a -> b) -> Arrow a b
+    Fn :: (a → b) -> Arrow a b
     Comp :: Arrow b c -> Arrow a b -> Arrow a c
 
 eval ∷ Arrow a b → a → b

@@ -1,7 +1,7 @@
-{-# LANGUAGE DeriveFoldable #-}
-{-# LANGUAGE DeriveFunctor  #-}
+{-# LANGUAGE DeriveFoldable  #-}
+{-# LANGUAGE DeriveFunctor   #-}
 {-# LANGUAGE OverloadedLists #-}
-{-# LANGUAGE UnicodeSyntax  #-}
+{-# LANGUAGE UnicodeSyntax   #-}
 {-# OPTIONS_GHC
     -Wno-unused-top-binds
     -Wno-name-shadowing
@@ -16,12 +16,12 @@ import           Control.Comonad.Env
 import           Control.Comonad.Store
 import           Control.Comonad.Traced
 import           Data.Foldable
+import           Data.List.NonEmpty     (NonEmpty)
+import qualified Data.List.NonEmpty     as LNE
 import           Data.Map               (Map)
 import qualified Data.Map               as M
 import           Data.Set               (Set)
 import qualified Data.Set               as S
-import           Data.List.NonEmpty     (NonEmpty)
-import qualified Data.List.NonEmpty     as LNE
 
 newtype MyComonad a = MyComonad a deriving (Functor, Show)
 
@@ -35,7 +35,7 @@ instance Comonad MyComonad2 where
     extract (MyComonad2 a) = a
     extend = (MyComonad2 .)
 
-mc :: MyComonad Int
+mc ∷ MyComonad Int
 mc = MyComonad 1
 
 data W2 p a = W2 p a deriving (Show)
@@ -52,7 +52,7 @@ instance Comonad (W2 p) where
 data Stream a = a :> Stream a deriving (Functor, Foldable)
 
 -- A guess
-instance (Show a) => Show (Stream a) where
+instance (Show a) ⇒ Show (Stream a) where
     show (a :> (b :> (c :> (d :> (e :> _))))) =
         show a <> " :> " <> show b <> " :> " <> show c <> " :> " <> show d <> " :> " <> show e <> " ..."
 
@@ -61,40 +61,40 @@ instance Comonad Stream where
     -- A guess
     duplicate s@(_ :> b) = s :> duplicate b
 
-fromList :: [a] -> Stream a
+fromList ∷ [a] → Stream a
 fromList xs = go (cycle xs)
     where
         go (a:rest) = a :> go rest
 
-countStream :: Stream Int
+countStream ∷ Stream Int
 countStream = fromList [0..]
 
-ix :: Int -> Stream a -> a
+ix ∷ Int → Stream a → a
 ix n _ | n < 0 = error "whoops"
 ix 0 (a :> _) = a
 ix n (_ :> rest) = ix (n - 1) rest
 
-dropS :: Int -> Stream a -> Stream a
+dropS ∷ Int → Stream a → Stream a
 dropS n = ix n . duplicate
 
-ix2 :: Int -> Stream a -> a
+ix2 ∷ Int → Stream a → a
 ix2 n = extract . dropS n
 
-takeS :: Int -> Stream a -> [a]
+takeS ∷ Int → Stream a → [a]
 takeS n input = take n (toList input)
 
-filterS :: (a -> Bool) -> Stream a -> Stream a
+filterS ∷ (a → Bool) → Stream a → Stream a
 filterS pred (a :> s) = if pred a then a :> fs else fs
     where fs = filterS pred s
 
-rollingAvg :: Int -> Stream Int -> Stream Double
+rollingAvg ∷ Int → Stream Int → Stream Double
 rollingAvg n s = (\x -> fromIntegral x / fromIntegral n) . sum <$> extend (takeS n) s
 
-evens, odds :: Stream Int
+evens, odds ∷ Stream Int
 evens = filterS even countStream
 odds = filterS odd countStream
 
-inventory :: Map Int String
+inventory ∷ Map Int String
 inventory = M.fromList [
     (0, "A"),
     (1, "B"),
@@ -102,50 +102,50 @@ inventory = M.fromList [
     (3, "D")
     ]
 
-warehouse :: Store Int (Maybe String)
+warehouse ∷ Store Int (Maybe String)
 warehouse = store (`M.lookup` inventory) 1
 
-squared :: Store Int Int
+squared ∷ Store Int Int
 squared = store (\x -> x ^ (2 :: Int)) 10
 
-aboveZero :: Int -> Maybe Int
+aboveZero ∷ Int → Maybe Int
 aboveZero n | n > 0 = Just n
             | otherwise = Nothing
 
-withN :: Store Int (String, Int)
+withN ∷ Store Int (String, Int)
 withN = squared =>> experiment (\n -> (show n, n))
 
 -- GoL
-startingGrid :: Store (Sum Int, Sum Int) Bool
+startingGrid ∷ Store (Sum Int, Sum Int) Bool
 startingGrid = store checkAlive (0, 0)
 
-checkAlive :: (Sum Int, Sum Int) -> Bool
+checkAlive ∷ (Sum Int, Sum Int) → Bool
 checkAlive coord = S.member coord livingCells
 
-livingCells :: Set (Sum Int, Sum Int)
+livingCells ∷ Set (Sum Int, Sum Int)
 livingCells = S.fromList [(1, 0), (2, 1), (0, 2), (1, 2), (2, 2)]
 
-neighbourLocations :: (Sum Int, Sum Int) -> [(Sum Int, Sum Int)]
+neighbourLocations ∷ (Sum Int, Sum Int) → [(Sum Int, Sum Int)]
 neighbourLocations location = mappend location <$> [
     (-1, 1), (-1, 0), (-1, -1)
     , (0, -1),          (0,  1)
     , (1, -1), (1,  0), (1,  1)
     ]
 
-numLivingNeighbours :: Store (Sum Int, Sum Int) Bool -> Int
+numLivingNeighbours ∷ Store (Sum Int, Sum Int) Bool → Int
 numLivingNeighbours = getSum . foldMap toCount . experiment neighbourLocations
     where
-        toCount :: Bool -> Sum Int
+        toCount ∷ Bool → Sum Int
         toCount False = Sum 0
         toCount True  = Sum 1
 
-checkCellAlive :: Store (Sum Int, Sum Int) Bool -> Bool
+checkCellAlive ∷ Store (Sum Int, Sum Int) Bool → Bool
 checkCellAlive grid = case (extract grid, numLivingNeighbours grid) of
     (True, 3) -> True
     (_, 3)    -> True
     _         -> False
 
-step :: Store (Sum Int, Sum Int) Bool -> Store (Sum Int, Sum Int) Bool
+step ∷ Store (Sum Int, Sum Int) Bool → Store (Sum Int, Sum Int) Bool
 step = extend checkCellAlive
 
 -- TODO steal code from https://youtu.be/dOw7FRLVgY4?t=2520
@@ -190,7 +190,7 @@ main = do
         print $ asks succ (env (42 :: Int) "Hello")
         -- TODO abuse do
     do
-        print . trace [1, 2, 3] $ traced (sum :: [Int] -> Int)
+        print . trace [1, 2, 3] $ traced (sum :: [Int] → Int)
         print . (trace (["Hi"] :: [String]) =>= trace (["Bob"] :: [String])) $ traced concat
     -- TODO https://www.youtube.com/watch?v=jTVVtJGu3D0
     -- TODO NonEmpty

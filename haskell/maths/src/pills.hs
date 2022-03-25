@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 {-
@@ -30,7 +31,7 @@ data Drug = Drug {
     halfLife :: HalfLife
 }
 
-paracetamol, codeine, caffeine, pregabalin, duloxetine, venlafaxine, naproxen, diazepam, sertraline, fluoxetine :: Drug
+paracetamol, codeine, caffeine, pregabalin, duloxetine, venlafaxine, naproxen, diazepam, sertraline, fluoxetine ∷ Drug
 paracetamol = Drug "Paracetamol" 2
 codeine = Drug "Codeine" 3
 caffeine = Drug "Caffeine" 5.5
@@ -42,19 +43,19 @@ diazepam = Drug "Diazepam" 20
 sertraline = Drug "Sertraline" 26
 fluoxetine = Drug "Fluoxetine" 240
 
-hoursPerDay :: Hours
+hoursPerDay ∷ Hours
 hoursPerDay = 24
 
-daysPerMonth :: Int
+daysPerMonth ∷ Int
 daysPerMonth = 30
 
-hoursPerMonth :: Hours
+hoursPerMonth ∷ Hours
 hoursPerMonth = hoursPerDay * fromIntegral daysPerMonth
 
-zeroWhenNegative :: Floating a => a -> a
+zeroWhenNegative ∷ Floating a ⇒ a → a
 zeroWhenNegative x = sqrt((abs x + x) / 2 * x)
 
-drugAmount :: Drug -> Dosage -> TimeInterval -> DosesPerDay -> DaysToRun -> Hours -> DrugAmount
+drugAmount ∷ Drug → Dosage → TimeInterval → DosesPerDay → DaysToRun → Hours → DrugAmount
 drugAmount drug dosage timeBetweenDoses dosesPerDay daysToRun time =
     sum $ fmap (
         \dayNumber -> trace ("Day " <> show dayNumber) . sum $ fmap (
@@ -76,7 +77,7 @@ drugAmount drug dosage timeBetweenDoses dosesPerDay daysToRun time =
 
 -- I think sum between n = 1 and x is sum . fmap (\n -> ...) [1..x]?
 
-main :: IO ()
+main ∷ IO ()
 main = print $ drugAmount fluoxetine 20 24 1 30 730
 
 -- 36 should be 37.24

@@ -7,9 +7,9 @@
 import           Control.Monad.Free
 
 data IOF t a
-  = Input (t -> a)
+  = Input (t → a)
   | Output t a
-  | ReadFile t (t -> a)
+  | ReadFile t (t → a)
   | WriteFile t t a
   deriving Functor
 

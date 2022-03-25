@@ -20,8 +20,8 @@ dupMonad = join
  $> :t (>>=) @((->) Int)
  (>>=) @((->) Int) :: (Int -> a) -> (a -> Int -> b) -> Int -> b
 -}
-bindFn ∷ (a → b) → (b → a → c) → a -> c
+bindFn ∷ (a → b) → (b → a → c) → a → c
 bindFn = (>>=)
 
-bindFnInt ∷ (Int → Int) → (Int → Int → Int) → Int -> Int
+bindFnInt ∷ (Int → Int) → (Int → Int → Int) → Int → Int
 bindFnInt = (>>=)

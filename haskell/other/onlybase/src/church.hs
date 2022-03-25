@@ -16,13 +16,13 @@ two f x = f (f x)
 three ∷ (a → a) → a → a
 three f x = f (f (f x))
 
-plus ∷ (a → b → c) → (a → d → b) -> a -> d -> c
+plus ∷ (a → b → c) → (a → d → b) → a → d → c
 plus m n f x = m f (n f x)
 
-succ ∷ ((a → b) → c → a) → (a → b) -> c -> b
+succ ∷ ((a → b) → c → a) → (a → b) → c → b
 succ n f x = f (n f x)
 
-mult ∷ (a → b → c) → (d → a) → d -> b -> c
+mult ∷ (a → b → c) → (d → a) → d → b → c
 mult m n f = m (n f)
 
 exp ∷ a → (a → b) → b

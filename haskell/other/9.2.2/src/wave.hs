@@ -7,7 +7,7 @@ type NumSamples = Int
 type Wave = [Sample]
 type Duration = Float
 type Frequency = Float
-type WaveType = Float -> Float
+type WaveType = Float → Float
 type Amplitude = Float
 
 data SpectrumPoint = SpectrumPoint {
@@ -29,10 +29,10 @@ data ModulationType = AM | FM
 
 data Modulation = Modulation {
     modulationType :: ModulationType,
-    modulationFn   :: Float -> Float
+    modulationFn   :: Float → Float
 }
 
-type AmplitudeEnvelope = Float -> Float
+type AmplitudeEnvelope = Float → Float
 
 type Modulations = [Modulation]
 

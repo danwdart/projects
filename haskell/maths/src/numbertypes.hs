@@ -13,7 +13,7 @@ data NumberType a = Finite a |
     Undefined |
     Anything deriving (Eq, Read)
 
-instance (Show a) => Show (NumberType a) where
+instance (Show a) ⇒ Show (NumberType a) where
     show (Finite a)               = show a
     show (OverPositiveInfinity a) = show a <> "/+inf"
     show (OverNegativeInfinity a) = show a <> "/-inf"
@@ -23,7 +23,7 @@ instance (Show a) => Show (NumberType a) where
     show Undefined                = "undef"
     show Anything                 = "any"
 
-instance (Num a) => Num (NumberType a) where
+instance (Num a) ⇒ Num (NumberType a) where
     (Finite a) + PositiveInfinity         = PositiveInfinity
     PositiveInfinity + (Finite a)         = PositiveInfinity
     PositiveInfinity + PositiveInfinity   = PositiveInfinity
@@ -70,7 +70,7 @@ instance (Num a) => Num (NumberType a) where
 
     fromInteger = Finite . fromInteger
 
-instance (Fractional a, Eq a) => Fractional (NumberType a) where
+instance (Fractional a, Eq a) ⇒ Fractional (NumberType a) where
     (Finite 0) / (Finite 0)               = Anything
     (Finite x) / (Finite 0)               = OverZero x
     (Finite x) / (Finite y)               = Finite (x/y)
@@ -88,7 +88,7 @@ instance (Fractional a, Eq a) => Fractional (NumberType a) where
 
     fromRational = Finite . fromRational
 
-instance (Ord a) => Ord (NumberType a) where
+instance (Ord a) ⇒ Ord (NumberType a) where
     compare (Finite x) (Finite y)       = compare x y
     compare (Finite _) PositiveInfinity = LT
 
@@ -103,7 +103,7 @@ instance (Ord a) => Ord (NumberType a) where
     max (Finite x) (Finite y) = Finite (max x y)
     min (Finite x) (Finite y) = Finite (min x y)
 
-instance Real a => Real (NumberType a) where
+instance Real a ⇒ Real (NumberType a) where
     toRational (Finite x) = toRational x
 
 -- instance (RealFrac a) => RealFrac (NumberType a) where

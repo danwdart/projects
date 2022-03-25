@@ -15,8 +15,8 @@ data Scale = Long | PeletierLong | Short | Sand deriving (Eq)
 
 type ScaleOffset = Int
 type ScaleMultiplier = Int
-type StringLong = String -> String
-type StringShort = String -> String
+type StringLong = String → String
+type StringShort = String → String
 type ScaleDetails = (ScaleOffset, ScaleMultiplier, StringLong, Maybe (Int, StringShort))
 
 scaleDetails ∷ Scale → ScaleDetails
