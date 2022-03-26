@@ -147,6 +147,11 @@ executable parsec
   main-is:             parsec.hs
   build-depends:       base >= 4.16 && < 5, ansi-terminal, parsec
 
+executable parallel
+  import: shared-properties
+  main-is:             parallel.hs
+  build-depends:       base >= 4.16 && < 5, async
+
 executable pizza
   import: shared-properties
   main-is:             pizza.hs
