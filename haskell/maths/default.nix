@@ -14,7 +14,7 @@ let
           echo -e "> import Distribution.Simple\n> main = defaultMain" > Setup.lhs
         '';
       });
-      factory = self.callHackage "factory" "0.3.2.2" {};
+      factory = self.callHackage "factory" "0.3.2.3" {};
       partial-isomorphisms = self.callHackage "partial-isomorphisms" "0.2.3.0" {};
       exact-pi = lib.doJailbreak super.exact-pi;
       req = lib.doJailbreak (self.callHackage "req" "3.10.0" {});
