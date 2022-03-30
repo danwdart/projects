@@ -74,10 +74,6 @@ executable composition-eta
   import: shared-properties
   main-is:             composition-eta.hs
 
-executable contravariant
-  import: shared-properties
-  main-is:             contravariant.hs
-
 executable cpostprocess
   import: shared-properties
   main-is:             cpostprocess.hs

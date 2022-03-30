@@ -46,6 +46,11 @@ executable comonads
   main-is:             comonads.hs
   build-depends:       base >= 4.16 && < 5, comonad, containers
 
+executable contravariant
+  import: shared-properties
+  main-is:             contravariant.hs
+  build-depends:       base >= 4.16 && < 5, contravariant
+
 executable cplusplus
   import: shared-properties
   main-is:             cplusplus.hs
@@ -136,6 +141,11 @@ executable lenses
   import: shared-properties
   main-is:             lenses.hs
   build-depends:       base >= 4.16 && < 5, lens
+
+executable linear
+  import: shared-properties
+  main-is:             linear.hs
+  build-depends:       base >= 4.16 && < 5, linear-base
 
 executable mvar
   import: shared-properties
