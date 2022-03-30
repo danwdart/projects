@@ -1,7 +1,15 @@
-all: whatdoesthisdo
+CC = gcc
+CFLAGS = -g -fno-stack-protector -z execstack
 
-whatdoesthisdo:
-	gcc -g whatdoesthisdo.c -fno-stack-protector -z execstack -o whatdoesthisdo
+.PHONY: all
+
+all: build build/whatdoesthisdo
+
+build:
+	mkdir build
+
+build/whatdoesthisdo:
+	$(CC) $(CFLAGS) src/whatdoesthisdo.c -o build/whatdoesthisdo
 
 clean:
-	rm whatdoesthisdo
+	$(RM) -r build

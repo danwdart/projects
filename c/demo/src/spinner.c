@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 int i;
 char spin[4] = { '|', '/', '-', '\\' };
 void main() {

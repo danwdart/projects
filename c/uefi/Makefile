@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -fno-stack-protector -fpic -fshort-wchar -mno-red-zone -DEFI_FUNCTION_WRAPPER
-HEADERPATH = /usr/include/efi
+HEADERPATH = /usr/include/efi # TODO: where is this on nixos?
 HEADERS = -I ${HEADERPATH} -I ${HEADERPATH}/x86_64
 LIBDIR = /usr/lib
 LD = ld
@@ -11,7 +11,6 @@ PARTIMG = build/part.img
 PARTEDCMD = parted ${DISKIMG} -s -a minimal
 DISKSECTS = 204800
 PARTSECTS = 202720
-EFIBIOS = src/uefi.bin
 
 all: build/efimain.efi strip
 
@@ -55,4 +54,4 @@ parttodisk:
 	dd if=${PARTIMG} of=${DISKIMG} bs=512 seek=2048 count=${PARTSECTS} conv=notrunc
 
 qemuefi:
-	qemu-system-x86_64 -cpu qemu64 -bios ${EFIBIOS} -drive file=${DISKIMG},format=raw
+	qemu-system-x86_64 -cpu qemu64 -pflash OVMF_CODE.fd -pflash OVMF_VARS.fd -drive file=${DISKIMG},format=raw
