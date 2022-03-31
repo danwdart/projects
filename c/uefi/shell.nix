@@ -9,6 +9,7 @@ runCommand "uefi" {
     buildInputs = [
       gcc
       OVMFFull.fd
+      gnu-efi
       qemu
     ];
 } ""
