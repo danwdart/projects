@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 
-// Haskell can't import primitives.
+// Haskell imports only functins
 extern char* data(void) {
     return "Data";
 }
@@ -11,7 +10,8 @@ extern void io(void) {
 }
 
 extern char* fn(char* x) {
-    char* out = x;
+    char* out = "";
+    out = x;
     printf(out);
     return out;
 }
