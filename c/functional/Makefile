@@ -1,15 +1,15 @@
 CC = gcc
 CFLAGS =
+EXECUTABLES = build/functional build/imperative
 
 .PHONY: all
 
-all: build build/functional
+all: build $(EXECUTABLES)
 
 build:
 	mkdir build
 
-build/functional:
-	$(CC) $(CFLAGS) src/functional.c -o build/functional
-
+build/%: src/%.c
+	$(CC) $(CFLAGS) $< -o $@
 clean:
 	$(RM) -r build

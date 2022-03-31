@@ -1,5 +1,5 @@
 with import <nixpkgs> {};
-runCommand "functional" {
+runCommand "shared" {
     buildInputs = [
       gcc
     ];
