@@ -12,6 +12,8 @@ hie.yaml
 jwt.secret
 .hie
 stan.html
-*_stub.h
 main
+*_stub.h
 build
+obj
+lib
