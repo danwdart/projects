@@ -13,3 +13,9 @@
 [submodule "haskell/ghcjs/external/reflex-platform"]
 	path = haskell/ghcjs/external/reflex-platform
 	url = git@github.com:reflex-frp/reflex-platform.git
+[submodule "haskell/uefi/c-efi"]
+	path = haskell/uefi/c-efi
+	url = git@github.com:c-util/c-efi.git
+[submodule "c/uefi/c-efi"]
+	path = c/uefi/c-efi
+	url = git@github.com:c-util/c-efi.git
