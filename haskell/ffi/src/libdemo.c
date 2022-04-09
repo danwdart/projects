@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// Haskell imports only functins
+// Haskell imports only functions
 extern char* data(void) {
     return "Data";
 }

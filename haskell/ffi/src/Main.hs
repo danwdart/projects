@@ -4,6 +4,7 @@
 module Main where
 
 import Foreign.C
+import Control.Monad
 
 #ifdef DYNAMIC_LIBRARY
 
@@ -24,28 +25,27 @@ foreign import capi "libdemo.h add" add :: Int -> Int
 
 #endif
 
+run :: CString -> IO () -> (CString -> IO CString) -> (Int -> Int) -> IO ()
+run datas' io' fn' add' = do
+    dataS <- peekCString datas'
+    putStrLn dataS
+
+    io'
+
+    let wrappedFn = newCString >=> fn' >=> peekCString
+    ah <- wrappedFn "Hi!"
+    putStrLn $ "Answer: " <> ah
+
+    let k = add' 2
+    print k
+
 main :: IO ()
 main = do
 #ifdef DYNAMIC_LIBRARY
-    libHandler <- dlopen "lib.so" [RTLD_LAZY]
-    datas <- mkData <$> dlsym libHandler "data"
-    io <- mkIO <$> dlsym libHandler "io"
-    fn <- mkFn <$> dlsym libHandler "fn"
-    add <- mkAdd <$> dlsym libHandler "add"
+    withDL "lib.so" [RTLD_LAZY] $ \libHandler -> do
+        datas <- mkData <$> dlsym libHandler "data"
+        io <- mkIO <$> dlsym libHandler "io"
+        fn <- mkFn <$> dlsym libHandler "fn"
+        add <- mkAdd <$> dlsym libHandler "add"
 #endif
-    let datacret = datas
-    dataS <- peekCString datacret
-    putStrLn dataS
-
-    io
-
-    cin <- newCString "Hi!"
-    a <- fn cin
-    ah <- peekCString a
-    putStrLn $ "Result: " <> ah
-
-    let k = add 2
-    print k
-#ifdef _DYNAMIC_LIB
-    dlclose libHandler -- handling fns
-#endif
+        run datas io fn add
