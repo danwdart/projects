@@ -14,7 +14,7 @@ CFLAGS_ffihstoc_static_object =
 GHC = ghc
 GHCFLAGS = -Wall -Werror -no-keep-o-files -no-keep-hi-files # confusion about main otherwise
 
-GHCFLAGS_dlctohs_library = -shared -optl-shared -dynamic # dynamic not ideal
+GHCFLAGS_dlctohs_library = -shared -optl-shared -dynamic -flink-rts # dynamic not ideal
 
 GHCFLAGS_dlhstoc = -DDYNAMIC_LIBRARY
 
