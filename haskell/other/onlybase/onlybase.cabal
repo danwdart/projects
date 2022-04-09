@@ -235,6 +235,10 @@ executable something
 executable st
   import: shared-properties
   main-is:             st.hs
+  
+executable stddebug
+  import: shared-properties
+  main-is:             stddebug.hs
 
 executable texttodec
   import: shared-properties
