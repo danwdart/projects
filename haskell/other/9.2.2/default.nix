@@ -12,6 +12,11 @@ let
       bmp = lib.doJailbreak super.bmp;
       carray = lib.doJailbreak super.carray;
       flow = lib.doJailbreak super.flow;
+      # https://github.com/haskell-hvr/hgettext/issues/15
+      hgettext = lib.doJailbreak (self.callCabal2nix "hgettext" (builtins.fetchGit {
+        url = "https://github.com/avdv/hgettext.git";
+        ref = "e580db9d640505ace046ff0a99a34192a118c89c";
+      }) {});
       OpenGLRaw = lib.doJailbreak super.OpenGLRaw;
       OpenGL = lib.doJailbreak super.OpenGL;
       gloss-rendering = lib.doJailbreak super.gloss-rendering;
@@ -49,7 +54,7 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f); do krank $i; done
     '';
-    buildInputs = tools.defaultBuildTools;
+    buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext ];
     withHoogle = false;
   };
   exe = lib.justStaticExecutables (myHaskellPackages.other922);

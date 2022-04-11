@@ -1,0 +1,43 @@
+# Translation file
+
+msgid ""
+msgstr ""
+
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-13 06:05-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gettext.hs:37
+msgid "And finally, what do you like to do as a hobby?"
+msgstr ""
+
+#: src/gettext.hs:32
+msgid "Hello, %s!"
+msgstr ""
+
+#: src/gettext.hs:39
+msgid "I get it! You like %s."
+msgstr ""
+
+#: src/gettext.hs:36
+msgid "I see. So, %s is your favourite colour. Interesting."
+msgstr ""
+
+#: src/gettext.hs:40
+msgid "That's all! I hope you enjoyed my survey."
+msgstr ""
+
+#: src/gettext.hs:33
+msgid "What is your favourite colour?"
+msgstr ""
+
+#: src/gettext.hs:29
+msgid "What is your name?"
+msgstr ""
+

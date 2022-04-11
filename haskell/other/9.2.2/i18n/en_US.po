@@ -1,0 +1,42 @@
+# Translation file
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-13 06:05-0800\n"
+"PO-Revision-Date: 2022-04-11 22:44+0100\n"
+"Last-Translator: Dan Dart <gettext@dandart.co.uk>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/gettext.hs:37
+msgid "And finally, what do you like to do as a hobby?"
+msgstr "And finally, what do you like to do as a hobby?"
+
+#: src/gettext.hs:32
+msgid "Hello, %s!"
+msgstr "Hello, %s!"
+
+#: src/gettext.hs:39
+msgid "I get it! You like %s."
+msgstr "I get it! You like %s."
+
+#: src/gettext.hs:36
+msgid "I see. So, %s is your favourite colour. Interesting."
+msgstr "I see. So, %s is your favorite color. Interesting."
+
+#: src/gettext.hs:40
+msgid "That's all! I hope you enjoyed my survey."
+msgstr "That's all! I hope you enjoyed my survey."
+
+#: src/gettext.hs:33
+msgid "What is your favourite colour?"
+msgstr "What is your favorite color?"
+
+#: src/gettext.hs:29
+msgid "What is your name?"
+msgstr "What is your name?"

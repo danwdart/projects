@@ -112,6 +112,11 @@ executable free-monads
 --   build-depends:       base >= 4.16 && < 5, gd
 --   other-modules:       Lib.Seq
 
+executable gettext
+  import: shared-properties
+  main-is:             gettext.hs
+  build-depends:       base >= 4.16 && < 5, hgettext, setlocale
+
 executable gloss
   import: shared-properties
   main-is:             gloss.hs
