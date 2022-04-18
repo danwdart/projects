@@ -207,6 +207,10 @@ executable postfixops
   import: shared-properties
   main-is:             postfixops.hs
 
+executable propagators
+  import: shared-properties
+  main-is:             propagators.hs
+
 executable read
   import: shared-properties
   main-is:             read.hs
