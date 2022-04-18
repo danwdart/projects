@@ -3,7 +3,7 @@
 main :: IO ()
 main = pure ()
 
-import Data.Char
+-- import Data.Char
 
 -- import Control.Monad.ST
 
