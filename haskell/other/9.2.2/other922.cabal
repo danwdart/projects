@@ -194,6 +194,12 @@ executable profunctor
   main-is:             profunctor.hs
   build-depends:       base >= 4.16 && < 5, profunctors
 
+
+executable propagators
+  import: shared-properties
+  main-is:             propagators.hs
+  build-depends:       base >= 4.16 && < 5, containers, StateVar
+
 executable random
   import: shared-properties
   main-is:             random.hs
