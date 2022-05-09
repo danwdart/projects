@@ -1,6 +1,3 @@
-{-# LANGUAGE DeriveDataTypeable #-}
-{-# LANGUAGE UnicodeSyntax      #-}
-
 import           Data.Data
 
 type Make = String
@@ -15,7 +12,7 @@ data Player = Player {
     name     :: String,
     position :: Int,
     money    :: Int
-} deriving (Data, Show)
+} deriving stock (Data, Show)
 
 myPlayer ∷ Player
 myPlayer = Player { name = "Bob", position = 23, money = 10000 }

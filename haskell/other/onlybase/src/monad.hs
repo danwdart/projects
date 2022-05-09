@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-matches -Wno-unused-local-binds -Wno-name-shadowing #-}
 
 {- TODO: Deriving -}
@@ -18,8 +17,8 @@ instance Monad Bob where
 -- List's a monad. What can we do with it?
 a ∷ [Int]
 a = do
-    let a = 1 -- Arrow an element, you get it back.
-    let b = 2
+    let a = 1 :: Int -- Arrow an element, you get it back.
+    let b = 2 :: Int
     -- pure a -- ignored!
     pure b -- Passed if last, and embedded.
 

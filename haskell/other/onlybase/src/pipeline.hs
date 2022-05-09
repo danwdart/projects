@@ -1,8 +1,7 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Data.Function
 
 a ∷ Int → Int
-a = (+10)
+a = (+ 10)
 
 b ∷ Int
 b = 5

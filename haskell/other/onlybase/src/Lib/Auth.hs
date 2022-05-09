@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Lib.Auth (
     AuthenticationResult,
     authenticate

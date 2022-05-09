@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 chain ∷ Integer → [Integer]
 chain 1 = [1]
 chain n

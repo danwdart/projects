@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Exception
 import           Control.Monad.Fail
 -- import System.IO

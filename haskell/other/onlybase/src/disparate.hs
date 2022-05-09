@@ -1,5 +1,3 @@
-{-# LANGUAGE ExistentialQuantification #-}
-{-# LANGUAGE UnicodeSyntax             #-}
 {-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
 
 data Disparate = forall a. (Show a) => ShowableDisparate a |

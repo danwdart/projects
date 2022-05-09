@@ -1,5 +1,4 @@
 {-# LANGUAGE RebindableSyntax #-}
-{-# LANGUAGE UnicodeSyntax    #-}
 
 import           Prelude hiding (return, (>>), (>>=))
 
@@ -10,7 +9,9 @@ ints = do
     3
     4
     5
-    where (>>) = (+)
+    where
+        (>>) :: Int -> Int -> Int
+        (>>) = (+)
 
 main ∷ IO ()
 main = print ints

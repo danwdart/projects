@@ -1,5 +1,5 @@
-{-# LANGUAGE ForeignFunctionInterface #-}
-{-# LANGUAGE UnicodeSyntax            #-}
+{-# LANGUAGE Unsafe #-}
+{-# OPTIONS_GHC -Wno-unsafe #-} -- ???
 
 -- import Foreign.Ptr
 -- import Foreign.ForeignPtr
@@ -8,6 +8,7 @@ import           Foreign.C.Types
 import           Foreign.Marshal.Alloc
 -- import System.IO
 
+-- This is why we're unsafe - but I trust it so we're good
 foreign import ccall "exp" c_exp1 :: Double → Double
 -- foreign import ccall "&exp" a_exp :: FunPtr (Double -> Double)
 -- foreign import ccall "dynamic" mkFun :: FunPtr (Double -> Double) -> (Double -> Double)

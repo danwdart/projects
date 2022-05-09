@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 class (Show a) => ThreePlusableToString a where
     (+++) :: a → a → String
 

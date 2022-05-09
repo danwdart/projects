@@ -1,5 +1,3 @@
-{-# LANGUAGE ExistentialQuantification #-}
-{-# LANGUAGE RankNTypes #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
 -- Stolen from https://bartoszmilewski.com/2022/04/05/teaching-optics-through-conspiracy-theories/

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- import Data.Traversable
 
 type Name = String

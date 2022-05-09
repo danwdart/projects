@@ -1,6 +1,4 @@
 {-# LANGUAGE ApplicativeDo #-}
-{-# LANGUAGE UnicodeSyntax #-}
-
 import           Data.Functor.Compose
 
 main ∷ IO ()

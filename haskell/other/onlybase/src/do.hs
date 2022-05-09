@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 main ∷ IO ()
 main = do
     putStrLn "Hello"

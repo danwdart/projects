@@ -1,4 +1,4 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE Safe #-}
 import           Data.List
 import           Data.Maybe
 -- import Control.Monad

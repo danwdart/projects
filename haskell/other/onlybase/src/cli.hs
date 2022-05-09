@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 welcome ∷ String
 welcome = "Welcome to ARSVX. Use of this system by unauthorised entities is prohibited."
 

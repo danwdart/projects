@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 data Point = Point Double Double deriving (Show)
 
 data Shape = Circle Point Double | Square Point Point deriving (Show)

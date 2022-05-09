@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad
 import           Data.Function
 import           Data.List
@@ -23,7 +22,7 @@ minLength = on min length
 
 moonAddWith ∷ (Int → Int → Int) → [Int] → [Int] → [Int]
 moonAddWith fn a b = reverse . take (maxLength a b) $ zipWith fn (rppZeroes a) (rppZeroes b) where
-    zeroes = repeat 0
+    zeroes = repeat 0 :: [Int]
     rppZeroes n = reverse n <> zeroes
 
 moonMulWith ∷ (Int → Int → Int) → (Int → Int → Int) → [Int] → [Int] → [Int]
@@ -33,6 +32,7 @@ mulTwo ∷ Num a1 ⇒ (a2 → a2 → a1) → [a2] → [a2] → [[a1]]
 mulTwo fnMul a b = transpose (concat (transpose (splitEvery maxLen (liftM2 fnMul a b)):[threeTwoOneZero minLen])) where
     maxLen = maxLength a b
     minLen = minLength a b
+    threeTwoOneZero :: Num a => Int -> [[a]]
     threeTwoOneZero n = reverse . tail $ take n (inits $ repeat 0)
 
 (<<+>>) ∷ Int → Int → Int

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 --import Control.Monad
 -- import Data.Function
 

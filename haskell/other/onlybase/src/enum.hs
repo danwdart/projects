@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 data Foo = One | Two | Three deriving (Eq, Ord, Show, Read, Bounded, Enum)
 
 thing ∷ Foo

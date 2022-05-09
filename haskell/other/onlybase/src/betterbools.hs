@@ -1,4 +1,6 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE Unsafe #-}
+{-# OPTIONS_GHC -Wno-unsafe #-} -- ???
+
 import           Data.Coerce
 import           Unsafe.Coerce
 

@@ -1,4 +1,6 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE Unsafe #-} -- Of course Yuri is unsafe!
+{-# OPTIONS_GHC -Wno-unsafe #-} -- ???
+
 data Dokis = Yuri deriving (Show)
 
 myLove ∷ Maybe Dokis

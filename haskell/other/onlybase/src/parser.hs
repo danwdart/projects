@@ -1,5 +1,3 @@
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-orphans #-}
 
 import           Control.Applicative
@@ -58,7 +56,7 @@ strP ∷ String → Parser String
 strP = traverse charP
 
 qstrP ∷ Parser String
-qstrP = charP '"' *> spanP (/='"') <* charP '"'
+qstrP = charP '"' *> spanP (/= '"') <* charP '"'
 
 alphaPs ∷ Parser String
 alphaPs = spanP isAlpha

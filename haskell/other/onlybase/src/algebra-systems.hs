@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 by ∷ (Show t1, Show t2, Show a) ⇒ (t2 → t1 → a) → t1 → t2 → String
 by f n m = show n <> (" with " <> (show m <> (" = " <> show (f m n))))
 

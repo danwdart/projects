@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Main (main) where
 
 -- import Control.Monad
@@ -11,7 +10,7 @@ maybeIndex index xs = if null xs then Nothing else Just $ xs !! index
 
 stringToInteger ∷ String → Integer
 stringToInteger string = fst $ head (readHex $ concatMap ((`showHex` "") . ord) (filter notSpaces string)) where
-    notSpaces = (/=' ')
+    notSpaces = (/= ' ')
 
 -- args = pure ["Foo"] :: IO [String]
 

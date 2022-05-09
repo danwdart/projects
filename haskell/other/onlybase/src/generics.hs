@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Main (main) where
 
 data FourThings a = FT a a a a deriving (Show)

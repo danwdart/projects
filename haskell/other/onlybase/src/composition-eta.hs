@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Data.Function
 -- We're often faced with something difficult to eta-reduce, like...
 

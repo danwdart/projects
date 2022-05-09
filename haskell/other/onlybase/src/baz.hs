@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-caser :: Char -> String
 caser 'a' = "Ah"
 caser 'b' = "Br";

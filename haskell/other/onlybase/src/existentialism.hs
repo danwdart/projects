@@ -1,8 +1,5 @@
-{-# LANGUAGE ExistentialQuantification #-}
 {-# LANGUAGE GADTs                     #-}
 {-# LANGUAGE MultiWayIf                #-}
-{-# LANGUAGE ScopedTypeVariables       #-}
-{-# LANGUAGE UnicodeSyntax             #-}
 
 import           Control.Exception
 import           Data.Typeable

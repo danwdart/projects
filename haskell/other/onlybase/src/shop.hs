@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-
 Main screen options
 

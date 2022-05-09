@@ -1,7 +1,6 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- ap
 main ∷ IO ()
-main = print $ fmap ($ (3 :: Int)) [((4 :: Int)+),((7 :: Int)+)]
+main = print $ fmap ($ (3 :: Int)) [((4 :: Int) +),((7 :: Int) +)]
 
 -- Params
 -- sum (replicate 5 (max 6.7 8.9))

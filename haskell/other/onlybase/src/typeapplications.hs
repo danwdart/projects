@@ -1,5 +1,3 @@
-{-# LANGUAGE TypeApplications #-}
-{-# LANGUAGE UnicodeSyntax    #-}
 main ∷ IO ()
 main = do
     let s = read @Int "2"

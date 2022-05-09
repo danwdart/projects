@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Main (main) where
 
 trips ∷ [(Int, Int, Int, Int)]

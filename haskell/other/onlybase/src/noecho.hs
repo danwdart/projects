@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           System.IO
 
 main ∷ IO ()

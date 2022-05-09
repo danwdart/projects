@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Data.Complex
 
 complexNums ∷ [Complex Double]

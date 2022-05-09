@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Lib.Seq
 
 with ∷ String → IO ()

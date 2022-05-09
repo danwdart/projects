@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- import           Control.Arrow
 -- import           Control.Monad
 -- import           Data.Char

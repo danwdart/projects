@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Lib.Data.User (
     User (..)
 ) where
