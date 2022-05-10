@@ -4,19 +4,19 @@
   "description": "maths demos",
   "main": "",
   "dependencies": {
-    "bignumber.js": "^9.0.1",
-    "cytoscape": "^3.17.0",
+    "bignumber.js": "^9.0.2",
+    "cytoscape": "^3.21.1",
     "esm": "^3.2.25",
-    "gl-matrix": "^3.3.0",
-    "node-fetch": "^3.1.1",
-    "snyk": "^1.685.0",
-    "typescript": "^4.2.0-dev.20201209"
+    "gl-matrix": "^3.4.3",
+    "node-fetch": "^4.0.0-beta.4",
+    "snyk": "^1.924.0",
+    "typescript": "^4.8.0-dev.20220510"
   },
   "devDependencies": {
-    "@babel/cli": "7.12.8",
+    "@babel/cli": "7.17.10",
     "@std/esm": "^0.26.0",
-    "eslint": "^7.16.0",
-    "mocha": "^9.2.0"
+    "eslint": "^8.15.0",
+    "mocha": "^10.0.0"
   },
   "scripts": {
     "build": "",
