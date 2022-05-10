@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "serverless": "^2.15.0-c1907a2d",
-    "serverless-offline": "^6.8.0"
+    "serverless": "^3.17.0",
+    "serverless-offline": "^8.7.0"
   }
 }
