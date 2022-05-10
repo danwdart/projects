@@ -13,10 +13,10 @@
   "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "@babel/cli": "^7.12.8",
-    "@babel/core": "^7.12.9",
-    "@babel/plugin-proposal-pipeline-operator": "^7.12.1",
-    "@babel/eslint-parser":"^7.15.8",
-    "eslint": "^7.15.0"
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-pipeline-operator": "^7.17.6",
+    "@babel/eslint-parser": "^7.17.0",
+    "eslint": "^8.15.0"
   }
 }
