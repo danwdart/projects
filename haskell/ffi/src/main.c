@@ -14,16 +14,22 @@ int main(int argc, char* argv[]) {
     char* err;
 
     void* handle;
-    handle = dlopen("libHSLibDemo.so", RTLD_LAZY);
+    #ifdef HELPER_MODULE
+    handle = dlopen("libHSDemo_withhelper.so", RTLD_LAZY);
+    #else
+    handle = dlopen("libHSDemo.so", RTLD_LAZY);
+    #endif
     if (!handle) {
         fprintf(stderr, "Error opening shared library: %s\n", dlerror());
         return 1;
     }
     dlerror();
 
+    #ifndef HELPER_MODULE
     // static char *argv_N[] = { NULL }, **argv_ = argv_N;
     // static int argc_ = 0;
     void (*hs_init)(int *argc, char **argv[]) = dlsym(handle, "hs_init");
+    #endif
 
     char* (*data)();
     *(void **)(&data) = dlsym(handle, "data");
@@ -56,11 +62,15 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    #ifndef HELPER_MODULE
     void (*hs_exit)() = dlsym(handle, "hs_exit");
-    
     #endif
 
+    #endif
+
+    #ifndef HELPER_MODULE
     hs_init(&argc, &argv);
+    #endif
 
     char* d;
     d = (*data)();
@@ -76,7 +86,9 @@ int main(int argc, char* argv[]) {
     stuff = (*fn)("hi");
     printf("Stuff: %s\n", stuff);
 
+    #ifndef HELPER_MODULE
     hs_exit();
+    #endif
 
     #ifdef DYNAMIC_LIBRARY
     dlclose(handle);

@@ -2,6 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Werror
 
 CFLAGS_dlctohs = -DDYNAMIC_LIBRARY -ldl
+CFLAGS_dlctohs_withhelper = -DDYNAMIC_LIBRARY -ldl -DHELPER_MODULE
 
 CFLAGS_dlhstoc_library = -shared -Wl,-shared -fPIC
 
@@ -15,6 +16,7 @@ GHC = ghc
 GHCFLAGS = -Wall -Werror -no-keep-o-files -no-keep-hi-files # confusion about main otherwise
 
 GHCFLAGS_dlctohs_library = -shared -optl-shared -dynamic -flink-rts # dynamic not ideal
+GHCFLAGS_dlctohs_library_withhelper = -shared -optl-shared -dynamic -flink-rts -DMODULE=libHSDemo_withhelper # dynamic not ideal
 
 GHCFLAGS_dlhstoc = -DDYNAMIC_LIBRARY
 
@@ -34,9 +36,9 @@ GHCFLAGS_ffihstoc_static_fromlibrary = -static -optl-static -Llib -ldemo
 all: dynamic static
 
 
-dynamic_libs: lib lib/libHSDemo.so lib/libdemo.so
+dynamic_libs: lib lib/libHSDemo.so lib/libHSDemo_withhelper.so lib/libdemo.so
 
-dynamic: dynamic_libs build build/dlctohs build/dlhstoc build/ffictohs build/ffihstoc
+dynamic: dynamic_libs build build/dlctohs build/dlctohs_withhelper build/dlhstoc build/ffictohs build/ffihstoc
 
 static_libs: lib lib/libHSDemo.a lib/libdemo.a
 
@@ -55,6 +57,9 @@ lib:
 
 lib/libHSDemo.so: lib src/LibDemo.hs
 	$(GHC) $(GHCFLAGS) $(GHCFLAGS_dlctohs_library) src/LibDemo.hs -o lib/libHSDemo.so
+
+lib/libHSDemo_withhelper.so: lib src/hswrapper.c src/LibDemo.hs
+	$(GHC) $(GHCFLAGS) $(GHCFLAGS_dlctohs_library_withhelper) src/LibDemo.hs src/hswrapper.c -o lib/libHSDemo_withhelper.so
 
 lib/libHSDemo.a: lib obj/LibDemo_static.o
 	ar -rc lib/libHSDemo.a obj/LibDemo_static.o
@@ -87,6 +92,9 @@ obj/libdemo_static.o: obj src/libdemo.c
 
 build/dlctohs: src/main.c
 	$(CC) $(CFLAGS) $(CFLAGS_dlctohs) src/main.c -o build/dlctohs
+
+build/dlctohs_withhelper: src/main.c
+	$(CC) $(CFLAGS) $(CFLAGS_dlctohs_withhelper) src/main.c -o build/dlctohs_withhelper
 
 build/dlhstoc: src/Main.hs
 	$(GHC) $(GHCFLAGS) $(GHCFLAGS_dlhstoc) src/Main.hs -o build/dlhstoc

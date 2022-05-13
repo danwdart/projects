@@ -5,6 +5,7 @@ module Lib where
 import Control.Monad
 
 import Foreign.C
+
 -- This is just a function that returns some data. There's probably no plain string.
 datas :: IO CString
 datas = newCString "Data"
