@@ -1,10 +1,10 @@
-module Lib.Data.User (
+module Data.User (
     User (..)
 ) where
 
-import           Lib.Data.Email
-import           Lib.Data.Name
-import           Lib.Data.Password
+import           Data.Email
+import           Data.Name
+import           Data.Password
 
 data User = User {
     email    :: Email,

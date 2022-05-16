@@ -1,4 +1,4 @@
-module Lib.Credential (
+module Credential (
     Creds (..),
     printCreds
 ) where

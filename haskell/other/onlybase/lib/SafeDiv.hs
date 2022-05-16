@@ -1,4 +1,4 @@
-module Lib.SafeDiv (
+module SafeDiv (
     safeDiv
 ) where
 

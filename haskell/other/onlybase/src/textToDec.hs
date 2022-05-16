@@ -1,16 +1,9 @@
 module Main (main) where
 
 -- import Control.Monad
-import           Data.Char
-import           Numeric
+import List
+import StringToInteger
 import           System.Environment
-
-maybeIndex ∷ Int → [a] → Maybe a
-maybeIndex index xs = if null xs then Nothing else Just $ xs !! index
-
-stringToInteger ∷ String → Integer
-stringToInteger string = fst $ head (readHex $ concatMap ((`showHex` "") . ord) (filter notSpaces string)) where
-    notSpaces = (/= ' ')
 
 -- args = pure ["Foo"] :: IO [String]
 

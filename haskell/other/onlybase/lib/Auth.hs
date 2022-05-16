@@ -1,15 +1,16 @@
-module Lib.Auth (
+module Auth (
     AuthenticationResult,
     authenticate
 ) where
 
-import           Lib.Data.Email
-import           Lib.Data.Name
-import           Lib.Data.Password
-import           Lib.Data.User
+import           Data.Email
+import           Data.Name
+import           Data.Password
+import           Data.User
 
 type AuthenticationResult = Either String User
 
+-- >>> authenticate "bob@bob.com" "password1"
 authenticate ∷ Email → Password → AuthenticationResult
 -- authenticate email password = Left "Sorry wrong password"
 authenticate sEmail sPassword = Right User {

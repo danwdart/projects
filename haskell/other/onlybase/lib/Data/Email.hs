@@ -1,4 +1,4 @@
-module Lib.Data.Email (
+module Data.Email (
     Email
 ) where
 

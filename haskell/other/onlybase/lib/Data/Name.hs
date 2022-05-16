@@ -1,4 +1,4 @@
-module Lib.Data.Name (
+module Data.Name (
     Name (..)
 ) where
 

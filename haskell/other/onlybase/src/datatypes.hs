@@ -1,18 +1,9 @@
+import Computer
 import           Data.Data
-
-type Make = String
-type Model = String
-
-data Computer = Computer Make Model deriving (Data, Show)
+import Player
 
 myComputer ∷ Computer
 myComputer = Computer "Dell" "Inspiron"
-
-data Player = Player {
-    name     :: String,
-    position :: Int,
-    money    :: Int
-} deriving stock (Data, Show)
 
 myPlayer ∷ Player
 myPlayer = Player { name = "Bob", position = 23, money = 10000 }

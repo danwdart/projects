@@ -1,4 +1,4 @@
-module Lib.Person (
+module Person (
     Person (..),
     describePerson
 ) where

@@ -1,15 +1,9 @@
 {-# LANGUAGE Unsafe #-}
 {-# OPTIONS_GHC -Wno-unsafe #-} -- ???
 
+import           BetterBools
 import           Data.Coerce
 import           Unsafe.Coerce
-
-newtype LightState = LightState Bool
-
-data Lights = Off | On deriving (Enum, Eq, Ord, Show)
-
-coerceEnum ∷ (Enum a, Enum b) ⇒ a → b
-coerceEnum = toEnum . fromEnum
 
 main ∷ IO ()
 main = do

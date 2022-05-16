@@ -1,4 +1,4 @@
-module Lib.Data.Password (
+module Data.Password (
     Password
 ) where
 
