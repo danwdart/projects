@@ -1,13 +1,14 @@
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 
 module Card where
 
 import           Data.Char
+import qualified Suit.Class             as SuitClass
 import qualified Suit.Bounded.Standard  as SuitStandard
 import qualified Suit.Unbounded         as SuitUnbounded
 import           Symbol
+import qualified Value.Class            as ValueClass
 import qualified Value.Bounded.Standard as ValueStandard
+import qualified Value.Bounded.Jill     as ValueJill
 import qualified Value.Unbounded        as ValueUnbounded
 
 data Card value suit = Card {
@@ -44,3 +45,10 @@ instance Symbol (Card ValueUnbounded.Value SuitUnbounded.Suit) where
             -- in Unicode, a "Knight" exists between Jack and Queen: 🂬🂼🃌🃜
             if value' > 11 then 1 else 0
         ]
+
+ov :: (ValueClass.Value value, SuitClass.Suit suit) => value -> suit -> Card value suit
+ov = Card
+
+type CardStd = Card ValueStandard.Value SuitStandard.Suit
+type CardJill = Card ValueJill.Value SuitStandard.Suit
+type CardUnbounded = Card ValueUnbounded.Value SuitUnbounded.Suit

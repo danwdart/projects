@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Value.Unbounded where
 
 import           Symbol

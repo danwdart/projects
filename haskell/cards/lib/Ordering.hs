@@ -1,11 +1,11 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Ordering where
 
 import           Card
 import           Instances ()
 
-newtype BySuitThenValue v s = BySuitThenValue (Card v s)
-    deriving (Eq, Show)
+newtype BySuitThenValue v s = BySuitThenValue {
+    getBySuitThenValue :: Card v s
+} deriving (Eq, Show)
 
 instance (Ord v, Ord s) ⇒ Ord (BySuitThenValue v s) where
     compare (BySuitThenValue (Card val1 suit1)) (BySuitThenValue (Card val2 suit2)) =
@@ -23,8 +23,9 @@ instance (Bounded v, Bounded s) ⇒ Bounded (BySuitThenValue v s) where
     maxBound = BySuitThenValue maxBound
 
 
-newtype ByValueThenSuit v s = ByValueThenSuit (Card v s)
-    deriving (Eq, Show)
+newtype ByValueThenSuit v s = ByValueThenSuit {
+    getByValueThenSuit :: Card v s
+} deriving (Eq, Show)
 
 instance (Enum v, Enum s) ⇒ Enum (ByValueThenSuit v s) where
     fromEnum (ByValueThenSuit (Card v s)) = 4 * fromEnum v + fromEnum s

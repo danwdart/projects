@@ -1,6 +1,4 @@
-{-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# LANGUAGE UnicodeSyntax        #-}
 {-# OPTIONS_GHC -Wno-orphans #-}
 
 module Instances where

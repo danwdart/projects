@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Value.Class where
 
 import           Symbol

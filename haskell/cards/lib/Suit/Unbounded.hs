@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Suit.Unbounded where
 
 import qualified Suit.Class as SuitClass

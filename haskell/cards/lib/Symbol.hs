@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Symbol where
 
 class Symbol a where

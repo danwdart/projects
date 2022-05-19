@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-incomplete-patterns #-}
 
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
@@ -10,85 +8,62 @@ import           Data.Bifunctor
 import           Data.Function
 import qualified Data.Map                   as M
 import           System.Random.Shuffle
+import Card
+import Deck
+import Suit.Unbounded
+import Value.Unbounded
 
 main ∷ IO ()
 main = pure ()
 
-newtype Value = Value Int deriving (Eq)
-
-instance Show Value where
-    show (Value 13) = "K"
-    show (Value 12) = "Q"
-    show (Value 11) = "J"
-    show (Value 1)  = "A"
-    show (Value n)  = show n
-
-newtype Suit = Suit Int deriving (Eq)
-
-instance Show Suit where
-    show (Suit 1) = "♥"
-    show (Suit 2) = "♦"
-    show (Suit 3) = "♠"
-    show (Suit 4) = "♣"
-    show (Suit x) = show x
-
-data Card = Card {
-    value :: Value,
-    suit  :: Suit
-} deriving (Eq)
-
-instance Show Card where
-    show (Card v s) = show v <> show s
-
-type Deck = [Card]
-type Current = Deck
-type InPlay = Deck
-type Discard = Deck
+type Current = DeckUnbounded
+type InPlay = DeckUnbounded
+type Discard = DeckUnbounded
 type Game = (Current, InPlay, Discard)
 data GameState = InProgress | Won | Lost deriving (Eq, Show)
 data GameMove = TakeOne | DiscardTwo | DiscardFour | End deriving (Eq, Show)
 
-fullPack ∷ Deck
-fullPack = flip Card <$> fmap Suit [1..4] <*> fmap Value [1..13]
+fullPack ∷ DeckUnbounded
+fullPack = Deck $ Card <$> fmap Value [1..13] <*> fmap Suit [1..4]
 
 initialGameState ∷ MonadRandom m ⇒ m Game
-initialGameState = ([], , []) <$> shuffleM fullPack
+initialGameState = (Deck [], , Deck []) . Deck <$> shuffleM (getDeck fullPack)
 
-sameSuit ∷ Card → Card → Bool
+sameSuit ∷ CardUnbounded → CardUnbounded → Bool
 sameSuit = on (==) suit
 
-sameValue ∷ Card → Card → Bool
+sameValue ∷ CardUnbounded → CardUnbounded → Bool
 sameValue = on (==) value
 
 roundStartReady ∷ Game → Bool
-roundStartReady (c, _, _) = length c >= 4
+roundStartReady (Deck c, _, _) = length c >= 4
 
 gameState ∷ Game → GameState
-gameState (c, ip, _)
+gameState (Deck c, Deck ip, _)
     | not (null ip) = InProgress
     | not (null c) = Lost
     | otherwise = Won
 
 nextGameMove ∷ Game → GameMove
-nextGameMove ([], [], _) = End
-nextGameMove (_, [], _) = End
-nextGameMove ([], _, _) = TakeOne
-nextGameMove ([c1], _, _) = TakeOne
-nextGameMove (c1:_:_:c4:_, _, _)
+nextGameMove (Deck [], Deck [], _) = End
+nextGameMove (_, Deck [], _) = End
+nextGameMove (Deck [], _, _) = TakeOne
+nextGameMove (Deck [c1], _, _) = TakeOne
+nextGameMove (Deck (c1:_:_:c4:_), _, _)
     | sameSuit c1 c4 = DiscardTwo
     | sameValue c1 c4 = DiscardFour
     | otherwise = TakeOne
-nextGameMove (c1:c2:c3:_, _, _) = TakeOne
-nextGameMove (c1:c2:_, _, _) = TakeOne
+nextGameMove (Deck (c1:c2:c3:_), _, _) = TakeOne
+nextGameMove (Deck (c1:c2:_), _, _) = TakeOne
 
 takeOne ∷ Game → Game
-takeOne (cs, ip:ips, ds) = (ip:cs, ips, ds)
+takeOne (Deck cs, Deck (ip:ips), ds) = (Deck (ip:cs), Deck ips, ds)
 
 discardFour ∷ Game → Game
-discardFour (c1:c2:c3:c4:cs, ips, ds) = (cs, ips, c1:c2:c3:c4:ds)
+discardFour (Deck (c1:c2:c3:c4:cs), ips, Deck ds) = (Deck cs, ips, Deck (c1:c2:c3:c4:ds))
 
 discardTwo ∷ Game → Game
-discardTwo (c1:c2:c3:c4:cs, ips, ds) = (c1:c4:cs, ips, c2:c3:ds)
+discardTwo (Deck (c1:c2:c3:c4:cs), ips, Deck ds) = (Deck (c1:c4:cs), ips, Deck (c2:c3:ds))
 
 performMove ∷ Game → Game
 performMove g = case nextGameMove g of

@@ -1,9 +1,7 @@
 -- https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
 
-{-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# LANGUAGE UnicodeSyntax        #-}
-{-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds #-}
+{-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds -Wwarn #-}
 
 import           Control.Monad
 import qualified Control.Monad.HT           as HT (nest)
@@ -13,6 +11,10 @@ import           Data.Bifunctor
 import qualified Data.Map                   as M
 import qualified Data.Set                   as S
 import           System.Random.Shuffle
+import Enum
+import Card
+import Deck
+import Ordering
 
 (...) ∷ (b → c) → (a1 → a2 → b) → a1 → a2 → c
 (...) = (.) . (.)
@@ -29,65 +31,6 @@ main = do
     avgDist 2000 >>= print . meanDist
     putStrLn "Average non-matches after finishing rounds"
     magicDist 2000 >>= print . meanDist
-
-class Pp a where
-    pp :: a → String
-
-ppr ∷ Pp a ⇒ a → IO ()
-ppr = putStrLn . pp
-
-data Value = Ace | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Jack | Queen | King
-    deriving (Bounded, Enum, Eq, Ord, Show)
-
-instance Pp Value where
-    pp Ace   = "A"
-    pp Two   = "2"
-    pp Three = "3"
-    pp Four  = "4"
-    pp Five  = "5"
-    pp Six   = "6"
-    pp Seven = "7"
-    pp Eight = "8"
-    pp Nine  = "9"
-    pp Ten   = "10"
-    pp Jack  = "J"
-    pp Queen = "Q"
-    pp King  = "K"
-
-data Suit = Hearts | Diamonds | Spades | Clubs
-    deriving (Bounded, Enum, Eq, Ord, Show)
-
-instance Pp Suit where
-    pp Hearts   = "♥"
-    pp Diamonds = "♦"
-    pp Spades   = "♠"
-    pp Clubs    = "♣"
-
-data Card = Card Value Suit | Joker deriving (Eq, Ord)
-
-instance Pp Card where
-    pp (Card value suit) = pp value <> pp suit
-    pp Joker             = "🃏"
-
-ov ∷ Value → Suit → Card
-ov = Card
-
-type Deck = [Card]
-
-instance Enum Card where
-    toEnum 52 = Joker
-    toEnum n = Card (toEnum v) (toEnum s)
-        where (s, v) = n `divMod` 13
-    fromEnum Joker             = 52
-    fromEnum (Card value suit) = fromEnum value + (13 * fromEnum suit)
-
-instance Bounded Card where
-    minBound = Card Ace Hearts
-    maxBound = Joker
-
-instance Show Card where
-    show (Card value suit) = show value <> (" of " <> show suit)
-    show Joker             = "Joker"
 
 uniq ∷ Ord a ⇒ [a] → [a]
 uniq = S.toList . S.fromList
@@ -121,52 +64,50 @@ mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 meanDist ∷ M.Map Int Int → Double
 meanDist = uncurry (/) . Prelude.foldl (\(v1, t1) (v2, t2) -> (v1 + v2 * t2, t1 + t2)) (0, 0) . fmap (bimap fromIntegral fromIntegral) . M.toList
 
-eqOrAdj ∷ Card → Card → Bool
-eqOrAdj Joker Joker = True
+eqOrAdj ∷ CardStd → CardStd → Bool
 eqOrAdj (Card value1 suit1) (Card value2 suit2) = value1 == value2 || (suit1 == suit2 && adj value1 value2)
-eqOrAdj _ _ = False
 
 -- filter out?
 
-adjPairs ∷ Deck → [(Card, Card)]
-adjPairs x = filter (uncurry eqOrAdj) (listToPairs x)
+adjPairs ∷ DeckStd → [(CardStd, CardStd)]
+adjPairs (Deck d) = filter (uncurry eqOrAdj) (listToPairs d)
 
-pack52 ∷ Deck
-pack52 = enumFromTo (Card Ace Hearts) (Card King Clubs)
+pack52 ∷ DeckStd
+pack52 = Deck $ getBySuitThenValue <$> enumerate
 
-pack ∷ Deck
-pack = pack52 <> [Joker]
+pack ∷ DeckStd
+pack = pack52
 
 again ∷ Semigroup c ⇒ Int → c → c
 again = foldl1 (<>) ... replicate
 
-fourpacks ∷ Deck
-fourpacks = again 4 pack52
+fourpacks ∷ DeckStd
+fourpacks = Deck $ again 4 (getDeck pack52)
 
-pickRandomCards ∷ MonadRandom m ⇒ Int → Deck → m (Deck, Deck)
-pickRandomCards n p = splitAt n <$> shuffleM p
+pickRandomCards ∷ MonadRandom m ⇒ Int → DeckStd → m (DeckStd, DeckStd)
+pickRandomCards n p = bimap Deck Deck . splitAt n <$> shuffleM (getDeck p)
 
-pokerHand ∷ MonadRandom m ⇒ Deck → m (Deck, Deck)
+pokerHand ∷ MonadRandom m ⇒ DeckStd → m (DeckStd, DeckStd)
 pokerHand = pickRandomCards 5
 
-adjCards ∷ Deck → Deck
-adjCards c = pairsToList . filter (uncurry eqOrAdj) $ listToPairs c
+adjCards ∷ DeckStd → DeckStd
+adjCards (Deck c) = Deck . fmap getBySuitThenValue. pairsToList . fmap (bimap BySuitThenValue BySuitThenValue) . filter (uncurry eqOrAdj) $ listToPairs c
 
-extractAdj ∷ MonadRandom m ⇒ Deck → m Deck
+extractAdj ∷ MonadRandom m ⇒ DeckStd → m DeckStd
 extractAdj p = do
-    p' <- shuffleM p
-    pure $ filterOutList (adjCards p') p'
+    p' <- Deck <$> shuffleM (getDeck p)
+    pure $ Deck $ filterOutList (getDeck (adjCards p')) (getDeck p')
 
 magicNumbers ∷ MonadRandom m ⇒ m Int
-magicNumbers = length <$> HT.nest 30 extractAdj pack
+magicNumbers = length . getDeck <$> HT.nest 30 extractAdj pack
 
 magicDist ∷ MonadRandom m ⇒ Int → m (M.Map Int Int)
 magicDist n = dist n magicNumbers
 
--- replicateM 200 magicNumbers
+-- >>> replicateM 200 magicNumbers
 
 avgNumbers ∷ MonadRandom m ⇒ m Int
-avgNumbers = length . adjCards <$> shuffleM pack
+avgNumbers = length . getDeck . adjCards . Deck <$> shuffleM (getDeck pack)
 
 avgDist ∷ MonadRandom m ⇒ Int → m (M.Map Int Int)
 avgDist n = dist n avgNumbers

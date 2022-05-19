@@ -1,7 +1,12 @@
-{-# LANGUAGE DeriveFunctor #-}
-{-# LANGUAGE UnicodeSyntax #-}
 
 module Deck where
 
-newtype Deck a = Deck [a]
-    deriving (Eq, Functor, Show)
+import Card
+
+newtype Deck a = Deck {
+    getDeck :: [a]
+} deriving (Eq, Functor, Show)
+
+type DeckStd = Deck CardStd
+type DeckJill = Deck CardJill
+type DeckUnbounded = Deck CardUnbounded
