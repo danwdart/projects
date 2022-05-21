@@ -2,6 +2,10 @@ module Factorial where
 
 import Numeric.Natural
 
+-- >>> (4 !)
+-- 24
+--
+
 (!) ∷ Natural → Natural
 (!) 0 = 0
 (!) 1 = 1

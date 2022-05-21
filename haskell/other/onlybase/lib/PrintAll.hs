@@ -10,5 +10,12 @@ instance PrintAllType (IO a) where
 instance (Show a, PrintAllType r) ⇒ PrintAllType (a → r) where
     printAll' acc x = printAll' (acc <> [show x])
 
+-- >>> printAll "A"
+
+-- >>> printAll "A" "B"
+
+-- >>> printAll "A" "B" "C"
+
+
 printAll ∷ (PrintAllType t) ⇒ t
 printAll = printAll' []

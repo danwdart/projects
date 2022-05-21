@@ -15,7 +15,14 @@ foreign import ccall "exp" c_exp1 :: Double → Double
 foreign import ccall "printf" c_printf :: CString → IO CInt
 foreign import ccall "printf" c_printf2 :: CString → CString → IO CInt
 foreign import ccall "sprintf" c_sprintf2 :: CString → CString → CString → IO CInt
+foreign import ccall "memfrob" c_memfrob :: CString → CInt -> IO CString
 
+memfrob :: String -> Int -> IO String
+memfrob s n = do
+    cs <- newCString s
+    let ci = fromIntegral n :: CInt
+    _ <- c_memfrob cs ci
+    peekCString cs
 
 -- c_exp :: Double -> Double
 -- c_exp = mkFun a_exp
@@ -79,4 +86,9 @@ main = do
     free buf
     putStrLn "So we wrote..."
     print bW
+    _ <- cFlush
+    putStr "Please write something: "
+    str <- getLine
+    str' <- memfrob str 20
+    putStrLn str'
     putStrLn "All done."
