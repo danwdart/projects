@@ -1,6 +1,3 @@
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE TupleSections #-}
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-type-defaults -Wwarn #-}
 
 import           Data.Functor.Contravariant hiding ((>$<))

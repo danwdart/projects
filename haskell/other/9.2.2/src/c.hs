@@ -1,6 +1,7 @@
 {-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE UnicodeSyntax   #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
 
 import qualified Language.C.Inline as C
 

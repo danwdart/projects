@@ -1,9 +1,8 @@
 {-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE DeriveAnyClass    #-}
-{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
-{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-incomplete-uni-patterns #-}
 
 -- Order me a pizza
 import           Control.Monad

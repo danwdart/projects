@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Data.Isomorphism
 
 staticIso ∷ Iso (,) Int String

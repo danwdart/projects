@@ -1,7 +1,7 @@
 {-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE UnicodeSyntax   #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
 import           Language.C.Inline.Cpp
 

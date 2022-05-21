@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE UnicodeSyntax   #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-redundant-constraints -Wno-unused-top-binds #-}
 
 import           Data.List
 -- import Control.Monad
@@ -127,14 +127,14 @@ newman = defaultPerson
 main ∷ IO ()
 main = do
     print a
-    print $ a^._2
+    print $ a ^. _2
     print $ set _2 (42 :: Int) a
     print . (_2 .~ (42 :: Int)) $ a
-    print $ a^._2
-    print $ "Bob"^.to length
+    print $ a ^. _2
+    print $ "Bob" ^. to length
     print $ view _2 ((1, 2) :: (Int, Int))
-    print $ (((1,0),(2,"Two"),(3,0)) :: ((Int, Int), (Int, String), (Int, Int)) )^._2._2.to length
-    print $ (bob^.namest) <> (show (bob^.age) <> (bob^.friends.ix 0.namest))
+    print $ (((1,0),(2,"Two"),(3,0)) :: ((Int, Int), (Int, String), (Int, Int)) ) ^. _2 . _2 . to length
+    print $ (bob ^. namest) <> (show (bob ^. age) <> (bob ^. friends.ix 0.namest))
     putStrLn $
         show (newman ^. name . title)
         <>

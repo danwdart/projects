@@ -1,6 +1,6 @@
 {-# LANGUAGE DataKinds     #-}
-{-# LANGUAGE UnicodeSyntax #-}
-{-# OPTIONS_GHC -Wno-unused-matches  #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-matches  #-}
 
 module Main where
 

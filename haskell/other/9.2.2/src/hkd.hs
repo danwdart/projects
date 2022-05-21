@@ -1,11 +1,7 @@
 {-# LANGUAGE DeriveAnyClass       #-}
-{-# LANGUAGE DeriveGeneric        #-}
-{-# LANGUAGE FlexibleInstances    #-}
-{-# LANGUAGE StandaloneDeriving   #-}
-{-# LANGUAGE UnicodeSyntax        #-}
-
+{-# LANGUAGE Trustworthy #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# OPTIONS_GHC -Wwarn #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wwarn #-}
 
 import           Barbies
 import           Control.Applicative

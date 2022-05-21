@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
 
 import           Control.Concurrent        (forkFinally, threadDelay)
 import           Control.Concurrent.Async  (concurrently_)
@@ -31,6 +32,7 @@ server = do
         bind sock (addrAddress addr)
         listen sock 10
         pure sock
+    loop :: Socket -> IO ()
     loop sock = forever $ do
         (conn, peer) <- accept sock
         putStrLn $ "Connection from " <> show peer

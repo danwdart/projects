@@ -1,6 +1,5 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE OverloadedStrings    #-}
-{-# LANGUAGE UnicodeSyntax        #-}
 
 import           Database.HDBC
 import           Database.HDBC.MySQL

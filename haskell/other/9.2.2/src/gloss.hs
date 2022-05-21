@@ -1,4 +1,6 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
+
 import           Graphics.Gloss
 import           Graphics.Gloss.Interface.IO.Game
 

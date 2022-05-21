@@ -1,5 +1,5 @@
-{-# LANGUAGE UnicodeSyntax #-}
-{-# OPTIONS_GHC -Wno-unused-imports #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
 import           Graphics.UI.GLUT
 import           Graphics.UI.GLUT.Begin

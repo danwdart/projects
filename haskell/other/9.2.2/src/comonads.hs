@@ -1,7 +1,4 @@
-{-# LANGUAGE DeriveFoldable  #-}
-{-# LANGUAGE DeriveFunctor   #-}
 {-# LANGUAGE OverloadedLists #-}
-{-# LANGUAGE UnicodeSyntax   #-}
 {-# OPTIONS_GHC
     -Wno-unused-top-binds
     -Wno-name-shadowing
@@ -64,6 +61,7 @@ instance Comonad Stream where
 fromList ∷ [a] → Stream a
 fromList xs = go (cycle xs)
     where
+        go :: [a] -> Stream a
         go (a:rest) = a :> go rest
 
 countStream ∷ Stream Int
@@ -170,14 +168,14 @@ main = do
     do
         print $ pos warehouse
         print $ peek 0 warehouse
-        print $ peeks (+1) warehouse
+        print $ peeks (+ 1) warehouse
         print . pos $ seek 3 warehouse
-        print . extract $ seeks (+2) warehouse
+        print . extract $ seeks (+ 2) warehouse
         print $ experiment (\x -> ([x, x + 1, x + 2] :: [Int])) warehouse
     do
         print $ experiment (\x -> ([x, x + 1, x + 2] :: [Int])) squared
         print $ experiment aboveZero (seek 10 squared)
-        print $ experiment aboveZero (seek (-10) squared)
+        print $ experiment aboveZero (seek (- 10) squared)
         print $ extract withN
         print $ peek 5 withN
     do

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module TestSpec where
 
 import           Control.Exception (evaluate)

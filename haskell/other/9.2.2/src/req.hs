@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
 
 import           Control.Monad.Except
 -- import Control.Monad.IO.Class (MonadIO, liftIO)

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad.Tardis
 
 main ∷ IO ()

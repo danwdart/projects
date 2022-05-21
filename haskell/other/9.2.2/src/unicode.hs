@@ -1,26 +1,29 @@
-{-# LANGUAGE UnicodeSyntax #-}
+-- Just stolen from reader
+
+import Control.Monad.Unicode
+import Data.Function.Unicode
+import Data.List.Unicode
+import Data.Monoid.Unicode
+import Numeric.Natural.Unicode
 import           Control.Monad.Reader
 
--- Reader a b is a → b
-
-intToIntReader ∷ Reader Int Int
-intToIntReader = reader (+1)
+intToIntReader ∷ Reader ℕ ℕ
+intToIntReader = reader succ
 
 stringToStringReader ∷ Reader String String
-stringToStringReader = reader (++"Bob")
+stringToStringReader = reader (⊕ "Bob")
 
 stringToIntReaderComplex ∷ Reader String Int
-stringToIntReaderComplex = local (++"Bobby") $ asks length
+stringToIntReaderComplex = local (⊕ "Bobby") $ asks length
 
 rtSimple ∷ ReaderT String IO ()
-rtSimple = ask >>= liftIO . putStrLn
+rtSimple = ask ≫= liftIO ∘ putStrLn
 
 rt ∷ ReaderT String IO ()
-rt = ReaderT $
-    liftIO . putStrLn
-
+rt = ReaderT $ liftIO ∘ putStrLn
+    
 rWithLocal ∷ Reader String String
-rWithLocal = local (++"Jim") stringToStringReader
+rWithLocal = local (⧺ "Jim") stringToStringReader
 
 main ∷ IO ()
 main = do

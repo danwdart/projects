@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Concurrent
 import           Control.Monad
 import           Data.Functor
@@ -42,4 +41,4 @@ charsToStringList = fmap (: [])
 -- password = crackPassword <&> (\pw -> intercalate pw $ charsToStringList "MYPASSWORD")
 
 crackPassword ∷ IO String
-crackPassword = (replicateM 25 (randomRIO ('A','Z')) <&> intersperse '\b') <&> (++"\b")
+crackPassword = (replicateM 25 (randomRIO ('A','Z')) <&> intersperse '\b') <&> (++ "\b")

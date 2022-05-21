@@ -1,5 +1,6 @@
 {-# LANGUAGE BlockArguments #-}
-{-# LANGUAGE UnicodeSyntax  #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
 
 -- Let's make our own event loop
 -- import Control.Concurrent.Event ( Event )

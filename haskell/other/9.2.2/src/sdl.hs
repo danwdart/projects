@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeApplications  #-}
-{-# LANGUAGE UnicodeSyntax     #-}
-{-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-matches #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports -Wno-unused-matches #-}
 
 import           Graphics.Rendering.OpenGL.GL             as GL
 import           Graphics.Rendering.OpenGL.GL.Framebuffer as GLFB

@@ -1,5 +1,5 @@
 {
-  nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
+  nixpkgs ? import <unstable> {},
   haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {},
   compiler ? "ghc922"
 }:
@@ -15,7 +15,7 @@ let
       # https://github.com/haskell-hvr/hgettext/issues/15
       hgettext = lib.doJailbreak (self.callCabal2nix "hgettext" (builtins.fetchGit {
         url = "https://github.com/avdv/hgettext.git";
-        ref = "e580db9d640505ace046ff0a99a34192a118c89c";
+        ref = "build-cabal-2.4";
       }) {});
       OpenGLRaw = lib.doJailbreak super.OpenGLRaw;
       OpenGL = lib.doJailbreak super.OpenGL;
@@ -42,7 +42,7 @@ let
       snap-server = lib.doJailbreak super.snap-server;
       websockets-snap = lib.doJailbreak super.websockets-snap;
       # Atm Nix breaks this.
-      haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
+      # haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
       other922 = lib.dontHaddock (self.callCabal2nix "other922" (gitignore ./.) {});
     };
   };

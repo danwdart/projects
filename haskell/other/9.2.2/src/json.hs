@@ -1,8 +1,8 @@
 {-# LANGUAGE DeriveAnyClass    #-}
-{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Trustworthy #-}
 {-# LANGUAGE QuasiQuotes       #-}
-{-# LANGUAGE UnicodeSyntax     #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
 
 -- import Control.Exception
 -- import qualified Data.ByteString as BS

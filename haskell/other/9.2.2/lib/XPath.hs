@@ -1,7 +1,7 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
 
-
-module Lib.XPath (processXPath) where
+module XPath (processXPath) where
 
 import           Data.Functor
 import           Data.Maybe

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Sound.Pulse
 import           Sound.Pulse.Context
 import           Sound.Pulse.Mainloop.Simple

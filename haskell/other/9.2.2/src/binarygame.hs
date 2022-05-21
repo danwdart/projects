@@ -1,6 +1,5 @@
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE UnicodeSyntax  #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
 import           Control.Monad.IO.Class
 import           Control.Monad.Trans.State

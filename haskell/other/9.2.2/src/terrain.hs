@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- Procedural generation
 import           Control.Monad
 import           System.Random

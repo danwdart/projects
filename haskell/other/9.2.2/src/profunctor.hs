@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
 import           Data.Profunctor
@@ -39,16 +38,16 @@ main = do
 
     putStrLn "Forget... well, I'm not sure why you would want to do this..."
     -- Forgets
-    runForget ( rmap (++"Hi") $ Forget print ) "eee" -- "eee"
+    runForget ( rmap (++ "Hi") $ Forget print ) "eee" -- "eee"
     -- Remembers
-    runForget ( lmap (++"hi") $ Forget print ) "eee" -- "eeehi"
+    runForget ( lmap (++ "hi") $ Forget print ) "eee" -- "eeehi"
 
     putStrLn "Mapping is not much different from a functor... but more general?"
     print $ map' show [1,2,3] -- ["1","2","3"]
 
     putStrLn "Everything here is a Profunctor, and its base is:"
     -- Left applied to input, arrow run and right applied to output
-    print $ dimap (+1) (++"Hi") show 1  -- "2Hi"
+    print $ dimap (+ 1) (++ "Hi") show 1  -- "2Hi"
 
     putStrLn "Star is like Kleisli but for functors and more generic and applicable - it lifts."
     -- won't do anything because runs on output
@@ -56,7 +55,7 @@ main = do
     -- will work
     print =<< runStar (rmap succ $ Star pure) 1 -- 2
     -- dimapping a star is good
-    print $ runStar (dimap (+1) show $ Star Just) 1  -- Just "2"
+    print $ runStar (dimap (+ 1) show $ Star Just) 1  -- Just "2"
 
     putStrLn "Strong allows params to be passed through"
     -- runs on first param only
@@ -65,7 +64,7 @@ main = do
     print $ second' show ("hey", 1) -- ("hey","1")
 
     putStrLn "Wrapping any arrow to profunctor"
-    print $ unwrapArrow (rmap (++"hi") (WrapArrow show) ) 1 -- "1hi"
+    print $ unwrapArrow (rmap (++ "hi") (WrapArrow show) ) 1 -- "1hi"
 
     putStrLn "You can curry arrows to a profunctor too rather than just ->"
     print $ curry' snd 2 3 -- 3

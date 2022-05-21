@@ -1,5 +1,4 @@
-{-# LANGUAGE UnicodeSyntax #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-redundant-constraints #-}
 
 -- import Control.Monad
 -- import Data.Bifunctor

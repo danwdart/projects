@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           System.IO
@@ -9,7 +8,7 @@ import           System.Serial.Manager         as M
 blocking ∷ Handle → IO ()
 blocking handle = do
     mgr <- M.serialManager handle "\r" "\r"
-    rsp <- M.wrapCommand "AT" (=="OK") mgr
+    rsp <- M.wrapCommand "AT" (== "OK") mgr
     putStrLn rsp
     closeSerialManager mgr
 

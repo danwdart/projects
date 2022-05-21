@@ -1,9 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 
 import           Data.Foldable.Safe
 import           Data.List
-import           Lib.XPath
+import           XPath
 
 html, xpath ∷ String
 html = "<!doctype html><html><body><div><p>Text <img src=\"Foo\"/><img src=\"jim\"/></p></div></body></html>"

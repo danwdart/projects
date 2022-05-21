@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Concurrent
 import           Control.Concurrent.Async
 

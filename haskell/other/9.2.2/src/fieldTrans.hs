@@ -1,9 +1,6 @@
-{-# LANGUAGE DeriveGeneric        #-}
-{-# LANGUAGE NamedFieldPuns       #-}
-{-# LANGUAGE RankNTypes           #-}
+{-# LANGUAGE Trustworthy #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# LANGUAGE UnicodeSyntax        #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
 import           Control.Monad.Identity
 import           Data.Aeson

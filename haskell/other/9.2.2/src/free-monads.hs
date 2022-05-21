@@ -1,6 +1,4 @@
-{-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE LambdaCase    #-}
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
 -- https://serokell.io/blog/introduction-to-free-monads

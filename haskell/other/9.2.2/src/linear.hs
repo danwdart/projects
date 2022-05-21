@@ -1,5 +1,7 @@
 {-# LANGUAGE LinearTypes       #-}
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
 
 module Main where
 
