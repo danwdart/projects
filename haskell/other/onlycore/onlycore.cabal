@@ -14,165 +14,200 @@ category:            Web
 build-type:          Simple
 extra-source-files:  README.md
 
-common shared-properties
+common shared-properties-base
   hs-source-dirs:      src
-  default-language:    Haskell2010
-  build-depends:       base >= 4.16 && < 5
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+  default-language:    GHC2021
+  default-extensions:
+    DerivingStrategies
+    UnicodeSyntax
   ghcjs-options:       -dedupe
 
+common shared-properties-lib
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Werror
+    -haddock
+  build-depends:       base >= 4.16 && < 5
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+
+common shared-properties-unsafe
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Wno-prepositive-qualified-module
+    -Werror
+    -haddock
+    -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base >= 4.16 && < 5
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+
+common shared-properties-safe
+  import: shared-properties-unsafe
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+    Safe
+
+-- TODO: unsafe?
+library
+  import: shared-properties-lib
+  hs-source-dirs:      lib
+  build-depends: base >= 4.16 && < 5
+               , array
+               , bytestring
+               , containers
+               , directory
+               , mtl
+               , parsec
+               , template-haskell
+               , text
+  exposed-modules:
+    BubbleSort
+    Form
+    LCDBlock
+    SHA
+    Shell
+    TH
+    TinyLang
+    World
+
 executable array
-  import: shared-properties
+  import: shared-properties-unsafe
   main-is:             array.hs
   build-depends:       base >= 4.16 && < 5, array
 
 executable bashy
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             bashy.hs
-  build-depends:       base >= 4.16 && < 5, directory
-
-executable cipher
-  import: shared-properties
-  main-is:             cipher.hs
-  build-depends:       base >= 4.16 && < 5, mtl, transformers
+  build-depends:       base >= 4.16 && < 5, onlycore
 
 executable cli_contt
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             cli_contt.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
-executable composefunctors
-  import: shared-properties
-  main-is:             composefunctors.hs
-  build-depends:       base >= 4.16 && < 5, template-haskell
-
 executable cont
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             cont.hs
-  build-depends:       base >= 4.16 && < 5, directory, mtl, transformers
+  build-depends:       base >= 4.16 && < 5, directory, transformers
 
 executable cont-monad
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             cont-monad.hs
-  build-depends:       base >= 4.16 && < 5, directory, mtl, transformers
+  build-depends:       base >= 4.16 && < 5, mtl
 
 executable cont-variadic
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             cont-variadic.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
-executable cyclesinmixedset
-  import: shared-properties
-  main-is:             cyclesinmixedset.hs
-  build-depends:       base >= 4.16 && < 5, mtl
-
 executable embed
-  import: shared-properties
+  import: shared-properties-unsafe
   main-is:             embed.hs
   build-depends:       base >= 4.16 && < 5, template-haskell
 
 executable endo
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             endo.hs
   build-depends:       base >= 4.16 && < 5, text
 
 executable files
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             files.hs
   build-depends:       base >= 4.16 && < 5, directory
 
 executable fixedlength
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             fixedlength.hs
   build-depends:       base >= 4.16 && < 5, array
   
 executable forms
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             forms.hs
-  build-depends:       base >= 4.16 && < 5, parsec, template-haskell, text
-
-executable free-monads
-  import: shared-properties
-  main-is:             free-monads.hs
-  build-depends:       base >= 4.16 && < 5, mtl
-
-executable heact
-  import: shared-properties
-  main-is:             heact.hs
-  build-depends:       base >= 4.16 && < 5, containers
+  build-depends:       base >= 4.16 && < 5, onlycore, parsec
 
 executable lcdblock
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             lcdblock.hs
-  build-depends:       base >= 4.16 && < 5, containers
+  build-depends:       base >= 4.16 && < 5, onlycore
 
 executable mtl
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             mtl.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
 executable python5
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             python5.hs
-  build-depends:       base >= 4.16 && < 5, array
+  build-depends:       base >= 4.16 && < 5, onlycore
 
 executable reader
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             reader.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
 executable reader-fn
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             reader-fn.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
 executable sha
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             sha.hs
-  build-depends:       base >= 4.16 && < 5, bytestring
+  build-depends:       base >= 4.16 && < 5, bytestring, onlycore
 
 executable state
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             state.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
 executable stm
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             stm.hs
   build-depends:       base >= 4.16 && < 5, stm
 
-executable tagless-final
-  import: shared-properties
-  main-is:             tagless-final.hs
-  build-depends:       base >= 4.16 && < 5, mtl, text
-
 executable th
-  import: shared-properties
+  import: shared-properties-unsafe
   main-is:             th.hs
-  build-depends:       base >= 4.16 && < 5, template-haskell
-  other-modules:       Lib.TH
+  build-depends:       base >= 4.16 && < 5, onlycore
 
 executable tinylang
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             tinylang.hs
-  build-depends:       base >= 4.16 && < 5, bytestring, containers, parsec
+  build-depends:       base >= 4.16 && < 5, onlycore
 
 executable trace
-  import: shared-properties
+  import: shared-properties-unsafe
   main-is:             trace.hs
-  build-depends:       base >= 4.16 && < 5, mtl, transformers
+  build-depends:       base >= 4.16 && < 5, transformers
 
 executable transformers
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             transformers.hs
-  build-depends:       base >= 4.16 && < 5, mtl, transformers
+  build-depends:       base >= 4.16 && < 5, transformers
 
 executable world
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             world.hs
-  build-depends:       base >= 4.16 && < 5, mtl
+  build-depends:       base >= 4.16 && < 5, onlycore, mtl
 
 executable writer
-  import: shared-properties
+  import: shared-properties-safe
   main-is:             writer.hs
   build-depends:       base >= 4.16 && < 5, mtl

@@ -1,5 +1,6 @@
-{-# LANGUAGE UnicodeSyntax #-}
-module Lib.TH where
+{-# LANGUAGE Safe #-}
+
+module TH where
 
 import           Language.Haskell.TH
 import           Language.Haskell.TH.Quote

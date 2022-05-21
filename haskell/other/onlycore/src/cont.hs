@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- Cont demo
 import           Control.Monad
 import           Control.Monad.IO.Class

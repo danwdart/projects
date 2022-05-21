@@ -1,7 +1,5 @@
-{-# LANGUAGE DeriveFunctor #-}
-{-# LANGUAGE UnicodeSyntax #-}
 
-import           Control.Monad.Trans.Cont
+import           Control.Monad.Cont
 
 -- ContT doesn't require the wrapping m to actually even be a monad.
 

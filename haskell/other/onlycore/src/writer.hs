@@ -1,5 +1,4 @@
 {-# LANGUAGE PackageImports #-}
-{-# LANGUAGE UnicodeSyntax  #-}
 
 import           "mtl" Control.Monad.Writer
 

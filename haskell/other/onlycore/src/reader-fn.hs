@@ -1,5 +1,3 @@
-{-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE UnicodeSyntax    #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 -- Reader for function arrow.
 

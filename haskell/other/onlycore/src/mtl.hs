@@ -1,7 +1,4 @@
 {-# LANGUAGE DeriveAnyClass   #-}
-{-# LANGUAGE DeriveFunctor    #-}
-{-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE UnicodeSyntax    #-}
 {-# OPTIONS_GHC -Wno-missing-methods #-}
 
 import           Control.Monad.Reader

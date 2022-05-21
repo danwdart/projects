@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-{-# LANGUAGE UnicodeSyntax #-}
 
 import           Control.Monad.State
 

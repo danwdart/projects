@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Concurrent.STM.TVar
 import           Control.Monad.STM
 

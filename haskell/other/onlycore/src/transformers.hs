@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad.IO.Class
 import           Control.Monad.Trans.Writer.Lazy
 -- import Control.Monad.Trans.State.Lazy
@@ -10,7 +9,7 @@ myT start = WriterT (Just (start, []))
 myT2 ∷ WriterT [String] Maybe String
 myT2 = do
     x <- myT "Hi"
-    let y = pure "i"
+    let y = pure "i" :: [String]
     tell y
     tell ["His name was " <> x]
     tell ["It was indeed " <> x]
