@@ -167,6 +167,11 @@ executable reader-fn
   main-is:             reader-fn.hs
   build-depends:       base >= 4.16 && < 5, mtl
 
+executable rws
+  import: shared-properties-safe
+  main-is:             rws.hs
+  build-depends:       base >= 4.16 && < 5, mtl
+
 executable sha
   import: shared-properties-safe
   main-is:             sha.hs
