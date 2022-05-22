@@ -79,6 +79,10 @@ library
                , text
   exposed-modules:
     BubbleSort
+    Control.Concurrent.Async.Undiscarded
+    Control.Monad.State.Disparate
+    Control.Monad.Trans.State.Disparate
+    Control.Monad.Trans.State.Undiscarded
     Form
     LCDBlock
     SHA
