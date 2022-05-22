@@ -10,10 +10,11 @@ extra-source-files:  CHANGELOG.md
 
 executable tumblr-editor
   main-is:             Main.hs
+  default-language:    GHC2021
+  default-extensions:  UnicodeSyntax
   build-depends:       base >=4.14.1.0 && <5
                      , text
                      , webdriver
   hs-source-dirs: src
-  default-language:    Haskell2010
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
