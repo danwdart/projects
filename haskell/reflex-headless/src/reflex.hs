@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad.IO.Class
 import           Reflex
 import           Reflex.Host.Headless

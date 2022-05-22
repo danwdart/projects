@@ -1,11 +1,9 @@
-{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FlexibleContexts     #-}
 {-# LANGUAGE TypeFamilies     #-}
-{-# LANGUAGE UnicodeSyntax    #-}
 
 import           Control.Monad.IO.Class
 import           Reflex
 import           Reflex.Host.Headless
-
 import           System.Console.ANSI
 
 putStrLnL ∷ MonadIO m ⇒ String → m ()
