@@ -2,9 +2,12 @@
 
 module Lib where
 
-import Control.Monad
+import Control.Monad ( (>=>) )
+import Foreign.C ( CString, newCString, peekCString )
 
-import Foreign.C
+-- This is just a function that returns some data. There's probably no plain string.
+dataraw :: Int
+dataraw = 42
 
 -- This is just a function that returns some data. There's probably no plain string.
 datas :: IO CString
@@ -24,6 +27,7 @@ io = putStrLn "Hello from Haskell!"
 add :: Int -> Int
 add = (+ 42)
 
+foreign export capi "dataraw" dataraw :: Int
 foreign export capi "data" datas :: IO CString
 foreign export capi "fn" fn :: CString -> IO CString
 foreign export capi "io" io :: IO ()

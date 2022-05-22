@@ -3,8 +3,8 @@
 
 module Main where
 
-import Foreign.C
-import Control.Monad
+import Foreign.C ( CString, newCString, peekCString )
+import Control.Monad ( (>=>) )
 
 #ifdef DYNAMIC_LIBRARY
 
@@ -42,7 +42,7 @@ run datas' io' fn' add' = do
 main :: IO ()
 main = do
 #ifdef DYNAMIC_LIBRARY
-    withDL "lib.so" [RTLD_LAZY] $ \libHandler -> do
+    withDL "libdemo.so" [RTLD_LAZY] $ \libHandler -> do
         datas <- mkData <$> dlsym libHandler "data"
         io <- mkIO <$> dlsym libHandler "io"
         fn <- mkFn <$> dlsym libHandler "fn"
