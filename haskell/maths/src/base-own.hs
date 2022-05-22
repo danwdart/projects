@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds #-}
 
 

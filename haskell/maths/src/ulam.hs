@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Ulam
 
 main ∷ IO ()

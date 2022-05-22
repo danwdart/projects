@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 main ∷ IO ()

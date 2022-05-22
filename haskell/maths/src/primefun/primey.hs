@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Data.Numbers.Primes
 
 stuff ∷ [(Integer, Integer, Integer)]

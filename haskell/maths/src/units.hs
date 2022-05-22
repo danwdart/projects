@@ -1,13 +1,5 @@
 {-# LANGUAGE DataKinds                  #-}
-{-# LANGUAGE ExistentialQuantification  #-}
-{-# LANGUAGE FlexibleContexts           #-}
-{-# LANGUAGE FlexibleInstances          #-}
-{-# LANGUAGE GeneralisedNewtypeDeriving #-}
-{-# LANGUAGE MultiParamTypeClasses      #-}
-{-# LANGUAGE PolyKinds                  #-}
 {-# LANGUAGE TypeFamilies               #-}
-{-# LANGUAGE TypeOperators              #-}
-{-# LANGUAGE UnicodeSyntax              #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Data.Kind

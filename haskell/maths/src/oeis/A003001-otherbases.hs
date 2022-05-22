@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-type-defaults -Wno-unused-top-binds -Wno-unused-matches #-}
 
 import           Data.Digits

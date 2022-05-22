@@ -1,8 +1,7 @@
 {-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE DeriveAnyClass    #-}
-{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE DerivingStrategies    #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 
 import           Control.Monad.IO.Class
 import           Data.Aeson
@@ -38,7 +37,9 @@ instance FromJSON OEISResult where
 
 newtype OEISResponse = OEISResponse {
     results :: [OEISResult]
-} deriving (Eq, FromJSON, Generic, Out, Show)
+} deriving stock (Eq, Generic, Show)
+    deriving anyclass FromJSON
+    deriving newtype Out
 
 -- debugJSON :: JsonResponse Value -> Req ()
 -- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
 -- https://oeis.org/A133058

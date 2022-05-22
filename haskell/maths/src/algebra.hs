@@ -1,4 +1,3 @@
-{-# LANGUAGE FlexibleInstances #-}
 
 newtype Variable x = Variable x
 

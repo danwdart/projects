@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-local-binds -Wno-unused-top-binds -Wno-unused-matches -Wno-missing-signatures #-}
 -- Neural Network
 

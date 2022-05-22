@@ -1,5 +1,3 @@
-{-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
 import           Data.Invertible

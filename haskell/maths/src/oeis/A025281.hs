@@ -1,5 +1,3 @@
-{-# LANGUAGE PostfixOperators #-}
-{-# LANGUAGE UnicodeSyntax    #-}
 
 import           Data.List
 import           Data.Numbers.Primes

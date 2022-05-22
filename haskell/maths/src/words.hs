@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-local-binds -Wno-missing-signatures -Wno-type-defaults -Wno-unused-matches #-}
 
 import           Data.Map (Map)

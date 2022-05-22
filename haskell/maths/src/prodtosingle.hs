@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Data.Function
 import           Data.List
 

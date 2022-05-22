@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- Numbers which divide their Zeckendorffian format exactly.
 
 bintodec ∷ [Integer] → Integer

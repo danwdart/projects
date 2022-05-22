@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-
 120 has some interesting numbers.
 120 is highly composite.

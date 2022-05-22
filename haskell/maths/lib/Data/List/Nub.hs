@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Data.List.Nub (nubOn) where
 
 import           Data.Function (on)

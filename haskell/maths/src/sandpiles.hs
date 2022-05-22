@@ -1,7 +1,3 @@
-{-# LANGUAGE FlexibleInstances          #-}
-{-# LANGUAGE GeneralisedNewtypeDeriving #-}
-{-# LANGUAGE MultiParamTypeClasses      #-}
-{-# LANGUAGE UnicodeSyntax              #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-unused-matches #-}
 
 import           Control.Comonad

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- import Data.Digits
 -- import Data.Function
 -- import Data.Functor

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- Shamelessly stolen from http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/spigot.pdf
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-local-binds -Wno-incomplete-patterns -Wno-name-shadowing -Wno-missing-signatures -Wno-type-defaults #-}
 

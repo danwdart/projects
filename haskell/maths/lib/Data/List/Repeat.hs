@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Data.List.Repeat (takeUntilRepeat) where
 
 takeUntilRepeat ∷ Eq a ⇒ [a] → [a]

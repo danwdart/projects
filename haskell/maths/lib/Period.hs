@@ -1,4 +1,5 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# OPTIONS_GHC -Wno-unused-matches #-}
+
 module Period where
 
 period ∷ [Integer] → Integer

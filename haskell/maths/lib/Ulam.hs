@@ -1,5 +1,3 @@
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE UnicodeSyntax  #-}
 
 module Ulam where
 

@@ -1,5 +1,4 @@
 
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           NumList

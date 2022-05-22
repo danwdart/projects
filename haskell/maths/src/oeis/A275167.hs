@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- TODO
 -- Pisano periods of A275124.
 

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- discrete/continuous?
 -- validation?
 {-

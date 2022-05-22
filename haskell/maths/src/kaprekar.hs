@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-
 function saa(n) {
     var ns = Math.pow(n,2),

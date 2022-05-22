@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- import Data.Numbers.Primes
 
 -- bintodec :: [Int] -> Int

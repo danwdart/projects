@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Sequence.Lucas where
 
 fibs ∷ [Integer]

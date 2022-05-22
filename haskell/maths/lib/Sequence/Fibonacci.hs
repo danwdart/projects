@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Sequence.Fibonacci where
 
 fibs ∷ [Integer]

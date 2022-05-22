@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-imports #-}
 
 import           Codec.Picture
