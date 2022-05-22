@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Main where
 
 fnPairs ∷ Ord a ⇒ (a → a → b) → [a] → [b]

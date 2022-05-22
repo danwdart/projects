@@ -13,14 +13,16 @@ extra-source-files:  README.md
 
 library
   hs-source-dirs:      lib
-  default-language:    Haskell2010
+  default-language:    GHC2021
+  default-extensions:  UnicodeSyntax
   build-depends:       base >= 4.16 && < 5
   ghc-options:         -Wall -Werror -haddock
   exposed-modules:
 
 common shared-properties
   hs-source-dirs:      src
-  default-language:    Haskell2010
+  default-language:    GHC2021
+  default-extensions:  UnicodeSyntax
   build-depends:       base >= 4.16 && < 5, aoc2021
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
