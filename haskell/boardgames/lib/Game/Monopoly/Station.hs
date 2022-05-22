@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Game.Monopoly.Station where
 
 stationPrice ∷ Int

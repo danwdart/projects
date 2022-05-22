@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Game.Monopoly.Colour where
 
 data Colour = Brown | LightBlue | Pink | Orange | Red | Yellow | Green | DarkBlue deriving (Eq)

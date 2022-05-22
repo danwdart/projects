@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Game.Monopoly.Space where
 
 import           Game.Monopoly.Colour

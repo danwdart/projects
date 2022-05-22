@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Game.Monopoly.Addons where
 
 data Addons = NoAddons | Houses Int | Hotel deriving (Eq)

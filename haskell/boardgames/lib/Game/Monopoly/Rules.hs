@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Game.Monopoly.Rules where
 
 import           Data.Set (Set)

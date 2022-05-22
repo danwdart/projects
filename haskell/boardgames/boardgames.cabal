@@ -13,7 +13,8 @@ extra-source-files:  README.md
 
 library
   hs-source-dirs: lib
-  default-language:    Haskell2010
+  default-language:    GHC2021
+  default-extensions:  UnicodeSyntax
   build-depends:       base >= 4.16 && < 5, containers
   exposed-modules:
       Game.Bounce
@@ -34,7 +35,8 @@ library
 
 common shared-properties
   hs-source-dirs:      src
-  default-language:    Haskell2010
+  default-language:    GHC2021
+  default-extensions:  UnicodeSyntax
   build-depends:       base >= 4.16 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
@@ -72,8 +74,7 @@ executable monopoly
 --executable razzledazzle
 --  hs-source-dirs:      src
 --  main-is:             razzledazzle.hs
---  default-language:    Haskell2010
---  build-depends:       base >= 4.16 && < 5, monad-loops, probability, random, rando, utility-ht
+--  --  build-depends:       base >= 4.16 && < 5, monad-loops, probability, random, rando, utility-ht
 
 test-suite boardgames-test
   import: shared-properties
@@ -84,6 +85,8 @@ test-suite boardgames-test
     Game.BounceSpec
   build-tool-depends:
     hspec-discover:hspec-discover
+  default-language:    GHC2021
+  default-extensions:  UnicodeSyntax
   build-depends:
       base >= 4.16 && < 5
     , boardgames

@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Control.Monad
 import qualified Control.Monad.HT           as M
 import           Control.Monad.Loops

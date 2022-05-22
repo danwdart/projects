@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Game.Monopoly.Token where
 
 data Token = Dog | TopHat | Wheelbarrow | RacingCar | Boot | Iron | Battleship | Thimble deriving (Eq)

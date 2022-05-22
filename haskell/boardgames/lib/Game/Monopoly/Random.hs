@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 module Game.Monopoly.Random where
 
 data RandomType = Chance | CommunityChest deriving (Eq)

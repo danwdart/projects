@@ -1,5 +1,3 @@
-{-# LANGUAGE TypeApplications #-}
-{-# LANGUAGE UnicodeSyntax    #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
 
 import           Control.Monad.Random
