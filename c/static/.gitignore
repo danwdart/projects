@@ -1,0 +1,17 @@
+.stack-work
+dist
+dist-newstyle
+.ghc.*
+google.json
+*.hi
+*.o
+result*
+.direnv
+hie.yaml
+.env
+jwt.secret
+.hie
+stan.html
+*_stub.h
+main
+build
