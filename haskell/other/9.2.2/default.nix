@@ -23,8 +23,6 @@ let
       gloss = lib.doJailbreak super.gloss;
       linear = self.callHackage "linear" "1.21.8" {};
       readable = lib.doJailbreak super.readable;
-      # 3.9.0 only in Nix
-      req = lib.doJailbreak (self.callHackage "req" "3.10.0" {});
       sdl2 = lib.doJailbreak super.sdl2; # reflex it!
       # https://github.com/well-typed/generics-sop/pull/147
       sop-core = (lib.doJailbreak (self.callCabal2nixWithOptions "sop-core" (builtins.fetchGit {
