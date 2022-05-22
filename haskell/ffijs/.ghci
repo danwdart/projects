@@ -1,0 +1,1 @@
+:set -XJavascriptFFI -XCApiFFI -fobject-code -no-keep-o-files -no-keep-hi-files

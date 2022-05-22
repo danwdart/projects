@@ -1,0 +1,33 @@
+cabal-version:      3.0
+name:               ffijs 
+version:            0.1.0.0
+synopsis:           ffijs
+description:        ffijs
+bug-reports:        https://github.com/danwdart/projects/issues
+license:            CC0-1.0
+author:             Dan Dart
+maintainer:         git@dandart.co.uk
+copyright:          2021 Dan Dart
+category:           js
+extra-source-files: CHANGELOG.md
+
+executable ffihstojs 
+    main-is:          Main.hs
+    build-depends:    base
+    hs-source-dirs:   src
+    default-language: Haskell2010
+
+executable ffijstohs
+    main-is:          main.js
+    build-depends:    base
+    hs-source-dirs:   src
+    build-depends: base, ffijs
+    default-language: Haskell2010
+
+
+library
+    build-depends:    base
+    hs-source-dirs:   src
+    default-language: Haskell2010
+    exposed-modules:
+        LibDemo
