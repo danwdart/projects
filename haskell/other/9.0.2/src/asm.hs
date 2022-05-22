@@ -2,7 +2,6 @@
 {-# LANGUAGE QuasiQuotes          #-}
 {-# LANGUAGE TemplateHaskell      #-}
 {-# LANGUAGE UnboxedTuples        #-}
-{-# LANGUAGE UnicodeSyntax        #-}
 {-# LANGUAGE UnliftedFFITypes     #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 

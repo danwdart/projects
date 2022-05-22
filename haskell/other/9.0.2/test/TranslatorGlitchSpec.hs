@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 -- Just test that the internet connection and API works.
 -- More of a functional test.
 module TranslatorGlitchSpec where

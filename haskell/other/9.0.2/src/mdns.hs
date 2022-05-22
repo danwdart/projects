@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Network.Avahi
 
 main ∷ IO ()

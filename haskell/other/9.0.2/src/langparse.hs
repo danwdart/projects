@@ -1,5 +1,3 @@
-{-# LANGUAGE RankNTypes    #-}
-{-# LANGUAGE UnicodeSyntax #-}
 
 import           Language.C
 import           Language.JavaScript.Parser
