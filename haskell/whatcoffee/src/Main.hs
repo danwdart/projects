@@ -1,8 +1,6 @@
 {-# LANGUAGE DeriveAnyClass    #-}
-{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards   #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
 module Main where
