@@ -1,5 +1,3 @@
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE UnicodeSyntax  #-}
 module Main where
 
 import           Control.Monad
