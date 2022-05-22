@@ -102,6 +102,7 @@ library
     Sequences
     Shape
     StringToInteger
+    TypeError
     Vec
     Wave
 
