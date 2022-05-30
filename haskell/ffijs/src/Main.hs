@@ -1,15 +1,15 @@
+{-# LANGUAGE CPP           #-}
 {-# LANGUAGE JavaScriptFFI #-}
-{-# LANGUAGE CPP     #-}
 
 module Main where
 
-import Foreign.C ( CString, newCString, peekCString )
-import Control.Monad ( (>=>) )
+import           Control.Monad              ((>=>))
+import           Foreign.C                  (CString, newCString, peekCString)
 
 #ifdef DYNAMIC_LIBRARY
 
-import GHC.Ptr
-import System.Posix.DynamicLinker
+import           GHC.Ptr
+import           System.Posix.DynamicLinker
 
 foreign import javascript "dynamic" mkData :: FunPtr CString -> CString -- pure?
 foreign import javascript "dynamic" mkIO :: FunPtr (IO ()) -> IO ()

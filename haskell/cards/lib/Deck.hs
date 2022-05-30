@@ -1,7 +1,7 @@
 
 module Deck where
 
-import Card
+import           Card
 
 newtype Deck a = Deck {
     getDeck :: [a]

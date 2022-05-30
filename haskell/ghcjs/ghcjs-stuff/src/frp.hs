@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 -- import Control.Monad
 --import Control.Monad.IO.Class (MonadIO(..))
 -- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)

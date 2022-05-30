@@ -1,7 +1,7 @@
-{-# LANGUAGE DataKinds         #-}
-{-# LANGUAGE DeriveAnyClass    #-}
-{-# LANGUAGE DerivingStrategies    #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DataKinds          #-}
+{-# LANGUAGE DeriveAnyClass     #-}
+{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE OverloadedStrings  #-}
 
 import           Control.Monad.IO.Class
 import           Data.Aeson

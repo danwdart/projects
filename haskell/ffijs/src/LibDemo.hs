@@ -2,8 +2,8 @@
 
 module LibDemo where
 
-import Control.Monad ( (>=>) )
-import Foreign.C ( CString, newCString, peekCString )
+import           Control.Monad ((>=>))
+import           Foreign.C     (CString, newCString, peekCString)
 
 -- This is just a function that returns some data. There's probably no plain string.
 dataraw :: Int

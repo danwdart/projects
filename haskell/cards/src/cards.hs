@@ -3,6 +3,7 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds -Wwarn #-}
 
+import           Card
 import           Control.Monad
 import qualified Control.Monad.HT           as HT (nest)
 import           Control.Monad.Random.Class
@@ -10,11 +11,10 @@ import           Data.Bifoldable
 import           Data.Bifunctor
 import qualified Data.Map                   as M
 import qualified Data.Set                   as S
+import           Deck
+import           Enum
+import           Ordering
 import           System.Random.Shuffle
-import Enum
-import Card
-import Deck
-import Ordering
 
 (...) ∷ (b → c) → (a1 → a2 → b) → a1 → a2 → c
 (...) = (.) . (.)
@@ -96,7 +96,7 @@ adjCards (Deck c) = Deck . fmap getBySuitThenValue. pairsToList . fmap (bimap By
 extractAdj ∷ MonadRandom m ⇒ DeckStd → m DeckStd
 extractAdj p = do
     p' <- Deck <$> shuffleM (getDeck p)
-    pure $ Deck $ filterOutList (getDeck (adjCards p')) (getDeck p')
+    pure . Deck $ filterOutList (getDeck (adjCards p')) (getDeck p')
 
 magicNumbers ∷ MonadRandom m ⇒ m Int
 magicNumbers = length . getDeck <$> HT.nest 30 extractAdj pack

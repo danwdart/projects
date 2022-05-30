@@ -48,7 +48,7 @@ union :: Eq a => Set a -> Set a -> Set a
 union a Nil = a
 union Nil a = a
 union (x :> xs) ys
-        | (x `Data.Set.Ordered.elem` ys) = union xs ys
+        | x `Data.Set.Ordered.elem` ys = union xs ys
         | otherwise = x :> union xs ys
 
 -- insert :: Ord a => a -> Set a -> Set a

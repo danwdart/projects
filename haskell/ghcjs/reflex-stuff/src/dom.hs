@@ -1,6 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecursiveDo       #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
 import           Reflex.Dom

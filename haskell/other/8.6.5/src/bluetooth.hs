@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 import           Network.Bluetooth
 
 main ∷ IO ()

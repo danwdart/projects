@@ -1,4 +1,3 @@
-{-# LANGUAGE UnicodeSyntax #-}
 
 import           JSDOM
 import           JSDOM.CanvasPath

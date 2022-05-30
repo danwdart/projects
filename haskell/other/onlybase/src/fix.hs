@@ -1,5 +1,4 @@
 {-# LANGUAGE RecursiveDo #-}
-{-# LANGUAGE UnicodeSyntax #-}
 
 import           Control.Monad.Fix
 

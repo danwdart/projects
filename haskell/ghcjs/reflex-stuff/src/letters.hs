@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedLists   #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecursiveDo       #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-local-binds -Wno-unused-top-binds #-}
 
 import           Clay           as C

@@ -1,4 +1,4 @@
-{-# LANGUAGE FlexibleContexts     #-}
+{-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE TypeFamilies     #-}
 
 import           Control.Monad.IO.Class

@@ -1,5 +1,4 @@
 {-# LANGUAGE JavaScriptFFI #-}
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds -Wno-unused-imports #-}
 
 import           Data.JSString         ()

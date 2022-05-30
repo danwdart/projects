@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 
 import           HGamer3D
 import           System.Clock

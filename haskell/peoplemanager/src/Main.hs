@@ -46,7 +46,7 @@ makePerson = do
     -- TODO combinator for monads to records - seq? sig: m a -> m b -> (a -> b -> m c) -> m c etc.
     -- maybe it's https://hackage.haskell.org/package/monad-state-0.2.0.3/docs/Control-Monad-Record.html ?
     -- TODO unzip?
-    [name, city, country] <- sequence $ generateND <$> [FN.name, FA.city, FA.country]
+    [name, city, country] <- mapM generateND [FN.name, FA.city, FA.country]
     uuid <- toText <$> nextRandom
     dob <- ModifiedJulianDay <$> randomRIO (20000, 50000)
     pure Person {

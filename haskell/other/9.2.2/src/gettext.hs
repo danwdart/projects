@@ -19,7 +19,7 @@ msgfmt --output-file=i18n/en_US/LC_MESSAGES/gettext.mo i18n/en_US.po
 main :: IO ()
 main = do
     let __ = getText
-    
+
     _ <- setLocale LC_ALL (Just "")
     _ <- bindTextDomain "gettext" (Just "i18n")
     _ <- textDomain (Just "gettext")
@@ -27,12 +27,12 @@ main = do
     putStrLn =<< __ "What is your name?"
     putStr "> "
     name <- getLine
-    putStrLn =<< (\s -> printf s name) <$> (__ "Hello, %s!")
-    putStrLn =<< printf <$> (__ "What is your favourite colour?")
+    putStrLn . (`printf` name) =<< __ "Hello, %s!"
+    putStrLn . printf =<< __ "What is your favourite colour?"
     putStr "> "
     colour <- getLine
-    putStrLn =<< (\s -> printf s colour) <$> (__ "I see. So, %s is your favourite colour. Interesting.")
-    putStrLn =<< printf <$> (__ "And finally, what do you like to do as a hobby?")
+    putStrLn . (`printf` colour) =<< __ "I see. So, %s is your favourite colour. Interesting."
+    putStrLn . printf =<< __ "And finally, what do you like to do as a hobby?"
     hobby <- getLine
-    putStrLn =<< (\s -> printf s hobby) <$> (__ "I get it! You like %s.")
-    putStrLn =<< printf <$> (__ "That's all! I hope you enjoyed my survey.")
+    putStrLn . (`printf` hobby) =<< __ "I get it! You like %s."
+    putStrLn . printf =<< __ "That's all! I hope you enjoyed my survey."

@@ -2,16 +2,16 @@
 
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
 
+import           Card
 import           Control.Monad              (replicateM)
 import           Control.Monad.Random.Class
 import           Data.Bifunctor
 import           Data.Function
 import qualified Data.Map                   as M
+import           Deck
+import           Suit.Unbounded
 import           System.Random.Shuffle
-import Card
-import Deck
-import Suit.Unbounded
-import Value.Unbounded
+import           Value.Unbounded
 
 main ∷ IO ()
 main = pure ()

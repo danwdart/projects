@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 
 import qualified Data.ByteString.Lazy.Char8       as BSL
 

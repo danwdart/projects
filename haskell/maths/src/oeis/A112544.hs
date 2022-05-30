@@ -4,7 +4,7 @@ import           NumList
 
 -- A112544
 bigList ∷ [Int]
-bigList = concat $ toNumList <$> [2..20]
+bigList = concatMap toNumList [2..20]
 
 triangleList ∷ String
 triangleList = unlines . fmap show $ (toNumList <$> [2..40])

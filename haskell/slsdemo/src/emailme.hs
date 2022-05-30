@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 import           AWSLambda
 import           Control.Lens
 import           Data.Aeson

@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 
 import           Network.HaskellNet.SMTP
 

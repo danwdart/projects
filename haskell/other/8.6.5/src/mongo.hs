@@ -1,6 +1,5 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE OverloadedStrings    #-}
-{-# LANGUAGE UnicodeSyntax        #-}
 
 -- import Control.Monad.Trans (liftIO)
 

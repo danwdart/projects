@@ -1,5 +1,5 @@
 module PrintAll where
-    
+
 class PrintAllType t where
     printAll' :: [String] → t
 

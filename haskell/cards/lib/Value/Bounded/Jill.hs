@@ -1,10 +1,11 @@
-{-# LANGUAGE LambdaCase, PatternSynonyms #-}
+{-# LANGUAGE LambdaCase      #-}
+{-# LANGUAGE PatternSynonyms #-}
 
 -- With some help from: https://www.youtube.com/watch?v=SPC_R5nwFqo
 
 module Value.Bounded.Jill where
 
-import Symbol
+import           Symbol
 import qualified Value.Bounded.Number as N
 
 -- >>> map show [minBound..maxBound :: Value]
@@ -17,37 +18,37 @@ instance Bounded Value where
 
 instance Enum Value where
     toEnum = \case
-        0 -> Ace
-        1 -> Two
-        2 -> Three
-        3 -> Four
-        4 -> Five
-        5 -> Six
-        6 -> Seven
-        7 -> Eight
-        8 -> Nine
-        9 -> Ten
+        0  -> Ace
+        1  -> Two
+        2  -> Three
+        3  -> Four
+        4  -> Five
+        5  -> Six
+        6  -> Seven
+        7  -> Eight
+        8  -> Nine
+        9  -> Ten
         10 -> Jack
         11 -> Jill
         12 -> Queen
         13 -> King
-        _ -> error "toEnum: out of bounds"
+        _  -> error "toEnum: out of bounds"
 
     fromEnum = \case
-        Ace -> 0
-        Two -> 1
+        Ace   -> 0
+        Two   -> 1
         Three -> 2
-        Four -> 3
-        Five -> 4
-        Six -> 5
+        Four  -> 3
+        Five  -> 4
+        Six   -> 5
         Seven -> 6
         Eight -> 7
-        Nine -> 8
-        Ten -> 9
-        Jack -> 10
-        Jill -> 11
+        Nine  -> 8
+        Ten   -> 9
+        Jack  -> 10
+        Jill  -> 11
         Queen -> 12
-        King -> 13
+        King  -> 13
 
 pattern Two :: Value
 pattern Two = Number N.Two
@@ -78,19 +79,19 @@ pattern Ten = Number N.Ten
 
 instance Symbol Value where
     symbol = \case
-        Ace -> "A"
-        Two -> "2"
+        Ace   -> "A"
+        Two   -> "2"
         Three -> "3"
-        Four -> "4"
-        Five -> "5"
-        Six -> "6"
+        Four  -> "4"
+        Five  -> "5"
+        Six   -> "6"
         Seven -> "7"
         Eight -> "8"
-        Nine -> "9"
-        Ten -> "10"
-        Jack -> "J"
-        Jill -> "L"
+        Nine  -> "9"
+        Ten   -> "10"
+        Jack  -> "J"
+        Jill  -> "L"
         Queen -> "Q"
-        King -> "K"
+        King  -> "K"
 
 {-# COMPLETE Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Jill, Queen, King #-}

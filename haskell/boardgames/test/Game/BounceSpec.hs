@@ -1,4 +1,4 @@
-{-# LANGUAGE TemplateHaskell   #-}
+{-# LANGUAGE TemplateHaskell #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-orphans #-}
 
 module Game.BounceSpec where

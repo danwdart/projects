@@ -1,6 +1,5 @@
 {-# LANGUAGE JavaScriptFFI     #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE UnicodeSyntax     #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
 
 {-

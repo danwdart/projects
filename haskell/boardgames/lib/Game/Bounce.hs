@@ -1,4 +1,4 @@
-{-# LANGUAGE LambdaCase    #-}
+{-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC
     -Wno-unused-matches
     -Wno-unused-top-binds
