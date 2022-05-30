@@ -8,7 +8,7 @@ cli ∷ IO ()
 cli = do
     putStr "default@arsvx:~$ "
     line <- getLine
-    if "q" == line then putStrLn "bye" else do
+    if "q" == line || "\x04" == line then putStrLn "bye" else do
         putStrLn $ process line
         cli
 
