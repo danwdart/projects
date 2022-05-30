@@ -41,12 +41,12 @@ let
       websockets-snap = lib.doJailbreak super.websockets-snap;
       # Atm Nix breaks this.
       # haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
-      other922 = lib.dontHaddock (self.callCabal2nix "other922" (gitignore ./.) {});
+      other923 = lib.dontHaddock (self.callCabal2nix "other923" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other922
+      p.other923
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -55,11 +55,11 @@ let
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other922);
+  exe = lib.justStaticExecutables (myHaskellPackages.other923);
 in
 {
   inherit shell;
   inherit exe;
   inherit myHaskellPackages;
-  other922 = myHaskellPackages.other922;
+  other923 = myHaskellPackages.other923;
 }
