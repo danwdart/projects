@@ -5,7 +5,7 @@ runCommand "uefi" {
         pkgsStatic.libffi
         pkgsStatic.gmp
         musl
-        pkgsMusl.haskell.compiler.ghc922
+        pkgsMusl.haskell.compiler.ghc923
         cabal-install
     ];
 } ""
