@@ -1,5 +1,4 @@
-# with import <unstable> {};
-with import <unstable> {};
+with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {};
 runCommand "ffi" {
     buildInputs = [
         pkgsStatic.gcc
