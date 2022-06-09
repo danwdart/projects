@@ -2,20 +2,19 @@
 
 import           Control.Exception
 import           Control.Monad.Fail
-import           GHC.Stack
 
 -- import System.IO
 -- now there's a try and an exception monad
 
 -- This is just for IO exceptions and not for MonadError, that'll be somewhere else
 
-tryRead ∷ HasCallStack => String → IO (Either SomeException String)
+tryRead ∷ String → IO (Either SomeException String)
 tryRead = try . readFile
 
-sampleIO :: HasCallStack => IO ()
+sampleIO :: IO ()
 sampleIO = throw $ userError "Bob"
 
-failer :: HasCallStack => IO String
+failer :: IO String
 failer = fail "Bob"
 
 tryer :: IO (Either SomeException String)
