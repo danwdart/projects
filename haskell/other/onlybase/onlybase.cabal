@@ -66,6 +66,7 @@ library
   exposed-modules:
     Cipher
     Control.Monad.Free
+    Data.Either.Collect
     Data.Email
     Data.Name
     Data.Password
