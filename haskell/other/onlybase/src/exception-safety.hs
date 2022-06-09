@@ -1,7 +1,6 @@
 {-# LANGUAGE DeriveAnyClass #-}
 
 import           Control.Exception
-import           Control.Monad.Fail
 
 -- import System.IO
 -- now there's a try and an exception monad
