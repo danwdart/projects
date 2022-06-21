@@ -388,6 +388,10 @@ executable texttodeccrazy
   import: shared-properties-safe
   main-is:             textToDecCrazy.hs
 
+executable tinylang
+  import: shared-properties-safe
+  main-is:             tinylang.hs
+
 executable trip
   import: shared-properties-safe
   main-is:             trip.hs
