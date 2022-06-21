@@ -13,7 +13,7 @@ common shared-properties
   build-depends:       base >= 4.12 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
-  cpp-options:         -DGHCJS_BROWSE
+  cpp-options:         -DGHCJS_BROWSER
 
 executable dom
   import: shared-properties
