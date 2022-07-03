@@ -122,6 +122,11 @@ executable oeisA332049
   import: shared-properties
   main-is:             oeis/A332049.hs
 
+executable oeisA355467
+  import: shared-properties
+  main-is:             oeis/A355467.hs
+  build-depends:       base >= 4.16 && < 5, maths, primes
+
 executable ai
   import: shared-properties
   main-is:             ai.hs
