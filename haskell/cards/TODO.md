@@ -12,3 +12,4 @@ more with egyptian-fractions, numbers, FixedPoint-simple
 mtdivergence MacLaurin Taylor Divergence Test
 neural
 sumdiff-lucaslike
+split out libs

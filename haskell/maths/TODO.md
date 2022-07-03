@@ -12,3 +12,4 @@ more with egyptian-fractions, numbers, FixedPoint-simple
 mtdivergence MacLaurin Taylor Divergence Test
 neural
 sumdiff-lucaslike
+put the ghcjs graph thing on and use this as a lib?
