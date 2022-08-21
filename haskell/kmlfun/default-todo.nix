@@ -1,5 +1,5 @@
 { nixpkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc923" }:
+  compiler ? "ghc924" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -35,7 +35,5 @@ let
 in
 {
   inherit shell;
-  inherit exe;
-  inherit myHaskellPackages;
-  kmlfun = myHaskellPackages.kmlfun;
+  kmlfun = lib.justStaticExecutables (myHaskellPackages.kmlfun);
 }

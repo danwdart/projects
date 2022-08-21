@@ -66,6 +66,11 @@ executable frog
   main-is:             frog.hs
   build-depends:       base >= 4.16 && < 5, random
 
+executable hangman
+  import: shared-properties
+  main-is:             hangman.hs
+  build-depends:       base >= 4.16 && < 5, MonadRandom, random
+
 executable monopoly
   import: shared-properties
   main-is:             monopoly.hs

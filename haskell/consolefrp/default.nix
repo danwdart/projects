@@ -1,6 +1,9 @@
 {
-  nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
-  haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {},
+  nixpkgs ? import <nixpkgs> {},
+  haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {
+    nixpkgs = nixpkgs;
+    compiler = compiler;
+  },
   # https://github.com/reflex-frp/patch/issues/42
   compiler ? "ghc902"
 }:
@@ -32,7 +35,5 @@ let
 in
 {
   inherit shell;
-  inherit exe;
-  inherit myHaskellPackages;
-  consolefrp = myHaskellPackages.consolefrp;
+  consolefrp = lib.justStaticExecutables (myHaskellPackages.consolefrp);
 }

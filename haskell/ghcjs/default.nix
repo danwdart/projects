@@ -1,5 +1,5 @@
 { system ? builtins.currentSystem,
-  nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
+  nixpkgs ? import <nixpkgs> {},
   lib ? nixpkgs.pkgs.haskell.lib }:
 (import ./external/reflex-platform {
   inherit system;
