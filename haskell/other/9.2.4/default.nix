@@ -1,7 +1,10 @@
 {
-  nixpkgs ? import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {},
-  haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {},
-  compiler ? "ghc923"
+  nixpkgs ? import <nixpkgs> {},
+  haskell-tools ? import (builtins.fetchTarball "https://github.com/danwdart/haskell-tools/archive/master.tar.gz") {
+    nixpkgs = nixpkgs;
+    compiler = compiler;
+  },
+  compiler ? "ghc924"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -41,12 +44,12 @@ let
       websockets-snap = lib.doJailbreak super.websockets-snap;
       # Atm Nix breaks this.
       # haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
-      other923 = lib.dontHaddock (self.callCabal2nix "other923" (gitignore ./.) {});
+      other924 = lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other923
+      p.other924
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -55,11 +58,9 @@ let
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other923);
+  exe = lib.justStaticExecutables (myHaskellPackages.other924);
 in
 {
   inherit shell;
-  inherit exe;
-  inherit myHaskellPackages;
-  other923 = myHaskellPackages.other923;
+  other924 = lib.justStaticExecutables (myHaskellPackages.other924);
 }

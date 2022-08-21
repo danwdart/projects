@@ -1,8 +1,6 @@
 -- Functional
 
-import Control.Applicative
 import GHC.Read
-import Text.ParserCombinators.ReadPrec
 import Text.Read
 import Text.Read.Lex
 
@@ -10,8 +8,8 @@ data Program = Void | Val Int
 
 instance Read Program where
     readPrec = do
-        lex <- lexP
-        case lex of
+        lex' <- lexP
+        case lex' of
             Number a -> case numberToInteger a of
                 Just n -> pure $ Val (fromInteger n)
                 Nothing -> pure Void
@@ -25,9 +23,9 @@ program :: String
 program = "1"
 
 interpret :: String -> IO ()
-interpret program = do
+interpret program' = do
     putStrLn "Interpreting"
-    let programAST = read program
+    let programAST = read program' :: Program
     interpretAST programAST
 
 main :: IO ()

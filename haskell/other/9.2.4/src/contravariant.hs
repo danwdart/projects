@@ -87,6 +87,6 @@ printPerson = personToTuple
 
 main ∷ IO ()
 main = do
-    print $ getOp ((++"b") >$< Op show) "Bob"
-    print $ getPredicate ((+1) >$< Predicate (==2)) 1
+    print $ getOp ((++ "b") >$< Op show) "Bob"
+    print $ getPredicate ((+ 1) >$< Predicate (== 2)) 1
     putStrLn . runPrinter printPerson $ Person "Dan" 30 ["Babby"]

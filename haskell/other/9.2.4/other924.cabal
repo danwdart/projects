@@ -1,6 +1,6 @@
 cabal-version:       3.0
 -- Newer versions complain
-name:                other922
+name:                other924
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -173,7 +173,7 @@ executable free-monads
 -- executable gd
 --   import: shared-properties-safe
 --   main-is:             gd.hs
---   build-depends:       base >= 4.16 && < 5, gd, other922
+--   build-depends:       base >= 4.16 && < 5, gd, other924
 
 executable gettext
   import: shared-properties-safe
@@ -244,7 +244,8 @@ executable profunctor
 executable profunctor-transformers
   import: shared-properties-safe
   main-is:             profunctor-transformers.hs
-  build-depends:       base >= 4.16 && < 5, mtl, profunctors, transformers
+  build-depends:       base >= 4.16 && < 5, mtl, profunctors
+  -- , transformers
 
 executable random
   import: shared-properties-safe
@@ -336,7 +337,7 @@ executable wikidata
 executable xpath
   import: shared-properties-safe
   main-is:             xpath.hs
-  build-depends:       base >= 4.16 && < 5, safe-foldable, other922
+  build-depends:       base >= 4.16 && < 5, safe-foldable, other924
 
 test-suite test
   type:                exitcode-stdio-1.0
