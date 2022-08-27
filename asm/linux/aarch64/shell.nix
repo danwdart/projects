@@ -1,8 +1,9 @@
 with import <nixpkgs> {};
-runCommand "asm-linux-x86_64" {
+runCommand "asm-linux-aarch64" {
     buildInputs = [
       #gcc
       gnumake
       nasm
+      pkgsCross.aarch64-multiplatform.pkgsBuildTarget.gcc
     ];
 } ""
