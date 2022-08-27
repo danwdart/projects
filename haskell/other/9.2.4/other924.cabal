@@ -247,6 +247,11 @@ executable profunctor-transformers
   build-depends:       base >= 4.16 && < 5, mtl, profunctors
   -- , transformers
 
+executable propagators
+  import: shared-properties-safe
+  main-is:             propagators.hs
+  build-depends:       base >= 4.16 && < 5, propagators
+
 executable random
   import: shared-properties-safe
   main-is:             random.hs

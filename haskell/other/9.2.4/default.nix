@@ -42,6 +42,10 @@ let
       }) {}));
       snap-server = lib.doJailbreak super.snap-server;
       websockets-snap = lib.doJailbreak super.websockets-snap;
+      propagators = self.callCabal2nix "propagators" (builtins.fetchGit {
+        url = "https://github.com/ekmett/propagators.git";
+        rev = "6de416c68d7970d734dc139079337a20b078e45c";
+      }) {};
       # Atm Nix breaks this.
       # haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
       other924 = lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {});
