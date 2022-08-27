@@ -1,5 +1,5 @@
 with import <nixpkgs> {};
-runCommand "demo" {
+runCommand "cross-windows-x86_64" {
     buildInputs = [
       pkgsCross.mingwW64.pkgsBuildTarget.gcc
     ];
