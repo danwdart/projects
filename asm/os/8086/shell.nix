@@ -1,8 +1,9 @@
 with import <nixpkgs> {};
-runCommand "asm-linux-x86_64" {
+runCommand "asm-os-8086" {
     buildInputs = [
-      gcc
+      #gcc
       gnumake
       nasm
+      qemu
     ];
 } ""

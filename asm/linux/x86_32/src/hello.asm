@@ -1,6 +1,6 @@
 section .text
-global mystart                ; make the main function externally visible
-mystart:
+global _start                ; make the main function externally visible
+_start:
     push dword mylen          ; message length                           
     push dword mymsg          ; message to write
     push dword 1              ; file descriptor value

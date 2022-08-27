@@ -1,6 +1,7 @@
 with import <nixpkgs> {};
-runCommand "asm-linux-x86_64" {
+runCommand "asm-macOS-x86_64" {
     buildInputs = [
+      darling-dmg
       gcc
       gnumake
       nasm
