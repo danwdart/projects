@@ -209,6 +209,11 @@ executable lucas
   import: shared-properties
   main-is:             lucas.hs
 
+executable mirror
+  import: shared-properties
+  build-depends:       base >= 4.16 && < 5, digits
+  main-is:             mirror.hs
+
 executable mod
   import: shared-properties
   main-is:             mod.hs
