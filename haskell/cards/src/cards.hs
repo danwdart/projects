@@ -4,13 +4,12 @@
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds -Wwarn #-}
 
 import           Card
-import           Control.Monad
 import qualified Control.Monad.HT           as HT (nest)
 import           Control.Monad.Random.Class
-import           Data.Bifoldable
 import           Data.Bifunctor
+import           Data.List.Extra
 import qualified Data.Map                   as M
-import qualified Data.Set                   as S
+import           Data.Statistics
 import           Deck
 import           Enum
 import           Ordering

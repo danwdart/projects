@@ -1,5 +1,9 @@
 module Data.Statistics where
 
+import Control.Monad.Random
+import Data.Bifunctor
+import Data.Map as M
+
 -- combinator
 countFreq ∷ (Traversable t, Num n, Ord a) ⇒ t a → M.Map a n
 countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) M.empty

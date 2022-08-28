@@ -26,10 +26,13 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+  build-depends:       base >= 4.16 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
   ghc-options:         -Wall -Werror -haddock
   ghcjs-options:       -dedupe
-  exposed-modules:     Enum
+  exposed-modules:     Data.Enum.Extra
+                     , Data.List.Extra
+                     , Data.Statistics
+                     , Enum
                      , Suit.Bounded.Standard
                      , Suit.Class
                      , Suit.Unbounded
