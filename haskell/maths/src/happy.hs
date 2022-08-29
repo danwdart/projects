@@ -2,14 +2,10 @@
 
 import           Data.Digits
 import           Data.List
+import           Data.List.Iterate
 import           Debug.Trace
 
 {-# ANN module "HLint: ignore" #-}
-
-iterateUntil :: (a -> Bool) -> (a -> a) -> a -> [a]
-iterateUntil p f x
-    | p x       = [x]
-    | otherwise = x : iterateUntil p f (f x)
 
 answers :: [[Int]]
 answers = happyLoop <$> [1..100]

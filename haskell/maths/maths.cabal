@@ -29,7 +29,8 @@ library
   build-depends:       base >= 4.16 && < 5
   ghc-options:         -Wall -Werror -haddock
   ghcjs-options:       -dedupe
-  exposed-modules:     Data.List.Nub
+  exposed-modules:     Data.List.Iterate
+                     , Data.List.Nub
                      , Data.List.Repeat
                      , Sequence.Fibonacci
                      , Sequence.Lucas
