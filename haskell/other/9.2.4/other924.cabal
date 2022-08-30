@@ -328,6 +328,10 @@ executable wai
   main-is:             wai.hs
   build-depends:       base >= 4.16 && < 5, http-types, wai, warp
 
+executable webtex
+  import: shared-properties-unsafe
+  main-is:             webtex.hs
+  build-depends:       base >= 4.16 && < 5, ansi-terminal
 
 executable wikidata
   import: shared-properties-unsafe
