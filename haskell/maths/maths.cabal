@@ -26,19 +26,21 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16 && < 5, digits, primes
   ghc-options:         -Wall -Werror -haddock
   ghcjs-options:       -dedupe
   exposed-modules:     Data.List.Iterate
                      , Data.List.Nub
                      , Data.List.Repeat
                      , Sequence.Fibonacci
+                     , Sequence.HalveOrReverse
                      , Sequence.Lucas
                      , Sequence.SumOf
                      , Collatz
                      , Frobenius
                      , NumList
                      , Period
+                     , Semiprimes
                      , Ulam
 
 -- euler
@@ -337,7 +339,7 @@ executable raw
 executable semiprime
   import: shared-properties
   main-is:             primefun/semiprime.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16 && < 5, maths, primes, tabular
 
 test-suite maths-test
   import: shared-properties
