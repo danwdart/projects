@@ -36,6 +36,20 @@ library
                      , Suit.Bounded.Standard
                      , Suit.Class
                      , Suit.Unbounded
+                     -- todo these could be a depended library
+                     , Uno.Action.Bounded
+                     , Uno.Action.Class
+                     , Uno.Action.Unbounded
+                     , Uno.Colour.Bounded
+                     , Uno.Colour.Class
+                     , Uno.Colour.Unbounded
+                     , Uno.Value.Bounded
+                     , Uno.Value.Class
+                     , Uno.Value.Unbounded
+                     , Uno.Wild.Bounded
+                     , Uno.Wild.Class
+                     , Uno.Wild.Unbounded
+                     , Uno.Card
                      , Value.Bounded.Number
                      , Value.Bounded.Jill
                      , Value.Bounded.Standard
@@ -61,6 +75,11 @@ executable demo
 executable ohsol
   import: shared-properties
   main-is:             ohsol.hs
+  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
+  
+executable uno
+  import: shared-properties
+  main-is:             uno.hs
   build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
 
 test-suite cards-test
