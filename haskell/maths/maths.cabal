@@ -156,6 +156,12 @@ executable cardord
   import: shared-properties
   main-is:             cardord.hs
 
+executable cells-aa
+  import: shared-properties
+  main-is:             cells-aa.hs
+  build-depends:       base >= 4.16 && < 5, digits
+-- gloss
+
 executable collatz
   import: shared-properties
   main-is:             collatz.hs
@@ -203,10 +209,11 @@ executable kaprekar
   import: shared-properties
   main-is:             kaprekar.hs
 
-executable localgraph
-  import: shared-properties
-  main-is:             localgraph.hs
-  build-depends:       base >= 4.16 && < 5, fgl, graphite, graphviz, hashable, text
+-- Disabled because of https://github.com/alx741/graphite/issues/7
+-- executable localgraph
+--   import: shared-properties
+--   main-is:             localgraph.hs
+--   build-depends:       base >= 4.16 && < 5, fgl, graphite, graphviz, hashable, text
 
 executable lucas
   import: shared-properties
