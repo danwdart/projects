@@ -291,6 +291,10 @@ executable prodtosingle
   import: shared-properties
   main-is:             prodtosingle.hs
 
+executable rootrationalapprox
+  import: shared-properties
+  main-is:             rootrationalapprox.hs
+
 executable sandpiles
   import: shared-properties
   main-is:             sandpiles.hs
