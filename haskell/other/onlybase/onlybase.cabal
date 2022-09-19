@@ -230,6 +230,11 @@ executable enum
   import: shared-properties-safe
   main-is:             enum.hs
 
+
+executable errors
+  import: shared-properties-safe
+  main-is:             errors.hs
+
 executable evidence
   import: shared-properties-safe
   main-is:             evidence.hs
