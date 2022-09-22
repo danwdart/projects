@@ -11,12 +11,14 @@ import           System.Random.Shuffle
 import           Value.Unbounded
 
 main ∷ IO ()
-main = pure ()
+main = do
+    game <- playUntilEnd <$> initialGameState
+    print game
 
 type Current = DeckUnbounded
 type InPlay = DeckUnbounded
 type Discard = DeckUnbounded
-type Game = (Current, InPlay, Discard)
+type Game = (Current, InPlay, Discard) -- todo data / iter
 data GameState = InProgress | Won | Lost deriving (Eq, Show)
 data GameMove = TakeOne | DiscardTwo | DiscardFour | End deriving (Eq, Show)
 

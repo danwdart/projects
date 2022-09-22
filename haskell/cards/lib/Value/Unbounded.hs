@@ -2,7 +2,7 @@ module Value.Unbounded where
 
 import           Symbol
 
-newtype Value = Value Int deriving (Eq, Ord)
+newtype Value = Value Int deriving (Eq, Ord, Show)
 
 instance Symbol Value where
     symbol (Value 13) = "K"
