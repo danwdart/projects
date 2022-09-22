@@ -68,6 +68,9 @@ library
     Control.Monad.Free
     Data.Either.Collect
     Data.Email
+    Data.ErrorBars
+    Data.ListIndex
+    Data.Measure
     Data.Name
     Data.Password
     Data.User
