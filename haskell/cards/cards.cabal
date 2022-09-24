@@ -77,6 +77,11 @@ executable ohsol
   main-is:             ohsol.hs
   build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
   
+executable primesnap
+  import: shared-properties
+  main-is:             primesnap.hs
+  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, primes, random-shuffle, utility-ht
+  
 executable uno
   import: shared-properties
   main-is:             uno.hs
