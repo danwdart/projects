@@ -6,8 +6,8 @@ CFLAGS_dlctohs_withhelper = -DDYNAMIC_LIBRARY -ldl -DHELPER_MODULE
 
 CFLAGS_dlhstoc_library = -shared -Wl,-shared -fPIC
 
-CFLAGS_ffictohs_object = -I$(shell ghc --print-libdir)/include
-CFLAGS_ffictohs_static_object = -I$(shell ghc --print-libdir)/include
+CFLAGS_ffictohs_object = -I$(shell ghc --print-libdir)/rts/include
+CFLAGS_ffictohs_static_object = -I$(shell ghc --print-libdir)/rts/include
 
 CFLAGS_ffihstoc_object =
 CFLAGS_ffihstoc_static_object =
