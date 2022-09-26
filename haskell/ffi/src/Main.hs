@@ -18,6 +18,8 @@ foreign import capi "dynamic" mkAdd :: FunPtr (Int -> Int) -> (Int -> Int)
 
 #else
 
+foreign import capi "libdemo.h value question" question :: CString
+foreign import capi "libdemo.h value answer" answer :: Int
 foreign import capi "libdemo.h data" datas :: CString
 foreign import capi "libdemo.h io" io :: IO ()
 foreign import capi "libdemo.h fn" fn :: CString -> IO CString
@@ -25,8 +27,13 @@ foreign import capi "libdemo.h add" add :: Int -> Int
 
 #endif
 
-run :: CString -> IO () -> (CString -> IO CString) -> (Int -> Int) -> IO ()
-run datas' io' fn' add' = do
+run :: CString -> Int -> CString -> IO () -> (CString -> IO CString) -> (Int -> Int) -> IO ()
+run question' answer' datas' io' fn' add' = do
+    question'' <- peekCString question'
+    putStrLn question''
+
+    print answer'
+
     dataS <- peekCString datas'
     putStrLn dataS
 
@@ -47,5 +54,7 @@ main = do
         io <- mkIO <$> dlsym libHandler "io"
         fn <- mkFn <$> dlsym libHandler "fn"
         add <- mkAdd <$> dlsym libHandler "add"
+        question <- newCString "Can't yet import static value from dynamic library"
+        let answer = 0
 #endif
-        run datas io fn add
+        run question answer datas io fn add

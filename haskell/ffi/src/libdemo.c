@@ -1,4 +1,9 @@
 #include <stdio.h>
+#include "libdemo.h"
+
+char* question = "What is the answer to life, the universe and everything?";
+
+int answer = 42;
 
 extern char* data(void) {
     return "Data";
