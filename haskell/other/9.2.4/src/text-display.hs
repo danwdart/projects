@@ -1,7 +1,28 @@
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE DataKinds, DerivingVia, OverloadedStrings, Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
+-- https://hackage.haskell.org/package/text-display-0.0.3.0/docs/Data-Text-Display.html
+
+import Data.Text
+import Data.Text.IO as TIO
+import Data.Text.Lazy.Builder
 import Data.Text.Display
 
+newtype K = K { s :: Int }
+
+newtype S = S { g :: Text }
+    deriving stock Show
+    deriving Display via (ShowInstance S)
+
+newtype P = P { p :: Text }
+    deriving Display via (OpaqueInstance "redacted" P)
+
+instance Display K where
+    displayBuilder = fromText . pack . show . s
+  
+
 main ∷ IO ()
-main = pure ()
+main = do
+    TIO.putStrLn . display $ K 1
+    TIO.putStrLn . display $ S "heh"
+    TIO.putStrLn . display $ P "aaa"
