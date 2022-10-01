@@ -34,7 +34,9 @@ library
                      , Data.List.Repeat
                      , Sequence.Fibonacci
                      , Sequence.HalveOrReverse
+                     , Sequence.LookAndSay
                      , Sequence.Lucas
+                     , Sequence.Period
                      , Sequence.SumOf
                      , Collatz
                      , Frobenius
@@ -173,7 +175,7 @@ executable diffy
 executable exact-real
   import: shared-properties
   main-is:             exact-real.hs
-  build-depends:       base >= 4.16 && < 5, numbers, cf
+  build-depends:       base >= 4.16 && < 5, maths, numbers, cf
 
 executable friendly
   import: shared-properties

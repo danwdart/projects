@@ -1,3 +1,5 @@
+module Sequence.LookAndSay where
+
 rle :: String -> [(Char, Integer)]
 rle = undefined
 
