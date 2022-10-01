@@ -12,6 +12,6 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "eslint": "^8.15.0",
-    "web-ext": "^6.8.0"
+    "web-ext": "^7.2.0"
   }
 }
