@@ -84,10 +84,11 @@ common shared-properties-nobase
 library
   import: shared-properties-lib
   hs-source-dirs:      lib
-  build-depends: base >= 4.16 && < 5, hxt, hxt-xpath
+  build-depends: base >= 4.16 && < 5
+  -- , hxt, hxt-xpath
   exposed-modules:
     Seq
-    XPath
+    -- XPath
 
 executable async
   import: shared-properties-safe
@@ -124,6 +125,11 @@ executable delay
   import: shared-properties-safe
   main-is:             delay.hs
   build-depends:       base >= 4.16 && < 5, ansi-terminal, random
+
+executable doctestme
+  import: shared-properties-safe
+  main-is:             doctestme.hs
+  build-depends:       base >= 4.16 && < 5, doctest
 
 executable effects
   import: shared-properties-unsafe
@@ -338,10 +344,10 @@ executable wikidata
   main-is:             wikidata.hs
   build-depends:       base >= 4.16 && < 5, graphql, http-client, http-client-tls, req
 
-executable xpath
-  import: shared-properties-safe
-  main-is:             xpath.hs
-  build-depends:       base >= 4.16 && < 5, safe-foldable, other924
+-- executable xpath
+--   import: shared-properties-safe
+--   main-is:             xpath.hs
+--   build-depends:       base >= 4.16 && < 5, safe-foldable, other924
 
 test-suite test
   type:                exitcode-stdio-1.0
