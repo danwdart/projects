@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-unused-matches #-}
 {-# LANGUAGE DeriveFunctor, OverloadedLists #-}
 
 module Data.ListIndex where
