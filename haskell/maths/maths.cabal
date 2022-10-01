@@ -170,6 +170,11 @@ executable diffy
   import: shared-properties
   main-is:             diffy.hs
 
+executable exact-real
+  import: shared-properties
+  main-is:             exact-real.hs
+  build-depends:       base >= 4.16 && < 5, numbers, cf
+
 executable friendly
   import: shared-properties
   main-is:             friendly.hs
