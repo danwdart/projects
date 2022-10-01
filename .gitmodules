@@ -1,3 +1,6 @@
 [submodule "haskell/ghcjs/reflex-platform"]
 	path = haskell/ghcjs/external/reflex-platform
 	url = git@github.com:reflex-frp/reflex-platform.git
+[submodule "haskell/ffijs/external/reflex-platform"]
+	path = haskell/ffijs/external/reflex-platform
+	url = git@github.com:reflex-frp/reflex-platform.git

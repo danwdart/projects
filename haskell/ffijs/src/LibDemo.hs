@@ -28,7 +28,7 @@ add :: Int -> Int
 add = (+ 42)
 
 foreign export javascript "dataraw" dataraw :: Int
-foreign export javascript "data" datas :: IO CString
+foreign export javascript "datas" datas :: IO CString
 foreign export javascript "fn" fn :: CString -> IO CString
 foreign export javascript "io" io :: IO ()
 foreign export javascript "add" add :: Int -> Int
