@@ -69,6 +69,7 @@ library
     Data.Either.Collect
     Data.Email
     Data.ErrorBars
+    Data.Functor.Multi
     Data.ListIndex
     Data.Measure
     Data.Name
@@ -154,6 +155,10 @@ executable cipher
 executable class
   import: shared-properties-safe
   main-is:             class.hs
+
+executable classifier
+  import: shared-properties-safe
+  main-is:             classifier.hs
 
 executable cli
   import: shared-properties-safe
@@ -249,6 +254,10 @@ executable exception-safety
 executable existentialism
   import: shared-properties-safe
   main-is:             existentialism.hs
+
+executable fixmap
+  import: shared-properties-safe
+  main-is:             fixmap.hs
 
 executable ffi
   import: shared-properties-unsafe
