@@ -4,8 +4,6 @@
 
 module Main where
 
-import Data.List
-
 data UserPrivilege = Guest | Normal | Admin | SuperUser deriving (Read, Show)
 
 data User = User {
@@ -107,7 +105,7 @@ deriving instance Show SomeUser
 -- userToUserWithType superUser :: UserWithType a
 --
 userToUserWithType :: User -> UserWithType a
-userToUserWithType (User userId userName userPrivilege) = UserWithType userId userName
+userToUserWithType (User userId userName _) = UserWithType userId userName
 
 -- Kind of useless...
 -- >>> evilType $ userToUserWithType normalUser
@@ -123,7 +121,7 @@ notEvilType _ = putStrLn "Nah."
 -- SomeUser (UserWithType {userWTId = 1, userWTName = "Dan"})
 --
 userToSomeUser :: User -> SomeUser
-userToSomeUser (User userId userName userPrivilege) = SomeUser $ UserWithType userId userName
+userToSomeUser (User userId userName _) = SomeUser $ UserWithType userId userName
 
 -- >>> userToWrappedUser normalUser
 -- WrappedNormalUser (UserWithType {userWTId = 1, userWTName = "Dan"})
@@ -199,10 +197,10 @@ evilW (SomeUserWitnessed user) = case userForWitnessPrivilege user of
     _ -> notEvilWitnessed user
 
 evilWitnessed :: UserForWitness 'SuperUser -> IO ()
-evilWitnessed (UserForWitness id name up) = putStrLn "Mwahaha"
+evilWitnessed (UserForWitness {}) = putStrLn "Mwahaha"
 
 notEvilWitnessed :: UserForWitness a -> IO ()
-notEvilWitnessed (UserForWitness id name up) = putStrLn "Nah."
+notEvilWitnessed (UserForWitness {}) = putStrLn "Nah."
 
 main :: IO ()
 main = pure ()

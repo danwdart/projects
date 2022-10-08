@@ -1,7 +1,9 @@
 {-# OPTIONS_GHC -Wno-unused-matches #-}
-{-# LANGUAGE DeriveFunctor, OverloadedLists #-}
+{-# LANGUAGE DeriveFunctor, OverloadedLists, ScopedTypeVariables #-}
 
 module Data.ListIndex where
+
+{- ANN module "HLint: ignore Avoid restricted function" -}
 
 -- Should probably be something for "sequential" things.
 
@@ -67,8 +69,10 @@ class WholeFunc f where
     wmap :: (a -> f a -> b) -> f a -> f b
 
 instance WholeFunc [] where
+    wmap :: forall a b. (a -> [a] -> b) -> [a] -> [b]
     wmap _ [] = []
     wmap f xs = go f xs where
+        go :: (a -> [a] -> b) -> [a] -> [b]
         go _ [] = []
         go f' (x:xs') = f' x xs : go f' xs'
 
@@ -102,10 +106,10 @@ class WholeIndexedFunctor f ix where
 
 -- very like JS forEach()
 
-lwimap :: (Enum ix, Num ix) => (a -> ix -> [a] -> b) -> [a] -> [b]
+lwimap :: forall a b ix. (Enum ix, Num ix) => (a -> ix -> [a] -> b) -> [a] -> [b]
 lwimap f xs = go f xs 0 where
     -- no type sig or make sure we match them w/ext
-    -- go :: (Enum ix, Num ix) => (a -> ix -> [a] -> b) -> [a] -> ix -> [b]
+    go :: (a -> ix -> [a] -> b) -> [a] -> ix -> [b]
     go _ [] _ = []
     go f' (x:xs') start = f' x start xs : go f' xs' (succ start)
 

@@ -10,7 +10,7 @@ newtype DBConnectionInfo = DBConnectionInfo String
     deriving Show
 
 newtype RowId = RowId Int
-    deriving Show
+    deriving (Show, Eq)
     -- deriving (Num) -- only need fromInteger so nm
 
 data DBRow = DBRow {
@@ -34,32 +34,32 @@ data NonsenseException = NonsenseException String | UnexpectedException
     deriving (Show, Exception)
 
 formatRow :: DBRow -> Either NonsenseException String
-formatRow DBRow { dbRowId = RowId rowId, dbRowName = dbRowName' }
-    | rowId == 0 = Left $ NonsenseException dbRowName'
-    | rowId == 3 = Left $ UnexpectedException
+formatRow DBRow { dbRowId = RowId _, dbRowName = dbRowName' }
+    | rowId == RowId 0 = Left $ NonsenseException dbRowName'
+    | rowId == RowId 3 = Left UnexpectedException
     | otherwise = Right $ "The row ID was " <> show rowId <> " and the row name was " <> dbRowName'
 
 data DBException = RowNotFoundException RowId | DBConnectionException DBConnectionInfo
     deriving (Show, Exception)
 
 getRow :: Int -> Either DBException DBRow
-getRow id
-    | id == 2 = Left $ RowNotFoundException (RowId 2)
-    | id == 0 = Left $ DBConnectionException dbConn
-    | otherwise = Right sampleRow { dbRowId = RowId id }
+getRow id'
+    | id' == 2 = Left $ RowNotFoundException (RowId 2)
+    | id' == 0 = Left $ DBConnectionException dbConn
+    | otherwise = Right sampleRow { dbRowId = RowId id' }
 
 data ClientException = NotFoundException Url | InternalServerError
     deriving (Show, Exception)
 
 -- TODO refactor first/second
 fetchRow :: Url -> Int -> Either ClientException String
-fetchRow url id = case getRow id of
+fetchRow url id' = case getRow id' of
     Left ex -> case ex of
-        RowNotFoundException rowId -> Left $ NotFoundException url
-        DBConnectionException dbConnInfo -> Left InternalServerError -- todo logger
+        RowNotFoundException _ -> Left $ NotFoundException url
+        DBConnectionException _ -> Left InternalServerError -- todo logger
     Right row -> case formatRow row of
         Left ex2 -> case ex2 of
-            NonsenseException dbRowName -> Left InternalServerError
+            NonsenseException _ -> Left InternalServerError
             UnexpectedException -> Left $ NotFoundException (Url "place")
         Right formatted -> Right formatted
 
