@@ -4,6 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
+  # integer-roots doesn't support ghc 9.4 because ghc-bignum < 1.3
   compiler ? "ghc924"
 }:
 let
@@ -26,6 +27,7 @@ let
       modern-uri = lib.doJailbreak super.modern-uri;
       wl-pprint-text = lib.doJailbreak super.wl-pprint-text;
       graphviz = lib.doJailbreak super.graphviz;
+      cf = lib.dontCheck (lib.markUnbroken super.cf);
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };
   };

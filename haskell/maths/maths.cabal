@@ -141,6 +141,10 @@ executable algebra
   main-is:             algebra.hs
   build-depends:       base >= 4.16 && < 5
 
+executable arbitrage
+  import: shared-properties
+  main-is:             arbitrage.hs
+
 executable babylonsqrt
   import: shared-properties
   main-is:             babylonsqrt.hs
