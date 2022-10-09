@@ -1,0 +1,366 @@
+cabal-version:       3.0
+-- Newer versions complain
+name:                other942
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/projects#readme
+license:             AGPL-3.0-only
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+
+common shared-properties-base
+  hs-source-dirs:      src
+  default-language:    GHC2021
+  default-extensions:
+    DerivingStrategies
+    UnicodeSyntax
+  ghcjs-options:       -dedupe
+
+common shared-properties-lib
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Werror
+    -haddock
+  build-depends:       base >= 4.17 && < 5
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+
+common shared-properties-unsafe
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Wno-prepositive-qualified-module
+    -Werror
+    -haddock
+    -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base >= 4.17 && < 5
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+
+common shared-properties-safe
+  import: shared-properties-unsafe
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+    Safe
+
+common shared-properties-nobase
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Wno-prepositive-qualified-module
+    -Werror
+    -haddock
+    -threaded -rtsopts -with-rtsopts=-N
+
+-- TODO: unsafe?
+library
+  import: shared-properties-lib
+  hs-source-dirs:      lib
+  build-depends: base >= 4.17 && < 5
+  -- , hxt, hxt-xpath
+  exposed-modules:
+    Seq
+    -- XPath
+
+executable async
+  import: shared-properties-safe
+  main-is:             async.hs
+  build-depends:       base >= 4.17 && < 5, async
+
+
+executable binarygame
+  import: shared-properties-unsafe
+  main-is:             binarygame.hs
+  build-depends:       base >= 4.17 && < 5, ansi-terminal, ilist, transformers
+
+executable c
+  import: shared-properties-unsafe
+  main-is:             c.hs
+  build-depends:       base >= 4.17 && < 5, inline-c
+
+executable comonads
+  import: shared-properties-safe
+  main-is:             comonads.hs
+  build-depends:       base >= 4.17 && < 5, comonad, containers
+
+executable contravariant
+  import: shared-properties-safe
+  main-is:             contravariant.hs
+  build-depends:       base >= 4.17 && < 5, contravariant
+
+executable cplusplus
+  import: shared-properties-unsafe
+  main-is:             cplusplus.hs
+  build-depends:       base >= 4.17 && < 5, inline-c-cpp
+
+executable delay
+  import: shared-properties-safe
+  main-is:             delay.hs
+  build-depends:       base >= 4.17 && < 5, ansi-terminal, random
+
+-- executable doctestme
+--   import: shared-properties-safe
+--   main-is:             doctestme.hs
+--   build-depends:       base >= 4.17 && < 5, doctest
+
+executable effects
+  import: shared-properties-unsafe
+  main-is:             effects.hs
+  build-depends:       base >= 4.17 && < 5, freer-simple
+
+executable elf
+  import: shared-properties-unsafe
+  main-is:             elf.hs
+  build-depends:       base >= 4.17 && < 5, elf, bytestring
+
+executable error-collection
+  import: shared-properties-safe
+  main-is:             error-collection.hs
+  build-depends:       base >= 4.17 && < 5, bifunctors, containers
+
+executable eventloop
+  import: shared-properties-unsafe
+  main-is:             event-loop.hs
+  build-depends:       base >= 4.17 && < 5, concurrent-extra, lifted-async
+
+-- executable fake
+--   import: shared-properties-safe
+--   main-is:             fake.hs
+--   build-depends:       base >= 4.17 && < 5, fakedata, text
+
+executable fieldTrans
+  import: shared-properties-unsafe
+  main-is:             fieldTrans.hs
+  build-depends:       base >= 4.17 && < 5, aeson, mtl
+
+executable fileformat
+  import: shared-properties-safe
+  main-is:             fileformat.hs
+  build-depends:       base >= 4.17 && < 5, binary, bytestring
+
+executable flow
+  import: shared-properties-safe
+  main-is:             flow.hs
+  build-depends:       base >= 4.17 && < 5, flow
+
+executable free-monads
+  import: shared-properties-safe
+  main-is:             free-monads.hs
+  build-depends:       base >= 4.17 && < 5, free
+
+-- executable gd
+--   import: shared-properties-safe
+--   main-is:             gd.hs
+--   build-depends:       base >= 4.17 && < 5, gd, other924
+
+executable gettext
+  import: shared-properties-safe
+  main-is:             gettext.hs
+  build-depends:       base >= 4.17 && < 5, hgettext, setlocale
+
+executable gloss
+  import: shared-properties-unsafe
+  main-is:             gloss.hs
+  build-depends:       base >= 4.17 && < 5, gloss
+
+executable glut
+  import: shared-properties-unsafe
+  main-is:             glut.hs
+  build-depends:       base >= 4.17 && < 5, GLUT
+
+executable hkd
+  import: shared-properties-unsafe
+  main-is:             hkd.hs
+  build-depends:       base >= 4.17 && < 5, barbies
+
+executable iso
+  import: shared-properties-safe
+  main-is:             iso.hs
+  build-depends:       base >= 4.17 && < 5, semigroupoids
+
+executable json
+  import: shared-properties-unsafe
+  main-is:             json.hs
+  build-depends:       base >= 4.17 && < 5, aeson, aeson-qq
+
+executable lenses
+  import: shared-properties-unsafe
+  main-is:             lenses.hs
+  build-depends:       base >= 4.17 && < 5, lens
+
+--executable linear
+--  import: shared-properties-nobase
+--  main-is:             linear.hs
+--  build-depends:       linear-base
+
+executable parsec
+  import: shared-properties-safe
+  main-is:             parsec.hs
+  build-depends:       base >= 4.17 && < 5, ansi-terminal, parsec
+
+executable parallel
+  import: shared-properties-unsafe
+  main-is:             parallel.hs
+  build-depends:       base >= 4.17 && < 5, async, parallel
+
+executable pizza
+  import: shared-properties-unsafe
+  main-is:             pizza.hs
+  build-depends:       base >= 4.17 && < 5
+                      , aeson
+                      , bytestring
+                      , GenericPretty
+                      , http-client
+                      , req
+                      , transformers
+
+executable profunctor
+  import: shared-properties-safe
+  main-is:             profunctor.hs
+  build-depends:       base >= 4.17 && < 5, profunctors
+
+executable profunctor-transformers
+  import: shared-properties-safe
+  main-is:             profunctor-transformers.hs
+  build-depends:       base >= 4.17 && < 5, mtl, profunctors
+  -- , transformers
+
+executable random
+  import: shared-properties-safe
+  main-is:             random.hs
+  build-depends:       base >= 4.17 && < 5, random
+
+executable regex
+  import: shared-properties-unsafe
+  main-is:             regex.hs
+  build-depends:       base >= 4.17 && < 5, regex-tdfa
+
+executable req
+  import: shared-properties-unsafe
+  main-is:             req.hs
+  build-depends:       base >= 4.17 && < 5, mtl, req, text
+
+executable sdl
+  import: shared-properties-unsafe
+  main-is:             sdl.hs
+  build-depends:       base >= 4.17 && < 5, OpenGL, sdl2
+  -- reflex-sdl2
+
+executable serial
+  import: shared-properties-safe
+  main-is:             serial.hs
+  build-depends:       base >= 4.17 && < 5, serial
+
+executable shell
+  import: shared-properties-unsafe
+  main-is:             shell.hs
+  build-depends:       base >= 4.17 && < 5, shell-conduit
+
+-- executable sound
+--   import: shared-properties-safe
+--   main-is:             sound.hs
+--   build-depends:       base >= 4.17 && < 5, pulseaudio, jack
+
+-- executable sql
+--   hs-source-dirs:      src
+--   main-is:             sql.hs
+--   build-depends:       base >= 4.17 && < 5, HDBC, HDBC-mysql
+
+executable sockets
+  import: shared-properties-unsafe
+  main-is:             sockets.hs
+  build-depends:       base >= 4.17 && < 5, async, bytestring, network
+
+executable tardis
+  import: shared-properties-safe
+  main-is:             tardis.hs
+  build-depends:       base >= 4.17 && < 5, tardis
+
+executable terrain
+  import: shared-properties-safe
+  main-is:             terrain.hs
+  build-depends:       base >= 4.17 && < 5, random
+
+executable text-display
+  import: shared-properties-unsafe
+  main-is:             text-display.hs
+  build-depends:       base >= 4.17 && < 5, text, text-display
+
+executable these
+  import: shared-properties-safe
+  main-is:             these.hs
+  build-depends:       base >= 4.17 && < 5, these
+
+executable unicode
+  import: shared-properties-safe
+  main-is:             unicode.hs
+  build-depends:       base >= 4.17 && < 5, mtl, base-unicode-symbols
+
+executable vector
+  import: shared-properties-unsafe
+  main-is:             vector.hs
+  build-depends:       base >= 4.17 && < 5, vector
+
+executable wai
+  import: shared-properties-unsafe
+  main-is:             wai.hs
+  build-depends:       base >= 4.17 && < 5, http-types, wai, warp
+
+executable webtex
+  import: shared-properties-safe
+  main-is:             webtex.hs
+  build-depends:       base >= 4.17 && < 5, ansi-terminal
+
+executable wikidata
+  import: shared-properties-unsafe
+  main-is:             wikidata.hs
+  build-depends:       base >= 4.17 && < 5, graphql, http-client, http-client-tls, req
+
+-- executable xpath
+--   import: shared-properties-safe
+--   main-is:             xpath.hs
+--   build-depends:       base >= 4.17 && < 5, safe-foldable, other924
+
+test-suite test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  default-language:    GHC2021
+  default-extensions:  UnicodeSyntax
+  build-depends:       base >= 4.17 && < 5, hspec, QuickCheck
+  other-modules:       TestSpec
+                     , Test2Spec
+
+--test-suite quickcheck-detailed
+--  type:                detailed-0.9
+--  hs-source-dirs:      test
+--  test-module:         MyTest
+--  build-depends:       base >= 4.17 && < 5, hspec, QuickCheck, Cabal

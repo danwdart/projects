@@ -10,11 +10,11 @@ import Data.Text.Display
 
 newtype K = K { s :: Int }
 
-newtype S = S { g :: Text }
+newtype S = S Text
     deriving stock Show
     deriving Display via (ShowInstance S)
 
-newtype P = P { p :: Text }
+newtype P = P Text
     deriving Display via (OpaqueInstance "redacted" P)
 
 instance Display K where

@@ -1,13 +1,8 @@
-{-# LANGUAGE Trustworthy #-}
-{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 module Main where
 
 import           Control.Monad
-import           Control.Monad.IO.Class
-import           Control.Monad.Trans.State
-import           Data.Bool
-import           Data.List.Index
 import           System.Console.ANSI
 import           System.IO
 

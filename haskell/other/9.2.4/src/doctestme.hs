@@ -1,9 +1,9 @@
-{-# LANGUAGE TemplateHaskell #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
+{-# LANGUAGE Unsafe, TemplateHaskell #-}
 
 module Main where
 
 import Language.Haskell.TH
-import Language.Haskell.TH.Syntax
 import Test.DocTest
 
 -- | a!

@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc924"
+  compiler ? "ghc942"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -21,8 +21,11 @@ let
       OpenGL = lib.doJailbreak super.OpenGL;
       gloss-rendering = lib.doJailbreak super.gloss-rendering;
       gloss = lib.doJailbreak super.gloss;
-      linear = self.callHackage "linear" "1.21.8" {};
       readable = lib.doJailbreak super.readable;
+      # not released on nix yet
+      req = self.callHackage "req" "3.13.0" {};
+      # template-haskell >=2.11 && <2.19
+      freer-simple = lib.doJailbreak super.freer-simple;
       sdl2 = lib.doJailbreak super.sdl2; # reflex it!
       # https://github.com/well-typed/generics-sop/pull/147
       sop-core = (lib.doJailbreak (self.callCabal2nixWithOptions "sop-core" (builtins.fetchGit {
@@ -51,7 +54,8 @@ let
       # doctest-parallel = lib.dontCheck super.doctest-parallel;
       # Atm Nix breaks this.
       # haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
-      tasty-hedgehog = lib.markUnbroken super.tasty-hedgehog;
+      # not yet released
+      ilist = lib.doJailbreak super.ilist;
       other924 = lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {});
     };
   };
