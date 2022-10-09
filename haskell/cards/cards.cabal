@@ -18,7 +18,7 @@ common shared-properties
   hs-source-dirs:      src
   default-language:    GHC2021
   default-extensions:  UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.17 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
@@ -26,7 +26,7 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+  build-depends:       base >= 4.17 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
   ghc-options:         -Wall -Werror -haddock
   ghcjs-options:       -dedupe
   exposed-modules:     Data.Enum.Extra
@@ -65,27 +65,27 @@ library
 executable cards
   import: shared-properties
   main-is:             cards.hs
-  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
 
 executable demo
   import: shared-properties
   main-is:             demo.hs
-  build-depends:       base >= 4.16 && < 5, cards
+  build-depends:       base >= 4.17 && < 5, cards
   
 executable ohsol
   import: shared-properties
   main-is:             ohsol.hs
-  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
   
 executable primesnap
   import: shared-properties
   main-is:             primesnap.hs
-  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, primes, random-shuffle, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, primes, random-shuffle, utility-ht
   
 executable uno
   import: shared-properties
   main-is:             uno.hs
-  build-depends:       base >= 4.16 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
 
 test-suite cards-test
   import: shared-properties
@@ -98,7 +98,7 @@ test-suite cards-test
   default-language:    GHC2021
   default-extensions:  UnicodeSyntax
   build-depends:
-      base >= 4.16 && < 5
+      base >= 4.17 && < 5
     , cards
     , hspec
     , hspec-core
