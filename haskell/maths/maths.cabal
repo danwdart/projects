@@ -30,6 +30,7 @@ library
   ghc-options:         -Wall -Werror -haddock
   ghcjs-options:       -dedupe
   exposed-modules:     Data.List.Iterate
+                     , Data.List.Safer
                      , Data.List.Nub
                      , Data.List.Repeat
                      , Sequence.Fibonacci
@@ -86,6 +87,16 @@ executable oeisA024702
 executable oeisA025281
   import: shared-properties
   main-is:             oeis/A025281.hs
+  build-depends:       base >= 4.16 && < 5, maths, primes
+
+executable oeisA032742
+  import: shared-properties
+  main-is:             oeis/A032742.hs
+  build-depends:       base >= 4.16 && < 5, maths, primes
+
+executable oeisA052126
+  import: shared-properties
+  main-is:             oeis/A052126.hs
   build-depends:       base >= 4.16 && < 5, maths, primes
 
 executable oeisA112544
