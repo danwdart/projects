@@ -8,3 +8,5 @@
 
 # Setup.hs
     Makefile?
+
+Structs!
