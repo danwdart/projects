@@ -12,7 +12,7 @@ import GHC.IO
 --      -> IO a
 --
 
--- >>> tweagrae
+-- Warning: RealWorld has no constructors!
 
 tweagrae :: IO ()
 tweagrae = IO $ \realWorld ->
@@ -22,9 +22,8 @@ tweagrae = IO $ \realWorld ->
                 (# _realWorld, _ #) -> case fun1 realWorld of
                     (# _, _ #) -> fun1 realWorld
 
--- There is functionally no difference in the real world here.
-main :: IO ()
-main = IO $ \realWorld ->
+otherIO :: IO ()
+otherIO = IO $ \realWorld ->
     case putStrLn "Hi" of
         IO printsHi -> case printsHi realWorld of
             (# _, _ #) -> case putStrLn "Hey" of
@@ -35,3 +34,9 @@ main = IO $ \realWorld ->
                                 IO printsInputtedStr -> case printsInputtedStr realWorld of
                                     (# _, () #) -> case printsHey realWorld of
                                         (# _, () #) -> printsHi realWorld
+
+-- There is functionally no difference in the real world here.
+main :: IO ()
+main = do
+    tweagrae
+    otherIO
