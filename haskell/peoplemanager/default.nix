@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc924"
+  compiler ? "ghc942"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -14,6 +14,14 @@ let
     overrides = self: super: rec {
       fakedata = self.callHackage "fakedata" "1.0.2" {};
       brick = lib.doJailbreak super.brick;
+      # not yet released
+      string-qq = lib.doJailbreak super.string-qq;
+      vty = lib.doJailbreak (self.callHackage "vty" "5.37" {});
+      doctest = self.callCabal2nix "doctest" (builtins.fetchGit {
+        url = "https://github.com/eddiejessup/doctest.git";
+        ref = "ghc94";
+        rev = "400c782c6c4f06988e236abfe85976b911240fbe";
+      }) {};
       peoplemanager = lib.dontHaddock (self.callCabal2nix "peoplemanager" (gitignore ./.) {});
     };
   };
