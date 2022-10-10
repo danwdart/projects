@@ -80,11 +80,7 @@ common shared-properties-nobase
     -haddock
     -threaded -rtsopts -with-rtsopts=-N
 
-executable doctestme
-  import: shared-properties-nobase
-  main-is:             doctestme.hs
-  build-depends:       base >= 4.16 && < 5, doctest, template-haskell
-
+-- tasty-hedgehog issues
 executable linear
   import: shared-properties-nobase
   main-is:             linear.hs

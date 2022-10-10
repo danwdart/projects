@@ -55,6 +55,11 @@ let
       # Atm Nix breaks this.
       # haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
       # not yet released
+      doctest = self.callCabal2nix "doctest" (builtins.fetchGit {
+        url = "https://github.com/eddiejessup/doctest.git";
+        ref = "ghc94";
+        rev = "400c782c6c4f06988e236abfe85976b911240fbe";
+      }) {};
       ilist = lib.doJailbreak super.ilist;
       other924 = lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {});
     };

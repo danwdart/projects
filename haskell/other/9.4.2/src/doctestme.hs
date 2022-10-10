@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
-{-# LANGUAGE Unsafe, TemplateHaskell #-}
+{-# LANGUAGE Trustworthy, TemplateHaskell #-}
 
 module Main where
 

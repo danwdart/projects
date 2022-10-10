@@ -126,10 +126,10 @@ executable delay
   main-is:             delay.hs
   build-depends:       base >= 4.17 && < 5, ansi-terminal, random
 
--- executable doctestme
---   import: shared-properties-safe
---   main-is:             doctestme.hs
---   build-depends:       base >= 4.17 && < 5, doctest
+executable doctestme
+  import: shared-properties-unsafe
+  main-is:             doctestme.hs
+  build-depends:       base >= 4.17 && < 5, doctest, template-haskell
 
 executable effects
   import: shared-properties-unsafe
