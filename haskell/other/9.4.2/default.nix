@@ -61,7 +61,7 @@ let
         rev = "400c782c6c4f06988e236abfe85976b911240fbe";
       }) {};
       ilist = lib.doJailbreak super.ilist;
-      other924 = lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {});
+      other924 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {})));
     };
   };
   shell = myHaskellPackages.shellFor {
@@ -70,7 +70,7 @@ let
     ];
     shellHook = ''
       gen-hie > hie.yaml
-      for i in $(find -type f); do krank $i; done
+      for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
     '';
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext ];
     withHoogle = false;
