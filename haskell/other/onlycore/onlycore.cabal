@@ -13,6 +13,8 @@ copyright:           2019 Dan Dart
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
+data-dir:            data
+data-files:          example.form
 
 common shared-properties-base
   hs-source-dirs:      src
@@ -145,6 +147,10 @@ executable forms
   import: shared-properties-safe
   main-is:             forms.hs
   build-depends:       base >= 4.17 && < 5, onlycore, parsec
+  other-modules:
+    Paths_onlycore
+  autogen-modules:
+    Paths_onlycore
 
 executable lcdblock
   import: shared-properties-safe
