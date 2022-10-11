@@ -364,3 +364,17 @@ test-suite test
 --  hs-source-dirs:      test
 --  test-module:         MyTest
 --  build-depends:       base >= 4.17 && < 5, hspec, QuickCheck, Cabal
+
+benchmark listStringVsVectorText
+  type: exitcode-stdio-1.0
+  hs-source-dirs: bench
+  main-is: Main.hs
+  default-language: GHC2021
+  build-depends: base >= 4.17 && < 5
+               , array
+               , bytestring
+               , containers
+               , criterion
+               , deepseq
+               , text
+               , vector
