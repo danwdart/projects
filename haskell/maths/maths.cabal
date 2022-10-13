@@ -138,6 +138,11 @@ executable oeisA332049
   import: shared-properties
   main-is:             oeis/A332049.hs
 
+executable oeisA349049
+  import: shared-properties
+  main-is:             oeis/A349049.hs
+  build-depends:       base >= 4.16 && < 5, maths, primes
+
 executable oeisA355467
   import: shared-properties
   main-is:             oeis/A355467.hs
@@ -222,9 +227,9 @@ executable happy
   main-is:             happy.hs
   build-depends:       base >= 4.16 && < 5, digits
 
-executable harmonic
+executable harmonic-limit
   import: shared-properties
-  main-is:             harmonic.hs
+  main-is:             harmonic-limit.hs
   build-depends:       base >= 4.16 && < 5, extra
 
 -- executable jig
@@ -356,6 +361,11 @@ executable decomp
   import: shared-properties
   main-is:             primefun/decomp.hs
   build-depends:       base >= 4.16 && < 5, primes
+
+executable harmonic-prime-denoms
+  import: shared-properties
+  main-is:             primefun/harmonic-prime-denoms.hs
+  build-depends:       base >= 4.16 && < 5, primes, maths
 
 executable primemod
   import: shared-properties
