@@ -64,7 +64,7 @@ executable bounce
 executable frog
   import: shared-properties
   main-is:             frog.hs
-  build-depends:       base >= 4.17 && < 5, random
+  build-depends:       base >= 4.17 && < 5, containers, MonadRandom, random
 
 executable hangman
   import: shared-properties
