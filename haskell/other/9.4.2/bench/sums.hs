@@ -29,7 +29,7 @@ arrRepl n = A.listArray (0, elements - 1) [0..elements - 1]
 
 main = defaultMain [
     bgroup "sums" [
-        bench "get list" $ nf list,
+        bench "get list" $ nf id list,
         bench "sum" $ nf sum list,
         bench "foldl" $ nf (sum) list,
         bench "foldl'" $ nf (foldl' (+) 0) list,
