@@ -1,0 +1,3 @@
+optimisations
+linked lists
+malloc stuff
