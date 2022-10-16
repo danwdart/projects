@@ -2,8 +2,8 @@
 
 module Semiprimes where
 
-import Data.List
-import Data.Numbers.Primes
+import           Data.List
+import           Data.Numbers.Primes
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 
@@ -36,17 +36,17 @@ import Data.Numbers.Primes
 
 
 -- sig like outerProduct from utility-ht
-f2D :: (a -> b -> c) -> [a] -> [b] -> [[c]]
+f2D ∷ (a → b → c) → [a] → [b] → [[c]]
 f2D f xs ys = [[f x y | x <- xs] | y <- ys]
 
 -- todo pointfree \f g x y -> f (g x y) = f . g
 -- $> moduloMultiplication 10
 
-moduloMultiplication :: Integer -> [[Integer]]
+moduloMultiplication ∷ Integer → [[Integer]]
 moduloMultiplication m = f2D (\x y -> mod (x * y) m) [0..m-1] [0..m-1]
 
 
-p1, p2, s :: Integer
+p1, p2, s ∷ Integer
 p1 = primes !! 10113
 p2 = primes !! 19736
 s = p1 * p2

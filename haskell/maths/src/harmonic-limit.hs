@@ -8,7 +8,7 @@ import           Data.Tuple.Extra
 
 -- *>>
 
--- A004080 		Least k such that H(k) >= n, where H(k) is the harmonic number Sum_{i=1..k} 1/i. 
+-- A004080 		Least k such that H(k) >= n, where H(k) is the harmonic number Sum_{i=1..k} 1/i.
 
 -- e.g. 1, 4, 11, 31, 83, 227, 616, 1674
 -- meaning: H(1) is just over 1, H(4) is just over 2, H(11) is just over 3, H(31) is just over 4, etc.

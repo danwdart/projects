@@ -25,7 +25,7 @@ type Game = (Current, InPlay, Discard) -- todo data / iter
 data GameState = InProgress | Won | Lost deriving (Eq, Show)
 data GameMove = TakeOne | DiscardTwo | DiscardFour | End deriving (Eq, Show)
 
-summariseGame :: Game -> String
+summariseGame ∷ Game → String
 summariseGame game@(curr, inp, disc) = "Game: " <>
     show (gameState game) <>
     ", with " <>
@@ -73,9 +73,9 @@ discardTwo (Deck (c1:c2:cs), ips, Deck ds) = (Deck cs, ips, Deck (c1:c2:ds))
 
 performMove ∷ Game → Game
 performMove g = case nextGameMove g of
-    End         -> g
-    TakeOne     -> takeOne g
-    DiscardTwo  -> discardTwo g
+    End        -> g
+    TakeOne    -> takeOne g
+    DiscardTwo -> discardTwo g
 
 playUntilEnd ∷ Game → Game
 playUntilEnd g = if gameState g == InProgress then playUntilEnd $ performMove g else g

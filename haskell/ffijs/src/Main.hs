@@ -1,5 +1,5 @@
-{-# LANGUAGE CPP           #-}
-{-# LANGUAGE JavaScriptFFI #-}
+{-# LANGUAGE CPP               #-}
+{-# LANGUAGE JavaScriptFFI     #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Main where

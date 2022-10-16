@@ -2,11 +2,11 @@ module Uno.Card where
 
 import qualified Uno.Action.Bounded as ActionBounded
 import qualified Uno.Colour.Bounded as ColourBounded
-import qualified Uno.Value.Bounded as ValueBounded
-import qualified Uno.Wild.Bounded as WildBounded
+import qualified Uno.Value.Bounded  as ValueBounded
+import qualified Uno.Wild.Bounded   as WildBounded
 
 data Card value colour action wild = NumberCard {
-    value :: value,
+    value  :: value,
     colour :: colour
 } | ActionCard {
     action :: action,

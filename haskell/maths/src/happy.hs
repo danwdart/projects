@@ -7,10 +7,10 @@ import           Debug.Trace
 
 {-# ANN module "HLint: ignore" #-}
 
-answers :: [[Int]]
+answers ∷ [[Int]]
 answers = happyLoop <$> [1..100]
 
-formatList :: [Int] -> String
+formatList ∷ [Int] → String
 formatList = intercalate " => " . (show <$>)
 
 main ∷ IO ()
@@ -19,7 +19,7 @@ main = mapM_ putStrLn $ formatList <$> answers
 happify ∷ Int → Int → Int → Int
 happify power base = sum . fmap (^ power) . digits base
 
-happyLoop :: Int -> [Int]
+happyLoop ∷ Int → [Int]
 happyLoop = iterateUntil (\x ->
     x < 10 ||
     {- cube loops -}

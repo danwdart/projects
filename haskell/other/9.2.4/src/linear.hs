@@ -1,13 +1,13 @@
 {-# LANGUAGE LinearTypes       #-}
 {-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
 module Main where
 
-import Control.Functor.Linear
-import Prelude.Linear
-import System.IO.Resource
+import           Control.Functor.Linear
+import           Prelude.Linear
+import           System.IO.Resource
 
-main :: IO ()
+main ∷ IO ()
 main = run (pure (Ur ()))

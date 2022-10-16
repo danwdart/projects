@@ -6,9 +6,9 @@
 
 import           Control.Monad
 import           Control.Monad.Random
-import           Data.Foldable as Foldable
-import           Data.Map (Map)
-import qualified Data.Map as M
+import           Data.Foldable        as Foldable
+import           Data.Map             (Map)
+import qualified Data.Map             as M
 -- import Data.Ratio
 -- import Debug.Trace
 -- import           System.Random
@@ -35,18 +35,18 @@ avg ∷ [Int] → Double
 avg xs = fromIntegral (sum xs) / fromIntegral (length xs)
 
 -- calc
-harmonic :: Integer -> Rational
+harmonic ∷ Integer → Rational
 harmonic x = sum $ recip . fromIntegral <$> [1..x]
 
 -- Answer should be:
 
 -- PJ1: 1 % 10
 -- PJ2: 1 % 10 * H(9)
--- PJ3: 1 % 10 * 
+-- PJ3: 1 % 10 *
 -- PJ4:
 -- PJ5:
 -- PJ6:
 -- PJ7:
--- PJ8: 
--- PJ9: 
+-- PJ8:
+-- PJ9:
 -- PJ10: H(10)

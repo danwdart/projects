@@ -1,7 +1,7 @@
 module Data.List.Extra where
 
-import Data.Bifoldable
-import Data.Set as S
+import           Data.Bifoldable
+import           Data.Set        as S
 
 uniq ∷ Ord a ⇒ [a] → [a]
 uniq = S.toList . S.fromList

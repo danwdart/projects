@@ -6,7 +6,7 @@ module Sequence.Period where
 -- >>> pisanoPeriod [2,1,3,4,2,1,3,4]
 -- 4
 --
-pisanoPeriod :: (Eq a, Num a, Enum a) => [a] -> a
+pisanoPeriod ∷ (Eq a, Num a, Enum a) ⇒ [a] → a
 pisanoPeriod xs = fst $ filter likeStart indexed !! 1
     where
         indexed = index (pairs xs)

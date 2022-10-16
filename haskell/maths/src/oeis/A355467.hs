@@ -1,9 +1,9 @@
-import Data.Numbers.Primes
+import           Data.Numbers.Primes
 
-main :: IO ()
+main ∷ IO ()
 main = print $ take 200 result
 
-result :: [Integer]
+result ∷ [Integer]
 result = fmap (
     \n -> head (
         dropWhile (

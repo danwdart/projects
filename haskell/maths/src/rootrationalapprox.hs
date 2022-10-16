@@ -5,15 +5,15 @@ module Main where
 --
 
 -- https://math.stackexchange.com/questions/1720860/rational-approximation-of-square-roots
-rootRationalApproxNext :: Rational -> Rational -> Rational
+rootRationalApproxNext ∷ Rational → Rational → Rational
 rootRationalApproxNext num guess = guess - ((guess * guess - num) / (2 * guess))
 
 -- >>> rootRationalApprox 9 1
 
-rootRationalApprox :: Rational -> Rational -> Rational
+rootRationalApprox ∷ Rational → Rational → Rational
 rootRationalApprox num guess = iterate (rootRationalApproxNext num) guess !! 15
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ rootRationalApprox 9 1
     putStrLn "Or, if you like..."

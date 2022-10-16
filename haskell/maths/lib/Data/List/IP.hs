@@ -1,6 +1,6 @@
 module Data.IP where
 
-import Data.Digits
+import           Data.Digits
 
 -- ipv4 is 32-bit. ipv6 is 128-bit.
 
@@ -13,8 +13,8 @@ import Data.Digits
 
 -- so I guess you could fit 8 devices per phone number into the ipv4 address space.
 
-numberToOctets :: Integer -> [Integer]
+numberToOctets ∷ Integer → [Integer]
 numberToOctets _ = []
 
-numberToNibbles :: Integer -> [Integer]
+numberToNibbles ∷ Integer → [Integer]
 numberToNibbles _ = []

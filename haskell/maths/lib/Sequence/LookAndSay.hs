@@ -1,10 +1,10 @@
 module Sequence.LookAndSay where
 
-rle :: String -> [(Char, Integer)]
+rle ∷ String → [(Char, Integer)]
 rle = undefined
 
-replaceLS :: String -> String
+replaceLS ∷ String → String
 replaceLS = undefined
 
-nextLS :: Integer -> Integer
+nextLS ∷ Integer → Integer
 nextLS = read . replaceLS . show

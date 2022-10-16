@@ -3,7 +3,7 @@
 import           Semiprimes
 import           Text.Tabular
 -- import Text.Tabular.AsciiArt
-import Text.Tabular.SimpleText
+import           Text.Tabular.SimpleText
 
 main ∷ IO ()
 main = do
