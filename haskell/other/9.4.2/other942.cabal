@@ -334,6 +334,11 @@ executable vector
   main-is:             vector.hs
   build-depends:       base >= 4.17 && < 5, vector
 
+executable validation
+  import: shared-properties-safe
+  main-is:             validation.hs
+  build-depends:       base >= 4.17 && < 5, either
+
 executable wai
   import: shared-properties-unsafe
   main-is:             wai.hs
