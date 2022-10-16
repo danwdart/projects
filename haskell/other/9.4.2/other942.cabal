@@ -319,6 +319,11 @@ executable these
   main-is:             these.hs
   build-depends:       base >= 4.17 && < 5, these
 
+executable udev
+  import: shared-properties-unsafe
+  main-is:             udev.hs
+  build-depends:       base >= 4.17 && < 5, udev
+
 executable unicode
   import: shared-properties-safe
   main-is:             unicode.hs
@@ -368,7 +373,7 @@ test-suite test
 benchmark listStringVsVectorText
   type: exitcode-stdio-1.0
   hs-source-dirs: bench
-  main-is: Main.hs
+  main-is: listStringVsVectorText.hs
   default-language: GHC2021
   build-depends: base >= 4.17 && < 5
                , array
@@ -377,4 +382,26 @@ benchmark listStringVsVectorText
                , criterion
                , deepseq
                , text
+               , vector
+          
+benchmark sums
+  type: exitcode-stdio-1.0
+  hs-source-dirs: bench
+  main-is: sums.hs
+  default-language: GHC2021
+  build-depends: base >= 4.17 && < 5
+               , array
+               , criterion
+               , deepseq
+               , vector
+            
+benchmark recursiveFacFibs
+  type: exitcode-stdio-1.0
+  hs-source-dirs: bench
+  main-is: recursiveFacFibs.hs
+  default-language: GHC2021
+  build-depends: base >= 4.17 && < 5
+               , array
+               , criterion
+               , deepseq
                , vector
