@@ -221,6 +221,11 @@ executable lenses
 --  main-is:             linear.hs
 --  build-depends:       linear-base
 
+executable mmio
+  import: shared-properties-unsafe
+  main-is:             mmio.hs
+  build-depends:       base >= 4.17 && < 5, mmap
+
 executable parsec
   import: shared-properties-safe
   main-is:             parsec.hs
