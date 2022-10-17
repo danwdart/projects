@@ -342,6 +342,10 @@ executable pipeline
   import: shared-properties-safe
   main-is:             pipeline.hs
 
+executable pointers
+  import: shared-properties-safe
+  main-is:             pointers.hs
+
 executable postfixops
   import: shared-properties-safe
   build-depends:       base >= 4.17 && < 5, onlybase
