@@ -58,7 +58,7 @@ let
       doctest = self.callCabal2nix "doctest" (builtins.fetchGit {
         url = "https://github.com/eddiejessup/doctest.git";
         ref = "ghc94";
-        rev = "400c782c6c4f06988e236abfe85976b911240fbe";
+        rev = "4107fb014fe0f04d5b7ae52e668d769de287c5db";
       }) {};
       ilist = lib.doJailbreak super.ilist;
       other924 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {})));
