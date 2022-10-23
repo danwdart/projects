@@ -5,6 +5,7 @@
     compiler = compiler;
   },
   # https://github.com/reflex-frp/patch/issues/42
+  # 2022-10-23 cannot reconcile monoidal-containers, patch to verify > 9.0.2
   compiler ? "ghc902"
 }:
 let
