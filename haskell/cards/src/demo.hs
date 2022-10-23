@@ -1,4 +1,4 @@
-import           Enum
+import           Data.List.Extra
 import           Ordering
 import           Suit.Bounded.Standard
 import           Symbol

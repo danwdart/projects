@@ -8,10 +8,10 @@ import qualified Control.Monad.HT           as HT (nest)
 import           Control.Monad.Random.Class
 import           Data.Bifunctor
 import           Data.List.Extra
+import           Data.List.Pairs
 import qualified Data.Map                   as M
 import           Data.Statistics
 import           Deck
-import           Enum
 import           Ordering
 import           System.Random.Shuffle
 
@@ -66,6 +66,7 @@ adjCards (Deck c) = Deck . fmap getBySuitThenValue. pairsToList . fmap (bimap By
 extractAdj ∷ MonadRandom m ⇒ DeckStd → m DeckStd
 extractAdj p = do
     p' <- Deck <$> shuffleM (getDeck p)
+    -- @TODO use \\
     pure . Deck $ filterOutList (getDeck (adjCards p')) (getDeck p')
 
 magicNumbers ∷ MonadRandom m ⇒ m Int

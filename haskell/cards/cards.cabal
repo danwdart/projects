@@ -30,9 +30,8 @@ library
   ghc-options:         -Wall -Werror -haddock
   ghcjs-options:       -dedupe
   exposed-modules:     Data.Enum.Extra
-                     , Data.List.Extra
+                     , Data.List.Pairs
                      , Data.Statistics
-                     , Enum
                      , Suit.Bounded.Standard
                      , Suit.Class
                      , Suit.Unbounded
@@ -65,12 +64,12 @@ library
 executable cards
   import: shared-properties
   main-is:             cards.hs
-  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, containers, extra, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
 
 executable demo
   import: shared-properties
   main-is:             demo.hs
-  build-depends:       base >= 4.17 && < 5, cards
+  build-depends:       base >= 4.17 && < 5, cards, extra
   
 executable ohsol
   import: shared-properties
@@ -85,7 +84,7 @@ executable primesnap
 executable uno
   import: shared-properties
   main-is:             uno.hs
-  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, containers, extra, MonadRandom, random-shuffle, utility-ht
 
 test-suite cards-test
   import: shared-properties

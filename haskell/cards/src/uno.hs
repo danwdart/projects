@@ -2,7 +2,7 @@
 
 module Main where
 
-import           Enum
+import           Data.List.Extra
 import           Uno.Action.Bounded
 import           Uno.Card
 import           Uno.Colour.Bounded
