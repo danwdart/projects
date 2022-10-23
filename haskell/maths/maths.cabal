@@ -323,6 +323,10 @@ executable prodtosingle
   import: shared-properties
   main-is:             prodtosingle.hs
 
+executable pyth
+  import: shared-properties
+  main-is:             pyth.hs
+
 executable rootrationalapprox
   import: shared-properties
   main-is:             rootrationalapprox.hs
