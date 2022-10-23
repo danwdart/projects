@@ -54,11 +54,11 @@ let
       # doctest-parallel = lib.dontCheck super.doctest-parallel;
       # Atm Nix breaks this.
       # haskell-src-meta = self.callHackage "haskell-src-meta" "0.8.8" {};
+      
       # not yet released
       doctest = self.callCabal2nix "doctest" (builtins.fetchGit {
-        url = "https://github.com/eddiejessup/doctest.git";
-        ref = "ghc94";
-        rev = "4107fb014fe0f04d5b7ae52e668d769de287c5db";
+        url = "https://github.com/sol/doctest.git";
+        rev = "495a76478d63a31c61523b1a539f49340e6be122";
       }) {};
       ilist = lib.doJailbreak super.ilist;
       other924 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other924" (gitignore ./.) {})));

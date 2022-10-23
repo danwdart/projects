@@ -18,9 +18,8 @@ let
       string-qq = lib.doJailbreak super.string-qq;
       vty = lib.doJailbreak (self.callHackage "vty" "5.37" {});
       doctest = self.callCabal2nix "doctest" (builtins.fetchGit {
-        url = "https://github.com/eddiejessup/doctest.git";
-        ref = "ghc94";
-        rev = "400c782c6c4f06988e236abfe85976b911240fbe";
+        url = "https://github.com/sol/doctest.git";
+        rev = "495a76478d63a31c61523b1a539f49340e6be122";
       }) {};
       peoplemanager = lib.dontHaddock (self.callCabal2nix "peoplemanager" (gitignore ./.) {});
     };
