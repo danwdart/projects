@@ -81,6 +81,11 @@ executable monopoly
 --  main-is:             razzledazzle.hs
 --  --  build-depends:       base >= 4.17 && < 5, monad-loops, probability, random, rando, utility-ht
 
+executable sudoku
+  import: shared-properties
+  main-is:             sudoku.hs
+  build-depends:       base >= 4.17 && < 5, containers, extra, lattices, vector
+
 test-suite boardgames-test
   import: shared-properties
   hs-source-dirs:      test
@@ -88,8 +93,8 @@ test-suite boardgames-test
   main-is:             Spec.hs
   other-modules:
     Game.BounceSpec
-  build-tool-depends:
-    hspec-discover:hspec-discover
+  -- build-tool-depends:
+  --   hspec-discover:hspec-discover == 2.*
   default-language:    GHC2021
   default-extensions:  UnicodeSyntax
   build-depends:
