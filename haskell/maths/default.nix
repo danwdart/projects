@@ -28,6 +28,7 @@ let
       wl-pprint-text = lib.doJailbreak super.wl-pprint-text;
       graphviz = lib.doJailbreak super.graphviz;
       cf = lib.dontCheck (lib.markUnbroken super.cf);
+
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };
   };

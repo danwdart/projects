@@ -33,6 +33,7 @@ library
                      , Data.List.Safer
                      , Data.List.Nub
                      , Data.List.Repeat
+                     , Factor
                      , Sequence.Fibonacci
                      , Sequence.HalveOrReverse
                      , Sequence.LookAndSay
@@ -197,6 +198,11 @@ executable exact-real
   main-is:             exact-real.hs
   build-depends:       base >= 4.16 && < 5, maths, numbers, cf
 
+executable factors
+  import: shared-properties
+  main-is:             factors.hs
+  build-depends:       base >= 4.16 && < 5, maths
+
 executable friendly
   import: shared-properties
   main-is:             friendly.hs
@@ -231,6 +237,11 @@ executable harmonic-limit
   import: shared-properties
   main-is:             harmonic-limit.hs
   build-depends:       base >= 4.16 && < 5, extra
+
+executable highlycompositebase
+  import: shared-properties
+  main-is:             highlycompositebase.hs
+  build-depends:       base >= 4.16 && < 5, digits, maths, primes
 
 -- executable jig
 --   import: shared-properties
@@ -318,6 +329,10 @@ executable plotter
   import: shared-properties
   main-is:             plotter.hs
   build-depends:       base >= 4.16 && < 5, JuicyPixels, primes
+
+executable polynomials
+  import: shared-properties
+  main-is:             polynomials.hs
 
 executable prodtosingle
   import: shared-properties
