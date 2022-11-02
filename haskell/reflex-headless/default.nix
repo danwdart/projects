@@ -15,9 +15,6 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       reflex-headless = lib.dontHaddock (self.callCabal2nix "reflex-headless" (gitignore ./.) {});
-      # 9.0.2 -> 9.2.2
-      # monoidal-containers = lib.doJailbreak super.monoidal-containers;
-      # patch = lib.doJailbreak super.patch;
     };
   };
   shell = myHaskellPackages.shellFor {

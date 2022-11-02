@@ -1,5 +1,5 @@
-with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {};
-runCommand "uefi" {
+with import <nixpkgs> {};
+runCommand "ffi" {
     buildInputs = [
         pkgsMusl.gcc
         pkgsStatic.libffi

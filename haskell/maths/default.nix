@@ -18,15 +18,8 @@ let
           echo -e "> import Distribution.Simple\n> main = defaultMain" > Setup.lhs
         '';
       });
-      factory = self.callHackage "factory" "0.3.2.3" {};
-      partial-isomorphisms = self.callHackage "partial-isomorphisms" "0.2.3.0" {};
-      exact-pi = lib.doJailbreak super.exact-pi;
-      text-short = lib.overrideCabal super.text-short (drv: {
-        doCheck = false;
-      });
-      modern-uri = lib.doJailbreak super.modern-uri;
-      wl-pprint-text = lib.doJailbreak super.wl-pprint-text;
-      graphviz = lib.doJailbreak super.graphviz;
+
+      # https://github.com/mvr/cf/issues/4
       cf = lib.dontCheck (lib.markUnbroken super.cf);
 
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});

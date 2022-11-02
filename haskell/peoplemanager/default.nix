@@ -12,15 +12,10 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      fakedata = self.callHackage "fakedata" "1.0.2" {};
       brick = lib.doJailbreak super.brick;
-      # not yet released
       string-qq = lib.doJailbreak super.string-qq;
+      # nixpkgs only has 5.33
       vty = lib.doJailbreak (self.callHackage "vty" "5.37" {});
-      doctest = self.callCabal2nix "doctest" (builtins.fetchGit {
-        url = "https://github.com/sol/doctest.git";
-        rev = "495a76478d63a31c61523b1a539f49340e6be122";
-      }) {};
       peoplemanager = lib.dontHaddock (self.callCabal2nix "peoplemanager" (gitignore ./.) {});
     };
   };

@@ -13,12 +13,6 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       cards = lib.dontHaddock (self.callCabal2nix "cards" (gitignore ./.) {});
-      # for stan
-      cabal-doctest = lib.doJailbreak (self.callCabal2nix "cabal-doctest" (builtins.fetchGit {
-        url = "https://github.com/haskellari/cabal-doctest.git";
-        rev = "2338f86cbba06366fca42f7c9640bc408c940e0b";
-      }) {});
-      colourista = lib.doJailbreak super.colourista;
     };
   };
   shell = myHaskellPackages.shellFor {

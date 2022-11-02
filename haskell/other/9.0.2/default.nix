@@ -12,18 +12,6 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      inline-asm = self.callHackage "inline-asm" "0.4.0.2" {};
-      # https://github.com/brendanhay/gogol/issues/148
-      #gogol-core = self.callCabal2nixWithOptions "gogol-core" (builtins.fetchGit { # not yet released
-      #  url = "https://github.com/brendanhay/gogol";
-      #  rev = "d7c7d71fc985cd96fb5f05173da6c607da362b74";
-      #}) "--subpath core" {};
-      patch = lib.doJailbreak super.patch;
-      dbus = lib.doJailbreak super.dbus;
-      reflex-gloss = self.callCabal2nix "reflex-gloss" (builtins.fetchGit {
-        url = "https://github.com/noughtmare/reflex-gloss.git";
-        ref = "2fbc06753a212d4035886ba8654d33cf373aeb53";
-      }) {};
       other902 = lib.dontHaddock (self.callCabal2nix "other902" (gitignore ./.) {});
     };
   };

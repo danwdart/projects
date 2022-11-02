@@ -1,4 +1,4 @@
-with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/haskell-updates.tar.gz") {};
+with import <nixpkgs> {};
 runCommand "haskell" {
     buildInputs = [
         haskell.compiler.ghc942
