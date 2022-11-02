@@ -3,7 +3,7 @@
 module Main where
 
 import Control.Exception
-import Data.Char
+-- import Data.Char
 import Data.List as L
 import Data.List.NonEmpty as LNE
 
@@ -66,8 +66,8 @@ showPoly i
 pretty :: Polynomial -> String
 pretty = intercalate " + " . toList . fmap (\(i, a) -> show a <> showPoly i) . LNE.zip (LNE.fromList [0..]) . getPolynomial
 
-mul :: Polynomial -> Polynomial -> Polynomial
-mul (Polynomial (x :| xs)) (Polynomial (y :| ys)) = undefined --
+-- mul :: Polynomial -> Polynomial -> Polynomial
+-- mul (Polynomial (x :| xs)) (Polynomial (y :| ys)) = undefined --
 
 main :: IO ()
 main = pure ()
