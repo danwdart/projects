@@ -22,11 +22,6 @@ common shared-properties
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
   ghcjs-options:       -dedupe
 
-executable asm
-  import: shared-properties
-  main-is:             asm.hs
-  build-depends:       base >= 4.13 && < 5, inline-asm
-
 executable langparse
   import: shared-properties
   main-is:             langparse.hs
