@@ -16,9 +16,6 @@ data Choice = One | Two | Three | Four | Five | Six | Seven | Eight | Nine
 -- and its top would be "no information" which is everything in the set
 -- then "meet" would be set difference and "join" would be union? Something like that?
 
-data SimpleChoice = One | Two | Three | Four
-    deriving (Eq, Show, Ord, Enum, Bounded)
-
 -- Now we can run the algorithm of all the things to check... at once, as a fixpoint?
 solveFour :: Vector (Vector Choice) -> Vector (Vector Choice)
 solveFour = undefined
