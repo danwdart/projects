@@ -1,6 +1,6 @@
 cabal-version:       3.0
 -- Newer versions complain
-name:                other924
+name:                other92
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -84,9 +84,3 @@ executable asm
   import: shared-properties-base
   main-is:             asm.hs
   build-depends:       base >= 4.13 && < 5, inline-asm
-
--- tasty-hedgehog issues
-executable linear
-  import: shared-properties-nobase
-  main-is:             linear.hs
-  build-depends:       linear-base
