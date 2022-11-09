@@ -14,26 +14,26 @@
   "dependencies": {
     "amqp": "^0.2.7",
     "amqplib": "^0.10.3",
-    "aws-appsync": "^4.1.7",
+    "aws-appsync": "^4.1.8",
     "graphql": "^17.0.0-alpha.2",
-    "ioredis": "^5.2.3",
+    "ioredis": "^5.2.4",
     "kafka-node": "^5.0.0",
     "leveldown": "^6.1.1",
-    "mongodb": "^4.10.0",
+    "mongodb": "^4.11.0",
     "mqtt": "^4.3.7",
     "msgpack-lite": "^0.1.26",
     "qlobber-fsq": "^13.0.3",
     "reflect-metadata": "^0.1.13",
-    "serverless": "^3.22.0",
+    "serverless": "^3.24.1",
     "serverless-appsync-plugin": "^2.0.0-alpha.12",
-    "serverless-domain-manager": "^6.1.0",
+    "serverless-domain-manager": "^6.2.0",
     "serverless-haskell": "^0.12.6"
   },
   "devDependencies": {
     "fullstack-serverless": "^0.8.0",
     "serverless-appsync-offline": "^1.4.0",
     "serverless-dynamodb-local": "^1.0.2",
-    "serverless-offline": "^11.0.0",
+    "serverless-offline": "^11.3.0",
     "serverless-s3-local": "^0.6.22",
     "serverless-static": "^1.0.0"
   }
