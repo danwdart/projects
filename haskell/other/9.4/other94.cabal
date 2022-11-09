@@ -1,6 +1,6 @@
 cabal-version:       3.0
 -- Newer versions complain
-name:                other942
+name:                other94
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -95,7 +95,6 @@ executable async
   main-is:             async.hs
   build-depends:       base >= 4.17 && < 5, async
 
-
 executable binarygame
   import: shared-properties-unsafe
   main-is:             binarygame.hs
@@ -179,7 +178,7 @@ executable free-monads
 -- executable gd
 --   import: shared-properties-safe
 --   main-is:             gd.hs
---   build-depends:       base >= 4.17 && < 5, gd, other924
+--   build-depends:       base >= 4.17 && < 5, gd, other92
 
 executable gettext
   import: shared-properties-safe
@@ -216,10 +215,10 @@ executable lenses
   main-is:             lenses.hs
   build-depends:       base >= 4.17 && < 5, lens
 
---executable linear
---  import: shared-properties-nobase
---  main-is:             linear.hs
---  build-depends:       linear-base
+executable linear
+  import: shared-properties-nobase
+  main-is:             linear.hs
+  build-depends:       linear-base
 
 executable mmio
   import: shared-properties-unsafe
@@ -362,7 +361,7 @@ executable wikidata
 -- executable xpath
 --   import: shared-properties-safe
 --   main-is:             xpath.hs
---   build-depends:       base >= 4.17 && < 5, safe-foldable, other924
+--   build-depends:       base >= 4.17 && < 5, safe-foldable, other92
 
 test-suite test
   type:                exitcode-stdio-1.0
