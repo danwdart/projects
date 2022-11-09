@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc902"
+  compiler ? "ghc90"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -12,12 +12,12 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      other902 = lib.dontHaddock (self.callCabal2nix "other902" (gitignore ./.) {});
+      other90 = lib.dontHaddock (self.callCabal2nix "other90" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other902
+      p.other90
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -26,9 +26,9 @@ let
     buildInputs = tools.defaultBuildTools;
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other902);
+  exe = lib.justStaticExecutables (myHaskellPackages.other90);
 in
 {
   inherit shell;
-  other902 = lib.justStaticExecutables (myHaskellPackages.other902);
+  other90 = lib.justStaticExecutables (myHaskellPackages.other90);
 }
