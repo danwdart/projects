@@ -9,13 +9,13 @@
     "esm": "^3.2.25",
     "gl-matrix": "^3.4.3",
     "node-fetch": "^4.0.0-beta.4",
-    "snyk": "^1.1019.0",
-    "typescript": "^4.9.1-beta"
+    "snyk": "^1.1056.0",
+    "typescript": "^5.0.0-dev.20221109"
   },
   "devDependencies": {
     "@babel/cli": "7.19.3",
     "@std/esm": "^0.26.0",
-    "eslint": "^8.24.0",
+    "eslint": "^8.27.0",
     "mocha": "^10.1.0"
   },
   "scripts": {
