@@ -1,0 +1,464 @@
+{-# LANGUAGE DataKinds, DerivingStrategies, GADTs, ScopedTypeVariables #-}
+
+-- Dependent type based on length
+
+import Data.Kind
+import Data.Proxy
+import GHC.TypeNats
+import Prelude hiding (and, init, map, length, replicate, (++), take, filter, elem, reverse, (!!), or, any, all, product, sum)
+
+-- >>> :t 0 :> 1 :> 2 :> Nil
+-- 0 :> 1 :> 2 :> Nil :: Num a => Vec 3 a
+--
+
+-- >>> :t 'a' :> 'b' :> 'c' :> Nil
+-- 'a' :> 'b' :> 'c' :> Nil :: Vec 3 Char
+--
+
+type Vec :: Nat -> Type -> Type
+data Vec n a where
+    Nil :: Vec 0 a
+    (:>) :: a -> Vec n a -> Vec (n + 1) a
+
+type StringL a = Vec a Char
+
+type MaxL m a = forall n. (n <= m) => Vec n a
+
+type MinL m a = forall n. (m <= n) => Vec n a
+
+-- >>> :set -XDataKinds
+-- >>> :set -XAllowAmbiguousTypes
+-- >>> :t 'a' :> 'b' :> Nil :: (2 <= n) => Vec n Char
+-- <interactive>:1:1-17: error:
+--     • Could not deduce (n ~ 2)
+--       from the context: 2 <= n
+--         bound by an expression type signature:
+--                    forall (n :: Natural). (2 <= n) => Vec n Char
+--         at <interactive>:1:22-43
+--       Expected: Vec n Char
+--         Actual: Vec (1 + 1) Char
+--       ‘n’ is a rigid type variable bound by
+--         an expression type signature:
+--           forall (n :: Natural). (2 <= n) => Vec n Char
+--         at <interactive>:1:22-43
+--     • In the expression: 'a' :> 'b' :> Nil :: (2 <= n) => Vec n Char
+--
+
+-- screwy
+type Password = MinL 16 Char
+
+-- >>> :t 'a' :> 'b' :> 'c' :> Nil :: Password
+-- <interactive>:1:1-24: error:
+--     • Could not deduce (n ~ 3)
+--       from the context: 16 <= n
+--         bound by an expression type signature:
+--                    Password
+--         at <interactive>:1:29-36
+--       Expected: Vec n Char
+--         Actual: Vec ((1 + 1) + 1) Char
+--       ‘n’ is a rigid type variable bound by
+--         an expression type signature:
+--           Password
+--         at <interactive>:1:29-36
+--     • In the expression: 'a' :> 'b' :> 'c' :> Nil :: Password
+--
+
+-- >>> :t 'a' :> 'b' :> 'c' :> 'd' :> 'e' :> 'f' :> 'g' :> 'h' :> 'i' :> 'j' :> 'k' :> 'l' :> 'm' :> 'n' :> 'o' :> 'p' :> Nil :: Password
+-- <interactive>:1:1-115: error:
+--     • Could not deduce (n ~ 16)
+--       from the context: 16 <= n
+--         bound by an expression type signature:
+--                    Password
+--         at <interactive>:1:120-127
+--       Expected: Vec n Char
+--         Actual: Vec
+--                   (((((((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1)
+--                        + 1)
+--                       + 1)
+--                      + 1)
+--                     + 1)
+--                    + 1)
+--                   Char
+--       ‘n’ is a rigid type variable bound by
+--         an expression type signature:
+--           Password
+--         at <interactive>:1:120-127
+--     • In the expression:
+--           'a'
+--             :>
+--               'b'
+--                 :>
+--                   'c'
+--                     :>
+--                       'd'
+--                         :>
+--                           'e'
+--                             :>
+--                               'f'
+--                                 :>
+--                                   'g'
+--                                     :>
+--                                       'h'
+--                                         :>
+--                                           'i'
+--                                             :>
+--                                               'j'
+--                                                 :> 'k' :> 'l' :> 'm' :> 'n' :> 'o' :> 'p' :> Nil ::
+--             Password
+--
+
+
+infixr 5 :>
+
+deriving stock instance Show a => Show (Vec n a)
+
+-- >>> fmap succ $ 1 :> 2 :> 3 :> Nil
+-- 2 :> (3 :> (4 :> Nil))
+--
+deriving instance Functor (Vec n)
+
+-- >>> fromList "Hello World!" :: forall n. Vec n Char
+-- <interactive>:34726:2-9: error:
+--     • No instance for (KnownNat n1) arising from a use of ‘fromList’
+--       Possible fix:
+--         add (KnownNat n1) to the context of
+--           an expression type signature:
+--             forall (n1 :: Nat). Vec n1 Char
+--     • In the expression:
+--           fromList "Hello World!" :: forall n. Vec n Char
+--       In an equation for ‘it’:
+--           it = fromList "Hello World!" :: forall n. Vec n Char
+--
+{-}
+fromList :: KnownNat n => [a] -> Vec n a -- maybe we want either existent or length passed?
+fromList [] = Nil
+fromList (x:xs) = x :> fromList xs
+-}
+-- fromNonEmpty -- this is onlybase
+
+-- >>> toList $ 1 :> 2 :> 3 :> Nil
+-- [1,2,3]
+--
+toList :: Vec n a -> [a]
+toList Nil = []
+toList (a :> as) = a : toList as
+
+and :: Vec n Bool -> Bool
+and Nil = True
+and (b :> bs) = b && and bs
+
+or :: Vec n Bool -> Bool
+or Nil = False
+or (b :> bs) = b || or bs
+
+-- instead implement Foldable
+
+any :: (a -> Bool) -> Vec n a -> Bool
+any _ Nil = False
+any f (a :> as) = f a || any f as
+
+all :: (a -> Bool) -> Vec n a -> Bool
+all _ Nil = True
+all f (a :> as) = f a && all f as
+
+-- >>> sumNaive $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 10
+--
+sumNaive :: (Num a) => Vec n a -> a
+sumNaive Nil = 0
+sumNaive (a :> as) = a + sum as
+
+-- >>> sum $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 10
+--
+sum :: (Num a) => Vec n a -> a
+sum = go 0
+    where
+        go :: (Num a) => a -> Vec n a -> a
+        go acc Nil = acc
+        go acc (a :> as') = go (acc + a) as'
+
+-- >>> productNaive $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 24
+--
+productNaive :: (Num a) => Vec n a -> a
+productNaive Nil = 1
+productNaive (a :> as) = a * product as
+
+-- >>> product $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 24
+--
+product :: (Num a) => Vec n a -> a
+product = go 1
+    where
+        go :: (Num a) => a -> Vec n a -> a
+        go acc Nil = acc
+        go acc (a :> as') = go (acc * a) as'
+
+{-
+-- these are pretty straightforward:
+maximum
+minimum
+foldl
+foldl'
+foldl1
+foldl1'
+foldr
+foldr1
+scanl
+scanl'
+scanl1
+scanr
+scanr1
+isPrefixOf
+isSuffixOf
+isInfixOf
+isSubsequenceOf
+-}
+
+
+elem :: Eq a => a -> Vec n a -> Bool
+elem _ Nil = False
+elem x (y :> ys) = x == y || elem x ys
+
+{-}
+notElem
+lookup
+find
+
+-- these are a little harder:
+head
+-}
+
+head :: Vec n a -> a
+head Nil = error "No head"
+head (x :> _) = x
+
+headNE :: (1 <= n) => Vec n a -> a
+headNE (x :> _) = x
+
+
+{-}
+tail
+init
+-}
+
+-- init :: (1 <= n) => Vec n a -> Vec (n - 1) a
+-- init (_ :> Nil) = Nil
+-- init (x :> xs@(_ :> _)) = x :> init xs
+
+{-}
+last
+uncons
+singleton
+-}
+
+-- >>> map succ $ 1 :> 2 :> 3 :> Nil
+-- 2 :> (3 :> (4 :> Nil))
+--
+map :: (a -> b) -> Vec n a -> Vec n b
+map _ Nil = Nil
+map f (x :> xs) = f x :> map f xs
+
+{-}
+zip
+unzip
+zipWith
+-}
+
+-- >>> snoc (1 :> 2 :> 3 :> Nil) 4
+-- 1 :> (2 :> (3 :> (4 :> Nil)))
+--
+snoc :: Vec n a -> a -> Vec (n + 1) a
+snoc Nil x = x :> Nil
+snoc (y :> ys) x = y :> (ys `snoc` x)
+
+-- >>> reverseOld $ 1 :> 2 :> 3 :> Nil
+-- 3 :> (2 :> (1 :> Nil))
+--
+reverseOld :: Vec n a -> Vec n a
+reverseOld Nil = Nil
+reverseOld (x :> xs) = reverseOld xs `snoc` x
+
+{-}
+reverse :: Vec n a -> Vec n a
+reverse = go Nil ys
+    where
+        go :: Vec m a -> Vec p a -> Vec (m + p) a
+        go acc Nil = acc
+        go acc (x :> xs) = go (x :> acc) xs
+-}
+
+{-
+mapAccumL
+mapAccumR
+insert
+sort
+null
+-}
+
+-- >>> lengthCalc (1 :> 2 :> 3 :> Nil)
+-- 3
+--
+lengthCalc :: Vec n a -> Nat
+lengthCalc Nil = 0
+lengthCalc (_ :> xs) = 1 + lengthCalc xs
+
+-- >>> length (1 :> 2 :> 3 :> Nil)
+-- 3
+--
+length :: forall n a. KnownNat n => Vec n a -> Nat
+length _ = natVal (Proxy :: Proxy n)
+
+-- replicate :: Natural -> a -> Vec n a
+-- replicate 0 _ = Nil
+-- replicate n x = x :> replicate (n - 1) x 
+
+-- (++) :: Vec n a -> Vec m a -> Vec (n + m) a
+-- Nil ++ v = v
+-- (x :> xs) ++ v = x :> (xs ++ v) 
+
+-- take :: n' -> Vec n a -> Vec (min n' n) a
+-- take 0 _ = Nil
+-- take _ Nil = Nil
+-- take n' (x :> xs) = x :> take (n' - 1) xs
+
+{-}
+drop
+stripPrefix
+splitAt
+concat
+-- these need fancy type families (quite hard):
+intersperse
+inits
+tails
+intercalate
+subsequences
+permutations
+transpose
+-- these need existentials:
+concatMap
+unfoldr
+takeWhile
+dropWhile
+dropWhileEnd
+-}
+
+-- wants existential?
+-- filter :: (m <= n) => (a -> Bool) -> Vec n a -> Vec m a
+-- filter _ Nil = Nil
+-- filter p (x :> xs) | p x = x :> filter p xs
+--                    | otherwise = filter p xs
+
+
+{-}
+nub
+delete
+(\\)
+-}
+
+{-}
+union :: (n <= nm, m <= nm) => Vec n a -> Vec m a -> Vec nm a
+union xs Nil = xs
+union Nil ys = ys
+union (x :> xs) ys | x `elem` ys = union xs ys
+                   | otherwise = x :> union xs ys
+-}
+
+{-}
+intersect
+-- these need Fin:
+-}
+
+
+(!!) :: Vec n a -> Nat -> a -- Get the nat
+Nil !! _ = error "Nah"
+(x :> _) !! 0 = x
+(_ :> xs) !! n = xs !! (n - 1)
+
+-- >>> 1 :> 2 :> Nil !!! 1
+-- <interactive>:32039:16-18: error:
+--     • Cannot satisfy: 1 <= 0
+--     • In the second argument of ‘(:>)’, namely ‘Nil !!! 1’
+--       In the second argument of ‘(:>)’, namely ‘2 :> Nil !!! 1’
+--       In the expression: 1 :> 2 :> Nil !!! 1
+--
+
+-- >>> 1 :> 2 :> Nil !!! 2
+-- <interactive>:31933:16-18: error:
+--     • Cannot satisfy: 1 <= 0
+--     • In the second argument of ‘(:>)’, namely ‘Nil !!! 2’
+--       In the second argument of ‘(:>)’, namely ‘2 :> Nil !!! 2’
+--       In the expression: 1 :> 2 :> Nil !!! 2
+--
+(!!!) :: (1 <= n) => Vec n a -> Nat -> a -- get that Nat
+(x :> _) !!! 0 = x
+(_ :> xs) !!! n = xs !! (n - 1)
+
+{-}
+elemIndex
+elemIndices
+findIndex
+findIndices
+-- these need custom GADTs to encode the right conditions:
+-}
+
+{-}
+span :: (a -> Bool) -> Vec (m + n) a -> (Vec m a, Vec n a)
+span p Nil = (Nil, Nil)
+span p (x :> xs) = _
+-}
+
+{-}
+break
+partition
+group
+-}
+
+{-
+The functions listed here we will not attempt.
+-- these are not illuminating:
+zip3
+zip4
+zip5
+zip6
+zip7
+zipWith3
+zipWith4
+zipWith5
+zipWith6
+zipWith7
+unzip3
+unzip4
+unzip5
+unzip6
+unzip7
+-- these are really about text, not about lists:
+lines
+words
+unlines
+unwords
+-- these are straightforward generalizations:
+nubBy
+deleteBy
+deleteFirstsBy
+unionBy
+intersectBy
+groupBy
+sortBy
+insertBy
+maximumBy
+minimumBy
+genericLength
+genericTake
+genericDrop
+genericSplitAt
+genericIndex
+genericReplicate
+sortOn
+-- no infinite vectors:
+no iterate
+no iterate'
+no repeat
+no cycle
+-}
