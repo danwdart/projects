@@ -1,0 +1,39 @@
+cabal-version:      3.4
+name:               save-editors
+version:            0.1.0.0
+synopsis:           Save editors
+license:            AGPL-3.0-or-later
+license-file:       LICENSE
+author:             Dan Dart
+maintainer:         cabal@dandart.co.uk
+category:           Game
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  Game.PS1.MatHoffman
+                    , Platform.PS1
+    build-depends:    base ^>=4.17.0.0, binary, bytestring
+    hs-source-dirs:   lib
+    default-language: GHC2021
+
+executable save-editors
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.17.0.0,
+        save-editors
+    hs-source-dirs:   src
+    default-language: GHC2021
+test-suite save-editors-test
+    import:           warnings
+    default-language: GHC2021
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.17.0.0,
+        save-editors
