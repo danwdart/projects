@@ -1,5 +1,5 @@
-{ nixpkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {},
-  compiler ? "ghc942" }:
+{ nixpkgs ? import <nixpkgs> {},
+  compiler ? "ghc94" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;

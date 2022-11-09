@@ -6,10 +6,10 @@ runCommand "ffi" {
         pkgsStatic.gmp
         musl
         # pkgsStatic.haskell.compiler.ghc9
-        # unstable.pkgsStatic.pkgsBuildTarget.haskell.compiler.ghc942
-        # pkgsCross.x86_64-embedded.pkgsBuildTarget.haskell.compiler.ghc942
-        #pkgsStatic.pkgsBuildTarget.haskell.compiler.ghc942
-        (pkgsMusl.haskell.compiler.ghc942.overrideDerivation (f: { enableRelocatedStaticLibs = true; }))
+        # unstable.pkgsStatic.pkgsBuildTarget.haskell.compiler.ghc94
+        # pkgsCross.x86_64-embedded.pkgsBuildTarget.haskell.compiler.ghc94
+        #pkgsStatic.pkgsBuildTarget.haskell.compiler.ghc94
+        (pkgsMusl.haskell.compiler.ghc94.overrideDerivation (f: { enableRelocatedStaticLibs = true; }))
         cabal-install
     ];
 } ""

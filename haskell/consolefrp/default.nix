@@ -5,7 +5,7 @@
     compiler = compiler;
   },
   # https://github.com/reflex-frp/patch/issues/42
-  compiler ? "ghc902"
+  compiler ? "ghc90"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
