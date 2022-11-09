@@ -1,5 +1,5 @@
 { nixpkgs ? import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/tags/20.09.tar.gz) {},
-  compiler ? "ghc865" }:
+  compiler ? "ghc86" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
@@ -21,12 +21,12 @@ let
         url = "https://github.com/qnikst/HaskellNet.git";
         rev = "34e3ec8fb2e5071ecff574fc951dbfe356f87bed"; # 0.6
       }) {};
-      other865 = self.callCabal2nix "other865" (gitignore ./.) {};
+      other86 = self.callCabal2nix "other86" (gitignore ./.) {};
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other865
+      p.other86
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -47,9 +47,9 @@ let
     ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other865);
+  exe = lib.justStaticExecutables (myHaskellPackages.other86);
 in
 {
   inherit shell;
-  other865 = lib.justStaticExecutables (myHaskellPackages.other865);
+  other86 = lib.justStaticExecutables (myHaskellPackages.other86);
 }
