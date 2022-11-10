@@ -4,9 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  # https://github.com/reflex-frp/patch/issues/42
-  # 2022-10-23 cannot reconcile monoidal-containers, patch to verify > 9.0.2
-  compiler ? "ghc90"
+  compiler ? "ghc94"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -15,6 +13,13 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       reflex-headless = lib.dontHaddock (self.callCabal2nix "reflex-headless" (gitignore ./.) {});
+      # not in nix yet
+      patch = lib.doJailbreak (self.callHackage "patch" "0.0.7.0" {});
+      # not in nix yet
+      # https://github.com/reflex-frp/reflex/issues/482
+      reflex = lib.disableCabalFlag (lib.doJailbreak (self.callHackage "reflex" "0.8.2.1" {})) "use-template-haskell";
+      # not in nix yet
+      hlint = self.callHackage "hlint" "3.5" {};
     };
   };
   shell = myHaskellPackages.shellFor {
