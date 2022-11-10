@@ -4,6 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
+  # https://github.com/0xd34df00d/inline-asm/issues/4
   compiler ? "ghc92"
 }:
 let

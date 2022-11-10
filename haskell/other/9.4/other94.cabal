@@ -262,6 +262,11 @@ executable random
   main-is:             random.hs
   build-depends:       base >= 4.17 && < 5, random
 
+executable reflex-gloss
+  import: shared-properties-base
+  main-is:             reflex-gloss.hs
+  build-depends:       base >= 4.16 && < 5, gloss, reflex, reflex-gloss
+
 executable regex
   import: shared-properties-unsafe
   main-is:             regex.hs

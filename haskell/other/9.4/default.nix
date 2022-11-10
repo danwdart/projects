@@ -17,6 +17,17 @@ let
       # for linear-base
       # not yet in nix (only 1.1.0.0)
       tasty-hedgehog = self.callHackage "tasty-hedgehog" "1.4.0.0" {};
+
+      # not in nix yet
+      patch = lib.doJailbreak (self.callHackage "patch" "0.0.7.0" {});
+      # https://github.com/reflex-frp/reflex/issues/482
+      reflex = lib.disableCabalFlag (lib.doJailbreak (self.callHackage "reflex" "0.8.2.1" {})) "use-template-haskell";
+      # not in nix yet
+      reflex-gloss = lib.doJailbreak (lib.markUnbroken super.reflex-gloss);
+      #gloss-rendering = lib.doJailbreak (self.callHackage "gloss-rendering" "1.13.1.2" {});
+      #gloss = lib.doJailbreak (self.callHackage "gloss" "1.13.2.2" {});
+      hlint = self.callHackage "hlint" "3.5" {};
+
       gloss-rendering = lib.doJailbreak super.gloss-rendering;
       gloss = lib.doJailbreak super.gloss;
       # not released on nix yet
@@ -26,12 +37,12 @@ let
       sdl2 = lib.doJailbreak super.sdl2;
       text-display = lib.doJailbreak (lib.markUnbroken super.text-display);
       ilist = lib.doJailbreak super.ilist;
-      other92 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other92" (gitignore ./.) {})));
+      other94 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other94" (gitignore ./.) {})));
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other92
+      p.other94
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -40,9 +51,9 @@ let
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other92);
+  exe = lib.justStaticExecutables (myHaskellPackages.other94);
 in
 {
   inherit shell;
-  other92 = lib.justStaticExecutables (myHaskellPackages.other92);
+  other94 = lib.justStaticExecutables (myHaskellPackages.other94);
 }

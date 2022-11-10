@@ -32,11 +32,6 @@ executable mdns
   main-is:             mdns.hs
   build-depends:       base >= 4.13 && < 5, avahi
 
--- executable reflex-gloss
---   import: shared-properties
---   main-is:             reflex-gloss.hs
---   build-depends:       base >= 4.16 && < 5, gloss, reflex, reflex-gloss
-
 -- executable translatorglitch
 --   import: shared-properties
 --   main-is:             translatorglitch.hs
