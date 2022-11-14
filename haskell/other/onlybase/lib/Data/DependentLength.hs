@@ -1,11 +1,22 @@
-{-# LANGUAGE DataKinds, DerivingStrategies, GADTs, ScopedTypeVariables #-}
+{-# LANGUAGE DataKinds, DerivingStrategies, GADTs, ScopedTypeVariables, NoImplicitPrelude, TypeFamilies #-}
 
 -- Dependent type based on length
 
+import Data.Bool
+import Data.Char
+import Data.Foldable
+import Data.Functor
 import Data.Kind
+import Data.Eq
+import Data.Ord
 import Data.Proxy
+import GHC.Err
+import GHC.IsList
+import GHC.Num
 import GHC.TypeNats
-import Prelude hiding (and, init, map, length, replicate, (++), take, filter, elem, reverse, (!!), or, any, all, product, sum)
+import Text.Show
+
+-- More generic monads required I think.
 
 -- >>> :t 0 :> 1 :> 2 :> Nil
 -- 0 :> 1 :> 2 :> Nil :: Num a => Vec 3 a
@@ -24,88 +35,34 @@ type StringL a = Vec a Char
 
 type MaxL m a = forall n. (n <= m) => Vec n a
 
+-- >>> :t ('a' :> 'b' :> 'c' :> Nil) :: MaxL 3 Char
+-- <interactive>:1:2-25: error:
+--     • Could not deduce (n ~ 3)
+--       from the context: n <= 3
+--         bound by an expression type signature:
+--                    MaxL 3 Char
+--         at <interactive>:1:31-41
+--       Expected: Vec n Char
+--         Actual: Vec ((1 + 1) + 1) Char
+--       ‘n’ is a rigid type variable bound by
+--         an expression type signature:
+--           MaxL 3 Char
+--         at <interactive>:1:31-41
+--     • In the expression: ('a' :> 'b' :> 'c' :> Nil) :: MaxL 3 Char
+--
+
 type MinL m a = forall n. (m <= n) => Vec n a
 
 -- >>> :set -XDataKinds
 -- >>> :set -XAllowAmbiguousTypes
 -- >>> :t 'a' :> 'b' :> Nil :: (2 <= n) => Vec n Char
--- <interactive>:1:1-17: error:
---     • Could not deduce (n ~ 2)
---       from the context: 2 <= n
---         bound by an expression type signature:
---                    forall (n :: Natural). (2 <= n) => Vec n Char
---         at <interactive>:1:22-43
---       Expected: Vec n Char
---         Actual: Vec (1 + 1) Char
---       ‘n’ is a rigid type variable bound by
---         an expression type signature:
---           forall (n :: Natural). (2 <= n) => Vec n Char
---         at <interactive>:1:22-43
---     • In the expression: 'a' :> 'b' :> Nil :: (2 <= n) => Vec n Char
---
 
 -- screwy
 type Password = MinL 16 Char
 
 -- >>> :t 'a' :> 'b' :> 'c' :> Nil :: Password
--- <interactive>:1:1-24: error:
---     • Could not deduce (n ~ 3)
---       from the context: 16 <= n
---         bound by an expression type signature:
---                    Password
---         at <interactive>:1:29-36
---       Expected: Vec n Char
---         Actual: Vec ((1 + 1) + 1) Char
---       ‘n’ is a rigid type variable bound by
---         an expression type signature:
---           Password
---         at <interactive>:1:29-36
---     • In the expression: 'a' :> 'b' :> 'c' :> Nil :: Password
---
 
 -- >>> :t 'a' :> 'b' :> 'c' :> 'd' :> 'e' :> 'f' :> 'g' :> 'h' :> 'i' :> 'j' :> 'k' :> 'l' :> 'm' :> 'n' :> 'o' :> 'p' :> Nil :: Password
--- <interactive>:1:1-115: error:
---     • Could not deduce (n ~ 16)
---       from the context: 16 <= n
---         bound by an expression type signature:
---                    Password
---         at <interactive>:1:120-127
---       Expected: Vec n Char
---         Actual: Vec
---                   (((((((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1)
---                        + 1)
---                       + 1)
---                      + 1)
---                     + 1)
---                    + 1)
---                   Char
---       ‘n’ is a rigid type variable bound by
---         an expression type signature:
---           Password
---         at <interactive>:1:120-127
---     • In the expression:
---           'a'
---             :>
---               'b'
---                 :>
---                   'c'
---                     :>
---                       'd'
---                         :>
---                           'e'
---                             :>
---                               'f'
---                                 :>
---                                   'g'
---                                     :>
---                                       'h'
---                                         :>
---                                           'i'
---                                             :>
---                                               'j'
---                                                 :> 'k' :> 'l' :> 'm' :> 'n' :> 'o' :> 'p' :> Nil ::
---             Password
---
 
 
 infixr 5 :>
@@ -117,18 +74,23 @@ deriving stock instance Show a => Show (Vec n a)
 --
 deriving instance Functor (Vec n)
 
+deriving instance Foldable (Vec n)
+
+{-}
+instance IsList (Vec n a) where
+    type Item (Vec n a) = a
+
+    fromList :: [a] -> Vec n a
+    fromList [] = Nil
+    fromList (x:xs) = x :> fromList xs
+
+    toList :: Vec n a -> [a]
+    toList Nil = []
+    toList (a :> as) = a : GHC.IsList.toList as
+-}
+
 -- >>> fromList "Hello World!" :: forall n. Vec n Char
--- <interactive>:34726:2-9: error:
---     • No instance for (KnownNat n1) arising from a use of ‘fromList’
---       Possible fix:
---         add (KnownNat n1) to the context of
---           an expression type signature:
---             forall (n1 :: Nat). Vec n1 Char
---     • In the expression:
---           fromList "Hello World!" :: forall n. Vec n Char
---       In an equation for ‘it’:
---           it = fromList "Hello World!" :: forall n. Vec n Char
---
+
 {-}
 fromList :: KnownNat n => [a] -> Vec n a -- maybe we want either existent or length passed?
 fromList [] = Nil
@@ -139,10 +101,9 @@ fromList (x:xs) = x :> fromList xs
 -- >>> toList $ 1 :> 2 :> 3 :> Nil
 -- [1,2,3]
 --
-toList :: Vec n a -> [a]
-toList Nil = []
-toList (a :> as) = a : toList as
 
+-- Uses foldable
+{-}
 and :: Vec n Bool -> Bool
 and Nil = True
 and (b :> bs) = b && and bs
@@ -151,7 +112,10 @@ or :: Vec n Bool -> Bool
 or Nil = False
 or (b :> bs) = b || or bs
 
+
 -- instead implement Foldable
+
+
 
 any :: (a -> Bool) -> Vec n a -> Bool
 any _ Nil = False
@@ -160,45 +124,12 @@ any f (a :> as) = f a || any f as
 all :: (a -> Bool) -> Vec n a -> Bool
 all _ Nil = True
 all f (a :> as) = f a && all f as
+-}
+-- Things in Foldable:
 
--- >>> sumNaive $ 1 :> 2 :> 3 :> 4 :> Nil
--- 10
---
-sumNaive :: (Num a) => Vec n a -> a
-sumNaive Nil = 0
-sumNaive (a :> as) = a + sum as
-
--- >>> sum $ 1 :> 2 :> 3 :> 4 :> Nil
--- 10
---
-sum :: (Num a) => Vec n a -> a
-sum = go 0
-    where
-        go :: (Num a) => a -> Vec n a -> a
-        go acc Nil = acc
-        go acc (a :> as') = go (acc + a) as'
-
--- >>> productNaive $ 1 :> 2 :> 3 :> 4 :> Nil
--- 24
---
-productNaive :: (Num a) => Vec n a -> a
-productNaive Nil = 1
-productNaive (a :> as) = a * product as
-
--- >>> product $ 1 :> 2 :> 3 :> 4 :> Nil
--- 24
---
-product :: (Num a) => Vec n a -> a
-product = go 1
-    where
-        go :: (Num a) => a -> Vec n a -> a
-        go acc Nil = acc
-        go acc (a :> as') = go (acc * a) as'
 
 {-
 -- these are pretty straightforward:
-maximum
-minimum
 foldl
 foldl'
 foldl1
@@ -216,11 +147,6 @@ isInfixOf
 isSubsequenceOf
 -}
 
-
-elem :: Eq a => a -> Vec n a -> Bool
-elem _ Nil = False
-elem x (y :> ys) = x == y || elem x ys
-
 {-}
 notElem
 lookup
@@ -234,18 +160,45 @@ head :: Vec n a -> a
 head Nil = error "No head"
 head (x :> _) = x
 
+-- >>> head (1 :> 2 :> 3 :> Nil)
+-- 1
+--
+
 headNE :: (1 <= n) => Vec n a -> a
 headNE (x :> _) = x
 
+-- >>> lastNE (1 :> 2 :> 3 :> Nil)
+-- 3
+--
 
 {-}
-tail
 init
 -}
 
--- init :: (1 <= n) => Vec n a -> Vec (n - 1) a
--- init (_ :> Nil) = Nil
--- init (x :> xs@(_ :> _)) = x :> init xs
+{-}
+init :: Vec n a -> Vec (n - 1) a
+init Nil = error "Wat"
+init (_ :> Nil) = Nil
+init (a :> _ :> Nil) = a :> Nil
+init (a :> as) = a :> init as
+-}
+
+-- >>> headNE (1 :> 2 :> 3 :> Nil)
+-- 1
+--
+
+last :: Vec n a -> a
+last Nil = error "No last"
+last (x :> Nil) = x
+last (_ :> xs) = last xs
+
+-- >>> last (1 :> 2 :> 3 :> Nil)
+-- 3
+--
+
+lastNE :: (1 <= n) => Vec n a -> a
+lastNE (x :> Nil) = x
+lastNE (_ :> xs) = last xs
 
 {-}
 last
@@ -259,6 +212,24 @@ singleton
 map :: (a -> b) -> Vec n a -> Vec n b
 map _ Nil = Nil
 map f (x :> xs) = f x :> map f xs
+
+{-
+zip :: Vec n a -> Vec m b -> Vec n (a, b)
+zip Nil _ = Nil
+zip _ Nil = Nil
+zip (a :> as) (b :> bs) = (a, b) :> zip as bs
+-}
+
+-- unzip :: Vec n (a, b) -> (Vec n a, Vec n b)
+-- unzip Nil = error "Aaaah!"
+-- unzip ((a, b) :> asbs) = undefined
+
+{-}
+zipWith :: (a -> b -> c) -> Vec n a -> Vec n b -> Vec n c
+zipWith _ Nil _ = Nil
+zipWith _ _ Nil = Nil
+zipWith f (a :> as) (b :> bs) = f a b :> zipWith f as bs
+-}
 
 {-}
 zip
@@ -297,6 +268,15 @@ sort
 null
 -}
 
+-- BEGIN Foldable
+
+{-}
+
+toList :: Vec n a -> [a]
+toList Nil = []
+toList (a :> as) = a : toList as
+
+
 -- >>> lengthCalc (1 :> 2 :> 3 :> Nil)
 -- 3
 --
@@ -309,6 +289,57 @@ lengthCalc (_ :> xs) = 1 + lengthCalc xs
 --
 length :: forall n a. KnownNat n => Vec n a -> Nat
 length _ = natVal (Proxy :: Proxy n)
+
+elem :: Eq a => a -> Vec n a -> Bool
+elem _ Nil = False
+elem x (y :> ys) = x == y || elem x ys
+
+maximum :: (Ord a) => Vec n a -> a
+maximum Nil = error "You shouldn't be here."
+maximum (a :> Nil) = a
+maximum (a :> as) = max a (maximum as)
+
+minimum :: (Ord a) => Vec n a -> a
+minimum Nil = error "You shouldn't be here."
+minimum (a :> Nil) = a
+minimum (a :> as) = min a (minimum 
+
+-- >>> sumNaive $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 10
+--
+sumNaive :: (Num a) => Vec n a -> a
+sumNaive Nil = 0
+sumNaive (a :> as) = a + sum as
+
+-- >>> sum $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 10
+--
+sum :: (Num a) => Vec n a -> a
+sum = go 0
+    where
+        go :: (Num a) => a -> Vec n a -> a
+        go acc Nil = acc
+        go acc (a :> as') = go (acc + a) as'
+
+-- >>> productNaive $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 24
+--
+productNaive :: (Num a) => Vec n a -> a
+productNaive Nil = 1
+productNaive (a :> as) = a * product as
+
+-- >>> product $ 1 :> 2 :> 3 :> 4 :> Nil
+-- 24
+--
+product :: (Num a) => Vec n a -> a
+product = go 1
+    where
+        go :: (Num a) => a -> Vec n a -> a
+        go acc Nil = acc
+        go acc (a :> as') = go (acc * a) as'
+-}
+-- END Foldable
+
 
 -- replicate :: Natural -> a -> Vec n a
 -- replicate 0 _ = Nil
