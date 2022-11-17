@@ -4,6 +4,7 @@ runCommand "static" {
         pkgsStatic.libffi
         pkgsStatic.gmp
         musl
+        pkgsMusl.gcc
         pkgsMusl.haskell.compiler.ghc94
     ];
 } ""
