@@ -193,6 +193,10 @@ executable diffy
   import: shared-properties
   main-is:             diffy.hs
 
+executable divoverflow
+  import: shared-properties
+  main-is:             divoverflow.hs
+
 executable exact-real
   import: shared-properties
   main-is:             exact-real.hs
