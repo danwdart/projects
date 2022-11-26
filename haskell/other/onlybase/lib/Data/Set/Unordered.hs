@@ -1,7 +1,7 @@
 -- | WeakSet: Unordered Set
 module Data.Set.Unordered where
 
-import GHC.Exts
+-- import GHC.Exts
 
 -- | Implicitly ordered set.
 

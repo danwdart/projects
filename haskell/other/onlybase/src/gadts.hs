@@ -2,6 +2,8 @@
 {-# LANGUAGE GADTs             #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+import Data.DisparateList
+
 data G a where
     GBool :: G Bool
     GInt :: G Int
@@ -9,18 +11,6 @@ data G a where
 f ∷ G a → a
 f GBool = False
 f GInt  = 0
-
-data L ts where
-    Empty :: L '[]
-    (:>) :: a -> L t -> L (a ': t)
-
-infixr 5 :>
-
-instance Show (L '[]) where
-    show _ = "that's it"
-
-instance (Show a, Show (L t)) ⇒ Show (L (a ': t)) where
-    show (a :> t) = show a <> " and " <> show t
 
 data Arrow a b where
     Fn :: (a → b) -> Arrow a b
@@ -39,13 +29,13 @@ hmm = Comp (Comp (Fn succ) (Fn succ)) (Comp (Fn succ) (Fn succ))
 
 ids ∷ Arrow a a
 ids = Comp (Comp (Fn id) (Fn id)) (Comp (Fn id) (Fn id))
--- deionriving instance (Show a, Show (L t)) => Show (L (a ': t))
+-- deriving instance (Show a, Show (L t)) => Show (L (a ': t))
 
 main ∷ IO ()
 main = do
     print $ f GBool
     print $ f GInt
-    print ((2::Int) :> "a" :> Empty)
-    print Empty
+    print ((2::Int) :> "a" :> Nil)
+    print Nil
     print $ eval hmm (1::Int)
     print $ num ids

@@ -1,4 +1,5 @@
-{-# OPTIONS_GHC -Wno-unused-matches #-}
+{-# OPTIONS_GHC -Wno-unused-matches -Wno-all-missed-specialisations #-}
+-- where do I put {-# INLINABLE Element #-}
 {-# LANGUAGE DeriveFunctor, OverloadedLists, ScopedTypeVariables #-}
 
 module Data.ListIndex where

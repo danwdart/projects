@@ -1,17 +1,21 @@
 {-# LANGUAGE DataKinds, DerivingStrategies, GADTs, ScopedTypeVariables, NoImplicitPrelude, TypeFamilies #-}
 
+-- Based on 
+module Data.DependentLength where
+
 -- Dependent type based on length
 
-import Data.Bool
+-- import Data.Bool
 import Data.Char
 import Data.Foldable
 import Data.Functor
 import Data.Kind
-import Data.Eq
-import Data.Ord
-import Data.Proxy
+-- import Data.Eq
+-- import Data.Ord
+-- import Data.Proxy
+import Data.Type.Equality
 import GHC.Err
-import GHC.IsList
+-- import GHC.IsList
 import GHC.Num
 import GHC.TypeNats
 import Text.Show
@@ -35,20 +39,11 @@ type StringL a = Vec a Char
 
 type MaxL m a = forall n. (n <= m) => Vec n a
 
+type ML m a = forall m1 n. (n <= m1, m1 ~ m) => Vec n a
+
 -- >>> :t ('a' :> 'b' :> 'c' :> Nil) :: MaxL 3 Char
--- <interactive>:1:2-25: error:
---     • Could not deduce (n ~ 3)
---       from the context: n <= 3
---         bound by an expression type signature:
---                    MaxL 3 Char
---         at <interactive>:1:31-41
---       Expected: Vec n Char
---         Actual: Vec ((1 + 1) + 1) Char
---       ‘n’ is a rigid type variable bound by
---         an expression type signature:
---           MaxL 3 Char
---         at <interactive>:1:31-41
---     • In the expression: ('a' :> 'b' :> 'c' :> Nil) :: MaxL 3 Char
+-- <interactive>:1:36: error:
+--     Illegal type: ‘3’ Perhaps you intended to use DataKinds
 --
 
 type MinL m a = forall n. (m <= n) => Vec n a
@@ -164,8 +159,8 @@ head (x :> _) = x
 -- 1
 --
 
-headNE :: (1 <= n) => Vec n a -> a
-headNE (x :> _) = x
+-- headNE :: (1 <= n) => Vec n a -> a
+-- headNE (x :> _) = x
 
 -- >>> lastNE (1 :> 2 :> 3 :> Nil)
 -- 3
@@ -196,9 +191,9 @@ last (_ :> xs) = last xs
 -- 3
 --
 
-lastNE :: (1 <= n) => Vec n a -> a
-lastNE (x :> Nil) = x
-lastNE (_ :> xs) = last xs
+-- lastNE :: (1 <= n) => Vec n a -> a
+-- lastNE (x :> Nil) = x
+-- lastNE (_ :> xs) = last xs
 
 {-}
 last
@@ -422,9 +417,9 @@ Nil !! _ = error "Nah"
 --       In the second argument of ‘(:>)’, namely ‘2 :> Nil !!! 2’
 --       In the expression: 1 :> 2 :> Nil !!! 2
 --
-(!!!) :: (1 <= n) => Vec n a -> Nat -> a -- get that Nat
-(x :> _) !!! 0 = x
-(_ :> xs) !!! n = xs !! (n - 1)
+-- (!!!) :: (1 <= n) => Vec n a -> Nat -> a -- get that Nat
+-- (x :> _) !!! 0 = x
+-- (_ :> xs) !!! n = xs !! (n - 1)
 
 {-}
 elemIndex
