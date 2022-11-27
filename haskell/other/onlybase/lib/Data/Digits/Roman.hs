@@ -2,9 +2,9 @@ module Data.Digits.Roman where
 
 data RomanNumberCharacter = I | V | X | L | C | D | M
 
-data Roman n where
-    Add :: n -> n -> n
-    Sub :: n -> n -> n
+data Roman where
+    Add :: RomanNumberCharacter -> RomanNumberCharacter -> Roman
+    Sub :: RomanNumberCharacter -> RomanNumberCharacter -> Roman
 
 difference :: Roman -> Roman -> Roman
 difference = undefined
