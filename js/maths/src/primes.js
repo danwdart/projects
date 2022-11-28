@@ -14,7 +14,7 @@ function testPrime_2(n) {
     var sn = Math.floor(Math.sqrt(n));
     for (var i = 2; i<=sn; i++) {
         if (0 == n % i) return false;
-    }   
+    }
     return true;
 }
 

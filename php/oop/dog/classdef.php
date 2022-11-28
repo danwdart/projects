@@ -3,26 +3,26 @@
 // classdef.php
 // Part of example OOP practice
 
-class Life 
+class Life
 {
     protected $_name;
-    
+
     public function __construct()
     {
         echo "Life Form Created!";
     }
-    
-    public function __destruct() 
+
+    public function __destruct()
     {
         echo $this->_name . ' is dead! Cleaning up...';
     }
-    
-    public function setName($name) 
+
+    public function setName($name)
     {
         $this->_name = $name;
     }
-    
-    public function getName() 
+
+    public function getName()
     {
         return $this->_name;
     }

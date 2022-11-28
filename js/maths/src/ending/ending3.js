@@ -5,7 +5,7 @@ let things = {},
 for (let i = 1; i < 1000; i++) {
     let it = iterations(i);
     if (`undefined` === typeof things[it])
-        things[it] = []; 
+        things[it] = [];
     things[it].push(i);
 }
 for (let i in things) {

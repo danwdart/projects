@@ -13,7 +13,7 @@ mov ecx, buf
 mov edx, 65535
 int 80h
 mov eax, 4 ;write
-mov ebx, 0 ;fd 
+mov ebx, 0 ;fd
 mov ecx, buf
 int 80h
 mov eax, 1 ;exit

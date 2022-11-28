@@ -5,7 +5,7 @@ export const calc = options => {
             new Float32Array(options.numbers),
             new Float32Array(options.numbers)
         ];
-    
+
     let oldx = 0,
         oldy = 0;
 

@@ -47,7 +47,7 @@ fromList xs = go xs 0 where
 toList :: ListIndex ix a -> [a]
 toList = undefined
 
--- fromSequentialMap 
+-- fromSequentialMap
 -- toSequentialMap
 -- O(n), probably. Ugh.
 getElement :: ix -> ListIndex ix a -> Maybe a

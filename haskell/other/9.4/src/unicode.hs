@@ -21,7 +21,7 @@ rtSimple = ask ≫= liftIO ∘ putStrLn
 
 rt ∷ ReaderT String IO ()
 rt = ReaderT $ liftIO ∘ putStrLn
-    
+
 rWithLocal ∷ Reader String String
 rWithLocal = local (⧺ "Jim") stringToStringReader
 

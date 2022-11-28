@@ -18,12 +18,12 @@ export const grab = fetch => async search => {
                             let page = 1;
 
                             let full = [];
-                        
+
                             while (true) {
                                 const json = await (
                                     await fetch(`${host}${searchQueryTerm}&page=${page}`)
                                 ).json();
-                            
+
                                 if (!json.length) {
                                     break;
                                 }

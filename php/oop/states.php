@@ -12,31 +12,31 @@ echo 'State Abbr.: '.$kirupa->getHomeStateAbbr().'<br />';	// AL
 class User {
 	private $name;
 	private $homeState;
-	
+
 	function __construct( $attribs ) {
 		$this->name		= $attribs['name'];
 		$this->homeState	= $attribs['homeState'];
 	}
-	
+
 	/* name methods */
 	function setName( $val ) {
 		$this->name = $val;
 		return;
 	}
-	
+
 	function getName() {
 		return $this->name;
 	}
-	
+
 	/* home state methods */
 	function setHomeState( $val ) {
 		$this->homeState = $val;
 	}
-	
+
 	function getHomeState() {
 		return $this->homeState;
 	}
-	
+
 	function getHomeStateAbbr() {
 		$abbr = States::$ABBRS[$this->getHomeState()]; // this is not a function but an array (variable), so still needs an $
 		if( $abbr ) {

@@ -1,7 +1,7 @@
 section .text
 
 global _start
- 
+
 _start:
     mov rax, 0x2000004      ; System call write = 4
     mov rdi, 1              ; Write to standard out = 1

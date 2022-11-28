@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               ffijs 
+name:               ffijs
 version:            0.1.0.0
 synopsis:           ffijs
 description:        ffijs
@@ -19,7 +19,7 @@ extra-source-files: CHANGELOG.md
 --     exposed-modules:
 --         LibDemo
 
-executable ffihstojs 
+executable ffihstojs
     main-is:          Main.hs
     js-sources:       src/libdemo.js
     build-depends:    base, ghcjs-base

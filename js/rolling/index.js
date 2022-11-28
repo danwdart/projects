@@ -79,7 +79,7 @@ let row = 0,
             video: true,
             audio: false
         });
-        
+
         video.srcObject = mediaStream;
 
         video.addEventListener(`loadedmetadata`, (ev) => {

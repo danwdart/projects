@@ -19,7 +19,7 @@
 
   useWarp = false;
   withHoogle = false;
-  
+
   android = {
     ffihs = {
       executableName = "ffijs";

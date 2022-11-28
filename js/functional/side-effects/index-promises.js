@@ -30,7 +30,7 @@ writeFile(FILE, firstJSON).then(() => {
 }).then(([rnd, FILE, fileBuffer]) => {
     console.log('The output is %o, the rand was %d and I are gewd', JSON.parse(fileBuffer.toString()), rnd);
     return unlink(FILE);
-}).then(() => new Promise((res, rej) => 
+}).then(() => new Promise((res, rej) =>
     https.get('https://dandart.co.uk', response => 200 === response.statusCode ?
         res(response) :
         rej(new Error('Not 200'))

@@ -50,7 +50,7 @@ plugins:
   - serverless-s3-local
   - serverless-static # kills deploy so disable or find alternative
   - serverless-domain-manager
-  
+
 custom:
   haskell:
   serverless-offline:

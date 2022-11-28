@@ -11,7 +11,7 @@ var itt = function() {
             for (var i = 0; i < self._elems.length; i++) {
                 cb(self._elems[i], i);
             }
-        }; 
+        };
     },
     bob = new itt();
 

@@ -8,10 +8,10 @@ fn main() {
     loop {
         println!("Hello");
         let mut input = String::new();
-    
+
         io::stdin().read_line(&mut input)
             .expect("Wat");
-        
+
         let input: u32 = match input.trim().parse() {
             Ok(input) => input,
             Err(_) => {
@@ -19,12 +19,12 @@ fn main() {
                 continue;
             },
         };
-        
+
         let ran = rand::thread_rng().gen_range(1, 1001);
-        
+
         println!("Twas {}, with rng = {}", input, ran);
-        
-       
+
+
         match input.cmp(&ran) {
             Ordering::Less => println!("Less"),
             Ordering::Greater => println!("Greater"),

@@ -226,7 +226,7 @@ doc = docTypeSvg $ do
                 target="_blank"
             >
                 Click me!
-            </a>  
+            </a>
         </foreignObject>
     </g>
     <!-- Arc text -->

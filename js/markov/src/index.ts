@@ -32,7 +32,7 @@ sentences.forEach(sentence => {
     for (let i = 0; i < words.length - 1; i++) {
         const current = words[i],
             next = words[i + 1];
-        
+
         if (`undefined` === typeof next) {
             console.debug(`Not setting ${current} to anything.`);
             continue;
@@ -50,9 +50,9 @@ sentences.forEach(sentence => {
                 sub.set(next, 1);
                 continue;
             }
-            
+
             const subNext = sub.get(next)
-            
+
             if (subNext) {
                 sub.set(next, subNext + 1);
             }
@@ -68,11 +68,11 @@ let ended = false,
 while (!ended) {
     if (lasts.includes(word) || 30 < finishedSentence.length) {
         ended = true;
-        finishedSentence.push(word);  
+        finishedSentence.push(word);
         break;
     }
 
-    finishedSentence.push(word);  
+    finishedSentence.push(word);
 
     let newProbMap = byFreq.get(word);
     if (newProbMap) {

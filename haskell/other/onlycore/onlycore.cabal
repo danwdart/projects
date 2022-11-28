@@ -142,7 +142,7 @@ executable fixedlength
   import: shared-properties-safe
   main-is:             fixedlength.hs
   build-depends:       base >= 4.17 && < 5, array
-  
+
 executable forms
   import: shared-properties-safe
   main-is:             forms.hs

@@ -8,7 +8,7 @@ export default () => {
     useEffect(() => {
         window.document.title = name;
     });
-    
+
     return <article>
         <p>This is my article.</p>
         <input type="text" onChange={onInputChange(setName)} value={name}/>

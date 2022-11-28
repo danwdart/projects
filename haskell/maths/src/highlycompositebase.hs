@@ -23,4 +23,4 @@ highlyComposite = go 0 1 where
         | otherwise = go record (n + 1)
 
 main :: IO ()
-main = mapM_ print $ read @Integer . concatMap show . digits 2 <$> take 16 highlyComposite 
+main = mapM_ print $ read @Integer . concatMap show . digits 2 <$> take 16 highlyComposite

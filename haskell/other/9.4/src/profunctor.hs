@@ -13,7 +13,7 @@ main = do
     print $ left' show r -- Right 1
     print $ right' show l -- Left 1
     print $ right' show r -- Right "1"
-    
+
     putStrLn "Closed ->"
     print $ closed show (const 1) (const "b") -- "1"
     print $ closed succ (const False) (const True) -- True

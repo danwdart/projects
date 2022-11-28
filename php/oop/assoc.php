@@ -20,7 +20,7 @@ class User {
 	private $school;
 	private $homeTown;
 	private $homeState;
-	
+
 	function __construct( $attribs ) {
 		$this->name		= $attribs['name'];
 		$this->job		= $attribs['job'];
@@ -28,51 +28,51 @@ class User {
 		$this->homeTown		= $attribs['homeTown'];
 		$this->homeState	= $attribs['homeState'];
 	}
-	
+
 	/* name methods */
 	function setName( $val ) {
 		$this->name = $val;
 		return;
 	}
-	
+
 	function getName() {
 		return $this->name;
 	}
-	
+
 	/* job methods */
 	function setJob( $val ) {
 		$this->job = $val;
 		return;
 	}
-	
+
 	function getJob() {
 		return $this->job;
 	}
-	
+
 	/* school methods */
 	function setSchool( $val ) {
 		$this->school = $val;
 		return;
 	}
-	
+
 	function getSchool() {
 		return $this->school;
 	}
-	
+
 	/* home town methods */
 	function setHomeTown( $val ) {
 		$this->homeTown = $val;
 	}
-	
+
 	function getHomeTown() {
 		return $this->homeTown;
 	}
-	
+
 	/* home state methods */
 	function setHomeState( $val ) {
 		$this->homeState = $val;
 	}
-	
+
 	function getHomeState() {
 		return $this->homeState;
 	}

@@ -16,7 +16,7 @@ const audio = document.querySelector(`#player`),
         tracks.querySelector(SELECTOR_ACTIVE).nextElementSibling ||
       tracks.children[0]
     ).classList.add(CLASS_ACTIVE);
-  
+
 /*
   audio.addEventListener(
     `play`,

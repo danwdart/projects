@@ -14,13 +14,13 @@
  * constructor is named  the same as class but with no return
  * You can overload constructors by making multiple of them.
  * Parens can't be used for default constructor (no args)
- * Variable initialisation: class_name object_name = initialization_value; 
+ * Variable initialisation: class_name object_name = initialization_value;
  * Uniform initialisation: class object { a, b, c }
  * Member initialisation: Rectangle::Rectangle (int x, int y) : width(x), height(y) { }
- * Overload operators type operator+ (const type&) { ... } 
+ * Overload operators type operator+ (const type&) { ... }
  * "this" returns a pointer
  * ~Destructor(). delete a;
- * Class * b = new C; 
+ * Class * b = new C;
  * Static like php
  * const objects are R/O to the outside
  * template <class T> and use T as "int" and you'll get ints everywhere you use T

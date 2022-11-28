@@ -1,9 +1,9 @@
 export function prifact(num){
-    var root = Math.sqrt(num),  
+    var root = Math.sqrt(num),
         result = arguments[1] || [],  //get unnamed paremeter from recursive calls
-        x = 2; 
+        x = 2;
 
-    if(num % x){//if not divisible by 2 
+    if(num % x){//if not divisible by 2
         x = 3;//assign first odd
         while((num % x) && ((x = x + 2) < root)){
             //nothing

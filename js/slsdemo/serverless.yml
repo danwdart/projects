@@ -13,7 +13,7 @@ provider:
   stage: dev
   apiGateway:
     shouldStartNameWithService: true
-  
+
 # you can add packaging information here
 #package:
 #  include:

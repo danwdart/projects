@@ -8,7 +8,7 @@ listToPairs x = zip x (tail x)
 
 pairsToList ∷ (Ord a) ⇒ [(a, a)] → [a]
 pairsToList = uniq . concatMap biList
-    where        
+    where
         uniq ∷ Ord a ⇒ [a] → [a]
         uniq = S.toList . S.fromList
 

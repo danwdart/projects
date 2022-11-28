@@ -13,7 +13,7 @@ bma :: String -> IO Int
 bma b = do
     putStrLn "Hey"
     pure 2
-        
+
 
 fixRevIO :: (a -> IO b) -> (b -> IO a) -> IO (a, b)
 fixRevIO amb' bma' = mdo

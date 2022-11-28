@@ -108,13 +108,13 @@ const btnFns = {
         //console.log(
             //await crypto.subtle.exportKey("raw", keyPair.publicKey),
             //await crypto.subtle.exportKey("pkcs8", keyPair.publicKey),
-            
+
             //(await crypto.subtle.exportKey("jwk", keyPair.publicKey)).n
         //);
 
         //console.log(
             //await crypto.subtle.exportKey("raw", keyPair.privateKey),
-            
+
             //await binaryBufferToBase64(await crypto.subtle.exportKey("spki", keyPair.privateKey)),
             //(await crypto.subtle.exportKey("jwk", keyPair.privateKey))
         //);

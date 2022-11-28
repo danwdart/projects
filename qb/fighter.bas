@@ -119,7 +119,7 @@ PRINT "Melee attack="; p1m
 PRINT "Defence="; p1d
 PRINT "Accuracy="; p1a
 p1movechoice:
- 
+
 PRINT "What is your move?"
 PRINT "1: Move towards target"
 PRINT "2: Move away from target"

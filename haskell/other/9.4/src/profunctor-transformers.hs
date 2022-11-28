@@ -40,4 +40,3 @@ main = do
     print r2
     f2 <- runStar modifiedSf2 (456 :: Int)
     print f2
-    

@@ -1,5 +1,5 @@
 import {calc} from './lib/calc.js';
-import {getContext as getCanvasContext, clear as clearCanvas} from './lib/canvas.js'; 
+import {getContext as getCanvasContext, clear as clearCanvas} from './lib/canvas.js';
 import {
     playSound,
     getContext as getAudioContext
@@ -33,7 +33,7 @@ const draw = typefn => {
         const options = getOptions(typefn),
             audioContext = getAudioContext(),
             [,tones] = calc(options);
-        
+
         playTones(audioContext, tones);
     },
     audio = typefn => {

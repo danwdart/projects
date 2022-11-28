@@ -1,8 +1,8 @@
 <?php
 interface Warrior_Interface
 {
-    public function setName($name); 
-    public function getName(); 
+    public function setName($name);
+    public function getName();
     public function setHealth($health);
     public function getHealth();
     public function setAttack($attack);

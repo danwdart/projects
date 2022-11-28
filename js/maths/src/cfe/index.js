@@ -15,7 +15,7 @@ const getCFEDetails = cfe => {
 const calc = () => {
     const cfe = $cfe.val(),
         [value, frac] = getCFEDetails(cfe);
-        
+
     $dec.html(value);
     $fracNum.html(frac[0]);
     $fracDen.html(frac[1]);

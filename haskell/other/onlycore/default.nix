@@ -31,7 +31,7 @@ in
 {
   inherit shell;
   inherit exe;
-  
+
    inherit myHaskellPackages;
   onlycore = lib.justStaticExecutables (myHaskellPackages.onlycore);
 }

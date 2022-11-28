@@ -25,7 +25,7 @@
 
   useWarp = true;
   withHoogle = false;
-  
+
   android = {
     reflex-stuff = {
       executableName = "dom";

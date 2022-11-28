@@ -19,7 +19,7 @@ newtype P = P Text
 
 instance Display K where
     displayBuilder = fromText . pack . show . s
-  
+
 
 main ∷ IO ()
 main = do

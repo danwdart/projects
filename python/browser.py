@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from gtk import Window, main, main_quit, ScrolledWindow
-from webkit import WebView 
+from webkit import WebView
 
 class Dan:
 	def __init__(self):

@@ -1,6 +1,6 @@
 {-# LANGUAGE DataKinds, DerivingStrategies, GADTs, ScopedTypeVariables, NoImplicitPrelude, TypeFamilies #-}
 
--- Based on 
+-- Based on
 module Data.DependentLength where
 
 -- Dependent type based on length
@@ -297,7 +297,7 @@ maximum (a :> as) = max a (maximum as)
 minimum :: (Ord a) => Vec n a -> a
 minimum Nil = error "You shouldn't be here."
 minimum (a :> Nil) = a
-minimum (a :> as) = min a (minimum 
+minimum (a :> as) = min a (minimum
 
 -- >>> sumNaive $ 1 :> 2 :> 3 :> 4 :> Nil
 -- 10
@@ -338,11 +338,11 @@ product = go 1
 
 -- replicate :: Natural -> a -> Vec n a
 -- replicate 0 _ = Nil
--- replicate n x = x :> replicate (n - 1) x 
+-- replicate n x = x :> replicate (n - 1) x
 
 -- (++) :: Vec n a -> Vec m a -> Vec (n + m) a
 -- Nil ++ v = v
--- (x :> xs) ++ v = x :> (xs ++ v) 
+-- (x :> xs) ++ v = x :> (xs ++ v)
 
 -- take :: n' -> Vec n a -> Vec (min n' n) a
 -- take 0 _ = Nil

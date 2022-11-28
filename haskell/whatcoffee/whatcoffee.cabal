@@ -14,7 +14,7 @@ library
   default-language:    GHC2021
   default-extensions:  UnicodeSyntax
   build-depends:       base >= 4.17 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
-  exposed-modules:     
+  exposed-modules:
   ghc-options:         -Wall -Werror -haddock
 
 executable whatcoffee

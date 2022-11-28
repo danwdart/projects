@@ -397,7 +397,7 @@ benchmark listStringVsVectorText
                , deepseq
                , text
                , vector
-          
+
 benchmark sums
   type: exitcode-stdio-1.0
   hs-source-dirs: bench
@@ -408,7 +408,7 @@ benchmark sums
                , criterion
                , deepseq
                , vector
-            
+
 benchmark recursiveFacFibs
   type: exitcode-stdio-1.0
   hs-source-dirs: bench

@@ -40,7 +40,7 @@ import {
     callRest,
     callNew,
     doAndReturn,
-    passAndDo 
+    passAndDo
 } from './lib/my-combinators';
 
 import {prop} from './lib/objects';
@@ -63,7 +63,7 @@ const writeFile = promisify(fs.writeFile),
 const outPhrase = ([rnd, fileBuffer]) => [OUT_IS, JSON.parse(fileBuffer.toString()), rnd];
 const rndAndStatus = rnd => [rnd, upOrDown(rnd)];
 const theOpts = ([rnd, option]) => [rnd, IN_THE, prop(option)(THE_OPTS)];
-const doWhen = check => whenTrue => whenFalse => pred => 
+const doWhen = check => whenTrue => whenFalse => pred =>
     check(pred)(ap(whenTrue)(whenFalse)(pred));
 const getUrl = https => url => (res, rej) => https.get(url, on(doWhen(ifIsOK))(callWith)(res)(rej));
 
@@ -76,7 +76,7 @@ const makePromise = compose(callNew(Promise));
 const makePromiseWith = compose(makePromise);
 const addAfter = flip(add);
 const awesomePhrase = addAfter(IS_AWESOME);
-const upOrDown = compose(Number)(lte(0.5)); 
+const upOrDown = compose(Number)(lte(0.5));
 const promiseAll = Promise.all.bind(Promise);
 
 // insert into the pipeline to view

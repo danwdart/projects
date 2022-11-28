@@ -6,7 +6,7 @@
       top:20px; /* YOU CAN CHANGE THIS TO BOTTOM */
       left:20px; /* YOU CAN CHANGE THIS TO RIGHT */
       z-index:99;}
-      
+
   /* I DON'T RECOMMEND TOUCHING THIS STUFF */
   #music1{
       position:fixed;
@@ -14,36 +14,36 @@
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
       -o-transition: all 0.5s ease-in-out;}
-      
+
   #music1:hover #music2{
       opacity:0;
       margin-top:-25px;
       z-index:-1;}
-      
+
   #music1:hover #music3{
       opacity:1;
       margin-top:-5px;
       z-index:99;}
-      
+
   #music1:hover #musiclist{
       opacity:1;}
-      
+
   #music2{
       /* THIS IS THE GIF DIV */
       opacity:1;
       background-color:#fff;
-      border:1px dotted #ccc; 
+      border:1px dotted #ccc;
       padding:6px;
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;}
-      
+
   #music3{
       /* THIS IS THE ACTUAL MUSIC PLAYER DIV */
       opacity:0;
       position:fixed;
       background-color:#fff;
-      border:1px dashed #ccc; 
+      border:1px dashed #ccc;
       width:160px;
       height:29px;
       z-index:99;
@@ -52,13 +52,13 @@
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;}
-      
+
   #musiclist{
       /* THIS IS THE PLAYLIST DIV */
       opacity:0;
       position:fixed;
       padding:6px;
-      border:1px dashed #ccc; 
+      border:1px dashed #ccc;
       margin-left:10px;
       margin-top:10px;
       font-family:consolas;
@@ -70,8 +70,8 @@
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;}
-      
-  #musiclist h1{ 
+
+  #musiclist h1{
       /*THIS IS THE PLAYLIST TITLE SETTINGS*/
       font-family:consolas;
       font-size:11px;
@@ -83,26 +83,26 @@
       border-bottom:1px dotted #ccc;
       text-align:left;
       text-transform:uppercase;}
-  
+
 </style>
 
   <div id="editthis">
     <div id="music1">
     <div id="music2">
-    
+
     <!-- YOU CAN CHANGE THE MUSIC GIF BELOW. -->
     <img src="https://78.media.tumblr.com/tumblr_m7vzw2cqLS1r6o8v2.gif"></div>
-    
+
     <div id="music3">
     <Div style="margin-top:4px;">
     <!-- YOUR MUSIC CODE GOES HERE, RIGHT AFTER THIS LINE. -->
     <audio id="audio">
       <embed src="https://www.sheepproductions.com/billy/billy.swf?autoplay=false&f0=https://dl.dropboxusercontent.com/s/s8buq3o36biz9dy/01%20-%20Doomed%20%5BExplicit%5D.mp3&t0=1. Doomed - BMTH&f1=https://a.tumblr.com/tumblr_m8ar24lW3Q1r02uggo1.mp3&t1=2. Kuusou Mesorogiwi - Mirai Nikki&f2=https://dl.dropboxusercontent.com/s/jud2np2xy6yy1kj/Bring%C2%A0Me%C2%A0The%C2%A0Horizon%C2%A0-%C2%A0Sleepwalking.mp3?&t2=3. Sleepwalking - BMTH&f3=https://a.tumblr.com/tumblr_na8cljlU7w1tw40j0o1.mp3&t3=4. My Demons - Starset&f4=https://a.tumblr.com/tumblr_ngx00izDjY1snh4eko1.mp3&t4=5. Echo - Crusher-P&total=5" quality="high" wmode="transparent" width="200" height="10" name="billy" align="middle" type="application/x-shockwave-flash" />
     </audio>
-        
+
     </div>
     </div>
-    
+
     <div id="musiclist">
     <h1>Lullaby</h1>
     <!-- PUT YOUR MUSIC TITLES HERE. BE SURE TO ADD A BREAK AFTER EACH ONE. -->
@@ -112,17 +112,17 @@
     04. My Demons - Starset <br>
     05. Echo - Crusher-P <br>
     </div>
-    
+
     </div>
     </div>
-    
+
     <script>
       if (window.HTMLAudioElement) {
         const audio = document.getElementById('audio'),
           embed = audio.querySelector(`embed`),
           data = embed.getAttribute(`src`),
           querydata = new URLSearchParams(data).getAll();
-        
+
         console.log(querydata);
       }
     </script>

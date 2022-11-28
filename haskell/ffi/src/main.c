@@ -8,7 +8,7 @@
 #endif
 
 int main(int argc, char* argv[]) {
-    
+
     #ifdef DYNAMIC_LIBRARY
 
     char* err;
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
     // static int argc_ = 0;
     void (*hs_init)(int *argc, char **argv[]) = dlsym(handle, "hs_init");
     #endif
-    
+
     if ((err = dlerror()) != NULL)  {
         fprintf(stderr, "Error grabbing data: %s\n", err);
         return 1;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
 
     char* (*fn)(char*);
     *(void **) (&fn) = dlsym(handle, "fn");
-    
+
     if ((err = dlerror()) != NULL)  {
         fprintf(stderr, "Error grabbing fn: %s\n", err);
         return 1;

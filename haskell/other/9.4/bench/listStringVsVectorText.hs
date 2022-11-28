@@ -78,7 +78,7 @@ main = defaultMain $ fmap (\(evaluatorName, evaluator) ->
                                 ),
                                 (
                                     "BL8.ByteString", toDyn (fromString str :: BL8.ByteString)
-                                )                                
+                                )
                             ]
                         )
                     ]

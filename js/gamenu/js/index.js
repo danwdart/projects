@@ -31,7 +31,7 @@ const replaceMenu = me =>
     //eslint-disable-next-line cleanjs/no-mutation
     document.querySelector('main').innerHTML = menu(findMenuItem(me));
 
-const logAction = me => 
+const logAction = me =>
     console.log(me.dataset.action);
 
 const addClicks = () => document.querySelectorAll('.menuitem').forEach(

@@ -6,7 +6,7 @@
 	<script>
 		// Without this line you have to enable experimental web platform features
 		HTMLElement.prototype.createShadowRoot = HTMLElement.prototype.createShadowRoot || HTMLElement.prototype.webkitCreateShadowRoot;
-		
+
 		var host = document.querySelector('div'),
 			root = host.createShadowRoot();
 		root.textContent = 'Wibblefiglets';

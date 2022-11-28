@@ -94,7 +94,7 @@ console.log('Done');
     await unlink(FILE);
     // hmmmmm network
     try {
-        const response = await new Promise((res, rej) => 
+        const response = await new Promise((res, rej) =>
             https.get('https://dandart.co.uk', response => 200 === response.statusCode ?
                 res(response) :
                 rej(new Error('Not 200'))
@@ -112,5 +112,5 @@ console.log('Done');
     } catch (err) {
         console.error('oh no', err.message);
     }
-    
+
 })();*/

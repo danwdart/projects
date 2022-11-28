@@ -27,8 +27,8 @@ function getElementXPath(elt)
     if (idx > 1) xname += "[" + idx + "]";
     path = "/" + xname + path;
      }
- 
-     return path;   
+
+     return path;
 }
 
 function getElementIdx(elt)
@@ -38,18 +38,18 @@ function getElementIdx(elt)
     {
         if(sib.nodeType == 1 && sib.tagName == elt.tagName) count++
     }
-    
+
     return count;
 }
 
 document.addEventListener('click', function(evt) {
-    
+
     console.log(evt);
-        
+
         evt.preventDefault();
 
     var xpath = getElementXPath(evt.target).toLowerCase();
-    
+
     document.getElementById('xpath').value = xpath;
   //  $('#result').val(document.evaluate($(this).val(), document));
 //    console.log(document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null).stringValue);

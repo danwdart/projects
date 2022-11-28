@@ -29,7 +29,7 @@ class number
     }
     public function getNextPrime()
     {
-        
+
     }
     public function getPrimeFactors()
     {

@@ -10,7 +10,7 @@ int 80h
 
 .write:
 mov ax, 2
-mov 
+mov
 ret
 
 section .data

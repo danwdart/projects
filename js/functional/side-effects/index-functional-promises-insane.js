@@ -40,7 +40,7 @@ import {
     callRest,
     callNew,
     doAndReturn,
-    passAndDo 
+    passAndDo
 } from './lib/my-combinators';
 
 import {prop} from './lib/objects';
@@ -62,7 +62,7 @@ const writeFile = promisify(fs.writeFile),
 const outPhrase = ([rnd, fileBuffer]) => [OUT_IS, JSON.parse(fileBuffer.toString()), rnd];
 const rndAndStatus = rnd => [rnd, compose(Number)(lte(0.5))(rnd)];
 const theOpts = ([rnd, option]) => [rnd, IN_THE, prop(option)(THE_OPTS)];
-const doWhen = check => whenTrue => whenFalse => pred => 
+const doWhen = check => whenTrue => whenFalse => pred =>
     check(pred)(ap(whenTrue)(whenFalse)(pred));
 const getUrl = https => url => (res, rej) => https.get(url, on(doWhen(compose(iff)(compose(eq(200))(prop(STATUS_CODE)))))(compose(constant))(res)(rej));
 

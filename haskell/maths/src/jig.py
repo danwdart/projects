@@ -12,7 +12,7 @@ def low_factors(n):
 
 
 def jig(w,h,n,b=0):
-    
+
     # percentage we'll check in either direction
     threshold = 0.1
 
@@ -20,11 +20,11 @@ def jig(w,h,n,b=0):
     penalty = 1.005
 
     ratio = max(w,h)/min(w,h)   # switched to be greater than 1
-    
+
     print("")
     print(f"{w} by {h} is picture ratio {round(ratio,4)}")
     print("")
-    
+
     max_cap = int((1+threshold)*n)
     min_cap = int((1-threshold)*n)
 
@@ -45,7 +45,7 @@ def jig(w,h,n,b=0):
         best_n = 0
         best_n_ratio = 0
         best_n_sides = []
-        
+
         if run == 0:
             print(f"Looking for >= {n} solutions:")
             print("")
@@ -53,7 +53,7 @@ def jig(w,h,n,b=0):
             print("")
             print("Just out of interest, here are smaller options:")
             print("")
-        
+
         for i in dis_range:
             this_best = 0
             for j in low_factors(i):
@@ -89,10 +89,10 @@ def jig(w,h,n,b=0):
                 print(f"{best_n} pieces in {best_n_sides} (grid ratio {round(best_n_ratio,4)}) needs piece ratio {round(piece_ratio,4)}")
                 if b==1:
                     print(f"[badness = {round(badness_score,5)}]")
-                
+
 
         print(f"for {n} the best is {best_n} pieces with size {best_n_sides}")
-        
+
         run += 1
     print("")
     print(f"If I had to guess: I think it's {up_best_deets[0]} pieces.")
@@ -106,18 +106,18 @@ def jig(w,h,n,b=0):
 
 # I duplicated jig_v0 to make is easier to show in the video
 def jig_v0(w,h,n,b=0):
-    
+
     # percentage we'll check in either direction
     threshold = 0.1
 
     penalty = 1.005
 
     ratio = max(w,h)/min(w,h)   # switched to be greater than 1
-    
+
     print("")
     print(f"{w} by {h} is picture ratio {round(ratio,4)}")
     print("")
-    
+
     max_cap = int((1+threshold)*n)
     min_cap = int((1-threshold)*n)
 
@@ -145,7 +145,7 @@ def jig_v0(w,h,n,b=0):
             print("")
             print("Just out of interest, here are smaller options:")
             print("")
-        
+
         for i in dis_range:
             this_best = 0
             for j in low_factors(i):
@@ -181,9 +181,9 @@ def jig_v0(w,h,n,b=0):
                 print(f"{best_n} pieces in {best_n_sides} (grid ratio {round(best_n_ratio,4)}) needs piece ratio {round(piece_ratio,4)}")
                 if b==1:
                     print(f"[badness = {round(badness_score,5)}]")
-                
 
-        
+
+
         run += 1
 
 

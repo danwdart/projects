@@ -11,9 +11,9 @@
             }
             self.postMessage(`Hmmmm`)
             self.postMessage(results);
-        
+
             results.instance.exports.main();
         }
     });
-   
+
 })();

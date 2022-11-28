@@ -36,7 +36,7 @@ class Primes
                 $tempno /= $try;
                 $primeFactors[] = $try;
             }
-            else 
+            else
             {
                 while (!Primes::isPrime($try))
                     {

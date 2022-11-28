@@ -1,4 +1,4 @@
-//      
+//
 class A
 {
     constructor(name        )
@@ -6,7 +6,7 @@ class A
         this.name = name;
     }
 
-    sayHello(tosay        )      
+    sayHello(tosay        )
     {
         console.log(`${this.name} says: ${tosay}`);
     }

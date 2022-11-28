@@ -88,7 +88,7 @@
             '109' : `zoomout`
         },
         iv = null;
-    
+
     for (var k in keyMappings) {
         actions[keyMappings[k]] = false;
     }
@@ -131,7 +131,7 @@
             iv = setInterval(function() { draw(); }, 16);
         }
     };
-    
+
     window.onkeyup = function(e) {
         var kc = e.keyCode.toString();
         if (keyMappings.hasOwnProperty(kc)) {

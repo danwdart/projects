@@ -78,10 +78,10 @@ obj/ffictohs_static.o: obj src/main.c
 	$(CC) $(CFLAGS) $(CFLAGS_ffictohs_static_object) src/main.c -c -o obj/ffictohs_static.o
 
 obj/LibDemo.o: obj src/LibDemo.hs
-	$(GHC) $(GHCFLAGS) $(GHCFLAGS_ffictohs_object) -c -o obj/LibDemo.o src/LibDemo.hs 
+	$(GHC) $(GHCFLAGS) $(GHCFLAGS_ffictohs_object) -c -o obj/LibDemo.o src/LibDemo.hs
 
 obj/LibDemo_static.o: obj src/LibDemo.hs
-	$(GHC) $(GHCFLAGS) $(GHCFLAGS_ffictohs_static_object) -c -o obj/LibDemo_static.o src/LibDemo.hs 
+	$(GHC) $(GHCFLAGS) $(GHCFLAGS_ffictohs_static_object) -c -o obj/LibDemo_static.o src/LibDemo.hs
 
 obj/libdemo.o: obj src/libdemo.c
 	$(CC) $(CFLAGS) $(CFLAGS_ffihstoc_object) -c src/libdemo.c -o obj/libdemo.o

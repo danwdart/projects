@@ -49,7 +49,7 @@ manualTwo _ _ _ = error "Incorrect list lengths"
 
 -- Let's see...
 -- single function multi value = fmap
--- multi function multi value 
+-- multi function multi value
 -- multi function single value = sequenceA
 
 -- using function as a monad, you can also...

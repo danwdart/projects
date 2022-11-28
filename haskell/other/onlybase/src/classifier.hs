@@ -72,7 +72,7 @@ totalMorality CountryMorality {
     capitalPunishment = cp',
     genderEquality = ge',
     sexualityEquality = se'
-} = capitalPunishment moralityWeightings * fromEnum cp' + 
+} = capitalPunishment moralityWeightings * fromEnum cp' +
     genderEquality moralityWeightings * fromEnum ge' +
     sexualityEquality moralityWeightings * fromEnum se'
 

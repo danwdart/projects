@@ -17,11 +17,11 @@ $('form').addEventListener('submit', async event => {
                     preview_file_url,
                     source,
                     tag_string
-                }) => `<a href="${large_file_url}" title="${tag_string}" target="_blank">` + 
+                }) => `<a href="${large_file_url}" title="${tag_string}" target="_blank">` +
                     `<img src="${preview_file_url}" alt="${tag_string}"/>` +
                 `</a>`
             ).join(``) || `No images for the search string ${search}. Maybe try other / shorter tags?`
     } catch (err) {
         console.error(err);
-    } 
+    }
 });

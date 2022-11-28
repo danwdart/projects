@@ -24,7 +24,7 @@ main = do
     c2 <- content out
     putStrLn "adder of 2 also"
     print c2
-    
+
     inL2 <- cell
     inR2 <- cell
     out2 <- cell
@@ -34,7 +34,7 @@ main = do
     c3 <- content inR2
     putStrLn "adderBi of 1 and 1, backwards"
     print c3
-    
+
     where
         adder :: Cell Int -> Cell Int -> Cell Int -> IO ()
         adder l r o = do

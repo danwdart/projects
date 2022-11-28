@@ -16,7 +16,7 @@ export const Task = fork => ({
                 reject,
                 task => task.fork(reject, resolve)
             )
-    ), 
+    ),
     flatMap: f => Task((reject, resolve) =>
         fork(
             reject,

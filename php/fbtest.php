@@ -19,16 +19,16 @@ img { padding:5px; border-style:none;}
   $appsecret = '698a166e513aa63b75d0d08ebb917daf'; //CHANGE THIS
   $facebook = new Facebook($appapikey, $appsecret);
   $user_id = $facebook->require_login();
-  
+
   $fb_user = $facebook->user;
-  
+
 //$albums = $facebook->api_client->photos_getAlbums($user_id, NULL);
-//print_r($albums); 
+//print_r($albums);
 
 
   $friends = $facebook->api_client->friends_get();
   $friends = array_slice($friends, 0, 10);
-  
+
 echo "Here's a list of 10 of your friends. Click on one to see all their photos.<br />";
 $i=0;
 foreach ($friends as $friend) {
@@ -59,7 +59,7 @@ if (isset($_GET['uid'])) {
 
 
 
-  
+
   /*
   $i=0;
   foreach ($person as $f)
@@ -68,7 +68,7 @@ if (isset($_GET['uid'])) {
 
 
     //MORE DETAILS HERE IN STEP 2
-  
+
     echo "<br />";
     $i++;
   }
@@ -97,7 +97,7 @@ FB.ensureInit(function () {
     var num_friends = result ? Math.min(1000, result.length) : 0;
     if (num_friends > 0) {
       for (var i=0; i<num_friends; i++) {
-        markup += 
+        markup +=
           '<fb:profile-pic size="square" uid="'+result[i]+'" facebook-logo="false"></fb:profile-pic>';
 // if ((1+(i/5))==Math.floor(1+(i/5))) { markup+="<br />";}
       }

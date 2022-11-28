@@ -17,7 +17,7 @@ main = do
     -- print (secret :: String)
 
     -- ... so all we can do is guess.
-    
+
     print $ checkSecret mySecret "a"
     print $ checkSecret mySecret "dontreadme"
 

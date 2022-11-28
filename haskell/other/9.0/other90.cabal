@@ -36,7 +36,7 @@ executable mdns
 --   import: shared-properties
 --   main-is:             translatorglitch.hs
 --   build-depends:       base >= 4.13 && < 5, bytestring, gogol, req
-  
+
 test-suite test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test

@@ -25,8 +25,8 @@ cli:
         call strcmp
         je .arg
 
-        jmp .loop 
-        
+        jmp .loop
+
         .hello:
             mov si, hello_msg
             call write_string
@@ -36,9 +36,9 @@ cli:
             mov al, ch
             call write_decimal
             jmp .loop
-    
+
 get_cmd:
-    mov di, cmd_buffer 
+    mov di, cmd_buffer
     .getchar:
     xor cx, cx ; blank counts
     call get_char
@@ -64,7 +64,7 @@ get_cmd:
 
         mov si, newline
         call write_string
-        
+
         mov di, cmd_buffer
         ret
 
@@ -94,12 +94,12 @@ write_char:
 write_string:
     .writechar:
     lodsb ; load [si] into al
-    
+
     or al, al
     jz .done
-    
+
     call write_char
-      
+
     jmp .writechar
 
     .done:
@@ -173,7 +173,7 @@ write_decimal:
     .skipone:
 
     mov al, ah
-    
+
     mov bl, 100
     div bl
     cmp al, 0
@@ -189,18 +189,18 @@ write_decimal:
     sub al, 0x30
 
     popa
-    ret 
+    ret
 
 strcmp:
     .loop:
     mov al, [si] ; Move the value of the current source index into al
     mov bl, [di] ; move the value of the current dest index into bl
-   
+
     cmp al, bl ; are they the same?
 
     jne .notequal
-    ; so we're equal 
-    
+    ; so we're equal
+
     cmp al, 0 ; is al 0 (we know bl is 0)
     je .done
 
@@ -223,7 +223,7 @@ data:
     back_chars db 0x08, 0x20, 0x08, 0
     newline db 0x0d, 0x0a, 0
     prompt db 'MBR> ',0
-    cmd_buffer times 64 db 0 
+    cmd_buffer times 64 db 0
 
 times 510-($-$$) db 0
 dw 0AA55h ; bootsector - some BIOSes require this signature

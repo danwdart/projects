@@ -44,7 +44,7 @@ abstract class Warrior implements Warrior_Interface
     {
         return $this->_health;
     }
-    
+
     public function setAttack($attack)
     {
         $this->_attack = $attack;
@@ -59,7 +59,7 @@ abstract class Warrior implements Warrior_Interface
     {
         return $this->_attack;
     }
-    
+
     public function setDefence($defence)
     {
         $this->_defence = $defence;
@@ -102,7 +102,7 @@ abstract class Warrior implements Warrior_Interface
 
     public function attackAction(Warrior $warrior)
     {
-        $damage = $this->getAttack() - $warrior->getDefence(); 
+        $damage = $this->getAttack() - $warrior->getDefence();
         $warrior->decreaseHealth($damage);
         echo $this->getName() . " succeeded! " . $warrior->getName() . " now has " . ($warrior->isDead() ? 0 : $warrior->getHealth()) . " health!<br />";
     }
@@ -127,7 +127,7 @@ abstract class Warrior implements Warrior_Interface
         }
         $this->evadeAction($warrior);
         return false;
-    } 
+    }
 
     public function __toString()
     {
