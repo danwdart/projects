@@ -3,11 +3,11 @@
 #include <string.h>
 #include "../lib/libll.h"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char **argv) {
     /* do we have to? */
     LL* list = newlist();
 
-    char* value = "Foo";
+    char *value = "Foo";
 
     list->value = value;
 

@@ -25,7 +25,7 @@ void with_read_file(char *filename, void *fn) {
     with_res(fopen(filename, "r"), fclose, fn, die);
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char **argv) {
     if (0 == argc) {
         printf("No file specified.");
         return EXIT_SUCCESS;

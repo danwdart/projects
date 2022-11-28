@@ -3,7 +3,7 @@
 #include <string.h>
 
 typedef struct ll {
-    char* value;
+    char *value;
     struct ll* next;
 } LL;
 

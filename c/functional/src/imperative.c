@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
     printf("Hello World!\n");
     printf("The number of arguments was %d\n", argc);
     for (int c = 0; c < argc; c++) {
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
         perror("Caught error");
         return EXIT_FAILURE;
     }
-    
+
     char *str;
 
     if (!fscanf(f, "%s", str)) {

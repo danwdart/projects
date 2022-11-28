@@ -16,5 +16,5 @@ void heap_free(void *ptr)
 
 void heap_collect()
 {
-    
+
 }

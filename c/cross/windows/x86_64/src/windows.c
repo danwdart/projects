@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <winuser.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
     MessageBox(
         NULL,
         "Goteem",

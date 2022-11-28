@@ -2,8 +2,8 @@
 #include <dlfcn.h>
 #include <string.h>
 
-int main(int argc, char* argv[]) {
-    char* err;
+int main(int argc, char **argv) {
+    char *err;
 
     void* handle;
     handle = dlopen("shared.so", RTLD_LAZY);
@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     }
     dlerror();
 
-    char* (*data);
+    char *(*data);
     *(void **)(&data) = dlsym(handle, "data");
 
     // But there was nothing...
@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    char* d;
+    char *d;
     d = (*data);
 
     printf("Data: (%s)\n", d);
@@ -38,17 +38,17 @@ int main(int argc, char* argv[]) {
 
     (*io)("Boiii");
 
-    /* NOT: fn = (char* (*)(char*)) dlsym(handle, "fn"); */
-    
-    char* (*fn)(char*);
+    /* NOT: fn = (char *(*)(char *)) dlsym(handle, "fn"); */
+
+    char *(*fn)(char *);
     *(void **) (&fn) = dlsym(handle, "fn");
-    
+
     if ((err = dlerror()) != NULL)  {
         fprintf(stderr, "Error grabbing fn: %s\n", err);
         return 1;
     }
 
-    char* stuff;
+    char *stuff;
     stuff = (*fn)("hi");
     printf("Stuff: %s\n", stuff);
 

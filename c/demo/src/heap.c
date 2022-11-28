@@ -2,7 +2,7 @@
 #include <string.h>
 #include "../lib/libheap.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char **argv)
 {
     printf("Allocating...");
 
