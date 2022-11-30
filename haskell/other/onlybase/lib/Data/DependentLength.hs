@@ -206,7 +206,7 @@ singleton
 --
 map :: (a -> b) -> Vec n a -> Vec n b
 map _ Nil = Nil
-map f (x :> xs) = f x :> map f xs
+map f (x :> xs) = f x :> fmap f xs
 
 {-
 zip :: Vec n a -> Vec m b -> Vec n (a, b)

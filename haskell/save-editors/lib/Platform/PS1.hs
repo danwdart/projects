@@ -1,7 +1,7 @@
 module Platform.PS1 where
 
-import Control.Monad (unless)
-import Data.Binary.Get
+import           Control.Monad   (unless)
+import           Data.Binary.Get
 
 magicNumber :: Get ()
 magicNumber = do

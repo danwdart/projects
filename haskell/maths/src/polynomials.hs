@@ -1,11 +1,12 @@
-{-# LANGUAGE DeriveAnyClass, OverloadedLists #-}
+{-# LANGUAGE DeriveAnyClass  #-}
+{-# LANGUAGE OverloadedLists #-}
 
 module Main where
 
-import Control.Exception
+import           Control.Exception
 -- import Data.Char
-import Data.List as L
-import Data.List.NonEmpty as LNE
+import           Data.List          as L
+import           Data.List.NonEmpty as LNE
 
 newtype Polynomial = Polynomial {
     getPolynomial :: NonEmpty Int
@@ -17,7 +18,7 @@ data PolynomialError = EmptyListException | AllZeroException
 -- >>> pretty <$> fromIntList [1,2,3]
 -- Right "1 + 2x + 3x\178"
 --
-fromIntList :: [Int] -> Either PolynomialError Polynomial
+fromIntList ∷ [Int] → Either PolynomialError Polynomial
 fromIntList xs
     | null xs = Left EmptyListException
     | all (== 0) xs = Left AllZeroException
@@ -26,7 +27,7 @@ fromIntList xs
 -- >>> pretty <$> (fromNonEmpty . fromList $ [1,2,3,4])
 -- Right "1 + 2x + 3x\178 + 4x\179"
 --
-fromNonEmpty :: NonEmpty Int -> Either PolynomialError Polynomial
+fromNonEmpty ∷ NonEmpty Int → Either PolynomialError Polynomial
 fromNonEmpty xs
     | all (== 0) xs = Left AllZeroException
     | otherwise = Right . Polynomial $ xs
@@ -34,13 +35,13 @@ fromNonEmpty xs
 -- >>> putStrLn . L.singleton . powerDigit $ 4
 -- ⁴
 --
-powerDigit :: Int -> Char
+powerDigit ∷ Int → Char
 powerDigit = (fromList "⁰¹²³⁴⁵⁶⁷⁸⁹" LNE.!!)
 
 -- >>> putStrLn . powerOf $ 54
 -- ⁵⁴
 --
-powerOf :: Int -> String
+powerOf ∷ Int → String
 powerOf = fmap (powerDigit . read @Int . L.singleton) . show
 
 -- >>> mapM_ putStrLn $ (\i -> show i <> ": (" <> showPoly i <> ")") <$> [0..4]
@@ -50,7 +51,7 @@ powerOf = fmap (powerDigit . read @Int . L.singleton) . show
 -- 3: (x³)
 -- 4: (x⁴)
 --
-showPoly :: Int -> String
+showPoly ∷ Int → String
 showPoly i
     | i == 0 = ""
     | i == 1 = "x"
@@ -63,11 +64,11 @@ showPoly i
 -- >>> putStrLn . pretty . Polynomial . fromList $ [1,2,3,4]
 -- 1 + 2x + 3x² + 4x³
 --
-pretty :: Polynomial -> String
+pretty ∷ Polynomial → String
 pretty = intercalate " + " . toList . fmap (\(i, a) -> show a <> showPoly i) . LNE.zip (LNE.fromList [0..]) . getPolynomial
 
 -- mul :: Polynomial -> Polynomial -> Polynomial
 -- mul (Polynomial (x :| xs)) (Polynomial (y :| ys)) = undefined --
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

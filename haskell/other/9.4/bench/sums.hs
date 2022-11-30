@@ -31,9 +31,9 @@ main = defaultMain [
     bgroup "sums" [
         bench "get list" $ nf id list,
         bench "sum" $ nf sum list,
-        bench "foldl" $ nf (sum) list,
+        bench "foldl" $ nf sum list,
         bench "foldl'" $ nf (foldl' (+) 0) list,
-        bench "foldr" $ nf (sum) list,
+        bench "foldr" $ nf sum list,
         bench "foldr'" $ nf (foldr' (+) 0) list
         ]
     ]
