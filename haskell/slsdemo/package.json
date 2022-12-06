@@ -33,7 +33,7 @@
     "fullstack-serverless": "^0.8.0",
     "serverless-appsync-offline": "^1.4.0",
     "serverless-dynamodb-local": "^1.0.2",
-    "serverless-offline": "^11.6.0",
+    "serverless-offline": "^12.0.0",
     "serverless-s3-local": "^0.6.22",
     "serverless-static": "^1.0.0"
   }
