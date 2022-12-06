@@ -10,11 +10,11 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "AGPL-3.0",
   "dependencies": {
-    "electron": "^22.0.0",
+    "electron": "^23.0.0-alpha.1",
     "fs-extra": "^11.1.0",
     "ini": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "^8.28.0"
+    "eslint": "^8.29.0"
   }
 }
