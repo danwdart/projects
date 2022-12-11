@@ -12,6 +12,10 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
+      inline-asm = lib.doJailbreak (self.callCabal2nix "inline-asm" (builtins.fetchGit {
+        url = "https://github.com/0xd34df00d/inline-asm.git";
+        rev = "b75204581916caae8f8d7048b9f8ffba0623ed67";
+      }) {});
       hgettext = lib.markUnbroken super.hgettext;
       OpenGLRaw = lib.doJailbreak super.OpenGLRaw;
       # for linear-base

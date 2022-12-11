@@ -90,6 +90,11 @@ library
     Seq
     -- XPath
 
+executable asm
+  import: shared-properties-base
+  main-is:             asm.hs
+  build-depends:       base >= 4.17 && < 5, inline-asm
+
 executable async
   import: shared-properties-safe
   main-is:             async.hs
