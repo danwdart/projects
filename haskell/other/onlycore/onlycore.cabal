@@ -85,6 +85,13 @@ library
     Control.Monad.State.Disparate
     Control.Monad.Trans.State.Disparate
     Control.Monad.Trans.State.Undiscarded
+    Env.Env
+    Env.AbstractExtension
+    Env.Class
+    Env.Instance
+    Env.ExtendedInstance
+    Env.WithOrig
+    Env.Extend
     Form
     LCDBlock
     SHA
@@ -176,6 +183,11 @@ executable reader-fn
   import: shared-properties-safe
   main-is:             reader-fn.hs
   build-depends:       base >= 4.17 && < 5, mtl
+
+executable reader-override
+  import: shared-properties-safe
+  main-is:             reader-override.hs
+  build-depends:       base >= 4.17 && < 5, mtl, onlycore
 
 executable rws
   import: shared-properties-safe
