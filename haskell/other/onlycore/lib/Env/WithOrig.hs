@@ -7,4 +7,4 @@ import Env.Env as Orig
 data Env = Env {
     orig :: Orig.Env,
     c :: (Int, Int)
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)

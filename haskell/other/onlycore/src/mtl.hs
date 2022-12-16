@@ -7,7 +7,9 @@ import           Control.Monad.Writer
 
 newtype MyThing a = MyThing {
     runMyThing :: a
-} deriving (Functor, Applicative, Monad, MonadState s, MonadWriter w, MonadReader r)
+}
+    deriving stock (Functor)
+    deriving anyclass (Applicative, Monad, MonadState s, MonadWriter w, MonadReader r)
 
 
 foo ∷ (MonadState Int m, MonadWriter [String] m, MonadReader () m) ⇒ m String

@@ -33,7 +33,7 @@ infixl 1 >>>
 wt >>> wt2 = wt >>>= const wt2
 
 -- WorldM
-newtype WorldM a = WorldM { asT :: WorldT a } deriving (Functor)
+newtype WorldM a = WorldM { asT :: WorldT a } deriving stock (Functor)
 
 instance Applicative WorldM where
     pure x = WorldM (x,)

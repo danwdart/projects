@@ -7,13 +7,13 @@ import           Data.Text        (Text)
 import qualified Data.Text        as T
 import           Text.Parsec
 
-data IsDropdown = NotDropdown | Dropdown  deriving (Enum, Show)
-data IsMulti = NotMulti | Multi deriving (Enum, Show)
+data IsDropdown = NotDropdown | Dropdown  deriving stock (Enum, Show)
+data IsMulti = NotMulti | Multi deriving stock (Enum, Show)
 
 data FormOption = FormOption {
     formOptionValue :: Text, -- TODO definable
     formOptionLabel :: Text
-} deriving (Show)
+} deriving stock (Show)
 
 type FormOptions = [FormOption]
 
@@ -22,19 +22,19 @@ data FormElementType = FreeText -- Maybe FormAttributes -- TODO ResultTypeType e
     | Date
     | Time
     | Choose IsDropdown IsMulti FormOptions -- TODO default
-    deriving (Show)
+    deriving stock (Show)
 
 data FormElement = FormElement {
     formElementLabel :: Text,
     formElementType  :: FormElementType
-} deriving (Show)
+} deriving stock (Show)
 
 type FormElements = [FormElement]
 
 data Form = Form {
     formTitle    :: Text,
     formElements :: FormElements
-} deriving (Show)
+} deriving stock (Show)
 
 elementTypeParser ∷ Parsec Text u FormElementType
 elementTypeParser =

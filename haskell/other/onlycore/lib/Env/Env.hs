@@ -5,4 +5,4 @@ module Env.Env where
 data Env = Env {
     a :: String,
     b :: Int
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)
