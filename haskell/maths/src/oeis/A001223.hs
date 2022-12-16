@@ -8,7 +8,7 @@ import           Data.Numbers.Primes
 gaps ∷ [Integer]
 gaps = uncurry (-) <$> zip (tail primes) primes
 
-freq ∷ (Eq a, Ord a) ⇒ [a] → Map a Integer
+freq ∷ (Ord a) ⇒ [a] → Map a Integer
 freq xs = fromListWith (+) [(c, 1) | c <- xs]
 
 main ∷ IO ()

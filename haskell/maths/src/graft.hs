@@ -1,4 +1,4 @@
-import           Data.List
+import           Data.List (findIndex, tails, isPrefixOf)
 import           Data.Maybe
 -- import Control.Monad
 
@@ -29,9 +29,9 @@ maybeApplyToSecondIf comparator positionToFoundMessage one two = boolToMaybe (co
 
 mapping ∷ Int → Maybe String
 mapping number = maybeApplyToSecondIf (>) positionToFoundMessage resultLength =<< maybePosition where
-    root = (fromIntegral number :: Double) ** power -- ** is like ^ but for non-integrals
+    root = (fromIntegral number :: Double) ** power -- ... so (**) is like (^) but for non-integrals
     resultLength = intThenLength root
-    notDot = (/='.')
+    notDot = (/= '.')
     rootWithoutDots = filter notDot (show root)
     maybePosition = substringPosition rootWithoutDots (show number)
     positionToFoundMessage = foundMsg number root

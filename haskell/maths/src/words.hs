@@ -8,9 +8,9 @@ import qualified Data.Set as S
 main ∷ IO ()
 main = pure ()
 
-data OhOrZero = Oh | Zero deriving (Eq)
-data HundredPrefix = A | One | NoPrefix deriving (Eq)
-data Scale = Long | PeletierLong | Short | Sand deriving (Eq)
+data OhOrZero = Oh | Zero deriving stock (Eq)
+data HundredPrefix = A | One | NoPrefix deriving stock (Eq)
+data Scale = Long | PeletierLong | Short | Sand deriving stock (Eq)
 
 type ScaleOffset = Int
 type ScaleMultiplier = Int
@@ -19,10 +19,10 @@ type StringShort = String → String
 type ScaleDetails = (ScaleOffset, ScaleMultiplier, StringLong, Maybe (Int, StringShort))
 
 scaleDetails ∷ Scale → ScaleDetails
-scaleDetails Long = (0, 6, (++"illion"), Just (3, ("thousand "++) . (++"illion")))
-scaleDetails PeletierLong = (0, 6, (++"illion"), Just (3, (++"illiard")))
-scaleDetails Short = (3, 3, (++"illion"), Nothing)
-scaleDetails Sand = (0, 3, (++"sand"), Nothing)
+scaleDetails Long = (0, 6, (++ "illion"), Just (3, ("thousand " ++) . (++ "illion")))
+scaleDetails PeletierLong = (0, 6, (++ "illion"), Just (3, (++ "illiard")))
+scaleDetails Short = (3, 3, (++ "illion"), Nothing)
+scaleDetails Sand = (0, 3, (++ "sand"), Nothing)
 
 data Config = Config {
     oh      :: OhOrZero,
@@ -31,11 +31,11 @@ data Config = Config {
 }
 
 modifier ∷ (Integer → Integer) → String → Set Integer → Map Integer String → Map Integer String
-modifier modNumFn name range changes = M.mapKeys modNumFn . M.map (++name) $ M.union changes (
+modifier modNumFn name range changes = M.mapKeys modNumFn . M.map (++ name) $ M.union changes (
     M.restrictKeys basics range)
 
 pows ∷ Map Integer String → Map Integer String
-pows = M.mapKeys (10^)
+pows = M.mapKeys (10 ^)
 
 mergeUpMaps ∷ Map a (Map a c) → Map a c
 mergeUpMaps = undefined
@@ -82,15 +82,15 @@ scaledPowTData = M.fromList [
 
 combPowData ∷ Map Int String
 combPowData = M.fromList . concatMap (\(k, v) -> M.toList $
-        M.mapKeys ((k +) . (10*)) (
-            M.map (v++) scaledPowTData
+        M.mapKeys ((k +) . (10 *)) (
+            M.map (v ++) scaledPowTData
         )
     ) $ M.toList scaledPowModData
 
 scaledPows ∷ Scale → Map Int String → Map Integer String
-scaledPows sc datas = M.map sl (M.mapKeys (((10^so)*) . ((10^sm)^)) datas) <>
+scaledPows sc datas = M.map sl (M.mapKeys (((10 ^ so) *) . ((10 ^ sm) ^)) datas) <>
     maybe M.empty (\(offset, offsetName) -> M.map offsetName (
-        M.mapKeys (((10^so)*) . ((10^offset)*) . ((10^sm)^)) datas
+        M.mapKeys (((10 ^ so) *) . ((10 ^ offset) *) . ((10 ^ sm) ^)) datas
     )) miss
     where
         (so, sm, sl, miss) = scaleDetails sc
@@ -121,13 +121,13 @@ numToWords (Config o h s) = let (so, sm, sl, miss) = scaleDetails s in
         (11, "eleven"),
         (12, "twelve")
         ] <>
-    modifier (10+) "teen" (S.fromList [3..9]) (M.fromList [(3, "thir"), (5, "fif"), (8, "eigh")]) <>
-    modifier (10*) "ty" (S.fromList [2..9]) (M.fromList [(2, "twen"), (3, "thir"), (5, "fif"), (8, "eigh")]) <>
+    modifier (10 +) "teen" (S.fromList [3..9]) (M.fromList [(3, "thir"), (5, "fif"), (8, "eigh")]) <>
+    modifier (10 *) "ty" (S.fromList [2..9]) (M.fromList [(2, "twen"), (3, "thir"), (5, "fif"), (8, "eigh")]) <>
     pows (M.fromList [(2, "hundred"), (3, "thousand")]) <>
     scaledPows s scaledPowData <>
-    scaledPows s (M.map (++"dec") $ M.mapKeys (+10) scaledPowModData) <>
-    scaledPows s (M.map (++"gint") $ M.mapKeys (*10) scaledPowTData) <>
-    scaledPows s (M.map (++"gint") $ M.mapKeys (*10) combPowData)
+    scaledPows s (M.map (++ "dec") $ M.mapKeys (+ 10) scaledPowModData) <>
+    scaledPows s (M.map (++ "gint") $ M.mapKeys (* 10) scaledPowTData) <>
+    scaledPows s (M.map (++ "gint") $ M.mapKeys (* 10) combPowData)
     {- ++
     scaledPows 10 scale "ard" "on" "illi" "gint" "" [
         -- tens and hundreds
@@ -157,10 +157,13 @@ numToWords (Config o h s) = let (so, sm, sl, miss) = scaleDetails s in
         (100, "googol")
         ] -}
 
+ords :: [(Integer, String)]
 ords = []
 
+fraction :: [(Integer, String)]
 fraction = []
 
+indianPow :: [(Integer, String)]
 indianPow = [
     (5, "lakh"),
     (7, "crore"),
@@ -171,6 +174,7 @@ indianPow = [
     (17, "shankh")
     ]
 
+ramanayaVedicPow :: [(Integer, String)]
 ramanayaVedicPow = [
     (0, "ēka"),
     (1, "daśa"),
@@ -193,6 +197,7 @@ ramanayaVedicPow = [
     (62, "mahaugha")
     ]
 
+fifthCenturyIndianPow :: [(Integer, String)]
 fifthCenturyIndianPow = [
     (5, "lakṣá"),
     (7, "kōṭi"),
@@ -238,6 +243,7 @@ fifthCenturyIndianPow = [
     (37218383881977644441306597687849648128, "bodhisattva")
     ]
 
+fifthCenturyInfianInfinitiesPow :: [(Integer, String)]
 fifthCenturyInfianInfinitiesPow = [
     (200, "lalitavistarautra"),
     (600, "matsya"),

@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-type-defaults -Wno-unused-top-binds -Wno-unused-matches #-}
 
 import           Data.Digits
-import           Data.List
+import           Data.List (intercalate)
 import           Data.List.Iterate
 import           Debug.Trace
 

@@ -18,7 +18,7 @@ indexEqual xs ys = go xs ys 0 [] where
     go _ _ _ _ = error "Invalid number of arguments"
 
 result ∷ [Integer]
-result = (*5) . (+1) <$> indexEqual (fmap (pisanoPeriod . fibsModN . (* 5))  [1..]) (fmap (pisanoPeriod . lucasesModN . (* 5)) [1..])
+result = (* 5) . (+ 1) <$> indexEqual (fmap (pisanoPeriod . fibsModN . (* 5))  [1..]) (fmap (pisanoPeriod . lucasesModN . (* 5)) [1..])
 
 -- What about / 5
 

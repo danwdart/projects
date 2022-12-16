@@ -2,7 +2,7 @@
 
 module Main where
 
-import           Data.List
+import           Data.List (sort)
 import           Data.Numbers.Primes
 import           Data.Ratio
 

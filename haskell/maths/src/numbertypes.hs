@@ -10,7 +10,7 @@ data NumberType a = Finite a |
     PositiveInfinity |
     NegativeInfinity |
     Undefined |
-    Anything deriving (Eq, Read)
+    Anything deriving stock (Eq, Read)
 
 instance (Show a) ⇒ Show (NumberType a) where
     show (Finite a)               = show a
@@ -72,7 +72,7 @@ instance (Num a) ⇒ Num (NumberType a) where
 instance (Fractional a, Eq a) ⇒ Fractional (NumberType a) where
     (Finite 0) / (Finite 0)               = Anything
     (Finite x) / (Finite 0)               = OverZero x
-    (Finite x) / (Finite y)               = Finite (x/y)
+    (Finite x) / (Finite y)               = Finite (x / y)
     (Finite p) / (OverPositiveInfinity _) = Undefined
     (Finite p) / (OverNegativeInfinity _) = Undefined
     (Finite p) / (OverZero _)             = Undefined

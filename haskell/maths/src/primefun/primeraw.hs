@@ -8,7 +8,7 @@ primes = sieve [2..] where
     sieve (p:ps) = p : sieve [x | x <- ps, mod x p /= 0]
 
 eitherSides ∷ [Bool]
-eitherSides = fmap (==5) . drop 2 $ fmap (`mod` 6) primes
+eitherSides = fmap (== 5) . drop 2 $ fmap (`mod` 6) primes
 
 pairs ∷ [a] → [(a, a)]
 pairs n = zip n (tail n)

@@ -1,7 +1,7 @@
 
 module Ulam where
 
-import           Data.List
+import           Data.List (find)
 import           Data.Maybe
 
 type X = Int
@@ -17,7 +17,7 @@ data Item = Item {
     num     :: Number,
     loc     :: Loc,
     diffLoc :: DiffLoc
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)
 
 type Grid = [Item]
 

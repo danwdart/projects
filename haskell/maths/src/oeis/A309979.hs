@@ -8,14 +8,15 @@
     (after the decimal point)
     rearranged in ascending order are equal to 234477
 -}
+module Main where
 
-import           Data.List
+import           Data.List (sort)
 
 hash ∷ Double → Int
-hash = read . sort . take 6 . filter (/='0') . drop 1 . dropWhile (/='.')  . show . (** 0.03125)
+hash = read . sort . take 6 . filter (/= '0') . drop 1 . dropWhile (/= '.')  . show . (** 0.03125)
 
 results ∷ [Integer]
-results = fmap (floor . fst) . filter ((==234477) . snd) $ fmap (\x -> (x, hash x)) ([2..1000000] :: [Double])
+results = fmap (floor . fst) . filter ((== 234477) . snd) $ fmap (\x -> (x, hash x)) ([2..1000000] :: [Double])
 
 hashes ∷ [Int]
 hashes = fmap hash ([2..1000] :: [Double])

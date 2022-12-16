@@ -1,5 +1,5 @@
 import           Data.Function
-import           Data.List
+import           Data.List (intercalate, nub)
 
 -- charToInteger :: Char -> Integer
 -- charToInteger y = read [y]
@@ -22,7 +22,7 @@ intsToPrintList xs = intercalate  ", " (fmap show xs)
 -- length $ filter (==0) $ map integerToProd [1..1000]
 
 breakDown ∷ Integer → [Integer]
-breakDown n = takeWhileOneMore (>10) $ iterate integerToProd n
+breakDown n = takeWhileOneMore (> 10) $ iterate integerToProd n
 
 data MyStruct = MyStruct {
     x   :: Integer,

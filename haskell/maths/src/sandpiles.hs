@@ -8,7 +8,7 @@ type Pos = (Int, Int)
 initialPos ∷ Pos
 initialPos = (0, 0)
 
-newtype Sandpile a = Sandpile { unSandpile :: Store Pos a } deriving (Functor)
+newtype Sandpile a = Sandpile { unSandpile :: Store Pos a } deriving stock (Functor)
 
 instance Comonad Sandpile where
     extract (Sandpile a) = extract a

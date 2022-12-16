@@ -1,5 +1,6 @@
 {-# LANGUAGE DataKinds    #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE DeriveAnyClass #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Data.Kind
@@ -12,19 +13,19 @@ class (Unit x) => TimeUnit x where
 class (Unit x) => VelocityUnit x
 class (Unit x) => AccelerationUnit x
 
-newtype Metre x = Metre x deriving (Show, Num, Fractional, Unit, DisplacementUnit)
+newtype Metre x = Metre x deriving stock (Show) deriving newtype (Num, Fractional, Unit, DisplacementUnit)
 type Metres = Metre Double
 
-newtype Foot x = Foot x deriving (Show, Num, Fractional, Unit, DisplacementUnit)
+newtype Foot x = Foot x deriving stock (Show) deriving newtype (Num, Fractional, Unit, DisplacementUnit)
 type Feet = Foot Double
 
-newtype Second x = Second x deriving (Show, Num, Fractional, Unit, TimeUnit)
+newtype Second x = Second x deriving stock (Show) deriving newtype (Num, Fractional, Unit, TimeUnit)
 type Seconds = Second Double
 
-newtype Minute x = Minute x deriving (Show, Num, Fractional, Unit, TimeUnit)
+newtype Minute x = Minute x deriving stock (Show) deriving newtype (Num, Fractional, Unit, TimeUnit)
 type Minutes = Minute Double
 
-data (a / b) = a :/: b deriving (Show)
+data (a / b) = a :/: b deriving stock (Show)
 
 data family (^) (a :: k) (b :: Nat) :: k
 

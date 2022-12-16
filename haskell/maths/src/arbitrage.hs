@@ -5,7 +5,7 @@ import           Data.Ratio
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 
 newtype Bookmaker = Bookmaker String
-    deriving (Show, Eq)
+    deriving stock (Show, Eq)
 
 type Competitor = String
 type Odds = Rational
@@ -16,16 +16,16 @@ type Choice = (Competitor, Odds)
 data GambleData = GambleData {
     bookmaker :: Bookmaker,
     choices   :: [Choice]
-} deriving (Show, Eq)
+} deriving stock (Show, Eq)
 
 data Bet = Bet {
     choice :: Competitor,
     amount :: Money
-} deriving (Show, Eq)
+} deriving stock (Show, Eq)
 
 newtype Answer = Answer {
     getBets :: Maybe [Bet]
-} deriving (Show, Eq)
+} deriving stock (Show, Eq)
 
 
 -- A win can only be guaranteed by ensuring the recoprocal odds  for all the choices together sum to make <1.
@@ -46,7 +46,7 @@ getAllCombinations = undefined
 
 newtype Bank = Bank {
     money :: Money
-} deriving (Show)
+} deriving stock (Show)
 
 demoData ∷ [GambleData]
 demoData = [

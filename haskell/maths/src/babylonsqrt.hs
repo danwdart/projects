@@ -3,5 +3,5 @@ main = do
     print . take 8 $ iterate (babylonSqrt 16) 2
 
 babylonSqrt ∷ Double → Double → Double
-babylonSqrt operand guess = ((operand / guess) + guess)/2
+babylonSqrt operand guess = ((operand / guess) + guess) / 2
 

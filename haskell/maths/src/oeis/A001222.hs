@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
 
 import           Data.Function
-import           Data.List
+-- import           Data.List
 import           Data.Numbers.Primes
 
 countfact ∷ [(Integer, Int)]

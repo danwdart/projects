@@ -7,12 +7,12 @@ type NumHooks = Int
 
 newtype Hook = Hook {
     getHookNo :: Int
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)
 
 makeHooks ∷ NumHooks → [Hook]
 makeHooks = undefined
 
-data Direction = Clockwise | Anticlockwise deriving (Enum, Eq, Show)
+data Direction = Clockwise | Anticlockwise deriving stock (Enum, Eq, Show)
 
 type Hang = (Hook, Direction)
 
@@ -22,7 +22,7 @@ data IterationStats a = IterationStats {
     steps    :: Integer,
     sequence :: [a],
     result   :: a
-} deriving (Show)
+} deriving stock (Show)
 
 iterateUntilUnchanged ∷ (a → a) → a → a
 iterateUntilUnchanged = undefined

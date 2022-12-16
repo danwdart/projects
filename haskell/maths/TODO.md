@@ -16,3 +16,7 @@ put the ghcjs graph thing on and use this as a lib?
 perfect triperfect not including 1
 https://www.youtube.com/watch?v=Cw0IYZuo3HU
 proper divisors
+
+make them all unicode-symbols
+make the linter or prettifier change to these symbols
+also forall and exists

@@ -23,6 +23,9 @@ let
       # https://github.com/mvr/cf/issues/4
       cf = lib.dontCheck (lib.markUnbroken super.cf);
 
+      # https://github.com/snowleopard/selective/issues/59
+      selective = lib.dontCheck super.selective;
+
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };
   };

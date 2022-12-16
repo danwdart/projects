@@ -2,8 +2,8 @@
 -- validation?
 {-
 
-newtype Cardinal = Cardinal Int deriving (Show)
-newtype Ordinal = Ordinal Int deriving (Show)
+newtype Cardinal = Cardinal Int deriving stock (Show)
+newtype Ordinal = Ordinal Int deriving stock (Show)
 
 intToCard :: Int -> Cardinal
 intToCard = Cardinal
@@ -17,7 +17,7 @@ intToCard = Cardinal
 ordToCard :: Ordinal -> Cardinal
 ordToCard (Ordinal n) = Cardinal (n + 1)
 
-data OrdinalOrdering = Before | SamePos | After deriving (Show)
+data OrdinalOrdering = Before | SamePos | After deriving stock (Show)
 
 compareOrdinal :: Ordinal -> Ordinal -> OrdinalOrdering
 compareOrdinal (Ordinal x) (Ordinal y) = case compare x y of

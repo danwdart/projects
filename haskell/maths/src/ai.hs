@@ -17,15 +17,15 @@ dot _ _           = error "Not implemented"
 data Neuron = Neuron {
     weights :: [Double],
     bias    :: Double
-} deriving (Show)
+} deriving stock (Show)
 
 mseLoss ∷ [Double] → [Double] → Double
-mseLoss trues preds = sum (fmap (**2) (zipWith (-) trues preds)) / fromIntegral (length trues)
+mseLoss trues preds = sum (fmap (** 2) (zipWith (-) trues preds)) / fromIntegral (length trues)
 
 data Network = Network {
     hiddenLayer :: [Neuron],
     outputLayer :: [Neuron]
-} deriving (Show)
+} deriving stock (Show)
 
 dots ∷ [Double] → Neuron → Double
 dots inputs neuron = dot (weights neuron) inputs + bias neuron

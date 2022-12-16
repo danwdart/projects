@@ -5,15 +5,17 @@ module Main where
 
 import           Control.Exception
 -- import Data.Char
-import           Data.List          as L
-import           Data.List.NonEmpty as LNE
+import qualified Data.List          as L
+import           Data.List.NonEmpty (NonEmpty)
+import qualified Data.List.NonEmpty as LNE
 
 newtype Polynomial = Polynomial {
     getPolynomial :: NonEmpty Int
-} deriving (Show)
+} deriving stock (Show)
 
 data PolynomialError = EmptyListException | AllZeroException
-    deriving (Show, Exception) -- can I do that with override displayException
+    deriving stock (Show)
+    deriving anyclass (Exception) -- can I do that with override displayException
 
 -- >>> pretty <$> fromIntList [1,2,3]
 -- Right "1 + 2x + 3x\178"
@@ -22,7 +24,7 @@ fromIntList ∷ [Int] → Either PolynomialError Polynomial
 fromIntList xs
     | null xs = Left EmptyListException
     | all (== 0) xs = Left AllZeroException
-    | otherwise = Right . Polynomial . fromList $ xs
+    | otherwise = Right . Polynomial . LNE.fromList $ xs
 
 -- >>> pretty <$> (fromNonEmpty . fromList $ [1,2,3,4])
 -- Right "1 + 2x + 3x\178 + 4x\179"
@@ -36,7 +38,7 @@ fromNonEmpty xs
 -- ⁴
 --
 powerDigit ∷ Int → Char
-powerDigit = (fromList "⁰¹²³⁴⁵⁶⁷⁸⁹" LNE.!!)
+powerDigit = (LNE.fromList "⁰¹²³⁴⁵⁶⁷⁸⁹" LNE.!!)
 
 -- >>> putStrLn . powerOf $ 54
 -- ⁵⁴
@@ -65,7 +67,7 @@ showPoly i
 -- 1 + 2x + 3x² + 4x³
 --
 pretty ∷ Polynomial → String
-pretty = intercalate " + " . toList . fmap (\(i, a) -> show a <> showPoly i) . LNE.zip (LNE.fromList [0..]) . getPolynomial
+pretty = L.intercalate " + " . LNE.toList . fmap (\(i, a) -> show a <> showPoly i) . LNE.zip (LNE.fromList [0..]) . getPolynomial
 
 -- mul :: Polynomial -> Polynomial -> Polynomial
 -- mul (Polynomial (x :| xs)) (Polynomial (y :| ys)) = undefined --

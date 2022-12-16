@@ -43,7 +43,7 @@ data NextPower = NextPower {
     power     :: Integer,
     product   :: Integer,
     remainder :: Integer
-} deriving (Show)
+} deriving stock (Show)
 
 {-
 nextP :: (Integral a, Num a) => a -> a -> NextPower

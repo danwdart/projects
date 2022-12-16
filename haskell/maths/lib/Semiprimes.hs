@@ -2,7 +2,7 @@
 
 module Semiprimes where
 
-import           Data.List
+-- import           Data.List
 import           Data.Numbers.Primes
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}

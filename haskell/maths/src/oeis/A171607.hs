@@ -1,4 +1,4 @@
-import           Data.List
+import           Data.List (sort)
 import           Data.Set
 
 

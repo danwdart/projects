@@ -1,5 +1,5 @@
 
-import           Data.List
+import           Data.List (group)
 import           Data.Numbers.Primes
 
 (!) ∷ Integer → Integer

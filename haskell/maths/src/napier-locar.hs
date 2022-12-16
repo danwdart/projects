@@ -20,10 +20,10 @@ toMaybe l b =
 -- todo filter by list instead of that monstrosity
 
 instance Show Locar where
-    show (Locar n) = digitsRev 2 n <&> (1==) & zipWith toMaybe napierSymbols & catMaybes & reverse
+    show (Locar n) = digitsRev 2 n <&> (1 ==) & zipWith toMaybe napierSymbols & catMaybes & reverse
 
 fromString ∷ String → Locar
-fromString a = a & filter (`elem` napierSymbols) <&> (`elemIndex` napierSymbols) & catMaybes <&> (2^) & sum & Locar
+fromString a = a & filter (`elem` napierSymbols) <&> (`elemIndex` napierSymbols) & catMaybes <&> (2 ^) & sum & Locar
 
 symToInt ∷ String → Int
 symToInt = getNumber . fromString

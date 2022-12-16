@@ -41,7 +41,7 @@ genCircles x y
     | res > 200 = green
     | res > 100 = blue
     | otherwise = white
-    where res = (x^(2 :: Int) + y^(2 :: Int)) `mod` 1000
+    where res = (x ^ (2 :: Int) + y ^ (2 :: Int)) `mod` 1000
 
 genDemo ∷ Int → Int → PixelRGB8
 genDemo x y

@@ -13,7 +13,7 @@ import           Data.Tuple.Extra
 -- e.g. 1, 4, 11, 31, 83, 227, 616, 1674
 -- meaning: H(1) is just over 1, H(4) is just over 2, H(11) is just over 3, H(31) is just over 4, etc.
 result ∷ [(Int, Int)]
-result = nubOrdOn snd . fmap (both floor) $ scanl1 (\(_,b0) (a1, b1) -> (a1, b0 + b1)) [ (x,1/x) | x <- [1..1000000000000000]]
+result = nubOrdOn snd . fmap (both floor) $ scanl1 (\(_,b0) (a1, b1) -> (a1, b0 + b1)) [ (x, 1 / x) | x <- [1..1000000000000000]]
 
 -- Code from site just gets the nth value and to do it, finds its index:
 

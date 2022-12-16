@@ -30,7 +30,9 @@ data OEISResult = OEISResult {
     _revision    :: Int,
     _ext         :: Maybe [String],
     _keyword     :: String
-} deriving (Eq, Generic, Out, Show)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (Out)
 
 instance FromJSON OEISResult where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = tail }
