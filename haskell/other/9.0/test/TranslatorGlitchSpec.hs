@@ -3,7 +3,7 @@
 module TranslatorGlitchSpec where
 
 import           Test.Hspec
-import           Test.QuickCheck
+-- import           Test.QuickCheck
 
 spec ∷ Spec
 spec = pure ()

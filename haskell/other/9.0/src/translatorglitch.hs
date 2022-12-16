@@ -38,15 +38,19 @@ res accessToken xs = req POST
 data TRT = TRT {
     model          :: String,
     translatedText :: String
-} deriving (FromJSON, Generic, Show)
+}
+    deriving stock (Generic, Show)
+    deriving anyclass (FromJSON)
 
 newtype TRD = TRD {
     translations :: [TRT]
-} deriving (FromJSON, Generic, Show)
+}
+    deriving stock (Generic, Show)
+    deriving anyclass (FromJSON)
 
 newtype TR = TR {
     _data :: TRD
-} deriving (Generic, Show)
+} deriving stock (Generic, Show)
 
 -- TODO: This is actually a setting for an options map tbh
 instance FromJSON TR where
