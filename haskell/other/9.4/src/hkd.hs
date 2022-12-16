@@ -8,14 +8,16 @@ import           Control.Applicative
 import           Data.Functor.Identity
 import           GHC.Generics
 
-newtype Name = Name String deriving (Eq, Read, Show)
+newtype Name = Name String deriving stock (Eq, Read, Show)
 
-newtype Profession = Profession String deriving (Eq, Read, Show)
+newtype Profession = Profession String deriving stock (Eq, Read, Show)
 
 data Person f = Person {
     name       :: f Name,
     profession :: f Profession
-} deriving (Generic, FunctorB, TraversableB, ApplicativeB, ConstraintsB)
+}
+    deriving stock (Generic)
+    deriving anyclass (FunctorB, TraversableB, ApplicativeB, ConstraintsB)
 
 deriving instance AllBF Read f Person ⇒ Read (Person f)
 deriving instance AllBF Show f Person ⇒ Show (Person f)

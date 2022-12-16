@@ -32,7 +32,7 @@ time ma = do
 
 newtype Par f a = Par {
     getPar :: f a
-} deriving (Show, Functor, Foldable, Traversable)
+} deriving stock (Show, Functor, Foldable, Traversable)
 
 main :: IO ()
 main = do

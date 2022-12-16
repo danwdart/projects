@@ -14,7 +14,9 @@ import           GHC.Generics
 data Person = Person {
       name :: String
     , age  :: Int
-    } deriving (FromJSON ,ToJSON, Generic, Show)
+}
+    deriving stock (Generic, Show)
+    deriving anyclass (FromJSON, ToJSON)
 
 myPerson ∷ Person
 myPerson = Person {

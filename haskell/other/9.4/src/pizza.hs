@@ -34,7 +34,9 @@ type Password = String
 data Login = Login {
     email    :: Email,
     password :: Password
-} deriving (Eq, FromJSON, Generic, Show, ToJSON)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (FromJSON, ToJSON)
 
 data LoginResponse = LoginResponse {
     _data        :: Maybe LoginResponseData,
@@ -42,14 +44,16 @@ data LoginResponse = LoginResponse {
     _success     :: Bool,
     _message     :: Maybe String,
     _redirectUri :: Maybe String
-} deriving (Eq, Generic, Show)
+} deriving stock (Eq, Generic, Show)
 
 instance FromJSON LoginResponse where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = \(_:f:fs) -> toUpper f : fs}
 
 newtype LoginResponseData = LoginResponseData {
     stateId :: String
-} deriving (Eq, Generic, Show, ToJSON)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (ToJSON)
 
 instance FromJSON LoginResponseData where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = \(f:fs) -> toUpper f : fs}
@@ -69,13 +73,15 @@ data GetBasketResponse = GetBasketResponse {
     isRealTimeMealDealWizardEnabled :: Bool,
     displayDeliveryChargeAmount     :: String,
     minimumOrderValue               :: Float
-} deriving (Eq, FromJSON, Generic, Show)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (FromJSON)
 
 data BasketInfoResponse = BasketInfoResponse {
     totalPrice  :: Float,
     -- storeId :: Int, -- exists but clash
     basketItems :: [String]
-} deriving (Eq, Generic, Show)
+} deriving stock (Eq, Generic, Show)
 
 instance FromJSON BasketInfoResponse where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = \(f:fs) -> toUpper f : fs}
@@ -97,12 +103,16 @@ data NavResponse = NavResponse {
     homeUrl                               :: String,
     isLoggedIn                            :: Bool,
     pageType                              :: String
-} deriving (Eq, FromJSON, Generic, Show)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (FromJSON)
 
 data Step = Step {
     imageUrl    :: String,
     description :: String
-} deriving (Eq, FromJSON, Generic, Out, Show)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (FromJSON, Out)
 
 data DealsDealsResponse = DealsDealsResponse {
     displayOrder     :: Int,
@@ -113,7 +123,9 @@ data DealsDealsResponse = DealsDealsResponse {
     -- id :: Int,
     -- description :: String,
     feedsPeopleCount :: Int
-} deriving (Eq, FromJSON, Generic, Out, Show)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (FromJSON, Out)
 
 data StoreDealsResponse = StoreDealsResponse {
     -- displayOrder :: Int,
@@ -124,11 +136,15 @@ data StoreDealsResponse = StoreDealsResponse {
     -- isGroup :: Bool,
     id           :: Int
     -- description :: String
-} deriving (Eq, FromJSON, Generic, Out, Show)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (FromJSON, Out)
 
 newtype DealsResponse = DealsResponse {
     storeDeals :: [StoreDealsResponse]
-} deriving (Eq, FromJSON, Generic, Out, Show)
+}
+    deriving stock (Eq, Generic, Show)
+    deriving anyclass (FromJSON, Out)
 
 host ∷ Url 'Https
 host = https "www.dominos.co.uk"

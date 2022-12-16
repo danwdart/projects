@@ -20,13 +20,13 @@ import qualified Data.Map               as M
 import           Data.Set               (Set)
 import qualified Data.Set               as S
 
-newtype MyComonad a = MyComonad a deriving (Functor, Show)
+newtype MyComonad a = MyComonad a deriving stock (Functor, Show)
 
 instance Comonad MyComonad where
     extract (MyComonad a) = a
     duplicate = MyComonad
 
-newtype MyComonad2 a = MyComonad2 a deriving (Functor, Show)
+newtype MyComonad2 a = MyComonad2 a deriving stock (Functor, Show)
 
 instance Comonad MyComonad2 where
     extract (MyComonad2 a) = a
@@ -35,7 +35,7 @@ instance Comonad MyComonad2 where
 mc ∷ MyComonad Int
 mc = MyComonad 1
 
-data W2 p a = W2 p a deriving (Show)
+data W2 p a = W2 p a deriving stock (Show)
 
 instance Functor (W2 p) where
     fmap f (W2 p a) = W2 p (f a)
@@ -46,7 +46,7 @@ instance Comonad (W2 p) where
 
 -- Stolen from Chris Penner's Comonads by Example
 
-data Stream a = a :> Stream a deriving (Functor, Foldable)
+data Stream a = a :> Stream a deriving stock (Functor, Foldable)
 
 -- A guess
 instance (Show a) ⇒ Show (Stream a) where

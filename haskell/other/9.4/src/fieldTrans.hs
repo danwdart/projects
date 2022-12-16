@@ -10,7 +10,7 @@ data Person f = Person {
     name       :: f String,
     age        :: f Int,
     profession :: f String
-} deriving (Generic)
+} deriving stock (Generic)
 
 instance (Show (f String), Show (f Int)) ⇒ Show (Person f) where
     show Person {name, age, profession} =
@@ -29,7 +29,7 @@ data Person2 f s i = Person2 {
     name2       :: f s,
     age2        :: f i,
     profession2 :: f s
-} deriving (Generic)
+} deriving stock (Generic)
 
 instance (Show (f s), Show (f i)) ⇒ Show (Person2 f s i) where
     show Person2 {name2, age2, profession2} =
@@ -48,7 +48,7 @@ data Person3 f g = Person3 {
     name3       :: f String,
     age3        :: g Int,
     profession3 :: f String
-} deriving (Generic)
+} deriving stock (Generic)
 
 instance (Show (f String), Show (g Int)) ⇒ Show (Person3 f g) where
     show Person3 {name3, age3, profession3} =
@@ -83,7 +83,7 @@ data Person4 f g s i = Person4 {
     name4       :: f s,
     age4        :: g i,
     profession4 :: f s
-} deriving (Generic)
+} deriving stock (Generic)
 
 instance (Show (f s), Show (g i)) ⇒ Show (Person4 f g s i) where
     show Person4 {name4, age4, profession4} =
@@ -120,7 +120,7 @@ type ToSame a = a → a
 
 newtype Person5 a b c = Person5 {
     name5 :: a b c
-} deriving (Generic)
+} deriving stock (Generic)
 
 instance (Show (a b c)) ⇒ Show (Person5 a b c) where
     show (Person5 n) =

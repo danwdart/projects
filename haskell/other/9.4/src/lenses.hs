@@ -13,7 +13,7 @@ data MyStruct = MyStruct {
     _namest  :: String,
     _age     :: Int,
     _friends :: [MyStruct]
-} deriving (Show)
+} deriving stock (Show)
 
 makeLenses ''MyStruct
 
@@ -31,13 +31,13 @@ bob = MyStruct {
 }
 
 
-data Title = Citizen | Professor | Doctor deriving (Show)
+data Title = Citizen | Professor | Doctor deriving stock (Show)
 
 data Date = Date {
     _year  :: Int,
     _month :: Int,
     _day   :: Int
-} deriving (Show)
+} deriving stock (Show)
 
 makeLenses ''Date
 
@@ -59,21 +59,21 @@ data Name = Name {
     _title        :: Title,
     _givenName    :: String,
     _officialName :: String
-} deriving (Show)
+} deriving stock (Show)
 
 makeLenses ''Name
 
 data Event = Event {
     _summary     :: String,
     _description :: String
-} deriving (Show)
+} deriving stock (Show)
 
 makeLenses ''Event
 
 data Attributes = Attributes {
     _dob    :: Date,
     _events :: [(Date, Event)]
-} deriving (Show)
+} deriving stock (Show)
 
 date ∷ Lens' (Date, Event) Date
 date = _1
@@ -86,7 +86,7 @@ makeLenses ''Attributes
 data Person = Person {
     _name       :: Name,
     _attributes :: Attributes
-} deriving (Show)
+} deriving stock (Show)
 
 makeLenses ''Person
 

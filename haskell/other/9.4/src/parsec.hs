@@ -11,7 +11,7 @@ number = read <$> many digit
 
 newtype DanImage = DanImage {
     getPixels :: [[Color]]
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)
 
 encodeDanImage ∷ Version → DanImage → Maybe String
 encodeDanImage version _ = if "03" /= version then Nothing else Just $ "DAN" <> version

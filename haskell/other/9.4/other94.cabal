@@ -378,7 +378,7 @@ test-suite test
   hs-source-dirs:      test
   main-is:             Spec.hs
   default-language:    GHC2021
-  default-extensions:  UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:       base >= 4.17 && < 5, hspec, QuickCheck
   other-modules:       TestSpec
                      , Test2Spec
