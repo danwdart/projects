@@ -10,7 +10,16 @@ category:           Game
 extra-doc-files:    CHANGELOG.md
 
 common warnings
-    ghc-options: -Wall
+    ghc-options: -Wall -Werror
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
 
 library
     import:           warnings

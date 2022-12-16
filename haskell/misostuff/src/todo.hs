@@ -46,7 +46,7 @@ data Model = Model
   , uid :: Int
   , visibility :: MisoString
   , step :: Bool
-  } deriving (Show, Generic, Eq)
+  } deriving stock (Show, Generic, Eq)
 
 data Entry = Entry
   { description :: MisoString
@@ -54,7 +54,7 @@ data Entry = Entry
   , editing :: Bool
   , eid :: Int
   , focussed :: Bool
-  } deriving (Show, Generic, Eq)
+  } deriving stock (Show, Generic, Eq)
 
 instance ToJSON Entry
 instance ToJSON Model
