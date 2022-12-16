@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-partial-fields #-}
+
 module Uno.Card where
 
 import qualified Uno.Action.Bounded as ActionBounded
@@ -11,6 +13,6 @@ data Card value colour action wild = NumberCard {
 } | ActionCard {
     action :: action,
     colour :: colour
-} | WildCard wild deriving (Eq, Show) -- we're modelling wild as non-action so action can specify colour
+} | WildCard wild deriving stock (Eq, Show) -- we're modelling wild as non-action so action can specify colour
 
 type CardBounded = Card ValueBounded.Value ColourBounded.Colour ActionBounded.Action WildBounded.Wild

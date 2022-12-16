@@ -22,8 +22,8 @@ type Current = DeckUnbounded
 type InPlay = DeckUnbounded
 type Discard = DeckUnbounded
 type Game = (Current, InPlay, Discard) -- todo data / iter
-data GameState = InProgress | Won | Lost deriving (Eq, Show)
-data GameMove = TakeOne | DiscardTwo | DiscardFour | End deriving (Eq, Show)
+data GameState = InProgress | Won | Lost deriving stock (Eq, Show)
+data GameMove = TakeOne | DiscardTwo | DiscardFour | End deriving stock (Eq, Show)
 
 summariseGame ∷ Game → String
 summariseGame game@(curr, inp, disc) = "Game: " <>

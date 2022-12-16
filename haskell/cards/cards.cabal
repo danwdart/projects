@@ -17,17 +17,35 @@ extra-source-files:  README.md
 common shared-properties
   hs-source-dirs:      src
   default-language:    GHC2021
-  default-extensions:  UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:       base >= 4.17 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
 
 library
   hs-source-dirs:      lib
   default-language:    GHC2021
-  default-extensions:  UnicodeSyntax
-  build-depends:       base >= 4.17 && < 5, containers, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+  default-extensions:  DerivingStrategies, UnicodeSyntax
+  build-depends:       base >= 4.17 && < 5, containers, MonadRandom, random
   ghc-options:         -Wall -Werror -haddock
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
   exposed-modules:     Data.Enum.Extra
                      , Data.List.Pairs
@@ -64,7 +82,7 @@ library
 executable cards
   import: shared-properties
   main-is:             cards.hs
-  build-depends:       base >= 4.17 && < 5, cards, containers, extra, MonadRandom, mtl, random, random-shuffle, transformers, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, containers, extra, MonadRandom, random-shuffle, utility-ht
 
 executable demo
   import: shared-properties
@@ -74,20 +92,30 @@ executable demo
 executable ohsol
   import: shared-properties
   main-is:             ohsol.hs
-  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, random-shuffle, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, MonadRandom, random-shuffle
 
 executable primesnap
   import: shared-properties
   main-is:             primesnap.hs
-  build-depends:       base >= 4.17 && < 5, cards, containers, MonadRandom, primes, random-shuffle, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, MonadRandom, primes, random-shuffle
 
 executable uno
   import: shared-properties
   main-is:             uno.hs
-  build-depends:       base >= 4.17 && < 5, cards, containers, extra, MonadRandom, random-shuffle, utility-ht
+  build-depends:       base >= 4.17 && < 5, cards, extra
 
 test-suite cards-test
-  import: shared-properties
+  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
+  ghcjs-options:       -dedupe
   hs-source-dirs:      test
   type:                exitcode-stdio-1.0
   main-is:             Spec.hs
@@ -95,11 +123,11 @@ test-suite cards-test
   -- build-tool-depends:
   --  hspec-discover:hspec-discover
   default-language:    GHC2021
-  default-extensions:  UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:
-      base >= 4.17 && < 5
-    , cards
+    --   base >= 4.17 && < 5
+    -- , cards
     , hspec
-    , hspec-core
-    , hspec-expectations
-    , QuickCheck
+    -- , hspec-core
+    -- , hspec-expectations
+    -- , QuickCheck

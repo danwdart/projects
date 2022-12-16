@@ -5,7 +5,7 @@ module Value.Bounded.Number where
 import           Symbol
 
 data NumValue = Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
-    deriving (Bounded, Enum, Eq, Ord, Show)
+    deriving stock (Bounded, Enum, Eq, Ord, Show)
 
 instance Symbol NumValue where
     symbol = \case

@@ -3,7 +3,7 @@ module Suit.Unbounded where
 import qualified Suit.Class as SuitClass
 import           Symbol
 
-newtype Suit = Suit Int deriving (Eq, Ord, Show)
+newtype Suit = Suit Int deriving stock (Eq, Ord, Show)
 
 instance Symbol Suit where
     symbol (Suit 1) = "♠"

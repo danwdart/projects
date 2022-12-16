@@ -13,7 +13,7 @@ countFreq = Prelude.foldl (\m v -> M.insertWith (+) v 1 m) M.empty
 dist ∷ MonadRandom m ⇒ Int → m Int → m (M.Map Int Int)
 dist n x = countFreq <$> replicateM n x
 
-mean ∷ (Num a, Integral a) ⇒ [a] → Double
+mean ∷ (Integral a) ⇒ [a] → Double
 mean xs = fromIntegral (sum xs) / fromIntegral (length xs)
 
 -- weighted average

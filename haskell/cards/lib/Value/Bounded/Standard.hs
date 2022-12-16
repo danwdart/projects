@@ -10,7 +10,7 @@ import qualified Value.Bounded.Number as N
 
 -- >>> map show [minBound..maxBound :: Value]
 data Value = Ace | Number N.NumValue | Jack | Queen | King
-    deriving (Eq, Ord, Show)
+    deriving stock (Eq, Ord, Show)
 
 instance Bounded Value where
     minBound = Ace

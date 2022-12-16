@@ -4,7 +4,7 @@ import qualified Suit.Class as SuitClass
 import           Symbol
 
 data Suit = Spades | Hearts | Diamonds | Clubs
-    deriving (Bounded, Enum, Eq, Ord, Show)
+    deriving stock (Bounded, Enum, Eq, Ord, Show)
 
 instance Symbol Suit where
     symbol Spades   = "♠"

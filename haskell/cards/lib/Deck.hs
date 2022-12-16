@@ -6,7 +6,7 @@ import           Card
 
 newtype Deck a = Deck {
     getDeck :: [a]
-} deriving (Eq, Foldable, Functor, Show)
+} deriving stock (Eq, Foldable, Functor, Show)
 
 type DeckStd = Deck CardStd
 type DeckJill = Deck CardJill
