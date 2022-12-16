@@ -36,7 +36,7 @@ data Person = Person {
     dob     :: Day,
     city    :: Text,
     country :: Text
-} deriving (Eq, Ord)
+} deriving stock (Eq, Ord)
 
 instance Show Person where
     show (Person _ name dob city country) = T.unpack name <> (", born " <> (show dob <> (", from " <> (T.unpack city <> (", " <> T.unpack country)))))
@@ -60,7 +60,7 @@ makePerson = do
 makePeople ∷ Int → IO (Set Person)
 makePeople number = fromList <$> replicateM number makePerson
 
-data RelationshipType = Married | Couple | Family | Friend | Coworker | Enemy | Indifferent deriving (Eq, Ord, Show)
+data RelationshipType = Married | Couple | Family | Friend | Coworker | Enemy | Indifferent deriving stock (Eq, Ord, Show)
 
 data Relationship = Relationship RelationshipType Person Person
 
