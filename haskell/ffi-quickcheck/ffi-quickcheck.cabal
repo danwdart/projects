@@ -14,7 +14,18 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 common warnings
-    ghc-options: -Wall
+    default-extensions: UnicodeSyntax
+    default-language: GHC2021
+    ghc-options: -Wall -Werror
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
 
 library
     import:           warnings
@@ -23,16 +34,13 @@ library
     -- other-extensions:
     build-depends:    base ^>=4.17.0.0
     hs-source-dirs:   lib
-    default-language: GHC2021
 
 test-suite ffi-quickcheck-test
     import:           warnings
-    default-language: GHC2021
     -- other-modules:
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
     main-is:          Main.hs
     build-depends:
-        base ^>=4.17.0.0,
-        ffi-quickcheck
+        base ^>=4.17.0.0
