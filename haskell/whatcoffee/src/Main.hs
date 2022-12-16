@@ -22,7 +22,7 @@ import           System.Environment
 import           Text.Printf            (printf)
 -- import qualified Web.JWT as JWT
 
-newtype Id = Id Integer deriving (Eq, Show)
+newtype Id = Id Integer deriving stock (Eq, Show)
 
 instance A.FromJSON Id where
     parseJSON (A.String a) = pure $ Id (read (T.unpack a))
@@ -39,7 +39,9 @@ data Coffee = Coffee {
     currency  :: Text,
     timestamp :: Text, -- TODO decode timestamp
     siteId    :: Id
-} deriving (Show, Eq, Generic, A.FromJSON)
+}
+    deriving stock (Show, Eq, Generic)
+    deriving anyclass (A.FromJSON)
 
 prettyPrintMachine ∷ Text → Text
 prettyPrintMachine "11317961" = "Co-Op Shepton Mallet"

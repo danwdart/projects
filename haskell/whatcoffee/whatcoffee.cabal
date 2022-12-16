@@ -12,15 +12,33 @@ library
   hs-source-dirs:      lib
   -- can't use base64 because of errors
   default-language:    GHC2021
-  default-extensions:  UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:       base >= 4.17 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
   exposed-modules:
   ghc-options:         -Wall -Werror -haddock
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
 
 executable whatcoffee
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    GHC2021
-  default-extensions:  UnicodeSyntax
-  build-depends:       base >= 4.17 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
+  default-extensions:  DerivingStrategies, UnicodeSyntax
+  build-depends:       base >= 4.17 && < 5, aeson, base64-bytestring, bytestring, text, time, uuid-types
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures

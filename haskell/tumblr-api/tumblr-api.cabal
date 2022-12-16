@@ -11,17 +11,23 @@ extra-source-files:  CHANGELOG.md, README.md
 executable tumblr-api
   main-is:             Main.hs
   default-language:    GHC2021
-  default-extensions:  UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:       base >=4.17 && <5
                      , bytestring
-                     , conduit
                      , dotenv
                      , http-conduit
                      , humblr
-                     , monad-control
                      , mtl
                      , resourcet
-                     , transformers
   hs-source-dirs:      src
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
