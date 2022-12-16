@@ -1,4 +1,4 @@
-import           Data.List (findIndex, tails, isPrefixOf)
+import           Data.List  (findIndex, isPrefixOf, tails)
 import           Data.Maybe
 -- import Control.Monad
 

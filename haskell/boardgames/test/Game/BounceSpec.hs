@@ -22,7 +22,7 @@ prop_cornerToCoord ∷ Size → Corner → Property
 prop_cornerToCoord size corner = 1 < fst size && 1 < snd size ==>
     coordToMaybeCorner size (cornerToCoord size corner) === Just corner
 
-return []
+pure []
 
 runTests ∷ IO Bool
 runTests = $quickCheckAll

@@ -9,7 +9,7 @@ import           System.Console.ANSI
 import           System.IO
 
 process ∷ Char → [Button] → [Button]
-process = toggle . pred . read . return
+process = toggle . pred . read . pure
 
 render ∷ StateT [Button] IO String
 render = do

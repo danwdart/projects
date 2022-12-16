@@ -14,6 +14,6 @@ pisanoPeriod xs = fst $ filter likeStart indexed !! 1
         indexed = index (pairs xs)
         start = head indexed
         likeStart x = snd x == snd start
-        index :: [(a, a)] -> [(a, (a, a))]
+        index ∷ [(a, a)] → [(a, (a, a))]
         index = zip [0..]
         pairs xs' = zip xs' (tail xs')

@@ -11,18 +11,18 @@ seqL = (lucases !!)
 naiveL ∷ forall a. (Floating a) ⇒ a → a
 naiveL n = phi ** n
     where
-        sqrt5 :: a
+        sqrt5 ∷ a
         sqrt5 = sqrt 5
-        phi :: a
+        phi ∷ a
         phi = (sqrt5 + 1) / 2
 
 -- some other binet formula
 binetL ∷ forall a. (Floating a) ⇒ a → a
 binetL n = phi ** n - (recip phi ** n)
     where
-        sqrt5 :: a
+        sqrt5 ∷ a
         sqrt5 = sqrt 5
-        phi :: a
+        phi ∷ a
         phi = (sqrt5 + 1) / 2
 
 {-

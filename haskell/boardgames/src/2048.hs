@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
 
 import           Control.Monad.Random
-import           Data.List (intercalate)
+import           Data.List            (intercalate)
 import           Data.Maybe
 -- import System.Random
 
@@ -84,7 +84,7 @@ getDirection = undefined
 isFullSpace ∷ Space → Bool
 isFullSpace (Space x) = isJust x
 
-isFullRow :: Row -> Bool
+isFullRow ∷ Row → Bool
 isFullRow = all isFullSpace
 
 isFull ∷ Board → Bool

@@ -14,7 +14,7 @@ main = do
         myObject2 = updateVariable (2 :: Int) myObject
     performAnActionEvilly myObject2
 
-    
+
     putStrLn "-- MyOtherClass --"
 
     let myOtherObject :: MyOtherClass
@@ -26,10 +26,10 @@ main = do
 
 
     putStrLn "-- EvenMoreEvil --"
-    
+
     let evilness :: EvenMoreEvil
         evilness = new ()
-    
+
     s evilness
     evilness2 <- mwahaha evilness
     s evilness2
@@ -39,7 +39,7 @@ main = do
 
     let myTupleObject :: TupleOfInputs Int Int
         myTupleObject = new ((1, 2) :: (Int, Int))
-    
+
     printThem myTupleObject
 
     let myTupleObject2 :: TupleOfInputs Int Int
@@ -52,7 +52,7 @@ main = do
 
     let myStaticSumTypeInt :: StaticSumType
         myStaticSumTypeInt = new (1 :: Int)
-    
+
     print myStaticSumTypeInt
 
     let myStaticSumTypeInt2 :: StaticSumType
@@ -63,7 +63,7 @@ main = do
 
     let myStaticSumTypeString :: StaticSumType
         myStaticSumTypeString = new "Hi"
-    
+
     print myStaticSumTypeString
 
     let myStaticSumTypeString2 :: StaticSumType

@@ -157,13 +157,13 @@ numToWords (Config o h s) = let (so, sm, sl, miss) = scaleDetails s in
         (100, "googol")
         ] -}
 
-ords :: [(Integer, String)]
+ords ∷ [(Integer, String)]
 ords = []
 
-fraction :: [(Integer, String)]
+fraction ∷ [(Integer, String)]
 fraction = []
 
-indianPow :: [(Integer, String)]
+indianPow ∷ [(Integer, String)]
 indianPow = [
     (5, "lakh"),
     (7, "crore"),
@@ -174,7 +174,7 @@ indianPow = [
     (17, "shankh")
     ]
 
-ramanayaVedicPow :: [(Integer, String)]
+ramanayaVedicPow ∷ [(Integer, String)]
 ramanayaVedicPow = [
     (0, "ēka"),
     (1, "daśa"),
@@ -197,7 +197,7 @@ ramanayaVedicPow = [
     (62, "mahaugha")
     ]
 
-fifthCenturyIndianPow :: [(Integer, String)]
+fifthCenturyIndianPow ∷ [(Integer, String)]
 fifthCenturyIndianPow = [
     (5, "lakṣá"),
     (7, "kōṭi"),
@@ -243,7 +243,7 @@ fifthCenturyIndianPow = [
     (37218383881977644441306597687849648128, "bodhisattva")
     ]
 
-fifthCenturyInfianInfinitiesPow :: [(Integer, String)]
+fifthCenturyInfianInfinitiesPow ∷ [(Integer, String)]
 fifthCenturyInfianInfinitiesPow = [
     (200, "lalitavistarautra"),
     (600, "matsya"),

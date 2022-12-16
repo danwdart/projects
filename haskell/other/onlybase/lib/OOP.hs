@@ -21,7 +21,7 @@ instance Instantiable Int MyClass where
         performAnActionEvilly = print x
     }
     updateVariable y obj = obj { localVariable = y }
-    
+
 data MyOtherClass = MyOtherClass {
     a :: String,
     printA :: IO ()
@@ -72,13 +72,13 @@ data StaticSumType = AnInt {
 } deriving Show
 
 instance Instantiable Int StaticSumType where
-    new theInt = AnInt theInt
+    new = AnInt
     updateVariable newInt theSumType = case theSumType of
         AnInt _ -> theSumType { anInt = newInt }
         x -> x -- redundant?
 
 instance Instantiable String StaticSumType where
-    new theString = AString theString
+    new = AString
     updateVariable newString theSumType = case theSumType of
         AString _ -> theSumType { aString = newString }
         x -> x -- redundant?

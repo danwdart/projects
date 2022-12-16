@@ -2,7 +2,7 @@
 
 module Collatz where
 
-import Numeric.Natural
+import           Numeric.Natural
 
 -- $setup
 -- >>> :set -XUnicodeSyntax
@@ -28,7 +28,7 @@ import Numeric.Natural
 -- [400,200,100,50,25,76,38,19,58,29,88,44,22,11,34,17,52,26,13,40,20,10,5,16,8,4,2,1]
 --
 
-collatz :: Natural -> Natural
+collatz ∷ Natural → Natural
 collatz 1 = 1
 collatz n -- -Wincomplete-patterns?
     | even n = n `div` 2

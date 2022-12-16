@@ -11,18 +11,18 @@ seqF = (fibs !!)
 naiveF ∷ forall a. Floating a ⇒ a → a
 naiveF n = (phi ** n) / sqrt5
     where
-        sqrt5 :: a
+        sqrt5 ∷ a
         sqrt5 = sqrt 5
-        phi :: a
+        phi ∷ a
         phi = (sqrt5 + 1) / 2
 
 -- some other binet formula
 binetF ∷ forall a. Floating a ⇒ a → a
 binetF n = (phi ** n - (recip phi ** n)) / sqrt5
     where
-        sqrt5 :: a
+        sqrt5 ∷ a
         sqrt5 = sqrt 5
-        phi :: a
+        phi ∷ a
         phi = (sqrt5 + 1) / 2
 
 {-
