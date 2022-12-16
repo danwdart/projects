@@ -10,8 +10,8 @@ import           Rando
 type Score = Int
 -- type Budget = Int
 type Money = Int
-data HasPrize = HasPrize | NoPrize deriving (Eq, Show)
-data Yield = Yield | Winner | Continue deriving (Eq, Show)
+data HasPrize = HasPrize | NoPrize deriving stock (Eq, Show)
+data Yield = Yield | Winner | Continue deriving stock (Eq, Show)
 
 -- Number of something, actual thing
 
@@ -38,7 +38,7 @@ data GameState = GameState {
     cost   :: Money,
     turns  :: Int,
     yield  :: Yield
-} deriving (Show)
+} deriving stock (Show)
 
 initialGameState ∷ GameState
 initialGameState = GameState {
@@ -83,7 +83,7 @@ processUntilFinish  = iterateUntilM (\ x -> yield x /= Continue) . flip processV
 
 -- State? Random without IO?
 
-data Result = Points Score | Prize | Zilch | PrizeAndPayDouble deriving (Show)
+data Result = Points Score | Prize | Zilch | PrizeAndPayDouble deriving stock (Show)
 
 getPoints ∷ Result → Score
 getPoints (Points x) = x

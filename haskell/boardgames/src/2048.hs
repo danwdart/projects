@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
 
 import           Control.Monad.Random
-import           Data.List
+import           Data.List (intercalate)
 import           Data.Maybe
 -- import System.Random
 
@@ -21,7 +21,9 @@ instance Show Space where
 type Coord = (Int, Int)
 type Coords = [Coord]
 
-newtype Board = Board [[Space]]
+type Row = [Space]
+
+newtype Board = Board [Row]
 
 instance Show Board where
     show (Board b) = intercalate "\n" $ showRow <$> b where
@@ -82,9 +84,11 @@ getDirection = undefined
 isFullSpace ∷ Space → Bool
 isFullSpace (Space x) = isJust x
 
+isFullRow :: Row -> Bool
+isFullRow = all isFullSpace
+
 isFull ∷ Board → Bool
-isFull (Board rows) = all isFullRow rows where
-    isFullRow = all isFullSpace
+isFull (Board rows) = all isFullRow rows
 
 main ∷ IO ()
 main = do

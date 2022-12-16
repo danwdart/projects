@@ -8,4 +8,4 @@ data Game = Game {
     board   :: Board,
     players :: [Player],
     rules   :: Rules
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)

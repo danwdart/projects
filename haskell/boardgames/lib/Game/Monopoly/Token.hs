@@ -1,6 +1,6 @@
 module Game.Monopoly.Token where
 
-data Token = Dog | TopHat | Wheelbarrow | RacingCar | Boot | Iron | Battleship | Thimble deriving (Eq)
+data Token = Dog | TopHat | Wheelbarrow | RacingCar | Boot | Iron | Battleship | Thimble deriving stock (Eq)
 
 instance Show Token where
     show Dog         = "Dog"

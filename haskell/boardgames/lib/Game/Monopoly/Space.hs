@@ -16,7 +16,7 @@ data Space = GoSpace
     | JailSpace
     | JustVisitingSpace
     | FreeParkingSpace
-    | GoToJailSpace deriving (Eq)
+    | GoToJailSpace deriving stock (Eq)
 
 instance Show Space where
     show GoSpace           = "GO"

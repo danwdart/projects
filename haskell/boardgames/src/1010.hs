@@ -13,16 +13,16 @@ height, width ∷ Int
 height = 10
 width = 10
 
-data Coord = Coord (Sum Int) (Sum Int) deriving (Eq, Ord, Show)
+data Coord = Coord (Sum Int) (Sum Int) deriving stock (Eq, Ord, Show)
 
 instance Semigroup Coord where
     Coord x1 y1 <> Coord x2 y2 = Coord (x1 <> x2) (y1 <> y2)
 
 newtype Board = Board (Set Coord)
     deriving stock (Eq, Ord, Show)
-    deriving (Monoid, Semigroup)
+    deriving newtype (Monoid, Semigroup)
 
-newtype Tile = Tile (Set Coord) deriving (Eq, Ord, Show)
+newtype Tile = Tile (Set Coord) deriving stock (Eq, Ord, Show)
 
 availableTiles ∷ Set Tile
 availableTiles = [

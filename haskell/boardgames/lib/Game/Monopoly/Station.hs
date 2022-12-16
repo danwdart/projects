@@ -5,4 +5,4 @@ stationPrice = 200
 
 newtype Station = Station {
     name :: String
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)

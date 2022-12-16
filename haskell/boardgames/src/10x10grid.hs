@@ -3,7 +3,7 @@
 import           Control.Arrow
 import           Control.Monad.Random
 import           Data.Biapplicative
-import           Data.List
+import           Data.List (intercalate)
 import           Data.Maybe
 
 main ∷ IO ()

@@ -10,7 +10,7 @@ data Player = Player {
     money               :: Int,
     properties          :: [Property],
     mortgagedProperties :: [Property]
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)
 
 newPlayer ∷ String → Token → Player
 newPlayer n t = Player n t 0 1500 [] []

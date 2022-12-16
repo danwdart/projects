@@ -5,4 +5,4 @@ utilityPrice = 150
 
 newtype Utility = Utility {
     name :: String
-} deriving (Eq, Show)
+} deriving stock (Eq, Show)

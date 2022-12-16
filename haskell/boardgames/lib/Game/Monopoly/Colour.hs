@@ -1,6 +1,6 @@
 module Game.Monopoly.Colour where
 
-data Colour = Brown | LightBlue | Pink | Orange | Red | Yellow | Green | DarkBlue deriving (Eq)
+data Colour = Brown | LightBlue | Pink | Orange | Red | Yellow | Green | DarkBlue deriving stock (Eq)
 
 instance Show Colour where
     show Brown     = "Brown"

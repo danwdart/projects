@@ -3,6 +3,7 @@
     -Wno-unused-matches
     -Wno-unused-top-binds
     -Wno-missing-signatures
+    -Wno-missing-exported-signatures
     -Wno-unused-local-binds
     -Wno-overlapping-patterns
     -Wno-name-shadowing
@@ -18,7 +19,7 @@ C-|-|-D
 Using SCREEN coords, not Cartesian!
 -}
 
-data Corner = A | B | C | D deriving (Eq, Show, Bounded, Enum)
+data Corner = A | B | C | D deriving stock (Eq, Show, Bounded, Enum)
 
 type Width = Int
 type Height = Int

@@ -1,6 +1,6 @@
 module Game.Monopoly.Addons where
 
-data Addons = NoAddons | Houses Int | Hotel deriving (Eq)
+data Addons = NoAddons | Houses Int | Hotel deriving stock (Eq)
 
 instance Show Addons where
     show NoAddons   = "(none)"

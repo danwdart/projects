@@ -9,7 +9,7 @@ import qualified Data.Vector     as V
 
 -- | The individual cell value.
 data Choice = One | Two | Three | Four | Five | Six | Seven | Eight | Nine
-    deriving (Eq, Show, Ord, Enum, Bounded)
+    deriving stock (Eq, Show, Ord, Enum, Bounded)
 
 -- We should be using the bounded join semilattice for Set Choice
 -- so its bottom would be "contradiction" which is nothing in the set

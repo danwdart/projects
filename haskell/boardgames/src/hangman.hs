@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-redundant-constraints #-}
 
 -- Make a game. Make guesses. See what guessing strategy is best.
 

@@ -9,7 +9,7 @@ data Property = Property {
     housePrice :: Int,
     colour     :: Colour,
     addons     :: Addons
-} deriving (Eq)
+} deriving stock (Eq)
 
 instance Show Property where
     show (Property n p hp c a) = n <> (" - " <> (show c <> (" (£" <> (show p <> (") (house price: £" <> (show hp <> (") " <> show a)))))))
