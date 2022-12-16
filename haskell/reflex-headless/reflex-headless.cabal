@@ -11,17 +11,26 @@ extra-source-files:  CHANGELOG.md
 common shared-properties
   hs-source-dirs:      src
   default-language:    Haskell2010
-  default-extensions:  UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:       base >= 4.17 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
 
 executable reflex
   import: shared-properties
   main-is:             reflex.hs
-  build-depends:       base >=4.17 && <5, async, reflex
+  build-depends:       base >=4.17 && <5, reflex
 
 executable minishop
   import: shared-properties
   main-is:             minishop.hs
-  build-depends:       base >=4.17 && <5, ansi-terminal, async, reflex
+  build-depends:       base >=4.17 && <5, ansi-terminal, reflex
