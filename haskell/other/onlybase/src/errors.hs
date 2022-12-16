@@ -1,4 +1,5 @@
 {-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -10,13 +11,13 @@ newtype DBConnectionInfo = DBConnectionInfo String
     deriving Show
 
 newtype RowId = RowId Int
-    deriving (Show, Eq)
+    deriving stock (Show, Eq)
     -- deriving (Num) -- only need fromInteger so nm
 
 data DBRow = DBRow {
     dbRowId :: RowId,
     dbRowName :: String
-} deriving (Show)
+} deriving stock (Show)
 
 sampleRow :: DBRow
 sampleRow = DBRow (RowId 1) "Datum"
@@ -31,7 +32,8 @@ rowId :: RowId
 rowId = RowId 123
 
 data NonsenseException = NonsenseException String | UnexpectedException
-    deriving (Show, Exception)
+    deriving stock (Show)
+    deriving anyclass (Exception)
 
 formatRow :: DBRow -> Either NonsenseException String
 formatRow DBRow { dbRowId = RowId _, dbRowName = dbRowName' }
@@ -40,7 +42,8 @@ formatRow DBRow { dbRowId = RowId _, dbRowName = dbRowName' }
     | otherwise = Right $ "The row ID was " <> show rowId <> " and the row name was " <> dbRowName'
 
 data DBException = RowNotFoundException RowId | DBConnectionException DBConnectionInfo
-    deriving (Show, Exception)
+    deriving stock (Show)
+    deriving anyclass (Exception)
 
 getRow :: Int -> Either DBException DBRow
 getRow id'
@@ -49,7 +52,8 @@ getRow id'
     | otherwise = Right sampleRow { dbRowId = RowId id' }
 
 data ClientException = NotFoundException Url | InternalServerError
-    deriving (Show, Exception)
+    deriving stock (Show)
+    deriving anyclass (Exception)
 
 -- TODO refactor first/second
 fetchRow :: Url -> Int -> Either ClientException String

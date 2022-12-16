@@ -10,7 +10,7 @@ data Person = Person {
     lastName  :: String,
     birthYear :: Int,
     hatsOwned :: [String]
-} deriving (Show)
+} deriving stock (Show)
 
 -- Private
 wordlist ∷ String → [String] → String

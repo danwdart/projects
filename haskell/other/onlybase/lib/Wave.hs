@@ -14,17 +14,17 @@ type Amplitude = Float
 data SpectrumPoint = SpectrumPoint {
     spectrumPointFrequency :: Frequency,
     spectrumPointAmplitude :: Amplitude
-} deriving (Show)
+} deriving stock (Show)
 
 type Spectrum = [SpectrumPoint]
 
-data Intonation = JustIntonation | EqualTemperament deriving (Show)
+data Intonation = JustIntonation | EqualTemperament deriving stock (Show)
 
-data Scale = TwelveTone | Pentatonic deriving (Show)
+data Scale = TwelveTone | Pentatonic deriving stock (Show)
 
-data KeyModifier = Flat | Natural | Sharp | Cent Int deriving (Show)
+data KeyModifier = Flat | Natural | Sharp | Cent Int deriving stock (Show)
 
-data KeyName = A | B | C | D | E | F | G deriving (Show)
+data KeyName = A | B | C | D | E | F | G deriving stock (Show)
 
 data ModulationType = AM | FM
 
@@ -44,7 +44,7 @@ data NoteDuration = Dotted NoteDuration |
     Quaver |
     Minim |
     Semibreve |
-    Breve deriving (Show)
+    Breve deriving stock (Show)
 
 type Octave = Int
 
@@ -56,19 +56,19 @@ data Key = Key {
     keyOctave     :: Octave,
     keyScale      :: Scale,
     keyIntonation :: Intonation
-} deriving (Show)
+} deriving stock (Show)
 
-data Articulation = Legato | Normal | Staccato deriving (Show)
+data Articulation = Legato | Normal | Staccato deriving stock (Show)
 
 data Tempo = Tempo {
     tempoNoteDuration :: NoteDuration,
     tempoBPM          :: BPM
-} deriving (Show)
+} deriving stock (Show)
 
 data Voice = Sine |
     Square |
     Sawtooth |
-    Triangle deriving (Show)
+    Triangle deriving stock (Show)
 
 data Note = Note {
     noteKey          :: Key,

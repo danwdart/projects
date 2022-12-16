@@ -17,7 +17,7 @@ deriving instance (Show ix, Show a) => Show (Element ix a)
 deriving instance Functor (Element ix)
 
 data ListIndex ix a = Nil | Element ix a :> ListIndex ix a
-    deriving (Show, Functor)
+    deriving stock (Show, Functor)
 
 infixr 5 :>
 

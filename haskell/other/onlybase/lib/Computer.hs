@@ -5,4 +5,4 @@ import Data.Data
 type Make = String
 type Model = String
 
-data Computer = Computer Make Model deriving (Data, Show)
+data Computer = Computer Make Model deriving stock (Data, Show)

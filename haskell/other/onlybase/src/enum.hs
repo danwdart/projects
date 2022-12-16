@@ -1,4 +1,4 @@
-data Foo = One | Two | Three deriving (Eq, Ord, Show, Read, Bounded, Enum)
+data Foo = One | Two | Three deriving stock (Eq, Ord, Show, Read, Bounded, Enum)
 
 thing ∷ Foo
 thing = One

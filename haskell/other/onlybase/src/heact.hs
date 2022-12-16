@@ -14,7 +14,7 @@ data H = H {
     tagName :: TagName,
     attrs :: Attrs,
     children :: Set.Set H
-} deriving (Eq, Ord)
+} deriving stock (Eq, Ord)
 
 addAttr :: AttrName -> AttrVal -> [String] -> [String]
 addAttr n v a = (n ++ "=\"" ++ v ++ "\""):a

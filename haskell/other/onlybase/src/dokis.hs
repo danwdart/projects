@@ -1,7 +1,7 @@
 {-# LANGUAGE Unsafe #-} -- Of course Yuri is unsafe!
 {-# OPTIONS_GHC -Wno-unsafe #-} -- ???
 
-data Dokis = Yuri deriving (Show)
+data Dokis = Yuri deriving stock (Show)
 
 myLove ∷ Maybe Dokis
 myLove = pure Yuri

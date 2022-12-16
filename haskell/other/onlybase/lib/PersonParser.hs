@@ -8,7 +8,7 @@ import           Text.ParserCombinators.ReadPrec (lift)
 data Person = Person {
     name :: String,
     age  :: Int
-} deriving (Show)
+} deriving stock (Show)
 
 instance Read Person where
     readsPrec _ = readP_to_S $ personParser Person
@@ -16,7 +16,7 @@ instance Read Person where
 data Person2 = Person2 {
     name2 :: String,
     age2  :: Int
-} deriving (Show)
+} deriving stock (Show)
 
 instance Read Person2 where
     readPrec = lift $ personParser Person2

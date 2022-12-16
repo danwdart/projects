@@ -10,4 +10,4 @@ data User = User {
     email    :: Email,
     password :: Password,
     name     :: Name
-} deriving (Show)
+} deriving stock (Show)

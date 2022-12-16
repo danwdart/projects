@@ -2,7 +2,7 @@
 
 {- TODO: Deriving -}
 
-newtype Bob a = Bob a deriving (Show)
+newtype Bob a = Bob a deriving stock (Show)
 
 instance Functor Bob where
     fmap f (Bob x) = Bob (f x)

@@ -6,7 +6,7 @@ data Triple a b c = Triple {
     ta :: a,
     tb :: b,
     tc :: c
-} deriving (Show)
+} deriving stock (Show)
 
 lensTripleA ∷ Lens (Triple a b c) (Triple a' b c) a a'
 lensTripleA = lens ta (\(Triple _ b c) a' -> Triple a' b c)

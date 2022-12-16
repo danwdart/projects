@@ -11,4 +11,4 @@ data NamedDisparate = NamedDisparate {
     name  :: String,
     idn   :: Int,
     thing :: Disparate
-} deriving (Show)
+} deriving stock (Show)

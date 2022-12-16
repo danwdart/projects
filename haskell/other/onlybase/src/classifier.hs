@@ -36,7 +36,7 @@ data CountryMorality = CountryMorality {
 data Country t = Country {
     name :: String,
     morality :: t
-} deriving (Functor, Show)
+} deriving stock (Functor, Show)
 
 data CountryMorality t = CountryMorality {
     capitalPunishment :: t,

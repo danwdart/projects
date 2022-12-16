@@ -2,7 +2,7 @@ module BetterBools where
 
 newtype LightState = LightState Bool
 
-data Lights = Off | On deriving (Enum, Eq, Ord, Show)
+data Lights = Off | On deriving stock (Enum, Eq, Ord, Show)
 
 -- >>> (coerceEnum On :: Bool)
 -- True

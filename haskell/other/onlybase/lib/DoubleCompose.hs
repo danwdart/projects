@@ -14,7 +14,7 @@ getCompose2 = getCompose . getCompose
 
 newtype ComposeTwo f g h x = ComposeTwo {
     getComposeTwo :: f (g (h x))
-} deriving (Functor)
+} deriving stock (Functor)
 
 -- uhh... maybe?
 

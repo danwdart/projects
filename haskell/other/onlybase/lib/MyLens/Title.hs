@@ -1,3 +1,3 @@
 module MyLens.Title where
 
-data Title = Citizen | Professor | Doctor deriving (Show)
+data Title = Citizen | Professor | Doctor deriving stock (Show)

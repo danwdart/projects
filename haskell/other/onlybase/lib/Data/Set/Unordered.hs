@@ -7,7 +7,7 @@ module Data.Set.Unordered where
 
 -- As long as this isn't a newtype it shouldn't be easy to coerce into.
 data Set a = Nil | a :> Set a
-    deriving (Eq, Ord, Show)
+    deriving stock (Eq, Ord, Show)
 
 infixr 5 :>
 

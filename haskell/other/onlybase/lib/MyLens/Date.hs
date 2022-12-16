@@ -6,7 +6,7 @@ data Date = Date {
     _year  :: Int,
     _month :: Int,
     _day   :: Int
-} deriving (Show)
+} deriving stock (Show)
 
 year ∷ Lens' Date Int
 year = lens _year (\date year' -> date { _year = year'})

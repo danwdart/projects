@@ -1,6 +1,6 @@
 module Main (main) where
 
-data FourThings a = FT a a a a deriving (Show)
+data FourThings a = FT a a a a deriving stock (Show)
 
 ft ∷ FourThings Int
 ft = FT 1 2 3 4

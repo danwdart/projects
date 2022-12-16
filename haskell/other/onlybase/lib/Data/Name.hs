@@ -5,4 +5,4 @@ module Data.Name (
 data Name = MonoName String |
     DuoName String String |
     TrioName String String String
-    deriving (Show)
+    deriving stock (Show)

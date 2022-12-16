@@ -5,7 +5,7 @@ import MyLens
 data Event = Event {
     _summary     :: String,
     _description :: String
-} deriving (Show)
+} deriving stock (Show)
 
 summary ∷ Lens' Event String
 summary = lens _summary (\event summary' -> event { _summary = summary' })

@@ -18,7 +18,7 @@ class Semilattice a where
     bottom :: a
 
 data SudokuVal = One | Two | Three | Four
-    deriving (Eq, Ord)
+    deriving stock (Eq, Ord)
 
 newtype Possibilities = P (Set SudokuVal)
 

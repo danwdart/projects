@@ -13,7 +13,7 @@ vowels = "aeiouy"
 consCaps = "BCDFGHJKLMNPQRSTVWXZ"
 vowelCaps = "AEIOUY"
 
-data Letter x = Vowel x | Consonant x | VowelCap x | ConsCap x | Other x deriving (Eq, Show, Functor)
+data Letter x = Vowel x | Consonant x | VowelCap x | ConsCap x | Other x deriving stock (Eq, Show, Functor)
 
 index ∷ Char → Maybe (Letter Int)
 index c = Consonant <$> (c `elemIndex` consonants) <|>

@@ -34,7 +34,7 @@ instance MonadFile IO where
 
 newtype Fake a = Fake {
     unF :: a
-} deriving (Functor)
+} deriving stock (Functor)
 
 instance Applicative Fake where
     pure = Fake
@@ -46,8 +46,9 @@ instance Monad Fake where
 
 newtype AppM a = AppM {
     unApp :: RWST AppRead AppWriter AppState AppMonad a
-} deriving (
-    Functor,
+} deriving stock (
+    Functor
+) deriving anyclass (
     Applicative,
     Monad,
     MonadIO,

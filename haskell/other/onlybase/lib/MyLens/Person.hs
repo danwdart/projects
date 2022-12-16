@@ -7,7 +7,7 @@ import MyLens.Name
 data Person = Person {
     _name       :: Name,
     _attributes :: Attributes
-} deriving (Show)
+} deriving stock (Show)
 
 name ∷ Lens' Person Name
 name = lens _name (\person name' -> person { _name = name' })

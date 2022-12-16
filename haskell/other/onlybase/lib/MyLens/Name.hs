@@ -7,7 +7,7 @@ data Name = Name {
     _title        :: Title,
     _givenName    :: String,
     _officialName :: String
-} deriving (Show)
+} deriving stock (Show)
 
 title ∷ Lens' Name Title
 title = lens _title (\name' title' -> name' { _title = title' })

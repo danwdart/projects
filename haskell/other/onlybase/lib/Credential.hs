@@ -3,7 +3,7 @@ module Credential (
     printCreds
 ) where
 
-data Creds = Creds String String deriving (Show)
+data Creds = Creds String String deriving stock (Show)
 
 -- >>> printCreds $ Creds "user" "pass"
 -- "Your username is user and your password is pass"

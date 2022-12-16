@@ -4,13 +4,13 @@
 
 module Main where
 
-data UserPrivilege = Guest | Normal | Admin | SuperUser deriving (Read, Show)
+data UserPrivilege = Guest | Normal | Admin | SuperUser deriving stock (Read, Show)
 
 data User = User {
     userId :: Int,
     userName :: String,
     userPrivilege :: UserPrivilege
-} deriving (Show)
+} deriving stock (Show)
 
 -- Hmm there's no difference
 -- >>> superUser
@@ -50,7 +50,7 @@ doSomethingEvil2 _ = putStrLn "Mwahahaha!"
 -- now ideally this constructor will be hidden
 newtype SmartSuperUser = SmartSuperUser {
     getUser :: User
-} deriving (Show)
+} deriving stock (Show)
 
 -- >>> mkSuperUser superUser
 -- Just (SmartSuperUser {getUser = User {userId = 0, userName = "Root", userPrivilege = SuperUser}})
@@ -164,7 +164,7 @@ data UserForWitness (up :: UserPrivilege) = UserForWitness
   { userForWitnessId :: Int
   , userForWitnessName :: String
   , userForWitnessPrivilege :: WitnessPrivilege up
-  } deriving (Show)
+  } deriving stock (Show)
 
 data SomeUserWitnessed where
   SomeUserWitnessed :: UserForWitness a -> SomeUserWitnessed

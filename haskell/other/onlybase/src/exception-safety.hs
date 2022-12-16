@@ -19,7 +19,7 @@ failer = fail "Bob"
 tryer :: IO (Either SomeException String)
 tryer = try failer
 
-data DanException = DanException deriving (Show, Exception)
+data DanException = DanException deriving stock (Show) deriving anyclass (Exception)
 
 sampleHandler :: SomeException -> IO ()
 sampleHandler (SomeException ex) = putStrLn $ "Caught error: (" <> displayException ex <> ")"
