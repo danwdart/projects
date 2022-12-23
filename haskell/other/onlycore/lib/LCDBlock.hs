@@ -60,3 +60,5 @@ toLcdBlock n = " " <> (
 
 printN ∷ Int → IO ()
 printN n = putStrLn $ show n <> (" is:\n" <> toLcdBlock n)
+
+-- TODO: https://www.youtube.com/watch?v=dLh1n2dErzE&t=244s
