@@ -14,3 +14,20 @@ void* printlist(LL* list, int from) {
         printlist(list->next, from + 1);
     }
 }
+
+LL* from_array(char *array[], int size) {
+    LL* list = newlist();
+    LL* orig_list = list;
+    for (int i = 0; i < size; i++) {
+        list->value = array[i];
+        list->next = newlist();
+        list = list->next;
+    }    
+    return orig_list;
+}
+
+void insert(char *value, LL* list) {
+    char **tracer;
+
+    
+}
