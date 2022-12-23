@@ -7,3 +7,6 @@
 [submodule "c/pico/pico-examples"]
 	path = c/pico/pico-examples
 	url = https://github.com/raspberrypi/pico-examples.git
+[submodule "c/pico/external/pico-sdk"]
+	path = c/pico/external/pico-sdk
+	url = https://github.com/raspberrypi/pico-sdk.git
