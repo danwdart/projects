@@ -25,6 +25,7 @@ executable peoplemanager
     -- , brick
     , containers
     , fakedata
+    , MonadRandom
     , random
     , text
     , time
