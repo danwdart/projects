@@ -7,13 +7,13 @@ runCommand "pico" {
       export PICO_BOARD=pico_w
     '';
     buildInputs = [
-      binutils
+      # binutils
       cmake
       gcc
+      gcc-arm-embedded-10
       gnumake
       pico-sdk
       picotool
-      pkgsCross.arm-embedded.pkgsBuildTarget.gcc
       python311
     ];
 } ""
