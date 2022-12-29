@@ -71,3 +71,6 @@ cbrtx = Algebraic [(1, 1 % 3)]
 
 cbrt2 :: Solution
 cbrt2 = evalAlgebraic 2 cbrtx
+
+main :: IO ()
+main = pure ()
