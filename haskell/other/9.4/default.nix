@@ -41,6 +41,9 @@ let
       sdl2 = lib.doJailbreak super.sdl2;
       text-display = lib.doJailbreak (lib.markUnbroken super.text-display);
       ilist = lib.doJailbreak super.ilist;
+      graphql = lib.doJailbreak super.graphql;
+      http-api-data = lib.doJailbreak super.http-api-data;
+      linear-generics = lib.doJailbreak super.linear-generics;
       other94 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other94" (gitignore ./.) {})));
     };
   };
