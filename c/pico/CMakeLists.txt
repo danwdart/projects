@@ -13,7 +13,25 @@ add_executable(shift_leds
         shift_leds.c
         )
 
+add_executable(avr_spi
+        avr_spi.c
+        )
+
+add_executable(lcd
+        lcd.c
+        )
+
 target_link_libraries(shift_leds
+        pico_stdlib              # for core functionality
+        )
+
+target_link_libraries(avr_spi
+        hardware_spi
+        pico_stdlib              # for core functionality
+        )
+
+target_link_libraries(lcd
+        hardware_spi
         pico_stdlib              # for core functionality
         )
 
@@ -21,8 +39,19 @@ target_link_libraries(shift_leds
 pico_enable_stdio_usb(shift_leds 1)
 pico_enable_stdio_uart(shift_leds 0)
 
+# enable usb output, disable uart output
+pico_enable_stdio_usb(avr_spi 1)
+pico_enable_stdio_uart(avr_spi 0)
+
+# enable usb output, disable uart output
+pico_enable_stdio_usb(lcd 1)
+pico_enable_stdio_uart(lcd 0)
+
 # create map/bin/hex file etc.
 pico_add_extra_outputs(shift_leds)
+pico_add_extra_outputs(avr_spi)
+pico_add_extra_outputs(lcd)
 
 # add url via pico_set_program_url
 # example_auto_set_url(shift_leds)
+# example_auto_set_url(avr_spi)

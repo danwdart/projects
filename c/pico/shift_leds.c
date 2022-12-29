@@ -68,7 +68,7 @@ void skippable_sleep_ms(int ms) {
         printf("Skipping sleep\n");
         return;
     }
-    // printf("Sleeping %d ms\n", ms);
+    /* printf("Sleeping %d ms\n", ms); */
     sleep_ms(ms);
 }
 
@@ -301,7 +301,7 @@ void leds_individual_set_brightness(int brightness[8], int max_brightness, int d
                 printf("Skipping leds_individual_set_brightness from the outside\n");
                 return;
             }
-            // Construct the partial byte
+            /* Construct the partial byte */
             uint8_t partial_byte = 0;
             for (int bit_index = 0; bit_index < 8; bit_index++) {
                 if (currently_running_led_pattern != pattern_number) {
@@ -479,7 +479,7 @@ void leds_wave() {
             leds_individual_set_brightness(brightnesses, steps, time);
         }
     }
-    // reset leds
+    /* reset leds */
     skippable_pausable_shift_push_byte(0);
 }
 
@@ -600,7 +600,7 @@ void loop() {
 
 void button_1_pressed() {
     printf("Button 1 pressed; %s.\n", paused ? "resuming" : "pausing"); /* @TODO: alarm for debouncing */
-    // pause? resume?
+    /* pause? resume? */
     paused = !paused;
 }
 
@@ -614,7 +614,7 @@ void button_2_pressed() {
     currently_running_led_pattern%=total_num_patterns;
     repeating = 0;
     paused = 0;
-    // printf("Skipping to pattern %d\n", currently_running_led_pattern);
+    /* printf("Skipping to pattern %d\n", currently_running_led_pattern); */
 }
 
 void button_2_released() {
@@ -715,7 +715,7 @@ void setup() {
     gpio_put(RGB_LED_GREEN_PIN, 0);
     gpio_put(RGB_LED_BLUE_PIN, 0);
 
-    // Reset the shift register.
+    /* Reset the shift register. */
     skippable_pausable_shift_push_byte(0b00000000);
 }
 
