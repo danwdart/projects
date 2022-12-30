@@ -10,15 +10,15 @@ set(CMAKE_BUILD_TYPE Debug)
 pico_sdk_init()
 
 add_executable(shift_leds
-        shift_leds.c
+        src/shift_leds.c
         )
 
 add_executable(avr_spi
-        avr_spi.c
+        src/avr_spi.c
         )
 
 add_executable(lcd
-        lcd.c
+        src/lcd.c
         )
 
 target_link_libraries(shift_leds
