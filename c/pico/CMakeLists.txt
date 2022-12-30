@@ -21,6 +21,10 @@ add_executable(lcd
         src/lcd.c
         )
 
+add_executable(buzzers
+        src/buzzers.c
+        )
+
 target_link_libraries(shift_leds
         pico_stdlib              # for core functionality
         )
@@ -32,6 +36,10 @@ target_link_libraries(avr_spi
 
 target_link_libraries(lcd
         hardware_spi
+        pico_stdlib              # for core functionality
+        )
+
+target_link_libraries(buzzers
         pico_stdlib              # for core functionality
         )
 
@@ -47,10 +55,15 @@ pico_enable_stdio_uart(avr_spi 0)
 pico_enable_stdio_usb(lcd 1)
 pico_enable_stdio_uart(lcd 0)
 
+# enable usb output, disable uart output
+pico_enable_stdio_usb(buzzers 1)
+pico_enable_stdio_uart(buzzers 0)
+
 # create map/bin/hex file etc.
 pico_add_extra_outputs(shift_leds)
 pico_add_extra_outputs(avr_spi)
 pico_add_extra_outputs(lcd)
+pico_add_extra_outputs(buzzers)
 
 # add url via pico_set_program_url
 # example_auto_set_url(shift_leds)
