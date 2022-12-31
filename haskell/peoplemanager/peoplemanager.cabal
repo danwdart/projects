@@ -26,7 +26,6 @@ executable peoplemanager
     , containers
     , fakedata
     , MonadRandom
-    , random
     , text
     , time
     , uuid
