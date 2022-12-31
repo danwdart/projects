@@ -12,6 +12,7 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
+      dbus = lib.doJailbreak super.dbus;
       other90 = lib.dontHaddock (self.callCabal2nix "other90" (gitignore ./.) {});
     };
   };
