@@ -7,7 +7,7 @@ module Main where
 
 import           Control.Functor.Linear
 import           Prelude.Linear
-import           System.IO.Resource
+import           System.IO.Resource.Linear
 
 main ∷ IO ()
 main = run (pure (Ur ()))
