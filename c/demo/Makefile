@@ -3,7 +3,7 @@ CFLAGS = -lm -L./lib
 LD = ld
 LDFLAGS = # -lc -emain # ????
 LIBS = lib/heap.o lib/linkedlist.o
-PLAIN_EXECUTABLES = build/one build/two build/three build/four build/five build/six build/hacker build/spinner
+PLAIN_EXECUTABLES = build/one build/two build/three build/four build/five build/six build/hacker build/spinner build/fake-exception
 LIB_EXECUTABLES = build/heap build/ll
 
 .PHONY: all
