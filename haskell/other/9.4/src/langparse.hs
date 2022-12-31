@@ -1,3 +1,5 @@
+{-# LANGUAGE Unsafe #-}
+{-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
 
 import           Language.C
 import           Language.JavaScript.Parser

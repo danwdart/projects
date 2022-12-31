@@ -44,6 +44,8 @@ let
       graphql = lib.doJailbreak super.graphql;
       http-api-data = lib.doJailbreak super.http-api-data;
       linear-generics = lib.doJailbreak super.linear-generics;
+      HaskellNet = lib.doJailbreak super.HaskellNet;
+      HGamer3D = lib.doJailbreak (lib.markUnbroken super.HGamer3D);
       other94 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other94" (gitignore ./.) {})));
     };
   };

@@ -1,3 +1,6 @@
+{-# LANGUAGE Trustworthy #-}
+{-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
+
 import           Network.Avahi
 
 main ∷ IO ()

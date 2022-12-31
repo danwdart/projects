@@ -105,6 +105,12 @@ executable binarygame
   main-is:             binarygame.hs
   build-depends:       base >= 4.17 && < 5, ansi-terminal, ilist, transformers
 
+-- simple-bluetooth fails to compile
+-- executable bluetooth
+--   import: shared-properties
+--   main-is:             bluetooth.hs
+--   build-depends:       base >= 4.17 && < 5, simple-bluetooth
+
 executable c
   import: shared-properties-unsafe
   main-is:             c.hs
@@ -200,10 +206,21 @@ executable glut
   main-is:             glut.hs
   build-depends:       base >= 4.17 && < 5, GLUT
 
+executable hgamer3d
+  import: shared-properties-unsafe
+  main-is:             hgamer3d.hs
+  build-depends:       base >= 4.17 && < 5, HGamer3D, clock
+
 executable hkd
   import: shared-properties-unsafe
   main-is:             hkd.hs
   build-depends:       base >= 4.17 && < 5, barbies
+
+-- deprecated stuff but I know it works so never mind
+-- executable hnet
+--   import: shared-properties-unsafe
+--   main-is:             hnet.hs
+--   build-depends:       base >= 4.12 && < 5, HaskellNet
 
 executable iso
   import: shared-properties-safe
@@ -215,6 +232,11 @@ executable json
   main-is:             json.hs
   build-depends:       base >= 4.17 && < 5, aeson, aeson-qq
 
+executable langparse
+  import: shared-properties-unsafe
+  main-is:             langparse.hs
+  build-depends:       base >= 4.17 && < 5, language-c, language-javascript
+
 executable lenses
   import: shared-properties-unsafe
   main-is:             lenses.hs
@@ -225,10 +247,20 @@ executable linear
   main-is:             linear.hs
   build-depends:       linear-base
 
+executable mdns
+  import: shared-properties-unsafe
+  main-is:             mdns.hs
+  build-depends:       base >= 4.17 && < 5, avahi
+
 executable mmio
   import: shared-properties-unsafe
   main-is:             mmio.hs
   build-depends:       base >= 4.17 && < 5, mmap
+
+executable mongo
+  import: shared-properties-unsafe
+  main-is:             mongo.hs
+  build-depends:       base >= 4.12 && < 5, mongoDB
 
 executable parsec
   import: shared-properties-safe
@@ -270,7 +302,7 @@ executable random
 executable reflex-gloss
   import: shared-properties-base
   main-is:             reflex-gloss.hs
-  build-depends:       base >= 4.16 && < 5, gloss, reflex, reflex-gloss
+  build-depends:       base >= 4.17 && < 5, gloss, reflex, reflex-gloss
 
 executable regex
   import: shared-properties-unsafe
@@ -332,6 +364,11 @@ executable these
   import: shared-properties-safe
   main-is:             these.hs
   build-depends:       base >= 4.17 && < 5, these
+
+-- executable translatorglitch
+--   import: shared-properties
+--   main-is:             translatorglitch.hs
+--   build-depends:       base >= 4.17 && < 5, bytestring, gogol, req
 
 executable udev
   import: shared-properties-unsafe
