@@ -1,59 +1,52 @@
+{-# LANGUAGE DataKinds             #-}
+{-# LANGUAGE DeriveGeneric         #-}
+{-# LANGUAGE ExtendedDefaultRules  #-}
+{-# LANGUAGE FlexibleInstances     #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE OverloadedStrings     #-}
+{-# LANGUAGE RecordWildCards       #-}
+{-# LANGUAGE ScopedTypeVariables   #-}
+{-# LANGUAGE TypeFamilies          #-}
 
-{-# LANGUAGE OverloadedStrings          #-}
-{-# LANGUAGE FlexibleInstances          #-}
-{-# LANGUAGE TypeFamilies               #-}
-{-# LANGUAGE DataKinds                  #-}
-{-# LANGUAGE DeriveGeneric              #-}
-{-# LANGUAGE ScopedTypeVariables        #-}
-{-# LANGUAGE RecordWildCards            #-}
-
-{-# LANGUAGE MultiParamTypeClasses      #-}
-
-{-# LANGUAGE ExtendedDefaultRules       #-}
-{-# LANGUAGE CPP                        #-}
 module Main where
 
-import           Data.Aeson hiding (Object)
+import           Control.Monad.IO.Class
+import           Data.Aeson                       hiding (Object)
 import           Data.Bool
-import qualified Data.Map as M
+import qualified Data.Map                         as M
 import           Data.Monoid
 import           GHC.Generics
-import Language.Javascript.JSaddle
+import           Language.Javascript.JSaddle
+import           Language.Javascript.JSaddle.Warp as JSaddle
 import           Miso
-import Miso.Effect
-import           Miso.String (MisoString)
-import qualified Miso.String as S
+import           Miso.Effect
+import           Miso.String                      (MisoString)
+import qualified Miso.String                      as S
 
-import           Control.Monad.IO.Class
+-- import Language.Javascript.JSaddle.WKWebView as JSaddle
 
-#ifdef IOS
-import Language.Javascript.JSaddle.WKWebView as JSaddle
+-- runApp :: JSM () -> IO ()
+-- runApp = JSaddle.run
 
-runApp :: JSM () -> IO ()
-runApp = JSaddle.run
-#else
-import Language.Javascript.JSaddle.Warp as JSaddle
-
-runApp :: JSM () -> IO ()
+runApp ∷ JSM () → IO ()
 runApp = JSaddle.run 8080
-#endif
 
 default (MisoString)
 
 data Model = Model
-  { entries :: [Entry]
-  , field :: MisoString
-  , uid :: Int
+  { entries    :: [Entry]
+  , field      :: MisoString
+  , uid        :: Int
   , visibility :: MisoString
-  , step :: Bool
+  , step       :: Bool
   } deriving stock (Show, Generic, Eq)
 
 data Entry = Entry
   { description :: MisoString
-  , completed :: Bool
-  , editing :: Bool
-  , eid :: Int
-  , focussed :: Bool
+  , completed   :: Bool
+  , editing     :: Bool
+  , eid         :: Int
+  , focussed    :: Bool
   } deriving stock (Show, Generic, Eq)
 
 instance ToJSON Entry
@@ -62,7 +55,7 @@ instance ToJSON Model
 instance FromJSON Entry
 instance FromJSON Model
 
-emptyModel :: Model
+emptyModel ∷ Model
 emptyModel = Model
   { entries = []
   , visibility = "All"
@@ -71,7 +64,7 @@ emptyModel = Model
   , step = False
   }
 
-newEntry :: MisoString -> Int -> Entry
+newEntry ∷ MisoString → Int → Entry
 newEntry desc eid = Entry
   { description = desc
   , completed = False
@@ -94,7 +87,7 @@ data Msg
   | ChangeVisibility MisoString
    deriving Show
 
-main :: IO ()
+main ∷ IO ()
 main = runApp $ startApp App { initialAction = NoOp, ..}
   where
     model      = emptyModel
@@ -105,7 +98,7 @@ main = runApp $ startApp App { initialAction = NoOp, ..}
     subs       = []
     logLevel   = Off
 
-updateModel :: Msg -> Model -> Effect Msg Model
+updateModel ∷ Msg → Model → Effect Msg Model
 updateModel NoOp m = noEff m
 updateModel (CurrentTime n) m =
   m <# do liftIO (print n) >> pure NoOp
@@ -158,7 +151,7 @@ updateModel (CheckAll isCompleted) model@Model{..} =
 updateModel (ChangeVisibility v) model =
   noEff model { visibility = v }
 
-filterMap :: [a] -> (a -> Bool) -> (a -> a) -> [a]
+filterMap ∷ [a] → (a → Bool) → (a → a) → [a]
 filterMap xs predicate f = go' xs
   where
     go' [] = []
@@ -166,7 +159,7 @@ filterMap xs predicate f = go' xs
      | predicate y = f y : go' ys
      | otherwise   = y : go' ys
 
-viewModel :: Model -> View Msg
+viewModel ∷ Model → View Msg
 viewModel m@Model{..} =
  div_
     [ class_ "todomvc-wrapper"
@@ -185,7 +178,7 @@ viewModel m@Model{..} =
         ]
     ]
 
-viewEntries :: MisoString -> [ Entry ] -> View Msg
+viewEntries ∷ MisoString → [ Entry ] → View Msg
 viewEntries visibility entries =
   section_
     [ class_ "main"
@@ -209,13 +202,13 @@ viewEntries visibility entries =
     isVisible Entry {..} =
       case visibility of
         "Completed" -> completed
-        "Active" -> not completed
-        _ -> True
+        "Active"    -> not completed
+        _           -> True
 
-viewKeyedEntry :: Entry -> View Msg
+viewKeyedEntry ∷ Entry → View Msg
 viewKeyedEntry = viewEntry
 
-viewEntry :: Entry -> View Msg
+viewEntry ∷ Entry → View Msg
 viewEntry Entry {..} = liKeyed_ (toKey eid)
     [ class_ . S.intercalate " " $ (
        [ "completed" | completed ] <> [ "editing" | editing ])
@@ -247,7 +240,7 @@ viewEntry Entry {..} = liKeyed_ (toKey eid)
         ]
     ]
 
-viewControls :: Model ->  MisoString -> [ Entry ] -> View Msg
+viewControls ∷ Model →  MisoString → [ Entry ] → View Msg
 viewControls model visibility entries =
   footer_  [ class_ "footer"
            , hidden_ (null entries)
@@ -260,7 +253,7 @@ viewControls model visibility entries =
     entriesCompleted = length . filter completed $ entries
     entriesLeft = length entries - entriesCompleted
 
-viewControlsCount :: Int -> View Msg
+viewControlsCount ∷ Int → View Msg
 viewControlsCount entriesLeft =
   span_ [ class_ "todo-count" ]
      [ strong_ [] [ text $ S.ms entriesLeft ]
@@ -269,7 +262,7 @@ viewControlsCount entriesLeft =
   where
     item_ = S.pack $ bool " items" " item" (entriesLeft == 1)
 
-viewControlsFilters :: MisoString -> View Msg
+viewControlsFilters ∷ MisoString → View Msg
 viewControlsFilters visibility =
   ul_
     [ class_ "filters" ]
@@ -280,7 +273,7 @@ viewControlsFilters visibility =
     , visibilitySwap "#/completed" "Completed" visibility
     ]
 
-visibilitySwap :: MisoString -> MisoString -> MisoString -> View Msg
+visibilitySwap ∷ MisoString → MisoString → MisoString → View Msg
 visibilitySwap uri visibility actualVisibility =
   li_ [  ]
       [ a_ [ href_ uri
@@ -289,7 +282,7 @@ visibilitySwap uri visibility actualVisibility =
            ] [ text visibility ]
       ]
 
-viewControlsClear :: Model -> Int -> View Msg
+viewControlsClear ∷ Model → Int → View Msg
 viewControlsClear _ entriesCompleted =
   button_
     [ class_ "clear-completed"
@@ -298,7 +291,7 @@ viewControlsClear _ entriesCompleted =
     ]
     [ text $ "Clear completed (" <> S.ms entriesCompleted <> ")" ]
 
-viewInput :: Model -> MisoString -> View Msg
+viewInput ∷ Model → MisoString → View Msg
 viewInput _ task =
   header_ [ class_ "header" ]
     [ h1_ [] [ text "todos" ]
@@ -313,11 +306,11 @@ viewInput _ task =
         ]
     ]
 
-onEnter :: Msg -> Attribute Msg
+onEnter ∷ Msg → Attribute Msg
 onEnter action =
   onKeyDown $ bool NoOp action . (== KeyCode 13)
 
-infoFooter :: View Msg
+infoFooter ∷ View Msg
 infoFooter =
     footer_ [ class_ "info" ]
     [ p_ [] [ text "Double-click to edit a todo" ]

@@ -4,7 +4,6 @@ module UlamSpec where
 
 import           Test.Hspec
 -- import Test.QuickCheck
-
 import           Ulam
 
 spec ∷ Spec

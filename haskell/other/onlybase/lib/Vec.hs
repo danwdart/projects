@@ -111,7 +111,7 @@ init :: Vec ('Succ n) a -> Vec n a
 init (_ :> Nil) = Nil
 init (x :> xs@(_ :> _)) = x :> init xs
 
-{- HLINT ignore: Use fmap -}
+{- HLINT ignore: "Use fmap" -}
 
 -- >>> map succ $ 1 :> 2 :> Nil
 -- 2 :> (3 :> Nil)

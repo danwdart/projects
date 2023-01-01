@@ -3,7 +3,6 @@
 module Main where
 
 import Criterion.Main
-
 import Data.Dynamic
 import Data.Foldable
 import Data.Maybe

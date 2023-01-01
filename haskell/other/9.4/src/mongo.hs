@@ -4,7 +4,6 @@
 {-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
 
 -- import Control.Monad.Trans (liftIO)
-
 import           Database.MongoDB
 
 -- import Data.Text (pack)

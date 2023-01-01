@@ -7,7 +7,6 @@ module HelloMain (
 import           Control.Concurrent.MVar             (newEmptyMVar, putMVar,
                                                       takeMVar)
 import           Control.Monad.IO.Class              (MonadIO (..))
-
 import           GHCJS.DOM
 import           GHCJS.DOM.Document
 import           GHCJS.DOM.Element
@@ -16,7 +15,6 @@ import           GHCJS.DOM.GlobalEventHandlers
 import           GHCJS.DOM.HTMLHyperlinkElementUtils
 import           GHCJS.DOM.Node
 import           GHCJS.DOM.Types
-
 import           Language.Javascript.JSaddle.Warp
 
 -- | This is the main function of this application it is shared by all the different executable

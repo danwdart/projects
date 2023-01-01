@@ -6,8 +6,7 @@
     -Wno-name-shadowing
     -Wno-missing-signatures
     -Wno-type-defaults
-    -Wno-monomorphism-restriction
-#-}
+    -Wno-monomorphism-restriction #-}
 
 import           Data.Ratio
 

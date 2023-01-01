@@ -1,25 +1,26 @@
-{-# LANGUAGE DeriveAnyClass, DerivingVia, UndecidableInstances #-}
+{-# LANGUAGE DerivingVia          #-}
+{-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-orphans #-}
 
 module Main where
 
 import           Control.Monad
-import Control.Monad.Random
+import           Control.Monad.Random
 import           Data.Functor
 -- import qualified Data.Set as S
-import           Data.Set      (Set)
-import qualified Data.Set as S
-import           Data.Text     (Text)
-import qualified Data.Text     as T
+import           Data.Set             (Set)
+import qualified Data.Set             as S
+import           Data.Text            (Text)
+import qualified Data.Text            as T
 import           Data.Time
 -- import Data.Time.Calendar
 import           Data.UUID
 import           Data.UUID.V4
 import           Data.Word
 import           Faker
-import qualified Faker.Address as FA
-import qualified Faker.Name    as FN
-import GHC.Generics
+import qualified Faker.Address        as FA
+import qualified Faker.Name           as FN
+import           GHC.Generics
 -- import           System.Random
 
 generateND ∷ Fake a → IO a
@@ -59,18 +60,18 @@ data Illness = Acute AcuteIllness | Chronic ChronicIllness
     deriving stock (Eq, Show, Ord) -- just so we can shove it in a Set
 
 data Attribs = Attribs {
-    conditions :: Set Condition,
-    happiness :: Word8,
-    health :: Word8,
-    illnesses :: Set Illness,
+    conditions   :: Set Condition,
+    happiness    :: Word8,
+    health       :: Word8,
+    illnesses    :: Set Illness,
     intelligence :: Word8,
-    magic :: Word8,
-    morality :: Word8,
-    stamina :: Word8,
-    strength :: Word8
+    magic        :: Word8,
+    morality     :: Word8,
+    stamina      :: Word8,
+    strength     :: Word8
 } deriving stock (Eq, Show, Ord) -- there really is no Ord
 
-instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) => Random a where
+instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) ⇒ Random a where
   random = randomR (minBound, maxBound)
 
   randomR (f, t) gen =

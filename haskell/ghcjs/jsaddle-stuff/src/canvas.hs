@@ -6,7 +6,6 @@ import           JSDOM.Document
 import           JSDOM.Element
 import           JSDOM.HTMLCanvasElement
 import           JSDOM.Node
-
 import           Language.Javascript.JSaddle
 import           Language.Javascript.JSaddle.Warp
 

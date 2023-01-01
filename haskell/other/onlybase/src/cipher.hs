@@ -1,5 +1,4 @@
 import Cipher
-
 import           Control.Monad
 import           System.IO
 

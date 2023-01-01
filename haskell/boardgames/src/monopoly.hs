@@ -1,6 +1,5 @@
 import           Control.Monad
 import qualified Data.Set              as Set
-
 import           Game.Monopoly.Board
 import           Game.Monopoly.Colour
 import           Game.Monopoly.Game
@@ -10,7 +9,6 @@ import           Game.Monopoly.Random
 import           Game.Monopoly.Rules
 import           Game.Monopoly.Space
 import           Game.Monopoly.Token
-
 import           System.Random
 
 -- data Round =

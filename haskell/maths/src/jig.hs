@@ -1,4 +1,4 @@
--- | T̸̝̉H̵͘ͅĖ̸̯ ̵͕̆M̶̙̉I̴͈̅GHT̵̠̀Ẏ̷̳ ̵̘͑J̶̼̭͗Ì̸̼̘G̶̳̈́
+ -- | T̸̝̉H̵͘ͅĖ̸̯ ̵͕̆M̶̙̉I̴͈̅GHT̵̠̀Ẏ̷̳ ̵̘͑J̶̼̭͗Ì̸̼̘G̶̳̈́
 -- | All praise Jig.
 import           Text.Printf
 
@@ -110,7 +110,7 @@ def jig(w,h,n,b=0):
     print("")
     return 'DONE'
 
-# I duplicated jig_v0 to make is easier to show in the video
+I duplicated jig_v0 to make is easier to show in the video
 def jig_v0(w,h,n,b=0):
 
     # percentage we'll check in either direction

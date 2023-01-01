@@ -27,7 +27,7 @@ main = print $ Sum (Product (Plain 2) (Root 2)) (Product (Plain 3) (Root 3))
 
 -- Let's do it a different way.
 
-import Data.Ratio
+import           Data.Ratio
 
 newtype Algebraic = Algebraic {
     getAlgebraic :: [(Integer, Rational)] -- a1 x ^ b1 + a2 x ^ b2
@@ -54,23 +54,23 @@ instance Num Solution where
     negate (Solution x) = undefined
 
 {-# WARNING simplifySolution "Does not work yet" #-}
-simplifySolution :: Solution -> Solution
+simplifySolution ∷ Solution → Solution
 simplifySolution = id -- for now
 
-evalAlgebraic :: Integer -> Algebraic -> Solution
+evalAlgebraic ∷ Integer → Algebraic → Solution
 evalAlgebraic x = simplifySolution . Solution . fmap (\(a, b) -> (a, x, b)) . getAlgebraic
 
-sqrtx :: Algebraic
+sqrtx ∷ Algebraic
 sqrtx = Algebraic [(1, 1 % 2)]
 
-sqrt2 :: Solution
+sqrt2 ∷ Solution
 sqrt2 = evalAlgebraic 2 sqrtx
 
-cbrtx :: Algebraic
+cbrtx ∷ Algebraic
 cbrtx = Algebraic [(1, 1 % 3)]
 
-cbrt2 :: Solution
+cbrt2 ∷ Solution
 cbrt2 = evalAlgebraic 2 cbrtx
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

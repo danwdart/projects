@@ -1,22 +1,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-local-binds #-}
 
-import qualified Data.ByteString.Lazy.Char8       as BSL
-
 import           Control.Monad.IO.Class
-
+import qualified Data.ByteString.Lazy.Char8       as BSL
 import           Data.Char
 import           Data.List.Split
 import           Data.Ratio
-
 import           JSDOM
 import           JSDOM.Document
 import           JSDOM.Element                    (setInnerHTML)
 import           JSDOM.Types
-
 import           Language.Javascript.JSaddle      hiding ((!))
 import           Language.Javascript.JSaddle.Warp
-
 import           Text.Blaze.Html.Renderer.Utf8
 import qualified Text.Blaze.Html5                 as H (main)
 import           Text.Blaze.Html5                 as H hiding (main)

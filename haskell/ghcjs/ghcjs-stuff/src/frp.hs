@@ -7,7 +7,6 @@ import qualified Data.ByteString.Lazy.Char8       as BSL
 -- import Data.Functor ((<&>))
 -- import Data.Maybe
 -- import Data.String
-
 import           GHCJS.DOM
 -- import GHCJS.DOM.AudioContext
 -- import GHCJS.DOM.CanvasPath
@@ -25,7 +24,6 @@ import           GHCJS.DOM.Types
 -- import Language.Javascript.JSaddle.Debug
 -- import Language.Javascript.JSaddle.Object
 import           Language.Javascript.JSaddle.Warp
-
 import           Text.Blaze.Html.Renderer.Utf8
 import qualified Text.Blaze.Html5                 as H (main)
 import           Text.Blaze.Html5                 as H hiding (main)

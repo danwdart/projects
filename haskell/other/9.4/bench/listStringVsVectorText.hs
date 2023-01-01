@@ -3,7 +3,6 @@
 module Main where
 
 import Criterion.Main
-
 import Control.DeepSeq
 import Data.Dynamic
 import Data.Maybe

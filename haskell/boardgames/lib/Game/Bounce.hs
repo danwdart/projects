@@ -6,8 +6,7 @@
     -Wno-missing-exported-signatures
     -Wno-unused-local-binds
     -Wno-overlapping-patterns
-    -Wno-name-shadowing
-#-}
+    -Wno-name-shadowing #-}
 
 module Game.Bounce where
 

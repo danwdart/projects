@@ -5,7 +5,6 @@ import           Control.Monad.IO.Class             (liftIO)
 -- import Data.Function ((&))
 import           Data.Functor                       ((<&>))
 import           Data.Maybe
-
 import           GHCJS.DOM
 -- import GHCJS.DOM.AudioContext
 import           GHCJS.DOM.CanvasPath
@@ -19,7 +18,6 @@ import           GHCJS.DOM.HTMLCanvasElement
 import           GHCJS.DOM.Node
 import           GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
-
 import           Language.Javascript.JSaddle.Object
 import           Language.Javascript.JSaddle.Warp
 
