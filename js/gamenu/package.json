@@ -13,7 +13,7 @@
   "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "eslint": "^8.29.0",
+    "eslint": "^8.31.0",
     "eslint-plugin-cleanjs": "0.0.1"
   }
 }
