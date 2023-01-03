@@ -25,7 +25,7 @@ let
       # not in nix yet
       patch = lib.doJailbreak (self.callHackage "patch" "0.0.7.0" {});
       # https://github.com/reflex-frp/reflex/issues/482
-      reflex = lib.disableCabalFlag (lib.doJailbreak (self.callHackage "reflex" "0.8.2.1" {})) "use-template-haskell";
+      reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
       # not in nix yet
       reflex-gloss = lib.doJailbreak (lib.markUnbroken super.reflex-gloss);
       #gloss-rendering = lib.doJailbreak (self.callHackage "gloss-rendering" "1.13.1.2" {});
