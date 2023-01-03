@@ -1,4 +1,4 @@
-cabal-version:       2.4
+cabal-version:       3.4
 name:                consolefrp
 version:             0.1.0.0
 license:             AGPL-3.0-only
@@ -11,7 +11,7 @@ executable consolefrp
   main-is:             Main.hs
   default-language:    Haskell2010
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >=4.12 && <5, reflex-vty, vty
+  build-depends:       base >=4.17 && <5, reflex-vty, vty
   hs-source-dirs:      src
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
@@ -20,6 +20,6 @@ executable consolefrp
                        -Wno-missing-export-lists
                        -Wno-implicit-prelude
                        -Wno-missing-safe-haskell-mode
-                       -- -Wno-missing-kind-signatures -- only works on recent ghc
+                       -Wno-missing-kind-signatures
                        -Wno-prepositive-qualified-module
                        -Wno-missing-local-signatures
