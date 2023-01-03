@@ -16,6 +16,6 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "esm": "^3.2.25",
-    "typescript": "^5.0.0-dev.20221206"
+    "typescript": "^5.0.0-dev.20230103"
   }
 }
