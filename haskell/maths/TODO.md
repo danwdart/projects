@@ -46,3 +46,9 @@ oeis sequence finder looker upper
 this is just fibs but skipping one
 
 Move benchmark for fac and fibs over to here
+
+Chess engines
+
+suckerpinch stuff
+
+figure out how machine learning works once and for all
