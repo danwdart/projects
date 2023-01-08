@@ -1,6 +1,5 @@
 {-# LANGUAGE DataKinds    #-}
 {-# LANGUAGE TypeFamilies #-}
-
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import           Data.Kind
