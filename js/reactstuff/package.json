@@ -10,7 +10,7 @@
     "react": "^18.3.0-next-fecc288b7-20221025",
     "react-dom": "^18.3.0-next-fecc288b7-20221025",
     "react-scripts": "5.1.0-next.14",
-    "typescript": "5.0.0-dev.20230103"
+    "typescript": "5.0.0-dev.20230111"
   },
   "scripts": {
     "start": "react-scripts start",
