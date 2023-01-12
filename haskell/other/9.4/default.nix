@@ -46,6 +46,8 @@ let
       linear-generics = lib.doJailbreak super.linear-generics;
       HaskellNet = lib.doJailbreak super.HaskellNet;
       HGamer3D = lib.doJailbreak (lib.markUnbroken super.HGamer3D);
+      ghc-typelits-presburger = self.callHackage "ghc-typelits-presburger" "0.7.1.0" {};
+      ghc-typelits-natnormalise = self.callHackage "ghc-typelits-natnormalise" "0.7.7" {};
       other94 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other94" (gitignore ./.) {})));
     };
   };

@@ -83,10 +83,14 @@ common shared-properties-nobase
 -- TODO: unsafe?
 library
   import: shared-properties-lib
+  --ghc-options: -Wno-unused-packages
   hs-source-dirs:      lib
   build-depends: base >= 4.17 && < 5
+    , ghc-typelits-presburger
+    , ghc-typelits-natnormalise
   -- , hxt, hxt-xpath
   exposed-modules:
+    Data.DependentLength
     Seq
     -- XPath
 
@@ -416,9 +420,10 @@ test-suite test
   main-is:             Spec.hs
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.17 && < 5, hspec, QuickCheck
+  build-depends:       base >= 4.17 && < 5, other94, hspec, QuickCheck
   other-modules:       TestSpec
                      , Test2Spec
+                     , Data.DependentLengthSpec
 
 --test-suite quickcheck-detailed
 --  type:                detailed-0.9
