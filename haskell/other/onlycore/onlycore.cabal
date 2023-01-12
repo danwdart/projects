@@ -94,6 +94,7 @@ library
     Env.Extend
     Form
     LCDBlock
+    RuntimeTypes
     SHA
     Shell
     TH
@@ -188,6 +189,11 @@ executable reader-override
   import: shared-properties-safe
   main-is:             reader-override.hs
   build-depends:       base >= 4.17 && < 5, mtl, onlycore
+
+executable runtime-types
+  import: shared-properties-unsafe
+  build-depends:       base >= 4.17 && < 5, onlycore, template-haskell
+  main-is:             runtime-types.hs
 
 executable rws
   import: shared-properties-safe

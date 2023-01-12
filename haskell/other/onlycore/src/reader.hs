@@ -56,6 +56,8 @@ mergeReaders a b = asks $ runReader b . runReader a
 r3alt ∷ Reader String String
 r3alt = mergeReaders r2 r1
 
+-- TODO: Mixing readers
+
 main ∷ IO ()
 main = do
     print $ runReader intToIntReader 11
