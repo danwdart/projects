@@ -1,8 +1,7 @@
 {-# LANGUAGE FlexibleContexts          #-}
-{-# LANGUAGE NoMonomorphismRestriction #-}
+{-# LANGUAGE MonoLocalBinds #-}
 {-# LANGUAGE OverloadedStrings         #-}
 {-# LANGUAGE OverloadedLists         #-}
-{-# LANGUAGE GADTs         #-}
 {-# LANGUAGE RecursiveDo         #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
@@ -11,6 +10,7 @@ import                     Reflex.Dom
 
 fullStop = Period -- what were they thinking?
 
+numberKeys :: [[Key]]
 numberKeys = [
     [
         fullStop,
@@ -60,50 +60,40 @@ numberKeys = [
 
 data CountingMode = ToggleCranked | AutomaticKeying
 
-main ∷ IO ()
-main = mainWidget $ mdo
+btn :: MonadWidget t m => El t -> Int -> Int -> m (Event t Int)
+btn main n p = mdo
+    (btn, _) <- elDynAttr' "button" (fmap (
+        \nPressed -> [
+            (
+                "style",
+                "font-size: 50px; border-style: " <> if nPressed then "inset" else "outset"
+            )
+            ]
+            ) dPressed
+        ) . text . T.pack . show $ (n :: Int)
+    
+    let eClick = domEvent Click btn
+    let eKeyDown = keydown ((!! p) . Prelude.head $ numberKeys) main
+
+    dPressed <- toggle False $ leftmost [eClick, eKeyDown]
+
+    pure $ (n * 10 ^ p :: Int) <$ leftmost [eClick, eKeyDown]
+
+widget :: MonadWidget t m => m ()
+widget = mdo
     -- Create an input event stream for the digit buttons
     (main, _) <- elAttr' "div" [("id", "main"), ("style", "width:100%; height:100%")] $ mdo
         let eEnterUp = "Enter Up" <$ keyup Enter main
         let eEnterDown = "Enter Down" <$ keydown KeyK main
 
         btnsPressed <- el "div" $ do
+            ps <- mapM (\p -> el "div" $ do
+                ns <- mapM (btn main p) (Prelude.reverse [1..9])
+                pure $ leftmost ns
+                ) (Prelude.reverse [1..4])
+            pure $ leftmost ps
 
-            el "div" $ mapM (\p -> mdo
-                (btn, _) <- elDynAttr' "button" (fmap (
-                    \nPressed -> [
-                        (
-                            "style",
-                            "font-size: 50px; border-style: " <> if nPressed then "inset" else "outset"
-                        )
-                        ]
-                        ) dPressed
-                    ) . text . T.pack . show $ (2 :: Int)
-
-                dPressed <- toggle False $ leftmost [domEvent Click btn, keydown ((!! p) . Prelude.head $ numberKeys) main]
-
-                pure $ (2 * 10 ^ p :: Int) <$ leftmost [domEvent Click btn, keydown ((!! p) . Prelude.head $ numberKeys) main]
-            ) (Prelude.reverse [1..9])
-
-            
-
-            el "div" $ mapM (\p -> mdo
-                (btn, _) <- elDynAttr' "button" (fmap (
-                    \nPressed -> [
-                        (
-                            "style",
-                            "font-size: 50px; border-style: " <> if nPressed then "inset" else "outset"
-                        )
-                        ]
-                        ) dPressed
-                    ) . text . T.pack . show $ (1 :: Int)
-
-                dPressed <- toggle False $ leftmost [domEvent Click btn, keydown ((!! p) . Prelude.head $ numberKeys) main]
-
-                pure $ (1 * 10 ^ p :: Int) <$ leftmost [domEvent Click btn, keydown ((!! p) . Prelude.head $ numberKeys) main]
-            ) (Prelude.reverse [1..9])
-
-        currentValue <- foldDyn (+) 0 $ leftmost btnsPressed
+        currentValue <- foldDyn (+) 0 $ btnsPressed
 
         {-}
         el "div" $ do
@@ -123,3 +113,6 @@ main = mainWidget $ mdo
 
         pure ()
     pure ()
+
+main ∷ IO ()
+main = mainWidget widget
