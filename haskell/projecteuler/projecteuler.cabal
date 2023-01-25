@@ -1,0 +1,80 @@
+cabal-version:       3.0
+-- Newer versions complain
+name:                projecteuler
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/danwdart/dansstuff#readme
+license:             AGPL-3.0-only
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+
+common shared-properties
+  hs-source-dirs:      src
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax
+  build-depends:       base >= 4.17 && < 5
+  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
+  ghcjs-options:       -dedupe
+
+library
+  hs-source-dirs:      lib
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax
+  build-depends:       base >= 4.17 && < 5, primes
+  ghc-options:         -Wall -Werror -haddock
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
+  ghcjs-options:       -dedupe
+  exposed-modules:     Numeric.ProjectEuler.Solution1
+                     , Numeric.ProjectEuler.Solution2
+                     , Numeric.ProjectEuler.Solution3
+                     , Numeric.ProjectEuler.Solution4
+                     , Numeric.ProjectEuler.Solution5
+                     , Numeric.ProjectEuler.Solution6
+
+executable projecteuler
+  import: shared-properties
+  build-depends:       base >= 4.17
+                     , projecteuler
+  main-is:             Main.hs
+
+test-suite projecteuler-test
+  import: shared-properties
+  hs-source-dirs:      test
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  other-modules:
+    UlamSpec
+  -- build-tool-depends:
+  --  hspec-discover:hspec-discover
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax
+  build-depends:
+      base >= 4.17 && < 5
+    , projecteuler
+    , hspec
+    -- , hspec-core
+    -- , hspec-expectations
+    -- , QuickCheck
