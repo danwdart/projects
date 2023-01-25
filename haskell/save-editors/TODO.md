@@ -1,6 +1,0 @@
-- [ ] Generic parser
-- [ ] Generic printer
-- [ ] Specific parser for games
-- [ ] Specific printer for games
-- [ ] Web UI with checkboxes, input boxes etc for the correct information
-- [ ] Upload / download from Web UI

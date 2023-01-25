@@ -1,5 +1,0 @@
-battleships
-minesweeper
-scrabble
-ur
-hangman
