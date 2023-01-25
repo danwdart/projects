@@ -65,15 +65,6 @@ library
                      , Semiprimes
                      , Ulam
 
--- euler
-executable euler1
-  import: shared-properties
-  main-is:             euler/1.hs
-
-executable euler2
-  import: shared-properties
-  main-is:             euler/2.hs
-
 executable oeisA001222
   import: shared-properties
   main-is:             oeis/A001222.hs
