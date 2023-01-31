@@ -7,7 +7,7 @@
     "build": "pug -PD src -o main",
     "watch": "pug -PwD src -o main",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect"
   },
   "keywords": [
@@ -16,9 +16,9 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "WTFPL",
   "dependencies": {
+    "@snyk/protect": "^1.1092.0",
     "pug": "^3.0.2",
-    "pug-cli": "^1.0.0-alpha6",
-    "snyk": "^1.1082.0"
+    "pug-cli": "^1.0.0-alpha6"
   },
   "snyk": true
 }
