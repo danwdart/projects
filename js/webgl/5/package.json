@@ -9,9 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@snyk/protect": "^1.1092.0",
     "gl-matrix": "^3.4.3"
-  },
-  "devDependencies": {
-    "snyk": "^1.1082.0"
   }
 }
