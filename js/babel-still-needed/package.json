@@ -7,7 +7,7 @@
     "build": "babel -d out src",
     "start": "",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect"
   },
   "author": "Dan Dart <git@dandart.co.uk>",
@@ -16,7 +16,7 @@
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-decorators": "^7.20.7",
+    "@babel/plugin-proposal-decorators": "^7.20.13",
     "@babel/plugin-proposal-do-expressions": "^7.18.6",
     "@babel/plugin-proposal-export-default-from": "^7.18.10",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
@@ -34,6 +34,6 @@
   },
   "snyk": true,
   "dependencies": {
-    "snyk": "^1.1082.0"
+    "@snyk/protect": "^1.1092.0"
   }
 }
