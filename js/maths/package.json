@@ -4,18 +4,18 @@
   "description": "maths demos",
   "main": "",
   "dependencies": {
+    "@snyk/protect": "^1.1092.0",
     "bignumber.js": "^9.1.1",
     "cytoscape": "^3.23.0",
     "esm": "^3.2.25",
     "gl-matrix": "^3.4.3",
     "node-fetch": "^4.0.0-beta.4",
-    "snyk": "^1.1082.0",
-    "typescript": "^5.0.0-dev.20230111"
+    "typescript": "^5.0.0-dev.20230131"
   },
   "devDependencies": {
     "@babel/cli": "7.20.7",
     "@std/esm": "^0.26.0",
-    "eslint": "^8.31.0",
+    "eslint": "^8.33.0",
     "mocha": "^10.2.0"
   },
   "scripts": {
@@ -23,7 +23,7 @@
     "cli": "scripts/run-cli.sh",
     "gui": "scripts/run-gui.sh",
     "test": "eslint src lib && mocha -r @std/esm test/**/* && snyk test",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect"
   },
   "author": "",
