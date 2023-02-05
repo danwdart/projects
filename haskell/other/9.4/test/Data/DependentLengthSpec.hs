@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass, Trustworthy #-}
+{-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wwarn #-}
 
 module Data.DependentLengthSpec where
