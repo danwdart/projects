@@ -61,7 +61,20 @@ executable projecteuler
   main-is:             Main.hs
 
 test-suite projecteuler-test
-  import: shared-properties
+  hs-source-dirs:      src
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax
+  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-prepositive-qualified-module
+                       -Wno-missing-local-signatures
+  ghcjs-options:       -dedupe
   hs-source-dirs:      test
   type:                exitcode-stdio-1.0
   main-is:             Spec.hs
