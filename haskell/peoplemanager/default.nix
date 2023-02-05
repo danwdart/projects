@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc94"
+  compiler ? "ghc92"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -12,10 +12,10 @@ let
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      brick = lib.doJailbreak super.brick;
-      string-qq = lib.doJailbreak super.string-qq;
+      #brick = lib.doJailbreak super.brick;
+      #string-qq = lib.doJailbreak super.string-qq;
       # nixpkgs only has 5.33
-      vty = lib.doJailbreak (self.callHackage "vty" "5.37" {});
+      #vty = lib.doJailbreak (self.callHackage "vty" "5.37" {});
       peoplemanager = lib.dontHaddock (self.callCabal2nix "peoplemanager" (gitignore ./.) {});
     };
   };

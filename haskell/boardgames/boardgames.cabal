@@ -15,7 +15,7 @@ library
   hs-source-dirs: lib
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.17 && < 5, containers
+  build-depends:       base >= 4.16 && < 5, containers
   exposed-modules:
       Game.Bounce
     , Game.Monopoly.Addons
@@ -47,7 +47,7 @@ common shared-properties
   hs-source-dirs:      src
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.17 && < 5
+  build-depends:       base >= 4.16 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -63,47 +63,47 @@ common shared-properties
 executable 1010
   import: shared-properties
   main-is:             1010.hs
-  build-depends:       base >= 4.17 && < 5, containers
+  build-depends:       base >= 4.16 && < 5, containers
 
 executable 10x10grid
   import: shared-properties
   main-is:             10x10grid.hs
-  build-depends:       base >= 4.17 && < 5, bifunctors, MonadRandom
+  build-depends:       base >= 4.16 && < 5, bifunctors, MonadRandom
 
 executable 2048
   import: shared-properties
   main-is:             2048.hs
-  build-depends:       base >= 4.17 && < 5, MonadRandom
+  build-depends:       base >= 4.16 && < 5, MonadRandom
 
 executable bounce
   import: shared-properties
   main-is:             bounce.hs
-  build-depends:       base >= 4.17 && < 5
+  build-depends:       base >= 4.16 && < 5
 
 executable frog
   import: shared-properties
   main-is:             frog.hs
-  build-depends:       base >= 4.17 && < 5, containers, MonadRandom
+  build-depends:       base >= 4.16 && < 5, containers, MonadRandom
 
 executable hangman
   import: shared-properties
   main-is:             hangman.hs
-  build-depends:       base >= 4.17 && < 5
+  build-depends:       base >= 4.16 && < 5
 
 executable monopoly
   import: shared-properties
   main-is:             monopoly.hs
-  build-depends:       base >= 4.17 && < 5, boardgames, containers, random
+  build-depends:       base >= 4.16 && < 5, boardgames, containers, random
 
 --executable razzledazzle
 --  hs-source-dirs:      src
 --  main-is:             razzledazzle.hs
---  --  build-depends:       base >= 4.17 && < 5, monad-loops, probability, random, rando, utility-ht
+--  --  build-depends:       base >= 4.16 && < 5, monad-loops, probability, random, rando, utility-ht
 
 executable sudoku
   import: shared-properties
   main-is:             sudoku.hs
-  build-depends:       base >= 4.17 && < 5, containers, extra, lattices, vector
+  build-depends:       base >= 4.16 && < 5, containers, extra, lattices, vector
 
 test-suite boardgames-test
   import: shared-properties
@@ -117,7 +117,7 @@ test-suite boardgames-test
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:
-      base >= 4.17 && < 5
+      base >= 4.16 && < 5
     , boardgames
     , hspec
     -- , hspec-core

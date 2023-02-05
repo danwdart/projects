@@ -21,7 +21,7 @@ executable peoplemanager
   -- other-extensions:
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >=4.17 && <5
+  build-depends:       base >=4.16 && <5
     -- , brick
     , containers
     , fakedata

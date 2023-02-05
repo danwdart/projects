@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc94"
+  compiler ? "ghc92"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -13,7 +13,7 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       tumblr-editor = lib.dontHaddock (self.callCabal2nix "tumblr-editor" (gitignore ./.) {});
-      colourista = lib.doJailbreak super.colourista;
+      #colourista = lib.doJailbreak super.colourista;
     };
   };
   shell = myHaskellPackages.shellFor {

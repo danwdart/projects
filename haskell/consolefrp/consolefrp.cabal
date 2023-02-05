@@ -11,7 +11,7 @@ executable consolefrp
   main-is:             Main.hs
   default-language:    Haskell2010
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >=4.17 && <5, reflex-vty, vty
+  build-depends:       base >=4.16 && <5, reflex-vty, vty
   hs-source-dirs:      src
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything

@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc94"
+  compiler ? "ghc92"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -17,9 +17,9 @@ let
       # monoidal-containers = lib.doJailbreak super.monoidal-containers;
       # patch = lib.doJailbreak super.patch;
       reflex-vty = lib.doJailbreak (lib.markUnbroken super.reflex-vty); # self.callHackage "reflex-vty"
-      vty = lib.doJailbreak super.vty;
-      string-qq = lib.doJailbreak super.string-qq;
-      reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
+      #vty = lib.doJailbreak super.vty;
+      #string-qq = lib.doJailbreak super.string-qq;
+      #reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
     };
   };
   shell = myHaskellPackages.shellFor {

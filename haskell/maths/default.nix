@@ -24,7 +24,7 @@ let
       cf = lib.dontCheck (lib.markUnbroken super.cf);
 
       # https://github.com/snowleopard/selective/issues/59
-      selective = lib.dontCheck super.selective;
+      #selective = lib.dontCheck super.selective;
 
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };

@@ -71,9 +71,10 @@ test-suite projecteuler-test
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:
-      base >= 4.16 && < 5
-    , projecteuler
-    , hspec
+      -- base >= 4.16 && < 5
+    -- , projecteuler
+    -- , 
+    hspec
     -- , hspec-core
     -- , hspec-expectations
     -- , QuickCheck

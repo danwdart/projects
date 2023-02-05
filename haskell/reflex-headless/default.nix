@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc94"
+  compiler ? "ghc92"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -13,14 +13,14 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       reflex-headless = lib.dontHaddock (self.callCabal2nix "reflex-headless" (gitignore ./.) {});
-      reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
+      #reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
       # not in nix yet
-      patch = lib.doJailbreak (self.callHackage "patch" "0.0.7.0" {});
+      #patch = lib.doJailbreak (self.callHackage "patch" "0.0.7.0" {});
       # not in nix yet
       # https://github.com/reflex-frp/reflex/issues/482
       # reflex = lib.disableCabalFlag (lib.doJailbreak (self.callHackage "reflex" "0.8.2.1" {})) "use-template-haskell";
       # not in nix yet
-      hlint = self.callHackage "hlint" "3.5" {};
+      #hlint = self.callHackage "hlint" "3.5" {};
     };
   };
   shell = myHaskellPackages.shellFor {

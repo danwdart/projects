@@ -1,6 +1,6 @@
 with import <nixpkgs> {};
 runCommand "haskell-cross-macOS-aarch64" {
     buildInputs = [
-      pkgsCross.aarch64-darwin.pkgsBuildTarget.haskell.compiler.ghc94
+      pkgsCross.aarch64-darwin.pkgsBuildTarget.haskell.compiler.ghc92
     ];
 } ""

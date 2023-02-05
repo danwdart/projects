@@ -1,12 +1,12 @@
 { nixpkgs ? import <nixpkgs> {},
-  compiler ? "ghc94" }:
+  compiler ? "ghc92" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   lib = nixpkgs.pkgs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      gpx-conduit = lib.doJailbreak (self.callHackage "gpx-conduit" "0.1.1" {});
-      gps = lib.doJailbreak (self.callHackage "gps" "1.2" {});
+      #gpx-conduit = lib.doJailbreak (self.callHackage "gpx-conduit" "0.1.1" {});
+      #gps = lib.doJailbreak (self.callHackage "gps" "1.2" {});
       kmlfun = lib.dontHaddock (self.callCabal2nix "kmlfun" (gitignore ./.) {});
     };
   };
