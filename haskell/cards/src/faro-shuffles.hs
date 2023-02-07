@@ -18,11 +18,11 @@ cutDeck x = bimapBoth Deck . splitAt x . getDeck
 interlaceDeck ∷ DeckStd → DeckStd → DeckStd
 interlaceDeck d1 d2 = Deck . concat . transpose $ [getDeck d1, getDeck d2]
 
-farrowShuffleOut ∷ DeckStd → DeckStd
-farrowShuffleOut = uncurry interlaceDeck . cutDeck 26
+faroShuffleOut ∷ DeckStd → DeckStd
+faroShuffleOut = uncurry interlaceDeck . cutDeck 26
 
-farrowShuffleIn ∷ DeckStd → DeckStd
-farrowShuffleIn = uncurry (flip interlaceDeck) . cutDeck 26
+faroShuffleIn ∷ DeckStd → DeckStd
+faroShuffleIn = uncurry (flip interlaceDeck) . cutDeck 26
 
 untilTimes ∷ forall a. Int → (a → Bool) → (a → a) → a → Maybe Int
 untilTimes maxTimes check iterator = go 0 where
@@ -44,20 +44,16 @@ calculateWith ∷ (DeckStd → DeckStd) → Maybe Int
 calculateWith fn = untilTimesAtLeastOne 100000 (== cards) fn cards
 
 main ∷ IO ()
-main = do
-    putStrLn $ "Out: " <> show (calculateWith farrowShuffleOut)
-    putStrLn $ "In: " <> show (calculateWith farrowShuffleIn)
-
-    putStrLn $ "In Out: " <> show (calculateWith (farrowShuffleOut . farrowShuffleIn))
-    putStrLn $ "Out In: " <> show (calculateWith (farrowShuffleIn . farrowShuffleOut))
-
-    putStrLn $ "In Out In: " <> show (calculateWith (farrowShuffleIn . farrowShuffleOut . farrowShuffleIn))
-    putStrLn $ "In Out Out: " <> show (calculateWith (farrowShuffleOut . farrowShuffleOut . farrowShuffleIn))
-
-    putStrLn $ "Out In In: " <> show (calculateWith (farrowShuffleIn . farrowShuffleIn . farrowShuffleOut))
-    putStrLn $ "Out In Out: " <> show (calculateWith (farrowShuffleOut . farrowShuffleIn . farrowShuffleOut))
-
-    putStrLn $ "In Out Out In: " <> show (calculateWith (farrowShuffleIn . farrowShuffleOut . farrowShuffleOut . farrowShuffleIn))
-    putStrLn $ "In In Out In: " <> show (calculateWith (farrowShuffleIn . farrowShuffleOut . farrowShuffleIn . farrowShuffleIn))
-
-    putStrLn $ "Out Out Out Out In: " <> show (calculateWith (farrowShuffleIn . farrowShuffleOut . farrowShuffleOut . farrowShuffleOut . farrowShuffleOut))
+main = mapM_ (\(name, calculation) -> putStrLn $ name <> ": " <> show (calculateWith calculation)) [
+    ("Out", faroShuffleOut),
+    ("In", faroShuffleIn),
+    ("In Out", faroShuffleOut . faroShuffleIn),
+    ("Out In", faroShuffleIn . faroShuffleOut),
+    ("In Out In", faroShuffleIn . faroShuffleOut . faroShuffleIn),
+    ("In Out Out", faroShuffleOut . faroShuffleOut . faroShuffleIn),
+    ("Out In In", faroShuffleIn . faroShuffleIn . faroShuffleOut),
+    ("Out In Out", faroShuffleOut . faroShuffleIn . faroShuffleOut),
+    ("In Out Out In", faroShuffleIn . faroShuffleOut . faroShuffleOut . faroShuffleIn),
+    ("In In Out In", faroShuffleIn . faroShuffleOut . faroShuffleIn . faroShuffleIn),
+    ("Out Out Out Out In", faroShuffleIn . faroShuffleOut . faroShuffleOut . faroShuffleOut . faroShuffleOut)
+    ]

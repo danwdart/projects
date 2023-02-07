@@ -99,10 +99,9 @@ executable primesnap
   main-is:             primesnap.hs
   build-depends:       base >= 4.16 && < 5, cards, MonadRandom, primes, random-shuffle
 
-executable farrow-shuffles
+executable faro-shuffles
   import: shared-properties
-  ghc-options: -Wno-unused-packages
-  main-is:             farrow-shuffles.hs
+  main-is:             faro-shuffles.hs
   build-depends:       base >= 4.16 && < 5, cards, extra, relude
 
 executable uno

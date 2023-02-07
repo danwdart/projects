@@ -222,6 +222,11 @@ executable factors
   main-is:             factors.hs
   build-depends:       base >= 4.16 && < 5, maths
 
+executable faro
+  import: shared-properties
+  main-is:             faro.hs
+  build-depends:       base >= 4.16 && < 5
+
 executable friendly
   import: shared-properties
   main-is:             friendly.hs
