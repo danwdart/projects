@@ -11,8 +11,11 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.20.7",
-    "@babel/core": "7.20.12",
-    "@babel/plugin-proposal-decorators": "7.20.13"
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "7.21.0",
+    "@babel/plugin-proposal-decorators": "7.21.0"
+  },
+  "dependencies": {
+    "@snyk/protect": "^1.1108.0"
   }
 }
