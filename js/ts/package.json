@@ -13,7 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^18.11.18",
-    "typescript": "^5.0.0-dev.20230131"
+    "@types/node": "^18.14.0",
+    "typescript": "^5.0.0-dev.20230222"
+  },
+  "dependencies": {
+    "@snyk/protect": "^1.1108.0"
   }
 }
