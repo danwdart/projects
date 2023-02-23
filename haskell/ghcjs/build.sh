@@ -7,7 +7,7 @@ trap pwd ERR
 nix-build -o result/jsaddle-stuff/ghc -A ghc.jsaddle-stuff
 nix-build -o result/reflex-stuff/ghc -A ghc.reflex-stuff
 
-nix-build -o result/ghcjs-stuff/ghcjs  -A ghcjs.ghcjs-stuff
+nix-build -o result/ghcjs-stuff/ghcjs -A ghcjs.ghcjs-stuff
 nix-build -o result/jsaddle-stuff/ghcjs -A ghcjs.jsaddle-stuff
 nix-build -o result/reflex-stuff/ghcjs -A ghcjs.reflex-stuff # cache broken
 
