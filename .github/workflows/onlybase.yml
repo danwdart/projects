@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/onlybase.yml
+      - haskell/other/onlybase/**
   push:
+    paths:
+      - .github/workflows/onlybase.yml
+      - haskell/other/onlybase/**
   workflow_dispatch:
 jobs:
   push-to-cachix:

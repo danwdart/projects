@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/reflex-headless.yml
+      - haskell/reflex-headless/**
   push:
+    paths:
+      - .github/workflows/reflex-headless.yml
+      - haskell/reflex-headless/**
   workflow_dispatch:
 jobs:
   push-to-cachix:

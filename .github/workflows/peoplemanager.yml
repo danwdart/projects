@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/peoplemanager.yml
+      - haskell/peoplemanager/**
   push:
+    paths:
+      - .github/workflows/peoplemanager.yml
+      - haskell/peoplemanager/**
   workflow_dispatch:
 jobs:
   push-to-cachix:

@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/aoc.yml
+      - haskell/aoc/2021/**
   push:
+    paths:
+      - .github/workflows/aoc.yml
+      - haskell/aoc/2021/**
   workflow_dispatch:
 jobs:
   push-to-cachix:

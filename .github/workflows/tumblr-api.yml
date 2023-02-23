@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/tumblr-api.yml
+      - haskell/tumblr-api/**
   push:
+    paths:
+      - .github/workflows/tumblr-api.yml
+      - haskell/tumblr-api/**
   workflow_dispatch:
 jobs:
   push-to-cachix:

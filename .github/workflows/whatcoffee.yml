@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/whatcoffee.yml
+      - haskell/whatcoffee/**
   push:
+    paths:
+      - .github/workflows/whatcoffee.yml
+      - haskell/whatcoffee/**
   workflow_dispatch:
 jobs:
   push-to-cachix:

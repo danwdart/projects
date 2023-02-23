@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/projecteuler.yml
+      - haskell/projecteuler/**
   push:
+    paths:
+      - .github/workflows/projecteuler.yml
+      - haskell/projecteuler/**
   workflow_dispatch:
 jobs:
   push-to-cachix:

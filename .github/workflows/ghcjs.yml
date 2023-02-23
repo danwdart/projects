@@ -3,7 +3,13 @@ on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
+    paths:
+      - .github/workflows/ghcjs.yml
+      - haskell/ghcjs/**
   push:
+    paths:
+      - .github/workflows/ghcjs.yml
+      - haskell/ghcjs/**
   workflow_dispatch:
 jobs:
   push-ghc-shell-stuff-to-cachix:
