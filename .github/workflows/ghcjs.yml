@@ -19,6 +19,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd haskell/ghcjs
+        git submodule update --init --recursive
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghc) | cachix push dandart
   push-ghcjs-shell-stuff-to-cachix:
     runs-on: ubuntu-latest
@@ -33,6 +34,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd haskell/ghcjs
+        git submodule update --init --recursive
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | cachix push dandart
   push-ghcjs-stuff-to-cachix:
     runs-on: ubuntu-latest
@@ -47,6 +49,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd haskell/ghcjs
+        git submodule update --init --recursive
         nix-build -o result/ghcjs-stuff/ghcjs -A ghcjs.ghcjs-stuff
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | cachix push dandart
   push-reflex-ghcjs-stuff-to-cachix:
@@ -62,6 +65,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd haskell/ghcjs
+        git submodule update --init --recursive
         nix-build -o result/reflex-stuff/ghcjs -A ghcjs.reflex-stuff
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | cachix push dandart
   push-jsaddle-stuff-to-cachix:
@@ -77,6 +81,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd haskell/ghcjs
+        git submodule update --init --recursive
         nix-build -o result/jsaddle-stuff/ghcjs -A ghcjs.jsaddle-stuff
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.jsaddle-stuff) | cachix push dandart
   push-jsaddle-ghc-stuff-to-cachix:
@@ -92,6 +97,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd haskell/ghcjs
+        git submodule update --init --recursive
         nix-build -o result/jsaddle-stuff/ghc -A ghc.jsaddle-stuff
         nix-store -qR --include-outputs $(nix-instantiate -A ghc.jsaddle-stuff) | cachix push dandart
   push-reflex-ghc-stuff-to-cachix:
@@ -107,5 +113,6 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd haskell/ghcjs
+        git submodule update --init --recursive
         nix-build -o result/reflex-stuff/ghc -A ghc.reflex-stuff
         nix-store -qR --include-outputs $(nix-instantiate -A ghc.reflex-stuff) | cachix push dandart
