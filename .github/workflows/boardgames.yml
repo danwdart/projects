@@ -18,6 +18,6 @@ jobs:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
-        cd haskell/aoc
+        cd haskell/boardgames
         nix-build
         nix-store -qR --include-outputs $(nix-instantiate shell.nix --add-root result/shell --indirect) | cachix push dandart
