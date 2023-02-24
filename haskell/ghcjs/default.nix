@@ -19,7 +19,7 @@
   overrides = self: super: {
     # ghcjs = nixpkgs.haskell.compilers.ghcjs810
     # In pqueue 1.4.1.3, files are missing
-    #pqueue = self.callHackage "pqueue" "1.4.1.4" {};
+    pqueue = self.callHackage "pqueue" "1.4.1.4" {};
     reactive-banana = self.callHackage "reactive-banana" "1.2.2.0" {};
   };
 
