@@ -23,6 +23,11 @@ jobs:
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Set up cache
+      uses: zombiezen/setup-nix-cache-action@v0.1.0
+      with:
+        substituters: https://nixcache.reflex-frp.org
+        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -39,6 +44,11 @@ jobs:
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Set up cache
+      uses: zombiezen/setup-nix-cache-action@v0.1.0
+      with:
+        substituters: https://nixcache.reflex-frp.org
+        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -55,6 +65,11 @@ jobs:
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Set up cache
+      uses: zombiezen/setup-nix-cache-action@v0.1.0
+      with:
+        substituters: https://nixcache.reflex-frp.org
+        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -72,6 +87,11 @@ jobs:
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Set up cache
+      uses: zombiezen/setup-nix-cache-action@v0.1.0
+      with:
+        substituters: https://nixcache.reflex-frp.org
+        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -89,6 +109,11 @@ jobs:
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Set up cache
+      uses: zombiezen/setup-nix-cache-action@v0.1.0
+      with:
+        substituters: https://nixcache.reflex-frp.org
+        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -106,6 +131,11 @@ jobs:
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Set up cache
+      uses: zombiezen/setup-nix-cache-action@v0.1.0
+      with:
+        substituters: https://nixcache.reflex-frp.org
+        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -123,6 +153,11 @@ jobs:
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Set up cache
+      uses: zombiezen/setup-nix-cache-action@v0.1.0
+      with:
+        substituters: https://nixcache.reflex-frp.org
+        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
