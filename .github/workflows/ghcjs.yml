@@ -19,15 +19,13 @@ jobs:
     - uses: cachix/install-nix-action@v17
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://nixcache.reflex-frp.org https://hydra.iohk.io https://cache.nixos.org/
     - uses: cachix/cachix-action@v11
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Set up cache
-      uses: zombiezen/setup-nix-cache-action@v0.1.0
-      with:
-        substituters: https://nixcache.reflex-frp.org
-        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -40,15 +38,13 @@ jobs:
     - uses: cachix/install-nix-action@v17
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://nixcache.reflex-frp.org https://hydra.iohk.io https://cache.nixos.org/
     - uses: cachix/cachix-action@v11
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Set up cache
-      uses: zombiezen/setup-nix-cache-action@v0.1.0
-      with:
-        substituters: https://nixcache.reflex-frp.org
-        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -61,15 +57,13 @@ jobs:
     - uses: cachix/install-nix-action@v17
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://nixcache.reflex-frp.org https://hydra.iohk.io https://cache.nixos.org/
     - uses: cachix/cachix-action@v11
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Set up cache
-      uses: zombiezen/setup-nix-cache-action@v0.1.0
-      with:
-        substituters: https://nixcache.reflex-frp.org
-        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -83,15 +77,13 @@ jobs:
     - uses: cachix/install-nix-action@v17
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://nixcache.reflex-frp.org https://hydra.iohk.io https://cache.nixos.org/
     - uses: cachix/cachix-action@v11
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Set up cache
-      uses: zombiezen/setup-nix-cache-action@v0.1.0
-      with:
-        substituters: https://nixcache.reflex-frp.org
-        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -105,15 +97,13 @@ jobs:
     - uses: cachix/install-nix-action@v17
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://nixcache.reflex-frp.org https://hydra.iohk.io https://cache.nixos.org/
     - uses: cachix/cachix-action@v11
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Set up cache
-      uses: zombiezen/setup-nix-cache-action@v0.1.0
-      with:
-        substituters: https://nixcache.reflex-frp.org
-        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -127,15 +117,13 @@ jobs:
     - uses: cachix/install-nix-action@v17
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://nixcache.reflex-frp.org https://hydra.iohk.io https://cache.nixos.org/
     - uses: cachix/cachix-action@v11
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Set up cache
-      uses: zombiezen/setup-nix-cache-action@v0.1.0
-      with:
-        substituters: https://nixcache.reflex-frp.org
-        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
@@ -149,15 +137,13 @@ jobs:
     - uses: cachix/install-nix-action@v17
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://nixcache.reflex-frp.org https://hydra.iohk.io https://cache.nixos.org/
     - uses: cachix/cachix-action@v11
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Set up cache
-      uses: zombiezen/setup-nix-cache-action@v0.1.0
-      with:
-        substituters: https://nixcache.reflex-frp.org
-        trusted_public_keys: ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=
     - run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         cd haskell/ghcjs
