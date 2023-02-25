@@ -4,6 +4,6 @@ runCommand "asm-linux-riscv64" {
       #gcc
       gnumake
       nasm
-      pkgsCross.riscv64.pkgsBuildTarget.gcc
+      pkgsCross.riscv64.pkgsBuildHost.gcc
     ];
 } ""

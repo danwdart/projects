@@ -4,6 +4,6 @@ runCommand "asm-linux-aarch64" {
       #gcc
       gnumake
       nasm
-      pkgsCross.aarch64-multiplatform.pkgsBuildTarget.gcc
+      pkgsCross.aarch64-multiplatform.pkgsBuildHost.gcc
     ];
 } ""
