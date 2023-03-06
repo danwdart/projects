@@ -204,6 +204,11 @@ executable collatz
   main-is:             collatz.hs
   build-depends:       base >= 4.16 && < 5, maths
 
+executable common-ancestors
+  import: shared-properties
+  main-is:             common-ancestors.hs
+  build-depends:       base >= 4.16 && < 5, containers, MonadRandom
+
 executable diffy
   import: shared-properties
   main-is:             diffy.hs
