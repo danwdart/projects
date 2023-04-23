@@ -89,8 +89,13 @@ library
     , ghc-typelits-presburger
     , ghc-typelits-natnormalise
   -- , hxt, hxt-xpath
+    , template-haskell
+    , text
+    , yaml
   exposed-modules:
     Data.DependentLength
+    BookStatic
+    Schema
     Seq
     -- XPath
 
@@ -144,6 +149,11 @@ executable doctestme
   import: shared-properties-unsafe
   main-is:             doctestme.hs
   build-depends:       base >= 4.16 && < 5, doctest, template-haskell
+
+executable dynamic-schema
+  import: shared-properties-unsafe
+  main-is:             dynamic-schema.hs
+  build-depends:       base >= 4.16 && < 5, other94, template-haskell, yaml
 
 executable effects
   import: shared-properties-unsafe

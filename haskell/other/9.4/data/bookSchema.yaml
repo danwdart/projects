@@ -1,0 +1,21 @@
+-
+  - title
+  -
+    columnName: title
+    columnType: Text
+-
+  - author
+  -
+    columnName: author
+    columnType: Text
+-
+  - isbn
+  -
+    columnName: isbn
+    columnType: Text
+
+-
+  - year
+  -
+    columnName: year
+    columnType: Maybe Int
