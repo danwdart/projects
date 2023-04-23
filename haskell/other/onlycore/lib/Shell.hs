@@ -1,4 +1,5 @@
-{-# LANGUAGE Safe #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
+{-# LANGUAGE Unsafe #-}
 
 module Shell where
 

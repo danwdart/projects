@@ -1,3 +1,6 @@
+{-# OPTIONS_GHC -Wno-unsafe #-}
+{-# LANGUAGE Unsafe #-}
+
 -- Cont demo
 import           Control.Monad
 import           Control.Monad.IO.Class

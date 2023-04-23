@@ -1,4 +1,6 @@
+import           Control.Monad (unless, void, when)
 import           Control.Monad.Cont
+import           Control.Monad.IO.Class
 import           System.IO
 
 welcome ∷ String

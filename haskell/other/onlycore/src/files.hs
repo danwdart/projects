@@ -1,3 +1,6 @@
+{-# OPTIONS_GHC -Wno-unsafe #-}
+{-# LANGUAGE Unsafe #-}
+
 import           System.Directory
 import           System.IO
 
