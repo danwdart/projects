@@ -11,7 +11,7 @@ import GHC.TypeLits
 -- >>> id
 
 instance TypeError (
-    'Text "can't print out functions" ':$$:
-    'Text "specifically, can't print something of type " ':<>: 'ShowType (a -> b)
+    'Text "can't print out functions" ' :$$:
+    'Text "specifically, can't print something of type " ' :<>: 'ShowType (a -> b)
     ) => Show (a -> b) where
     show _ = error "you'll never see this"
