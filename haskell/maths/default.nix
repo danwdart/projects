@@ -23,6 +23,8 @@ let
       # https://github.com/mvr/cf/issues/4
       cf = lib.dontCheck (lib.markUnbroken super.cf);
 
+      factory = lib.markUnbroken super.factory;
+
       # https://github.com/snowleopard/selective/issues/59
       #selective = lib.dontCheck super.selective;
 
