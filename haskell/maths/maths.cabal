@@ -35,7 +35,9 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5, digits, primes
+  build-depends:       base >= 4.16 && < 5
+                     , digits
+                     , primes
   ghc-options:         -Wall -Werror -haddock
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -60,6 +62,7 @@ library
                      , Sequence.SumOf
                      , Collatz
                      , Frobenius
+                     , Numeric.Napier
                      , NumList
                      , Period
                      , Semiprimes
@@ -304,7 +307,7 @@ executable mod
 executable napier-locar
   import: shared-properties
   main-is:             napier-locar.hs
-  build-depends:       base >= 4.16 && < 5, digits
+  build-depends:       base >= 4.16 && < 5, maths
 
 executable numbertypes
   import: shared-properties
