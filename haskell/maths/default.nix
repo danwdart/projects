@@ -25,9 +25,6 @@ let
 
       factory = lib.markUnbroken super.factory;
 
-      # https://github.com/snowleopard/selective/issues/59
-      #selective = lib.dontCheck super.selective;
-
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };
   };

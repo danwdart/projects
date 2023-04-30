@@ -93,6 +93,11 @@ executable oeisA003001-otherbases
   main-is:             oeis/A003001-otherbases.hs
   build-depends:       base >= 4.16 && < 5, maths, digits
 
+executable oeisA005276
+  import: shared-properties
+  main-is:             oeis/A005276.hs
+  build-depends:       base >= 4.16 && < 5, maths
+
 executable oeisA024702
   import: shared-properties
   main-is:             oeis/A024702.hs
