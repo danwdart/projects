@@ -172,10 +172,6 @@ executable cli
   import: shared-properties-safe
   main-is:             cli.hs
 
-executable complex
-  import: shared-properties-safe
-  main-is:             complex.hs
-
 executable composefunctors
   import: shared-properties-safe
   build-depends:       base >= 4.18 && < 5, onlybase
