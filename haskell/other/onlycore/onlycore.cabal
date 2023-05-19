@@ -170,6 +170,11 @@ executable mtl
   main-is:             mtl.hs
   build-depends:       base >= 4.18 && < 5, mtl
 
+executable profunctor-lenses
+  import: shared-properties-safe
+  main-is:             profunctor-lenses.hs
+  build-depends:       base >= 4.16 && < 5
+
 executable python5
   import: shared-properties-safe
   main-is:             python5.hs
