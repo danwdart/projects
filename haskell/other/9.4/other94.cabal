@@ -359,6 +359,11 @@ executable sockets
   main-is:             sockets.hs
   build-depends:       base >= 4.16 && < 5, async, bytestring, network
 
+executable tagged
+  import: shared-properties-safe
+  main-is:             tagged.hs
+  build-depends:       base >= 4.16 && < 5, tagged
+
 executable tardis
   import: shared-properties-safe
   main-is:             tardis.hs
