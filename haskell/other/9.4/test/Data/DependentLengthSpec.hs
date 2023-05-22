@@ -13,7 +13,7 @@ import           Test.QuickCheck
 --     arbitrary = fromList . arbitrary
 
 {-# ANN module "HLint: ignore Functor law" #-}
--- functor :: (Eq a, Enum a, Eq (Vec t a), Show a) => Vec t a → Property
+functor :: (Eq a, Enum a, Eq (Vec t a), Show a) => Vec t a → Property
 functor xs = fmap succ (fmap pred xs) === xs
 
 spec :: Spec
