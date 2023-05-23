@@ -21,22 +21,6 @@ import Queue.Foreign
 
 -- TODO model this?
 
-data Queue = Queue
-    deriving Show
-
-class MonadQueue q m where
-    new :: Int -> m q
-    put :: q -> Int -> m ()
-    get :: q -> m Int
-    size :: q -> m Int
-
-data QueueF q a =
-    NewF Int (q -> a) |
-    PutF q Int a |
-    GetF q (Int -> a) |
-    SizeF q (Int -> a)
-    deriving (Functor)
-
 -- translate queue types
 
 data Free f a = Free (f (Free f a)) | Pure a
