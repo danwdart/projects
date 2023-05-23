@@ -23,40 +23,13 @@ import Queue.Foreign
 
 -- translate queue types
 
-data Free f a = Free (f (Free f a)) | Pure a
-
-liftF :: Functor f => f a -> Free f a
-liftF action = Free (fmap Pure action)
-
-type QueueM t a = Free (QueueF t) a
-
 {-
-instance MonadQueue q QueueM a where
-    new = liftF NewF
-    put q val = liftF (PutF q val)
-    get q = liftF (GetF q)
-    size q = liftF (SizeF q)
 
 testAction = do
     q <- QueueSpec.new 1
     put q 1
     get q
     QueueSpec.size q
-
-runIO :: QueueM q a -> IO a
-runIO (Free (NewF size next)) = do
-    q <- queue_new size
-    runIO $ next q
-runIO (Free (PutF q val next)) = do
-    queue_put q val
-    runIO next
-runIO (Free (GetF q next)) = do
-    val <- queue_get q
-    runIO $ next val
-runIO (Free (SizeF q next)) = do
-    size <- queue_size q
-    runIO $ next size
-runIO (Pure a) = pure a
 
 -}
 -- manual = Free (NewF (\q -> Free (PutF q 1) >> Free (SizeF q)))
