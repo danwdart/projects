@@ -30,4 +30,4 @@ spec = describe "DependentLength" $ do
             show (typeOf ('a' :> 'b' :> 'c' :> Nil)) `shouldBe` "Vec 3 Char"
     -- describe "Functor instance" $ do
     --     it "functorises" $ do
-    --         quickCheck functor
+    --         property functor

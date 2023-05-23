@@ -12,7 +12,10 @@ maintainer:          cabal@dandart.co.uk
 copyright:           2019 Dan Dart
 category:            Web
 build-type:          Simple
-extra-source-files:  README.md
+extra-source-files:
+                     README.md
+                     cbits/*.h
+                     cbits/*.c
 
 common shared-properties-base
   hs-source-dirs:      src
@@ -95,9 +98,17 @@ library
   exposed-modules:
     Data.DependentLength
     BookStatic
+    Queue.Foreign
     Schema
     Seq
     -- XPath
+  -- cc-options: -std=c88
+  c-sources:
+    -- cbits/queue.h
+    cbits/queue.c
+  include-dirs:
+    cbits
+  extra-libraries: pthread
 
 executable asm
   import: shared-properties-base
@@ -437,8 +448,8 @@ test-suite test
   default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:       base >= 4.16 && < 5, other94, hspec, QuickCheck
   other-modules:       TestSpec
-                     , Test2Spec
                      , Data.DependentLengthSpec
+                     , Queue.ForeignSpec
 
 --test-suite quickcheck-detailed
 --  type:                detailed-0.9
