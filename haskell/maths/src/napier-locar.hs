@@ -1,7 +1,7 @@
-import Numeric.Napier
+import           Numeric.Napier
 
 -- Words which are in alphabetical order (either) and with no repeats.
-alphabeticalWords :: [String]
+alphabeticalWords ∷ [String]
 alphabeticalWords = [
     "abhors",
     "almost",

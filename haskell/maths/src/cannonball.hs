@@ -30,11 +30,11 @@ recurrence relation
 formula
 -}
 
-polygon :: Integer -> Integer -> Integer
+polygon ∷ Integer → Integer → Integer
 polygon sides sideLength = undefined
 
-pyramid :: Integer -> Integer -> Integer
+pyramid ∷ Integer → Integer → Integer
 pyramid sides sideLength = undefined
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

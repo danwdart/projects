@@ -24,7 +24,7 @@ wat ∷ Complex String
 wat = "why" :+ "wat"
 
 -- you can even monadically compute these
-computationable :: Complex String
+computationable ∷ Complex String
 computationable = do
     a <- wat
     pure $ a <> "?"
