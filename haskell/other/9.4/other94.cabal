@@ -89,6 +89,7 @@ library
   --ghc-options: -Wno-unused-packages
   hs-source-dirs:      lib
   build-depends: base >= 4.16 && < 5
+    , free
     , ghc-typelits-presburger
     , ghc-typelits-natnormalise
   -- , hxt, hxt-xpath

@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
-{-# LANGUAGE Unsafe, DeriveAnyClass, DeriveGeneric, DerivingStrategies, DerivingVia, OverloadedStrings, TemplateHaskell #-}
+{-# LANGUAGE Unsafe, DeriveAnyClass, DeriveGeneric, DerivingVia, OverloadedStrings #-}
 
 module Schema where
 
@@ -29,7 +29,7 @@ instance ToJSON ColumnType where
 instance Lift ColumnType where
     lift c = lift (show c)
     liftTyped _ = undefined -- Code $ liftTyped c
-    
+
 
 data Field = Field {
     columnName :: Text,

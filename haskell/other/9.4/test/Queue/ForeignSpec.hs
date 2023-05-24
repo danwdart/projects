@@ -1,5 +1,3 @@
-{-# LANGUAGE GADTs #-}
-
 module Queue.ForeignSpec where
 
 import Control.Monad
