@@ -89,7 +89,7 @@ library
   --ghc-options: -Wno-unused-packages
   hs-source-dirs:      lib
   build-depends: base >= 4.16 && < 5
-    , free
+    -- , free -- later
     , ghc-typelits-presburger
     , ghc-typelits-natnormalise
   -- , hxt, hxt-xpath
@@ -111,10 +111,12 @@ library
     cbits
   extra-libraries: pthread
 
-executable asm
-  import: shared-properties-base
-  main-is:             asm.hs
-  build-depends:       base >= 4.16 && < 5, inline-asm
+-- doesn't build on aarch64 but I don't care enough yet, why not ffi
+
+-- executable asm
+--   import: shared-properties-base
+--   main-is:             asm.hs
+--   build-depends:       base >= 4.16 && < 5, inline-asm
 
 executable async
   import: shared-properties-safe
