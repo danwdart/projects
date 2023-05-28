@@ -7,7 +7,7 @@ phi ∷ Double
 phi = (sqrt 5 + 1) / 2
 
 iphi ∷ Double
-iphi =-(sqrt 5 - 1) / 2
+iphi = - (sqrt 5 - 1) / 2
 
 powphicaret ∷ Integer → Integer
 powphicaret n = round (phi ^ n)
