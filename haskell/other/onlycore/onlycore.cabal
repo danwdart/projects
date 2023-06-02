@@ -180,6 +180,11 @@ executable python5
   main-is:             python5.hs
   build-depends:       base >= 4.18 && < 5, onlycore
 
+executable qq
+  import: shared-properties-safe
+  main-is:             qq.hs
+  build-depends:       base >= 4.18 && < 5, onlycore
+
 executable reader
   import: shared-properties-safe
   main-is:             reader.hs
