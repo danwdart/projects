@@ -14,8 +14,6 @@ category:            Web
 build-type:          Simple
 extra-source-files:
                      README.md
-                     cbits/*.h
-                     cbits/*.c
 
 common shared-properties-base
   hs-source-dirs:      src
@@ -99,17 +97,9 @@ library
   exposed-modules:
     Data.DependentLength
     BookStatic
-    Queue.Foreign
     Schema
     Seq
     -- XPath
-  -- cc-options: -std=c88
-  c-sources:
-    -- cbits/queue.h
-    cbits/queue.c
-  include-dirs:
-    cbits
-  extra-libraries: pthread
 
 -- doesn't build on aarch64 but I don't care enough yet, why not ffi
 
@@ -122,7 +112,7 @@ library
 executable arrows
   import: shared-properties-unsafe
   main-is:             arrows.hs
-  build-depends:       base >= 4.16 && < 5, aeson, bytestring, containers, mtl, process, profunctors, yaml
+  build-depends:       base >= 4.16 && < 5, aeson, bytestring, process, yaml
 
 executable async
   import: shared-properties-safe
@@ -458,7 +448,6 @@ test-suite test
   build-depends:       base >= 4.16 && < 5, other94, hspec, QuickCheck
   other-modules:       TestSpec
                      , Data.DependentLengthSpec
-                     , Queue.ForeignSpec
 
 --test-suite quickcheck-detailed
 --  type:                detailed-0.9

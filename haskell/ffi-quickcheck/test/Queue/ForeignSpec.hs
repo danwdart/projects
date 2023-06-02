@@ -57,7 +57,7 @@ prop_QueueWithFewerElementsAsSizeShowUpInGet size elements = size > 0 && length 
 
 
 spec ∷ Spec
-spec = describe "Queue" $ do
+spec = describe "Queue.Foreign" $ do
     it "creates queues with the correct size" $
         property prop_EmptyQueueHasCorrectSize
     it "shows the size of a queue with fewer elements than its size" $

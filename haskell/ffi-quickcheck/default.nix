@@ -12,7 +12,7 @@ let
   tools = haskell-tools compiler;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      ffi-quickcheck = lib.dontHaddock (self.callCabal2nix "ffi-quickcheck" (gitignore ./.) {});
+      ffi-quickcheck = lib.dontHaddock (lib.doCheck (self.callCabal2nix "ffi-quickcheck" (gitignore ./.) {}));
     };
   };
   shell = myHaskellPackages.shellFor {
@@ -23,7 +23,7 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
     '';
-    buildInputs = tools.defaultBuildTools;
+     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.haskell.packages.${compiler}.c2hs nixpkgs.haskell.packages.${compiler}.hsc2hs ];
     withHoogle = false;
   };
   exe = lib.justStaticExecutables (myHaskellPackages.ffi-quickcheck);
