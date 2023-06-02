@@ -105,6 +105,7 @@ instance Symmetric (->) where
     reassocEither (Right (Left b)) = Left (Right b)
     reassocEither (Right (Right c)) = Right c
 
+
 class Category cat => Cochoice cat where
     unleft :: cat (Either a c) (Either b c) -> cat a b
 
@@ -126,6 +127,14 @@ class Category cat => Costrong cat where
 instance Costrong (->) where
     unfirst :: ((a, c) -> (b, c)) -> a -> b
     unfirst f a = let (b, c) = f (a, c) in b
+
+
+class Category cat => Apply cat where
+    app :: cat (cat a b, a) b
+
+instance Apply (->) where
+    app (f, x) = f x
+
 
 class Category cat => Currier cat where
     curry' :: cat (cat (a, b) c) (cat a (cat b c))
@@ -185,6 +194,9 @@ instance Monad m => Strong (Kleisli m) where
 instance MonadFix m => Costrong (Kleisli m) where
   unfirst (Kleisli f) = Kleisli (liftM fst . mfix . f')
     where f' x y = f (x, snd y)
+
+instance Monad m => Apply (Kleisli m) where
+    app = Kleisli (\(Kleisli f, x) -> f x)
 
 -- instance Monad m => Choice (Kleisli m) where
     
