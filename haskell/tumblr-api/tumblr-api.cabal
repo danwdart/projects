@@ -17,6 +17,7 @@ executable tumblr-api
                      , dotenv
                      , http-conduit
                      , humblr
+                     , mtl
                      , resourcet
   hs-source-dirs:      src
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
