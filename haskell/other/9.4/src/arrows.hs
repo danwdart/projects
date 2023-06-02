@@ -242,6 +242,8 @@ instance Choice HSLamb where
 
 -- instance Costrong HSLamb where
 
+-- instance Apply HSLamb where
+
 instance Primitive HSLamb where
     eq = "(arr (\\(x, y) -> x == y))"
     reverseString = "(arr reverse)"
@@ -298,6 +300,8 @@ instance Choice HSCode where
 -- instance Cochoice HSCode where
 
 -- instance Costrong HSCode where
+
+-- instance Apply HSCode where
 
 instance Primitive HSCode where
     eq = "(arr . uncurry $ (==))"
@@ -356,6 +360,8 @@ instance Choice JSCode where
 
 -- instance Costrong JSCode where
 
+-- instance Apply JSCode where
+
 instance Primitive JSCode where
     eq = "(([x, y]) => x === y)"
     reverseString = "(x => x.split('').reverse().join(''))"
@@ -412,6 +418,8 @@ instance Choice PHPCode where
 -- instance Cochoice PHPCode where
 
 -- instance Costrong PHPCode where
+
+-- instance Apply PHPCode where
 
 instance Primitive PHPCode where
     eq = "(fn ($x) => $x[0] === $x[1])"
