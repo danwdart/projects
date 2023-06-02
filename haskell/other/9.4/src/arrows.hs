@@ -186,9 +186,8 @@ instance MonadFix m => Costrong (Kleisli m) where
   unfirst (Kleisli f) = Kleisli (liftM fst . mfix . f')
     where f' x y = f (x, snd y)
 
--- instance Monad m => Costrong (Kleisli m) where
-
 -- instance Monad m => Choice (Kleisli m) where
+    
 -- instance Monad m => Cochoice (Kleisli m) where
 
 data HSLamb a b = HSLamb String
@@ -580,25 +579,34 @@ collatzStep = unify . (onOdds +++ onEvens) . matchOn isEven where
 revInputProgram :: (PrimitiveConsole cat, Primitive cat) => cat () ()
 revInputProgram = outputString . reverseString . inputString
 
--- runInGHCiParam :: (Show input, Read output) => HSCode input output -> input -> IO output
--- runInGHCiParam cat param = read . (\(_, stdout, _) -> stdout) <$> readProcessWithExitCode "ghci" [render cat <> " " <> show param] ""
+secondOfThree :: (a, b, c) -> b
+secondOfThree (_, b, _) = b
+
+runInGHCiParamC :: (Show input, Read output) => HSCode input output -> input -> IO output
+runInGHCiParamC cat param = read . secondOfThree <$> readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] ""
+
+runInGHCiParamL :: (Show input, Read output) => HSLamb input output -> input -> IO output
+runInGHCiParamL cat param = read . secondOfThree <$> readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] ""
 
 runInNode :: (ToJSON input, FromJSON output) => JSCode input output -> input -> IO (Maybe output)
-runInNode cat param = decode . BSL.pack . (\(_, stdout, _) -> stdout) <$> readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")))"] ""
+runInNode cat param = decode . BSL.pack . secondOfThree <$> readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")))"] ""
 
 runInPHP :: (ToJSON input, FromJSON output) => PHPCode input output -> input -> IO (Maybe output)
-runInPHP cat param = decode . BSL.pack . (\(_, stdout, _) -> stdout) <$> readProcessWithExitCode "php" ["-r", "print(json_encode(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")));"] ""
-
+runInPHP cat param = decode . BSL.pack . secondOfThree <$> readProcessWithExitCode "php" ["-r", "print(json_encode(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")));"] ""
 
 main :: IO ()
 main = do
     putStrLn "isPalindrome"
     putStrLn $ "HSLamb: " <> render (isPalindrome :: HSLamb String Bool)
+    floopyHSL <- runInGHCiParamL isPalindrome "floopy"
+    abobaHSL <- runInGHCiParamL isPalindrome "aboba"
+    putStrLn $ "HSLamb (GHCi): " <> show floopyHSL
+    putStrLn $ "HSLamb (GHCi): " <> show abobaHSL
     putStrLn $ "HSCode: " <> render (isPalindrome :: HSCode String Bool)
-    -- floopyHS <- runInGHCiParam isPalindrome "floopy"
-    -- abobaHS <- runInGHCiParam isPalindrome "aboba"
-    -- putStrLn $ "HSCode (GHCi): " <> show floopyHS
-    -- putStrLn $ "HSCode (GHCi): " <> show abobaHS
+    floopyHSC <- runInGHCiParamC isPalindrome "floopy"
+    abobaHSC <- runInGHCiParamC isPalindrome "aboba"
+    putStrLn $ "HSCode (GHCi): " <> show floopyHSC
+    putStrLn $ "HSCode (GHCi): " <> show abobaHSC
     putStrLn $ "JSCode: " <> render (isPalindrome :: JSCode String Bool)
     floopyNode <- runInNode isPalindrome "floopy" :: IO (Maybe Bool)
     abobaNode <- runInNode isPalindrome "aboba" :: IO (Maybe Bool)
@@ -617,7 +625,15 @@ main = do
     putStrLn ""
     putStrLn "collatzStep"
     putStrLn $ "HSLamb: " <> render (collatzStep :: HSLamb Int Int)
+    hsl5 <- runInGHCiParamL collatzStep 5
+    hsl4 <- runInGHCiParamL collatzStep 4
+    putStrLn $ "HSLamb (GHCi, 5): " <> show hsl5
+    putStrLn $ "HSLamb (GHCi, 4): " <> show hsl4
     putStrLn $ "HSCode: " <> render (collatzStep :: HSCode Int Int)
+    hsc5 <- runInGHCiParamC collatzStep 5
+    hsc4 <- runInGHCiParamC collatzStep 4
+    putStrLn $ "HSCode (GHCi, 5): " <> show hsc5
+    putStrLn $ "HSCode (GHCi, 4): " <> show hsc4
     putStrLn $ "JSCode: " <> render (collatzStep :: JSCode Int Int)
     node5 <- runInNode collatzStep 5
     node4 <- runInNode collatzStep 4
@@ -636,9 +652,12 @@ main = do
     putStrLn ""
     putStrLn "revInputProgram" -- @TODO use a different type?
     -- putStrLn $ "HSLamb: " <> render (revInputProgram :: HSLamb () ()) -- @TODO fix
+    -- runInGHCiParamL revInputProgram ()
     putStrLn $ "HSCode: " <> render (revInputProgram :: HSCode () ())
+    -- runInGHCiParamC revInputProgram ()
     putStrLn $ "JSCode: " <> render (revInputProgram :: JSCode () ()) -- we ain't running that as we're in no browser
     putStrLn $ "PHPCode: " <> render (revInputProgram :: PHPCode () ())
+    -- runInPHP revInputProgram ()
     -- putStrLn $ "FreeFunc: " <> show (revInputProgram :: (PrimitiveConsole (FreeFunc p), Primitive (FreeFunc p)) => FreeFunc p () ())
     -- putStrLn $ "FreeFunc (JSON encoded): " <> (BSL.unpack $ encode (revInputProgram :: FreeFunc p () ()))
     putStrLn $ "Executing using runKleisli."
