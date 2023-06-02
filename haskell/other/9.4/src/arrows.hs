@@ -594,6 +594,16 @@ runInNode cat param = decode . BSL.pack . secondOfThree <$> readProcessWithExitC
 runInPHP :: (ToJSON input, FromJSON output) => PHPCode input output -> input -> IO (Maybe output)
 runInPHP cat param = decode . BSL.pack . secondOfThree <$> readProcessWithExitCode "php" ["-r", "print(json_encode(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")));"] ""
 
+{-
+debugTest :: forall a b cat runnerCat. String -> cat a b -> [(String, runnerCat a b -> a -> b)] -> [a] -> IO ()
+debugTest name fn runners cases = do
+    putStrLn name
+    mapM_ (\(runnerName, runner) -> do
+        putStrLn $ runnerName <> ": " <> render (fn :: runnerCat a b)
+        putStrLn $ runnerName <> " (Running): " <> show $ traverse (runner fn) cases
+        ) runners
+-}
+
 main :: IO ()
 main = do
     putStrLn "isPalindrome"
@@ -620,8 +630,8 @@ main = do
     putStrLn $ "FreeFunc: " <> show (isPalindrome :: FreeFunc Prims String Bool)
     putStrLn $ "FreeFunc (JSON encoded): " <> (BSL.unpack $ encode (isPalindrome :: FreeFunc Prims String Bool))
     putStrLn $ "FreeFunc (YAML encoded): " <> (BS.unpack $ Y.encode (isPalindrome :: FreeFunc Prims String Bool))
-    putStrLn $ "Execute on (free): " <> show (isPalindrome "free")
-    putStrLn $ "Execute on (evilolive): " <> show (isPalindrome "evilolive")
+    putStrLn $ "Execute on (free): " <> show (isPalindrome "floopy")
+    putStrLn $ "Execute on (evilolive): " <> show (isPalindrome "aboba")
     putStrLn ""
     putStrLn "collatzStep"
     putStrLn $ "HSLamb: " <> render (collatzStep :: HSLamb Int Int)
