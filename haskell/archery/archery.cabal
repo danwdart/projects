@@ -1,0 +1,106 @@
+cabal-version:       3.4
+-- Newer versions complain
+name:                archery
+version:             0.1.0.0
+-- synopsis:
+description:         Playing with arrows 
+homepage:            https://github.com/danwdart/projects#readme
+license:             AGPL-3.0-only
+-- license-file:        LICENSE
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+extra-source-files:
+                     README.md
+
+common shared-properties-base
+  hs-source-dirs:      src
+  default-language:    GHC2021
+  default-extensions:
+    DerivingStrategies
+    UnicodeSyntax
+  ghcjs-options:       -dedupe
+
+common shared-properties-lib
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Werror
+    -haddock
+  build-depends:       base >= 4.16 && < 5
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+
+common shared-properties-unsafe
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Wno-prepositive-qualified-module
+    -Werror
+    -haddock
+    -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base >= 4.16 && < 5
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+
+common shared-properties-safe
+  import: shared-properties-unsafe
+  default-extensions:
+    NoGeneralizedNewtypeDeriving
+    Safe
+
+common shared-properties-nobase
+  import: shared-properties-base
+  ghc-options:
+    -Weverything
+    -Wno-compat-unqualified-imports
+    -Wno-implicit-prelude
+    -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Wno-prepositive-qualified-module
+    -Werror
+    -haddock
+    -threaded -rtsopts -with-rtsopts=-N
+
+-- TODO: unsafe?
+library
+  import: shared-properties-lib
+  --ghc-options: -Wno-unused-packages
+  hs-source-dirs:      lib
+  build-depends: base >= 4.16 && < 5
+  exposed-modules:
+    Control.Category.Cartesian
+    Data.Render
+
+executable arrows
+  import: shared-properties-unsafe
+  main-is:             arrows.hs
+  build-depends:       base >= 4.16 && < 5, aeson, bytestring, process, yaml
+
+test-suite test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax
+  build-depends:       base >= 4.16 && < 5, archery, hspec, QuickCheck
+  other-modules:       

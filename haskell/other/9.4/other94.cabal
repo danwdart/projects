@@ -108,12 +108,6 @@ library
 --   main-is:             asm.hs
 --   build-depends:       base >= 4.16 && < 5, inline-asm
 
-
-executable arrows
-  import: shared-properties-unsafe
-  main-is:             arrows.hs
-  build-depends:       base >= 4.16 && < 5, aeson, bytestring, process, yaml
-
 executable async
   import: shared-properties-safe
   main-is:             async.hs
