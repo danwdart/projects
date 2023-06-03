@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Control.Category.Primitive.Console where
 
 import Control.Arrow (Kleisli(..))

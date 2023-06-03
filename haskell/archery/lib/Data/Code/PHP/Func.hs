@@ -1,4 +1,23 @@
-module Data.Code.PHPCode where
+{-# LANGUAGE OverloadedStrings, Unsafe #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
+
+module Data.Code.PHP.Func where
+
+import Control.Category
+import Control.Category.Cartesian
+import Control.Category.Choice
+import Control.Category.Cocartesian
+import Control.Category.Numeric
+import Control.Category.Primitive.Abstract
+import Control.Category.Primitive.Console
+import Control.Category.Strong
+import Data.Aeson
+import Data.ByteString.Lazy.Char8 qualified as BSL
+import Data.Render
+import Data.String
+import Data.Tuple.Triple
+import Prelude hiding ((.), id)
+import System.Process
 
 data PHPCode a b = PHPCode String
     deriving (Eq, Show)

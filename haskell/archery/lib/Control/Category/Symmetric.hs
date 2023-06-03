@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Control.Category.Symmetric where
 
 class Symmetric cat where

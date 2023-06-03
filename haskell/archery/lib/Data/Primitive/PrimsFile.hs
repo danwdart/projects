@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Data.Primitive.PrimsFile where
 
 data PrimsFile a b where

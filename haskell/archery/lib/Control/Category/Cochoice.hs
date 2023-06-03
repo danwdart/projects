@@ -1,3 +1,6 @@
+{-# LANGUAGE Safe #-}
+
+
 module Control.Category.Cochoice where
 
 class Cochoice cat where

@@ -1,4 +1,17 @@
-module Data.FreeFunc where
+{-# LANGUAGE GADTs, OverloadedLists, OverloadedStrings, QuantifiedConstraints, Unsafe #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
+
+module Data.Function.Free.Abstract where
+
+import Control.Category
+import Control.Category.Cartesian
+import Control.Category.Cocartesian
+import Control.Category.Choice
+import Control.Category.Cochoice
+import Control.Category.Costrong
+import Control.Category.Numeric
+import Control.Category.Strong
+import Data.Aeson
 
 data FreeFunc p a b where
     Id :: FreeFunc p x x

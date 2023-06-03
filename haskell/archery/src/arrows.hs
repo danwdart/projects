@@ -7,25 +7,33 @@ module Main where
 import Prelude hiding ((.), id)
 import Control.Arrow (Kleisli(..))
 import Control.Category
+import Control.Category.Primitive.Abstract
+import Control.Category.Primitive.Console
 import Control.Category.Cartesian
-import Control.Monad
-import Control.Monad.Fix
+import Control.Category.Choice
+import Control.Category.Cocartesian
+import Control.Category.Numeric
+import Control.Category.Strong
+import Control.Category.Utilities
 import Data.Aeson
 import qualified Data.ByteString.Char8 as BS
 import qualified Data.ByteString.Lazy.Char8 as BSL
 -- import Data.Profunctor
+import Data.Code.Haskell.Func
+import Data.Code.Haskell.Lamb
+import Data.Code.JS.Func
+import Data.Code.PHP.Func
+import Data.Function.Free.Abstract
+import Data.Primitive.Prims
 import Data.Render
-import Data.String
-import Numeric.Natural
-import System.Process
 import qualified Data.Yaml as Y
 
 -- newtype Diagram a b = Diagram { toGraph :: State Graph InputOutputLinks }
 
-isPalindrome :: (Cartesian cat, Strong cat, Primitive cat) => cat String Bool
+isPalindrome :: (Category cat, Cartesian cat, Strong cat, Primitive cat) => cat String Bool
 isPalindrome = eq . first' reverseString . copy
 
-collatzStep :: forall cat. (Numeric cat, Cartesian cat, Cocartesian cat, Choice cat, Strong cat, Primitive cat) => cat Int Int
+collatzStep :: forall cat. (Category cat, Numeric cat, Cartesian cat, Cocartesian cat, Choice cat, Strong cat, Primitive cat) => cat Int Int
 collatzStep = unify . (onOdds +++ onEvens) . matchOn isEven where
     onOdds :: cat Int Int
     onOdds = strong add (num 1) . strong mult (num 3)
@@ -33,16 +41,16 @@ collatzStep = unify . (onOdds +++ onEvens) . matchOn isEven where
     onEvens :: cat Int Int
     onEvens = strong div' (num 2)
 
-    isEven :: forall cat. (Numeric cat, Cartesian cat, Strong cat, Primitive cat) => cat Int Bool
+    isEven :: cat Int Bool
     isEven = strong eq (num 0) . mod2
 
     mod2 :: cat Int Int
     mod2 = strong mod' (num 2)
 
-    matchOn :: (Cartesian cat, Strong cat, Cocartesian cat) => cat a Bool -> cat a (Either a a)
+    matchOn :: cat a Bool -> cat a (Either a a)
     matchOn predicate = tag . first' predicate . copy
 
-revInputProgram :: (PrimitiveConsole cat, Primitive cat) => cat () ()
+revInputProgram :: (Category cat, PrimitiveConsole cat, Primitive cat) => cat () ()
 revInputProgram = outputString . reverseString . inputString
 
 {-

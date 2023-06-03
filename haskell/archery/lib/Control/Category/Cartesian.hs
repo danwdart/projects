@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Control.Category.Cartesian where
 
 import Control.Arrow

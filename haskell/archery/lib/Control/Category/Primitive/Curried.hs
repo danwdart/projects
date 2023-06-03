@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Control.Category.Primitive.Curried where
 
 class PrimitiveCurried cat where

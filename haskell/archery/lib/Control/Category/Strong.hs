@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Control.Category.Strong where
 
 import Control.Arrow (Kleisli(..))

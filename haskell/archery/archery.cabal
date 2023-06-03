@@ -87,14 +87,45 @@ library
   --ghc-options: -Wno-unused-packages
   hs-source-dirs:      lib
   build-depends: base >= 4.16 && < 5
+               , aeson
+               , bytestring
+               , process
   exposed-modules:
+    Control.Category.LambdaCalculus.BCKW
+    Control.Category.LambdaCalculus.SKI
+    Control.Category.Primitive.Abstract
+    Control.Category.Primitive.Console
+    Control.Category.Primitive.Curried
+    Control.Category.Primitive.JSON
+    Control.Category.Primitive.Stdio
+    Control.Category.Apply
     Control.Category.Cartesian
+    Control.Category.Choice
+    Control.Category.Cocartesian
+    Control.Category.Cochoice
+    Control.Category.Costrong
+    Control.Category.Curry
+    Control.Category.Numeric
+    Control.Category.Strong
+    Control.Category.Symmetric
+    Control.Category.Utilities
+    Data.Code.Haskell.Func
+    Data.Code.Haskell.Lamb
+    Data.Code.JS.Func
+    Data.Code.PHP.Func
+    Data.Function.Free.LambdaCalculus.BCKW
+    Data.Function.Free.LambdaCalculus.SKI
+    Data.Function.Free.Abstract
+    Data.Primitive.Prims
+    Data.Primitive.PrimsConsole
+    Data.Primitive.PrimsFile
+    Data.Tuple.Triple
     Data.Render
 
 executable arrows
   import: shared-properties-unsafe
   main-is:             arrows.hs
-  build-depends:       base >= 4.16 && < 5, aeson, bytestring, process, yaml
+  build-depends:       base >= 4.16 && < 5, aeson, archery, bytestring, yaml
 
 test-suite test
   type:                exitcode-stdio-1.0

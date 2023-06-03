@@ -1,5 +1,6 @@
-module Control.Category.Curry where
+{-# LANGUAGE Safe #-}
 
+module Control.Category.Curry where
 
 class Curry cat where
     curry' :: cat (cat (a, b) c) (cat a (cat b c))

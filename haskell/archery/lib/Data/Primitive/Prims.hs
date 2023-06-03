@@ -1,4 +1,11 @@
+{-# LANGUAGE GADTs, OverloadedStrings, Unsafe #-}
+{-# OPTIONS_GHC -Wno-unsafe #-}
+
 module Data.Primitive.Prims where
+
+import Control.Category.Primitive.Abstract
+import Data.Aeson
+import Data.Function.Free.Abstract
 
 data Prims a b where
     ReverseString :: Prims String String

@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Control.Category.Apply where
 
 import Control.Arrow (Kleisli(..))
@@ -8,5 +10,5 @@ class Apply cat where
 instance Apply (->) where
     app (f, x) = f x
 
-instance Monad m => Apply (Kleisli m) where
+instance Apply (Kleisli m) where
     app = Kleisli (\(Kleisli f, x) -> f x)

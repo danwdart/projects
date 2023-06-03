@@ -1,4 +1,6 @@
-module Control.Category.Primitive where
+{-# LANGUAGE Safe #-}
+
+module Control.Category.Primitive.Abstract where
 
 import Control.Arrow (Kleisli(..))
 
