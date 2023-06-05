@@ -6,10 +6,12 @@ import Control.Category
 import Control.Category.Cartesian
 import Control.Category.Choice
 import Control.Category.Cocartesian
+import Control.Category.Execute.Haskell
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
 import Control.Category.Strong
+import Control.Monad.IO.Class
 import Data.Render
 import Data.String
 import Data.Tuple.Triple
@@ -74,9 +76,11 @@ instance Numeric HSLamb where
     div' = "(\\(x, y) -> div x y)"
     mod' = "(\\(x, y) -> mod x y)"
 
-
 instance Render (HSLamb a b) where
     render (HSLamb f) = f
 
-runInGHCiParamL :: (Show input, Read output) => HSLamb input output -> input -> IO output
-runInGHCiParamL cat param = read . secondOfThree <$> readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] ""
+-- @TODO escape shell - Text.ShellEscape?
+instance ExecuteHaskell HSLamb where
+    executeViaGHCi cat param = read . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] "")
+
+-- @ TODO JSON

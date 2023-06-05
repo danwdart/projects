@@ -91,11 +91,15 @@ library
                , bytestring
                , process
   exposed-modules:
+    Control.Category.Execute.Haskell
+    Control.Category.Execute.JSON
+    Control.Category.Execute.Stdio
     Control.Category.LambdaCalculus.BCKW
     Control.Category.LambdaCalculus.SKI
     Control.Category.Primitive.Abstract
     Control.Category.Primitive.Console
     Control.Category.Primitive.Curried
+    Control.Category.Primitive.Interpret
     Control.Category.Primitive.JSON
     Control.Category.Primitive.Stdio
     Control.Category.Apply
@@ -105,17 +109,21 @@ library
     Control.Category.Cochoice
     Control.Category.Costrong
     Control.Category.Curry
+    Control.Category.Interpret
     Control.Category.Numeric
     Control.Category.Strong
     Control.Category.Symmetric
     Control.Category.Utilities
     Data.Code.Haskell.Func
     Data.Code.Haskell.Lamb
-    Data.Code.JS.Func
-    Data.Code.PHP.Func
+    Data.Code.JS.Lamb
+    Data.Code.PHP.Lamb
     Data.Function.Free.LambdaCalculus.BCKW
     Data.Function.Free.LambdaCalculus.SKI
     Data.Function.Free.Abstract
+    Data.Function.IsPalindrome
+    Data.Function.CollatzStep
+    Data.Function.ReverseInput
     Data.Primitive.Prims
     Data.Primitive.PrimsConsole
     Data.Primitive.PrimsFile
@@ -133,5 +141,10 @@ test-suite test
   main-is:             Spec.hs
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5, archery, hspec, QuickCheck
-  other-modules:       
+  build-depends:       base >= 4.16 && < 5, aeson, archery, hspec, QuickCheck
+  other-modules:       Data.Code.Haskell.FuncSpec
+                       Data.Code.Haskell.LambSpec
+                       Data.Code.JS.LambSpec
+                       Data.Code.PHP.LambSpec
+                       Data.Function.Free.AbstractSpec
+                       Data.Primitive.PrimsSpec

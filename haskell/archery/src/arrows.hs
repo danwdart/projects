@@ -6,52 +6,26 @@ module Main where
 
 import Prelude hiding ((.), id)
 import Control.Arrow (Kleisli(..))
-import Control.Category
-import Control.Category.Primitive.Abstract
-import Control.Category.Primitive.Console
-import Control.Category.Cartesian
-import Control.Category.Choice
-import Control.Category.Cocartesian
-import Control.Category.Numeric
-import Control.Category.Strong
-import Control.Category.Utilities
 import Data.Aeson
 import qualified Data.ByteString.Char8 as BS
 import qualified Data.ByteString.Lazy.Char8 as BSL
 -- import Data.Profunctor
+import Control.Category.Execute.Haskell
+import Control.Category.Execute.JSON
 import Data.Code.Haskell.Func
 import Data.Code.Haskell.Lamb
-import Data.Code.JS.Func
-import Data.Code.PHP.Func
+import Data.Code.JS.Lamb
+import Data.Code.PHP.Lamb
 import Data.Function.Free.Abstract
+import Data.Function.IsPalindrome
+import Data.Function.CollatzStep
+import Data.Function.ReverseInput
 import Data.Primitive.Prims
 import Data.Render
 import qualified Data.Yaml as Y
 
 -- newtype Diagram a b = Diagram { toGraph :: State Graph InputOutputLinks }
 
-isPalindrome :: (Category cat, Cartesian cat, Strong cat, Primitive cat) => cat String Bool
-isPalindrome = eq . first' reverseString . copy
-
-collatzStep :: forall cat. (Category cat, Numeric cat, Cartesian cat, Cocartesian cat, Choice cat, Strong cat, Primitive cat) => cat Int Int
-collatzStep = unify . (onOdds +++ onEvens) . matchOn isEven where
-    onOdds :: cat Int Int
-    onOdds = strong add (num 1) . strong mult (num 3)
-
-    onEvens :: cat Int Int
-    onEvens = strong div' (num 2)
-
-    isEven :: cat Int Bool
-    isEven = strong eq (num 0) . mod2
-
-    mod2 :: cat Int Int
-    mod2 = strong mod' (num 2)
-
-    matchOn :: cat a Bool -> cat a (Either a a)
-    matchOn predicate = tag . first' predicate . copy
-
-revInputProgram :: (Category cat, PrimitiveConsole cat, Primitive cat) => cat () ()
-revInputProgram = outputString . reverseString . inputString
 
 {-
 debugTest :: forall a b cat runnerCat. String -> cat a b -> [(String, runnerCat a b -> a -> b)] -> [a] -> IO ()
@@ -65,67 +39,100 @@ debugTest name fn runners cases = do
 
 main :: IO ()
 main = do
-    putStrLn "isPalindrome"
-    putStrLn $ "HSLamb: " <> render (isPalindrome :: HSLamb String Bool)
-    floopyHSL <- runInGHCiParamL isPalindrome "floopy"
-    abobaHSL <- runInGHCiParamL isPalindrome "aboba"
-    putStrLn $ "HSLamb (GHCi): " <> show floopyHSL
-    putStrLn $ "HSLamb (GHCi): " <> show abobaHSL
-    putStrLn $ "HSCode: " <> render (isPalindrome :: HSCode String Bool)
-    floopyHSC <- runInGHCiParamC isPalindrome "floopy"
-    abobaHSC <- runInGHCiParamC isPalindrome "aboba"
-    putStrLn $ "HSCode (GHCi): " <> show floopyHSC
-    putStrLn $ "HSCode (GHCi): " <> show abobaHSC
-    putStrLn $ "JSCode: " <> render (isPalindrome :: JSCode String Bool)
-    floopyNode <- runInNode isPalindrome "floopy" :: IO (Maybe Bool)
-    abobaNode <- runInNode isPalindrome "aboba" :: IO (Maybe Bool)
-    putStrLn $ "JSCode (Node, floopy): " <> show (floopyNode)
-    putStrLn $ "JSCode (Node, aboba): " <> show (abobaNode)
-    putStrLn $ "PHPCode: " <> render (isPalindrome :: PHPCode String Bool)
-    floopyPHP <- runInPHP isPalindrome "floopy" :: IO (Maybe Bool)
-    abobaPHP <- runInPHP isPalindrome "aboba" :: IO (Maybe Bool)
-    putStrLn $ "PHPCode (PHP, floopy): " <> show (floopyPHP)
-    putStrLn $ "PHPCode (PHP, aboba): " <> show (abobaPHP)
+    {-}
+    let functions :: [(String, Fn)]
+        functions = [
+            ("isPalindrome", Fn isPalindrome [("floopy", False), ("aboba", True)]),
+            ("collatzStep", Fn collatzStep [(3, 10), (4, 2), (5, 16)])
+            ]
+    -}
+    do
+        let fnName :: String
+            fnName = "isPalindrome"
+
+            examples :: [(String, Bool)]
+            examples = [
+                ("floopy", False),
+                ("aboba", True)
+                ]
+
+        putStrLn fnName
+
+        do
+            let catName :: String
+                catName = "HSLamb"
+                fn :: HSLamb String Bool
+                fn = isPalindrome
+
+            putStrLn $ catName <> ": " <> render fn
+            exampleAnswers <- mapM (executeViaGHCi fn) (fst <$> examples)
+            putStrLn $ catName <> " (GHCi): " <> show (exampleAnswers :: [Bool])
+        do
+            let catName :: String
+                catName = "HSFunc"
+                fn :: HSFunc String Bool
+                fn = isPalindrome
+
+            putStrLn $ catName <> ": " <> render fn
+            exampleAnswers <- mapM (executeViaGHCi fn) (fst <$> examples)
+            putStrLn $ catName <> " (GHCi): " <> show (exampleAnswers :: [Bool])
+        
+
+
+
+    putStrLn $ "JSLamb: " <> render (isPalindrome :: JSLamb String Bool)
+    floopyNode <- executeViaJSON (isPalindrome :: JSLamb String Bool) "floopy" :: IO (Maybe Bool)
+    abobaNode <- executeViaJSON (isPalindrome :: JSLamb String Bool) "aboba" :: IO (Maybe Bool)
+    putStrLn $ "JSLamb (Node, floopy): " <> show (floopyNode)
+    putStrLn $ "JSLamb (Node, aboba): " <> show (abobaNode)
+    putStrLn $ "PHPLamb: " <> render (isPalindrome :: PHPLamb String Bool)
+    floopyPHP <- executeViaJSON (isPalindrome :: PHPLamb String Bool) "floopy" :: IO (Maybe Bool)
+    abobaPHP <- executeViaJSON (isPalindrome :: PHPLamb String Bool) "aboba" :: IO (Maybe Bool)
+    putStrLn $ "PHPLamb (PHP, floopy): " <> show (floopyPHP)
+    putStrLn $ "PHPLamb (PHP, aboba): " <> show (abobaPHP)
     putStrLn $ "FreeFunc: " <> show (isPalindrome :: FreeFunc Prims String Bool)
     putStrLn $ "FreeFunc (JSON encoded): " <> (BSL.unpack $ encode (isPalindrome :: FreeFunc Prims String Bool))
     putStrLn $ "FreeFunc (YAML encoded): " <> (BS.unpack $ Y.encode (isPalindrome :: FreeFunc Prims String Bool))
     putStrLn $ "Execute on (free): " <> show (isPalindrome "floopy")
     putStrLn $ "Execute on (evilolive): " <> show (isPalindrome "aboba")
+
     putStrLn ""
     putStrLn "collatzStep"
     putStrLn $ "HSLamb: " <> render (collatzStep :: HSLamb Int Int)
-    hsl5 <- runInGHCiParamL collatzStep 5
-    hsl4 <- runInGHCiParamL collatzStep 4
+    hsl5 <- executeViaGHCi (collatzStep :: HSLamb Int Int) 5
+    hsl4 <- executeViaGHCi (collatzStep :: HSLamb Int Int) 4
     putStrLn $ "HSLamb (GHCi, 5): " <> show hsl5
     putStrLn $ "HSLamb (GHCi, 4): " <> show hsl4
-    putStrLn $ "HSCode: " <> render (collatzStep :: HSCode Int Int)
-    hsc5 <- runInGHCiParamC collatzStep 5
-    hsc4 <- runInGHCiParamC collatzStep 4
-    putStrLn $ "HSCode (GHCi, 5): " <> show hsc5
-    putStrLn $ "HSCode (GHCi, 4): " <> show hsc4
-    putStrLn $ "JSCode: " <> render (collatzStep :: JSCode Int Int)
-    node5 <- runInNode collatzStep 5
-    node4 <- runInNode collatzStep 4
-    putStrLn $ "JSCode (Node, 5): " <> show (node5)
-    putStrLn $ "JSCode (Node, 4): " <> show (node4)
-    putStrLn $ "PHPCode: " <> render (collatzStep :: PHPCode Int Int)
-    php5 <- runInPHP collatzStep 5
-    php4 <- runInPHP collatzStep 4
-    putStrLn $ "PHPCode (PHP, 5): " <> show (php5)
-    putStrLn $ "PHPCode (PHP, 4): " <> show (php4)
+    putStrLn $ "HSFunc: " <> render (collatzStep :: HSFunc Int Int)
+    hsc5 <- executeViaGHCi (collatzStep :: HSFunc Int Int) 5
+    hsc4 <- executeViaGHCi (collatzStep :: HSFunc Int Int) 4
+    putStrLn $ "HSFunc (GHCi, 5): " <> show hsc5
+    putStrLn $ "HSFunc (GHCi, 4): " <> show hsc4
+    putStrLn $ "JSLamb: " <> render (collatzStep :: JSLamb Int Int)
+    node5 <- executeViaJSON (collatzStep :: JSLamb Int Int) 5
+    node4 <- executeViaJSON (collatzStep :: JSLamb Int Int) 4
+    putStrLn $ "JSLamb (Node, 5): " <> show (node5)
+    putStrLn $ "JSLamb (Node, 4): " <> show (node4)
+    putStrLn $ "PHPLamb: " <> render (collatzStep :: PHPLamb Int Int)
+    php5 <- executeViaJSON (collatzStep :: PHPLamb Int Int) 5
+    php4 <- executeViaJSON (collatzStep :: PHPLamb Int Int) 4
+    putStrLn $ "PHPLamb (PHP, 5): " <> show (php5)
+    putStrLn $ "PHPLamb (PHP, 4): " <> show (php4)
     putStrLn $ "FreeFunc: " <> show (collatzStep :: FreeFunc Prims Int Int)
     putStrLn $ "FreeFunc (JSON encoded): " <> (BSL.unpack $ encode (collatzStep :: FreeFunc Prims Int Int))
     putStrLn $ "FreeFunc (YAML encoded): " <> (BS.unpack $ Y.encode (collatzStep :: FreeFunc Prims Int Int))
     putStrLn $ "Execute on 3: " <> show (collatzStep 3)
     putStrLn $ "Execute on 4: " <> show (collatzStep 4)
     putStrLn ""
+
+
     putStrLn "revInputProgram" -- @TODO use a different type?
     -- putStrLn $ "HSLamb: " <> render (revInputProgram :: HSLamb () ()) -- @TODO fix
-    -- runInGHCiParamL revInputProgram ()
-    putStrLn $ "HSCode: " <> render (revInputProgram :: HSCode () ())
-    -- runInGHCiParamC revInputProgram ()
-    putStrLn $ "JSCode: " <> render (revInputProgram :: JSCode () ()) -- we ain't running that as we're in no browser
-    putStrLn $ "PHPCode: " <> render (revInputProgram :: PHPCode () ())
+    -- executeViaGHCi revInputProgram ()
+    putStrLn $ "HSFunc: " <> render (revInputProgram :: HSFunc () ())
+    -- executeViaGHCi revInputProgram ()
+    putStrLn $ "JSLamb: " <> render (revInputProgram :: JSLamb () ()) -- we ain't running that as we're in no browser
+    putStrLn $ "PHPLamb: " <> render (revInputProgram :: PHPLamb () ())
     -- runInPHP revInputProgram ()
     -- putStrLn $ "FreeFunc: " <> show (revInputProgram :: (PrimitiveConsole (FreeFunc p), Primitive (FreeFunc p)) => FreeFunc p () ())
     -- putStrLn $ "FreeFunc (JSON encoded): " <> (BSL.unpack $ encode (revInputProgram :: FreeFunc p () ()))
