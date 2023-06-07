@@ -34,7 +34,7 @@ common shared-properties-lib
     -Wno-missing-kind-signatures
     -Werror
     -haddock
-  build-depends:       base >= 4.18 && < 5
+  build-depends:       base >= 4.18.0.0 && < 5
   default-extensions:
     NoGeneralizedNewtypeDeriving
     Safe
@@ -52,7 +52,7 @@ common shared-properties-unsafe
     -Werror
     -haddock
     -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base >= 4.18 && < 5
+  build-depends:       base >= 4.18.0.0 && < 5
 
 common shared-properties-safe
   import: shared-properties-unsafe
@@ -129,7 +129,7 @@ executable applicativedo
 
 executable bar
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             bar.hs
 
 executable baz
@@ -138,18 +138,22 @@ executable baz
 
 executable betterbools
   import: shared-properties-unsafe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             betterbools.hs
 
 executable bifunctor
   import: shared-properties-safe
   main-is:             bifunctor.hs
-  build-depends:       base >= 4.18 && < 5
+  build-depends:       base >= 4.18.0.0 && < 5
 
 executable breakeverything
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             breakeverything.hs
+
+executable callstack
+  import: shared-properties-safe
+  main-is:             callstack.hs
 
 executable church
   import: shared-properties-safe
@@ -157,12 +161,16 @@ executable church
 
 executable cipher
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             cipher.hs
 
 executable class
   import: shared-properties-safe
   main-is:             class.hs
+
+executable classes1
+  import: shared-properties-safe
+  main-is:             classes1.hs
 
 executable classifier
   import: shared-properties-safe
@@ -174,7 +182,7 @@ executable cli
 
 executable composefunctors
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             composefunctors.hs
 
 executable composition-eta
@@ -191,7 +199,7 @@ executable crackme
 
 executable currency
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             currency.hs
 
 executable cyclesinmixedset
@@ -200,17 +208,17 @@ executable cyclesinmixedset
 
 executable data
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             data.hs
 
 executable data2
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             data2.hs
 
 executable datatypes
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             datatypes.hs
 
 executable dci
@@ -219,7 +227,7 @@ executable dci
 
 executable disparate
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             disparate.hs
 
 executable do
@@ -253,7 +261,7 @@ executable evidence
 
 executable eviloop
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             eviloop.hs
 
 executable exception-safety
@@ -282,7 +290,7 @@ executable foo
 
 executable free-monads
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             free-monads.hs
 
 executable frp
@@ -291,7 +299,7 @@ executable frp
 
 executable gadts
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             gadts.hs
 
 executable generics
@@ -332,12 +340,16 @@ executable mvar
 
 executable mylens
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             mylens.hs
 
 executable noecho
   import: shared-properties-safe
   main-is:             noecho.hs
+
+executable nonary
+  import: shared-properties-safe
+  main-is:             nonary.hs
 
 executable overlap
   import: shared-properties-safe
@@ -345,7 +357,7 @@ executable overlap
 
 executable parser
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             parser.hs
 
 executable pipeline
@@ -358,7 +370,7 @@ executable pointers
 
 executable postfixops
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             postfixops.hs
 
 executable prim
@@ -368,11 +380,11 @@ executable prim
 executable propagators
   import: shared-properties-safe
   main-is:             propagators.hs
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
 
 executable read
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             read.hs
 
 executable rebindable
@@ -381,7 +393,7 @@ executable rebindable
 
 executable secrets
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             secrets.hs
 
 executable schema
@@ -390,12 +402,12 @@ executable schema
 
 executable sequence
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             sequence.hs
 
 executable sequences
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             sequences.hs
 
 executable shop
@@ -420,7 +432,7 @@ executable tagless-final
 
 executable texttodec
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             textToDec.hs
 
 executable texttodeccrazy
@@ -445,18 +457,18 @@ executable typeapplications
 
 executable types
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             types.hs
 
 executable variadic
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             variadic.hs
 
 executable wave
   import: shared-properties-safe
   main-is:             wave.hs
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
 
 executable weird-calls
   import: shared-properties-safe
@@ -464,7 +476,7 @@ executable weird-calls
 
 executable weird-instances
   import: shared-properties-safe
-  build-depends:       base >= 4.18 && < 5, onlybase
+  build-depends:       base >= 4.18.0.0 && < 5, onlybase
   main-is:             weird-instances.hs
 
 executable whereinlet
