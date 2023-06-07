@@ -23,14 +23,13 @@ prop_CollatzStepIsCorrectViaJSON i = withMaxSuccess 200 . monadicIO $ do
     pure $ answer === Right (collatzStep i)
 
 spec ∷ Spec
-spec = describe "Code.PHP.Lamb" $ do
-    describe "executeViaJSON" $ do
-        it "isPalindrome is correct" $
-            property prop_IsPalindromeIsCorrectViaJSON
-        it "collatzStep is correct" $
-            property prop_CollatzStepIsCorrectViaJSON
-        describe "greet" $ do
-            it "greetData is correct" $
-                executeViaJSON (greetData :: PHPLamb Person String) (Person "Dan" 32) `shouldReturn` Right (greetData (Person "Dan" 32))
-            it "greetTuple is correct" $
-                executeViaJSON (greetTuple :: PHPLamb (String, Int) String) ("Dan", 32) `shouldReturn` Right (greetTuple ("Dan", 32))
+spec = describe "executeViaJSON" $ do
+    it "isPalindrome is correct" $
+        property prop_IsPalindromeIsCorrectViaJSON
+    it "collatzStep is correct" $
+        property prop_CollatzStepIsCorrectViaJSON
+    describe "greet" $ do
+        it "greetData is correct" $
+            executeViaJSON (greetData :: PHPLamb Person String) (Person "Dan" 32) `shouldReturn` Right (greetData (Person "Dan" 32))
+        it "greetTuple is correct" $
+            executeViaJSON (greetTuple :: PHPLamb (String, Int) String) ("Dan", 32) `shouldReturn` Right (greetTuple ("Dan", 32))

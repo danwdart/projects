@@ -27,8 +27,7 @@ prop_CollatzStepIsCorrectViaEncodeDecodeInterpret i = withMaxSuccess 200 $
 -- @TODO random functions
 
 spec ∷ Spec
-spec = describe "Data.Function.Free.Abstract" $ do
-    pure ()
+spec = pure ()
     -- No FromJSON yet
     {-}
     describe "executeViaEncodeDecodeInterpret" $ do

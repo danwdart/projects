@@ -23,14 +23,13 @@ prop_CollatzStepIsCorrectViaGHCi i = i >= 0 ==> withMaxSuccess 200 . monadicIO $
     pure $ answer === Right (collatzStep i)
 
 spec ∷ Spec
-spec = describe "Code.Haskell.Lamb" $ do
-    describe "executeViaGHCi" $ do
-        it "isPalindrome is correct" $
-            property prop_IsPalindromeIsCorrectViaGHCi
-        it "collatzStep is correct" $
-            property prop_CollatzStepIsCorrectViaGHCi
-        describe "greet" $ do
-            it "greetData is correct" $
-                executeViaGHCi (greetData :: HSLamb Person String) (Person "Dan" 32) `shouldReturn` Right (greetData (Person "Dan" 32))
-            it "greetTuple is correct" $
-                executeViaGHCi (greetTuple :: HSLamb (String, Int) String) ("Dan", 32) `shouldReturn` Right (greetTuple ("Dan", 32))
+spec = describe "executeViaGHCi" $ do
+    it "isPalindrome is correct" $
+        property prop_IsPalindromeIsCorrectViaGHCi
+    it "collatzStep is correct" $
+        property prop_CollatzStepIsCorrectViaGHCi
+    describe "greet" $ do
+        it "greetData is correct" $
+            executeViaGHCi (greetData :: HSLamb Person String) (Person "Dan" 32) `shouldReturn` Right (greetData (Person "Dan" 32))
+        it "greetTuple is correct" $
+            executeViaGHCi (greetTuple :: HSLamb (String, Int) String) ("Dan", 32) `shouldReturn` Right (greetTuple ("Dan", 32))

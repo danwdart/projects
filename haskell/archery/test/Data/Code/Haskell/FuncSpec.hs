@@ -31,8 +31,7 @@ prop_RevInputProgramIsCorrectViaStdio s = length s > 1 && all (`notElem` "$") s 
 -}
 
 spec ∷ Spec
-spec = describe "Code.Haskell.Func" $ do
-    describe "executeViaGHCi" $ do
+spec = describe "executeViaGHCi" $ do
         it "isPalindrome is correct" $
             property prop_IsPalindromeIsCorrectViaGHCi
         it "collatzStep is correct" $
