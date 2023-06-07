@@ -18,7 +18,7 @@ common shared-properties
   hs-source-dirs:      src
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -35,7 +35,7 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
                      , digits
                      , primes
   ghc-options:         -Wall -Werror -haddock
@@ -71,67 +71,67 @@ library
 executable oeisA001222
   import: shared-properties
   main-is:             oeis/A001222.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable oeisA001223
   import: shared-properties
   main-is:             oeis/A001223.hs
-  build-depends:       base >= 4.16 && < 5, containers, primes
+  build-depends:       base >= 4.16.4.0 && < 5, containers, primes
 
 executable oeisA001414
   import: shared-properties
   main-is:             oeis/A001414.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable oeisA003001
   import: shared-properties
   main-is:             oeis/A003001.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable oeisA003001-otherbases
   import: shared-properties
   main-is:             oeis/A003001-otherbases.hs
-  build-depends:       base >= 4.16 && < 5, maths, digits
+  build-depends:       base >= 4.16.4.0 && < 5, maths, digits
 
 executable oeisA005276
   import: shared-properties
   main-is:             oeis/A005276.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable oeisA024702
   import: shared-properties
   main-is:             oeis/A024702.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable oeisA025281
   import: shared-properties
   main-is:             oeis/A025281.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable oeisA032742
   import: shared-properties
   main-is:             oeis/A032742.hs
-  build-depends:       base >= 4.16 && < 5, maths, primes
+  build-depends:       base >= 4.16.4.0 && < 5, maths, primes
 
 executable oeisA052126
   import: shared-properties
   main-is:             oeis/A052126.hs
-  build-depends:       base >= 4.16 && < 5, maths, primes
+  build-depends:       base >= 4.16.4.0 && < 5, maths, primes
 
 executable oeisA112544
   import: shared-properties
   main-is:             oeis/A112544.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable oeisA133058
   import: shared-properties
   main-is:             oeis/A133058.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
 
 executable oeisA171607
   import: shared-properties
   main-is:             oeis/A171607.hs
-  build-depends:       base >= 4.16 && < 5, containers
+  build-depends:       base >= 4.16.4.0 && < 5, containers
 
 executable oeisA181391
   import: shared-properties
@@ -140,17 +140,17 @@ executable oeisA181391
 executable oeisA275124
   import: shared-properties
   main-is:             oeis/A275124.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable oeisA275167
   import: shared-properties
   main-is:             oeis/A275167.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable oeisA308267
   import: shared-properties
   main-is:             oeis/A308267.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
 
 executable oeisA309979
   import: shared-properties
@@ -159,17 +159,17 @@ executable oeisA309979
 executable oeisA332049
   import: shared-properties
   main-is:             oeis/A332049.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable oeisA349049
   import: shared-properties
   main-is:             oeis/A349049.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable oeisA355467
   import: shared-properties
   main-is:             oeis/A355467.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable ai
   import: shared-properties
@@ -178,7 +178,7 @@ executable ai
 executable algebra
   import: shared-properties
   main-is:             algebra.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
 
 executable arbitrage
   import: shared-properties
@@ -191,7 +191,7 @@ executable babylonsqrt
 executable base
   import: shared-properties
   main-is:             base.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
 
 executable base-own
   import: shared-properties
@@ -204,18 +204,18 @@ executable cardord
 executable cells-aa
   import: shared-properties
   main-is:             cells-aa.hs
-  build-depends:       base >= 4.16 && < 5, digits
+  build-depends:       base >= 4.16.4.0 && < 5, digits
 -- gloss
 
 executable collatz
   import: shared-properties
   main-is:             collatz.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable common-ancestors
   import: shared-properties
   main-is:             common-ancestors.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
   -- , containers, MonadRandom
 
 executable complex
@@ -233,33 +233,33 @@ executable divoverflow
 executable exact-real
   import: shared-properties
   main-is:             exact-real.hs
-  build-depends:       base >= 4.16 && < 5, maths, numbers, cf
+  build-depends:       base >= 4.16.4.0 && < 5, maths, numbers, cf
 
 executable factors
   import: shared-properties
   main-is:             factors.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable faro
   import: shared-properties
   main-is:             faro.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
 
 executable friendly
   import: shared-properties
   main-is:             friendly.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable frobenius
   import: shared-properties
   main-is:             frobenius.hs
-  build-depends:       base >= 4.16 && < 5, errors, extra, maths
+  build-depends:       base >= 4.16.4.0 && < 5, errors, extra, maths
 
 -- https://github.com/dylex/invertible/issues/5
 -- executable gamma
 --   import: shared-properties
 --   main-is:             gamma.hs
---   build-depends:       base >= 4.16 && < 5, invertible
+--   build-depends:       base >= 4.16.4.0 && < 5, invertible
 
 executable graft
   import: shared-properties
@@ -268,27 +268,27 @@ executable graft
 executable graphs
   import: shared-properties
   main-is:             graphs.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
 
 executable happy
   import: shared-properties
   main-is:             happy.hs
-  build-depends:       base >= 4.16 && < 5, digits, maths
+  build-depends:       base >= 4.16.4.0 && < 5, digits, maths
 
 executable harmonic-limit
   import: shared-properties
   main-is:             harmonic-limit.hs
-  build-depends:       base >= 4.16 && < 5, extra
+  build-depends:       base >= 4.16.4.0 && < 5, extra
 
 executable highlycompositebase
   import: shared-properties
   main-is:             highlycompositebase.hs
-  build-depends:       base >= 4.16 && < 5, maths, digits
+  build-depends:       base >= 4.16.4.0 && < 5, maths, digits
 
 -- executable jig
 --   import: shared-properties
 --   main-is:             jig.hs
---   build-depends:       base >= 4.16 && < 5
+--   build-depends:       base >= 4.16.4.0 && < 5
 
 executable kaprekar
   import: shared-properties
@@ -298,7 +298,7 @@ executable kaprekar
 -- executable localgraph
 --   import: shared-properties
 --   main-is:             localgraph.hs
---   build-depends:       base >= 4.16 && < 5, fgl, graphite, graphviz, hashable, text
+--   build-depends:       base >= 4.16.4.0 && < 5, fgl, graphite, graphviz, hashable, text
 
 executable lucas
   import: shared-properties
@@ -306,7 +306,7 @@ executable lucas
 
 executable mirror
   import: shared-properties
-  build-depends:       base >= 4.16 && < 5, digits
+  build-depends:       base >= 4.16.4.0 && < 5, digits
   main-is:             mirror.hs
 
 executable mod
@@ -316,7 +316,7 @@ executable mod
 executable napier-locar
   import: shared-properties
   main-is:             napier-locar.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 executable numbertypes
   import: shared-properties
@@ -325,7 +325,7 @@ executable numbertypes
 executable oeis
   import: shared-properties
   main-is:             oeis.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
                       , aeson
                       , GenericPretty
                       , req
@@ -337,7 +337,7 @@ executable onetwenty
 executable origami
   import: shared-properties
   main-is:             origami.hs
-  build-depends:       base >= 4.16 && < 5, cyclotomic
+  build-depends:       base >= 4.16.4.0 && < 5, cyclotomic
 
 executable pers-helpers
   import: shared-properties
@@ -354,7 +354,7 @@ executable pi-jg
 executable pi-factory
   import: shared-properties
   main-is:             pi/factory.hs
-  build-depends:       base >= 4.16 && < 5, factory
+  build-depends:       base >= 4.16.4.0 && < 5, factory
 
 executable pills
   import: shared-properties
@@ -363,7 +363,7 @@ executable pills
 executable plotter
   import: shared-properties
   main-is:             plotter.hs
-  build-depends:       base >= 4.16 && < 5, JuicyPixels, primes
+  build-depends:       base >= 4.16.4.0 && < 5, JuicyPixels, primes
 
 executable polynomials
   import: shared-properties
@@ -384,12 +384,12 @@ executable rootrationalapprox
 executable sandpiles
   import: shared-properties
   main-is:             sandpiles.hs
-  build-depends:       base >= 4.16 && < 5, comonad
+  build-depends:       base >= 4.16.4.0 && < 5, comonad
 
 executable selflocation
   import: shared-properties
   main-is:             selflocation.hs
-  build-depends:       base >= 4.16 && < 5, numbers
+  build-depends:       base >= 4.16.4.0 && < 5, numbers
 
 executable surds
   import: shared-properties
@@ -402,26 +402,26 @@ executable units
 executable words
   import: shared-properties
   main-is:             words.hs
-  build-depends:       base >= 4.16 && < 5, containers
+  build-depends:       base >= 4.16.4.0 && < 5, containers
 
 
 executable ulam
   import: shared-properties
   main-is:             ulam.hs
-  build-depends:       base >= 4.16 && < 5, maths
+  build-depends:       base >= 4.16.4.0 && < 5, maths
 
 -- Primes
 
 executable decomp
   import: shared-properties
   main-is:             primefun/decomp.hs
-  build-depends:       base >= 4.16 && < 5
+  build-depends:       base >= 4.16.4.0 && < 5
   -- fcv, primes
 
 executable harmonic-prime-denoms
   import: shared-properties
   main-is:             primefun/harmonic-prime-denoms.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable primemod
   import: shared-properties
@@ -434,7 +434,7 @@ executable primeraw
 executable primey
   import: shared-properties
   main-is:             primefun/primey.hs
-  build-depends:       base >= 4.16 && < 5, primes
+  build-depends:       base >= 4.16.4.0 && < 5, primes
 
 executable raw
   import: shared-properties
@@ -443,7 +443,7 @@ executable raw
 executable semiprime
   import: shared-properties
   main-is:             primefun/semiprime.hs
-  build-depends:       base >= 4.16 && < 5, maths, tabular
+  build-depends:       base >= 4.16.4.0 && < 5, maths, tabular
 
 test-suite maths-test
   import: shared-properties
@@ -457,7 +457,7 @@ test-suite maths-test
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:
-      base >= 4.16 && < 5
+      base >= 4.16.4.0 && < 5
     , maths
     , hspec
     -- , hspec-core
