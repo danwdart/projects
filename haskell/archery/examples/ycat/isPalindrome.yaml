@@ -1,0 +1,13 @@
+args:
+- args:
+  - Equal
+  type: Lift
+- args:
+  - args:
+    - args:
+      - ReverseString
+      type: Lift
+    type: First
+  - Copy
+  type: Compose
+type: Compose

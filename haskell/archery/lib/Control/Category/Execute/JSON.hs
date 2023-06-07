@@ -7,4 +7,4 @@ import Control.Monad.IO.Class
 import Data.Aeson
 
 class ExecuteJSON cat where
-    executeViaJSON :: (ToJSON input, FromJSON output, MonadIO m) => cat input output -> input -> m (Maybe output)
+    executeViaJSON :: (ToJSON input, FromJSON output, MonadIO m) => cat input output -> input -> m (Either String output)

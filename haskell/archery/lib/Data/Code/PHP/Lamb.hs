@@ -13,6 +13,7 @@ import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
 import Control.Category.Strong
+import Control.Category.Symmetric
 import Control.Monad.IO.Class
 import Data.Aeson
 import Data.ByteString.Lazy.Char8 qualified as BSL
@@ -52,7 +53,11 @@ instance Choice PHPLamb where
     left' (PHPLamb f) = PHPLamb $ "(fn ($x) => ['tag' => $x['tag'], 'value' => $x['tag'] === 'left' ? " <> f <> " ($x['value']) : $x['value']])"
     right' (PHPLamb f) = PHPLamb $ "(fn ($x) => ['tag' => $x['tag'], 'value' => $x['tag'] === 'right' ? " <> f <> " ($x['value']) : $x['value']])"
 
--- instance Symmetric PHPLamb where
+instance Symmetric PHPLamb where
+    swap = "(fn ($a) => [$a[1], $a[0]]))"
+    swapEither = "(fn ($a) => (['tag' => $a['tag'] === \"left\" ? \"right\" : \"left\", 'value' => $a['value']]))"
+    reassoc = "(([a, [b, c]]) => [[a, b], c])"
+    reassocEither = "Unacceptable, test failure!"
 
 -- instance Cochoice PHPLamb where
 
@@ -81,7 +86,7 @@ instance Render (PHPLamb a b) where
 
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON PHPLamb where
-    executeViaJSON cat param = decode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")));"] "")
+    executeViaJSON cat param = eitherDecode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")));"] "")
 
 instance ExecuteStdio PHPLamb where
     -- @TODO figure out why we have to have something here for argument - for now using null...

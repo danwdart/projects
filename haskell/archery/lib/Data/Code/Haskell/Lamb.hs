@@ -19,6 +19,7 @@ import Data.String
 import Data.Tuple.Triple
 import Prelude hiding ((.), id)
 import System.Process
+import Text.Read
 
 data HSLamb a b = HSLamb String
     deriving (Eq, Show)
@@ -89,7 +90,7 @@ instance Render (HSLamb a b) where
 
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteHaskell HSLamb where
-    executeViaGHCi cat param = read . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] "")
+    executeViaGHCi cat param = readEither . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] "")
 
 -- @TODO this passes too many arguments apparently...
 -- This is because of the id and (.) using the (->) instance whereas I am running Kleisli below.

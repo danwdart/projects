@@ -91,6 +91,7 @@ library
                , bytestring
                , process
                , text
+               , yaml
   exposed-modules:
     Control.Category.Execute.Haskell
     Control.Category.Execute.JSON
@@ -131,6 +132,76 @@ library
     Data.Primitive.PrimsFile
     Data.Tuple.Triple
     Data.Render
+
+executable jcat2hsf
+  import: shared-properties-unsafe
+  main-is:             jcat2hsf.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable jcat2hsl
+  import: shared-properties-unsafe
+  main-is:             jcat2hsl.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable jcat2js
+  import: shared-properties-unsafe
+  main-is:             jcat2js.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable jcat2php
+  import: shared-properties-unsafe
+  main-is:             jcat2php.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable jcat2ycat
+  import: shared-properties-unsafe
+  main-is:             jcat2ycat.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable jcatc
+  import: shared-properties-unsafe
+  main-is:             jcatc.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable runjcat
+  import: shared-properties-unsafe
+  main-is:             runjcat.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable runycat
+  import: shared-properties-unsafe
+  main-is:             runycat.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable ycat2hsf
+  import: shared-properties-unsafe
+  main-is:             ycat2hsf.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable ycat2hsl
+  import: shared-properties-unsafe
+  main-is:             ycat2hsl.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable ycat2jcat
+  import: shared-properties-unsafe
+  main-is:             ycat2jcat.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable ycat2js
+  import: shared-properties-unsafe
+  main-is:             ycat2js.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable ycat2php
+  import: shared-properties-unsafe
+  main-is:             ycat2php.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
+
+executable ycatc
+  import: shared-properties-unsafe
+  main-is:             ycatc.hs
+  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, yaml
 
 test-suite test
   type:                exitcode-stdio-1.0

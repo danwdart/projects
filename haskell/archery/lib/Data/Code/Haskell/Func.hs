@@ -19,6 +19,7 @@ import Data.String
 import Data.Tuple.Triple
 import Prelude hiding ((.), id)
 import System.Process
+import Text.Read
 
 data HSFunc a b = HSFunc String
     deriving (Eq, Show)
@@ -83,7 +84,7 @@ instance Render (HSFunc a b) where
 
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteHaskell HSFunc where
-    executeViaGHCi cat param = read . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", render cat <> " " <> show param] "")
+    executeViaGHCi cat param = readEither . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", render cat <> " " <> show param] "")
 
 -- @TODO this uses runKleisli, the above does not
 instance ExecuteStdio HSFunc where
