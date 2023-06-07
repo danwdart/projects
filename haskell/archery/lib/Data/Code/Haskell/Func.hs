@@ -12,6 +12,7 @@ import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
 import Control.Category.Strong
+import Control.Category.Symmetric
 import Control.Monad.IO.Class
 import Data.Render
 import Data.String
@@ -49,7 +50,11 @@ instance Choice HSFunc where
     left' (HSFunc f) = HSFunc $ "(\\case { Left a -> Left (" <> f <> " a); Right a -> Right a; })"
     right' (HSFunc f) = HSFunc $ "(\\case { Left a -> Left a; Right a -> Right (" <> f <> " a); })"
 
--- instance Symmetric HSFunc where
+instance Symmetric HSFunc where
+    swap = "(\\(a, b) -> (b, a))"
+    swapEither = "(\\case { Left a -> Right a; Right a -> Left a; })"
+    reassoc = "(\\(a, (b, c)) -> ((a, b), c))"
+    reassocEither = "(\\case { Left a -> Left (Left a); Right (Left b) -> Left (Right b); Right (Right c) -> Right c })"
 
 -- instance Cochoice HSFunc where
 

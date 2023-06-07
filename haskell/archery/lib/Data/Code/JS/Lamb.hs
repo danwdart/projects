@@ -13,6 +13,7 @@ import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
 import Control.Category.Strong
+import Control.Category.Symmetric
 import Control.Monad.IO.Class
 import Data.Aeson
 import Data.ByteString.Lazy.Char8 qualified as BSL
@@ -51,6 +52,12 @@ instance Strong JSLamb where
 instance Choice JSLamb where
     left' (JSLamb f) = JSLamb $ "(({tag, value}) => ({tag, value: tag === 'left' ? " <> f <> " (value) : value}))"
     right' (JSLamb f) = JSLamb $ "(({tag, value}) => ({tag, value: tag === 'right' ? " <> f <> " (value) : value}))"
+
+instance Symmetric JSLamb where
+    swap = "(([a, b]) => [b, a]))"
+    swapEither = "(({tag, value}) => ({tag: tag === \"left\" ? \"right\" : \"left\", value}))"
+    reassoc = "(([a, [b, c]]) => [[a, b], c])"
+    reassocEither = "reassoc either stuff"
 
 -- instance Symmetric JSLamb where
 
