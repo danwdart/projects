@@ -7,6 +7,7 @@ import Control.Category.Cartesian
 import Control.Category.Choice
 import Control.Category.Cocartesian
 import Control.Category.Execute.Haskell
+import Control.Category.Execute.Stdio
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
@@ -30,6 +31,8 @@ instance IsString (HSLamb a b) where
 
 instance Category HSLamb where
     id = "(\\x -> x)"
+    -- Ohh, this is the Function instance for (.)... @TODO fix this to use the Category instance if we want both Kleisli and (->) to work!
+    -- TBH we should probably fix up Kleisli by using a Monadic or Pure typeclass to specify.
     HSLamb a . HSLamb b = HSLamb $ "(\\x -> " <> a <> " ( " <> b <> " x))" -- f . g = f (g x), not g (f x)
 
 instance Cartesian HSLamb where
@@ -65,8 +68,8 @@ instance Primitive HSLamb where
     reverseString = "(arr reverse)"
 
 instance PrimitiveConsole HSLamb where
-    outputString = "(Kleisli putStrLn)"
-    inputString = "_TODO"
+    outputString = "(Kleisli putStr)"
+    inputString = "(Kleisli (const getContents))"
 
 instance Numeric HSLamb where
     num n = HSLamb $ "(\\_ -> " <> show n <> ")"
@@ -82,5 +85,11 @@ instance Render (HSLamb a b) where
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteHaskell HSLamb where
     executeViaGHCi cat param = read . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] "")
+
+-- @TODO this passes too many arguments apparently...
+-- This is because of the id and (.) using the (->) instance whereas I am running Kleisli below.
+-- This means we need to deal with both within Haskell sessions. Let's try to use Pure/Monadic... or maybe HSPure / HSMonadic accepting only appropriate typeclasses / primitives?
+instance ExecuteStdio HSLamb where
+    executeViaStdio cat stdin = secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", "runKleisli " <> render cat <> " ()"] stdin)
 
 -- @ TODO JSON

@@ -130,11 +130,6 @@ library
     Data.Tuple.Triple
     Data.Render
 
-executable arrows
-  import: shared-properties-unsafe
-  main-is:             arrows.hs
-  build-depends:       base >= 4.16 && < 5, aeson, archery, bytestring, yaml
-
 test-suite test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test

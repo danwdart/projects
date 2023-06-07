@@ -12,12 +12,12 @@ import           Test.QuickCheck.Monadic
 -- @TODO random functions
 
 prop_IsPalindromeIsCorrectViaGHCi :: String -> Property
-prop_IsPalindromeIsCorrectViaGHCi s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 $ monadicIO $ do
+prop_IsPalindromeIsCorrectViaGHCi s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (isPalindrome :: HSLamb String Bool) s
     pure $ answer === isPalindrome s
 
 prop_CollatzStepIsCorrectViaGHCi :: Int -> Property
-prop_CollatzStepIsCorrectViaGHCi i = i >= 0 ==> withMaxSuccess 200 $ monadicIO $ do
+prop_CollatzStepIsCorrectViaGHCi i = i >= 0 ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (collatzStep :: HSLamb Int Int) i
     pure $ answer === collatzStep i
 

@@ -7,6 +7,7 @@ import Control.Category.Cartesian
 import Control.Category.Choice
 import Control.Category.Cocartesian
 import Control.Category.Execute.Haskell
+import Control.Category.Execute.Stdio
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
@@ -17,7 +18,6 @@ import Data.String
 import Data.Tuple.Triple
 import Prelude hiding ((.), id)
 import System.Process
-
 
 data HSFunc a b = HSFunc String
     deriving (Eq, Show)
@@ -62,8 +62,8 @@ instance Primitive HSFunc where
     reverseString = "(arr reverse)"
 
 instance PrimitiveConsole HSFunc where
-    outputString = "(Kleisli putStrLn)"
-    inputString = "(Kleisli (const getLine))"
+    outputString = "(Kleisli putStr)"
+    inputString = "(Kleisli (const getContents))"
 
 instance Numeric HSFunc where
     num n = HSFunc $ "(const " <> show n <> ")"
@@ -78,6 +78,10 @@ instance Render (HSFunc a b) where
 
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteHaskell HSFunc where
-    executeViaGHCi cat param = read . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", render cat <> " " <> show param] "")
+    executeViaGHCi cat param = read . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", render cat <> " " <> show param] "")
+
+-- @TODO this uses runKleisli, the above does not
+instance ExecuteStdio HSFunc where
+    executeViaStdio cat stdin = secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", "runKleisli " <> render cat <> " ()"] stdin)
 
 -- @ TODO JSON

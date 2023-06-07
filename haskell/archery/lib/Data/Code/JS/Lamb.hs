@@ -8,6 +8,7 @@ import Control.Category.Cartesian
 import Control.Category.Choice
 import Control.Category.Cocartesian
 import Control.Category.Execute.JSON
+import Control.Category.Execute.Stdio
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
@@ -81,3 +82,6 @@ instance Render (JSLamb a b) where
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON JSLamb where
     executeViaJSON cat param = decode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")))"] "")
+
+instance ExecuteStdio JSLamb where
+    executeViaStdio cat stdin = secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", render cat <> "()"] stdin)

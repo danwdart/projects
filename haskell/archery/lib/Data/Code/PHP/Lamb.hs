@@ -8,6 +8,7 @@ import Control.Category.Cartesian
 import Control.Category.Choice
 import Control.Category.Cocartesian
 import Control.Category.Execute.JSON
+import Control.Category.Execute.Stdio
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
@@ -81,3 +82,7 @@ instance Render (PHPLamb a b) where
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON PHPLamb where
     executeViaJSON cat param = decode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")));"] "")
+
+instance ExecuteStdio PHPLamb where
+    -- @TODO figure out why we have to have something here for argument - for now using null...
+    executeViaStdio cat stdin = secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "(" <> render cat <> ")(null);"] stdin)
