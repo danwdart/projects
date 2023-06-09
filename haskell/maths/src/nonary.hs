@@ -2,12 +2,12 @@
 
 module Main where
 
-import Data.Kind
-import GHC.TypeNats
+import           Data.Kind
+import           GHC.TypeNats
 
 -- data Nonary = Zero | One | Two | Three | Four | Five | Six | Seven | Eight
 
-type InBase :: Nat -> Type -> Type
+type InBase :: Nat → Type → Type
 data InBase n a = InBase a
 
 instance Num (InBase n a) where
@@ -18,5 +18,5 @@ instance Num (InBase n a) where
     fromInteger x = InBase (mod _ x)
     negate x = InBase _
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

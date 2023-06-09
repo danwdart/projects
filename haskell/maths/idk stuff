@@ -1,0 +1,19 @@
+1 2 3 4 5 6 7 8 9 10
+
+Numbers which are a product of 3 primes
+e.g. 8, 12, 18, 27, 30 etc
+
+Numbers which are a product of 3 distinct primes (Demiprimes?)
+e.g. 30, 42, 105, 165 etc
+
+Split semiprimes into distinct and nondistinct? So... squares of primes, and not that...
+
+Numbers which do / do not have proper factors greater (or equal) than the square root of the number
+
+1 2 3 5 6 7 8 11 12 13 
+
+4 9 10 14
+
+mean of proper factors?
+
+0 0 0 2 0 5/2 0 2 3 7/2 0 
