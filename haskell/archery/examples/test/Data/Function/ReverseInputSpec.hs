@@ -21,7 +21,6 @@ prop_RevInputProgramIsCorrectViaStdio s = length s > 1 && all (`notElem` "$") s 
 
 {-}
     describe "executeViaStdio" $ do
-        it "revInputProgram is correct" $
-            property prop_RevInputProgramIsCorrectViaStdio
+        prop "revInputProgram is correct" prop_RevInputProgramIsCorrectViaStdio
 
 -}

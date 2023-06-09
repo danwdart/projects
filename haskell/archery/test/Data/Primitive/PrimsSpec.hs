@@ -23,10 +23,8 @@ prop_EqualIsCorrectViaEncodeDecodeInterpret is = withMaxSuccess 200 $
 spec ∷ Spec
 spec = pure () {-describe "Data.Primitive.Prims" $ do
     describe "execution isomorphism" $ do
-        it "reverseString is correct" $
-            property prop_ReverseStringIsCorrectViaEncodeDecodeInterpret
-        it "equal is correct" $
-            property prop_EqualIsCorrectViaEncodeDecodeInterpret
+        prop "reverseString is correct" prop_ReverseStringIsCorrectViaEncodeDecodeInterpret
+        prop "equal is correct" prop_EqualIsCorrectViaEncodeDecodeInterpret
     describe "JSON isomorphism" $ do
         it "ReverseString is isomorphic to its JSON representation" $
             decode (encode ReverseString) `shouldBe` ReverseString

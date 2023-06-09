@@ -52,17 +52,13 @@ prop_ViaJSONIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSucce
 spec ∷ Spec
 spec = describe "isPalindrome" $ do
     describe "HSFunc" $ do
-        it "is correct" $
-            property prop_HSFuncIsCorrect
+        prop "is correct" prop_HSFuncIsCorrect
     describe "HSLamb" $ do
-        it "is correct" $
-            property prop_HSLambIsCorrect
+        prop "is correct" prop_HSLambIsCorrect
     describe "JSLamb" $ do
-        it "is correct" $
-            property prop_JSLambIsCorrect
+        prop "is correct" prop_JSLambIsCorrect
     describe "PHPLamb" $ do
-        it "is correct" $
-            property prop_PHPLambIsCorrect
+        prop "is correct" prop_PHPLambIsCorrect
     {-}
     describe "JSON" $ do
         it "is correct" $
