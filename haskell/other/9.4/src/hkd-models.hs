@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass, DeriveFunctor, DerivingVia, DerivingStrategies, GeneralisedNewtypeDeriving    #-}
+{-# LANGUAGE DeriveAnyClass, DerivingVia, GeneralisedNewtypeDeriving #-}
 {-# LANGUAGE Trustworthy #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wwarn #-}
