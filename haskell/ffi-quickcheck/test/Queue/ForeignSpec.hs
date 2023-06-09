@@ -1,13 +1,13 @@
 module Queue.ForeignSpec where
 
-import Control.Monad
-import Data.Kind
-import Foreign
-import           Test.Hspec hiding (runIO)
+import           Control.Monad
+import           Data.Kind
+import           Foreign
+import           Queue.Foreign
+import           Test.Hspec              hiding (runIO)
 import           Test.Hspec.QuickCheck
 import           Test.QuickCheck
 import           Test.QuickCheck.Monadic
-import Queue.Foreign
 
 -- prop :: [Int] -> [Int] -<
 
@@ -32,14 +32,14 @@ testAction = do
 -}
 -- manual = Free (NewF (\q -> Free (PutF q 1) >> Free (SizeF q)))
 
-prop_EmptyQueueHasCorrectSize :: Int -> Property
+prop_EmptyQueueHasCorrectSize ∷ Int → Property
 prop_EmptyQueueHasCorrectSize size = size > 0 ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     size <- run $ do
         q <- queue_new size
         queue_size q
     assert $ size == 0
 
-prop_QueueWithFewerElementsAsSizeShowUpInSize :: Int -> [Int] -> Property
+prop_QueueWithFewerElementsAsSizeShowUpInSize ∷ Int → [Int] → Property
 prop_QueueWithFewerElementsAsSizeShowUpInSize size elements = size > 0 && length elements < size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     size <- run $ do
         q <- queue_new size
@@ -47,12 +47,12 @@ prop_QueueWithFewerElementsAsSizeShowUpInSize size elements = size > 0 && length
         queue_size q
     assert $ size == length elements
 
-prop_QueueWithFewerElementsAsSizeShowUpInGet :: Int -> [Int] -> Property
+prop_QueueWithFewerElementsAsSizeShowUpInGet ∷ Int → [Int] → Property
 prop_QueueWithFewerElementsAsSizeShowUpInGet size elements = size > 0 && length elements <= size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     elementsOut <- run $ do
         q <- queue_new size
         mapM_ (queue_put q) elements
-        replicateM (length elements) (queue_get q) 
+        replicateM (length elements) (queue_get q)
     assert $ elements == elementsOut
 
 

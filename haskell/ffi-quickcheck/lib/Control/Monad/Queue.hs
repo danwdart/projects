@@ -1,8 +1,8 @@
 module Control.Monad.Queue where
 
-import Control.Monad.Free
-import Control.Monad.Queue.Class
-import Data.Queue
+import           Control.Monad.Free
+import           Control.Monad.Queue.Class
+import           Data.Queue
 
 type QueueM t a = Free (QueueF t) a
 
@@ -12,7 +12,7 @@ instance MonadQueue q QueueM a where
     get q = liftF (GetF q)
     size q = liftF (SizeF q)
 
-runIO :: QueueM q a -> IO a
+runIO ∷ QueueM q a → IO a
 runIO (Free (NewF size next)) = do
     q <- queue_new size
     runIO $ next q
