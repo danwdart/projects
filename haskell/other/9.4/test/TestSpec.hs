@@ -4,16 +4,15 @@ import           Control.Exception (evaluate)
 import           Test.Hspec
 import           Test.QuickCheck
 
-prop ∷ [Int] → [Int] → Property
-prop x y = collect (length x) $ length x > 3 ==> x <> y === x <> y
+prop1 ∷ [Int] → [Int] → Property
+prop1 x y = collect (length x) $ length x > 3 ==> x <> y === x <> y
 
 prop2 x y = collect (length x) $ length x > 3 ==> x <> y === x <> y
     where types = (x :: [Int], y :: [Int])
 
 spec ∷ Spec
 spec = describe "tests" $ do
-    it "runs" $
-        property prop
+    prop "runs" prop1
     it "runs 10000 times" $
         property (withMaxSuccess 10000 prop)
     it "checks" $
