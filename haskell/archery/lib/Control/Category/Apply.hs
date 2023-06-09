@@ -5,7 +5,7 @@ module Control.Category.Apply where
 import Control.Arrow (Kleisli(..))
 
 class Apply cat where
-    app :: cat (cat a b, a) b
+    app :: cat (cat a b, a) b -- ((a -> b), a) -> b
 
 instance Apply (->) where
     app (f, x) = f x

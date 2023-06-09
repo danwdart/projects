@@ -5,4 +5,4 @@ module Control.Category.Execute.Stdio where
 import Control.Monad.IO.Class
 
 class ExecuteStdio cat where
-    executeViaStdio :: (MonadIO m) => cat () () -> String -> m String
+    executeViaStdio :: (Show input, Read output, MonadIO m) => cat () () -> input -> m output

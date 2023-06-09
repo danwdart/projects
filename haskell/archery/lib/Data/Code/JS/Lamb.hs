@@ -4,6 +4,8 @@
 module Data.Code.JS.Lamb where
 
 import Control.Category
+-- import Control.Category.Apply
+import Control.Category.Bracket
 import Control.Category.Cartesian
 import Control.Category.Choice
 import Control.Category.Cocartesian
@@ -12,6 +14,7 @@ import Control.Category.Execute.Stdio
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
+import Control.Category.Primitive.Extra
 import Control.Category.Strong
 import Control.Category.Symmetric
 import Control.Monad.IO.Class
@@ -23,11 +26,17 @@ import Data.Tuple.Triple
 import Prelude hiding ((.), id)
 import System.Process
 
-data JSLamb a b = JSLamb String
+newtype JSLamb a b = JSLamb BSL.ByteString
     deriving (Eq, Show)
 
 instance IsString (JSLamb a b) where
-    fromString = JSLamb
+    fromString = JSLamb . BSL.pack
+
+instance Render (JSLamb a b) where
+    render (JSLamb f) = f
+
+instance Bracket JSLamb where
+    bracket s = JSLamb $ "(" <> render s <> ")"
 
 instance Category JSLamb where
     id = "(x => x)"
@@ -73,20 +82,22 @@ instance PrimitiveConsole JSLamb where
     outputString = "console.log"
     inputString = "prompt"
 
+instance PrimitiveExtra JSLamb where
+    intToString = "(i => i.toString())"
+    concatString = "([a, b]) => a + b"
+    constString s = JSLamb $ "(() => \"" <> BSL.pack s <> "\")"
+
 instance Numeric JSLamb where
-    num n = JSLamb $ "(_ => " <> show n <> ")"
+    num n = JSLamb $ "(_ => " <> BSL.pack (show n) <> ")"
     negate' = "(x => -x)"
     add = "(([x, y]) => x + y)"
     mult = "(([x, y]) => x * y)"
     div' = "(([x, y]) => x / y)"
     mod' = "(([x, y]) => x % y)"
 
-instance Render (JSLamb a b) where
-    render (JSLamb f) = f
-
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON JSLamb where
-    executeViaJSON cat param = eitherDecode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")))"] "")
+    executeViaJSON cat param = eitherDecode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")))"] "")
 
 instance ExecuteStdio JSLamb where
-    executeViaStdio cat stdin = secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", render cat <> "()"] stdin)
+    executeViaStdio cat stdin = read . secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", BSL.unpack (render cat) <> "()"] (show stdin))

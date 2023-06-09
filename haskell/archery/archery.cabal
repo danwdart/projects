@@ -89,44 +89,45 @@ library
   build-depends: base >= 4.18.0.0 && < 5
                , aeson
                , bytestring
+               , containers
                , process
-               , text
-               , yaml
+               -- , text
+               -- , yaml
   exposed-modules:
-    Control.Category.Execute.Haskell
-    Control.Category.Execute.JSON
-    Control.Category.Execute.Stdio
-    Control.Category.LambdaCalculus.BCKW
-    Control.Category.LambdaCalculus.SKI
-    Control.Category.Primitive.Abstract
-    Control.Category.Primitive.Console
-    Control.Category.Primitive.Curried
-    Control.Category.Primitive.Interpret
-    Control.Category.Primitive.JSON
-    Control.Category.Primitive.Stdio
     Control.Category.Apply
+    Control.Category.Bracket
     Control.Category.Cartesian
     Control.Category.Choice
     Control.Category.Cocartesian
     Control.Category.Cochoice
     Control.Category.Costrong
     Control.Category.Curry
+    Control.Category.Execute.Haskell
+    Control.Category.Execute.JSON
+    Control.Category.Execute.Stdio
+    -- Control.Category.Generic
     Control.Category.Interpret
+    Control.Category.LambdaCalculus.BCKW
+    Control.Category.LambdaCalculus.SKI
     Control.Category.Numeric
+    Control.Category.Primitive.Abstract
+    Control.Category.Primitive.Console
+    Control.Category.Primitive.Curried
+    Control.Category.Primitive.Extra
+    Control.Category.Primitive.Interpret
+    Control.Category.Primitive.JSON
+    Control.Category.Primitive.Stdio
     Control.Category.Strong
     Control.Category.Symmetric
     Control.Category.Utilities
     Data.Code.Haskell.Func
     Data.Code.Haskell.Lamb
+    Data.Code.Haskell.Program
     Data.Code.JS.Lamb
     Data.Code.PHP.Lamb
     Data.Function.Free.LambdaCalculus.BCKW
     Data.Function.Free.LambdaCalculus.SKI
     Data.Function.Free.Abstract
-    Data.Function.Greet
-    Data.Function.IsPalindrome
-    Data.Function.CollatzStep
-    Data.Function.ReverseInput
     Data.Primitive.Prims
     Data.Primitive.PrimsConsole
     Data.Primitive.PrimsFile
@@ -208,11 +209,41 @@ test-suite test
   hs-source-dirs:      test
   main-is:             Spec.hs
   default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, hspec, QuickCheck
+  default-extensions:  DerivingStrategies, UnicodeSyntax, NoGeneralizedNewtypeDeriving
+  build-depends:       base >= 4.18.0.0 && < 5
+                     , aeson
+                     , archery
+                     , hspec
+                     , QuickCheck
   other-modules:       Data.Code.Haskell.FuncSpec
                        Data.Code.Haskell.LambSpec
                        Data.Code.JS.LambSpec
                        Data.Code.PHP.LambSpec
                        Data.Function.Free.AbstractSpec
                        Data.Primitive.PrimsSpec
+
+test-suite test-examples
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      examples/lib, examples/test
+  main-is:             Spec.hs
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, NoGeneralizedNewtypeDeriving
+  build-depends:       base >= 4.18.0.0 && < 5
+                     , aeson
+                     , archery
+                     , hspec
+                     , QuickCheck
+  other-modules:       Control.Category.Primitive.Person
+                       Control.Category.Primitive.PersonSpec
+                       Data.Function.CollatzStep
+                       Data.Function.CollatzStepSpec
+                       Data.Function.Greet
+                       Data.Function.GreetSpec
+                       Data.Function.IsPalindrome
+                       Data.Function.IsPalindromeSpec
+                       Data.Function.ReverseInput
+                       Data.Function.ReverseInputSpec
+                       Data.Person
+                       Data.PersonSpec
+                       Data.Primitive.PrimPerson
+                       Data.Primitive.PrimPersonSpec

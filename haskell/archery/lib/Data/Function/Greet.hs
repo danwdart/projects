@@ -9,6 +9,7 @@ import Control.Category.Cartesian
 import Control.Category.Strong
 import Control.Category.Symmetric
 import Data.Aeson
+import Data.ByteString.Lazy.Char8 qualified as BSL
 import GHC.Generics
 import Prelude hiding ((.), id)
 import Data.Function.Free.Abstract
@@ -44,22 +45,22 @@ instance Monad m => PrimitiveExtra (Kleisli m) where
 instance PrimitiveExtra HSFunc where
     intToString = "show"
     concatString = "(uncurry (<>))"
-    constString s = HSFunc $ "(const \"" <> s <> "\")"
+    constString s = HSFunc $ "(const \"" <> BSL.pack s <> "\")"
 
 instance PrimitiveExtra HSLamb where
     intToString = "show"
     concatString = "(uncurry (<>))"
-    constString s = HSLamb $ "(const \"" <> s <> "\")"
+    constString s = HSLamb $ "(const \"" <> BSL.pack s <> "\")"
 
 instance PrimitiveExtra JSLamb where
     intToString = "(i => i.toString())"
     concatString = "([a, b]) => a + b"
-    constString s = JSLamb $ "(() => \"" <> s <> "\")"
+    constString s = JSLamb $ "(() => \"" <> BSL.pack s <> "\")"
 
 instance PrimitiveExtra PHPLamb where
     intToString = "(fn ($i) => strval($i))"
     concatString = "(fn ([$a, $b]) => $a . $b)"
-    constString s = PHPLamb $ "(fn () => \"" <> s <> "\")"
+    constString s = PHPLamb $ "(fn () => \"" <> BSL.pack s <> "\")"
 
 data PrimExtra a b where
     IntToString :: PrimExtra Int String

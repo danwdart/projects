@@ -1,8 +1,6 @@
 module Data.Primitive.PrimsSpec where
 
 import Control.Category.Interpret
-import Data.Function.CollatzStep
-import Data.Function.IsPalindrome
 import Data.Primitive.Prims
 import           Test.Hspec hiding (runIO)
 import           Test.Hspec.QuickCheck

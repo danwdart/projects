@@ -4,6 +4,8 @@
 module Data.Code.PHP.Lamb where
 
 import Control.Category
+-- import Control.Category.Apply
+import Control.Category.Bracket
 import Control.Category.Cartesian
 import Control.Category.Choice
 import Control.Category.Cocartesian
@@ -12,6 +14,7 @@ import Control.Category.Execute.Stdio
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Console
+import Control.Category.Primitive.Extra
 import Control.Category.Strong
 import Control.Category.Symmetric
 import Control.Monad.IO.Class
@@ -23,11 +26,17 @@ import Data.Tuple.Triple
 import Prelude hiding ((.), id)
 import System.Process
 
-data PHPLamb a b = PHPLamb String
+newtype PHPLamb a b = PHPLamb BSL.ByteString
     deriving (Eq, Show)
 
 instance IsString (PHPLamb a b) where
-    fromString = PHPLamb
+    fromString = PHPLamb . BSL.pack
+
+instance Render (PHPLamb a b) where
+    render (PHPLamb f) = f
+
+instance Bracket PHPLamb where
+    bracket s = PHPLamb $ "(" <> render s <> ")"
 
 instance Category PHPLamb where
     id = "($x => $x)"
@@ -73,21 +82,23 @@ instance PrimitiveConsole PHPLamb where
     outputString = "print"
     inputString = "(function () { $r = fopen('php://stdin', 'r'); $ret = fgets($r); fclose($r); return $ret; })" -- difficult to not miss nullary functions
 
+instance PrimitiveExtra PHPLamb where
+    intToString = "(fn ($i) => strval($i))"
+    concatString = "(fn ([$a, $b]) => $a . $b)"
+    constString s = PHPLamb $ "(fn () => \"" <> BSL.pack s <> "\")"
+
 instance Numeric PHPLamb where
-    num n = PHPLamb $ "(fn () => " <> show n <> ")"
+    num n = PHPLamb $ "(fn () => " <> BSL.pack (show n) <> ")"
     negate' = "(fn ($x) => -$x)"
     add = "(fn ($x) => $x[0] + $x[1])"
     mult = "(fn ($x) => $x[0] * $x[1])"
     div' = "(fn ($x) => $x[0] / $x[1])"
     mod' = "(fn ($x) => $x[0] % $x[1])"
 
-instance Render (PHPLamb a b) where
-    render (PHPLamb f) = f
-
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON PHPLamb where
-    executeViaJSON cat param = eitherDecode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> render cat <> "(" <> BSL.unpack (encode param) <> ")));"] "")
+    executeViaJSON cat param = eitherDecode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")));"] "")
 
 instance ExecuteStdio PHPLamb where
     -- @TODO figure out why we have to have something here for argument - for now using null...
-    executeViaStdio cat stdin = secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "(" <> render cat <> ")(null);"] stdin)
+    executeViaStdio cat stdin = read . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "(" <> BSL.unpack (render cat) <> ")(null);"] (show stdin))
