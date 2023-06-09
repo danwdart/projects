@@ -14,4 +14,4 @@ st = [s|
     |]
 
 main :: IO ()
-main = print $ st
+main = print st
