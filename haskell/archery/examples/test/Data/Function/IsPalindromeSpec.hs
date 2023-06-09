@@ -8,34 +8,34 @@ import Data.Code.Haskell.Lamb
 import Data.Code.JS.Lamb
 import Data.Code.PHP.Lamb
 import Data.Function.CollatzStep
+import Data.Function.Free.Abstract
 import Data.Function.Greet
 import Data.Function.IsPalindrome
 import Data.Function.ReverseInput
-import Data.Function.Free.Abstract
 import Data.Primitive.Prims
-import           Test.Hspec hiding (runIO)
-import           Test.Hspec.QuickCheck
-import           Test.QuickCheck
-import           Test.QuickCheck.Monadic
+import Test.Hspec                       hiding (runIO)
+import Test.Hspec.QuickCheck
+import Test.QuickCheck
+import Test.QuickCheck.Monadic
 
-prop_HSFuncIsCorrect :: String -> Property
+prop_HSFuncIsCorrect ∷ String → Property
 prop_HSFuncIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (isPalindrome :: HSFunc String Bool) s
     pure $ answer === Right (isPalindrome s)
 
 
-prop_HSLambIsCorrect :: String -> Property
+prop_HSLambIsCorrect ∷ String → Property
 prop_HSLambIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (isPalindrome :: HSLamb String Bool) s
     pure $ answer === Right (isPalindrome s)
 
-prop_JSLambIsCorrect :: String -> Property
+prop_JSLambIsCorrect ∷ String → Property
 prop_JSLambIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaJSON (isPalindrome :: JSLamb String Bool) s
     pure $ answer === Right (isPalindrome s)
 
 
-prop_PHPLambIsCorrect :: String -> Property
+prop_PHPLambIsCorrect ∷ String → Property
 prop_PHPLambIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaJSON (isPalindrome :: PHPLamb String Bool) s
     pure $ answer === Right (isPalindrome s)
@@ -45,7 +45,7 @@ prop_PHPLambIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSucce
 myInterpret = _
 
 prop_ViaJSONIsCorrect :: String -> Property
-prop_ViaJSONIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 $ 
+prop_ViaJSONIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 $
     (myInterpret <$> decode (encode (isPalindrome :: FreeFunc Prims String Bool)) <*> Just s) === Just (isPalindrome s)
 -}
 

@@ -1,11 +1,12 @@
-{-# LANGUAGE GADTs, OverloadedStrings #-}
+{-# LANGUAGE GADTs             #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Data.Primitive.PrimPerson where
 
 import Control.Category.Primitive.Person
 import Data.Aeson
-import Data.Person
 import Data.Function.Free.Abstract
+import Data.Person
 
 data PrimPerson a b where
     Name :: PrimPerson Person String
@@ -17,12 +18,12 @@ instance PrimitivePerson (FreeFunc PrimPerson) where
 
 instance ToJSON (PrimPerson a b) where
     toJSON Name = String "Name"
-    toJSON Age = String "Age"
+    toJSON Age  = String "Age"
 
 instance FromJSON (PrimPerson Person String) where
     parseJSON (String "Name") = pure Name
-    parseJSON _ = fail "TypeError: expecting Person -> String"
+    parseJSON _               = fail "TypeError: expecting Person -> String"
 
 instance FromJSON (PrimPerson Person Int) where
     parseJSON (String "Age") = pure Age
-    parseJSON _ = fail "TypeError: expecting Person -> Int"
+    parseJSON _              = fail "TypeError: expecting Person -> Int"

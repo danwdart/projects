@@ -3,5 +3,5 @@
 module Main where
 
 -- | Compiles a category from YAML category file to a PHP file.
-main :: IO ()
+main ∷ IO ()
 main = pure ()

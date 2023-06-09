@@ -1,4 +1,5 @@
-{-# LANGUAGE OverloadedStrings, Unsafe #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Unsafe            #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
 module Data.Code.JS.Lamb where
@@ -19,11 +20,11 @@ import Control.Category.Strong
 import Control.Category.Symmetric
 import Control.Monad.IO.Class
 import Data.Aeson
-import Data.ByteString.Lazy.Char8 qualified as BSL
+import Data.ByteString.Lazy.Char8          qualified as BSL
 import Data.Render
 import Data.String
 import Data.Tuple.Triple
-import Prelude hiding ((.), id)
+import Prelude                             hiding (id, (.))
 import System.Process
 
 newtype JSLamb a b = JSLamb BSL.ByteString

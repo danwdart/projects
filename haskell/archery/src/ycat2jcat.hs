@@ -3,5 +3,5 @@
 module Main where
 
 -- | Converts a JSON category file to YAML.
-main :: IO ()
+main ∷ IO ()
 main = pure ()

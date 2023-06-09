@@ -1,46 +1,52 @@
-{-# LANGUAGE DeriveAnyClass, DeriveGeneric, DerivingStrategies, GADTs, OverloadedLists, OverloadedStrings, Unsafe #-}
+{-# LANGUAGE DeriveAnyClass     #-}
+{-# LANGUAGE DeriveGeneric      #-}
+{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE GADTs              #-}
+{-# LANGUAGE OverloadedLists    #-}
+{-# LANGUAGE OverloadedStrings  #-}
+{-# LANGUAGE Unsafe             #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
 module Data.Function.Greet where
 
-import Control.Arrow (Kleisli(..))
+import Control.Arrow               (Kleisli (..))
 import Control.Category
 import Control.Category.Cartesian
 import Control.Category.Strong
 import Control.Category.Symmetric
 import Data.Aeson
-import Data.ByteString.Lazy.Char8 qualified as BSL
-import GHC.Generics
-import Prelude hiding ((.), id)
-import Data.Function.Free.Abstract
+import Data.ByteString.Lazy.Char8  qualified as BSL
 import Data.Code.Haskell.Func
 import Data.Code.Haskell.Lamb
 import Data.Code.JS.Lamb
 import Data.Code.PHP.Lamb
-import Data.Text qualified as T
+import Data.Function.Free.Abstract
+import Data.Text                   qualified as T
+import GHC.Generics
+import Prelude                     hiding (id, (.))
 
 -- First write your datatypes
 data Person = Person {
     personName :: String,
-    personAge :: Int
-} 
+    personAge  :: Int
+}
     deriving stock (Eq, Show, Generic)
     deriving anyclass (FromJSON, ToJSON)
 
 class PrimitiveExtra cat where
     intToString :: cat Int String
     concatString :: cat (String, String) String
-    constString :: String -> cat a String
+    constString :: String → cat a String
 
 instance PrimitiveExtra (->) where
     intToString = show
     concatString = uncurry (<>)
     constString = const
 
-instance Monad m => PrimitiveExtra (Kleisli m) where
+instance Monad m ⇒ PrimitiveExtra (Kleisli m) where
     intToString = Kleisli $ pure . show
     concatString = Kleisli $ pure . uncurry (<>)
-    constString s = Kleisli . const . pure $ s
+    constString = Kleisli . const . pure
 
 instance PrimitiveExtra HSFunc where
     intToString = "show"
@@ -81,7 +87,7 @@ instance ToJSON (PrimExtra a b) where
 
 instance FromJSON (PrimExtra Int String) where
     parseJSON (String "IntToString") = pure IntToString
-    parseJSON _ = fail "TypeError: expecting Int -> String"
+    parseJSON _                      = fail "TypeError: expecting Int -> String"
 
 instance FromJSON (PrimExtra (String, String) String) where
     parseJSON (String "ConcatString") = pure ConcatString
@@ -90,7 +96,7 @@ instance FromJSON (PrimExtra (String, String) String) where
 instance FromJSON (PrimExtra () String) where
     parseJSON = withObject "PrimExtra" $ \obj -> do
         t <- obj .: "type"
-        if (t == ("ConstString" :: T.Text)) then do
+        if t == ("ConstString" :: T.Text) then do
             Array [ String s ] <- obj .: "args"
             pure $ ConstString (T.unpack s)
         else fail "TypeError: expected () -> String"
@@ -143,21 +149,21 @@ instance PrimitivePerson (FreeFunc PrimPerson) where
 
 instance ToJSON (PrimPerson a b) where
     toJSON Name = String "Name"
-    toJSON Age = String "Age"
+    toJSON Age  = String "Age"
 
 instance FromJSON (PrimPerson Person String) where
     parseJSON (String "Name") = pure Name
-    parseJSON _ = fail "TypeError: expecting Person -> String"
+    parseJSON _               = fail "TypeError: expecting Person -> String"
 
 instance FromJSON (PrimPerson Person Int) where
     parseJSON (String "Age") = pure Age
-    parseJSON _ = fail "TypeError: expecting Person -> Int"
+    parseJSON _              = fail "TypeError: expecting Person -> Int"
 
-greetWith :: (Category cat, Cartesian cat, Strong cat, Symmetric cat, PrimitiveExtra cat) => cat a String -> cat a Int -> cat a String
+greetWith ∷ (Category cat, Cartesian cat, Strong cat, Symmetric cat, PrimitiveExtra cat) ⇒ cat a String → cat a Int → cat a String
 greetWith nameSelector ageSelector = concatString . second' intToString . first' concatString . first' swap . reassoc . second' (second' ageSelector) . second' (first' nameSelector) . first' (constString " is ") . second' copy . copy
 
-greetData :: (Category cat, Cartesian cat, Strong cat, Symmetric cat, PrimitiveExtra cat, PrimitivePerson cat) => cat Person String
+greetData ∷ (Category cat, Cartesian cat, Strong cat, Symmetric cat, PrimitiveExtra cat, PrimitivePerson cat) ⇒ cat Person String
 greetData = greetWith name age
 
-greetTuple :: (Category cat, Cartesian cat, Strong cat, Symmetric cat, PrimitiveExtra cat) => cat (String, Int) String
+greetTuple ∷ (Category cat, Cartesian cat, Strong cat, Symmetric cat, PrimitiveExtra cat) ⇒ cat (String, Int) String
 greetTuple = greetWith fst' snd'

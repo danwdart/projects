@@ -2,7 +2,7 @@ module Data.Function.ReverseInputSpec where
 
 import Test.Hspec
 
-spec :: Spec
+spec ∷ Spec
 spec = pure ()
 
 {-}

@@ -2,7 +2,7 @@
 
 module Control.Category.Apply where
 
-import Control.Arrow (Kleisli(..))
+import Control.Arrow (Kleisli (..))
 
 class Apply cat where
     app :: cat (cat a b, a) b -- ((a -> b), a) -> b

@@ -2,7 +2,7 @@
 
 module Control.Category.Primitive.Console where
 
-import Control.Arrow (Kleisli(..))
+import Control.Arrow (Kleisli (..))
 
 class PrimitiveConsole cat where
     outputString :: cat String ()

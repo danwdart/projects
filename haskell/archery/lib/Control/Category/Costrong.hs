@@ -7,11 +7,11 @@ module Control.Category.Costrong where
 -- import Control.Monad.Fix
 
 class Costrong cat where
-    unfirst :: cat (a, c) (b, c) -> cat a b
+    unfirst :: cat (a, c) (b, c) → cat a b
 
 -- Like Costrong or ArrowLoop
 instance Costrong (->) where
-    unfirst :: ((a, c) -> (b, c)) -> a -> b
+    unfirst :: ((a, c) → (b, c)) → a → b
     unfirst f a = let (b, c) = f (a, c) in b
 
 -- I don't really understand this..

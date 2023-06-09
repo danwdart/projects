@@ -1,4 +1,5 @@
-{-# LANGUAGE OverloadedStrings, Safe #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Safe              #-}
 
 module Data.Code.Haskell.Func where
 
@@ -17,11 +18,11 @@ import Control.Category.Primitive.Extra
 import Control.Category.Strong
 import Control.Category.Symmetric
 import Control.Monad.IO.Class
-import Data.ByteString.Lazy.Char8 qualified as BSL
+import Data.ByteString.Lazy.Char8          qualified as BSL
 import Data.Render
 import Data.String
 import Data.Tuple.Triple
-import Prelude hiding ((.), id)
+import Prelude                             hiding (id, (.))
 import System.Process
 import Text.Read
 

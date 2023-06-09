@@ -2,21 +2,21 @@ module Data.Primitive.PrimsSpec where
 
 import Control.Category.Interpret
 import Data.Primitive.Prims
-import           Test.Hspec hiding (runIO)
-import           Test.Hspec.QuickCheck
-import           Test.QuickCheck
-import           Test.QuickCheck.Monadic
+import Test.Hspec                 hiding (runIO)
+import Test.Hspec.QuickCheck
+import Test.QuickCheck
+import Test.QuickCheck.Monadic
 
 -- @TODO random functions
 -- @TODO proper name of this equality function - isomorphic?
 
 {-}
 prop_ReverseStringIsCorrectViaEncodeDecodeInterpret :: String -> Property
-prop_ReverseStringIsCorrectViaEncodeDecodeInterpret s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 $ 
-    interpret (decode (encode reverseString)) s === reverseString s 
+prop_ReverseStringIsCorrectViaEncodeDecodeInterpret s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 $
+    interpret (decode (encode reverseString)) s === reverseString s
 
 prop_EqualIsCorrectViaEncodeDecodeInterpret :: (Int, Int) -> Property
-prop_EqualIsCorrectViaEncodeDecodeInterpret is = withMaxSuccess 200 $ 
+prop_EqualIsCorrectViaEncodeDecodeInterpret is = withMaxSuccess 200 $
     interpret (decode (encode equal)) is === equal is
 -}
 

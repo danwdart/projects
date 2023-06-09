@@ -3,17 +3,17 @@
 
 module Control.Category.Primitive.JSON where
 
-import Control.Arrow (Kleisli(..))
+import Control.Arrow    (Kleisli (..))
 import Control.Category
 import Data.Aeson
--- import  Data.ByteString.Char8 qualified as BS 
+-- import  Data.ByteString.Char8 qualified as BS
 -- import  Data.ByteString.Lazy.Char8 qualified as BSL
-import Prelude hiding ((.), id)
+import Prelude          hiding (id, (.))
 
 class JSONIO cat where
-    jsonToJSON :: (FromJSON a, ToJSON b) => cat a b -> cat () ()
+    jsonToJSON :: (FromJSON a, ToJSON b) ⇒ cat a b → cat () ()
 
-pureToKleisli :: Applicative m => (a -> b) -> Kleisli m a b
+pureToKleisli ∷ Applicative m ⇒ (a → b) → Kleisli m a b
 pureToKleisli f = Kleisli (pure . f)
 
 {-}

@@ -1,4 +1,6 @@
-{-# LANGUAGE GADTs, LambdaCase, OverloadedStrings, Unsafe #-}
+{-# LANGUAGE GADTs             #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Unsafe            #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
 module Data.Primitive.Prims where
@@ -16,20 +18,20 @@ deriving instance Show (Prims a b)
 
 instance ToJSON (Prims a b) where
     toJSON ReverseString = String "ReverseString"
-    toJSON Equal = String "Equal"
+    toJSON Equal         = String "Equal"
 
 instance FromJSON (Prims String String) where
     parseJSON (String "ReverseString") = pure ReverseString
     parseJSON _ = fail "TypeError: expecting String -> String"
 
-instance Eq a => FromJSON (Prims (a, a) Bool) where
+instance Eq a ⇒ FromJSON (Prims (a, a) Bool) where
     parseJSON (String "Equal") = pure Equal
-    parseJSON _ = fail "TypeError: expecting (a, a) -> Bool"
+    parseJSON _                = fail "TypeError: expecting (a, a) -> Bool"
 
 instance Primitive (FreeFunc Prims) where
     reverseString = Lift ReverseString
     eq = Lift Equal
 
-instance (Primitive cat) => InterpretPrim Prims cat where
+instance (Primitive cat) ⇒ InterpretPrim Prims cat where
     interpretPrim ReverseString = reverseString
-    interpretPrim Equal = eq
+    interpretPrim Equal         = eq

@@ -1,8 +1,9 @@
-{-# LANGUAGE Safe, LambdaCase #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE Safe       #-}
 
 module Control.Category.Cocartesian where
 
-import Control.Arrow (Kleisli(..))
+import Control.Arrow (Kleisli (..))
 
 class Cocartesian cat where
     injectL :: cat a (Either a b)
@@ -14,12 +15,12 @@ instance Cocartesian (->) where
     injectL = Left
     injectR = Right
     unify = \case
-        Left a -> a
+        Left a  -> a
         Right a -> a
     tag (False, a) = Left a
-    tag (True, a) = Right a
+    tag (True, a)  = Right a
 
-instance Monad m => Cocartesian (Kleisli m) where
+instance Monad m ⇒ Cocartesian (Kleisli m) where
     injectL = Kleisli $ pure . injectL
     injectR = Kleisli $ pure . injectR
     unify = Kleisli $ pure . unify

@@ -1,4 +1,6 @@
-{-# LANGUAGE DeriveAnyClass, DeriveGeneric, DerivingStrategies #-}
+{-# LANGUAGE DeriveAnyClass     #-}
+{-# LANGUAGE DeriveGeneric      #-}
+{-# LANGUAGE DerivingStrategies #-}
 
 module Data.Person where
 
@@ -7,7 +9,7 @@ import GHC.Generics
 
 data Person = Person {
     personName :: String,
-    personAge :: Int
-} 
+    personAge  :: Int
+}
     deriving stock (Eq, Show, Generic)
     deriving anyclass (FromJSON, ToJSON)

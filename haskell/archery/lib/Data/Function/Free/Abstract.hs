@@ -1,12 +1,16 @@
-{-# LANGUAGE GADTs, OverloadedLists, OverloadedStrings, QuantifiedConstraints, Unsafe #-}
+{-# LANGUAGE GADTs                 #-}
+{-# LANGUAGE OverloadedLists       #-}
+{-# LANGUAGE OverloadedStrings     #-}
+{-# LANGUAGE QuantifiedConstraints #-}
+{-# LANGUAGE Unsafe                #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
 module Data.Function.Free.Abstract where
 
 import Control.Category
 import Control.Category.Cartesian
-import Control.Category.Cocartesian
 import Control.Category.Choice
+import Control.Category.Cocartesian
 import Control.Category.Cochoice
 import Control.Category.Costrong
 import Control.Category.Interpret
@@ -15,7 +19,7 @@ import Control.Category.Strong
 -- import Control.Category.Primitive.Abstract
 import Control.Category.Primitive.Interpret
 import Data.Aeson
-import Prelude hiding ((.), id)
+import Prelude                              hiding (id, (.))
 
 data FreeFunc p a b where
     Id :: FreeFunc p x x
@@ -42,36 +46,36 @@ data FreeFunc p a b where
     Mod :: FreeFunc p (Int, Int) Int
     Lift :: p a b -> FreeFunc p a b
 
-deriving instance (forall a b. Show (p a b)) => Show (FreeFunc p x y)
+deriving instance (forall a b. Show (p a b)) ⇒ Show (FreeFunc p x y)
 
 -- deriving instance (forall a b. Read (p a b)) => Read (FreeFunc p x y)
 
-instance (Numeric cat, Cocartesian cat, Cochoice cat, Choice cat, Cartesian cat, Costrong cat, Strong cat, Category cat, InterpretPrim p cat) => Interpret (FreeFunc p) cat where
-    interpret Id = id
+instance (Numeric cat, Cocartesian cat, Cochoice cat, Choice cat, Cartesian cat, Costrong cat, Strong cat, Category cat, InterpretPrim p cat) ⇒ Interpret (FreeFunc p) cat where
+    interpret Id            = id
     interpret (Compose a b) = interpret a . interpret b
-    interpret Copy = copy
-    interpret Consume = consume
-    interpret (First a) = first' (interpret a)
-    interpret (Second a) = second' (interpret a)
-    interpret (Unfirst a) = unfirst (interpret a)
-    interpret Fst = fst'
-    interpret Snd = snd'
-    interpret InjectL = injectL
-    interpret InjectR = injectR
-    interpret (Left' a) = left' (interpret a)
-    interpret (Right' a) = right' (interpret a)
-    interpret (Unleft a) = unleft (interpret a)
-    interpret Unify = unify
-    interpret Tag = tag
-    interpret (Num n) = num n
-    interpret Negate = negate'
-    interpret Add = add
-    interpret Mult = mult
-    interpret Div = div'
-    interpret Mod = mod'
-    interpret (Lift a) = interpretPrim a
+    interpret Copy          = copy
+    interpret Consume       = consume
+    interpret (First a)     = first' (interpret a)
+    interpret (Second a)    = second' (interpret a)
+    interpret (Unfirst a)   = unfirst (interpret a)
+    interpret Fst           = fst'
+    interpret Snd           = snd'
+    interpret InjectL       = injectL
+    interpret InjectR       = injectR
+    interpret (Left' a)     = left' (interpret a)
+    interpret (Right' a)    = right' (interpret a)
+    interpret (Unleft a)    = unleft (interpret a)
+    interpret Unify         = unify
+    interpret Tag           = tag
+    interpret (Num n)       = num n
+    interpret Negate        = negate'
+    interpret Add           = add
+    interpret Mult          = mult
+    interpret Div           = div'
+    interpret Mod           = mod'
+    interpret (Lift a)      = interpretPrim a
 
-instance (forall a b. ToJSON (k a b)) => ToJSON (FreeFunc k x y) where
+instance (forall a b. ToJSON (k a b)) ⇒ ToJSON (FreeFunc k x y) where
     toJSON Id = String "Id"
     toJSON (Compose f g) = object [ "type" .= String "Compose", "args" .= Array [ toJSON f, toJSON g ] ]
     toJSON Copy = String "Copy"
@@ -98,7 +102,7 @@ instance (forall a b. ToJSON (k a b)) => ToJSON (FreeFunc k x y) where
 
 instance FromJSON (FreeFunc p a a) where
     parseJSON (String "Id") = pure Id
-    parseJSON _ = fail "TypeError: expecting a -> a"
+    parseJSON _             = fail "TypeError: expecting a -> a"
 
 instance Category (FreeFunc p) where
     id = Id

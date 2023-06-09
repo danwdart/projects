@@ -3,5 +3,5 @@
 module Main where
 
 -- | Runs a category from YAML category file.
-main :: IO ()
+main ∷ IO ()
 main = pure ()

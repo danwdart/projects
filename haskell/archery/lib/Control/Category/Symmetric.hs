@@ -10,9 +10,9 @@ class Symmetric cat where
 
 instance Symmetric (->) where
     swap (a, b) = (b, a)
-    swapEither (Left a) = Right a
+    swapEither (Left a)  = Right a
     swapEither (Right a) = Left a
     reassoc (a, (b, c)) = ((a, b), c)
-    reassocEither (Left a) = Left (Left a)
-    reassocEither (Right (Left b)) = Left (Right b)
+    reassocEither (Left a)          = Left (Left a)
+    reassocEither (Right (Left b))  = Left (Right b)
     reassocEither (Right (Right c)) = Right c

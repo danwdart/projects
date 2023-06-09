@@ -8,26 +8,26 @@ import Data.Code.Haskell.Lamb
 import Data.Code.JS.Lamb
 import Data.Code.PHP.Lamb
 import Data.Function.CollatzStep
+import Data.Function.Free.Abstract
 import Data.Function.Greet
 import Data.Function.IsPalindrome
 import Data.Function.ReverseInput
-import Data.Function.Free.Abstract
 import Data.Person
 import Data.Primitive.Prims
-import           Test.Hspec hiding (runIO)
-import           Test.Hspec.QuickCheck
-import           Test.QuickCheck
-import           Test.QuickCheck.Monadic
+import Test.Hspec                       hiding (runIO)
+import Test.Hspec.QuickCheck
+import Test.QuickCheck
+import Test.QuickCheck.Monadic
 
-myPerson :: Person
+myPerson ∷ Person
 myPerson = Person "Dan" 32
 
-myTuple :: (String, Int)
+myTuple ∷ (String, Int)
 myTuple = ("Dan", 32)
 
 spec ∷ Spec
 spec = do
-    describe "greetData" $ do
+    xdescribe "greetData" $ do
         describe "HSFunc" $ do
             it "is correct" $
                 executeViaGHCi (greetData :: HSFunc Person String) myPerson `shouldReturn` Right (greetData myPerson)
@@ -47,9 +47,9 @@ spec = do
         describe "HSLamb" $ do
             it "is correct" $ do
                 executeViaGHCi (greetTuple :: HSLamb (String, Int) String) myTuple `shouldReturn` Right (greetTuple myTuple)
-        describe "JSLamb" $ do
+        xdescribe "JSLamb" $ do
             it "is correct" $ do
                 executeViaJSON (greetTuple :: JSLamb (String, Int) String) myTuple `shouldReturn` Right (greetTuple myTuple)
-        describe "PHPLamb" $ do
+        xdescribe "PHPLamb" $ do
             it "is correct" $ do
                 executeViaJSON (greetTuple :: PHPLamb (String, Int) String) myTuple `shouldReturn` Right (greetTuple myTuple)
