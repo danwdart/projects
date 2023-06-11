@@ -119,7 +119,7 @@ library
     Control.Category.Primitive.Stdio
     Control.Category.Strong
     Control.Category.Symmetric
-    Control.Category.Utilities
+    Data.Function.Utilities
     Data.Code.Haskell.Func
     Data.Code.Haskell.Lamb
     Data.Code.Haskell.Program

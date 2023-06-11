@@ -10,7 +10,7 @@ import Control.Category.Cocartesian
 import Control.Category.Numeric
 import Control.Category.Primitive.Abstract
 import Control.Category.Strong
-import Control.Category.Utilities
+import Data.Function.Utilities
 import Prelude                             hiding (id, (.))
 
 collatzStep ∷ forall cat. (Category cat, Numeric cat, Cartesian cat, Cocartesian cat, Choice cat, Strong cat, Primitive cat) ⇒ cat Int Int

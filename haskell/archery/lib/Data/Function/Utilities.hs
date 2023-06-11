@@ -1,6 +1,6 @@
 {-# LANGUAGE Safe #-}
 
-module Control.Category.Utilities where
+module Data.Function.Utilities where
 
 import Control.Category
 import Control.Category.Cartesian
