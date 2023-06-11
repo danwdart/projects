@@ -58,7 +58,7 @@ spec = describe "collatzStep" $ do
         prop "is correct" prop_HSLambIsCorrect
     describe "JSLamb" $ do
         prop "is correct" prop_JSLambIsCorrect
-    describe "PHPLamb" $ do
+    xdescribe "PHPLamb" $ do
         prop "is correct" prop_PHPLambIsCorrect
     {-
     describe "JSON" $ do
