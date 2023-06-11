@@ -8,7 +8,6 @@ import Control.Category
 import Control.Category.Interpret
 import Data.Aeson
 import Data.ByteString.Lazy.Char8 qualified as BSL
-import Data.Maybe
 import Data.Function.Free.Abstract
 import Data.Primitive.Prims
 import System.Executable

@@ -51,6 +51,7 @@ deriving instance (forall a b. Show (p a b)) ⇒ Show (FreeFunc p x y)
 -- deriving instance (forall a b. Read (p a b)) => Read (FreeFunc p x y)
 
 instance (Numeric cat, Cocartesian cat, {- Cochoice cat,-} Choice cat, Cartesian cat, {- Costrong cat, -} Strong cat, Category cat, InterpretPrim p cat) ⇒ Interpret (FreeFunc p) cat where
+    {-# INLINABLE interpret #-}
     interpret Id            = id
     interpret (Compose a b) = interpret a . interpret b
     interpret Copy          = copy

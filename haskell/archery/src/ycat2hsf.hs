@@ -7,7 +7,6 @@ import Control.Category
 import Control.Category.Interpret
 import Data.ByteString.Lazy.Char8 qualified as BSL
 import Data.Code.Haskell.Func
-import Data.Maybe
 import Data.Function.Free.Abstract
 import Data.Primitive.Prims
 import Data.Render
