@@ -5,11 +5,11 @@ on:
   pull_request:
     paths:
       - .github/workflows/archery.yml
-      - haskell/other/archery**
+      - haskell/archery**
   push:
     paths:
       - .github/workflows/archery.yml
-      - haskell/other/archery**
+      - haskell/archery**
   workflow_dispatch:
 jobs:
   push-to-cachix:
