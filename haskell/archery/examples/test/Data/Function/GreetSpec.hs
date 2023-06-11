@@ -29,16 +29,16 @@ spec ∷ Spec
 spec = do
     describe "greetData" $ do
         describe "HSFunc" $ do
-            xit "is correct" $
+            it "is correct" $
                 executeViaGHCi (greetData :: HSFunc Person String) myPerson `shouldReturn` (greetData myPerson)
         describe "HSLamb" $ do
-            xit "is correct"$ do
+            it "is correct"$ do
                 executeViaGHCi (greetData :: HSLamb Person String) myPerson `shouldReturn` (greetData myPerson)
         describe "JSLamb" $ do
-            xit "is correct" $ do
+            it "is correct" $ do
                 executeViaJSON (greetData :: JSLamb Person String) myPerson `shouldReturn` (greetData myPerson)
         describe "PHPLamb" $ do
-            xit "is correct" $ do
+            it "is correct" $ do
                 executeViaJSON (greetData :: PHPLamb Person String) myPerson `shouldReturn` (greetData myPerson)
     describe "greetTuple" $ do
         describe "HSFunc" $ do
@@ -48,8 +48,8 @@ spec = do
             it "is correct" $ do
                 executeViaGHCi (greetTuple :: HSLamb (String, Int) String) myTuple `shouldReturn` (greetTuple myTuple)
         describe "JSLamb" $ do
-            xit "is correct" $ do
+            it "is correct" $ do
                 executeViaJSON (greetTuple :: JSLamb (String, Int) String) myTuple `shouldReturn` (greetTuple myTuple)
         describe "PHPLamb" $ do
-            xit "is correct" $ do
+            it "is correct" $ do
                 executeViaJSON (greetTuple :: PHPLamb (String, Int) String) myTuple `shouldReturn` (greetTuple myTuple)

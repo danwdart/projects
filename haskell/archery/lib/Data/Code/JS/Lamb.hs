@@ -22,6 +22,7 @@ import Control.Monad.IO.Class
 import Control.Exception hiding (bracket)
 import Data.Aeson
 import Data.ByteString.Lazy.Char8          qualified as BSL
+import Data.List (intersperse)
 import Data.Render
 import Data.String
 import GHC.IO.Exception
@@ -52,22 +53,22 @@ instance Cartesian JSLamb where
     snd' = "(([_, y]) => y)"
 
 instance Cocartesian JSLamb where
-    injectL = "(x => ({tag: 'left', value: x}))"
-    injectR = "(x => ({tag: 'right', value: x}))"
-    unify = "(x => x.value)"
-    tag = "(([b, x]) => ({tag: b ? 'right' : 'left', value: x}))"
+    injectL = "(x => ({ Left: x}))"
+    injectR = "(x => ({ Right: x}))"
+    unify = "(x => x.Left ? x.Left : x.Right)"
+    tag = "(([b, x]) => b ? ({Right: x}) : ({Left: x}))"
 
 instance Strong JSLamb where
     first' (JSLamb f) = JSLamb $ "(([x, y]) => [" <> f <> "(x), y])"
     second' (JSLamb f) = JSLamb $ "(([x, y]) => [x, " <> f <> "(y)])"
 
 instance Choice JSLamb where
-    left' (JSLamb f) = JSLamb $ "(({tag, value}) => ({tag, value: tag === 'left' ? " <> f <> " (value) : value}))"
-    right' (JSLamb f) = JSLamb $ "(({tag, value}) => ({tag, value: tag === 'right' ? " <> f <> " (value) : value}))"
+    left' (JSLamb f) = JSLamb $ "(x => x.Left ? ({ Left: " <> f <> " (x.Left) }) : x)"
+    right' (JSLamb f) = JSLamb $ "(x => x.Right ? ({ Right: " <> f <> " (x.Right) }) : x)"
 
 instance Symmetric JSLamb where
-    swap = "(([a, b]) => [b, a]))"
-    swapEither = "(({tag, value}) => ({tag: tag === \"left\" ? \"right\" : \"left\", value}))"
+    swap = "(([a, b]) => ([b, a]))"
+    swapEither = "(x => x.Left ? ({ Right: x.Left }) : ({ Left: x.Right }))"
     reassoc = "(([a, [b, c]]) => [[a, b], c])"
     reassocEither = error "Not yet implemented"
 
@@ -87,7 +88,7 @@ instance PrimitiveConsole JSLamb where
 
 instance PrimitiveExtra JSLamb where
     intToString = "(i => i.toString())"
-    concatString = "([a, b]) => a + b"
+    concatString = "(([a, b]) => a + b)"
     constString s = JSLamb $ "(() => \"" <> BSL.pack s <> "\")"
 
 instance Numeric JSLamb where
@@ -101,18 +102,22 @@ instance Numeric JSLamb where
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON JSLamb where
     executeViaJSON cat param = do
-        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")))"] "")
+        let params :: [String]
+            params = ["-e", "console.log(JSON.stringify(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")))"]
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "node" params "")
         case exitCode of
-            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> " when attempting to run node with params: " <> concat (intersperse " " params) <> " Output: " <> stderr 
             ExitSuccess -> case eitherDecode (BSL.pack stdout) of
                 Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
                 Right ret -> pure ret
 
 instance ExecuteStdio JSLamb where
     executeViaStdio cat stdin = do
-        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "node" ["-e", BSL.unpack (render cat) <> "()"] (show stdin))
+        let params :: [String]
+            params = ["-e", BSL.unpack (render cat) <> "()"]
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "node" params (show stdin))
         case exitCode of
-            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> " when attempting to run node with params: " <> concat (intersperse " " params) <> " Output: " <> stderr 
             ExitSuccess -> case readEither stdout of
                 Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
                 Right ret -> pure ret

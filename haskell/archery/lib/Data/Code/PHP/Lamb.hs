@@ -22,6 +22,7 @@ import Control.Exception hiding (bracket)
 import Control.Monad.IO.Class
 import Data.Aeson
 import Data.ByteString.Lazy.Char8          qualified as BSL
+import Data.List (intersperse)
 import Data.Render
 import Data.String
 import GHC.IO.Exception
@@ -42,7 +43,7 @@ instance Bracket PHPLamb where
     bracket s = PHPLamb $ "(" <> render s <> ")"
 
 instance Category PHPLamb where
-    id = "($x => $x)"
+    id = "(fn ($x) => $x)"
     PHPLamb a . PHPLamb b = PHPLamb $ "(fn ($x) => " <> a <> "(" <> b <> "($x)))"
 
 instance Cartesian PHPLamb where
@@ -101,9 +102,11 @@ instance Numeric PHPLamb where
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON PHPLamb where
     executeViaJSON cat param = do
-        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")));"] "")
+        let params :: [String]
+            params = ["-r", "\"print(json_encode((" <> BSL.unpack (render cat) <> ")(" <> BSL.unpack (encode param) <> ")));\""]
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "php" params [])
         case exitCode of
-            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> " when attempting to run php with params: " <> concat (intersperse " " params) <> " Output: " <> stderr 
             ExitSuccess -> case eitherDecode (BSL.pack stdout) of
                 Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
                 Right ret -> pure ret
@@ -111,9 +114,11 @@ instance ExecuteJSON PHPLamb where
 instance ExecuteStdio PHPLamb where
     -- @TODO figure out why we have to have something here for argument - for now using null...
     executeViaStdio cat stdin = do
-        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "php" ["-r", "(" <> BSL.unpack (render cat) <> ")(null);"] (show stdin))
+        let params :: [String]
+            params = ["-r", "(" <> BSL.unpack (render cat) <> ")(null);"]
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "php" params (show stdin))
         case exitCode of
-            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> " when attempting to run php with params: " <> concat (intersperse " " params) <> " Output: " <> stderr 
             ExitSuccess -> case readEither stdout of
                 Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
                 Right ret -> pure ret

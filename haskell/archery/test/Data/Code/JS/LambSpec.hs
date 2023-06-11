@@ -36,19 +36,19 @@ spec = describe "JSLamb" $ do
         it "returns snd" $
             executeViaJSON (snd' :: JSLamb (Int, String) String) (1, "1") `shouldReturn` "1"
     describe "cocartesian" $ do
-        xit "injects Left" $ do
+        it "injects Left" $ do
             executeViaJSON (injectL :: JSLamb String (Either String ())) "1" `shouldReturn` (Left "1")
-        xit "injects Right" $ do
+        it "injects Right" $ do
             executeViaJSON (injectR :: JSLamb String (Either () String)) "1" `shouldReturn` (Right "1")
         describe "unify" $ do
-            xit "unifies Left" $
+            it "unifies Left" $
                 executeViaJSON (unify :: JSLamb (Either String String) String) (Left "1") `shouldReturn` "1"
-            xit "unifies Right" $
+            it "unifies Right" $
                 executeViaJSON (unify :: JSLamb (Either String String) String) (Right "1") `shouldReturn` "1"
         describe "tag" $ do
-            xit "tags Left" $
+            it "tags Left" $
                 executeViaJSON (tag :: JSLamb (Bool, String) (Either String String)) (False, "1") `shouldReturn` (Left "1")
-            xit "tags Right" $
+            it "tags Right" $
                 executeViaJSON (tag :: JSLamb (Bool, String) (Either String String)) (True, "1") `shouldReturn` (Right "1")
     describe "strong" $ do
         it "runs on first" $
@@ -59,20 +59,20 @@ spec = describe "JSLamb" $ do
         describe "left'" $
             -- it "runs on left" $
             --     executeViaJSON (left' copy :: JSLamb (Either String Int) (Either (String, String) Int)) (Left "1") `shouldReturn` (Right (Left ("1", "1")))
-            xit "doesn't run on right" $
+            it "doesn't run on right" $
                 executeViaJSON (left' copy :: JSLamb (Either String Int) (Either (String, String) Int)) (Right 1) `shouldReturn` (Right 1)
-        xdescribe "right'" $ do
-            xit "doesn't run on left" $
+        describe "right'" $ do
+            it "doesn't run on left" $
                 executeViaJSON (right' copy :: JSLamb (Either String Int) (Either String (Int, Int))) (Left "1") `shouldReturn` (Left "1")
-            xit "runs on right" $
+            it "runs on right" $
                 executeViaJSON (right' copy :: JSLamb (Either String Int) (Either String (Int, Int))) (Right 1) `shouldReturn` (Right (1, 1))
-    xdescribe "symmetric" $ do
-        xit "swaps" $
+    describe "symmetric" $ do
+        it "swaps" $
             executeViaJSON (swap :: JSLamb (String, Int) (Int, String)) ("1", 1) `shouldReturn` (1, "1")
-        xdescribe "swapEither" $ do
-            xit "swaps left" $
+        describe "swapEither" $ do
+            it "swaps left" $
                 executeViaJSON (swapEither :: JSLamb (Either String String) (Either String String)) (Left "1") `shouldReturn` (Right "1")
-            xit "swaps right" $
+            it "swaps right" $
                 executeViaJSON (swapEither :: JSLamb (Either String String) (Either String String)) (Right "1") `shouldReturn` (Left "1")
         it "reassocs" $
             executeViaJSON (reassoc :: JSLamb (String, (Int, Bool)) ((String, Int), Bool)) ("1", (1, True)) `shouldReturn` ((("1", 1), True))
@@ -95,7 +95,7 @@ spec = describe "JSLamb" $ do
     describe "primitive extra" $ do
         it "converts int to string" $
             executeViaJSON (intToString :: JSLamb Int String) 1 `shouldReturn` "1"
-        xit "concats string" $
+        it "concats string" $
             executeViaJSON (concatString :: JSLamb (String, String) String) ("a", "b") `shouldReturn` "ab"
         it "returns const string" $ do
             executeViaJSON (constString "a" :: JSLamb () String) () `shouldReturn` "a"
