@@ -1,17 +1,14 @@
-{-# LANGUAGE Safe #-}
-{-# OPTIONS_GHC -Wwarn #-}
+{-# LANGUAGE Unsafe #-}
+{-# OPTIONS_GHC -Wwarn -Wno-unsafe #-}
 
 module Main where
 
 import Control.Arrow (Kleisli(..))
 import Control.Category
 import Control.Category.Interpret
-import Data.Aeson
 import Data.ByteString.Lazy.Char8 qualified as BSL
-import Data.Maybe
 import Data.Function.Free.Abstract
 import Data.Primitive.Prims
-import Data.Render
 import Data.Yaml qualified as Y
 import System.Executable
 import Prelude hiding ((.), id)

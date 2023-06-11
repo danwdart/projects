@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
-{-# LANGUAGE Unsafe, DeriveAnyClass, DeriveGeneric, DerivingVia, OverloadedStrings #-}
+{-# LANGUAGE Unsafe, DeriveAnyClass, DeriveGeneric, DerivingVia, OverloadedStrings, TemplateHaskell #-}
 
 module Schema where
 

@@ -2,10 +2,17 @@ import           Data.List  (findIndex, isPrefixOf, tails)
 import           Data.Maybe
 -- import Control.Monad
 
-power ∷ Double
-power = 0.5
+-- power ∷ Double
+-- power = 1 / 3
 -- base = 10
 
+fn ∷ Double → Double
+-- fn = (** power)
+-- fn = logBase 10
+-- fn = exp
+-- fn = tan
+-- fn = (pi *)
+fn = (exp 1 *)
 -- ssp :: String -> String -> Maybe Int
 -- ssp needle haystack = (findIndex . isPrefixOf) needle (tails haystack)
 
@@ -29,7 +36,7 @@ maybeApplyToSecondIf comparator positionToFoundMessage one two = boolToMaybe (co
 
 mapping ∷ Int → Maybe String
 mapping number = maybeApplyToSecondIf (>) positionToFoundMessage resultLength =<< maybePosition where
-    root = (fromIntegral number :: Double) ** power -- ... so (**) is like (^) but for non-integrals
+    root = fn . fromIntegral $ number -- ... so (**) is like (^) but for non-integrals
     resultLength = intThenLength root
     notDot = (/= '.')
     rootWithoutDots = filter notDot (show root)
@@ -37,4 +44,4 @@ mapping number = maybeApplyToSecondIf (>) positionToFoundMessage resultLength =<
     positionToFoundMessage = foundMsg number root
 
 main ∷ IO ()
-main = print (take 1000 $ mapMaybe mapping [1..])
+main = mapM_ putStrLn (take 1000 $ mapMaybe mapping [1..])

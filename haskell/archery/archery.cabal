@@ -172,17 +172,17 @@ executable runjcat
 executable runycat
   import: shared-properties-unsafe
   main-is:             runycat.hs
-  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, bytestring, yaml
+  build-depends:       base >= 4.18.0.0 && < 5, archery, bytestring, yaml
 
 executable ycat2hsf
   import: shared-properties-unsafe
   main-is:             ycat2hsf.hs
-  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, bytestring, yaml
+  build-depends:       base >= 4.18.0.0 && < 5, archery, bytestring, yaml
 
 executable ycat2hsl
   import: shared-properties-unsafe
   main-is:             ycat2hsl.hs
-  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, bytestring, yaml
+  build-depends:       base >= 4.18.0.0 && < 5, archery, bytestring, yaml
 
 executable ycat2jcat
   import: shared-properties-unsafe
@@ -192,17 +192,17 @@ executable ycat2jcat
 executable ycat2js
   import: shared-properties-unsafe
   main-is:             ycat2js.hs
-  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, bytestring, yaml
+  build-depends:       base >= 4.18.0.0 && < 5, archery, bytestring, yaml
 
 executable ycat2php
   import: shared-properties-unsafe
   main-is:             ycat2php.hs
-  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, bytestring, yaml
+  build-depends:       base >= 4.18.0.0 && < 5, archery, bytestring, yaml
 
 executable ycatc
   import: shared-properties-unsafe
   main-is:             ycatc.hs
-  build-depends:       base >= 4.18.0.0 && < 5, aeson, archery, bytestring, yaml
+  build-depends:       base >= 4.18.0.0 && < 5, archery, bytestring, yaml
 
 test-suite test
   type:                exitcode-stdio-1.0

@@ -1,5 +1,5 @@
-{-# LANGUAGE Safe #-}
-{-# OPTIONS_GHC -Wwarn #-}
+{-# LANGUAGE Unsafe #-}
+{-# OPTIONS_GHC -Wwarn -Wno-unsafe #-}
 
 module Main where
 
@@ -11,7 +11,6 @@ import Data.ByteString.Lazy.Char8 qualified as BSL
 import Data.Maybe
 import Data.Function.Free.Abstract
 import Data.Primitive.Prims
-import Data.Render
 import System.Executable
 import Prelude hiding ((.), id)
 
