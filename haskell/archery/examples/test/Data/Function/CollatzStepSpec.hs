@@ -23,22 +23,22 @@ import Test.QuickCheck.Monadic
 prop_HSFuncIsCorrect ∷ Int → Property
 prop_HSFuncIsCorrect i = i >= 0 ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (collatzStep :: HSFunc Int Int) i
-    pure $ answer === Right (collatzStep i)
+    pure $ answer === collatzStep i
 
 prop_HSLambIsCorrect ∷ Int → Property
 prop_HSLambIsCorrect i = i >= 0 ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (collatzStep :: HSLamb Int Int) i
-    pure $ answer === Right (collatzStep i)
+    pure $ answer === collatzStep i
 
 prop_JSLambIsCorrect ∷ Int → Property
 prop_JSLambIsCorrect i = withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaJSON (collatzStep :: JSLamb Int Int) i
-    pure $ answer === Right (collatzStep i)
+    pure $ answer === collatzStep i
 
 prop_PHPLambIsCorrect ∷ Int → Property
 prop_PHPLambIsCorrect i = withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaJSON (collatzStep :: PHPLamb Int Int) i
-    pure $ answer === Right (collatzStep i)
+    pure $ answer === collatzStep i
 
 {-}
 myInterpret :: a

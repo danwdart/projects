@@ -18,14 +18,16 @@ import Control.Category.Primitive.Console
 import Control.Category.Primitive.Extra
 import Control.Category.Strong
 import Control.Category.Symmetric
+import Control.Exception hiding (bracket)
 import Control.Monad.IO.Class
 import Data.Aeson
 import Data.ByteString.Lazy.Char8          qualified as BSL
 import Data.Render
 import Data.String
-import Data.Tuple.Triple
+import GHC.IO.Exception
 import Prelude                             hiding (id, (.))
 import System.Process
+import Text.Read
 
 newtype PHPLamb a b = PHPLamb BSL.ByteString
     deriving (Eq, Show)
@@ -67,7 +69,7 @@ instance Symmetric PHPLamb where
     swap = "(fn ($a) => [$a[1], $a[0]]))"
     swapEither = "(fn ($a) => (['tag' => $a['tag'] === \"left\" ? \"right\" : \"left\", 'value' => $a['value']]))"
     reassoc = "(([a, [b, c]]) => [[a, b], c])"
-    reassocEither = "Unacceptable, test failure!"
+    reassocEither = error "Not yet implemented"
 
 -- instance Cochoice PHPLamb where
 
@@ -98,8 +100,20 @@ instance Numeric PHPLamb where
 
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON PHPLamb where
-    executeViaJSON cat param = eitherDecode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")));"] "")
+    executeViaJSON cat param = do
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "php" ["-r", "print(json_encode(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")));"] "")
+        case exitCode of
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitSuccess -> case eitherDecode (BSL.pack stdout) of
+                Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
+                Right ret -> pure ret
 
 instance ExecuteStdio PHPLamb where
     -- @TODO figure out why we have to have something here for argument - for now using null...
-    executeViaStdio cat stdin = read . secondOfThree <$> liftIO (readProcessWithExitCode "php" ["-r", "(" <> BSL.unpack (render cat) <> ")(null);"] (show stdin))
+    executeViaStdio cat stdin = do
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "php" ["-r", "(" <> BSL.unpack (render cat) <> ")(null);"] (show stdin))
+        case exitCode of
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitSuccess -> case readEither stdout of
+                Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
+                Right ret -> pure ret

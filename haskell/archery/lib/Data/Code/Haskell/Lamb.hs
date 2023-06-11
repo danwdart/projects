@@ -17,11 +17,12 @@ import Control.Category.Primitive.Console
 import Control.Category.Primitive.Extra
 import Control.Category.Strong
 import Control.Category.Symmetric
+import Control.Exception hiding (bracket)
 import Control.Monad.IO.Class
 import Data.ByteString.Lazy.Char8          qualified as BSL
 import Data.Render
 import Data.String
-import Data.Tuple.Triple
+import GHC.IO.Exception
 import Prelude                             hiding (id, (.))
 import System.Process
 import Text.Read
@@ -103,12 +104,24 @@ instance Numeric HSLamb where
 
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteHaskell HSLamb where
-    executeViaGHCi cat param = readEither . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", BSL.unpack (render cat) <> " " <> show param] "")
+    executeViaGHCi cat param = do
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", BSL.unpack (render cat) <> " " <> show param] "")
+        case exitCode of
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitSuccess -> case readEither stdout of
+                Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
+                Right ret -> pure ret
 
 -- @TODO this passes too many arguments apparently...
 -- This is because of the id and (.) using the (->) instance whereas I am running Kleisli below.
 -- This means we need to deal with both within Haskell sessions. Let's try to use Pure/Monadic... or maybe HSPure / HSMonadic accepting only appropriate typeclasses / primitives?
 instance ExecuteStdio HSLamb where
-    executeViaStdio cat stdin = read . secondOfThree <$> liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", "runKleisli " <> BSL.unpack (render cat) <> " ()"] (show stdin))
+    executeViaStdio cat stdin = do
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "ghci" ["-e", ":set -XLambdaCase", "-e", "import Control.Arrow", "-e", "import Prelude hiding ((.), id)", "-e", "import Control.Category", "-e", BSL.unpack (render cat) <> " ()"] (show stdin))
+        case exitCode of
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitSuccess -> case readEither stdout of
+                Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
+                Right ret -> pure ret
 
 -- @ TODO JSON

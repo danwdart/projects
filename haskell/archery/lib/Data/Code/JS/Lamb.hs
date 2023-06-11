@@ -19,13 +19,15 @@ import Control.Category.Primitive.Extra
 import Control.Category.Strong
 import Control.Category.Symmetric
 import Control.Monad.IO.Class
+import Control.Exception hiding (bracket)
 import Data.Aeson
 import Data.ByteString.Lazy.Char8          qualified as BSL
 import Data.Render
 import Data.String
-import Data.Tuple.Triple
+import GHC.IO.Exception
 import Prelude                             hiding (id, (.))
 import System.Process
+import Text.Read
 
 newtype JSLamb a b = JSLamb BSL.ByteString
     deriving (Eq, Show)
@@ -67,7 +69,7 @@ instance Symmetric JSLamb where
     swap = "(([a, b]) => [b, a]))"
     swapEither = "(({tag, value}) => ({tag: tag === \"left\" ? \"right\" : \"left\", value}))"
     reassoc = "(([a, [b, c]]) => [[a, b], c])"
-    reassocEither = "Unacceptable, test failure!"
+    reassocEither = error "Not yet implemented"
 
 -- instance Cochoice JSLamb where
 
@@ -98,7 +100,19 @@ instance Numeric JSLamb where
 
 -- @TODO escape shell - Text.ShellEscape?
 instance ExecuteJSON JSLamb where
-    executeViaJSON cat param = eitherDecode . BSL.pack . secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")))"] "")
+    executeViaJSON cat param = do
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "node" ["-e", "console.log(JSON.stringify(" <> BSL.unpack (render cat) <> "(" <> BSL.unpack (encode param) <> ")))"] "")
+        case exitCode of
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitSuccess -> case eitherDecode (BSL.pack stdout) of
+                Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
+                Right ret -> pure ret
 
 instance ExecuteStdio JSLamb where
-    executeViaStdio cat stdin = read . secondOfThree <$> liftIO (readProcessWithExitCode "node" ["-e", BSL.unpack (render cat) <> "()"] (show stdin))
+    executeViaStdio cat stdin = do
+        (exitCode, stdout, stderr) <- liftIO (readProcessWithExitCode "node" ["-e", BSL.unpack (render cat) <> "()"] (show stdin))
+        case exitCode of
+            ExitFailure code -> liftIO . throwIO . userError $ "Exit code " <> show code <> ": " <> stderr 
+            ExitSuccess -> case readEither stdout of
+                Left err -> liftIO . throwIO . userError $ "Can't parse response: " <> err
+                Right ret -> pure ret

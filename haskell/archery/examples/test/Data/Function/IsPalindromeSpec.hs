@@ -21,24 +21,24 @@ import Test.QuickCheck.Monadic
 prop_HSFuncIsCorrect ∷ String → Property
 prop_HSFuncIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (isPalindrome :: HSFunc String Bool) s
-    pure $ answer === Right (isPalindrome s)
+    pure $ answer === (isPalindrome s)
 
 
 prop_HSLambIsCorrect ∷ String → Property
 prop_HSLambIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaGHCi (isPalindrome :: HSLamb String Bool) s
-    pure $ answer === Right (isPalindrome s)
+    pure $ answer === (isPalindrome s)
 
 prop_JSLambIsCorrect ∷ String → Property
 prop_JSLambIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaJSON (isPalindrome :: JSLamb String Bool) s
-    pure $ answer === Right (isPalindrome s)
+    pure $ answer === (isPalindrome s)
 
 
 prop_PHPLambIsCorrect ∷ String → Property
 prop_PHPLambIsCorrect s = length s > 1 && all (`notElem` "$") s ==> withMaxSuccess 200 . monadicIO $ do
     answer <- executeViaJSON (isPalindrome :: PHPLamb String Bool) s
-    pure $ answer === Right (isPalindrome s)
+    pure $ answer === (isPalindrome s)
 
 {-}
 

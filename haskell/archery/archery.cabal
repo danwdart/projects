@@ -131,7 +131,6 @@ library
     Data.Primitive.Prims
     Data.Primitive.PrimsConsole
     Data.Primitive.PrimsFile
-    Data.Tuple.Triple
     Data.Render
 
 executable jcat2hsf
