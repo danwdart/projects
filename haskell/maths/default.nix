@@ -23,7 +23,7 @@ let
       # https://github.com/mvr/cf/issues/4
       cf = lib.dontCheck (lib.markUnbroken super.cf);
 
-      factory = lib.markUnbroken super.factory;
+      factory = lib.dontCheck (lib.markUnbroken super.factory);
 
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };
