@@ -22,3 +22,6 @@ __pycache__/
 node_modules
 package-lock.json
 .DS_Store
+*.so.*
+sls2
+packelf.sh

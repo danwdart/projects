@@ -1,0 +1,2 @@
+packages: *
+with-compiler: x86_64-unknown-linux-gnu-ghc
