@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 runCommand "haskell" {
     buildInputs = [
-        haskell.compiler.ghc92
-        haskell.packages.ghc92.cabal-install
+        haskell.compiler.ghc96
+        haskell.packages.ghc96.cabal-install
     ];
 } ""

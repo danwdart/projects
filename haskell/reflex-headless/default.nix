@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc92"
+  compiler ? "ghc94"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -13,7 +13,7 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       reflex-headless = lib.dontHaddock (self.callCabal2nix "reflex-headless" (gitignore ./.) {});
-      #reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
+      reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
       # not in nix yet
       #patch = lib.doJailbreak (self.callHackage "patch" "0.0.7.0" {});
       # not in nix yet

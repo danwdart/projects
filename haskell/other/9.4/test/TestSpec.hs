@@ -2,6 +2,7 @@ module TestSpec where
 
 import           Control.Exception (evaluate)
 import           Test.Hspec
+import           Test.Hspec.QuickCheck
 import           Test.QuickCheck
 
 prop1 ∷ [Int] → [Int] → Property
@@ -14,7 +15,7 @@ spec ∷ Spec
 spec = describe "tests" $ do
     prop "runs" prop1
     it "runs 10000 times" $
-        property (withMaxSuccess 10000 prop)
+        property (withMaxSuccess 10000 prop2)
     it "checks" $
         1 `shouldBe` 1
     -- it "calcs prop" . property $ (\x -> (x :: Int) == (x :: Int))

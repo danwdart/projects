@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -p "haskell.packages.ghc92.ghcWithPackages(pkgs: with pkgs; [ blaze-svg ])" -i runghc
+#! nix-shell -p "haskell.packages.ghc96.ghcWithPackages(pkgs: with pkgs; [ blaze-svg ])" -i runghc
 
 {-# LANGUAGE OverloadedStrings #-}
 

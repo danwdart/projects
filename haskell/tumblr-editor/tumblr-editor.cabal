@@ -12,9 +12,9 @@ executable tumblr-editor
   main-is:             Main.hs
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >=4.14.1.0 && <5
+  build-depends:       base >= 4.14.1.0 && <5
                      , text
-                     , webdriver
+                     , webdriver >= 0.11.0.0
   hs-source-dirs: src
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything

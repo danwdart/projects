@@ -38,7 +38,7 @@ executable githubpr
   main-is: github-pr.hs
   build-depends:
       aeson
-    , base >=4.7 && <5
+    , base >= 4.7 && <5
     , bytestring
     , containers
     , github
@@ -51,7 +51,7 @@ executable emailme
   main-is: emailme.hs
   build-depends:
       aeson
-    , base >=4.7 && <5
+    , base >= 4.7 && <5
     , bytestring
     , containers
     , lens
@@ -65,7 +65,7 @@ executable html
   hs-source-dirs:
       html
   build-depends:
-      base >=4.7 && <5
+      base >= 4.7 && <5
     , aeson
     , blaze-html
     , blaze-markup

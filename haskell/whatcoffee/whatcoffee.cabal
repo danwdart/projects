@@ -13,7 +13,7 @@ library
   -- can't use base64 because of errors
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16.4.0 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
+  build-depends:       base >= 4.17.0.0 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
   exposed-modules:
   ghc-options:         -Wall -Werror -haddock
                        -Weverything
@@ -31,7 +31,7 @@ executable whatcoffee
   main-is:             Main.hs
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16.4.0 && < 5, aeson, base64-bytestring, bytestring, text, time, uuid-types
+  build-depends:       base >= 4.17.0.0 && < 5, aeson, base64-bytestring, bytestring, text, time, uuid-types
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
                        -Wno-unsafe -Wno-safe

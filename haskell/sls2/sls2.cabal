@@ -14,7 +14,7 @@ common warnings
 library
     import:           warnings
     exposed-modules:  MyLib
-    build-depends:    base ^>=4.16.4.0
+    build-depends:    base >= 4.18.0.0
                     , aeson
     hs-source-dirs:   lib
     default-language: GHC2021
@@ -23,7 +23,7 @@ executable sls2
     import:           warnings
     main-is:          Main.hs
     build-depends:
-        base ^>=4.16.4.0
+        base >= 4.18.0.0
       , aeson
       , sls2
     hs-source-dirs:   src
@@ -36,5 +36,5 @@ test-suite sls2-test
     hs-source-dirs:   test
     main-is:          Main.hs
     build-depends:
-        base ^>=4.16.4.0,
+        base >= 4.18.0.0,
         sls2

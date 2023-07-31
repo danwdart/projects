@@ -347,9 +347,9 @@ executable noecho
   import: shared-properties-safe
   main-is:             noecho.hs
 
-executable nonary
-  import: shared-properties-safe
-  main-is:             nonary.hs
+-- executable nonary
+--   import: shared-properties-safe
+--   main-is:             nonary.hs
 
 executable overlap
   import: shared-properties-safe

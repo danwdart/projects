@@ -18,7 +18,7 @@ common shared-properties
   hs-source-dirs:      src
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16.4.0 && < 5
+  build-depends:       base >= 4.18.0.0 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -35,7 +35,7 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.16.4.0 && < 5, primes
+  build-depends:       base >= 4.18.0.0 && < 5, primes
   ghc-options:         -Wall -Werror -haddock
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -56,7 +56,7 @@ library
 
 executable projecteuler
   import: shared-properties
-  build-depends:       base >= 4.16
+  build-depends:       base >= 4.18.0.0
                      , projecteuler
   main-is:             Main.hs
 
@@ -84,7 +84,7 @@ test-suite projecteuler-test
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:
-      -- base >= 4.16.4.0 && < 5
+      -- base >= 4.18.0.0 && < 5
     -- , projecteuler
     -- , 
     hspec

@@ -12,7 +12,7 @@ cabal-version:       1.12
 
 executable hsjava
   main-is:             Main.hs
-  build-depends:       base >=4.11 && < 5
+  build-depends:       base >= 4.11 && < 5
   default-extensions:  DerivingStrategies, UnicodeSyntax
   hs-source-dirs:      src
   default-language:    Haskell2010

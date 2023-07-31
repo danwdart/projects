@@ -53,7 +53,7 @@ train data' allYTrues network@Network {
                 sumOutput = fmap (dots sumHidden) outputLayer'
                 sigOutput = fmap sigmoid sumOutput
                 yPred = ffLayer xs network
-                d_L_d_ypred =-2 * (yTrue - yPred)
+                d_L_d_ypred = -2 * (yTrue - yPred)
                 dOutputs = derivSigmoid (head sumOutput)
                 -- dHiddens = fmap ((*) dOutputs) sigHidden
 

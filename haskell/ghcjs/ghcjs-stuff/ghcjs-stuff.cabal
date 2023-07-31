@@ -16,7 +16,7 @@ common shared-properties
   hs-source-dirs:      src
   default-extensions:  DerivingStrategies, UnicodeSyntax
   default-language:    Haskell2010
-  build-depends:       base >= 4.12 && < 5
+  build-depends:       base >= 4.14.3.0 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -33,24 +33,24 @@ common shared-properties
 executable unfart
   import: shared-properties
   main-is:             extension/unfart.hs
-  build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, containers, jsaddle, ghcjs-base, ghcjs-dom
+  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, containers, jsaddle, ghcjs-base, ghcjs-dom
 
 executable frp
   import: shared-properties
   main-is:             frp.hs
-  build-depends:       base >= 4.12 && < 5, blaze-html, blaze-markup, bytestring, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp, reactive-banana
+  build-depends:       base >= 4.14.3.0 && < 5, blaze-html, blaze-markup, bytestring, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp, reactive-banana
 
 executable graph
   import: shared-properties
   main-is:             graph.hs
-  build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, ghcjs-base, ghcjs-dom, jsaddle
+  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, ghcjs-base, ghcjs-dom, jsaddle
 
 executable helloworld
   import: shared-properties
   main-is:             HelloMain.hs
-  build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
+  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
 
 executable mine
   import: shared-properties
   main-is:             mine.hs
-  build-depends:       base >= 4.12 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
+  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
