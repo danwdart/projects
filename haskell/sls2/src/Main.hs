@@ -2,11 +2,11 @@
 
 module Main where
 
-import Data.Aeson
+import           Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BSL
-import System.Environment
+import           System.Environment
 
-import qualified MyLib (someFunc)
+import qualified MyLib                      (someFunc)
 
 main :: IO ()
 main = do

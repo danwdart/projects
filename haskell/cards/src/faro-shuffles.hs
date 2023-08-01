@@ -10,7 +10,7 @@ import           Suit.Bounded.Standard  as SuitStandard
 import           Value.Bounded.Standard as ValueStandard
 
 -- Relude's makes us need earlier versions of stuff
-bimapBoth :: Bifunctor p => (a -> b) -> p a a -> p b b
+bimapBoth ∷ Bifunctor p ⇒ (a → b) → p a a → p b b
 bimapBoth f = bimap f f
 
 cards ∷ DeckStd
