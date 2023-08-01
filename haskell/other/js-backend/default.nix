@@ -24,10 +24,10 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
     '';
-    buildInputs = tools.defaultBuildTools ++ [
+    buildInputs = tools.defaultBuildTools ++ (with nixpkgs; [
         nodejs_20
         closurecompiler
-    ];
+    ]);
     withHoogle = false;
   };
   exe = lib.justStaticExecutables (myHaskellPackages.js-backend);
