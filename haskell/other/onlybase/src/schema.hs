@@ -1,6 +1,8 @@
 {-# LANGUAGE GADTs #-}
 module Main where
 
+import Control.Applicative (liftA2)
+
 data Yaml
   = String String
   | Object [(String, Yaml)]
