@@ -18,7 +18,7 @@ common shared-properties
   hs-source-dirs:      src
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.18.0.0 && < 5
+  build-depends:       base >= 4.17.0.0 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -35,7 +35,7 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.18.0.0 && < 5, containers, MonadRandom, random
+  build-depends:       base >= 4.17.0.0 && < 5, containers, MonadRandom, random
   ghc-options:         -Wall -Werror -haddock
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -82,32 +82,32 @@ library
 executable cards
   import: shared-properties
   main-is:             cards.hs
-  build-depends:       base >= 4.18.0.0 && < 5, cards, containers, extra, MonadRandom, random-shuffle, utility-ht
+  build-depends:       base >= 4.17.0.0 && < 5, cards, containers, extra, MonadRandom, random-shuffle, utility-ht
 
 executable demo
   import: shared-properties
   main-is:             demo.hs
-  build-depends:       base >= 4.18.0.0 && < 5, cards, extra
+  build-depends:       base >= 4.17.0.0 && < 5, cards, extra
 
 executable ohsol
   import: shared-properties
   main-is:             ohsol.hs
-  build-depends:       base >= 4.18.0.0 && < 5, cards, MonadRandom, random-shuffle
+  build-depends:       base >= 4.17.0.0 && < 5, cards, MonadRandom, random-shuffle
 
 executable primesnap
   import: shared-properties
   main-is:             primesnap.hs
-  build-depends:       base >= 4.18.0.0 && < 5, cards, MonadRandom, primes, random-shuffle
+  build-depends:       base >= 4.17.0.0 && < 5, cards, MonadRandom, primes, random-shuffle
 
 executable faro-shuffles
   import: shared-properties
   main-is:             faro-shuffles.hs
-  build-depends:       base >= 4.18.0.0 && < 5, cards, extra
+  build-depends:       base >= 4.17.0.0 && < 5, cards, extra
 
 executable uno
   import: shared-properties
   main-is:             uno.hs
-  build-depends:       base >= 4.18.0.0 && < 5, cards, extra
+  build-depends:       base >= 4.17.0.0 && < 5, cards, extra
 
 test-suite cards-test
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
@@ -130,7 +130,7 @@ test-suite cards-test
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
   build-depends:
-    --   base >= 4.18.0.0 && < 5
+    --   base >= 4.17.0.0 && < 5
     -- , cards
     , hspec
     -- , hspec-core
