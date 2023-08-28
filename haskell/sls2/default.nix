@@ -38,10 +38,11 @@ let
       #x86_64-unknown-linux-gnu-strip packages/sample/hello/sls2
       #patchelf --set-interpreter /lib64/ld-linux-x86-64.so.2 packages/sample/hello/sls2
 
-      rm packages/sample/hello/*.so*
+      rm -rf packages/sample/hello/*.so*
       cp ${nixpkgs.pkgsCross.gnu64.pkgsHostHost.libffi.outPath}/lib64/libffi.so.8.1.2 packages/sample/hello/libffi.so.8
-      cp ${nixpkgs.pkgsCross.gnu64.pkgsHostHost.gmp.outPath}/lib/libgmp.so.10.4.1 packages/sample/hello/libgmp.so.10
+      cp ${nixpkgs.pkgsCross.gnu64.pkgsHostHost.gmp.outPath}/lib/libgmp.so.10.5.0 packages/sample/hello/libgmp.so.10
       cp ${nixpkgs.pkgsCross.gnu64.glibc.outPath}/lib/{libc.so.6,libm.so.6,librt.so.1,libdl.so.2,ld-linux-x86-64.so.2} packages/sample/hello/
+      chmod +w packages/sample/hello/*
       patchelf --set-interpreter /lib64/ld-linux-x86-64.so.2 packages/sample/hello/libc.so.6
 
       # wget -c https://raw.githubusercontent.com/oufm/packelf/master/packelf.sh
