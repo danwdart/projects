@@ -7,7 +7,7 @@ runCommand "haskell" {
         #emscripten
         #binaryen
         gcc # for strip
-        (haskell.packages.ghc962.ghcWithPackages (self: with self; [
+        (haskell.packages.ghc942.ghcWithPackages (self: with self; [
             cabal-install
         ]))
     ];

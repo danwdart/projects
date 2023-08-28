@@ -25,7 +25,7 @@ library
     import:           warnings
     exposed-modules:  Game.PS1.MatHoffman
                     , Platform.PS1
-    build-depends:    base >= 4.18.0.0, binary, bytestring
+    build-depends:    base >= 4.17.0.0, binary, bytestring
     hs-source-dirs:   lib
     default-language: GHC2021
 
@@ -33,7 +33,7 @@ executable save-editors
     import:           warnings
     main-is:          Main.hs
     build-depends:
-        base >= 4.18.0.0,
+        base >= 4.17.0.0,
         save-editors
     hs-source-dirs:   src
     default-language: GHC2021
@@ -44,5 +44,5 @@ test-suite save-editors-test
     hs-source-dirs:   test
     main-is:          Main.hs
     build-depends:
-        base >= 4.18.0.0,
+        base >= 4.17.0.0,
         save-editors

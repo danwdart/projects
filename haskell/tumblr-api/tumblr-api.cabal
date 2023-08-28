@@ -12,7 +12,7 @@ executable tumblr-api
   main-is:             Main.hs
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.18.0.0 && <5
+  build-depends:       base >= 4.17.0.0 && <5
                      , bytestring
                      , dotenv
                      , http-conduit
