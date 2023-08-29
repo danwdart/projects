@@ -23,5 +23,6 @@ node_modules
 package-lock.json
 .DS_Store
 *.so.*
-sls2
+packages/sls2/debug/sls2
+packages/sls2/hello/sls2
 packelf.sh

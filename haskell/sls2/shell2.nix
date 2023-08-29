@@ -1,31 +1,31 @@
 with import <nixpkgs> {};
 runCommand "sls2" {
     buildInputs = [
-        haskell.packages.ghc96.cabal-install
+        haskell.packages.ghc94.cabal-install
         # haskell.compiler.ghcjs
         nodejs_18
         gcc
         doctl
     ] ++ (if builtins.currentSystem == "aarch64-linux" then [
         # This is somehow wrong as it gives a `ghc` and not a cross platform ghc compiler.
-        #(pkgsCross.gnu64.pkgsBuildHost.haskell.packages.ghc96.ghcWithPackages (ghc: with ghc; [
+        #(pkgsCross.gnu64.pkgsBuildHost.haskell.packages.ghc94.ghcWithPackages (ghc: with ghc; [
         #    aeson
         #]))
         # So is this, so it's probably a bug.
-        #(pkgsCross.gnu64.pkgsBuildTarget.haskell.packages.ghc96.ghcWithPackages (ghc: with ghc; [
+        #(pkgsCross.gnu64.pkgsBuildTarget.haskell.packages.ghc94.ghcWithPackages (ghc: with ghc; [
         #    aeson
         #]))
         # We're stuck with this which is somehow okay but doesn't touch the packages above
         # 9.6 dies at building p11kit because it's trying to run a test when it shouldn't be
-        pkgsCross.gnu64.pkgsBuildHost.haskell.compiler.ghc92
+        pkgsCross.gnu64.pkgsBuildHost.haskell.compiler.ghc94
         # Probably because this is what we actually want to be able to look at... but it's not cached right now so I can't work on it.
-        pkgsCross.gnu64.pkgsHostHost.haskell.packages.ghc92.aeson
+        pkgsCross.gnu64.pkgsHostHost.haskell.packages.ghc94.aeson
         pkgsCross.gnu64.pkgsBuildHost.gcc
         # pkgsCross.gnu64.pkgsHostHost.glibc
         pkgsCross.gnu64.pkgsHostHost.gmp
         pkgsCross.gnu64.pkgsHostHost.libffi
     ] else [
-        (haskell.packages.ghc92.ghcWithPackages (ghc: with ghc; [
+        (haskell.packages.ghc94.ghcWithPackages (ghc: with ghc; [
             aeson
             cabal-install
         ]))

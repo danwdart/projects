@@ -1,12 +1,22 @@
 parameters: {}
 environment: {}
 packages:
-    - name: sample
+    - name: sls2
       shared: false
       environment: {}
       parameters: {}
       annotations: {}
       functions:
+        - name: debug
+          binary: false
+          main: ""
+          runtime: nodejs:18
+          web: true
+          webSecure: false
+          parameters: {}
+          environment: {}
+          annotations: {}
+          limits: {}
         - name: hello
           binary: false
           main: ""

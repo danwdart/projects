@@ -15,9 +15,13 @@ library
     import:           warnings
     exposed-modules:  MyHandler
                     , Network.DigitalOcean.CloudFunctions.Handler
-    build-depends:    base >= 4.16.4.0
+                    , Network.DigitalOcean.CloudFunctions.Request
+                    , Network.DigitalOcean.CloudFunctions.Response
+    build-depends:    base >= 4.17.0.0
                     , aeson
                     , bytestring
+                    , containers
+                    , text
     hs-source-dirs:   lib
     default-language: GHC2021
 
@@ -25,7 +29,7 @@ executable sls2
     import:           warnings
     main-is:          Main.hs
     build-depends:
-        base >= 4.16.4.0
+        base >= 4.17.0.0
       , aeson
       , bytestring
       , sls2
@@ -39,6 +43,6 @@ test-suite sls2-test
     hs-source-dirs:   test
     main-is:          Main.hs
     build-depends:
-        base >= 4.16.4.0,
+        base >= 4.17.0.0,
         bytestring,
         sls2
