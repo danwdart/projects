@@ -1,6 +1,0 @@
-{
-    "name": "sls2-debug",
-    "version": "1.0.0",
-    "description": "sls2-debug",
-    "main": "debug.js"
-}

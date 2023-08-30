@@ -1,6 +1,0 @@
-{
-    "name": "sls2-hello",
-    "version": "1.0.0",
-    "description": "sls2-hello",
-    "main": "hello.js"
-}
