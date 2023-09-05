@@ -3,7 +3,7 @@
 ## Building
 
 nix run nixpkgs.cabal-install nixpkgs.pkgs.haskell.compiler.ghcjs nixpkgs.gcc nixpkgs.pkgs.haskellPackages.jsaddle
-cabal update
+cabal v2-update
 cabal --ghcjs build
 
 ## TODO
