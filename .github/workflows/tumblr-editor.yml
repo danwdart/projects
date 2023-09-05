@@ -1,4 +1,4 @@
-name: "Tumblr Editorx"
+name: "Tumblr Editors"
 on:
   schedule:
     - cron: "0 2 * * *"
