@@ -285,6 +285,11 @@ executable highlycompositebase
   main-is:             highlycompositebase.hs
   build-depends:       base >= 4.17.0.0 && < 5, maths, digits
 
+executable ints
+  import: shared-properties
+  main-is:             ints.hs
+  build-depends:       base >= 4.17.0.0 && < 5, containers
+
 -- executable jig
 --   import: shared-properties
 --   main-is:             jig.hs
