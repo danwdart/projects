@@ -12,7 +12,7 @@ on:
       - haskell/ghcjs/**
   workflow_dispatch:
 jobs:
-  push-ghc-shell-stuff-to-cachix:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
