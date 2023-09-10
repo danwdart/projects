@@ -15,145 +15,87 @@ jobs:
   push-ghc-shell-stuff-to-cachix:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v20
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Fetch submodules
+      run: |
+        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
+        git submodule update --init --recursive
+    - name: Setup SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+    - name: Install Nix
+      uses: cachix/install-nix-action@v20
       with:
         nix_path: nixpkgs=channel:nixos-unstable
         extra_nix_config: |
           trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
           substituters = ${{ vars.CACHE_SUBSTITUTERS }}
-    - uses: cachix/cachix-action@v12
+    - name: Setup Cachix
+      uses: cachix/cachix-action@v12
       with:
         name: dandart
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
+    - name: Go to directory
+      run: |
         cd haskell/ghcjs
-        git submodule update --init --recursive
+    - name: Push GHC shell stuff to Cachix
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghc) | cachix push dandart
+    - name: Push GHC shell stuff to private cache server
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghc) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
-  push-ghcjs-shell-stuff-to-cachix:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-        extra_nix_config: |
-          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
-          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
-    - uses: cachix/cachix-action@v12
-      with:
-        name: dandart
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
-        cd haskell/ghcjs
-        git submodule update --init --recursive
+    - name: Push GHCJS shell stuff to Cachix
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | cachix push dandart
+    - name: Push GHCJS shell stuff to private cache server
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
-  push-ghcjs-stuff-to-cachix:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-        extra_nix_config: |
-          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
-          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
-    - uses: cachix/cachix-action@v12
-      with:
-        name: dandart
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
-        cd haskell/ghcjs
-        git submodule update --init --recursive
+    - name: Build GHCJS stuff
+      run: |
         nix-build -o result/ghcjs-stuff/ghcjs -A ghcjs.ghcjs-stuff
+    - name: Push GHCJS stuff to Cachix
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | cachix push dandart
+    - name: Push GHCJS stuff to private cache server
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
-  push-reflex-ghcjs-stuff-to-cachix:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-        extra_nix_config: |
-          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
-          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
-    - uses: cachix/cachix-action@v12
-      with:
-        name: dandart
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
-        cd haskell/ghcjs
-        git submodule update --init --recursive
+    - name: Build Reflex GHCJS stuff
+      run: |
         nix-build -o result/reflex-stuff/ghcjs -A ghcjs.reflex-stuff
+    - name: Push Reflex GHCJS stuff to Cachix
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | cachix push dandart
+    - name: Push Reflex GHCJS stuff to private cache server
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
-  push-jsaddle-stuff-to-cachix:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-        extra_nix_config: |
-          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
-          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
-    - uses: cachix/cachix-action@v12
-      with:
-        name: dandart
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
-        cd haskell/ghcjs
-        git submodule update --init --recursive
-        nix-build -o result/jsaddle-stuff/ghcjs -A ghcjs.jsaddle-stuff
-        nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.jsaddle-stuff) | cachix push dandart
-        nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.jsaddle-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
-  push-jsaddle-ghc-stuff-to-cachix:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-        extra_nix_config: |
-          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
-          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
-    - uses: cachix/cachix-action@v12
-      with:
-        name: dandart
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
-        cd haskell/ghcjs
-        git submodule update --init --recursive
-        nix-build -o result/jsaddle-stuff/ghc -A ghc.jsaddle-stuff
-        nix-store -qR --include-outputs $(nix-instantiate -A ghc.jsaddle-stuff) | cachix push dandart
-        nix-store -qR --include-outputs $(nix-instantiate -A ghc.jsaddle-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
-  push-reflex-ghc-stuff-to-cachix:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-        extra_nix_config: |
-          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
-          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
-    - uses: cachix/cachix-action@v12
-      with:
-        name: dandart
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
-        cd haskell/ghcjs
-        git submodule update --init --recursive
+    - name: Build Reflex GHC stuff
+      run: |
         nix-build -o result/reflex-stuff/ghc -A ghc.reflex-stuff
+    - name: Push Reflex GHC stuff to Cachix
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghc.reflex-stuff) | cachix push dandart
+    - name: Push Reflex GHC stuff to private cache server
+      run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghc.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+    - name: Build JSaddle GHCJS stuff
+      run: |
+        nix-build -o result/jsaddle-stuff/ghcjs -A ghcjs.jsaddle-stuff
+    - name: Push JSaddle GHCJS stuff to Cachix
+      run: |
+        nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.jsaddle-stuff) | cachix push dandart
+    - name: Push JSaddle GHCJS stuff to private cache server
+      run: |
+        nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.jsaddle-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+    - name: Build JSaddle GHC stuff
+      run: |
+        nix-build -o result/jsaddle-stuff/ghc -A ghc.jsaddle-stuff
+    - name: Push JSaddle GHC stuff to Cachix
+      run: |
+        nix-store -qR --include-outputs $(nix-instantiate -A ghc.jsaddle-stuff) | cachix push dandart
+    - name: Push JSaddle GHC stuff to private cache server
+      run: |
+        nix-store -qR --include-outputs $(nix-instantiate -A ghc.jsaddle-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+    
