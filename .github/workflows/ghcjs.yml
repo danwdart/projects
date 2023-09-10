@@ -12,7 +12,7 @@ on:
       - haskell/ghcjs/**
   workflow_dispatch:
 jobs:
-  build-and-deploy:
+  ghcjs-shell-stuff:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -53,6 +53,35 @@ jobs:
     - name: Push GHCJS shell stuff to private cache server
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+  ghcjs-stuff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Fetch submodules
+      run: |
+        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
+        git submodule update --init --recursive
+    - name: Setup SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+    - name: Install Nix
+      uses: cachix/install-nix-action@v20
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
+          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
+    - name: Setup Cachix
+      uses: cachix/cachix-action@v12
+      with:
+        name: dandart
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Go to directory
+      run: |
+        cd haskell/ghcjs
     - name: Build GHCJS stuff
       run: |
         nix-build -o result/ghcjs-stuff/ghcjs -A ghcjs.ghcjs-stuff
@@ -62,6 +91,35 @@ jobs:
     - name: Push GHCJS stuff to private cache server
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+  reflex-ghcjs-stuff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Fetch submodules
+      run: |
+        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
+        git submodule update --init --recursive
+    - name: Setup SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+    - name: Install Nix
+      uses: cachix/install-nix-action@v20
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
+          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
+    - name: Setup Cachix
+      uses: cachix/cachix-action@v12
+      with:
+        name: dandart
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Go to directory
+      run: |
+        cd haskell/ghcjs
     - name: Build Reflex GHCJS stuff
       run: |
         nix-build -o result/reflex-stuff/ghcjs -A ghcjs.reflex-stuff
@@ -71,6 +129,35 @@ jobs:
     - name: Push Reflex GHCJS stuff to private cache server
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+  reflex-ghc-stuff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Fetch submodules
+      run: |
+        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
+        git submodule update --init --recursive
+    - name: Setup SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+    - name: Install Nix
+      uses: cachix/install-nix-action@v20
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
+          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
+    - name: Setup Cachix
+      uses: cachix/cachix-action@v12
+      with:
+        name: dandart
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Go to directory
+      run: |
+        cd haskell/ghcjs
     - name: Build Reflex GHC stuff
       run: |
         nix-build -o result/reflex-stuff/ghc -A ghc.reflex-stuff
@@ -80,6 +167,35 @@ jobs:
     - name: Push Reflex GHC stuff to private cache server
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghc.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+  jsaddle-ghcjs-stuff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Fetch submodules
+      run: |
+        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
+        git submodule update --init --recursive
+    - name: Setup SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+    - name: Install Nix
+      uses: cachix/install-nix-action@v20
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
+          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
+    - name: Setup Cachix
+      uses: cachix/cachix-action@v12
+      with:
+        name: dandart
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Go to directory
+      run: |
+        cd haskell/ghcjs
     - name: Build JSaddle GHCJS stuff
       run: |
         nix-build -o result/jsaddle-stuff/ghcjs -A ghcjs.jsaddle-stuff
@@ -89,6 +205,35 @@ jobs:
     - name: Push JSaddle GHCJS stuff to private cache server
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.jsaddle-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
+  jsaddle-ghc-stuff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Fetch submodules
+      run: |
+        sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
+        git submodule update --init --recursive
+    - name: Setup SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+    - name: Install Nix
+      uses: cachix/install-nix-action@v20
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          trusted-public-keys = ${{ vars.CACHE_TRUSTED_PUBLIC_KEYS }}
+          substituters = ${{ vars.CACHE_SUBSTITUTERS }}
+    - name: Setup Cachix
+      uses: cachix/cachix-action@v12
+      with:
+        name: dandart
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Go to directory
+      run: |
+        cd haskell/ghcjs
     - name: Build JSaddle GHC stuff
       run: |
         nix-build -o result/jsaddle-stuff/ghc -A ghc.jsaddle-stuff
