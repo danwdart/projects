@@ -35,7 +35,7 @@ library
   hs-source-dirs:      lib
   default-language:    GHC2021
   default-extensions:  DerivingStrategies, UnicodeSyntax
-  build-depends:       base >= 4.17.0.0 && < 5, containers, MonadRandom, random
+  build-depends:       base >= 4.17.0.0 && < 5, ansi-terminal, containers, extra, MonadRandom, random
   ghc-options:         -Wall -Werror -haddock
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -47,7 +47,8 @@ library
                        -Wno-prepositive-qualified-module
                        -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
-  exposed-modules:     Data.Enum.Extra
+  exposed-modules:     ANSI
+                     , Data.Enum.Extra
                      , Data.List.Pairs
                      , Data.Statistics
                      , Suit.Bounded.Standard
@@ -107,7 +108,7 @@ executable faro-shuffles
 executable uno
   import: shared-properties
   main-is:             uno.hs
-  build-depends:       base >= 4.17.0.0 && < 5, cards, extra
+  build-depends:       base >= 4.17.0.0 && < 5, cards, extra, random-shuffle
 
 test-suite cards-test
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
