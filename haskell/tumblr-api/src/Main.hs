@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import           Configuration.Dotenv
-import           Control.Monad                (void)
+import           Control.Monad.Reader
 import           Control.Monad.Trans.Resource
 import           Data.ByteString.Char8
 import           Data.Functor.Compose

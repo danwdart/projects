@@ -14,7 +14,7 @@ let
     overrides = self: super: rec {
       humblr = self.callCabal2nix "humblr" (builtins.fetchGit {
         url = "https://github.com/danwdart/humblr.git";
-        rev = "eab8d37df9ccdd632736b458edd7aab779a2caf2";
+        rev = "770dbeb3061a6e281aea87ea12d291df0f21cc7c";
       }) {};
       # https://github.com/AndrewRademacher/aeson-casing/issues/7
       #aeson-casing = lib.dontCheck super.aeson-casing;
