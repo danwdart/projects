@@ -1,9 +1,9 @@
 {-# LANGUAGE Unsafe #-}
 {-# OPTIONS_GHC -Wno-unsafe #-} -- ???
 
-import           BetterBools
-import           Data.Coerce
-import           Unsafe.Coerce
+import BetterBools
+import Data.Coerce
+import Unsafe.Coerce
 
 main ∷ IO ()
 main = do

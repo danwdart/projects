@@ -1,8 +1,8 @@
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
-import           Language.Haskell.TH
+import Language.Haskell.TH
 
 main ∷ IO ()
 main = putStrLn bob

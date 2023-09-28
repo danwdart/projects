@@ -2,5 +2,5 @@
 
 import TinyLang
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

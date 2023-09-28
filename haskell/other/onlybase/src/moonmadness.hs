@@ -1,6 +1,6 @@
-import           Control.Monad
-import           Data.Function
-import           Data.List
+import Control.Monad
+import Data.Function
+import Data.List
 
 splitEvery ∷ Int → [a] → [[a]]
 splitEvery _ [] = []
@@ -32,7 +32,7 @@ mulTwo ∷ Num a1 ⇒ (a2 → a2 → a1) → [a2] → [a2] → [[a1]]
 mulTwo fnMul a b = transpose (concat (transpose (splitEvery maxLen (liftM2 fnMul a b)):[threeTwoOneZero minLen])) where
     maxLen = maxLength a b
     minLen = minLength a b
-    threeTwoOneZero :: Num a => Int -> [[a]]
+    threeTwoOneZero ∷ Num a ⇒ Int → [[a]]
     threeTwoOneZero n = reverse . tail $ take n (inits $ repeat 0)
 
 (<<+>>) ∷ Int → Int → Int

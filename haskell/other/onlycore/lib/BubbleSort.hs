@@ -3,10 +3,10 @@
 
 module BubbleSort (bubbleSort) where
 
-import           Control.Monad
-import           Control.Monad.ST
-import           Data.Array.ST
-import           Data.Foldable
+import Control.Monad
+import Control.Monad.ST
+import Data.Array.ST
+import Data.Foldable
 
 bubbleSortST ∷ STArray s Int Int → ST s ()
 bubbleSortST xs = do

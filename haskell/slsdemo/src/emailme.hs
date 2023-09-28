@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
-import           AWSLambda
-import           Control.Lens
-import           Data.Aeson
-import           Data.Aeson.Embedded
-import qualified Data.Text           as T
+import AWSLambda
+import Control.Lens
+import Data.Aeson
+import Data.Aeson.Embedded
+import Data.Text           qualified as T
 -- import           Network.AWS.SES
-import           System.Environment
+import System.Environment
 
 main ∷ IO ()
 main = apiGatewayMain handler

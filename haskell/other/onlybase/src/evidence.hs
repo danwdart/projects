@@ -1,14 +1,14 @@
 -- Stolen from https://serokell.io/blog/haskell-type-level-witness
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE GADTs #-}
+{-# LANGUAGE GADTs     #-}
 
 module Main where
 
 data UserPrivilege = Guest | Normal | Admin | SuperUser deriving stock (Read, Show)
 
 data User = User {
-    userId :: Int,
-    userName :: String,
+    userId        :: Int,
+    userName      :: String,
     userPrivilege :: UserPrivilege
 } deriving stock (Show)
 
@@ -16,13 +16,13 @@ data User = User {
 -- >>> superUser
 -- User {userId = 0, userName = "Root", userPrivilege = SuperUser}
 --
-superUser :: User
+superUser ∷ User
 superUser = User 0 "Root" SuperUser
 
 -- >>> normalUser
 -- User {userId = 1, userName = "Dan", userPrivilege = Normal}
 --
-normalUser :: User
+normalUser ∷ User
 normalUser = User 1 "Dan" Normal
 
 -- Evil?
@@ -33,16 +33,16 @@ normalUser = User 1 "Dan" Normal
 -- >>> doSomethingEvil superUser
 -- Mwahahaha!
 --
-doSomethingEvil :: User -> IO ()
+doSomethingEvil ∷ User → IO ()
 doSomethingEvil User { userPrivilege = userPrivilege} = case userPrivilege of
     SuperUser -> putStrLn "Mwahahaha!"
-    _ -> putStrLn "I'm sorry Dave, I can't let you do that."
+    _         -> putStrLn "I'm sorry Dave, I can't let you do that."
 
 -- But what if they forget to switch on case?
 -- >>> doSomethingEvil2 normalUser
 -- Mwahahaha!
 --
-doSomethingEvil2 :: User -> IO ()
+doSomethingEvil2 ∷ User → IO ()
 doSomethingEvil2 _ = putStrLn "Mwahahaha!"
 
 -- Let's have some type safety! How about... smart constructors?
@@ -58,23 +58,23 @@ newtype SmartSuperUser = SmartSuperUser {
 -- >>> mkSuperUser normalUser
 -- Nothing
 --
-mkSuperUser :: User -> Maybe SmartSuperUser
+mkSuperUser ∷ User → Maybe SmartSuperUser
 mkSuperUser user@User { userPrivilege = userPrivilege} = case userPrivilege of
     SuperUser -> Just (SmartSuperUser user)
-    _ -> Nothing
+    _         -> Nothing
 
 -- >>> sequence_ $ doSomethingEvilSmart <$> mkSuperUser superUser
 -- Mwahaha!
 
 -- >>> sequence_ $ doSomethingEvilSmart <$> mkSuperUser normalUser
 --
-doSomethingEvilSmart :: SmartSuperUser -> IO ()
+doSomethingEvilSmart ∷ SmartSuperUser → IO ()
 doSomethingEvilSmart _ = putStrLn "Mwahaha!"
 
 -- but that requires too much boilerplate... how about typed?
 
 data UserWithType (ut :: UserPrivilege) = UserWithType {
-    userWTId :: Int,
+    userWTId   :: Int,
     userWTName :: String
 }
 
@@ -104,23 +104,23 @@ deriving instance Show SomeUser
 -- >>> :t userToUserWithType superUser
 -- userToUserWithType superUser :: UserWithType a
 --
-userToUserWithType :: User -> UserWithType a
+userToUserWithType ∷ User → UserWithType a
 userToUserWithType (User userId userName _) = UserWithType userId userName
 
 -- Kind of useless...
 -- >>> evilType $ userToUserWithType normalUser
 -- Mwahaha
 --
-evilType :: UserWithType 'SuperUser -> IO ()
+evilType ∷ UserWithType 'SuperUser → IO ()
 evilType _ = putStrLn "Mwahaha"
 
-notEvilType :: UserWithType a -> IO ()
+notEvilType ∷ UserWithType a → IO ()
 notEvilType _ = putStrLn "Nah."
 
 -- >>> userToSomeUser $ normalUser
 -- SomeUser (UserWithType {userWTId = 1, userWTName = "Dan"})
 --
-userToSomeUser :: User -> SomeUser
+userToSomeUser ∷ User → SomeUser
 userToSomeUser (User userId userName _) = SomeUser $ UserWithType userId userName
 
 -- >>> userToWrappedUser normalUser
@@ -129,11 +129,11 @@ userToSomeUser (User userId userName _) = SomeUser $ UserWithType userId userNam
 -- >>> userToWrappedUser superUser
 -- WrappedSuperUser (UserWithType {userWTId = 0, userWTName = "Root"})
 --
-userToWrappedUser :: User -> UserWrapper
+userToWrappedUser ∷ User → UserWrapper
 userToWrappedUser (User userId userName userPrivilege) = case userPrivilege of
-    Guest -> WrappedGuestUser $ UserWithType userId userName
-    Normal -> WrappedNormalUser $ UserWithType userId userName
-    Admin -> WrappedAdminUser $ UserWithType userId userName
+    Guest     -> WrappedGuestUser $ UserWithType userId userName
+    Normal    -> WrappedNormalUser $ UserWithType userId userName
+    Admin     -> WrappedAdminUser $ UserWithType userId userName
     SuperUser -> WrappedSuperUser $ UserWithType userId userName
 
 -- >>> evilWrapped $ userToWrappedUser normalUser
@@ -143,12 +143,12 @@ userToWrappedUser (User userId userName userPrivilege) = case userPrivilege of
 -- >>> evilWrapped $ userToWrappedUser superUser
 -- Mwahaha
 --
-evilWrapped :: UserWrapper -> IO ()
+evilWrapped ∷ UserWrapper → IO ()
 evilWrapped uw = case uw of
-    WrappedGuestUser ut -> notEvilType ut
+    WrappedGuestUser ut  -> notEvilType ut
     WrappedNormalUser ut -> notEvilType ut
-    WrappedAdminUser ut -> notEvilType ut
-    WrappedSuperUser ut -> evilType ut
+    WrappedAdminUser ut  -> notEvilType ut
+    WrappedSuperUser ut  -> evilType ut
 
 -- Full witness privilege levels
 
@@ -161,8 +161,8 @@ data WitnessPrivilege up where
 deriving instance Show (WitnessPrivilege a)
 
 data UserForWitness (up :: UserPrivilege) = UserForWitness
-  { userForWitnessId :: Int
-  , userForWitnessName :: String
+  { userForWitnessId        :: Int
+  , userForWitnessName      :: String
   , userForWitnessPrivilege :: WitnessPrivilege up
   } deriving stock (Show)
 
@@ -178,7 +178,7 @@ deriving instance Show SomeUserWitnessed
 -- >>> userToWitnessed superUser
 -- SomeUserWitnessed (UserForWitness {userForWitnessId = 0, userForWitnessName = "Root", userForWitnessPrivilege = WitnessSuperUser})
 --
-userToWitnessed :: User -> SomeUserWitnessed
+userToWitnessed ∷ User → SomeUserWitnessed
 userToWitnessed (User userId userName userPrivilege) = case userPrivilege of
     Guest -> SomeUserWitnessed $ UserForWitness userId userName WitnessGuest
     Normal -> SomeUserWitnessed $ UserForWitness userId userName WitnessNormal
@@ -191,16 +191,16 @@ userToWitnessed (User userId userName userPrivilege) = case userPrivilege of
 -- >>> evilW $ userToWitnessed superUser
 -- Mwahaha
 --
-evilW :: SomeUserWitnessed -> IO ()
+evilW ∷ SomeUserWitnessed → IO ()
 evilW (SomeUserWitnessed user) = case userForWitnessPrivilege user of
     WitnessSuperUser -> evilWitnessed user
-    _ -> notEvilWitnessed user
+    _                -> notEvilWitnessed user
 
-evilWitnessed :: UserForWitness 'SuperUser -> IO ()
+evilWitnessed ∷ UserForWitness 'SuperUser → IO ()
 evilWitnessed (UserForWitness {}) = putStrLn "Mwahaha"
 
-notEvilWitnessed :: UserForWitness a -> IO ()
+notEvilWitnessed ∷ UserForWitness a → IO ()
 notEvilWitnessed (UserForWitness {}) = putStrLn "Nah."
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

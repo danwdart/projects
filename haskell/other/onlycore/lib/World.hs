@@ -3,8 +3,8 @@
 
 module World where
 
-import           Control.Monad.State
-import           GHC.IO
+import Control.Monad.State
+import GHC.IO
 
 -- World
 data World = World deriving Show

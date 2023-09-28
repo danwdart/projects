@@ -1,5 +1,5 @@
-import           Control.Concurrent.STM.TVar
-import           Control.Monad.STM
+import Control.Concurrent.STM.TVar
+import Control.Monad.STM
 
 main1 ∷ IO ()
 main1 = atomically (newTVar (1 :: Int) >>= (\t -> writeTVar t 1 >> readTVar t)) >>= print

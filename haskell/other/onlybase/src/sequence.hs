@@ -1,4 +1,4 @@
-import           Seq
+import Seq
 
 with ∷ String → IO ()
 with a = pure a >>>= putStrLn >>>= putStrLn >>= putStrLn

@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 -- Reader for function arrow.
 
-import           Control.Monad.Reader
+import Control.Monad.Reader
 import Data.Word
 import Text.Printf
 
@@ -41,8 +41,8 @@ actionR = liftIO (putStrLn "Ready.")
 
 -- How about some nonsense?
 data Config = Config {
-    server :: String,
-    port :: Word16,
+    server   :: String,
+    port     :: Word16,
     username :: String,
     password :: String
 }
@@ -51,7 +51,7 @@ instance Show Config where
     show Config { server = server, port = port, username = username } =
         printf "Config { server = %s, port = %d, username = %s, password = <redacted> }" server port username
 
-config :: Config
+config ∷ Config
 config = Config {
     server = "dabdart.co.uk",
     port = 443,
@@ -60,63 +60,63 @@ config = Config {
 }
 
 -- urgh!
-doSomethingVeryImportant :: Config -> IO ()
+doSomethingVeryImportant ∷ Config → IO ()
 doSomethingVeryImportant config' = do
     putStrLn "This is very important"
     performTaskIndividually config'
     performAnotherTask config'
 
-performTaskIndividually :: Config -> IO ()
+performTaskIndividually ∷ Config → IO ()
 performTaskIndividually config' = mapM_ (performSubtaskIndividually config') [1..5]
 
-performSubtaskIndividually :: Config -> Int -> IO ()
+performSubtaskIndividually ∷ Config → Int → IO ()
 performSubtaskIndividually config' time = do
     print time
     print $ "Connecting fakily to the server " <> server config'
 
-performAnotherTask :: Config -> IO ()
+performAnotherTask ∷ Config → IO ()
 performAnotherTask config' = do
     putStrLn "I think I need a little DEBUG OPERATIONS!"
     print config'
 
 -- Now properly using the reader arrow functor
-doSomethingVeryImportantF :: Config -> IO ()
+doSomethingVeryImportantF ∷ Config → IO ()
 doSomethingVeryImportantF config' = do -- todo without?
     putStrLn "This is very important"
     performTaskIndividuallyF config'
     performAnotherTaskF config'
 
-performTaskIndividuallyF :: Config -> IO ()
+performTaskIndividuallyF ∷ Config → IO ()
 performTaskIndividuallyF config' = mapM_ (`performSubtaskIndividuallyF` config') [1..5] -- todo without?
 
-performSubtaskIndividuallyF :: Int -> Config -> IO ()
+performSubtaskIndividuallyF ∷ Int → Config → IO ()
 performSubtaskIndividuallyF time config' = do
     print time
     print $ "Connecting fakily to the server" <> server config'
 
-performAnotherTaskF :: Config -> IO ()
+performAnotherTaskF ∷ Config → IO ()
 performAnotherTaskF config' = do -- TODO without?
     putStrLn "I think I need a little DEBUG OPERATIONS!"
     print config'
 
 
 -- Now properly in mtl style
-doSomethingVeryImportantR :: (MonadReader Config m, MonadIO m) => m ()
+doSomethingVeryImportantR ∷ (MonadReader Config m, MonadIO m) ⇒ m ()
 doSomethingVeryImportantR = do
     liftIO . putStrLn $ "This is very important"
     performTaskIndividuallyR
     performAnotherTaskR
 
-performTaskIndividuallyR :: (MonadReader Config m, MonadIO m) => m ()
+performTaskIndividuallyR ∷ (MonadReader Config m, MonadIO m) ⇒ m ()
 performTaskIndividuallyR = mapM_ performSubtaskIndividuallyR [1..5]
 
-performSubtaskIndividuallyR :: (MonadReader Config m, MonadIO m) => Int -> m ()
+performSubtaskIndividuallyR ∷ (MonadReader Config m, MonadIO m) ⇒ Int → m ()
 performSubtaskIndividuallyR time = do
     server' <- asks server
     liftIO . print $ time
     liftIO . print $ "Connecting fakily to the server" <> server'
 
-performAnotherTaskR :: (MonadReader Config m, MonadIO m) => m ()
+performAnotherTaskR ∷ (MonadReader Config m, MonadIO m) ⇒ m ()
 performAnotherTaskR = do
     config' <- ask
     liftIO . putStrLn $ "I think I need a little DEBUG OPERATIONS!"
@@ -144,4 +144,4 @@ main = do
     doSomethingVeryImportantF config
 
     putStrLn "Reader function action mtl"
-    runReaderT doSomethingVeryImportantR config 
+    runReaderT doSomethingVeryImportantR config

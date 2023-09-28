@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedLists #-}
-{-# LANGUAGE Safe #-}
+{-# LANGUAGE Safe            #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 module LCDBlock where
 
-import           Data.Bits
-import           Data.Map
+import Data.Bits
+import Data.Map
 
 {-
  _

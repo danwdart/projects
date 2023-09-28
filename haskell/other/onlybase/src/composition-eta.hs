@@ -1,4 +1,4 @@
-import           Data.Function
+import Data.Function
 -- We're often faced with something difficult to eta-reduce, like...
 
 -- Fns

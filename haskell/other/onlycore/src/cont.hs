@@ -2,11 +2,11 @@
 {-# LANGUAGE Safe #-}
 
 -- Cont demo
-import           Control.Monad
-import           Control.Monad.IO.Class
-import           Control.Monad.Trans.Cont
-import           System.Directory
-import           System.IO
+import Control.Monad
+import Control.Monad.IO.Class
+import Control.Monad.Trans.Cont
+import System.Directory
+import System.IO
 
 -- It's like a JS callback that can interrupt stuff
 -- it also is like a replacement for withX, helping with resource pattern.

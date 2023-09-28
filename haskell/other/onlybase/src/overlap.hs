@@ -1,18 +1,19 @@
-{-# LANGUAGE IncoherentInstances, UndecidableInstances #-} -- todo remove ii
+{-# LANGUAGE IncoherentInstances  #-}
+{-# LANGUAGE UndecidableInstances #-}
 
 class Special a where
-    showspecial :: a -> String
+    showspecial :: a → String
 
-instance {-# OVERLAPPABLE #-} (Show a) => Special a where
+instance {-# OVERLAPPABLE #-} (Show a) ⇒ Special a where
     showspecial a = "Show Special Default: " <> show a
 
 instance {-# OVERLAPPING #-} Special Int where
     showspecial a = "Special Int: " <> show a
 
-instance {-# OVERLAPPING #-} (Show a) => Special [a] where
+instance {-# OVERLAPPING #-} (Show a) ⇒ Special [a] where
     showspecial as = "A list of " <> showspecial as
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn . showspecial $ (5 :: Int)
     putStrLn . showspecial $ "euh?"

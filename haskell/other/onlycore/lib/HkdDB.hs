@@ -9,7 +9,7 @@ import Data.Functor.Identity
 import Language.Haskell.TH
 
 data Entity = Entity {
-    name :: String,
+    name     :: String,
     quantity :: Int
 } deriving (Show, Eq)
 
@@ -17,8 +17,8 @@ newtype HKDEntity f = HKDEntity {
     entity :: f Entity
 }
 
-deriving instance (Show (f Entity)) => Show (HKDEntity f)
-deriving instance (Eq (f Entity)) => Eq (HKDEntity f)
+deriving instance (Show (f Entity)) ⇒ Show (HKDEntity f)
+deriving instance (Eq (f Entity)) ⇒ Eq (HKDEntity f)
 
 -- >>> Entity "Bob" 123
 -- Entity {name = "Bob", quantity = 123}
@@ -33,12 +33,12 @@ deriving instance (Eq (f Entity)) => Eq (HKDEntity f)
 --
 
 data AlreadyHKDEntity f = AlreadyHKDEntity {
-    aName :: f String,
+    aName     :: f String,
     aQuantity :: f Int
 }
 
-deriving instance (Show (f String), Show (f Int)) => Show (AlreadyHKDEntity f)
-deriving instance (Eq (f String), Eq (f Int)) => Eq (AlreadyHKDEntity f)
+deriving instance (Show (f String), Show (f Int)) ⇒ Show (AlreadyHKDEntity f)
+deriving instance (Eq (f String), Eq (f Int)) ⇒ Eq (AlreadyHKDEntity f)
 
 -- >>> AlreadyHKDEntity (Just "Bob") (Just 42)
 -- AlreadyHKDEntity {aName = Just "Bob", aQuantity = Just 42}
@@ -64,15 +64,15 @@ data JoinedTableData = JoinedTableData {
 } deriving (Show, Eq)
 
 data WithJoinData a = WithJoinData {
-    orig :: a,
+    orig    :: a,
     columnB :: String,
-    rowsC :: [JoinedTableData]
+    rowsC   :: [JoinedTableData]
 }
 
 -- GADT?
 data ColWithType = forall a. ColWithType {
     valType :: Name,
-    val :: a
+    val     :: a
 }
 
 -- TH?
@@ -83,34 +83,34 @@ data ColDefinition = ColDefinition {
 
 data WithGeneralisedExtraCols a = WithGeneralisedExtraCols {
     wgecOrig :: a,
-    cols :: [ColWithType]
+    cols     :: [ColWithType]
 }
 
 type Row = [ColWithType]
 
 data WithGeneralisedExtraRows a = WithGeneralisedExtraRows {
     wgerOrig :: a,
-    rows :: [Row]
+    rows     :: [Row]
 }
 
 data WithJoinOne tableType joinTable = WithJoinOne {
     wjoTableData :: tableType,
-    wjoJoinData :: joinTable
+    wjoJoinData  :: joinTable
 }
 
 data WithJoinMulti tableType joinType = WithJoinMulti {
     wjmTableData :: tableType,
-    wjmJoinData :: [joinType]
+    wjmJoinData  :: [joinType]
 }
 
 -- let's use local to extend / extract? (not comonad)
 
 
 
-getFromDB :: IO (AlreadyHKDEntity Identity)
+getFromDB ∷ IO (AlreadyHKDEntity Identity)
 getFromDB = pure (AlreadyHKDEntity (Identity "Hello") (Identity 42))
 
-getFromDBWithJoinData :: IO (AlreadyHKDEntity WithJoinData)
+getFromDBWithJoinData ∷ IO (AlreadyHKDEntity WithJoinData)
 getFromDBWithJoinData = pure undefined
 
 -- now what do I actually want to do here

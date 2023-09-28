@@ -8,6 +8,6 @@ module Data.Either.Reverse where
 -- Right 2
 --
 
-reverseEither :: a -> b -> Either c d -> Either a b
-reverseEither _ b (Left _) = Right b
+reverseEither ∷ a → b → Either c d → Either a b
+reverseEither _ b (Left _)  = Right b
 reverseEither a _ (Right _) = Left a

@@ -1,4 +1,4 @@
-import           Data.Function
+import Data.Function
 
 a ∷ Int → Int
 a = (+ 10)

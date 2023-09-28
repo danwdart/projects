@@ -1,14 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds -Wno-unused-matches #-}
 
 module SHA where
 
-import           Data.Bits
-import           Data.ByteString          as B
-import           Data.ByteString.Internal as B
-import           Data.Word
-import           Prelude                  as P
+import Data.Bits
+import Data.ByteString          as B
+import Data.ByteString.Internal as B
+import Data.Word
+import Prelude                  as P
 
 h0, h1, h2, h3, h4 ∷ Int
 h0 = 0x67452301

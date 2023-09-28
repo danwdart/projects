@@ -1,13 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import           Configuration.Dotenv
-import           Control.Monad.Reader
-import           Control.Monad.Trans.Resource
-import           Data.ByteString.Char8
-import           Data.Functor.Compose
-import qualified Network.HTTP.Conduit         as NetConduit
-import           System.Environment
-import qualified Web.Tumblr                   as Tumblr
+import Configuration.Dotenv
+import Control.Monad.Reader
+import Control.Monad.Trans.Resource
+import Data.ByteString.Char8
+import Data.Functor.Compose
+import Network.HTTP.Conduit         qualified as NetConduit
+import System.Environment
+import Web.Tumblr                   qualified as Tumblr
 
 main ∷ IO ()
 main = do

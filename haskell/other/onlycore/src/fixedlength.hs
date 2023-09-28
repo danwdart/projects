@@ -3,7 +3,7 @@
 -- Fixed length array splitting.
 -- @TODO vector?
 
-import           Data.Array
+import Data.Array
 
 l ∷ Array Int (Array Int String)
 l = listArray (0, 1) [

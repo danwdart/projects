@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings         #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 import Form
 import Paths_onlycore

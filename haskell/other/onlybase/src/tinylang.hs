@@ -11,22 +11,22 @@ instance Read Program where
         lex' <- lexP
         case lex' of
             Number a -> case numberToInteger a of
-                Just n -> pure $ Val (fromInteger n)
+                Just n  -> pure $ Val (fromInteger n)
                 Nothing -> pure Void
             _ -> pure Void
 
-interpretAST :: Program -> IO ()
-interpretAST Void = putStrLn "Encountered Void"
+interpretAST ∷ Program → IO ()
+interpretAST Void    = putStrLn "Encountered Void"
 interpretAST (Val x) = putStrLn $ "Encountered Val: " <> show x
 
-program :: String
+program ∷ String
 program = "1"
 
-interpret :: String -> IO ()
+interpret ∷ String → IO ()
 interpret program' = do
     putStrLn "Interpreting"
     let programAST = read program' :: Program
     interpretAST programAST
 
-main :: IO ()
+main ∷ IO ()
 main = interpret program

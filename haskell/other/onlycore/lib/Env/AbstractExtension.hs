@@ -4,5 +4,5 @@ module Env.AbstractExtension where
 
 data Env orig = Env {
     orig :: orig,
-    c :: (Int, Int)
+    c    :: (Int, Int)
 } deriving stock (Eq, Show)

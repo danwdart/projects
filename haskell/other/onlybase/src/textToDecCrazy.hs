@@ -1,15 +1,15 @@
 module Main (main) where
 
 -- import Control.Monad
-import           Data.Char
-import           Numeric
-import           System.Environment
+import Data.Char
+import Numeric
+import System.Environment
 
 main ∷ IO ()
 main = print =<< r where
     r ∷ IO (Maybe Int)
     r = fffsi fma
-    fff ∷ (a -> b) -> IO (Maybe a) -> IO (Maybe b)
+    fff ∷ (a → b) → IO (Maybe a) → IO (Maybe b)
     fff = fmap fmap fmap
     fma = fmap (maybeIndex 0) getArgs
     fffsi = fff stringToInteger

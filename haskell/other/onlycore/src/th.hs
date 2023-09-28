@@ -1,8 +1,8 @@
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
-import           TH
+import TH
 
 -- something :: String
 -- something = [s| s hello hi |]

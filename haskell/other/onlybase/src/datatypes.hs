@@ -1,5 +1,5 @@
 import Computer
-import           Data.Data
+import Data.Data
 import Player
 
 myComputer ∷ Computer

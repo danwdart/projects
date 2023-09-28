@@ -1,5 +1,5 @@
-{-# LANGUAGE DataKinds         #-}
-{-# LANGUAGE GADTs             #-}
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE GADTs     #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 import Data.DisparateList

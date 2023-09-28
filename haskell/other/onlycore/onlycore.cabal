@@ -19,9 +19,7 @@ data-files:          example.form
 common shared-properties-base
   hs-source-dirs:      src
   default-language:    GHC2021
-  default-extensions:
-    DerivingStrategies
-    UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   ghcjs-options:       -dedupe
 
 common shared-properties-lib
@@ -52,7 +50,6 @@ common shared-properties-unsafe
     -Wno-missing-export-lists
     -Wno-missing-import-lists
     -Wno-missing-kind-signatures
-    -Wno-prepositive-qualified-module
     -Werror
     -haddock
     -threaded -rtsopts -with-rtsopts=-N

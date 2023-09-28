@@ -1,7 +1,7 @@
-{-# LANGUAGE PackageImports        #-}
+{-# LANGUAGE PackageImports #-}
 
-import           Control.Monad.IO.Class
-import           "mtl" Control.Monad.RWS
+import Control.Monad.IO.Class
+import "mtl" Control.Monad.RWS
 
 type AppRead = String
 type AppState = Int

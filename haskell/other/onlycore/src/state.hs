@@ -1,5 +1,5 @@
 
-import           Control.Monad.State
+import Control.Monad.State
 
 type MyState = State [Int] Int
 

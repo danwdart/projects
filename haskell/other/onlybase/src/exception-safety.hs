@@ -1,6 +1,6 @@
 {-# LANGUAGE DeriveAnyClass #-}
 
-import           Control.Exception
+import Control.Exception
 
 -- import System.IO
 -- now there's a try and an exception monad
@@ -10,21 +10,21 @@ import           Control.Exception
 tryRead ∷ String → IO (Either SomeException String)
 tryRead = try . readFile
 
-sampleIO :: IO ()
+sampleIO ∷ IO ()
 sampleIO = throw $ userError "Bob"
 
-failer :: IO String
+failer ∷ IO String
 failer = fail "Bob"
 
-tryer :: IO (Either SomeException String)
+tryer ∷ IO (Either SomeException String)
 tryer = try failer
 
 data DanException = DanException deriving stock (Show) deriving anyclass (Exception)
 
-sampleHandler :: SomeException -> IO ()
+sampleHandler ∷ SomeException → IO ()
 sampleHandler (SomeException ex) = putStrLn $ "Caught error: (" <> displayException ex <> ")"
 
-danHandler :: DanException -> IO ()
+danHandler ∷ DanException → IO ()
 danHandler d@DanException = putStrLn $ "Caught DanException: " <> displayException d
 
 main ∷ IO ()

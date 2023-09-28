@@ -1,6 +1,6 @@
 -- import Control.Monad
-import           Control.Monad.ST
-import           Data.STRef
+import Control.Monad.ST
+import Data.STRef
 
 a ∷ ST s Int
 a = newSTRef 0 >>= (\x -> modifySTRef x (+ 1) >> modifySTRef x (* 2) >> writeSTRef x 200 >> readSTRef x)

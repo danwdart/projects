@@ -2,10 +2,10 @@
 
 import Foreign
 
-i :: Int
+i ∷ Int
 i = 12345
 
-main :: IO ()
+main ∷ IO ()
 main = do
     a <- new i
     print a

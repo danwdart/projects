@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
-import qualified Data.ByteString.Lazy.Char8    as BSL
-import           System.Environment
-import           System.Path
-import           Text.Blaze.Html.Renderer.Utf8
-import           Text.Blaze.Html5              as H hiding (main)
-import           Text.Blaze.Html5.Attributes   as A
+import Data.ByteString.Lazy.Char8    qualified as BSL
+import System.Environment
+import System.Path
+import Text.Blaze.Html.Renderer.Utf8
+import Text.Blaze.Html5              as H hiding (main)
+import Text.Blaze.Html5.Attributes   as A
 
 main ∷ IO ()
 main = do

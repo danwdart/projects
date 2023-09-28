@@ -1,6 +1,6 @@
 {-# LANGUAGE RebindableSyntax #-}
 
-import           Prelude hiding (return, (>>), (>>=))
+import Prelude hiding (return, (>>), (>>=))
 
 ints ∷ Int
 ints = do
@@ -10,7 +10,7 @@ ints = do
     4
     5
     where
-        (>>) :: Int -> Int -> Int
+        (>>) ∷ Int → Int → Int
         (>>) = (+)
 
 main ∷ IO ()

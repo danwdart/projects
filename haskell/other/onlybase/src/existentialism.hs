@@ -1,8 +1,8 @@
-{-# LANGUAGE GADTs                     #-}
-{-# LANGUAGE MultiWayIf                #-}
+{-# LANGUAGE GADTs      #-}
+{-# LANGUAGE MultiWayIf #-}
 
-import           Control.Exception
-import           Data.Typeable
+import Control.Exception
+import Data.Typeable
 
 -- https://blog.sumtypeofway.com/posts/existential-haskell.html
 

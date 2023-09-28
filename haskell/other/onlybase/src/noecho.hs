@@ -1,4 +1,4 @@
-import           System.IO
+import System.IO
 
 main ∷ IO ()
 main = do

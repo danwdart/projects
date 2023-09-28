@@ -1,9 +1,9 @@
-{-# LANGUAGE DeriveAnyClass   #-}
+{-# LANGUAGE DeriveAnyClass #-}
 {-# OPTIONS_GHC -Wno-missing-methods #-}
 
-import           Control.Monad.Reader
-import           Control.Monad.State
-import           Control.Monad.Writer
+import Control.Monad.Reader
+import Control.Monad.State
+import Control.Monad.Writer
 
 newtype MyThing a = MyThing {
     runMyThing :: a

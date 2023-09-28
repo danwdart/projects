@@ -1,6 +1,6 @@
 import Cipher
-import           Control.Monad
-import           System.IO
+import Control.Monad
+import System.IO
 
 main ∷ IO ()
 main = do

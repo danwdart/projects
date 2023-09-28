@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
 {-# LANGUAGE Safe #-}
 
-import           System.Directory
-import           System.IO
+import System.Directory
+import System.IO
 
 main ∷ IO ()
 main = do

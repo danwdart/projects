@@ -8,6 +8,6 @@ module Data.Maybe.Reverse where
 -- Nothing
 --
 
-reverseMaybe :: a -> Maybe b -> Maybe a
-reverseMaybe a Nothing = Just a
+reverseMaybe ∷ a → Maybe b → Maybe a
+reverseMaybe a Nothing  = Just a
 reverseMaybe _ (Just _) = Nothing

@@ -1,7 +1,7 @@
 module Main where
 
-import           Credential
-import           Person
+import Credential
+import Person
 
 myCreds ∷ Creds
 myCreds = Creds "Username" "Password"

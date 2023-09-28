@@ -3,7 +3,7 @@ module Main (main) where
 -- import Control.Monad
 import List
 import StringToInteger
-import           System.Environment
+import System.Environment
 
 -- args = pure ["Foo"] :: IO [String]
 

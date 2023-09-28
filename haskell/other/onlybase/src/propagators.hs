@@ -1,7 +1,7 @@
 import Data.Char
 import Propagator
 
-main :: IO ()
+main ∷ IO ()
 main = do
     input <- cell
     output <- cell
@@ -36,11 +36,11 @@ main = do
     print c3
 
     where
-        adder :: Cell Int -> Cell Int -> Cell Int -> IO ()
+        adder ∷ Cell Int → Cell Int → Cell Int → IO ()
         adder l r o = do
             lift2 (+) l r o
 
-        adderBi :: Cell Int -> Cell Int -> Cell Int -> IO ()
+        adderBi ∷ Cell Int → Cell Int → Cell Int → IO ()
         adderBi l r o = do
             lift2 (+) l r o
             lift2 (-) o l r

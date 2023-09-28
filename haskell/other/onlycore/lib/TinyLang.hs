@@ -1,6 +1,6 @@
-{-# LANGUAGE OverloadedLists #-}
+{-# LANGUAGE OverloadedLists   #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Safe #-}
+{-# LANGUAGE Safe              #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 module TinyLang where
@@ -26,11 +26,11 @@ data Instruction =
     Pull Queue |
     Function [Param] [Instruction] Ret
 
-hWInst :: [Instruction]
+hWInst ∷ [Instruction]
 hWInst = Datum <$> "Hello World\n" -- <> Iterate 12 (FDIO 1)
 
-instructions :: Map ByteString Instruction
+instructions ∷ Map ByteString Instruction
 instructions = []
 
-hW :: ByteString
+hW ∷ ByteString
 hW = ""

@@ -5,11 +5,11 @@ import MyLens
 import MyLens.Date
 -- import MyLens.Tuple
 -- import MyLens.Triple
-import MyLens.Title
-import MyLens.Name
-import MyLens.Event
 import MyLens.Attribute
+import MyLens.Event
+import MyLens.Name
 import MyLens.Person
+import MyLens.Title
 
 defaultPerson ∷ Person
 defaultPerson = Person (

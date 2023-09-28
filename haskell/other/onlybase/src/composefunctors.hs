@@ -1,8 +1,8 @@
 {-# LANGUAGE Strict #-}
 
-import           Control.Applicative
-import           Data.Functor.Compose
-import           Data.Functor.Contravariant
+import Control.Applicative
+import Data.Functor.Compose
+import Data.Functor.Contravariant
 import DoubleCompose
 
 dat2 ∷ Maybe [Int]

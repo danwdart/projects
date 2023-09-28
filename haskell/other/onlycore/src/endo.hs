@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import           Data.Semigroup
-import           Data.Text
+import Data.Semigroup
+import Data.Text
 
 excite ∷ Text → Text
 excite = (<> "!")

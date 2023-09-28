@@ -2,9 +2,9 @@
 
 module Main where
 
-import           Brick
-import           Brick.Widgets.List
-import qualified Data.Vector        as V
+import Brick
+import Brick.Widgets.List
+import Data.Vector        qualified as V
 
 main ∷ IO ()
 main = simpleMain $

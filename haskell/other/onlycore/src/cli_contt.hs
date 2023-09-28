@@ -1,5 +1,5 @@
-import           Control.Monad.Cont
-import           System.IO
+import Control.Monad.Cont
+import System.IO
 
 welcome ∷ String
 welcome = "Welcome to ARSVX. Use of this system by unauthorised entities is prohibited."

@@ -1,10 +1,10 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE TypeFamilies     #-}
 
-import           Control.Monad.IO.Class
-import           Reflex
-import           Reflex.Host.Headless
-import           System.Console.ANSI
+import Control.Monad.IO.Class
+import Reflex
+import Reflex.Host.Headless
+import System.Console.ANSI
 
 putStrLnL ∷ MonadIO m ⇒ String → m ()
 putStrLnL = liftIO . putStrLn

@@ -20,7 +20,7 @@ executable peoplemanager
   -- other-modules:
   -- other-extensions:
   default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends:       base >= 4.17.0.0 && <5
     -- , brick
     , containers
@@ -38,6 +38,5 @@ executable peoplemanager
                        -Wno-implicit-prelude
                        -Wno-missing-safe-haskell-mode
                        -Wno-missing-kind-signatures
-                       -Wno-prepositive-qualified-module
                        -Wno-missing-local-signatures
   ghcjs-options:       -dedupe

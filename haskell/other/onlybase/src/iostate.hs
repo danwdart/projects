@@ -1,6 +1,6 @@
 
-{-# LANGUAGE Unsafe #-}
 {-# LANGUAGE UnboxedTuples #-}
+{-# LANGUAGE Unsafe        #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
 import GHC.IO
@@ -14,7 +14,7 @@ import GHC.IO
 
 -- Warning: RealWorld has no constructors!
 
-tweagrae :: IO ()
+tweagrae ∷ IO ()
 tweagrae = IO $ \realWorld ->
     case putStrLn "hello" of
         IO fun1 -> case putStrLn "goodbye" of
@@ -22,7 +22,7 @@ tweagrae = IO $ \realWorld ->
                 (# _realWorld, _ #) -> case fun1 realWorld of
                     (# _, _ #) -> fun1 realWorld
 
-otherIO :: IO ()
+otherIO ∷ IO ()
 otherIO = IO $ \realWorld ->
     case putStrLn "Hi" of
         IO printsHi -> case printsHi realWorld of
@@ -36,7 +36,7 @@ otherIO = IO $ \realWorld ->
                                         (# _, () #) -> printsHi realWorld
 
 -- There is functionally no difference in the real world here.
-main :: IO ()
+main ∷ IO ()
 main = do
     tweagrae
     otherIO

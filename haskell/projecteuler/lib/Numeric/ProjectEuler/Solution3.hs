@@ -1,6 +1,6 @@
 module Numeric.ProjectEuler.Solution3 where
 
-import           Data.Numbers.Primes
+import Data.Numbers.Primes
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

@@ -1,6 +1,6 @@
-import           Control.Monad.IO.Class
-import           Reflex
-import           Reflex.Host.Headless
+import Control.Monad.IO.Class
+import Reflex
+import Reflex.Host.Headless
 
 main ∷ IO ()
 main = runHeadlessApp $ do

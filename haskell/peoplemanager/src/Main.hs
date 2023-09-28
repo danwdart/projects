@@ -4,23 +4,23 @@
 
 module Main where
 
-import           Control.Monad
-import           Control.Monad.Random
-import           Data.Functor
--- import qualified Data.Set as S
-import           Data.Set             (Set)
-import qualified Data.Set             as S
-import           Data.Text            (Text)
-import qualified Data.Text            as T
-import           Data.Time
+import Control.Monad
+import Control.Monad.Random
+import Data.Functor
+-- import Data.Set qualified as S
+import Data.Set             (Set)
+import Data.Set             qualified as S
+import Data.Text            (Text)
+import Data.Text            qualified as T
+import Data.Time
 -- import Data.Time.Calendar
-import           Data.UUID
-import           Data.UUID.V4
-import           Data.Word
-import           Faker
-import qualified Faker.Address        as FA
-import qualified Faker.Name           as FN
-import           GHC.Generics
+import Data.UUID
+import Data.UUID.V4
+import Data.Word
+import Faker
+import Faker.Address        qualified as FA
+import Faker.Name           qualified as FN
+import GHC.Generics
 -- import           System.Random
 
 generateND ∷ Fake a → IO a

@@ -3,9 +3,9 @@
 
 -- import Foreign.Ptr
 -- import Foreign.ForeignPtr
-import           Foreign.C.String
-import           Foreign.C.Types
-import           Foreign.Marshal.Alloc
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Marshal.Alloc
 -- import System.IO
 
 -- This is why we're unsafe - but I trust it so we're good
@@ -15,9 +15,9 @@ foreign import ccall "exp" c_exp1 :: Double → Double
 foreign import ccall "printf" c_printf :: CString → IO CInt
 foreign import ccall "printf" c_printf2 :: CString → CString → IO CInt
 foreign import ccall "sprintf" c_sprintf2 :: CString → CString → CString → IO CInt
-foreign import ccall "memfrob" c_memfrob :: CString → CInt -> IO CString
+foreign import ccall "memfrob" c_memfrob :: CString → CInt → IO CString
 
-memfrob :: String -> Int -> IO String
+memfrob ∷ String → Int → IO String
 memfrob s n = do
     cs <- newCString s
     let ci = fromIntegral n :: CInt

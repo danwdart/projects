@@ -34,40 +34,40 @@ data CountryMorality = CountryMorality {
 -- not necessarily dot/cross
 
 data Country t = Country {
-    name :: String,
+    name     :: String,
     morality :: t
 } deriving stock (Functor, Show)
 
 data CountryMorality t = CountryMorality {
     capitalPunishment :: t,
-    genderEquality :: t,
+    genderEquality    :: t,
     sexualityEquality :: t
 }
 
-moralityWeightings :: CountryMorality Int
+moralityWeightings ∷ CountryMorality Int
 moralityWeightings = CountryMorality {
     capitalPunishment = 100,
     genderEquality = 100,
     sexualityEquality = 100
 }
 
-moralityLabels :: CountryMorality String
+moralityLabels ∷ CountryMorality String
 moralityLabels = CountryMorality {
     capitalPunishment = "Capital punishment",
     genderEquality = "Gender equality",
     sexualityEquality = "Sexuality equality"
 }
 
-countryData :: [Country (CountryMorality Bool)]
+countryData ∷ [Country (CountryMorality Bool)]
 countryData = [
     Country "Bobland" (CountryMorality True True True),
     Country "Jimland" (CountryMorality False False False)
     ]
 
-summariseCountry :: Country (CountryMorality Bool) -> Country Int
+summariseCountry ∷ Country (CountryMorality Bool) → Country Int
 summariseCountry = fmap totalMorality
 
-totalMorality :: CountryMorality Bool -> Int
+totalMorality ∷ CountryMorality Bool → Int
 totalMorality CountryMorality {
     capitalPunishment = cp',
     genderEquality = ge',
@@ -76,5 +76,5 @@ totalMorality CountryMorality {
     genderEquality moralityWeightings * fromEnum ge' +
     sexualityEquality moralityWeightings * fromEnum se'
 
-main :: IO ()
+main ∷ IO ()
 main = print $ summariseCountry <$> countryData

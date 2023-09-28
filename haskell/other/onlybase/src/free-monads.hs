@@ -1,4 +1,4 @@
-{-# LANGUAGE LambdaCase        #-}
+{-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
 import Control.Monad.Free

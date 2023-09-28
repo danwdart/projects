@@ -2,7 +2,7 @@
 
 import Secret
 
-main :: IO ()
+main ∷ IO ()
 main = do
     -- We can't do this...
 

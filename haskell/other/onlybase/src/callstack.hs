@@ -4,14 +4,14 @@ module Main where
 
 import GHC.Stack
 
-die :: a
+die ∷ a
 die = error "Died"
 
-passDie :: HasCallStack => IO a
+passDie ∷ HasCallStack ⇒ IO a
 passDie = die
 
-num :: HasCallStack => IO Int
+num ∷ HasCallStack ⇒ IO Int
 num = passDie
 
-main :: IO ()
+main ∷ IO ()
 main = print =<< num

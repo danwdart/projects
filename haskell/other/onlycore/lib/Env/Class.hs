@@ -3,5 +3,5 @@
 module Env.Class where
 
 class Class clinst where
-    a :: clinst -> String
-    b :: clinst -> Int
+    a :: clinst → String
+    b :: clinst → Int

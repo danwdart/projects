@@ -8,7 +8,7 @@ import Data.Maybe
 -- >>> fixedMap
 -- [("a","b"),("c","d"),("d","b")]
 --
-fixedMap :: [(String, String)]
+fixedMap ∷ [(String, String)]
 fixedMap = fix $ \self -> [
     ("a", "b"),
     ("c", "d"),
@@ -16,17 +16,17 @@ fixedMap = fix $ \self -> [
     ]
 
 -- this is like Control.Lens.?? apparently
-implicit :: Functor f => f (a -> b) -> a -> f b
+implicit ∷ Functor f ⇒ f (a → b) → a → f b
 implicit = flip (fmap . flip id)
 
-fixerImplicit :: Functor f => f (f b -> b) -> f b
+fixerImplicit ∷ Functor f ⇒ f (f b → b) → f b
 -- fixerImplicit xs = fix (\f -> fmap ($ f) xs)
 fixerImplicit = fix . implicit -- from pointfree.io
 
 -- >>> fixedImplicitFakeMap
 -- [("a","b"),("c","d"),("d","b")]
 --
-fixedImplicitFakeMap :: [(String, String)]
+fixedImplicitFakeMap ∷ [(String, String)]
 fixedImplicitFakeMap = fixerImplicit [
     const ("a", "b"),
     const ("c", "d"),
@@ -36,7 +36,7 @@ fixedImplicitFakeMap = fixerImplicit [
 -- >>> getList fixedImplicitMap
 -- [("a","b"),("c","d"),("d","b")]
 --
-fixedImplicitMap :: Map String String
+fixedImplicitMap ∷ Map String String
 fixedImplicitMap = fixerImplicit . Map $ [
     ("a", const "b"),
     ("c", const "d"),
@@ -48,13 +48,13 @@ newtype Map k v = Map {
 }
 
 -- a bit like newtype's ala Map
-upon :: ([(k, v1)] -> [(k, v2)]) -> Map k v1 -> Map k v2
+upon ∷ ([(k, v1)] → [(k, v2)]) → Map k v1 → Map k v2
 upon f = Map . f . getList
 
 instance Functor (Map k) where
     fmap = upon . fmap . second
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print fixedMap
     print fixedImplicitFakeMap

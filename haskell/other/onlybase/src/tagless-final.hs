@@ -5,7 +5,7 @@ import "mtl" Control.Monad.Writer
 import "mtl" Control.Monad.State
 import "mtl" Control.Monad.RWS
 import Data.String
-import qualified Data.Text as T
+import Data.Text qualified as T
 import Data.Text (Text)
 
 type AppRead = String

@@ -2,22 +2,22 @@ module Main where
 
 import OOP
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "-- MyClass --"
 
-    let myObject :: MyClass
+    let myObject ∷ MyClass
         myObject = new (1 :: Int)
     performAnActionEvilly myObject
 
-    let myObject2 :: MyClass
+    let myObject2 ∷ MyClass
         myObject2 = updateVariable (2 :: Int) myObject
     performAnActionEvilly myObject2
 
 
     putStrLn "-- MyOtherClass --"
 
-    let myOtherObject :: MyOtherClass
+    let myOtherObject ∷ MyOtherClass
         myOtherObject = new "Mwahaha"
     printA myOtherObject
 
@@ -27,7 +27,7 @@ main = do
 
     putStrLn "-- EvenMoreEvil --"
 
-    let evilness :: EvenMoreEvil
+    let evilness ∷ EvenMoreEvil
         evilness = new ()
 
     s evilness
@@ -37,12 +37,12 @@ main = do
 
     putStrLn "-- TupleOfInputs --"
 
-    let myTupleObject :: TupleOfInputs Int Int
+    let myTupleObject ∷ TupleOfInputs Int Int
         myTupleObject = new ((1, 2) :: (Int, Int))
 
     printThem myTupleObject
 
-    let myTupleObject2 :: TupleOfInputs Int Int
+    let myTupleObject2 ∷ TupleOfInputs Int Int
         myTupleObject2 = updateVariable ((2, 3) :: (Int, Int)) myTupleObject
 
     printThem myTupleObject2
@@ -50,23 +50,23 @@ main = do
 
     putStrLn "-- StaticSumType --"
 
-    let myStaticSumTypeInt :: StaticSumType
+    let myStaticSumTypeInt ∷ StaticSumType
         myStaticSumTypeInt = new (1 :: Int)
 
     print myStaticSumTypeInt
 
-    let myStaticSumTypeInt2 :: StaticSumType
+    let myStaticSumTypeInt2 ∷ StaticSumType
         myStaticSumTypeInt2 = updateVariable (2 :: Int) myStaticSumTypeInt
 
     print myStaticSumTypeInt2
 
 
-    let myStaticSumTypeString :: StaticSumType
+    let myStaticSumTypeString ∷ StaticSumType
         myStaticSumTypeString = new "Hi"
 
     print myStaticSumTypeString
 
-    let myStaticSumTypeString2 :: StaticSumType
+    let myStaticSumTypeString2 ∷ StaticSumType
         myStaticSumTypeString2 = updateVariable "Hi" myStaticSumTypeString
 
     print myStaticSumTypeString2

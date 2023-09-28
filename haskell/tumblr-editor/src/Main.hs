@@ -4,13 +4,13 @@
 
 module Main where
 
-import           Control.Concurrent
-import           Control.Monad          (forM_)
-import           Control.Monad.IO.Class
-import           Data.Functor.Compose
-import           Data.Text              (pack, unpack)
-import           System.Environment
-import           Test.WebDriver
+import Control.Concurrent
+import Control.Monad          (forM_)
+import Control.Monad.IO.Class
+import Data.Functor.Compose
+import Data.Text              (pack, unpack)
+import System.Environment
+import Test.WebDriver
 
 firefoxConfig ∷ WDConfig
 firefoxConfig = defaultConfig {-{

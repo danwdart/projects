@@ -3,7 +3,7 @@
 
 module Shell where
 
-import           System.Directory
+import System.Directory
 
 -- >>> ls
 ls ∷ IO ()

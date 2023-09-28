@@ -23,14 +23,14 @@ data Some f where
 
 -- Wrappers for the Schema constructors under the existential Some.
 
-sField :: String -> Some Schema -> Some Schema
+sField ∷ String → Some Schema → Some Schema
 sField field (Some schema) = Some (SField field schema)
 
-sPair :: Some Schema -> Some Schema -> Some Schema
+sPair ∷ Some Schema → Some Schema → Some Schema
 sPair (Some schema) (Some schema') = Some (SPair schema schema')
 
 -- Read a schema from some configuration file.
-readSchema :: Yaml -> Maybe (Some Schema)
+readSchema ∷ Yaml → Maybe (Some Schema)
 readSchema (String "string") = Just (Some SString)
 readSchema (Object xs) = foldr addField (Some SUnit) <$> traverse (traverse readSchema) xs
   where
@@ -38,7 +38,7 @@ readSchema (Object xs) = foldr addField (Some SUnit) <$> traverse (traverse read
 readSchema _ = Nothing
 
 -- Decode a value from Yaml according to a given schema.
-decode :: Schema a -> Yaml -> Maybe a
+decode ∷ Schema a → Yaml → Maybe a
 decode SUnit _  = Just ()
 decode (SPair s s') x = liftA2 (,) (decode s x) (decode s' x)
 decode SString (String s) = Just s
@@ -51,7 +51,7 @@ decode _ _ = Nothing
 -- Note that encoding is partial because there are nonsensical schemas:
 -- you can use SPair to require a Yaml value to be both a string and an object.
 -- A more careful definition of schemas could avoid that.
-encode :: Schema a -> a -> Maybe Yaml
+encode ∷ Schema a → a → Maybe Yaml
 encode SUnit () = Just (Object [])
 encode SString x = Just (String x)
 encode (SField field s) x = do
@@ -62,7 +62,7 @@ encode (SPair s s') (x, x') = do
   y' <- encode s' x'
   case (y, y') of
     (Object z, Object z') -> Just (Object (z <> z'))
-    _ -> Nothing
+    _                     -> Nothing
 
 -- Again, existential wrapper to store decoded values,
 -- because their types are not known at compile-time.
@@ -72,24 +72,24 @@ data SchemaValue where
 
 -- Existential wrappers for decode and encode.
 
-decodeS :: Some Schema -> Yaml -> Maybe SchemaValue 
+decodeS ∷ Some Schema → Yaml → Maybe SchemaValue
 decodeS (Some s) x = SchemaValue s <$> decode s x
 
-encodeS :: SchemaValue -> Maybe Yaml 
+encodeS ∷ SchemaValue → Maybe Yaml
 encodeS (SchemaValue s x) = encode s x
 
 -- Examples
 
 data B = C | D
 
-exampleSchema :: Yaml
+exampleSchema ∷ Yaml
 exampleSchema = Object [("type", String "string"), ("class", String "string")]
 
-exampleValue :: Yaml
+exampleValue ∷ Yaml
 exampleValue = Object [("type", String "Maybe"), ("class", String "Monad")]
 
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print $ do
         s <- readSchema exampleSchema

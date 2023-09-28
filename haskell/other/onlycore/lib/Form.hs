@@ -3,9 +3,9 @@
 
 module Form where
 
-import           Data.Text        (Text)
-import qualified Data.Text        as T
-import           Text.Parsec
+import Data.Text   (Text)
+import Data.Text   qualified as T
+import Text.Parsec
 
 data IsDropdown = NotDropdown | Dropdown  deriving stock (Enum, Show)
 data IsMulti = NotMulti | Multi deriving stock (Enum, Show)

@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Control.Monad.Cont
-import           Data.Function
+import Control.Monad.Cont
+import Data.Function
 
 c ∷ a → Cont b a
 c = cont . (&)

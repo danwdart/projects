@@ -1,5 +1,5 @@
-{-# LANGUAGE Trustworthy #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
 module Main where
@@ -21,7 +21,7 @@ gen (Proxy :: Proxy String) (Proxy :: Proxy Int)
 -- Failed, no modules loaded.
 --
 
-main :: IO ()
+main ∷ IO ()
 main = do
     args <- getArgs
     decs <- runQ $ gen (Proxy :: Proxy String) (Proxy :: Proxy Int)

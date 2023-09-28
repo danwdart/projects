@@ -1,5 +1,5 @@
 -- Practice folding.
-import           Data.Monoid
+import Data.Monoid
 
 main ∷ IO ()
 main = do

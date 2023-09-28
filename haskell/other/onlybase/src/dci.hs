@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds #-}
 
-import           GHC.Read
-import           Text.ParserCombinators.ReadP
-import           Text.ParserCombinators.ReadPrec (lift)
+import GHC.Read
+import Text.ParserCombinators.ReadP
+import Text.ParserCombinators.ReadPrec (lift)
 
 commandParser ∷ ReadP (IO ())
 commandParser = do

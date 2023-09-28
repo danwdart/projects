@@ -5,22 +5,22 @@
 
 module Main where
 
-import qualified Data.Aeson             as A
-import           Data.Aeson.Types
-import qualified Data.ByteString.Base64 as B64
-import qualified Data.ByteString.Char8  as B
-import qualified Data.ByteString.Lazy   as BL
-import           Data.Either
-import           Data.Maybe
-import           Data.Text              (Text)
-import qualified Data.Text              as T
-import qualified Data.Text.Encoding     as TE
-import           Data.Time
-import           Data.UUID.Types        (UUID)
-import           GHC.Generics
-import           System.Environment
-import           Text.Printf            (printf)
--- import qualified Web.JWT as JWT
+import Data.Aeson             qualified as A
+import Data.Aeson.Types
+import Data.ByteString.Base64 qualified as B64
+import Data.ByteString.Char8  qualified as B
+import Data.ByteString.Lazy   qualified as BL
+import Data.Either
+import Data.Maybe
+import Data.Text              (Text)
+import Data.Text              qualified as T
+import Data.Text.Encoding     qualified as TE
+import Data.Time
+import Data.UUID.Types        (UUID)
+import GHC.Generics
+import System.Environment
+import Text.Printf            (printf)
+-- import Web.JWT qualified as JWT
 
 newtype Id = Id Integer deriving stock (Eq, Show)
 
