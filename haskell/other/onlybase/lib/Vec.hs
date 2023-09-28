@@ -17,13 +17,14 @@
 {-# LANGUAGE IncoherentInstances          #-}
 {-# LANGUAGE TypeFamilies                 #-}
 {-# LANGUAGE UndecidableSuperClasses      #-}
-
 -- | Length Index-Vector
 module Vec (Vec(..), and, head, init, map, length) where
 
 import safe Data.Kind (Constraint, Type)
 import Prelude   hiding (and, elem, filter, head, init, length, map, replicate,
                   tail, take, (++))
+
+{-# ANN module "HLint: ignore Use fmap" #-}
 
 type Nat :: Type
 data Nat = Zero | Succ Nat
@@ -109,8 +110,6 @@ head (x :> _) = x
 init ∷ Vec ('Succ n) a → Vec n a
 init (_ :> Nil)         = Nil
 init (x :> xs@(_ :> _)) = x :> init xs
-
-{-# ANN function "HLint: ignore Use fmap" #-}
 
 -- >>> map succ $ 1 :> 2 :> Nil
 -- 2 :> (3 :> Nil)
