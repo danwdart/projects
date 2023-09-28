@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import qualified Graphics.UI.Threepenny      as UI
-import           Graphics.UI.Threepenny.Core
+import Graphics.UI.Threepenny      qualified as UI
+import Graphics.UI.Threepenny.Core
 
 main ∷ IO ()
 main = startGUI defaultConfig {jsAddr = Just "0.0.0.0"} setup

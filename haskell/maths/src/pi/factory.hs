@@ -1,10 +1,10 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Data.Ratio
+import Data.Ratio
 
 -- import           Factory.Math.Implementations.Pi.BBP.Algorithm
 -- import           Factory.Math.Implementations.Pi.BBP.Bellard
-import           Factory.Math.Implementations.Pi.BBP.Series
+import Factory.Math.Implementations.Pi.BBP.Series
 -- import           Factory.Math.Pi
 
 main ∷ IO ()

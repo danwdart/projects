@@ -1,6 +1,6 @@
 module Game.Monopoly.Board where
 
-import           Game.Monopoly.Space
+import Game.Monopoly.Space
 
 data Board = Board {
     spaces           :: [Space],

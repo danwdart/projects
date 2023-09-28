@@ -8,7 +8,7 @@
     -Wno-type-defaults
     -Wno-monomorphism-restriction #-}
 
-import           Data.Ratio
+import Data.Ratio
 
 main ∷ IO ()
 main = pure ()

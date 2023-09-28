@@ -1,4 +1,4 @@
-import           Factor
+import Factor
 
 process ∷ Integer → Integer
 process = sum . properFactors

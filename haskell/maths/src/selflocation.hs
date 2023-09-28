@@ -1,5 +1,5 @@
-import           Data.Number.CReal
-import           System.IO
+import Data.Number.CReal
+import System.IO
 
 fact ∷ CReal → CReal
 fact 0.0 = 1.0

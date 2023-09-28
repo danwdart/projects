@@ -3,9 +3,9 @@
 -- Pisano periods of A275124.
 module Main where
 
-import           Sequence.Fibonacci
-import           Sequence.Lucas
-import           Sequence.Period
+import Sequence.Fibonacci
+import Sequence.Lucas
+import Sequence.Period
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

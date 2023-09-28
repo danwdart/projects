@@ -1,7 +1,7 @@
 module Game.Monopoly.Player where
 
-import           Game.Monopoly.Property
-import           Game.Monopoly.Token
+import Game.Monopoly.Property
+import Game.Monopoly.Token
 
 data Player = Player {
     name                :: String,

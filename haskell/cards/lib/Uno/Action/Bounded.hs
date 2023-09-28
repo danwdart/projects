@@ -7,4 +7,4 @@ data Action = DrawTwo | Reverse | Skip deriving stock (Show, Eq, Ord, Bounded, E
 instance ANSI Action where
     renderANSI DrawTwo = "+2"
     renderANSI Reverse = "⟳" -- eh
-    renderANSI Skip = "⊘"
+    renderANSI Skip    = "⊘"

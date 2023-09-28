@@ -1,7 +1,7 @@
 module Uno.Colour.Bounded where
 
 import ANSI
-import qualified System.Console.ANSI as SysConsoleANSI
+import System.Console.ANSI qualified as SysConsoleANSI
 
 data Colour = Red | Blue | Yellow | Green deriving stock (Show, Eq, Ord, Bounded, Enum)
 

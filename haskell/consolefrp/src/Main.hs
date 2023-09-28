@@ -2,9 +2,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Main where
-import qualified Graphics.Vty as V
--- import qualified Graphics.Vty.Input.Events as VIE
-import           Reflex.Vty
+import Graphics.Vty qualified as V
+-- import Graphics.Vty.Input.Events qualified as VIE
+import Reflex.Vty
 -- import           Reflex.Vty.Host
 -- import           Reflex.Vty.Widget
 

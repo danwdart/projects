@@ -1,9 +1,9 @@
-import           Control.Error.Util (note)
-import           Data.Either
-import           Data.Either.Extra
-import           Frobenius
-import           System.Environment
-import           Text.Read
+import Control.Error.Util (note)
+import Data.Either
+import Data.Either.Extra
+import Frobenius
+import System.Environment
+import Text.Read
 
 parseArgs ∷ [String] → [Either String Int]
 parseArgs = fmap readEither

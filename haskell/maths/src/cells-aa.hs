@@ -2,8 +2,8 @@
 
 module Main where
 
-import           Data.Digits
-import           Data.Maybe
+import Data.Digits
+import Data.Maybe
 
 main ∷ IO ()
 main = print . showBinary $ Main.iterate 4 (fromBinary [0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0])

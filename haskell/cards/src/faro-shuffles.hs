@@ -2,12 +2,12 @@
 
 module Main where
 
-import           Data.Bifunctor
-import           Data.List.Extra
-import           Deck
-import           Ordering
-import           Suit.Bounded.Standard  as SuitStandard
-import           Value.Bounded.Standard as ValueStandard
+import Data.Bifunctor
+import Data.List.Extra
+import Deck
+import Ordering
+import Suit.Bounded.Standard  as SuitStandard
+import Value.Bounded.Standard as ValueStandard
 
 -- Relude's makes us need earlier versions of stuff
 bimapBoth ∷ Bifunctor p ⇒ (a → b) → p a a → p b b

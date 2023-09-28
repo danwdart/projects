@@ -1,9 +1,9 @@
 {-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
-import           Language.C.Inline.Cpp
+import Language.C.Inline.Cpp
 
 context cppCtx
 

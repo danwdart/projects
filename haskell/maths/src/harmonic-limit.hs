@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
 -- A004080
-import           Data.List.Extra
-import           Data.Tuple.Extra
+import Data.List.Extra
+import Data.Tuple.Extra
 
 -- both = bimapBoth from Relude.Extra.Bifunctor over tuples
 

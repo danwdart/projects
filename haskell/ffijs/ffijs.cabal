@@ -15,6 +15,7 @@ extra-source-files: CHANGELOG.md
 --     build-depends:    base, ghcjs-base
 --     hs-source-dirs:   src
 --     default-language: Haskell2010
+--     default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
 --     ghcjs-options:    -DGHCJS_NODE
 --     exposed-modules:
 --         LibDemo
@@ -25,6 +26,7 @@ executable ffihstojs
     build-depends:    base, ghcjs-base
     hs-source-dirs:   src
     default-language: Haskell2010
+    default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
     ghcjs-options:    -DGHCJS_NODE
     -- exposed-modules:
     --    LibDemo

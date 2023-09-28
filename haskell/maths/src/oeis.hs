@@ -3,12 +3,12 @@
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE OverloadedStrings  #-}
 
-import           Control.Monad.IO.Class
-import           Data.Aeson
+import Control.Monad.IO.Class
+import Data.Aeson
 -- import Data.Aeson.Encode.Pretty
--- import qualified Data.ByteString.Lazy.Char8 as BSL
-import           Network.HTTP.Req
-import           Text.PrettyPrint.GenericPretty
+-- import Data.ByteString.Lazy.Char8 qualified as BSL
+import Network.HTTP.Req
+import Text.PrettyPrint.GenericPretty
 
 data OEISResult = OEISResult {
     _time        :: String,

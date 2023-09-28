@@ -1,5 +1,5 @@
-import           Data.List (sort)
-import           Data.Set
+import Data.List (sort)
+import Data.Set
 
 
 main ∷ IO ()

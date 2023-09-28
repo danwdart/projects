@@ -1,6 +1,6 @@
 module Main where
 
-import           Data.Ratio
+import Data.Ratio
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

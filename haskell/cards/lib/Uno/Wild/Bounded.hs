@@ -6,7 +6,7 @@ data Wild = Wild | WildShuffleHands | WildDrawFour | WildCustomisable deriving s
         --  x4     x1                 x4             x3
 
 instance ANSI Wild where
-    renderANSI Wild = "Wild"
+    renderANSI Wild             = "Wild"
     renderANSI WildShuffleHands = "Shuffle Hands"
-    renderANSI WildDrawFour = "+4"
+    renderANSI WildDrawFour     = "+4"
     renderANSI WildCustomisable = "?"

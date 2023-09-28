@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
-{-# LANGUAGE Trustworthy, TemplateHaskell #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE Trustworthy     #-}
 
 module Main where
 
@@ -10,14 +11,14 @@ import Test.DocTest
 -- >>> a
 -- 1
 --
-a :: Int
+a ∷ Int
 a = 1
 
 -- | This file.
 -- >>> thisFile
 -- "src/doctestme.hs"
-thisFile :: String
+thisFile ∷ String
 thisFile = $(LitE . StringL . loc_filename <$> location)
 
-main :: IO ()
+main ∷ IO ()
 main = doctest [thisFile]

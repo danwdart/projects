@@ -2,8 +2,8 @@
 
 module Main where
 
-import           Data.Kind
-import           GHC.TypeNats
+import Data.Kind
+import GHC.TypeNats
 
 -- data Nonary = Zero | One | Two | Three | Four | Five | Six | Seven | Eight
 

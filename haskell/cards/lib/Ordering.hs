@@ -1,7 +1,7 @@
 module Ordering where
 
-import           Card
-import           Instances ()
+import Card
+import Instances ()
 
 newtype BySuitThenValue v s = BySuitThenValue {
     getBySuitThenValue :: Card v s

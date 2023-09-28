@@ -3,17 +3,17 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds -Wwarn #-}
 
-import           Card
-import qualified Control.Monad.HT           as HT (nest)
-import           Control.Monad.Random.Class
-import           Data.Bifunctor
-import           Data.List.Extra
-import           Data.List.Pairs
-import qualified Data.Map                   as M
-import           Data.Statistics
-import           Deck
-import           Ordering
-import           System.Random.Shuffle
+import Card
+import Control.Monad.HT           qualified as HT (nest)
+import Control.Monad.Random.Class
+import Data.Bifunctor
+import Data.List.Extra
+import Data.List.Pairs
+import Data.Map                   qualified as M
+import Data.Statistics
+import Deck
+import Ordering
+import System.Random.Shuffle
 
 (...) ∷ (b → c) → (a1 → a2 → b) → a1 → a2 → c
 (...) = (.) . (.)

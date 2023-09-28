@@ -1,30 +1,30 @@
 {-# OPTIONS_GHC -Wno-type-defaults -Wwarn #-}
 
-import           Data.Functor.Contravariant hiding ((>$<))
-import           Data.Functor.Contravariant.Divisible
-import           Data.Void
+import Data.Functor.Contravariant           hiding ((>$<))
+import Data.Functor.Contravariant.Divisible
+import Data.Void
 
 class Ppr a where
-    ppr :: a -> String
+    ppr :: a → String
 
 --  https://www.youtube.com/watch?v=IJ_bVVsQhvc
 newtype Printer a = Printer {
-    runPrinter :: a -> String
+    runPrinter :: a → String
 }
 
-string :: Printer String
+string ∷ Printer String
 string = Printer id
 
-konst :: String -> Printer a
+konst ∷ String → Printer a
 konst = Printer . const
 
-showP :: Show a => Printer a
+showP ∷ Show a ⇒ Printer a
 showP = Printer show
 
-int :: Printer Int
+int ∷ Printer Int
 int = showP
 
-nl :: Printer ()
+nl ∷ Printer ()
 nl = konst "\n"
 
 instance Contravariant Printer where
@@ -39,45 +39,45 @@ instance Divisible Printer where
 instance Decidable Printer where
     choose cab (Printer as) (Printer bs) = Printer $ \c ->
         case cab c of
-            Left a -> as a
+            Left a  -> as a
             Right b -> bs b
     lose av = Printer (absurd . av)
 
-(>$<) :: Contravariant f => (b -> a) -> f a -> f b
+(>$<) ∷ Contravariant f ⇒ (b → a) → f a → f b
 (>$<) = contramap
 
 infixr 4 >$<
 
-(>*<) :: Divisible f => f a -> f b -> f (a, b)
+(>*<) ∷ Divisible f ⇒ f a → f b → f (a, b)
 (>*<) = divide id
 
 infixr 4 >*<
 
-(>|<) :: Decidable f => f a -> f b -> f (Either a b)
+(>|<) ∷ Decidable f ⇒ f a → f b → f (Either a b)
 (>|<) = choose id
 
 infixr 3 >|<
 
-(>*) :: Divisible f => f a -> f () -> f a
+(>*) ∷ Divisible f ⇒ f a → f () → f a
 (>*) = divide (, ())
 
 infixr 4 >*
 
-(*<) :: Divisible f => f () -> f a -> f a
+(*<) ∷ Divisible f ⇒ f () → f a → f a
 (*<) = divide ((), )
 
 infixr *<
 
 data Person = Person {
-    name :: String,
-    age :: Int,
+    name      :: String,
+    age       :: Int,
     interests :: [String]
 }
 
-personToTuple :: Person -> (String, (Int, [String]))
+personToTuple ∷ Person → (String, (Int, [String]))
 personToTuple Person {name, age, interests} = (name, (age, interests))
 
-printPerson :: Printer Person
+printPerson ∷ Printer Person
 printPerson = personToTuple
     >$< (konst "Name: " *< string >* nl)
     >*< (konst "Age: " *< int >* nl)

@@ -2,17 +2,17 @@
 
 module Main where
 
-import           ANSI
-import           Data.List.Extra
-import qualified Data.List.NonEmpty as LNE
-import           Data.Maybe
+import ANSI
+import Data.List.Extra
+import Data.List.NonEmpty    qualified as LNE
+import Data.Maybe
 -- import           Debug.Trace
-import           Uno.Action.Bounded
-import           Uno.Card
-import           Uno.Colour.Bounded
-import           Uno.Value.Bounded
-import           Uno.Wild.Bounded
-import           System.Random.Shuffle
+import System.Random.Shuffle
+import Uno.Action.Bounded
+import Uno.Card
+import Uno.Colour.Bounded
+import Uno.Value.Bounded
+import Uno.Wild.Bounded
 
 type Hand = [CardBounded]
 type Hands = [Hand]
@@ -25,7 +25,7 @@ data PlayDirection = Descending | Ascending deriving stock (Show, Eq, Enum)
 
 type GameState = (Hands, Deck, Discard, Player, PlayDirection)
 
-summariseGame :: GameState -> String
+summariseGame ∷ GameState → String
 summariseGame (hands, deck, discard, player, playDirection) = "Hands: (" <>
     intercalate ", " (fmap (show . length) hands) <>
     "), deck: " <>
@@ -38,36 +38,36 @@ summariseGame (hands, deck, discard, player, playDirection) = "Hands: (" <>
     show playDirection
 
 -- @TODO make into lens
-flipPlayDirection :: PlayDirection -> PlayDirection
+flipPlayDirection ∷ PlayDirection → PlayDirection
 flipPlayDirection Descending = Ascending
-flipPlayDirection Ascending = Descending
+flipPlayDirection Ascending  = Descending
 
-nextPlayer :: GameState -> Player
-nextPlayer (_, _, _, player, Ascending) = succ player `mod` numberOfPlayers
+nextPlayer ∷ GameState → Player
+nextPlayer (_, _, _, player, Ascending)  = succ player `mod` numberOfPlayers
 nextPlayer (_, _, _, player, Descending) = pred player `mod` numberOfPlayers
 
-numberOfPlayers :: Int
+numberOfPlayers ∷ Int
 numberOfPlayers = 2
 
-cardsPerPlayer :: Int
+cardsPerPlayer ∷ Int
 cardsPerPlayer = 7
 
-initialPlayDirection :: PlayDirection
+initialPlayDirection ∷ PlayDirection
 initialPlayDirection = Ascending
 
-startGame :: Deck -> Discard -> (Deck, Discard)
+startGame ∷ Deck → Discard → (Deck, Discard)
 startGame deck discard = do
     case deck of
         (tryMatch:deck') -> do
             case tryMatch of
                 NumberCard {} -> (deck', tryMatch:discard)
-                other -> startGame (tail deck) (other:discard)
+                other         -> startGame (tail deck) (other:discard)
         _ -> error "Impossible to start game. No cards left to start. What have you done?"
 
-renderHand :: Int -> Hand -> String
+renderHand ∷ Int → Hand → String
 renderHand playerNumber hand = "Player " <> show playerNumber <> ": " <> show (length hand) <> " (" <> renderANSI hand <> ")"
 
-matchesWith :: CardBounded -> CardBounded -> Bool
+matchesWith ∷ CardBounded → CardBounded → Bool
 matchesWith (WildCard {}) _ = True
 matchesWith _ (WildCard {}) = True
 matchesWith (NumberCard value1 colour1) (NumberCard value2 colour2) = value1 == value2 || colour1 == colour2
@@ -76,15 +76,15 @@ matchesWith (ActionCard _ colour1) (NumberCard _ colour2) = colour1 == colour2
 matchesWith (ActionCard _ colour1) (ActionCard _ colour2) = colour1 == colour2
 
 -- @TODO lenses!!
-setAt :: Int -> a -> [a] -> [a]
+setAt ∷ Int → a → [a] → [a]
 setAt idx x xs = let (before, afterIncludingElement) = splitAt idx xs
     in before <> [x] <> tail afterIncludingElement
 
-removeAt :: Int -> [a] -> [a]
+removeAt ∷ Int → [a] → [a]
 removeAt idx xs = let (before, afterIncludingElement) = splitAt idx xs
     in before <> tail afterIncludingElement
 
-playCard :: Int -> GameState -> GameState
+playCard ∷ Int → GameState → GameState
 playCard index gameState@(hands, deck, discard, player, playDirection) = (
     setAt player (
         removeAt index (
@@ -96,7 +96,7 @@ playCard index gameState@(hands, deck, discard, player, playDirection) = (
     nextPlayer gameState,
     playDirection)
 
-takeCard :: Player -> GameState -> GameState
+takeCard ∷ Player → GameState → GameState
 takeCard whom (hands, card:deck, discard, player, playDirection) = (
     setAt whom (
         card:hands !! whom
@@ -107,22 +107,22 @@ takeCard whom (hands, card:deck, discard, player, playDirection) = (
     playDirection)
 takeCard _ (_, [], _, _, _) = error "Nothing to take"
 
-winner :: Hands -> Maybe Player
+winner ∷ Hands → Maybe Player
 winner = findIndex null
 
-applyN :: Int -> (a -> a) -> a -> a
+applyN ∷ Int → (a → a) → a → a
 applyN 0 _ x = x
 applyN n f x = applyN (pred n) f x
 
 -- Strategy: random choice for findIndex and wildness
-move :: GameState -> GameState
+move ∷ GameState → GameState
 move state@(hands, _deck, discard, player, _playDirection) = case findIndex (matchesWith (head discard)) (hands !! player) of
     Just index ->
         let newState@(hands', deck', discard', player', playDirection') = playCard index state
         in case winner hands' of
             Nothing -> case hands !! player !! index of
                 NumberCard _value _colour -> newState
-                ActionCard DrawTwo _colour -> move $ takeCard (nextPlayer state) $ takeCard (nextPlayer state) newState
+                ActionCard DrawTwo _colour -> move . takeCard (nextPlayer state) $ takeCard (nextPlayer state) newState
                 ActionCard Reverse _colour -> (hands', deck', discard', player', flipPlayDirection playDirection')
                 ActionCard Skip _colour -> (hands', deck', discard', nextPlayer newState, playDirection')
                 -- @TODO randomness
@@ -151,18 +151,18 @@ main = do
 
     putStrLn $ "Discard pile starts like: " <> renderANSI discard
 
-    let initialGameState :: GameState
+    let initialGameState ∷ GameState
         initialGameState = ([p1Hand, p2Hand], rest'', discard, 0, Ascending)
 
     putStrLn $ "Initial game state: " <> summariseGame initialGameState
 
-    putStrLn $ "Player 1 move"
+    putStrLn "Player 1 move"
 
     let gameState = move initialGameState
 
     putStrLn $ "New game state: " <> summariseGame gameState
 
-    putStrLn $ "Player 2 move"
+    putStrLn "Player 2 move"
 
     let gameState' = move gameState
 

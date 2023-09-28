@@ -1,4 +1,4 @@
-import           Data.Complex
+import Data.Complex
 
 complexNums ∷ [Complex Double]
 complexNums = [

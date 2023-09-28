@@ -2,10 +2,10 @@
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 module Main where
 
-import           Data.Number.CReal
-import           Math.ContinuedFraction
-import           Sequence.Fibonacci
-import           Sequence.Lucas
+import Data.Number.CReal
+import Math.ContinuedFraction
+import Sequence.Fibonacci
+import Sequence.Lucas
 
 main ∷ IO ()
 main = mapM_ (\(n, v) -> putStrLn $ n <> "\n" <> v <> "\n") [

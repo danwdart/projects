@@ -1,5 +1,5 @@
-import           Control.Concurrent
-import           Control.Concurrent.Async
+import Control.Concurrent
+import Control.Concurrent.Async
 
 task ∷ IO ()
 task = threadDelay 1000000

@@ -1,13 +1,13 @@
 module Queue.ForeignSpec where
 
-import           Control.Monad
-import           Data.Kind
-import           Foreign
-import           Queue.Foreign
-import           Test.Hspec              hiding (runIO)
-import           Test.Hspec.QuickCheck
-import           Test.QuickCheck
-import           Test.QuickCheck.Monadic
+import Control.Monad
+import Data.Kind
+import Foreign
+import Queue.Foreign
+import Test.Hspec              hiding (runIO)
+import Test.Hspec.QuickCheck
+import Test.QuickCheck
+import Test.QuickCheck.Monadic
 
 -- prop :: [Int] -> [Int] -<
 

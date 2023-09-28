@@ -1,10 +1,10 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Control.Arrow
-import           Control.Monad.Random
-import           Data.Biapplicative
-import           Data.List            (intercalate)
-import           Data.Maybe
+import Control.Arrow
+import Control.Monad.Random
+import Data.Biapplicative
+import Data.List            (intercalate)
+import Data.Maybe
 
 main ∷ IO ()
 main = pure ()

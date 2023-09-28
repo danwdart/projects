@@ -1,6 +1,6 @@
 
-import           Data.List           (group)
-import           Data.Numbers.Primes
+import Data.List           (group)
+import Data.Numbers.Primes
 
 (!) ∷ Integer → Integer
 (!) 0 = 1

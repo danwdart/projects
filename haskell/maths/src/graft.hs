@@ -1,5 +1,5 @@
-import           Data.List  (findIndex, isPrefixOf, tails)
-import           Data.Maybe
+import Data.List  (findIndex, isPrefixOf, tails)
+import Data.Maybe
 -- import Control.Monad
 
 -- power ∷ Double

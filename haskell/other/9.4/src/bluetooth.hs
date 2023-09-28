@@ -1,4 +1,4 @@
-import           Network.Bluetooth
+import Network.Bluetooth
 
 main ∷ IO ()
 main = do

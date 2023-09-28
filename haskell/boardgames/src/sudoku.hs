@@ -1,11 +1,11 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
 
-import           Algebra.Lattice
-import           Data.List.Extra (enumerate)
-import           Data.Set        (Set)
-import qualified Data.Set        as S
-import           Data.Vector     (Vector)
-import qualified Data.Vector     as V
+import Algebra.Lattice
+import Data.List.Extra (enumerate)
+import Data.Set        (Set)
+import Data.Set        qualified as S
+import Data.Vector     (Vector)
+import Data.Vector     qualified as V
 
 -- | The individual cell value.
 data Choice = One | Two | Three | Four | Five | Six | Seven | Eight | Nine

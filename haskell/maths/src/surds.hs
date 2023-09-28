@@ -27,7 +27,7 @@ main = print $ Sum (Product (Plain 2) (Root 2)) (Product (Plain 3) (Root 3))
 
 -- Let's do it a different way.
 
-import           Data.Ratio
+import Data.Ratio
 
 newtype Algebraic = Algebraic {
     getAlgebraic :: [(Integer, Rational)] -- a1 x ^ b1 + a2 x ^ b2

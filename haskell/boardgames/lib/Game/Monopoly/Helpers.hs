@@ -1,9 +1,9 @@
 module Game.Monopoly.Helpers where
 
-import           Game.Monopoly.Board
-import           Game.Monopoly.Player
-import           Game.Monopoly.Space
-import           Game.Monopoly.Tax
+import Game.Monopoly.Board
+import Game.Monopoly.Player
+import Game.Monopoly.Space
+import Game.Monopoly.Tax
 
 playerSpace ∷ [Space] → Player → Space
 playerSpace s player = s !! position player

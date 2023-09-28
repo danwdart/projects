@@ -1,8 +1,8 @@
 {- see: https://en.wikipedia.org/wiki/Lychrel_number -}
 module Main where
 
-import           Data.Digits
-import           Prelude
+import Data.Digits
+import Prelude
 
 -- there's probably a more efficient way to do this.
 isPalindromicDigits ∷ [Integer] → Bool

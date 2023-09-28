@@ -1,10 +1,10 @@
-import           Control.Monad
-import qualified Control.Monad.HT           as M
-import           Control.Monad.Loops
-import           Data.Maybe
-import           Numeric.Probability.Object
-import           Numeric.Probability.Random (run)
-import           Rando
+import Control.Monad
+import Control.Monad.HT           qualified as M
+import Control.Monad.Loops
+import Data.Maybe
+import Numeric.Probability.Object
+import Numeric.Probability.Random (run)
+import Rando
 -- import System.Random
 
 type Score = Int

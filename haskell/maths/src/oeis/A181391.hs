@@ -1,4 +1,4 @@
-import           Data.List (elemIndex)
+import Data.List (elemIndex)
 
 main ∷ IO ()
 main = print $ iterate iter [0] !! 151

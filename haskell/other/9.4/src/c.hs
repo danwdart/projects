@@ -1,9 +1,9 @@
 {-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
-import qualified Language.C.Inline as C
+import Language.C.Inline qualified as C
 
 C.include "<math.h>"
 

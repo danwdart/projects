@@ -1,6 +1,6 @@
 module Value.Unbounded where
 
-import           Symbol
+import Symbol
 
 newtype Value = Value Int deriving stock (Eq, Ord, Show)
 

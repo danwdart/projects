@@ -1,7 +1,7 @@
 module Main where
 
-import           Data.Numbers.Primes
-import           Data.Ratio
+import Data.Numbers.Primes
+import Data.Ratio
 
 harmonic ∷ Integer → Rational
 harmonic x = sum $ recip . fromIntegral <$> [1..x]

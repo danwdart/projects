@@ -1,6 +1,6 @@
 module Sequence.HalveOrReverse where
 
-import           Data.Digits
+import Data.Digits
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

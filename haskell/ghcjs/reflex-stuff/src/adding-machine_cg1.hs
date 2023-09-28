@@ -1,24 +1,24 @@
-{-# LANGUAGE RecursiveDo #-}
-{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FlexibleContexts  #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecursiveDo       #-}
 
+import Control.Monad.Fix (MonadFix)
+import Data.Text         (Text)
+import Data.Text         qualified as T
 import Reflex
 import Reflex.Dom
-import Control.Monad.Fix (MonadFix)
-import Data.Text (Text)
-import qualified Data.Text as T
 
 data AddingMachineEvent = DigitPressed Int | ClearPressed
 
-main :: IO ()
+main ∷ IO ()
 main = mainWidgetWithHead headElement bodyElement
 
-headElement :: MonadWidget t m => m ()
+headElement ∷ MonadWidget t m ⇒ m ()
 headElement = el "head" $ do
   el "title" $ text "Adding Machine Simulator"
   el "style" $ text cssStyles
 
-bodyElement :: MonadWidget t m => m ()
+bodyElement ∷ MonadWidget t m ⇒ m ()
 bodyElement = el "div" $ mdo
   -- create the register and display its value
   register <- foldDyn (+) 0 sumEvents
@@ -29,19 +29,19 @@ bodyElement = el "div" $ mdo
   let clearEvent = const 0 <$ clearBtn
 
   -- create the digit keys
-  let digitButtons = map digitButton [0..9]
+  let digitButtons = fmap digitButton [0..9]
       digitButton n = button . T.pack $ show n
-      digitEvents = leftmost $ map (\(n, b) -> n <$ b) $ zip [0..9] digitButtons
+      digitEvents = leftmost (zipWith (curry (\(n, b) -> n <$ b)) [0..9] digitButtons)
 
   -- combine the clear, digit, and sum events
   let allEvents = mergeWith (<$>) [clearEvent, fmap DigitPressed digitEvents, fmap (curry (+)) sumEvents]
-  
+
   -- simulate the adding machine by accumulating events
   sumEvents <- accumDyn 0 $ handleEvent <$> allEvents
 
-  return ()
+  pure ()
 
-handleEvent :: AddingMachineEvent -> (Dynamic t Integer, Dynamic t Text) -> (Dynamic t Integer, Dynamic t Text)
+handleEvent ∷ AddingMachineEvent → (Dynamic t Integer, Dynamic t Text) → (Dynamic t Integer, Dynamic t Text)
 handleEvent event (accumulator, display) =
   case event of
     DigitPressed digit -> (accumulator', display')
@@ -52,7 +52,7 @@ handleEvent event (accumulator, display) =
       where
         accumulator'' f acc display' = f acc (read . T.unpack $ display')
 
-cssStyles :: Text
+cssStyles ∷ Text
 cssStyles = T.unlines
   [ "button {"
   , "  font-size: 20px;"

@@ -5,8 +5,8 @@
 
 module Value.Bounded.Standard where
 
-import           Symbol
-import qualified Value.Bounded.Number as N
+import Symbol
+import Value.Bounded.Number qualified as N
 
 -- >>> map show [minBound..maxBound :: Value]
 data Value = Ace | Number N.NumValue | Jack | Queen | King

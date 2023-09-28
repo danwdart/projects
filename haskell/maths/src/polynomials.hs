@@ -3,11 +3,11 @@
 
 module Main where
 
-import           Control.Exception
+import Control.Exception
 -- import Data.Char
-import qualified Data.List          as L
-import           Data.List.NonEmpty (NonEmpty)
-import qualified Data.List.NonEmpty as LNE
+import Data.List          qualified as L
+import Data.List.NonEmpty (NonEmpty)
+import Data.List.NonEmpty qualified as LNE
 
 newtype Polynomial = Polynomial {
     getPolynomial :: NonEmpty Int

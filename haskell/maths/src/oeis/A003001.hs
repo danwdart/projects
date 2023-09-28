@@ -1,5 +1,5 @@
-import           Data.List.Nub
-import           Data.List.Repeat
+import Data.List.Nub
+import Data.List.Repeat
 
 main ∷ IO ()
 main = mapM_ print $ records 100000

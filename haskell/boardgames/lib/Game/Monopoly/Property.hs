@@ -1,7 +1,7 @@
 module Game.Monopoly.Property where
 
-import           Game.Monopoly.Addons
-import           Game.Monopoly.Colour
+import Game.Monopoly.Addons
+import Game.Monopoly.Colour
 
 data Property = Property {
     name       :: String,

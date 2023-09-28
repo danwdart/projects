@@ -1,17 +1,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import qualified Data.ByteString.Lazy.Char8       as BSL
-import           JSDOM
-import           JSDOM.Document
-import           JSDOM.Element                    (setInnerHTML)
-import           JSDOM.HTMLCollection
-import           JSDOM.Types
-import           Language.Javascript.JSaddle      hiding ((!))
-import           Language.Javascript.JSaddle.Warp
-import           Text.Blaze.Html.Renderer.Utf8
-import qualified Text.Blaze.Html5                 as H (main)
-import           Text.Blaze.Html5                 as H hiding (main)
-import           Text.Blaze.Html5.Attributes      as A
+import Data.ByteString.Lazy.Char8       qualified as BSL
+import JSDOM
+import JSDOM.Document
+import JSDOM.Element                    (setInnerHTML)
+import JSDOM.HTMLCollection
+import JSDOM.Types
+import Language.Javascript.JSaddle      hiding ((!))
+import Language.Javascript.JSaddle.Warp
+import Text.Blaze.Html.Renderer.Utf8
+import Text.Blaze.Html5                 as H hiding (main)
+import Text.Blaze.Html5                 qualified as H (main)
+import Text.Blaze.Html5.Attributes      as A
 
 page ∷ Html
 page = docTypeHtml ! lang "en-GB" $ do

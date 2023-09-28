@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports -Wno-type-defaults #-}
 
-import           Data.Complex
-import           Data.Complex.Cyclotomic
-import           Data.Maybe
-import           Data.Ratio
+import Data.Complex
+import Data.Complex.Cyclotomic
+import Data.Maybe
+import Data.Ratio
 
 default(Cyclotomic, Integer)
 

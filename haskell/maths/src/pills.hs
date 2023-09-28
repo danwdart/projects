@@ -12,7 +12,7 @@ x (the current time in hours).
 Everything's in hours.
 -}
 
-import           Debug.Trace
+import Debug.Trace
 
 -- Formula: -- v\left(h,m,r,i,j,x\right)=\sqrt{\frac{\left|x\right|}{x}}\sum_{o=0}^{j-1}\sum_{n=0}^{i-1}\sqrt{\frac{\left|x-rn-24o\right|+x-rn-24o}{2\left(x-rn-24o\right)}}he^{-\frac{\left(x-rn-24o\right)}{2m\ln2}}
 

@@ -10,11 +10,11 @@ const doReplaceTweets = twitterUr; === window.location.href ?
     () => {};
 -}
 
-import           Data.JSString ()
-import           Data.Map      (Map)
-import qualified Data.Map      as Map
-import           GHCJS.Types
--- import qualified JavaScript.Web.
+import Data.JSString ()
+import Data.Map      (Map)
+import Data.Map      qualified as Map
+import GHCJS.Types
+-- import JavaScript.Web. qualified
 
 
 --foreign import javascript unsafe "console.log($1)" js_log :: JSString -> IO ()

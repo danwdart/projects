@@ -1,5 +1,5 @@
 module Value.Class where
 
-import           Symbol
+import Symbol
 
 class Symbol a => Value a

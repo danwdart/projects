@@ -1,10 +1,10 @@
 {-# LANGUAGE JavaScriptFFI #-}
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds -Wno-unused-imports #-}
 
-import           Data.JSString         ()
-import           GHCJS.DOM
-import           GHCJS.Types
-import qualified JavaScript.Web.Canvas as C
+import Data.JSString         ()
+import GHCJS.DOM
+import GHCJS.Types
+import JavaScript.Web.Canvas qualified as C
 
 foreign import javascript unsafe "window.alert($1)" js_alert :: JSString → IO ()
 foreign import javascript unsafe "console.log($1)" js_log :: JSVal → IO ()

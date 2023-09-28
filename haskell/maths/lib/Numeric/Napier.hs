@@ -1,10 +1,10 @@
 module Numeric.Napier where
 
-import           Data.Digits   (digitsRev)
-import           Data.Function ((&))
-import           Data.Functor  ((<&>))
-import           Data.List     (elemIndex)
-import           Data.Maybe    (catMaybes)
+import Data.Digits   (digitsRev)
+import Data.Function ((&))
+import Data.Functor  ((<&>))
+import Data.List     (elemIndex)
+import Data.Maybe    (catMaybes)
 
 napierSymbols ∷ String
 napierSymbols = ['a'..'z'] <> ['A'..'Z']

@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
-import           Data.Invertible
-import           Prelude         hiding (succ, (.))
+import Data.Invertible
+import Prelude         hiding (succ, (.))
 
 -- Not really invertible but whatever
 sqr ∷ (Fractional a, Floating a) ⇒ a <-> a

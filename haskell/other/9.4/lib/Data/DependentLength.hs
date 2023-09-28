@@ -1,4 +1,10 @@
-{-# LANGUAGE DataKinds, DerivingStrategies, GADTs, ScopedTypeVariables, NoImplicitPrelude, TypeFamilies, Unsafe #-}
+{-# LANGUAGE DataKinds           #-}
+{-# LANGUAGE DerivingStrategies  #-}
+{-# LANGUAGE GADTs               #-}
+{-# LANGUAGE NoImplicitPrelude   #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TypeFamilies        #-}
+{-# LANGUAGE Unsafe              #-}
 {-# OPTIONS_GHC -fplugin GHC.TypeLits.Presburger #-}
 {-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wwarn #-}
@@ -33,16 +39,16 @@ import Text.Show
 -- 'a' :> 'b' :> 'c' :> Nil :: Vec 3 Char
 --
 
-type Vec :: Nat -> Type -> Type
+type Vec :: Nat → Type → Type
 data Vec n a where
     Nil :: Vec 0 a
     (:>) :: a -> Vec n a -> Vec (n + 1) a
 
 type StringL a = Vec a Char
 
-type MaxL m a = forall n. (n <= m) => Vec n a
+type MaxL m a = forall n. (n <= m) ⇒ Vec n a
 
-type ML m a = forall m1 n. (n <= m1, m1 ~ m) => Vec n a
+type ML m a = forall m1 n. (n <= m1, m1 ~ m) ⇒ Vec n a
 
 -- $> :set -XDataKinds
 
@@ -57,7 +63,7 @@ type ML m a = forall m1 n. (n <= m1, m1 ~ m) => Vec n a
 --     Illegal type: ‘3’ Perhaps you intended to use DataKinds
 --
 
-type MinL m a = forall n. (m <= n) => Vec n a
+type MinL m a = forall n. (m <= n) ⇒ Vec n a
 
 -- >>> :set -XDataKinds
 -- >>> :set -XAllowAmbiguousTypes
@@ -73,7 +79,7 @@ type Password = MinL 16 Char
 
 infixr 5 :>
 
-deriving stock instance Show a => Show (Vec n a)
+deriving stock instance Show a ⇒ Show (Vec n a)
 
 -- >>> fmap succ $ 1 :> 2 :> 3 :> Nil
 -- 2 :> (3 :> (4 :> Nil))
@@ -162,8 +168,8 @@ find
 head
 -}
 
-head :: Vec n a -> a
-head Nil = error "No head"
+head ∷ Vec n a → a
+head Nil      = error "No head"
 head (x :> _) = x
 
 -- >>> head (1 :> 2 :> 3 :> Nil)
@@ -193,10 +199,10 @@ init (a :> as) = a :> init as
 -- 1
 --
 
-last :: Vec n a -> a
-last Nil = error "No last"
+last ∷ Vec n a → a
+last Nil        = error "No last"
 last (x :> Nil) = x
-last (_ :> xs) = last xs
+last (_ :> xs)  = last xs
 
 -- >>> last (1 :> 2 :> 3 :> Nil)
 -- 3
@@ -215,8 +221,8 @@ singleton
 -- >>> map succ $ 1 :> 2 :> 3 :> Nil
 -- 2 :> (3 :> (4 :> Nil))
 --
-map :: (a -> b) -> Vec n a -> Vec n b
-map _ Nil = Nil
+map ∷ (a → b) → Vec n a → Vec n b
+map _ Nil       = Nil
 map f (x :> xs) = f x :> fmap f xs
 
 {-
@@ -246,15 +252,15 @@ zipWith
 -- >>> snoc (1 :> 2 :> 3 :> Nil) 4
 -- 1 :> (2 :> (3 :> (4 :> Nil)))
 --
-snoc :: Vec n a -> a -> Vec (n + 1) a
-snoc Nil x = x :> Nil
+snoc ∷ Vec n a → a → Vec (n + 1) a
+snoc Nil x       = x :> Nil
 snoc (y :> ys) x = y :> (ys `snoc` x)
 
 -- >>> reverseOld $ 1 :> 2 :> 3 :> Nil
 -- 3 :> (2 :> (1 :> Nil))
 --
-reverseOld :: Vec n a -> Vec n a
-reverseOld Nil = Nil
+reverseOld ∷ Vec n a → Vec n a
+reverseOld Nil       = Nil
 reverseOld (x :> xs) = reverseOld xs `snoc` x
 
 {-}
@@ -408,9 +414,9 @@ intersect
 -}
 
 
-(!!) :: Vec n a -> Nat -> a -- Get the nat
-Nil !! _ = error "Nah"
-(x :> _) !! 0 = x
+(!!) ∷ Vec n a → Nat → a -- Get the nat
+Nil !! _       = error "Nah"
+(x :> _) !! 0  = x
 (_ :> xs) !! n = xs !! (n - 1)
 
 -- >>> 1 :> 2 :> Nil !!! 1

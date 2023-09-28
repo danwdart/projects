@@ -1,5 +1,5 @@
-import           Control.Arrow
-import           Data.List     (group, sort)
+import Control.Arrow
+import Data.List     (group, sort)
 
 mk ∷ Int → [[Int]]
 mk k = fmap (\ n -> fmap (\ m -> (n * m) `mod` k) [0 .. n]) [0 .. k - 1]

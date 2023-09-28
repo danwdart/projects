@@ -1,8 +1,8 @@
 module Main where
 
-import           Data.Digits
+import Data.Digits
 -- import Data.Numbers.Primes
-import           Factor
+import Factor
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

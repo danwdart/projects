@@ -1,6 +1,6 @@
 module Main where
 
-import           Factor
+import Factor
 
 perfect ∷ [Integer]
 perfect = filter (\x -> sum (factors x) == 2 * x) [1..]

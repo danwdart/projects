@@ -1,10 +1,10 @@
-import           Control.Concurrent
-import           Control.Monad
-import           Data.Functor
-import           Data.List
-import           System.Console.ANSI
-import           System.IO
-import           System.Random
+import Control.Concurrent
+import Control.Monad
+import Data.Functor
+import Data.List
+import System.Console.ANSI
+import System.IO
+import System.Random
 
 typeDelay ∷ Int → String → IO ()
 typeDelay delay = mapM_ (\c -> threadDelay delay >> putChar c)

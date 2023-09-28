@@ -2,7 +2,7 @@
 
 module Collatz where
 
-import           Numeric.Natural
+import Numeric.Natural
 
 -- $setup
 -- >>> :set -XUnicodeSyntax

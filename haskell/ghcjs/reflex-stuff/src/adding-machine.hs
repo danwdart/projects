@@ -5,8 +5,8 @@
 {-# LANGUAGE RecursiveDo       #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
-import           Data.Text  as T
-import           Reflex.Dom
+import Data.Text  as T
+import Reflex.Dom
 
 fullStop = Period -- what were they thinking?
 

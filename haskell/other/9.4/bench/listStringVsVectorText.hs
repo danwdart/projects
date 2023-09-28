@@ -2,33 +2,33 @@
 
 module Main where
 
-import Criterion.Main
 import Control.DeepSeq
+import Criterion.Main
+import Data.Array                 qualified as A
+import Data.ByteString            qualified as B
+import Data.ByteString.Char8      qualified as B8
+import Data.ByteString.Lazy       qualified as BL
+import Data.ByteString.Lazy.Char8 qualified as BL8
 import Data.Dynamic
 import Data.Maybe
-import qualified Data.Array as A
-import qualified Data.Vector as V
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Char8 as B8
-import qualified Data.ByteString.Lazy as BL
-import qualified Data.ByteString.Lazy.Char8 as BL8
 import Data.String
-import qualified Data.Text as T
-import qualified Data.Text.Lazy as TL
+import Data.Text                  qualified as T
+import Data.Text.Lazy             qualified as TL
+import Data.Vector                qualified as V
 
-elements :: Int
+elements ∷ Int
 elements = 1000000
 
-str :: IsString s => s
+str ∷ IsString s ⇒ s
 str = "Hello World"
 
-listRepl :: a -> [a]
+listRepl ∷ a → [a]
 listRepl = replicate elements
 
-vecRepl :: a -> V.Vector a
+vecRepl ∷ a → V.Vector a
 vecRepl = V.replicate elements
 
-arrRepl :: a -> A.Array Int Int
+arrRepl ∷ a → A.Array Int Int
 arrRepl n = A.listArray (0, elements - 1) [0..elements - 1]
 
 -- either a type name fmap or a disparate list

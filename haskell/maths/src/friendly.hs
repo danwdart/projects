@@ -2,9 +2,9 @@
 
 module Main where
 
-import           Data.List           (sort)
-import           Data.Numbers.Primes
-import           Data.Ratio
+import Data.List           (sort)
+import Data.Numbers.Primes
+import Data.Ratio
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

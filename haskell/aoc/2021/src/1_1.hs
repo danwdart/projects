@@ -10,5 +10,5 @@ main = do
     string <- readFile "data/1"
     let strings = lines string
     let numbers = fmap read strings :: [Integer]
-    let soln = length . filter (== True) $ fnPairs (<) numbers
+    let soln = length . filter id $ fnPairs (<) numbers
     print soln

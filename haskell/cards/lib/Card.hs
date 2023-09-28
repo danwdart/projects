@@ -1,15 +1,15 @@
 
 module Card where
 
-import           Data.Char
-import qualified Suit.Bounded.Standard  as SuitStandard
--- import qualified Suit.Class             as SuitClass
-import qualified Suit.Unbounded         as SuitUnbounded
-import           Symbol
-import qualified Value.Bounded.Jill     as ValueJill
-import qualified Value.Bounded.Standard as ValueStandard
--- import qualified Value.Class            as ValueClass
-import qualified Value.Unbounded        as ValueUnbounded
+import Data.Char
+import Suit.Bounded.Standard  qualified as SuitStandard
+-- import Suit.Class qualified             as SuitClass
+import Suit.Unbounded         qualified as SuitUnbounded
+import Symbol
+import Value.Bounded.Jill     qualified as ValueJill
+import Value.Bounded.Standard qualified as ValueStandard
+-- import Value.Class qualified            as ValueClass
+import Value.Unbounded        qualified as ValueUnbounded
 
 data Card value suit = Card {
     value :: value,

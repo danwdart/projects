@@ -1,11 +1,11 @@
 module Game.Monopoly.Space where
 
-import           Game.Monopoly.Colour
-import           Game.Monopoly.Property
-import           Game.Monopoly.Random
-import           Game.Monopoly.Station
-import           Game.Monopoly.Tax
-import           Game.Monopoly.Utility
+import Game.Monopoly.Colour
+import Game.Monopoly.Property
+import Game.Monopoly.Random
+import Game.Monopoly.Station
+import Game.Monopoly.Tax
+import Game.Monopoly.Utility
 
 data Space = GoSpace
     | PropertySpace Property

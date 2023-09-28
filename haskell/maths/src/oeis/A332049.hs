@@ -1,7 +1,7 @@
 
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           NumList
+import NumList
 
 -- Mine, 2019-11-17
 -- Also A332049

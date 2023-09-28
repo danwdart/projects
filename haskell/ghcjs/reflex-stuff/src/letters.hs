@@ -3,10 +3,10 @@
 {-# LANGUAGE RecursiveDo       #-}
 {-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-local-binds -Wno-unused-top-binds #-}
 
-import           Clay           as C
-import           Data.Text
-import           Data.Text.Lazy (toStrict)
-import           Reflex.Dom
+import Clay           as C
+import Data.Text
+import Data.Text.Lazy (toStrict)
+import Reflex.Dom
 
 css ∷ Css
 css = do

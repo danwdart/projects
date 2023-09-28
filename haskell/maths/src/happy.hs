@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-type-defaults -Wno-unused-top-binds -Wno-unused-matches #-}
 
-import           Data.Digits
-import           Data.List         (intercalate)
-import           Data.List.Iterate
-import           Debug.Trace
+import Data.Digits
+import Data.List         (intercalate)
+import Data.List.Iterate
+import Debug.Trace
 
 {-# ANN module "HLint: ignore" #-}
 

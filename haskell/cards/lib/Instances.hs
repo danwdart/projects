@@ -3,8 +3,8 @@
 
 module Instances where
 
-import           Card
-import           System.Random
+import Card
+import System.Random
 
 instance {-# OVERLAPPABLE #-} (Bounded a, Enum a) ⇒ Random a where
     random = randomR (minBound, maxBound)

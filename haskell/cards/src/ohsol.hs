@@ -2,14 +2,14 @@
 
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
 
-import           Card
-import           Control.Monad.Random.Class
-import           Data.Function
-import           Deck
-import           Suit.Unbounded
-import           System.Random.Shuffle
-import           Text.Printf
-import           Value.Unbounded
+import Card
+import Control.Monad.Random.Class
+import Data.Function
+import Deck
+import Suit.Unbounded
+import System.Random.Shuffle
+import Text.Printf
+import Value.Unbounded
 
 main ∷ IO ()
 main = do

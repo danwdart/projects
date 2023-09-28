@@ -1,4 +1,4 @@
-import           Data.Numbers.Primes
+import Data.Numbers.Primes
 
 main ∷ IO ()
 main = print $ take 200 result

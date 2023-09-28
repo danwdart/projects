@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-imports #-}
 
-import           Codec.Picture
-import           Data.Numbers.Primes
-import           Data.Tuple
+import Codec.Picture
+import Data.Numbers.Primes
+import Data.Tuple
 
 {-# ANN module "HLint: ignore" #-}
 

@@ -1,6 +1,6 @@
 module Data.IP where
 
-import           Data.Digits
+import Data.Digits
 
 -- ipv4 is 32-bit. ipv6 is 128-bit.
 

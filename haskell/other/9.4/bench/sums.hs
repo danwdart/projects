@@ -3,26 +3,26 @@
 module Main where
 
 import Criterion.Main
+import Data.Array     qualified as A
 import Data.Dynamic
 import Data.Foldable
 import Data.Maybe
-import qualified Data.Array as A
-import qualified Data.Vector as V
+import Data.Vector    qualified as V
 
-elements :: Int
+elements ∷ Int
 elements = 1000000
 
 -- TODO ensure that this gets fully evaluated before timing
-listRepl :: a -> [a]
+listRepl ∷ a → [a]
 listRepl = replicate elements
 
-list :: [Int]
+list ∷ [Int]
 list = listRepl (1 :: Int)
 
-vecRepl :: a -> V.Vector a
+vecRepl ∷ a → V.Vector a
 vecRepl = V.replicate elements
 
-arrRepl :: a -> A.Array Int Int
+arrRepl ∷ a → A.Array Int Int
 arrRepl n = A.listArray (0, elements - 1) [0..elements - 1]
 
 

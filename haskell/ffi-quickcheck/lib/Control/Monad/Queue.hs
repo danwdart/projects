@@ -1,8 +1,8 @@
 module Control.Monad.Queue where
 
-import           Control.Monad.Free
-import           Control.Monad.Queue.Class
-import           Data.Queue
+import Control.Monad.Free
+import Control.Monad.Queue.Class
+import Data.Queue
 
 type QueueM t a = Free (QueueF t) a
 

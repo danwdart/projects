@@ -4,7 +4,7 @@
 {-# LANGUAGE RecursiveDo               #-}
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
-import           Reflex.Dom
+import Reflex.Dom
 
 main ∷ IO ()
 main = mainWidgetWithHead (

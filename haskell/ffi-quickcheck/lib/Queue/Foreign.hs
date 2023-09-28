@@ -5,7 +5,7 @@
 
 module Queue.Foreign where
 
-import           Foreign
+import Foreign
 
 -- can we import the struct - with c2hs or similar - we can generate it
 data CQueue = CQueue {

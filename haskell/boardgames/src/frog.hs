@@ -4,11 +4,11 @@
 -- Simulation
 -- Formula
 
-import           Control.Monad
-import           Control.Monad.Random
-import           Data.Foldable        as Foldable
-import           Data.Map             (Map)
-import qualified Data.Map             as M
+import Control.Monad
+import Control.Monad.Random
+import Data.Foldable        as Foldable
+import Data.Map             (Map)
+import Data.Map             qualified as M
 -- import Data.Ratio
 -- import Debug.Trace
 -- import           System.Random

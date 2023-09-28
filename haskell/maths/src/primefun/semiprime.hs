@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Semiprimes
-import           Text.Tabular
+import Semiprimes
+import Text.Tabular
 -- import Text.Tabular.AsciiArt
-import           Text.Tabular.SimpleText
+import Text.Tabular.SimpleText
 
 main ∷ IO ()
 main = do

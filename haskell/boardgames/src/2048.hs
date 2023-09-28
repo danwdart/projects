@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
 
-import           Control.Monad.Random
-import           Data.List            (intercalate)
-import           Data.Maybe
+import Control.Monad.Random
+import Data.List            (intercalate)
+import Data.Maybe
 -- import System.Random
 
 default (Int)

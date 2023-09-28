@@ -1,8 +1,8 @@
 
 module Ulam where
 
-import           Data.List  (find)
-import           Data.Maybe
+import Data.List  (find)
+import Data.Maybe
 
 type X = Int
 type Y = Int

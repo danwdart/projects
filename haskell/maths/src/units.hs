@@ -2,8 +2,8 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Data.Kind
-import           GHC.TypeNats (Nat)
+import Data.Kind
+import GHC.TypeNats (Nat)
 
 class Unit x
 

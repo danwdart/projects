@@ -1,13 +1,13 @@
 
-import           JSDOM
-import           JSDOM.CanvasPath
-import           JSDOM.CanvasRenderingContext2D
-import           JSDOM.Document
-import           JSDOM.Element
-import           JSDOM.HTMLCanvasElement
-import           JSDOM.Node
-import           Language.Javascript.JSaddle
-import           Language.Javascript.JSaddle.Warp
+import JSDOM
+import JSDOM.CanvasPath
+import JSDOM.CanvasRenderingContext2D
+import JSDOM.Document
+import JSDOM.Element
+import JSDOM.HTMLCanvasElement
+import JSDOM.Node
+import Language.Javascript.JSaddle
+import Language.Javascript.JSaddle.Warp
 
 -- add type aliases?
 cartesianToGraph ∷ (Double, Double) → (Double, Double)

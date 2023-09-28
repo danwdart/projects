@@ -9,8 +9,8 @@ extra-source-files:  CHANGELOG.md
 
 executable consolefrp
   main-is:             Main.hs
-  default-language:    Haskell2010
-  default-extensions:  DerivingStrategies, UnicodeSyntax
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends:       base >= 4.17.0.0 && <5, reflex-vty, vty
   hs-source-dirs:      src
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
@@ -21,5 +21,4 @@ executable consolefrp
                        -Wno-implicit-prelude
                        -Wno-missing-safe-haskell-mode
                        -Wno-missing-kind-signatures
-                       -Wno-prepositive-qualified-module
                        -Wno-missing-local-signatures

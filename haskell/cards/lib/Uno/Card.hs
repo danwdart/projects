@@ -3,14 +3,14 @@
 
 module Uno.Card where
 
-import           ANSI
-import           Data.List.Extra
-import qualified Data.List.NonEmpty as LNE
-import qualified Uno.Action.Bounded as ActionBounded
-import qualified Uno.Colour.Bounded as ColourBounded
-import qualified Uno.Value.Bounded  as ValueBounded
-import qualified Uno.Wild.Bounded   as WildBounded
-import qualified System.Console.ANSI as SysConsoleANSI
+import ANSI
+import Data.List.Extra
+import Data.List.NonEmpty  qualified as LNE
+import System.Console.ANSI qualified as SysConsoleANSI
+import Uno.Action.Bounded  qualified as ActionBounded
+import Uno.Colour.Bounded  qualified as ColourBounded
+import Uno.Value.Bounded   qualified as ValueBounded
+import Uno.Wild.Bounded    qualified as WildBounded
 
 data Card value colour action wild = NumberCard {
     value  :: value,
@@ -20,7 +20,7 @@ data Card value colour action wild = NumberCard {
     colour :: colour
 } | WildCard wild deriving stock (Eq, Show) -- we're modelling wild as non-action so action can specify colour
 
-instance (ANSI value, ANSI colour, ANSI action, ANSI wild) => ANSI (Card value colour action wild) where
+instance (ANSI value, ANSI colour, ANSI action, ANSI wild) ⇒ ANSI (Card value colour action wild) where
     renderANSI = \case
         NumberCard value colour -> renderANSI colour <> "[" <> renderANSI value <> "]" <> SysConsoleANSI.setSGRCode [SysConsoleANSI.Reset]
         ActionCard action colour -> renderANSI colour <> "[" <> renderANSI action <> "]" <> SysConsoleANSI.setSGRCode [SysConsoleANSI.Reset]
@@ -36,20 +36,20 @@ type CardBounded = Card ValueBounded.Value ColourBounded.Colour ActionBounded.Ac
 -- whichCanMatch :: CardBounded -> [CardBounded] -> NextAction
 -- whichCanMatch with options = undefined
 
-allNumberCards :: LNE.NonEmpty CardBounded
+allNumberCards ∷ LNE.NonEmpty CardBounded
 allNumberCards = LNE.fromList $
     (NumberCard ValueBounded.Zero <$> enumerate) <>
     concat (replicate 2 (NumberCard <$> [ValueBounded.One .. ValueBounded.Nine] <*> enumerate))
 
-allActionCards :: LNE.NonEmpty CardBounded
+allActionCards ∷ LNE.NonEmpty CardBounded
 allActionCards = LNE.fromList $ concat (replicate 2 (ActionCard <$> enumerate <*> enumerate))
 
-allWildCards :: LNE.NonEmpty CardBounded
+allWildCards ∷ LNE.NonEmpty CardBounded
 allWildCards =
     LNE.fromList (replicate 4 (WildCard WildBounded.Wild)) <>
     LNE.singleton (WildCard WildBounded.WildShuffleHands) <>
     LNE.fromList (replicate 4 (WildCard WildBounded.WildDrawFour)) <>
     LNE.fromList (replicate 3 (WildCard WildBounded.WildCustomisable))
 
-allCards :: LNE.NonEmpty CardBounded
+allCards ∷ LNE.NonEmpty CardBounded
 allCards = allNumberCards <> allActionCards <> allWildCards

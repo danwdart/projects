@@ -3,15 +3,15 @@
 -- Prime Number Snap
 -- Rules: Draw cards until sequential cards add up to prime numbers, then discard these, and draw more until you run out of cards.
 
-import           Card
-import           Control.Monad.Random.Class
-import           Data.Function
-import           Data.Numbers.Primes
-import           Deck
-import           Suit.Unbounded
-import           System.Random.Shuffle
-import           Text.Printf
-import           Value.Unbounded
+import Card
+import Control.Monad.Random.Class
+import Data.Function
+import Data.Numbers.Primes
+import Deck
+import Suit.Unbounded
+import System.Random.Shuffle
+import Text.Printf
+import Value.Unbounded
 
 main ∷ IO ()
 main = do

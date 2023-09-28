@@ -1,7 +1,7 @@
 module Main where
 
-import           Data.List.Safer
-import           Data.Numbers.Primes
+import Data.List.Safer
+import Data.Numbers.Primes
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

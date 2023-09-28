@@ -4,7 +4,7 @@
 
 module Main where
 
-import           Data.List (transpose)
+import Data.List (transpose)
 
 elems ∷ [Int]
 elems = [0..51]

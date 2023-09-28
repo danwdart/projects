@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-type-defaults -Wno-unused-top-binds -Wno-unused-matches #-}
 
-import           Data.Digits
+import Data.Digits
 -- import           Data.List
-import           Data.List.Nub
-import           Data.List.Repeat
+import Data.List.Nub
+import Data.List.Repeat
 
 {-# ANN module "HLint: ignore" #-}
 

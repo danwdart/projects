@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-unused-matches #-}
 
-import           Control.Comonad
-import           Control.Comonad.Store (ComonadStore (peek, pos), Store, store)
+import Control.Comonad
+import Control.Comonad.Store (ComonadStore (peek, pos), Store, store)
 
 type Pos = (Int, Int)
 

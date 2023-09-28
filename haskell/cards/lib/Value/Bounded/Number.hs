@@ -2,7 +2,7 @@
 
 module Value.Bounded.Number where
 
-import           Symbol
+import Symbol
 
 data NumValue = Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
     deriving stock (Bounded, Enum, Eq, Ord, Show)

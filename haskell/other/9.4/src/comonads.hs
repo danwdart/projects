@@ -1,24 +1,17 @@
 {-# LANGUAGE OverloadedLists #-}
-{-# OPTIONS_GHC
-    -Wno-unused-top-binds
-    -Wno-name-shadowing
-    -Wno-incomplete-patterns
-    -Wno-unused-matches
-    -Wno-type-defaults
-    -Wno-unused-imports
-#-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches  -Wno-type-defaults -Wno-unused-imports #-}
 
-import           Control.Comonad
-import           Control.Comonad.Env
-import           Control.Comonad.Store
-import           Control.Comonad.Traced
-import           Data.Foldable
-import           Data.List.NonEmpty     (NonEmpty)
-import qualified Data.List.NonEmpty     as LNE
-import           Data.Map               (Map)
-import qualified Data.Map               as M
-import           Data.Set               (Set)
-import qualified Data.Set               as S
+import Control.Comonad
+import Control.Comonad.Env
+import Control.Comonad.Store
+import Control.Comonad.Traced
+import Data.Foldable
+import Data.List.NonEmpty     (NonEmpty)
+import Data.List.NonEmpty     qualified as LNE
+import Data.Map               (Map)
+import Data.Map               qualified as M
+import Data.Set               (Set)
+import Data.Set               qualified as S
 
 newtype MyComonad a = MyComonad a deriving stock (Functor, Show)
 
@@ -61,7 +54,7 @@ instance Comonad Stream where
 fromList ∷ [a] → Stream a
 fromList xs = go (cycle xs)
     where
-        go :: [a] -> Stream a
+        go ∷ [a] → Stream a
         go (a:rest) = a :> go rest
 
 countStream ∷ Stream Int

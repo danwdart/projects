@@ -17,7 +17,7 @@ extra-source-files:  README.md
 common shared-properties
   hs-source-dirs:      src
   default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends:       base >= 4.17.0.0 && < 5
   ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
                        -Weverything
@@ -27,14 +27,13 @@ common shared-properties
                        -Wno-implicit-prelude
                        -Wno-missing-safe-haskell-mode
                        -Wno-missing-kind-signatures
-                       -Wno-prepositive-qualified-module
                        -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
 
 library
   hs-source-dirs:      lib
   default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends:       base >= 4.17.0.0 && < 5, ansi-terminal, containers, extra, MonadRandom, random
   ghc-options:         -Wall -Werror -haddock
                        -Weverything
@@ -44,7 +43,6 @@ library
                        -Wno-implicit-prelude
                        -Wno-missing-safe-haskell-mode
                        -Wno-missing-kind-signatures
-                       -Wno-prepositive-qualified-module
                        -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
   exposed-modules:     ANSI
@@ -119,7 +117,6 @@ test-suite cards-test
                        -Wno-implicit-prelude
                        -Wno-missing-safe-haskell-mode
                        -Wno-missing-kind-signatures
-                       -Wno-prepositive-qualified-module
                        -Wno-missing-local-signatures
   ghcjs-options:       -dedupe
   hs-source-dirs:      test
@@ -129,7 +126,7 @@ test-suite cards-test
   -- build-tool-depends:
   --  hspec-discover:hspec-discover
   default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends:
     --   base >= 4.17.0.0 && < 5
     -- , cards

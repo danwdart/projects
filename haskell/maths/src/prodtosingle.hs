@@ -1,5 +1,5 @@
-import           Data.Function
-import           Data.List     (intercalate, nub)
+import Data.Function
+import Data.List     (intercalate, nub)
 
 -- charToInteger :: Char -> Integer
 -- charToInteger y = read [y]

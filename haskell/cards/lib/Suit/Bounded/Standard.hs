@@ -1,7 +1,7 @@
 module Suit.Bounded.Standard where
 
-import qualified Suit.Class as SuitClass
-import           Symbol
+import Suit.Class qualified as SuitClass
+import Symbol
 
 data Suit = Spades | Hearts | Diamonds | Clubs
     deriving stock (Bounded, Enum, Eq, Ord, Show)

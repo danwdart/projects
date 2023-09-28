@@ -1,7 +1,7 @@
 module Suit.Unbounded where
 
-import qualified Suit.Class as SuitClass
-import           Symbol
+import Suit.Class qualified as SuitClass
+import Symbol
 
 newtype Suit = Suit Int deriving stock (Eq, Ord, Show)
 

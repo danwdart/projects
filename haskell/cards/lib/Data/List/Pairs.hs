@@ -1,7 +1,7 @@
 module Data.List.Pairs where
 
-import           Data.Bifoldable
-import           Data.Set        as S
+import Data.Bifoldable
+import Data.Set        as S
 
 listToPairs ∷ [a] → [(a, a)]
 listToPairs x = zip x (tail x)

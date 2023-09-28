@@ -1,8 +1,8 @@
 
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Data.Map.Lazy       (Map, fromListWith)
-import           Data.Numbers.Primes
+import Data.Map.Lazy       (Map, fromListWith)
+import Data.Numbers.Primes
 
 -- A001223
 gaps ∷ [Integer]

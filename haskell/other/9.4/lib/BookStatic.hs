@@ -1,5 +1,8 @@
 {-# OPTIONS_GHC -ddump-splices -Wno-unsafe #-}
-{-# LANGUAGE Unsafe, DeriveAnyClass, DeriveGeneric, TemplateHaskell #-}
+{-# LANGUAGE DeriveAnyClass  #-}
+{-# LANGUAGE DeriveGeneric   #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE Unsafe          #-}
 
 module BookStatic where
 

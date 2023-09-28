@@ -2,9 +2,9 @@
 -- Multiples of 5 where Pisano periods of Fibonacci numbers A001175 and Lucas numbers A106291 agree.
 module Main where
 
-import           Sequence.Fibonacci
-import           Sequence.Lucas
-import           Sequence.Period
+import Sequence.Fibonacci
+import Sequence.Lucas
+import Sequence.Period
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 

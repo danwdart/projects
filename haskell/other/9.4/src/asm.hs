@@ -5,8 +5,8 @@
 {-# LANGUAGE UnliftedFFITypes     #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Language.Asm.Inline
-import           Language.Asm.Inline.QQ
+import Language.Asm.Inline
+import Language.Asm.Inline.QQ
 
 -- segfaults!
 defineAsmFunM "cpuidName"

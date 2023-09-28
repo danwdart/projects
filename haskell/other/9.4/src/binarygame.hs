@@ -1,12 +1,12 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
-import           Control.Monad.IO.Class
-import           Control.Monad.Trans.State
-import           Data.Bool
-import           Data.List.Index
-import           System.Console.ANSI
-import           System.IO
+import Control.Monad.IO.Class
+import Control.Monad.Trans.State
+import Data.Bool
+import Data.List.Index
+import System.Console.ANSI
+import System.IO
 
 process ∷ Char → [Button] → [Button]
 process = toggle . pred . read . pure

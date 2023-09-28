@@ -1,6 +1,6 @@
  -- | T̸̝̉H̵͘ͅĖ̸̯ ̵͕̆M̶̙̉I̴͈̅GHT̵̠̀Ẏ̷̳ ̵̘͑J̶̼̭͗Ì̸̼̘G̶̳̈́
 -- | All praise Jig.
-import           Text.Printf
+import Text.Printf
 
 -- >>> roundTo 100 253629
 roundTo x a = a * round (x / a)
