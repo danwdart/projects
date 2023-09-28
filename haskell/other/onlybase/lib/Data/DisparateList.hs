@@ -1,5 +1,6 @@
-{-# LANGUAGE UnicodeSyntax #-} -- needed for lsp etc
-{-# LANGUAGE DataKinds, GADTs #-}
+{-# LANGUAGE DataKinds     #-}
+{-# LANGUAGE GADTs         #-}
+{-# LANGUAGE UnicodeSyntax #-}
 
 module Data.DisparateList where
 

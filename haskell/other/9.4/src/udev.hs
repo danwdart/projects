@@ -1,11 +1,12 @@
-{-# LANGUAGE OverloadedStrings, Trustworthy #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
 module Main where
 
 import System.UDev
 
-main :: IO ()
+main ∷ IO ()
 main = withUDev $ \udev -> do
     -- hwdb <- newHWDB udev
     enum <- newEnumerate udev
@@ -13,6 +14,6 @@ main = withUDev $ \udev -> do
     scanSubsystems enum
     mentry <- getListEntry enum
     name <- case mentry of
-        Nothing -> pure ""
+        Nothing    -> pure ""
         Just entry -> getName entry
     print name

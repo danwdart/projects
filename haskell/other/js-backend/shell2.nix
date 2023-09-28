@@ -3,7 +3,7 @@ runCommand "js-backend" {
     buildInputs = [
         nodejs_20
         closurecompiler
-        (haskell.packages.ghc94.ghcWithPackages (ghc: with ghc; [
+        (haskell.packages.ghcHEAD.ghcWithPackages (ghc: with ghc; [
             array
             base
             bytestring

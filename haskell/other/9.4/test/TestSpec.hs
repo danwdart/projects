@@ -1,9 +1,9 @@
 module TestSpec where
 
-import           Control.Exception (evaluate)
-import           Test.Hspec
-import           Test.Hspec.QuickCheck
-import           Test.QuickCheck
+import Control.Exception     (evaluate)
+import Test.Hspec
+import Test.Hspec.QuickCheck
+import Test.QuickCheck
 
 prop1 ∷ [Int] → [Int] → Property
 prop1 x y = collect (length x) $ length x > 3 ==> x <> y === x <> y

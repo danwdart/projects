@@ -1,12 +1,15 @@
-{-# LANGUAGE DataKinds, DerivingVia, OverloadedStrings, Trustworthy #-}
+{-# LANGUAGE DataKinds         #-}
+{-# LANGUAGE DerivingVia       #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
 -- https://hackage.haskell.org/package/text-display-0.0.3.0/docs/Data-Text-Display.html
 
 import Data.Text
-import Data.Text.IO as TIO
-import Data.Text.Lazy.Builder
 import Data.Text.Display
+import Data.Text.IO           as TIO
+import Data.Text.Lazy.Builder
 
 newtype K = K { s :: Int }
 

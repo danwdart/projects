@@ -7,7 +7,7 @@ module Propagator where
 import Control.Monad
 import Data.IORef
 -- import Data.Set (Set)
--- import qualified Data.Set as Set
+-- import Data.Set qualified as Set
 
 -- import Control.Monad.ST
 
@@ -36,17 +36,17 @@ tryWrite a p = case p of
 -}
 
 data Cell a = Cell {
-    value :: IORef (Maybe a),
+    value    :: IORef (Maybe a),
     onUpdate :: IORef (IO ())
 }
 
-cell :: IO (Cell a)
+cell ∷ IO (Cell a)
 cell = do
     val <- newIORef Nothing
     onUpdate <- newIORef (pure ())
     pure $ Cell val onUpdate
 
-write :: (Eq a, Show a) => Cell a -> Maybe a -> IO ()
+write ∷ (Eq a, Show a) ⇒ Cell a → Maybe a → IO ()
 write cell' newVal = do
     let iorVal = value cell'
     let iorUpdate = onUpdate cell'
@@ -57,19 +57,19 @@ write cell' newVal = do
         writeIORef iorVal newVal
         join (readIORef iorUpdate)
 
-content :: Cell a -> IO (Maybe a)
+content ∷ Cell a → IO (Maybe a)
 content cell' = do
     let ior = value cell'
     readIORef ior
 
-lift :: (Eq b, Show b)=> (a -> b) -> Cell a -> Cell b -> IO ()
+lift ∷ (Eq b, Show b)⇒ (a → b) → Cell a → Cell b → IO ()
 lift f fromCell toCell = do
     let iorUpdateFrom = onUpdate fromCell
     writeIORef iorUpdateFrom $ do
         conFrom <- content fromCell
         write toCell (f <$> conFrom)
 
-lift2 :: (Eq c, Show c) => (a -> b -> c) -> Cell a -> Cell b -> Cell c -> IO ()
+lift2 ∷ (Eq c, Show c) ⇒ (a → b → c) → Cell a → Cell b → Cell c → IO ()
 lift2 f fromCell1 fromCell2 toCell = do
     let iorUpdateFrom1 = onUpdate fromCell1
     let iorUpdateFrom2 = onUpdate fromCell2

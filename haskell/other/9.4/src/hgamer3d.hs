@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
-import           HGamer3D
-import           System.Clock
+import HGamer3D
+import System.Clock
 
 config ∷ Graphics3DConfig
 config = Graphics3DConfig

@@ -2,10 +2,10 @@
 
 module Cipher where
 
-import           Control.Applicative
-import           Data.Char
-import           Data.List
-import           Data.Maybe
+import Control.Applicative
+import Data.Char
+import Data.List
+import Data.Maybe
 
 consonants, vowels, consCaps, vowelCaps ∷ String
 consonants = "bcdfghjklmnpqrstvwxz"

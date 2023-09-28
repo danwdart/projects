@@ -3,8 +3,8 @@
 -- | Hahahahaha.
 module BreakEverything where
 
-import           Prelude (IO, Int, Maybe (..), Show, String, print,
-                          putStrLn, show, ($), (<>))
+import Prelude (IO, Int, Maybe (..), Show, String, print, putStrLn, show, ($),
+                (<>))
 
 -- >>> 1 + 2
 -- "12"

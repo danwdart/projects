@@ -2,9 +2,9 @@
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
 import Language.GraphQL
-import           Network.HTTP.Client
-import           Network.HTTP.Client.TLS
-import           Network.HTTP.Req
+import Network.HTTP.Client
+import Network.HTTP.Client.TLS
+import Network.HTTP.Req
 
 -- POST https://tptools.toolforge.org/wdql.php
 -- query / queryId

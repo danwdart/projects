@@ -1,9 +1,9 @@
 module PersonParser where
 
-import           Data.Char
-import           GHC.Read
-import           Text.ParserCombinators.ReadP
-import           Text.ParserCombinators.ReadPrec (lift)
+import Data.Char
+import GHC.Read
+import Text.ParserCombinators.ReadP
+import Text.ParserCombinators.ReadPrec (lift)
 
 data Person = Person {
     name :: String,

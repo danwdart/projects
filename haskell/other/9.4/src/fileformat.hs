@@ -1,9 +1,9 @@
 {-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-import           Data.Binary
-import           Data.ByteString.Char8
-import           GHC.Generics
+import Data.Binary
+import Data.ByteString.Char8
+import GHC.Generics
 
 data Png = Png {
     magicNumber :: !Word32,

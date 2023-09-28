@@ -2,9 +2,9 @@
 
 module Main where
 
-import           Control.Monad
-import           System.Console.ANSI
-import           System.IO
+import Control.Monad
+import System.Console.ANSI
+import System.IO
 
 data Point2D = Point2D {
     x :: Int,
@@ -12,7 +12,7 @@ data Point2D = Point2D {
 }
 
 data Character = Character {
-    text :: String,
+    text     :: String,
     location :: Point2D
 }
 
@@ -29,7 +29,7 @@ resetGame = do
     clearScreen
     setCursorPosition 0 0
 
-gameLoop :: IO ()
+gameLoop ∷ IO ()
 gameLoop = do
     renderCharacter (Character "---:->" (Point2D 2 2))
     hSetEcho stdin False

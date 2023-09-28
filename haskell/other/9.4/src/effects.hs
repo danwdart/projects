@@ -1,12 +1,12 @@
-{-# LANGUAGE DataKinds     #-}
+{-# LANGUAGE DataKinds   #-}
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-matches  #-}
 
 module Main where
 
-import           Control.Monad.Freer
-import           Control.Monad.Freer.State
-import           Control.Monad.Freer.Writer
+import Control.Monad.Freer
+import Control.Monad.Freer.State
+import Control.Monad.Freer.Writer
 
 type MyM = Eff '[State Int, Writer [String]]
 

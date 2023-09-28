@@ -1,14 +1,14 @@
 {-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Trustworthy #-}
 {-# LANGUAGE QuasiQuotes       #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
 -- import Control.Exception
--- import qualified Data.ByteString as BS
-import           Data.Aeson
-import           Data.Aeson.QQ
-import           GHC.Generics
+-- import Data.ByteString qualified as BS
+import Data.Aeson
+import Data.Aeson.QQ
+import GHC.Generics
 
 -- Automatic
 data Person = Person {

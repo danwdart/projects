@@ -1,15 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
-import           Control.Concurrent        (forkFinally, threadDelay)
-import           Control.Concurrent.Async  (concurrently_)
-import qualified Control.Exception         as E
-import           Control.Monad             (forever, unless, void)
-import qualified Data.ByteString           as S
-import qualified Data.ByteString.Char8     as C
-import           Network.Socket
-import           Network.Socket.ByteString (recv, sendAll)
+import Control.Concurrent        (forkFinally, threadDelay)
+import Control.Concurrent.Async  (concurrently_)
+import Control.Exception         qualified as E
+import Control.Monad             (forever, unless, void)
+import Data.ByteString           qualified as S
+import Data.ByteString.Char8     qualified as C
+import Network.Socket
+import Network.Socket.ByteString (recv, sendAll)
 
 server ∷ IO ()
 server = do
@@ -32,7 +32,7 @@ server = do
         bind sock (addrAddress addr)
         listen sock 10
         pure sock
-    loop :: Socket -> IO ()
+    loop ∷ Socket → IO ()
     loop sock = forever $ do
         (conn, peer) <- accept sock
         putStrLn $ "Connection from " <> show peer

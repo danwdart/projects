@@ -1,8 +1,8 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE OverloadedStrings    #-}
 
-import           Database.HDBC
-import           Database.HDBC.MySQL
+import Database.HDBC
+import Database.HDBC.MySQL
 
 main ∷ IO ()
 main = do

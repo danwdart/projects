@@ -1,5 +1,8 @@
 {-# OPTIONS_GHC -ddump-splices -Wno-unsafe #-}
-{-# LANGUAGE DeriveAnyClass, DeriveGeneric, TemplateHaskell, Unsafe #-}
+{-# LANGUAGE DeriveAnyClass  #-}
+{-# LANGUAGE DeriveGeneric   #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE Unsafe          #-}
 
 {- Provide a dynamic schema. -}
 
@@ -10,7 +13,7 @@ import Language.Haskell.TH
 
 -- Method 1: TH (you use this)
 
-myDataStatic :: [Book]
+myDataStatic ∷ [Book]
 myDataStatic = $$(Code $ Data.Yaml.TH.decodeFile "data/books.yaml")
 
 -- Method 2: Map (only your users use this)
@@ -25,7 +28,7 @@ myDataDynamic :: IO (Maybe [Entity bookSchema'])
 myDataDynamic = Data.Yaml.decodeFile "data/books.yaml"
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print myDataStatic
     -- d <- myDataDynamic

@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedLists #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
-import           Data.Vector
+import Data.Vector
 
 a ∷ Vector Int
 a = [0, 0, 0, 0]

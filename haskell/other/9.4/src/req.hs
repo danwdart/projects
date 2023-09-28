@@ -1,13 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
-import           Control.Monad.Except
+import Control.Monad.Except
 -- import Control.Monad.IO.Class (MonadIO, liftIO)
 -- import Control.Retry
 -- import Data.Aeson
-import           Data.Text
-import           Network.HTTP.Req
+import Data.Text
+import Network.HTTP.Req
 
 -- Don't error on 404. We just wanna check it.
 myHttpConfig ∷ HttpConfig

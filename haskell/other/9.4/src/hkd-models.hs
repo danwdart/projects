@@ -1,14 +1,16 @@
-{-# LANGUAGE DeriveAnyClass, DerivingVia, GeneralisedNewtypeDeriving #-}
-{-# LANGUAGE Trustworthy #-}
-{-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE DeriveAnyClass             #-}
+{-# LANGUAGE DerivingVia                #-}
+{-# LANGUAGE GeneralisedNewtypeDeriving #-}
+{-# LANGUAGE Trustworthy                #-}
+{-# LANGUAGE UndecidableInstances       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wwarn #-}
 
-import           Barbies
-import           Control.Applicative
+import Barbies
+import Control.Applicative
 import Control.Monad.IO.Class
-import           Data.Functor.Identity
+import Data.Functor.Identity
 import Data.Proxy
-import           GHC.Generics
+import GHC.Generics
 
 newtype Name = Name {
     getName :: String
@@ -33,25 +35,25 @@ deriving instance AllBF Read f Person ⇒ Read (Person f)
 deriving instance AllBF Show f Person ⇒ Show (Person f)
 deriving instance AllBF Eq   f Person ⇒ Eq   (Person f)
 
-myPerson :: Person Identity
+myPerson ∷ Person Identity
 myPerson = Person {
     name = Identity (Name "Dan"),
     profession = Identity (Profession "Coder")
 }
 
-myPossiblyPerson :: Person Maybe
+myPossiblyPerson ∷ Person Maybe
 myPossiblyPerson = Person {
     name = Just (Name "Bobbly Bob"),
     profession = Nothing
 }
 
-descriptions :: Person (Const String)
+descriptions ∷ Person (Const String)
 descriptions = Person {
     name = Const "The name of the person",
     profession = Const "The profession"
 }
 
-renderFields :: Person (Const String)
+renderFields ∷ Person (Const String)
 renderFields = Person {
     name = Const "Name: ",
     profession = Const "Profession: "
@@ -65,25 +67,25 @@ newtype ModelId = ModelId String
 data Operator a = Eq a | GT a | LT a | LTE a | In [a] | NotIn [a]
 
 data Model m = Model {
-    modelId :: ModelId,
+    modelId     :: ModelId,
     modelFields :: m Identity,
-    createdAt :: String,
-    updatedAt :: Maybe String
+    createdAt   :: String,
+    updatedAt   :: Maybe String
 }
 
 class MonadDB monad model where
-    create :: model Identity -> monad (Model model)
-    retrieveById :: ModelId -> monad (Maybe (Model model))
-    retrieveWhere :: model (Maybe :.: Operator) -> monad [Model model]
-    updateById :: ModelId -> model Maybe -> monad (Maybe (Model model))
-    updateWhere :: model (Maybe :.: Operator) -> model Maybe -> monad [Model model]
-    replaceById :: ModelId -> model Identity -> monad (Maybe (Model model))
-    replaceWhere :: model (Maybe :.: Operator) -> model Identity -> monad [Model model]
-    deleteById :: Proxy model -> ModelId -> monad Bool
-    deleteWhere :: model (Maybe :.: Operator) -> monad Bool
+    create :: model Identity → monad (Model model)
+    retrieveById :: ModelId → monad (Maybe (Model model))
+    retrieveWhere :: model (Maybe :.: Operator) → monad [Model model]
+    updateById :: ModelId → model Maybe → monad (Maybe (Model model))
+    updateWhere :: model (Maybe :.: Operator) → model Maybe → monad [Model model]
+    replaceById :: ModelId → model Identity → monad (Maybe (Model model))
+    replaceWhere :: model (Maybe :.: Operator) → model Identity → monad [Model model]
+    deleteById :: Proxy model → ModelId → monad Bool
+    deleteWhere :: model (Maybe :.: Operator) → monad Bool
 
 data MyModel f = MyModel {
-    myModelName :: f String,
+    myModelName        :: f String,
     myModelInformation :: f Int
 }
 

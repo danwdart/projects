@@ -1,32 +1,32 @@
 {-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-incomplete-uni-patterns #-}
 
 -- Order me a pizza
-import           Control.Monad
-import           Control.Monad.IO.Class
-import           Control.Monad.Trans.Except
-import           Data.Aeson
+import Control.Monad
+import Control.Monad.IO.Class
+import Control.Monad.Trans.Except
+import Data.Aeson
 -- import Data.Aeson.Encode.Pretty
 -- import Data.Aeson.Types
-import qualified Data.ByteString.Char8          as BS
--- import qualified Data.ByteString.Lazy.Char8 as BSL
-import           Data.Char
+import Data.ByteString.Char8          qualified as BS
+-- import Data.ByteString.Lazy.Char8 qualified as BSL
+import Data.Char
 -- import Data.Function
 -- import Data.Functor
--- import qualified Data.HashMap.Lazy as HM
-import           Data.List
-import           Data.Maybe
+-- import Data.HashMap.Lazy qualified as HM
+import Data.List
+import Data.Maybe
 -- import Data.Text (Text)
--- import qualified Data.Text as T
--- import qualified Data.Vector as V
-import           GHC.Generics
-import qualified Network.HTTP.Client            as HC
-import           Network.HTTP.Req
-import           System.Environment
-import           Text.PrettyPrint.GenericPretty
+-- import Data.Text qualified as T
+-- import Data.Vector qualified as V
+import GHC.Generics
+import Network.HTTP.Client            qualified as HC
+import Network.HTTP.Req
+import System.Environment
+import Text.PrettyPrint.GenericPretty
 
 type Email = String
 type Password = String

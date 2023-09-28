@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-import           Control.Monad
-import           System.Console.ANSI.Types
-import           Text.Parsec
+import Control.Monad
+import System.Console.ANSI.Types
+import Text.Parsec
 
 type Version = String
 

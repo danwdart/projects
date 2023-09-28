@@ -1,6 +1,6 @@
 module DoubleCompose where
 
-import           Data.Functor.Compose
+import Data.Functor.Compose
 
 -- TODO generalise
 

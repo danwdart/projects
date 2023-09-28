@@ -3,7 +3,7 @@ module Person (
     describePerson
 ) where
 
-import           Data.List
+import Data.List
 
 data Person = Person {
     firstName :: String,

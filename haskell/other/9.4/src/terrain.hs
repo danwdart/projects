@@ -1,6 +1,6 @@
 -- Procedural generation
-import           Control.Monad
-import           System.Random
+import Control.Monad
+import System.Random
 
 main ∷ IO ()
 main = do

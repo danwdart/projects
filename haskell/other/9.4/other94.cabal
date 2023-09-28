@@ -18,9 +18,7 @@ extra-source-files:
 common shared-properties-base
   hs-source-dirs:      src
   default-language:    GHC2021
-  default-extensions:
-    DerivingStrategies
-    UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   ghcjs-options:       -dedupe
 
 common shared-properties-lib
@@ -51,7 +49,6 @@ common shared-properties-unsafe
     -Wno-missing-export-lists
     -Wno-missing-import-lists
     -Wno-missing-kind-signatures
-    -Wno-prepositive-qualified-module
     -Werror
     -haddock
     -threaded -rtsopts -with-rtsopts=-N
@@ -76,7 +73,6 @@ common shared-properties-nobase
     -Wno-missing-export-lists
     -Wno-missing-import-lists
     -Wno-missing-kind-signatures
-    -Wno-prepositive-qualified-module
     -Werror
     -haddock
     -threaded -rtsopts -with-rtsopts=-N
@@ -443,7 +439,7 @@ test-suite test
   hs-source-dirs:      test
   main-is:             Spec.hs
   default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends:       base >= 4.17.0.0 && < 5, other94, hspec, QuickCheck
   other-modules:       TestSpec
                      , Data.DependentLengthSpec
@@ -459,6 +455,7 @@ benchmark listStringVsVectorText
   hs-source-dirs: bench
   main-is: listStringVsVectorText.hs
   default-language: GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends: base >= 4.17.0.0 && < 5
                , array
                , bytestring
@@ -473,6 +470,7 @@ benchmark sums
   hs-source-dirs: bench
   main-is: sums.hs
   default-language: GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends: base >= 4.17.0.0 && < 5
                , array
                , criterion
@@ -484,6 +482,7 @@ benchmark recursiveFacFibs
   hs-source-dirs: bench
   main-is: recursiveFacFibs.hs
   default-language: GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
   build-depends: base >= 4.17.0.0 && < 5
                , array
                , criterion

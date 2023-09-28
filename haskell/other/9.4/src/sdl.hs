@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports -Wno-unused-matches #-}
 
-import           Graphics.Rendering.OpenGL.GL             as GL
-import           Graphics.Rendering.OpenGL.GL.Framebuffer as GLFB
-import           SDL
-import           SDL.Video.OpenGL                         as SDLGL
-import           SDL.Video.Vulkan
+import Graphics.Rendering.OpenGL.GL             as GL
+import Graphics.Rendering.OpenGL.GL.Framebuffer as GLFB
+import SDL
+import SDL.Video.OpenGL                         as SDLGL
+import SDL.Video.Vulkan
 
 main ∷ IO ()
 main = do

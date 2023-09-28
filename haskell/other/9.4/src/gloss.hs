@@ -1,8 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
-import           Graphics.Gloss
-import           Graphics.Gloss.Interface.IO.Game
+import Graphics.Gloss
+import Graphics.Gloss.Interface.IO.Game
 
 window ∷ Display
 window = FullScreen -- InWindow "Game" (1720,880) (100, 100)

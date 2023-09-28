@@ -1,10 +1,10 @@
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy          #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
-import           Control.Monad.Identity
-import           Data.Aeson
-import           GHC.Generics
+import Control.Monad.Identity
+import Data.Aeson
+import GHC.Generics
 
 data Person f = Person {
     name       :: f String,

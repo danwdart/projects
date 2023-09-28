@@ -2,27 +2,27 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- import Control.Monad
-import           Data.Maybe
+import Data.Maybe
 --import Data.Foldable
-import           Control.Lens             ((.~), (?~), (^.))
-import           Data.Aeson               (FromJSON)
-import qualified Data.Aeson               as A
+import Control.Lens             ((.~), (?~), (^.))
+import Data.Aeson               (FromJSON)
+import Data.Aeson               qualified as A
 -- import Data.Aeson.Types (parse)
-import qualified Data.ByteString          as BS
-import qualified Data.ByteString.Lazy     as BSL
-import           Data.Function
-import           Data.Functor
-import           Data.Text                as T
-import           GHC.Generics
-import           Network.Google
-import           Network.Google.Auth
+import Data.ByteString          qualified as BS
+import Data.ByteString.Lazy     qualified as BSL
+import Data.Function
+import Data.Functor
+import Data.Text                as T
+import GHC.Generics
+import Network.Google
+import Network.Google.Auth
 --import Network.Google.Env
-import           Network.Google.Prelude   (toHeader)
-import           Network.Google.Translate
+import Network.Google.Prelude   (toHeader)
+import Network.Google.Translate
 -- import Network.Google.Types
-import           Network.HTTP.Req
-import           System.Environment
-import           System.IO
+import Network.HTTP.Req
+import System.Environment
+import System.IO
 
 -- TODO either use the Google Req gen or make own
 

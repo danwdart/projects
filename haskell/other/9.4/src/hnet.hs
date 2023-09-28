@@ -1,7 +1,7 @@
 {-# LANGUAGE Unsafe #-}
 {-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
 
-import           Network.HaskellNet.SMTP
+import Network.HaskellNet.SMTP
 
 main ∷ IO ()
 main = pure ()

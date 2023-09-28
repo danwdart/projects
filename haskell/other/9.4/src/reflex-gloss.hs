@@ -1,5 +1,5 @@
-import           Graphics.Gloss
-import           Graphics.Gloss.Interface.IO.Game
+import Graphics.Gloss
+import Graphics.Gloss.Interface.IO.Game
 
 newtype World = World {
     rot :: Float

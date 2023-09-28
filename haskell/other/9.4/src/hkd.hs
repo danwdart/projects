@@ -1,12 +1,12 @@
 {-# LANGUAGE DeriveAnyClass       #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy          #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wwarn #-}
 
-import           Barbies
-import           Control.Applicative
-import           Data.Functor.Identity
-import           GHC.Generics
+import Barbies
+import Control.Applicative
+import Data.Functor.Identity
+import GHC.Generics
 
 newtype Name = Name String deriving stock (Eq, Read, Show)
 

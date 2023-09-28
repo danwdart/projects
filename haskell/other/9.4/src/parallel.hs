@@ -7,13 +7,13 @@ import Control.Parallel
 import Control.Parallel.Strategies
 import GHC.Clock
 
-slow :: String -> a -> IO a
+slow ∷ String → a → IO a
 slow _ x = do
     threadDelay 100000
     -- putStr $ label <> show x <> ", "
     pure x
 
-timeR :: IO a -> IO (Double, a)
+timeR ∷ IO a → IO (Double, a)
 timeR ma = do
     before <- getMonotonicTime
     r <- ma
@@ -22,7 +22,7 @@ timeR ma = do
     pure (after - before, r)
 
 
-time :: IO a -> IO a
+time ∷ IO a → IO a
 time ma = do
     before <- getMonotonicTime
     r <- ma
@@ -34,7 +34,7 @@ newtype Par f a = Par {
     getPar :: f a
 } deriving stock (Show, Functor, Foldable, Traversable)
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Serial"
     numbers <- time $ mapM (slow "serial") [1..20 :: Int]

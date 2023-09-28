@@ -7,11 +7,11 @@ import Data.IORef
 -- Mwahahahaha!
 
 class Instantiable params type' where
-    new :: params -> type'
-    updateVariable :: params -> type' -> type'
+    new :: params → type'
+    updateVariable :: params → type' → type'
 
 data MyClass = MyClass {
-    localVariable :: Int,
+    localVariable         :: Int,
     performAnActionEvilly :: IO ()
 }
 
@@ -23,7 +23,7 @@ instance Instantiable Int MyClass where
     updateVariable y obj = obj { localVariable = y }
 
 data MyOtherClass = MyOtherClass {
-    a :: String,
+    a      :: String,
     printA :: IO ()
 }
 
@@ -35,7 +35,7 @@ instance Instantiable String MyOtherClass where
     updateVariable y obj = obj { a = y }
 
 data EvenMoreEvil = EvenMoreEvil {
-    s :: IO (),
+    s       :: IO (),
     mwahaha :: IO EvenMoreEvil
 }
 
@@ -47,12 +47,12 @@ instance Instantiable () EvenMoreEvil where
     updateVariable _ obj = obj
 
 data TupleOfInputs a b = TupleOfInputs {
-    inputA :: a,
-    inputB :: b,
+    inputA    :: a,
+    inputB    :: b,
     printThem :: IO ()
 }
 
-instance (Show a, Show b) => Instantiable (a, b) (TupleOfInputs a b) where
+instance (Show a, Show b) ⇒ Instantiable (a, b) (TupleOfInputs a b) where
     new (a, b) = TupleOfInputs {
         inputA = a,
         inputB = b,
@@ -75,21 +75,21 @@ instance Instantiable Int StaticSumType where
     new = AnInt
     updateVariable newInt theSumType = case theSumType of
         AnInt _ -> theSumType { anInt = newInt }
-        x -> x -- redundant?
+        x       -> x -- redundant?
 
 instance Instantiable String StaticSumType where
     new = AString
     updateVariable newString theSumType = case theSumType of
         AString _ -> theSumType { aString = newString }
-        x -> x -- redundant?
+        x         -> x -- redundant?
 
 class InstantiableWithNastySideEffects params type' where
-    newEvil :: params -> IO type'
-    updateVariableEvil :: params -> type' -> IO type'
+    newEvil :: params → IO type'
+    updateVariableEvil :: params → type' → IO type'
 
 
 data NastySideEffects = NastySideEffects {
-    evil :: IO (),
+    evil  :: IO (),
     evil2 :: IO NastySideEffects
 }
 
@@ -110,16 +110,16 @@ instance InstantiableWithNastySideEffects () NastySideEffects where
         print x
         putStrLn "Before"
         print evilObject
-        let newEvil' :: NastySideEffects
+        let newEvil' ∷ NastySideEffects
             newEvil' = evilObject { evil = putStrLn "It got updated, overridden if you will" }
         putStrLn "After"
         print newEvil'
         pure newEvil'
 
 class TheWorstKindOfEvil a b obj where
-    constructor :: (a, b) -> IO obj -- no curry for you, I'm too evil!
-    updateVars :: (a, b) -> obj -> IO ()
-    displayAll :: a -> b -> obj -> IO () -- TODO find out how to omit these
+    constructor :: (a, b) → IO obj -- no curry for you, I'm too evil!
+    updateVars :: (a, b) → obj → IO ()
+    displayAll :: a → b → obj → IO () -- TODO find out how to omit these
 
 data WorstEvil = WorstEvil {
     worstA :: IORef String,

@@ -1,8 +1,8 @@
-import           Sound.Pulse
-import           Sound.Pulse.Context
-import           Sound.Pulse.Mainloop.Simple
-import           Sound.Pulse.Serverinfo
-import           Sound.Pulse.Subscribe
+import Sound.Pulse
+import Sound.Pulse.Context
+import Sound.Pulse.Mainloop.Simple
+import Sound.Pulse.Serverinfo
+import Sound.Pulse.Subscribe
 
 main ∷ IO ()
 main = do

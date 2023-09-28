@@ -1,5 +1,5 @@
-import           Control.Monad
-import           System.Random
+import Control.Monad
+import System.Random
 
 aa ∷ IO [Int]
 aa = replicateM 3 $ randomRIO (0, 255)

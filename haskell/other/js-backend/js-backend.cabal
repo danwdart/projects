@@ -20,9 +20,10 @@ common warnings
 --     exposed-modules:  MyLib
 --     -- other-modules:
 --     -- other-extensions:
---     build-depends:    base ^>=4.17.0.0
+--     build-depends:    base >=4.17.0.0
 --     hs-source-dirs:   lib
 --     default-language: GHC2021
+--     default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
 
 executable js-backend
     import:           warnings
@@ -30,18 +31,19 @@ executable js-backend
     other-modules:    MyLib
     -- other-extensions:
     build-depends:
-        base ^>=4.17.0.0
-
+        base >=4.17.0.0
     hs-source-dirs:   src, lib
     default-language: GHC2021
+    default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
 
 test-suite js-backend-test
     import:           warnings
     default-language: GHC2021
+    default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
     -- other-modules:
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   lib, test
     main-is:          Main.hs
     build-depends:
-        base ^>=4.17.0.0
+        base >=4.17.0.0

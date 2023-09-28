@@ -3,20 +3,20 @@
 
 module Data.DependentLengthSpec where
 
-import           Control.Exception (evaluate)
-import           Data.DependentLength
-import           Data.Typeable
-import           Test.Hspec
-import           Test.QuickCheck
+import Control.Exception    (evaluate)
+import Data.DependentLength
+import Data.Typeable
+import Test.Hspec
+import Test.QuickCheck
 
 -- instance Arbitrary (Vec t a) where
 --     arbitrary = fromList . arbitrary
 
 {-# ANN module "HLint: ignore Functor law" #-}
-functor :: (Eq a, Enum a, Eq (Vec t a), Show a) => Vec t a → Property
+functor ∷ (Eq a, Enum a, Eq (Vec t a), Show a) ⇒ Vec t a → Property
 functor xs = fmap succ (fmap pred xs) === xs
 
-spec :: Spec
+spec ∷ Spec
 spec = describe "DependentLength" $ do
     describe "on Int" $ do
         it "shows" $ do

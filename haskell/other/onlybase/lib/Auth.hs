@@ -3,10 +3,10 @@ module Auth (
     authenticate
 ) where
 
-import           Data.Email
-import           Data.Name
-import           Data.Password
-import           Data.User
+import Data.Email
+import Data.Name
+import Data.Password
+import Data.User
 
 type AuthenticationResult = Either String User
 

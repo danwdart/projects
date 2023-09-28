@@ -1,9 +1,9 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
-import           Graphics.UI.GLUT
-import           Graphics.UI.GLUT.Begin
-import           Graphics.UI.GLUT.Initialization
+import Graphics.UI.GLUT
+import Graphics.UI.GLUT.Begin
+import Graphics.UI.GLUT.Initialization
 
 main ∷ IO ()
 main = do

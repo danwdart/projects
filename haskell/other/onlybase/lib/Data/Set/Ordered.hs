@@ -11,10 +11,10 @@ data Set a = Nil | a :> Set a
 
 infixr 5 :>
 
-instance Eq a => Semigroup (Set a) where
+instance Eq a ⇒ Semigroup (Set a) where
     (<>) = union
 
-instance Eq a => Monoid (Set a) where
+instance Eq a ⇒ Monoid (Set a) where
     mempty = empty
     mappend = (<>)
 
@@ -25,13 +25,13 @@ instance Eq a => Monoid (Set a) where
 -- >>> empty
 -- Nil
 --
-empty :: Set a
+empty ∷ Set a
 empty = Nil
 
 -- >>> singleton 1
 -- 1 :> Nil
 --
-singleton :: a -> Set a
+singleton ∷ a → Set a
 singleton a = a :> Nil
 
 -- >>> union (1 :> 2 :> 3 :> Nil) (4 :> 5 :> 6 :> Nil)
@@ -44,7 +44,7 @@ singleton a = a :> Nil
 -- Nil
 --
 
-union :: Eq a => Set a -> Set a -> Set a
+union ∷ Eq a ⇒ Set a → Set a → Set a
 union a Nil = a
 union Nil a = a
 union (x :> xs) ys
@@ -62,7 +62,7 @@ union (x :> xs) ys
 -- >>> delete 4 (1 :> 2 :> 3 :> Nil)
 -- 1 :> (2 :> (3 :> Nil))
 --
-delete :: Eq a => a -> Set a -> Set a
+delete ∷ Eq a ⇒ a → Set a → Set a
 delete _ Nil = Nil
 delete a (x :> xs)
     | a == x = xs
@@ -80,13 +80,13 @@ delete a (x :> xs)
 -- False
 --
 
-elem :: Eq a => a -> Set a -> Bool
+elem ∷ Eq a ⇒ a → Set a → Bool
 elem _ Nil = False
 elem a (x :> xs)
     | a == x = True
     | otherwise = Data.Set.Ordered.elem a xs
 
-includes :: Eq a => Set a -> a -> Bool
+includes ∷ Eq a ⇒ Set a → a → Bool
 includes = flip Data.Set.Ordered.elem
 
 -- fromList :: [a] -> Set a
@@ -100,10 +100,10 @@ includes = flip Data.Set.Ordered.elem
 -- >>> size $ 1 :> 2 :> 3 :> Nil
 -- 3
 --
-size :: Set a -> Int
-size Nil = 0
+size ∷ Set a → Int
+size Nil       = 0
 size (_ :> xs) = size xs + 1
 
 -- Just makes a new Set. No guarantee that the length is the same.
-map :: (a -> b) -> Set a -> Set b
+map ∷ (a → b) → Set a → Set b
 map = undefined

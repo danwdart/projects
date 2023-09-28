@@ -16,7 +16,7 @@ msgfmt --output-file=i18n/en_US/LC_MESSAGES/gettext.mo i18n/en_US.po
 
 -}
 
-main :: IO ()
+main ∷ IO ()
 main = do
     let __ = getText
 

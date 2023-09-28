@@ -2,9 +2,9 @@
 
 -- import Control.Monad
 -- import Data.Bifunctor
-import           Data.Biapplicative
-import           Data.Char
-import           Data.Map           (Map)
+import Data.Biapplicative
+import Data.Char
+import Data.Map           (Map)
 
 -- Stolen from xmonad-contrib XMonad.Util.Stack
 tagBy ∷ (a → Bool) → a → Either a a

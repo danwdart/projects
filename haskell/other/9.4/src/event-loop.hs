@@ -1,12 +1,12 @@
 {-# LANGUAGE BlockArguments #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy    #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
 -- Let's make our own event loop
 -- import Control.Concurrent.Event ( Event )
-import           Control.Concurrent
-import           Control.Concurrent.Async.Lifted
-import qualified Control.Concurrent.Event        as Event
+import Control.Concurrent
+import Control.Concurrent.Async.Lifted
+import Control.Concurrent.Event        qualified as Event
 
 main ∷ IO ()
 main = do

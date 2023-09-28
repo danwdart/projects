@@ -6,7 +6,7 @@ data MinMax a = MinMax {
 }
 
 data WithError a = WithError {
-    n :: a,
+    n             :: a,
     absoluteError :: a
 }
 

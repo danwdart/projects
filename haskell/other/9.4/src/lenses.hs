@@ -1,10 +1,10 @@
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-redundant-constraints -Wno-unused-top-binds #-}
 
-import           Data.List
+import Data.List
 -- import Control.Monad
-import           Control.Lens
+import Control.Lens
 
 a ∷ (Int, Int, Int)
 a = (1, 2, 3)

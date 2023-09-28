@@ -1,8 +1,8 @@
-{-# LANGUAGE LambdaCase    #-}
+{-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
 -- https://serokell.io/blog/introduction-to-free-monads
-import           Control.Monad.Free
+import Control.Monad.Free
 
 data IOF t a
   = Input (t → a)

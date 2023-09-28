@@ -1,10 +1,10 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE OverloadedStrings    #-}
-{-# LANGUAGE Unsafe    #-}
+{-# LANGUAGE Unsafe               #-}
 {-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
 
 -- import Control.Monad.Trans (liftIO)
-import           Database.MongoDB
+import Database.MongoDB
 
 -- import Data.Text (pack)
 

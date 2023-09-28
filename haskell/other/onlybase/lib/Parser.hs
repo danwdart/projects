@@ -2,9 +2,9 @@
 
 module Parser where
 
+import Control.Applicative
 import Data.Char
 import Data.Either
-import Control.Applicative
 
 newtype Parser a = Parser {
     runParser :: String → Either String (String, a)

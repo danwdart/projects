@@ -2,9 +2,9 @@ module Data.User (
     User (..)
 ) where
 
-import           Data.Email
-import           Data.Name
-import           Data.Password
+import Data.Email
+import Data.Name
+import Data.Password
 
 data User = User {
     email    :: Email,

@@ -1,11 +1,11 @@
 -- Just stolen from reader
 
+import Control.Monad.Reader
 import Control.Monad.Unicode
 import Data.Function.Unicode
 import Data.List.Unicode
 import Data.Monoid.Unicode
 import Numeric.Natural.Unicode
-import           Control.Monad.Reader
 
 intToIntReader ∷ Reader ℕ ℕ
 intToIntReader = reader succ

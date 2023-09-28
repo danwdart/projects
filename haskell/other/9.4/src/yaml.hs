@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- import qualified Data.ByteString as B
-import           Data.Yaml
+-- import Data.ByteString qualified as B
+import Data.Yaml
 
 myData ∷ [[String]]
 myData = [["Bob", "Jim"], ["Ted"]]
