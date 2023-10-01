@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module MyLens.Attribute where
 
 import MyLens

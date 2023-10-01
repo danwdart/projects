@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module StringToInteger where
 
 import Data.Char

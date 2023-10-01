@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module BetterBools where
 
 newtype LightState = LightState Bool

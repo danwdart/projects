@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Data.ErrorBars where
 
 data MinMax a = MinMax {

@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module MyLens.Event where
 
 import MyLens

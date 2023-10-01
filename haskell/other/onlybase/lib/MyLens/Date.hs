@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module MyLens.Date where
 
 import MyLens

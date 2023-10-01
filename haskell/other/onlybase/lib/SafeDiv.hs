@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module SafeDiv (
     safeDiv
 ) where
@@ -10,3 +12,4 @@ module SafeDiv (
 
 safeDiv ∷ (Fractional a, Eq a) ⇒ a → a → Maybe a
 safeDiv x y = if y == 0 then Nothing else Just (x / y)
+{-# INLINABLE safeDiv #-}

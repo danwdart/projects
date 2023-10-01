@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module PrintAll where
 
 class PrintAllType t where

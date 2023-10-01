@@ -6,14 +6,15 @@
 {-# LANGUAGE GADTs                        #-}
 {-# LANGUAGE MultiParamTypeClasses        #-}
 {-# LANGUAGE NoGeneralisedNewtypeDeriving #-}
-{-# LANGUAGE Safe                         #-}
 {-# LANGUAGE ScopedTypeVariables          #-}
 {-# LANGUAGE StandaloneDeriving           #-}
 {-# LANGUAGE StandaloneKindSignatures     #-}
 {-# LANGUAGE TypeOperators                #-}
+{-# LANGUAGE Unsafe                       #-}
 {-# OPTIONS_GHC -Weverything -Werror #-}
 {-# OPTIONS_GHC -Wno-missing-import-lists #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# OPTIONS_GHC -Wno-safe #-}
 {-# LANGUAGE IncoherentInstances          #-}
 {-# LANGUAGE TypeFamilies                 #-}
 {-# LANGUAGE UndecidableSuperClasses      #-}
@@ -65,9 +66,12 @@ type family a + b where
 
 -- >>> (1 :> 2 :> Nil) ++ (3 :> 4 :> Nil)
 -- 1 :> (2 :> (3 :> (4 :> Nil)))
+
+{-
 (++) ∷ Vec n a → Vec m a → Vec (n + m) a
 Nil ++ v       = v
 (x :> xs) ++ v = x :> (xs <> v)
+-}
 
 -- >>> and $ True :> False :> Nil
 -- False

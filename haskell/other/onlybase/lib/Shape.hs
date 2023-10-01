@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Shape where
 
 data Point = Point Double Double deriving stock (Show)

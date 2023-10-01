@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Data.Digits.Roman where
 
 data RomanNumberCharacter = I | V | X | L | C | D | M

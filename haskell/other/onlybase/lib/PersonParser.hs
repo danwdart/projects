@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module PersonParser where
 
 import Data.Char

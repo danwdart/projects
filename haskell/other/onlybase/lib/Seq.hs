@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Seq where
 
 (>>>=) ∷ Monad m ⇒ m b → (b → m a) → m b

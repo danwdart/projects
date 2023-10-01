@@ -1,5 +1,6 @@
 {-# LANGUAGE DataKinds     #-}
 {-# LANGUAGE GADTs         #-}
+{-# LANGUAGE Safe          #-}
 {-# LANGUAGE UnicodeSyntax #-}
 
 module Data.DisparateList where

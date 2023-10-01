@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Factorial where
 
 import Numeric.Natural

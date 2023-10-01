@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Sequences where
 
 import Data.List

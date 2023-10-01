@@ -1,12 +1,14 @@
-{-# OPTIONS_GHC -Wno-unused-matches -Wno-all-missed-specialisations #-}
+{-# OPTIONS_GHC -Wno-unused-matches -Wno-all-missed-specialisations -Wno-safe #-}
 -- where do I put {-# INLINABLE Element #-}
 {-# LANGUAGE DeriveFunctor       #-}
 {-# LANGUAGE OverloadedLists     #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE Unsafe              #-}
+
 
 module Data.ListIndex where
 
-{- ANN module "HLint: ignore Avoid restricted function" -}
+{-# ANN module "HLint: ignore Avoid restricted function" #-}
 
 -- Should probably be something for "sequential" things.
 

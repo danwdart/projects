@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Data.Either.Collect where
 
 import Data.Either

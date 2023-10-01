@@ -1,3 +1,4 @@
+{-# LANGUAGE Safe #-}
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
 module Data.Functor.Multi where

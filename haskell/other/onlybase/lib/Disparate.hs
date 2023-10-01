@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Disparate where
 
 data Disparate = forall a. (Show a) => ShowableDisparate a |

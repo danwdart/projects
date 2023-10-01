@@ -1,3 +1,4 @@
+{-# LANGUAGE Safe #-}
 {-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
 
 module Cipher where

@@ -1,3 +1,4 @@
+{-# LANGUAGE Safe #-}
 {-# OPTIONS_GHC -Wwarn -Wno-type-defaults #-}
 
 module Propagator where
@@ -56,6 +57,7 @@ write cell' newVal = do
     when (currVal /= newVal) $ do
         writeIORef iorVal newVal
         join (readIORef iorUpdate)
+{-# INLINABLE write #-}
 
 content ∷ Cell a → IO (Maybe a)
 content cell' = do
@@ -79,3 +81,4 @@ lift2 f fromCell1 fromCell2 toCell = do
             write toCell (f <$> conFrom1 <*> conFrom2)
     writeIORef iorUpdateFrom1 updateFn
     writeIORef iorUpdateFrom2 updateFn
+{-# INLINABLE lift2 #-}

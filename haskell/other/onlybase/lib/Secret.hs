@@ -1,3 +1,4 @@
+{-# LANGUAGE Safe #-}
 module Secret where
 
 -- Stolen from https://bartoszmilewski.com/2022/04/05/teaching-optics-through-conspiracy-theories/

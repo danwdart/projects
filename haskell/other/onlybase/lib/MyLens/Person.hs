@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module MyLens.Person where
 
 import MyLens

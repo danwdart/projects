@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module MyLens.Tuple where
 
 import MyLens

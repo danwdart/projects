@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Player where
 
 import Data.Data

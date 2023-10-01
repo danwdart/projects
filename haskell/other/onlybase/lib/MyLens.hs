@@ -1,3 +1,4 @@
+{-# LANGUAGE Safe #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
 module MyLens where

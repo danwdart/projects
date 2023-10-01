@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 -- | WeakSet: Unordered Set
 module Data.Set.Ordered where
 

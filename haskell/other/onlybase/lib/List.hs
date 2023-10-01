@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module List where
 
 -- >>> maybeIndex 1 [1,2,3]
