@@ -220,6 +220,10 @@ executable complex
   import: shared-properties
   main-is:             complex.hs
 
+executable compression
+  import: shared-properties
+  main-is:             compression.hs
+
 executable diffy
   import: shared-properties
   main-is:             diffy.hs
@@ -253,11 +257,10 @@ executable frobenius
   main-is:             frobenius.hs
   build-depends:       base >= 4.17.0.0 && < 5, errors, extra, maths
 
--- https://github.com/dylex/invertible/issues/5
--- executable gamma
---   import: shared-properties
---   main-is:             gamma.hs
---   build-depends:       base >= 4.17.0.0 && < 5, invertible
+executable gamma
+  import: shared-properties
+  main-is:             gamma.hs
+  build-depends:       base >= 4.17.0.0 && < 5, invertible
 
 executable graft
   import: shared-properties
