@@ -1,9 +1,7 @@
 with import <nixpkgs> {};
 runCommand "pico" {
-    # export PICO_SDK_PATH=${pico-sdk.outPath}/lib/pico-sdk # else pyw43 doesn't get inited - fix?
+     # else pyw43 doesn't get inited - fix?
     shellHook = ''
-      export PICO_SDK_FETCH_FROM_GIT=on
-      export PICO_EXTRAS_FETCH_FROM_GIT=on
       export BOARD=pico-w
       export PICO_BOARD=pico_w
     '';
@@ -17,4 +15,7 @@ runCommand "pico" {
       picotool
       python311
     ];
+    BOARD = "pico-w";
+    PICO_BOARD = "pico_w";
+    PICO_SDK_PATH = "${pico-sdk.outPath}/lib/pico-sdk";
 } ""
