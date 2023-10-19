@@ -31,7 +31,7 @@ bodyElement = el "div" $ mdo
   -- create the digit keys
   let digitButtons = fmap digitButton [0..9]
       digitButton n = button . T.pack $ show n
-      digitEvents = leftmost (zipWith (curry (\(n, b) -> n <$ b)) [0..9] digitButtons)
+      digitEvents = leftmost (zipWith (<$) [0..9] digitButtons)
 
   -- combine the clear, digit, and sum events
   let allEvents = mergeWith (<$>) [clearEvent, fmap DigitPressed digitEvents, fmap (curry (+)) sumEvents]
