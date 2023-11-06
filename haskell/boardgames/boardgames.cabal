@@ -101,7 +101,8 @@ executable monopoly
 executable snl
   import: shared-properties
   main-is:             snl.hs
-  build-depends:       base >= 4.17.0.0 && < 5, aeson, ansi-terminal, containers, lens, MonadRandom, mtl, protobuf, random, yaml
+  build-depends:       base >= 4.17.0.0 && < 5, ansi-terminal, containers, lens, MonadRandom, mtl
+  -- aeson, protobuf, random, yaml
 
 executable sudoku
   import: shared-properties
