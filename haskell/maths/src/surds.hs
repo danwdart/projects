@@ -1,5 +1,7 @@
 {-# LANGUAGE DerivingStrategies #-}
-{-# OPTIONS_GHC -Wwarn #-}
+{-# OPTIONS_GHC -Wwarn -Wno-unused-top-binds #-}
+
+module Main (main) where
 
 {-}
 data Combination = Sum Combination Combination |

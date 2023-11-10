@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Data.ByteString.Char8
 import SHA
 

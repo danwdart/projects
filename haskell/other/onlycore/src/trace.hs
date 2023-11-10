@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Control.Monad.Trans.State.Lazy
 import Debug.Trace
 

@@ -5,6 +5,8 @@
 {-# LANGUAGE UndecidableInstances       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wwarn #-}
 
+module Main (main) where
+
 import Barbies
 import Control.Applicative
 import Control.Monad.IO.Class

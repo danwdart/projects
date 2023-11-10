@@ -2,7 +2,7 @@
 {-# OPTIONS_GHC -Wwarn #-}
 {-# LANGUAGE LambdaCase    #-}
 
-module Main where
+module Main (main) where
 
 -- import Data.Bifunctor
 import Control.Arrow              ((***))

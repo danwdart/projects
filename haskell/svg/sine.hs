@@ -3,6 +3,8 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Data.List
 import Data.String
 import Text.Blaze.Svg11 as S

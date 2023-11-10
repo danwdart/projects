@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
 
+module Main (main) where
+
 main ∷ IO ()
 main = pure ()
 

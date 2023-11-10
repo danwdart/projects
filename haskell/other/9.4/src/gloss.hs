@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Graphics.Gloss
 import Graphics.Gloss.Interface.IO.Game
 

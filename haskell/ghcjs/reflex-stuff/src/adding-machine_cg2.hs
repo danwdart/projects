@@ -1,5 +1,7 @@
 {-# LANGUAGE RecursiveDo #-}
 
+module Main (main) where
+
 import Data.Text  (Text)
 import Data.Text  qualified as T
 import Reflex

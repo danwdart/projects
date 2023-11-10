@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Data.List  (findIndex, isPrefixOf, tails)
 import Data.Maybe
 -- import Control.Monad

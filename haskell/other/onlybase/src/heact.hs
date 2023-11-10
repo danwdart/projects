@@ -1,3 +1,5 @@
+module Main (main) where
+
 {-
 import Data.Map qualified as Map
 import Data.Set qualified as Set

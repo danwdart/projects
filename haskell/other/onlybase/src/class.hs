@@ -1,3 +1,5 @@
+module Main (main) where
+
 class (Show a) => ThreePlusableToString a where
     (+++) :: a → a → String
 

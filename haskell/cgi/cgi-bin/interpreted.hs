@@ -1,3 +1,6 @@
 #!/usr/bin/env runhaskell
+
+module Main (main) where
+
 main :: IO ()
 main = putStrLn "200 OK\nX-Server: Dans-Haskell\nContent-Type: text/html\n\nInterpreted example"

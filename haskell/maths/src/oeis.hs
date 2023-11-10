@@ -3,6 +3,8 @@
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE OverloadedStrings  #-}
 
+module Main (main) where
+
 import Control.Monad.IO.Class
 import Data.Aeson
 -- import Data.Aeson.Encode.Pretty

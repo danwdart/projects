@@ -1,7 +1,8 @@
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
+module Main (main) where
+
 -- https://oeis.org/A133058
-module Main where
 
 divInt ∷ Integer → Integer → Integer
 divInt x y = round (

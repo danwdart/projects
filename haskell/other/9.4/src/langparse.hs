@@ -1,6 +1,8 @@
 {-# LANGUAGE Unsafe #-}
 {-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
 
+module Main (main) where
+
 import Language.C
 import Language.JavaScript.Parser
 

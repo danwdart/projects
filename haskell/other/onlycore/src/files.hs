@@ -1,6 +1,8 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
 {-# LANGUAGE Safe #-}
 
+module Main (main) where
+
 import System.Directory
 import System.IO
 

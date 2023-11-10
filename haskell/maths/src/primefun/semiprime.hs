@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Semiprimes
 import Text.Tabular
 -- import Text.Tabular.AsciiArt

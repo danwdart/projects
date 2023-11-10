@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 -- Expected number of jumps
 -- Simulation
 -- Formula

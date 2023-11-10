@@ -2,6 +2,8 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Control.Monad.Identity
 import Data.Aeson
 import GHC.Generics

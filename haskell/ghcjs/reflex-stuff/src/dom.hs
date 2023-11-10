@@ -4,6 +4,8 @@
 {-# LANGUAGE RecursiveDo               #-}
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
+module Main (main) where
+
 import Reflex.Dom
 
 main ∷ IO ()

@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports -Wno-type-defaults #-}
 
+module Main (main) where
+
 import Data.Complex
 import Data.Complex.Cyclotomic
 import Data.Maybe

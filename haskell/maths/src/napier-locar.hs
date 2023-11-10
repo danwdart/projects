@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Numeric.Napier
 
 -- Words which are in alphabetical order (either) and with no repeats.

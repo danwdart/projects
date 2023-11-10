@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-local-binds -Wno-missing-signatures -Wno-type-defaults -Wno-unused-matches #-}
 
+module Main (main) where
+
 import Data.Map (Map)
 import Data.Map qualified as M
 import Data.Set (Set)

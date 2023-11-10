@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-type-defaults -Wno-unused-top-binds -Wno-unused-matches #-}
 
+module Main (main) where
+
 import Data.Digits
 -- import           Data.List
 import Data.List.Nub

@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Monad
 import Control.Monad.IO.Class             (liftIO)
 -- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)

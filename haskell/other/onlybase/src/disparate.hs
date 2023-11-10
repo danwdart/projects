@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
 
+module Main (main) where
+
 import Disparate
 
 as ∷ [Disparate]

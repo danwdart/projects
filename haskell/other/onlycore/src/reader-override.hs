@@ -1,4 +1,6 @@
-module Main where
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
+module Main (main) where
 
 import Control.Monad.Reader
 import Env.AbstractExtension as AbstractExtension

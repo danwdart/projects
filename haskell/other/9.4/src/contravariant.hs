@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-type-defaults -Wwarn #-}
 
+module Main (main) where
+
 import Data.Functor.Contravariant           hiding ((>$<))
 import Data.Functor.Contravariant.Divisible
 import Data.Void

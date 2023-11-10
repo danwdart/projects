@@ -4,6 +4,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-incomplete-uni-patterns #-}
 
+module Main (main) where
+
 -- Order me a pizza
 import Control.Monad
 import Control.Monad.IO.Class

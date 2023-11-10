@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
 
+module Main (main) where
+
 import Control.Monad.Random
 import Data.List            (intercalate)
 import Data.Maybe

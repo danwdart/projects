@@ -1,6 +1,7 @@
+module Main (main) where
+
 import Data.List (sort)
 import Data.Set
-
 
 main ∷ IO ()
 main = print values

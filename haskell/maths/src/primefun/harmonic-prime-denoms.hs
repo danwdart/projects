@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 import Data.Numbers.Primes
 import Data.Ratio
@@ -15,8 +15,9 @@ harmonicDenoms = denominator <$> harmonics
 harmonicDenomPrimeFactors ∷ [[Integer]]
 harmonicDenomPrimeFactors = primeFactors <$> harmonicDenoms
 
-oeisA349049 ∷ [Int]
-oeisA349049 = length <$> harmonicDenomPrimeFactors
+-- Alternatively:
+-- oeisA349049 ∷ [Int]
+-- oeisA349049 = length <$> harmonicDenomPrimeFactors
 
 sumFactHarmonicDenom ∷ [Integer]
 sumFactHarmonicDenom = sum <$> harmonicDenomPrimeFactors

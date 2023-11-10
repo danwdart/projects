@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# OPTIONS_GHC -Wno-incomplete-record-updates #-}
+{-# OPTIONS_GHC -Wno-incomplete-record-updates -Wno-unused-top-binds #-}
 {- Above is for saying chrome {..} -}
 
-module Main where
+module Main (main) where
 
 import Control.Concurrent
 import Control.Monad          (forM_)

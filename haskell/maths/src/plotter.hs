@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Codec.Picture
 import Data.Numbers.Primes
 import Data.Tuple

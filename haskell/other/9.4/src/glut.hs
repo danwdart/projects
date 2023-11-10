@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Graphics.UI.GLUT
 import Graphics.UI.GLUT.Begin
 import Graphics.UI.GLUT.Initialization

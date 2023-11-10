@@ -3,6 +3,8 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds -Wwarn #-}
 
+module Main (main) where
+
 import Card
 import Control.Monad.HT           qualified as HT (nest)
 import Control.Monad.Random.Class

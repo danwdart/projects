@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import GHC.Exts
 -- import GHC.IO
 -- import GHC.Prim

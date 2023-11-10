@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Concurrent
 import Control.Monad
 import Data.Functor

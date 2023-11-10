@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Configuration.Dotenv
 import Control.Monad.Reader
 import Control.Monad.Trans.Resource

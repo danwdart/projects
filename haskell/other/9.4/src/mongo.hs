@@ -3,6 +3,8 @@
 {-# LANGUAGE Unsafe               #-}
 {-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
 
+module Main (main) where
+
 -- import Control.Monad.Trans (liftIO)
 import Database.MongoDB
 

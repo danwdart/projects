@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- Functional
 
 import GHC.Read

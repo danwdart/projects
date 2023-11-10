@@ -1,6 +1,8 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
 {-# LANGUAGE Safe #-}
 
+module Main (main) where
+
 -- Cont demo
 import Control.Monad
 import Control.Monad.IO.Class

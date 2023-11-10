@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
+module Main (main) where
+
 import HGamer3D
 import System.Clock
 

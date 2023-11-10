@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-matches -Wno-unused-local-binds -Wno-name-shadowing #-}
 
+module Main (main) where
+
 {- TODO: Deriving -}
 
 newtype Bob a = Bob a deriving stock (Show)

@@ -1,4 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
+module Main (main) where
+
 -- Reader for function arrow.
 
 import Control.Monad.Reader

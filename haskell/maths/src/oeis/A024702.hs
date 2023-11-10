@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Data.Numbers.Primes
 
 squaredseq ∷ [Integer]

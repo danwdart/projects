@@ -2,6 +2,8 @@
 
 -- https://en.wikipedia.org/wiki/One-handed_solitaire
 
+module Main (main) where
+
 import Card
 import Control.Monad.Random.Class
 import Data.Function

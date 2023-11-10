@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-redundant-constraints #-}
 
+module Main (main) where
+
 -- Make a game. Make guesses. See what guessing strategy is best.
 
 -- template and guesses are state

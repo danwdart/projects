@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Monad.IO.Class
 import Control.Monad.Trans.Writer.Lazy
 -- import Control.Monad.Trans.State.Lazy

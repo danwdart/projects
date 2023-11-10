@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- Numbers which divide their Zeckendorffian format exactly.
 
 bintodec ∷ [Integer] → Integer

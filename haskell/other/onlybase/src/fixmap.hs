@@ -1,5 +1,6 @@
 -- there's a rubbish version of Map here so ignore it please, it's just PoC
-module Main where
+
+module Main (main) where
 
 import Control.Monad.Fix
 import Data.Bifunctor

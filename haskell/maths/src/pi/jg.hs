@@ -1,4 +1,5 @@
 -- Shamelessly stolen from http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/spigot.pdf
+
 {-# OPTIONS_GHC
     -Wno-unused-top-binds
     -Wno-unused-local-binds
@@ -7,6 +8,8 @@
     -Wno-missing-signatures
     -Wno-type-defaults
     -Wno-monomorphism-restriction #-}
+
+module Main (main) where
 
 import Data.Ratio
 

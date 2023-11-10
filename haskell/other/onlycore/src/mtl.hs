@@ -1,6 +1,8 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# OPTIONS_GHC -Wno-missing-methods #-}
 
+module Main (main) where
+
 import Control.Monad.Reader
 import Control.Monad.State
 import Control.Monad.Writer

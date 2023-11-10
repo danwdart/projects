@@ -1,5 +1,7 @@
 {-# LANGUAGE DeriveAnyClass #-}
 
+module Main (main) where
+
 import Control.Exception
 
 -- import System.IO

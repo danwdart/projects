@@ -2,7 +2,7 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
-module Main where
+module Main (main) where
 
 import System.UDev
 

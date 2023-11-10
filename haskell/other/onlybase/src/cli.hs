@@ -1,3 +1,5 @@
+module Main (main) where
+
 welcome ∷ String
 welcome = "Welcome to ARSVX. Use of this system by unauthorised entities is prohibited."
 

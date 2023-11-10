@@ -1,6 +1,8 @@
 {-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Data.Binary
 import Data.ByteString.Char8
 import GHC.Generics

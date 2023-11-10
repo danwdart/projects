@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 -- >>> rootRationalApproxNext 9 $ rootRationalApproxNext 9 $ rootRationalApproxNext 9 $ rootRationalApproxNext 9 $ rootRationalApproxNext 9 2
 -- 11641532182693481445313 % 3880510727564493815104

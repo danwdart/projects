@@ -1,6 +1,12 @@
- -- | T̸̝̉H̵͘ͅĖ̸̯ ̵͕̆M̶̙̉I̴͈̅GHT̵̠̀Ẏ̷̳ ̵̘͑J̶̼̭͗Ì̸̼̘G̶̳̈́
+-- | T̸̝̉H̵͘ͅĖ̸̯ ̵͕̆M̶̙̉I̴͈̅GHT̵̠̀Ẏ̷̳ ̵̘͑J̶̼̭͗Ì̸̼̘G̶̳̈́
 -- | All praise Jig.
+
+module Main (main) where
+
 import Text.Printf
+
+main :: IO ()
+main = pure ()
 
 -- >>> roundTo 100 253629
 roundTo x a = a * round (x / a)

@@ -1,6 +1,8 @@
-{-# OPTIONS_GHC -Wno-unused-imports #-}
+{-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
+
 -- statistics on classifications
-module Main where
+
+module Main (main) where
 
 import Data.Functor.Const
 -- import Data.Functor.Constant

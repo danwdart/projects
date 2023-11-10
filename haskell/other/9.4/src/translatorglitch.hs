@@ -1,6 +1,8 @@
 {-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 -- import Control.Monad
 import Data.Maybe
 --import Data.Foldable

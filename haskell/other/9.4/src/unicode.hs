@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- Just stolen from reader
 
 import Control.Monad.Reader

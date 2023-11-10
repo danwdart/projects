@@ -4,6 +4,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 -- import Control.Exception
 -- import Data.ByteString qualified as BS
 import Data.Aeson

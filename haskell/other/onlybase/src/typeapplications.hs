@@ -1,3 +1,5 @@
+module Main (main) where
+
 main ∷ IO ()
 main = do
     let s = read @Int "2"

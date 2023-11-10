@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy    #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 -- Let's make our own event loop
 -- import Control.Concurrent.Event ( Event )
 import Control.Concurrent

@@ -1,6 +1,8 @@
 {-# LANGUAGE JavaScriptFFI #-}
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Data.JSString         ()
 import GHCJS.DOM
 import GHCJS.Types

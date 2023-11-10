@@ -1,8 +1,8 @@
 {-# LANGUAGE DerivingVia          #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# OPTIONS_GHC -Wno-orphans #-}
+{-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds #-}
 
-module Main where
+module Main (main) where
 
 import Control.Monad
 import Control.Monad.Random

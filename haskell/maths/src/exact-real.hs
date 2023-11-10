@@ -1,6 +1,8 @@
 -- https://www.youtube.com/watch?v=LJQgYBQFtSE
+
 {-# OPTIONS_GHC -Wno-unused-imports #-}
-module Main where
+
+module Main (main) where
 
 import Data.Number.CReal
 import Math.ContinuedFraction

@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 fnPairs ∷ Ord a ⇒ (a → a → b) → [a] → [b]
 fnPairs _ []          = []

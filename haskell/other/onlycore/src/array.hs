@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Data.Array.IO
 
 type IA = IOArray Int Int

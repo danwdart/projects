@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- ap
 main ∷ IO ()
 main = print $ fmap ($ (3 :: Int)) [((4 :: Int) +),((7 :: Int) +)]

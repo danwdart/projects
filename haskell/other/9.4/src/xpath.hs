@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Data.Foldable.Safe
 import Data.List
 import XPath

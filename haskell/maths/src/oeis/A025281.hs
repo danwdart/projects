@@ -1,3 +1,4 @@
+module Main (main) where
 
 import Data.List           (group)
 import Data.Numbers.Primes

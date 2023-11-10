@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Text.Regex.TDFA
 
 main ∷ IO ()

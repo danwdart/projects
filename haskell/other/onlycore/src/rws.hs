@@ -1,5 +1,7 @@
 {-# LANGUAGE PackageImports #-}
 
+module Main (main) where
+
 import Control.Monad.IO.Class
 import "mtl" Control.Monad.RWS
 

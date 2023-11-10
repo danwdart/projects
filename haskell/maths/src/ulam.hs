@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Ulam
 
 main ∷ IO ()

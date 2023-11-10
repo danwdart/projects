@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Arrow
 import Data.List     (group, sort)
 

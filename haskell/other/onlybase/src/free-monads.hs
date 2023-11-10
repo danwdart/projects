@@ -1,6 +1,8 @@
 {-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
+module Main (main) where
+
 import Control.Monad.Free
 
 data IOF t a

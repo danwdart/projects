@@ -1,6 +1,8 @@
 {-# LANGUAGE GADTs      #-}
 {-# LANGUAGE MultiWayIf #-}
 
+module Main (main) where
+
 import Control.Exception
 import Data.Typeable
 

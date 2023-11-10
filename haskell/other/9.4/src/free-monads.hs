@@ -1,6 +1,8 @@
 {-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
+module Main (main) where
+
 -- https://serokell.io/blog/introduction-to-free-monads
 import Control.Monad.Free
 

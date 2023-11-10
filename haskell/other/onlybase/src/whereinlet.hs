@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- where is value before, a kind of private state
 wherey ∷ String
 wherey = a <> b where

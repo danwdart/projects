@@ -1,3 +1,4 @@
+module Main (main) where
 
 newtype Variable x = Variable x
 

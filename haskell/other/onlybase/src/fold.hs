@@ -1,4 +1,7 @@
+module Main (main) where
+
 -- Practice folding.
+
 import Data.Monoid
 
 main ∷ IO ()

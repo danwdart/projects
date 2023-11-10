@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Control.Monad.IO.Class
 import Control.Monad.Trans.State
 import Data.Bool

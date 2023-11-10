@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
+module Main (main) where
+
 -- A004080
 import Data.List.Extra
 import Data.Tuple.Extra

@@ -2,6 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecursiveDo       #-}
 
+module Main (main) where
+
 import Control.Monad.Fix (MonadFix)
 import Data.Text         (Text)
 import Data.Text         qualified as T

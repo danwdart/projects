@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wwarn #-}
 
-module Main where
+module Main (main) where
 
 {-
 3 0 = 0

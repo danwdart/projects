@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 -- import Data.ByteString qualified as B
 import Data.Yaml
 

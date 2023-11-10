@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 import Numeric.ProjectEuler.Solution1 as S1
 import Numeric.ProjectEuler.Solution2 as S2

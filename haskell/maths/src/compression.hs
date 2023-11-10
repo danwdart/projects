@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wwarn #-}
 
+module Main (main) where
+
 import Data.List qualified as L
 
 -- Burrows-Wheeler Transform

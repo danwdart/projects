@@ -1,3 +1,4 @@
+module Main (main) where
 
 import JSDOM
 import JSDOM.CanvasPath

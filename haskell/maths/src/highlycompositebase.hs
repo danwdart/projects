@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 import Data.Digits
 -- import Data.Numbers.Primes

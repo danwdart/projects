@@ -1,6 +1,6 @@
-{-# OPTIONS_GHC -Wno-unused-local-binds #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-local-binds #-}
 
-module Main where
+module Main (main) where
 
 import Data.Digits
 import Data.Maybe

@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Data.These
 
 thisOne ∷ These Int Int

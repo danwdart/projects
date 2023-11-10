@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds #-}
 
+module Main (main) where
 
 -- @TODO make negabinary work?
 hundreds, tens, units ∷ [(Int, String)]

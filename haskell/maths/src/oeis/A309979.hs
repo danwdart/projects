@@ -8,7 +8,8 @@
     (after the decimal point)
     rearranged in ascending order are equal to 234477
 -}
-module Main where
+
+module Main (main) where
 
 import Data.List (sort)
 

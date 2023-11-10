@@ -1,3 +1,5 @@
+module Main (main) where
+
 import GHC.IO.Handle.FD
 import System.IO
 

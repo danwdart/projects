@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-orphans -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import GHC.Read
 import Text.ParserCombinators.ReadP
 import Text.ParserCombinators.ReadPrec (lift)

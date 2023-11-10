@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Data.Isomorphism
 
 staticIso ∷ Iso (,) Int String

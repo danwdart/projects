@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Data.Vector
 
 a ∷ Vector Int

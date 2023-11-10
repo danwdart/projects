@@ -1,7 +1,8 @@
 {-# LANGUAGE DeriveAnyClass  #-}
 {-# LANGUAGE OverloadedLists #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-module Main where
+module Main (main) where
 
 import Control.Exception
 -- import Data.Char

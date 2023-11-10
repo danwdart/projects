@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Data.Function
 import Data.Functor
 import Data.Text             qualified as T

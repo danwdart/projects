@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 -- Start with a number of people.
 -- Get another of the same number of people "above".

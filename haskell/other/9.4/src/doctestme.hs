@@ -1,8 +1,8 @@
-{-# OPTIONS_GHC -Wno-unsafe #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE Trustworthy     #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
-module Main where
+module Main (main) where
 
 import Language.Haskell.TH
 import Test.DocTest

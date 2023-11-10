@@ -1,6 +1,8 @@
-{-# OPTIONS_GHC -Wno-unused-imports #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
+
 -- Multiples of 5 where Pisano periods of Fibonacci numbers A001175 and Lucas numbers A106291 agree.
-module Main where
+
+module Main (main) where
 
 import Sequence.Fibonacci
 import Sequence.Lucas

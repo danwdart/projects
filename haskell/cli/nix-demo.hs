@@ -3,6 +3,8 @@
 
 {-# LANGUAGE OverloadedLists #-}
 
+module Main (main) where
+
 import Data.Map ( Map )
 
 g :: Map Int Int

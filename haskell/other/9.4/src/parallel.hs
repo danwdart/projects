@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Control.Concurrent
 import Control.Concurrent.Async
 import Control.Parallel

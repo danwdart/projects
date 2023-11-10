@@ -4,6 +4,8 @@ module HelloMain (
 ) where
 -}
 
+module Main (main) where
+
 import Control.Concurrent.MVar             (newEmptyMVar, putMVar, takeMVar)
 import Control.Monad.IO.Class              (MonadIO (..))
 import GHCJS.DOM

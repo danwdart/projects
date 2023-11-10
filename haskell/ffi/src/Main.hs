@@ -1,7 +1,7 @@
 {-# LANGUAGE CApiFFI #-}
 {-# LANGUAGE CPP     #-}
 
-module Main where
+module Main (main) where
 
 import Foreign.C ( CString, newCString, peekCString )
 import Control.Monad ( (>=>) )

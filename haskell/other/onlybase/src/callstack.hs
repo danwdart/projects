@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wno-redundant-constraints #-}
 
-module Main where
+module Main (main) where
 
 import GHC.Stack
 

@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Control.Concurrent        (forkFinally, threadDelay)
 import Control.Concurrent.Async  (concurrently_)
 import Control.Exception         qualified as E

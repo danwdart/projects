@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Graphics.GD
 import Seq
 --  Let's make things into gifs, ideally lossless videos, encoded, for the lels

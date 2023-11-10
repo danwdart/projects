@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 import Data.List.Safer
 import Data.Numbers.Primes

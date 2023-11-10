@@ -1,3 +1,5 @@
+module Main (main) where
+
 main ∷ IO ()
 main = do
     print . take 8 $ iterate (babylonSqrt 16) 2

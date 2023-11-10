@@ -1,3 +1,5 @@
+module Main (main) where
+
 indexed ∷ [Integer] → [(Integer, Integer)]
 indexed = zip [0..] -- this with 0 and with 1 works
 

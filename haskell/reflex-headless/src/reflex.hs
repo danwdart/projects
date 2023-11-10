@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Monad.IO.Class
 import Reflex
 import Reflex.Host.Headless

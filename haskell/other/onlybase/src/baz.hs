@@ -1,3 +1,5 @@
+module Main (main) where
+
 {-caser :: Char -> String
 caser 'a' = "Ah"
 caser 'b' = "Br";

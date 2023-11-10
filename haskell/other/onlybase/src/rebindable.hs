@@ -1,5 +1,7 @@
 {-# LANGUAGE RebindableSyntax #-}
 
+module Main (main) where
+
 import Prelude hiding (return, (>>), (>>=))
 
 ints ∷ Int

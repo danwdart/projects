@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Error.Util (note)
 import Data.Either
 import Data.Either.Extra

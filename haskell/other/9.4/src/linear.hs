@@ -3,7 +3,7 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
-module Main where
+module Main (main) where
 
 import Control.Functor.Linear
 import Prelude.Linear

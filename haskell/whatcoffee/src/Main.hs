@@ -3,7 +3,7 @@
 {-# LANGUAGE RecordWildCards   #-}
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
-module Main where
+module Main (main) where
 
 import Data.Aeson             qualified as A
 import Data.Aeson.Types

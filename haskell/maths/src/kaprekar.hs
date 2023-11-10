@@ -1,3 +1,5 @@
+module Main (main) where
+
 {-
 function saa(n) {
     var ns = Math.pow(n,2),

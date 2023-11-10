@@ -1,5 +1,7 @@
 {-# LANGUAGE Strict #-}
 
+module Main (main) where
+
 import Control.Applicative
 import Data.Functor.Compose
 import Data.Functor.Contravariant

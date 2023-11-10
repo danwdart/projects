@@ -1,3 +1,5 @@
+module Main (main) where
+
 import AWSLambda
 import Control.Lens
 import Data.Aeson

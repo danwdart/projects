@@ -1,3 +1,5 @@
+module Main (main) where
+
 data Foo = One | Two | Three deriving stock (Eq, Ord, Show, Read, Bounded, Enum)
 
 thing ∷ Foo

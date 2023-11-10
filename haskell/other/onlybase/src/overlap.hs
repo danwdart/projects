@@ -1,6 +1,8 @@
 {-# LANGUAGE IncoherentInstances  #-}
 {-# LANGUAGE UndecidableInstances #-}
 
+module Main (main) where
+
 class Special a where
     showspecial :: a → String
 

@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Shape
 
 main ∷ IO ()

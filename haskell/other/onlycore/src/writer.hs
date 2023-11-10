@@ -1,5 +1,7 @@
 {-# LANGUAGE PackageImports #-}
 
+module Main (main) where
+
 import "mtl" Control.Monad.Writer
 
 type MyWriter = Writer [String] Int

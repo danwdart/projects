@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-unused-matches #-}
 
+module Main (main) where
+
 import Control.Comonad
 import Control.Comonad.Store (ComonadStore (peek, pos), Store, store)
 

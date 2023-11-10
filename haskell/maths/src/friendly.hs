@@ -1,6 +1,6 @@
-{-# OPTIONS_GHC -Wno-unused-imports  #-}
+{-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
 
-module Main where
+module Main (main) where
 
 import Data.List           (sort)
 import Data.Numbers.Primes

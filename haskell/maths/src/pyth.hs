@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- we get results when n is the sum of 2 squares
 naiveRootNUpTo ∷ Integer → Integer → [(Integer, Integer, Integer)]
 naiveRootNUpTo n maxNum = [

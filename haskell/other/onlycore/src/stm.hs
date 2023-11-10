@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Concurrent.STM.TVar
 import Control.Monad.STM
 

@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-redundant-constraints #-}
 
+module Main (main) where
+
 -- import Control.Monad
 -- import Data.Bifunctor
 import Data.Biapplicative

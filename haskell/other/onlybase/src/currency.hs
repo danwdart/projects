@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
+module Main (main) where
+
 import Currency
 -- instance Num
 

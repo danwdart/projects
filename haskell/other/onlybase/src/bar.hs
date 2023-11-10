@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- import Data.Maybe
 import SafeDiv
 

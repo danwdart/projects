@@ -1,5 +1,7 @@
 {-# LANGUAGE GADTs #-}
-module Main where
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
+module Main (main) where
 
 import Control.Applicative (liftA2)
 
@@ -79,8 +81,6 @@ encodeS ∷ SchemaValue → Maybe Yaml
 encodeS (SchemaValue s x) = encode s x
 
 -- Examples
-
-data B = C | D
 
 exampleSchema ∷ Yaml
 exampleSchema = Object [("type", String "string"), ("class", String "string")]

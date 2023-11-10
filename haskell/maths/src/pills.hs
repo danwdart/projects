@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 {-
 v, the current amount of the drug in the system, is a function of
 h (the dosage in mg),

@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Algebra.Lattice
 import Data.List.Extra (enumerate)
 import Data.Set        (Set)

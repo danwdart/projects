@@ -1,8 +1,8 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE Trustworthy     #-}
-{-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wno-unused-top-binds #-}
 
-module Main where
+module Main (main) where
 
 import Data.Proxy
 import Language.Haskell.TH
@@ -15,7 +15,7 @@ gen (Proxy :: Proxy String) (Proxy :: Proxy Int)
 -- (Error while loading modules for evaluation)
 -- [1 of 2] Compiling Main             ( /home/dwd/code/mine/multi/projects/haskell/other/onlycore/src/runtime-types.hs, interpreted )
 -- <BLANKLINE>
--- /home/dwd/code/mine/multi/projects/haskell/other/onlycore/src/runtime-types.hs:8:1-19: error:
+-- /home/dwd/code/mine/multi/projects/haskell/other/onlycore/src/runtime-types.hs:9:1-19: error:
 --     Could not find module ‘RuntimeTypes’
 --     Use -v (or `:set -v` in ghci) to see a list of the files searched for.
 -- Failed, no modules loaded.

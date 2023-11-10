@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Sound.Pulse
 import Sound.Pulse.Context
 import Sound.Pulse.Mainloop.Simple

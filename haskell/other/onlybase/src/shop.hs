@@ -1,3 +1,5 @@
+module Main (main) where
+
 {-
 Main screen options
 

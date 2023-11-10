@@ -1,4 +1,6 @@
-module Main where
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
+module Main (main) where
 
 -- import Data.List qualified as L
 import Data.Map  qualified as M

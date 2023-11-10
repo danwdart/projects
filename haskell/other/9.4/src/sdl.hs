@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports -Wno-unused-matches #-}
 
+module Main (main) where
+
 import Graphics.Rendering.OpenGL.GL             as GL
 import Graphics.Rendering.OpenGL.GL.Framebuffer as GLFB
 import SDL

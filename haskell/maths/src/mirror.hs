@@ -1,5 +1,6 @@
 {- see: https://en.wikipedia.org/wiki/Lychrel_number -}
-module Main where
+
+module Main (main) where
 
 import Data.Digits
 import Prelude

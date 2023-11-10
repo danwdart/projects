@@ -1,6 +1,8 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Language.GraphQL
 import Network.HTTP.Client
 import Network.HTTP.Client.TLS

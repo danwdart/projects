@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Data.List.Extra
 import Ordering
 import Suit.Bounded.Standard

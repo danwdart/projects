@@ -1,3 +1,5 @@
+module Main (main) where
+
 {-
 a = [1,2,3]
 h = head a

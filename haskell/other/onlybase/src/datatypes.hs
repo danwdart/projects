@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Computer
 import Data.Data
 import Player

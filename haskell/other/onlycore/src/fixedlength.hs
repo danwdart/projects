@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
+module Main (main) where
+
 -- Fixed length array splitting.
 -- @TODO vector?
 

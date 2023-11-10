@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Form
 import Paths_onlycore
 import Text.Parsec.Text

@@ -1,6 +1,8 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE OverloadedStrings    #-}
 
+module Main (main) where
+
 import Database.HDBC
 import Database.HDBC.MySQL
 

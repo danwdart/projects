@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Data.ByteString qualified as BS
 -- import Data.Function
 import Data.Elf

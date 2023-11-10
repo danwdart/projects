@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-redundant-constraints -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Data.List
 -- import Control.Monad
 import Control.Lens

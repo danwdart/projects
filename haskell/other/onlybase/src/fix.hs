@@ -1,5 +1,7 @@
 {-# LANGUAGE RecursiveDo #-}
 
+module Main (main) where
+
 import Control.Monad.Fix
 
 -- >>> fixRevIO (\a -> putStrLn "Hi" >> pure 2) (\b -> putStrLn "Hey" >> pure 1)

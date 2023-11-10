@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Control.Monad
 import System.Console.ANSI.Types
 import Text.Parsec

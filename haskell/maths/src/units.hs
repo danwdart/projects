@@ -2,6 +2,8 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Data.Kind
 import GHC.TypeNats (Nat)
 

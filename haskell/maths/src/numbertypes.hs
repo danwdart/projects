@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-incomplete-patterns -Wno-unused-matches -Wno-type-defaults#-}
 
+module Main (main) where
+
 import Data.Complex
 import Data.Ratio
 

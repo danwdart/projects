@@ -1,5 +1,7 @@
 -- Stolen from https://wiki.haskell.org/Internationalization_of_Haskell_programs_using_gettext
 
+module Main (main) where
+
 import System.Locale.SetLocale
 import Text.I18N.GetText
 import Text.Printf

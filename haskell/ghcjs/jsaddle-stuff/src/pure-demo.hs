@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Data.ByteString.Lazy.Char8       qualified as BSL
 import JSDOM
 import JSDOM.Document

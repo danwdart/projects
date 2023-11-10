@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Data.IORef
 
 main1 ∷ IO ()

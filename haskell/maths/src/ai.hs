@@ -1,7 +1,9 @@
 {-# OPTIONS_GHC -Wno-unused-local-binds -Wno-unused-top-binds -Wno-unused-matches -Wno-missing-signatures #-}
--- Neural Network
 
+-- Neural Network
 -- @see https://victorzhou.com/blog/intro-to-neural-networks/
+
+module Main (main) where
 
 sigmoid ∷ Double → Double
 sigmoid x = 1 / (1 + exp (negate x))

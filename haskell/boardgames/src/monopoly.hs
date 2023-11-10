@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Monad
 import Data.Set              qualified as Set
 import Game.Monopoly.Board

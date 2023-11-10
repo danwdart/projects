@@ -1,4 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
+module Main (main) where
+
 import Control.Monad.Reader
 
 -- Reader a b is a -> b

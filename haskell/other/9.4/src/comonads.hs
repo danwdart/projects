@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedLists #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches  -Wno-type-defaults -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Control.Comonad
 import Control.Comonad.Env
 import Control.Comonad.Store

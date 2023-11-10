@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
+module Main (main) where
+
 import PrintAll
 
 main ∷ IO ()

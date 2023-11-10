@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-local-binds #-}
 
+module Main (main) where
+
 import Control.Monad.IO.Class
 import Data.ByteString.Lazy.Char8       qualified as BSL
 import Data.Char

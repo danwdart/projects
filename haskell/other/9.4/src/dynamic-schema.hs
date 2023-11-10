@@ -6,6 +6,8 @@
 
 {- Provide a dynamic schema. -}
 
+module Main (main) where
+
 -- import Data.Map
 import BookStatic
 import Data.Yaml.TH

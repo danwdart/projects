@@ -3,6 +3,8 @@
 {-# LANGUAGE OverloadedLists    #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
 
+module Main (main) where
+
 import Data.Map    (Map)
 import Data.Map    qualified as M
 import Data.Monoid

@@ -3,6 +3,8 @@
 -- Prime Number Snap
 -- Rules: Draw cards until sequential cards add up to prime numbers, then discard these, and draw more until you run out of cards.
 
+module Main (main) where
+
 import Card
 import Control.Monad.Random.Class
 import Data.Function

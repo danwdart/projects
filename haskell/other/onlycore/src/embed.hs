@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Language.Haskell.TH
 
 main ∷ IO ()

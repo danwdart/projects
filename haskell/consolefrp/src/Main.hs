@@ -1,7 +1,8 @@
 {-# LANGUAGE LambdaCase        #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Main where
+module Main (main) where
+
 import Graphics.Vty qualified as V
 -- import Graphics.Vty.Input.Events qualified as VIE
 import Reflex.Vty

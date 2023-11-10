@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
+module Main (main) where
+
 import Control.Concurrent
 import Data.Graph.DGraph
 import Data.Graph.Inductive.Graph

@@ -5,6 +5,8 @@
 {-# LANGUAGE RecursiveDo       #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
+module Main (main) where
+
 import Data.Text  as T
 import Reflex.Dom
 

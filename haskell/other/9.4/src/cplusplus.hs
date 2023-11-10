@@ -3,6 +3,8 @@
 {-# LANGUAGE Trustworthy     #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Language.C.Inline.Cpp
 
 context cppCtx

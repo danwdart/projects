@@ -1,7 +1,8 @@
-{-# OPTIONS_GHC -Wno-unused-imports #-}
+{-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
 
 -- Pisano periods of A275124.
-module Main where
+
+module Main (main) where
 
 import Sequence.Fibonacci
 import Sequence.Lucas

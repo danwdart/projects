@@ -1,7 +1,8 @@
-
 {-# LANGUAGE UnboxedTuples #-}
 {-# LANGUAGE Unsafe        #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-top-binds #-}
+
+module Main (main) where
 
 import GHC.IO
 

@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- Procedural generation
 import Control.Monad
 import System.Random

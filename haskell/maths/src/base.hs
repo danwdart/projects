@@ -1,3 +1,5 @@
+module Main (main) where
+
 -- import Data.Digits
 -- import Data.Function
 -- import Data.Functor

@@ -2,6 +2,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe #-}
 
+module Main (main) where
+
 import Network.HTTP.Types       (status200)
 import Network.Wai
 import Network.Wai.Handler.Warp (run)

@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Control.Monad
 import Control.Monad.HT           qualified as M
 import Control.Monad.Loops

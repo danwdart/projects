@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Data.Ratio
 
 -- import           Factory.Math.Implementations.Pi.BBP.Algorithm

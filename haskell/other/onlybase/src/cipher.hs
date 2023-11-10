@@ -1,3 +1,5 @@
+module Main (main) where
+
 import Cipher
 import Control.Monad
 import System.IO

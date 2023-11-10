@@ -5,6 +5,8 @@
 {-# LANGUAGE UnliftedFFITypes     #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Language.Asm.Inline
 import Language.Asm.Inline.QQ
 

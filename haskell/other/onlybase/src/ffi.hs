@@ -1,6 +1,8 @@
 {-# LANGUAGE Unsafe #-}
 {-# OPTIONS_GHC -Wno-unsafe #-} -- ???
 
+module Main (main) where
+
 -- import Foreign.Ptr
 -- import Foreign.ForeignPtr
 import Foreign.C.String

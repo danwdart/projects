@@ -2,6 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 {-
 const doReplaceName = replacements.forEach(
     (v, k) => document.documentElement.innerHTML = document.documentElement.innerHTML.replace(new RegExp(k, 'g'), v));

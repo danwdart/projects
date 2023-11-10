@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+module Main (main) where
+
 import Graphics.UI.Threepenny      qualified as UI
 import Graphics.UI.Threepenny.Core
 

@@ -2,7 +2,7 @@
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-matches  #-}
 
-module Main where
+module Main (main) where
 
 import Control.Monad.Freer
 import Control.Monad.Freer.State

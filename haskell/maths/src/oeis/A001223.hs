@@ -1,6 +1,8 @@
 
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
+module Main (main) where
+
 import Data.Map.Lazy       (Map, fromListWith)
 import Data.Numbers.Primes
 

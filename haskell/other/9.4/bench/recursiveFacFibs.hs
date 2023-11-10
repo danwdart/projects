@@ -1,6 +1,6 @@
 
 
-module Main where
+module Main (main) where
 
 import Criterion.Main
 import Data.Array     qualified as A

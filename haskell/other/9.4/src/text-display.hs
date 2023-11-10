@@ -4,6 +4,8 @@
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-imports #-}
 
+module Main (main) where
+
 -- https://hackage.haskell.org/package/text-display-0.0.3.0/docs/Data-Text-Display.html
 
 import Data.Text

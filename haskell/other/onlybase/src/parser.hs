@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-orphans #-}
 
+module Main (main) where
+
 import Parser
 
 main ∷ IO ()

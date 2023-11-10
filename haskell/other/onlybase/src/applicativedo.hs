@@ -1,4 +1,7 @@
 {-# LANGUAGE ApplicativeDo #-}
+
+module Main (main) where
+
 import Data.Functor.Compose
 
 main ∷ IO ()
