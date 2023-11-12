@@ -4,7 +4,7 @@ import Data.Digits   (digitsRev)
 import Data.Function ((&))
 import Data.Functor  ((<&>))
 import Data.List     (elemIndex)
-import Data.Maybe    (catMaybes)
+import Data.Maybe    (catMaybes, mapMaybe)
 
 napierSymbols ∷ String
 napierSymbols = ['a'..'z'] <> ['A'..'Z']
