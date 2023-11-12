@@ -198,7 +198,7 @@ viewEntries visibility entries =
       ]
   where
     cssVisibility = bool "visible" "hidden" (null entries)
-    allCompleted = and $ completed <$> entries
+    allCompleted = all completed entries
     isVisible Entry {..} =
       case visibility of
         "Completed" -> completed

@@ -5,7 +5,7 @@ module Main (main) where
 
 import Text.Printf
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 -- >>> roundTo 100 253629

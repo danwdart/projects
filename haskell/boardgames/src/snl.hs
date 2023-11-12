@@ -1,5 +1,5 @@
 {-# LANGUAGE DerivingStrategies #-}
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TemplateHaskell    #-}
 
 module Main (main) where
 
@@ -13,9 +13,9 @@ import Control.Monad.Random
 -- import Control.Monad.Writer
 import Control.Monad.RWS
 -- import Data.Aeson qualified as A
-import Data.List qualified as L
-import Data.Map (Map)
-import Data.Map qualified as M
+import Data.List            qualified as L
+import Data.Map             (Map)
+import Data.Map             qualified as M
 import Data.Ratio
 -- import Data.Yaml qualified as Y
 import System.Console.ANSI
@@ -50,8 +50,8 @@ newtype NumPlayers = NumPlayers {
 } deriving newtype (Eq, Show)
 
 data Board = Board {
-    _boardDimensions  :: BoardDimensions,
-    _teleports        :: Teleports
+    _boardDimensions :: BoardDimensions,
+    _teleports       :: Teleports
 } deriving stock (Eq, Show)
 
 $(makeLenses ''Board)
@@ -68,15 +68,15 @@ newtype DiffSpace = DiffSpace {
 } deriving newtype (Eq, Ord, Show)
 
 data Ruleset = Ruleset {
-    _rolloverStrategy :: RolloverStrategy,
+    _rolloverStrategy  :: RolloverStrategy,
     _moveProbabilities :: MoveProbabilities,
-    _numPlayers :: NumPlayers
+    _numPlayers        :: NumPlayers
 } deriving stock (Eq, Show)
 
 $(makeLenses ''Ruleset)
 
 data Game = Game {
-    _board :: Board,
+    _board   :: Board,
     _ruleset :: Ruleset
 } deriving stock (Eq, Show)
 
@@ -99,20 +99,20 @@ newtype PlayerTurn = PlayerTurn {
 data GameState = GameState {
     _players    :: [Player],
     _playerTurn :: Int,
-    _turns :: Int
+    _turns      :: Int
 } deriving stock (Eq, Show)
 
 $(makeLenses ''GameState)
 
 -- Helper functions
 
-hasWon :: Int -> Player -> Bool
+hasWon ∷ Int → Player → Bool
 hasWon finishingSpace player = getSpace (player ^. space) == finishingSpace
 
-coloured :: Color -> String -> String
+coloured ∷ Color → String → String
 coloured colour str = setSGRCode [SetColor Foreground Vivid colour] <> str <> setSGRCode [Reset]
 
-getMaybeWinner :: (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) => m (Maybe Player)
+getMaybeWinner ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m (Maybe Player)
 getMaybeWinner = do
     let fn = coloured Red "getMaybeWinner"
     tell [fn <> ": Is there a winner?"]
@@ -120,55 +120,55 @@ getMaybeWinner = do
     players' <- use players
     let mPlayer = L.find (hasWon finishingSpace) players'
     case mPlayer of
-        Nothing -> tell [fn <> ": No winner yet."]
+        Nothing     -> tell [fn <> ": No winner yet."]
         Just player -> tell [fn <> ": The winner is: " <> show player]
-    pure $ mPlayer
+    pure mPlayer
 
 -- We're going to need some lenses!
 
-getRandomByFrequencies :: (MonadWriter [String] m, MonadRandom m, Show a) => Map a Rational -> m a
+getRandomByFrequencies ∷ (MonadWriter [String] m, MonadRandom m, Show a) ⇒ Map a Rational → m a
 getRandomByFrequencies weights = do
     let fn = coloured Yellow "getRandomByFrequencies"
     roll' <- weighted (M.toList weights)
     tell [fn <> ": Rolled a " <> show roll']
     pure roll'
 
-movePlayerToPosition :: (MonadWriter [String] m, MonadState GameState m) => Space -> m ()
+movePlayerToPosition ∷ (MonadWriter [String] m, MonadState GameState m) ⇒ Space → m ()
 movePlayerToPosition space' = do
     let fn = coloured Green "movePlayerToPosition"
     playerIndex <- use playerTurn
     tell [fn <> ": Moving player " <> show playerIndex <> " to space " <> show space' <> "."]
     players . element playerIndex . space .= space'
 
-movePlayerBy :: (MonadWriter [String] m, MonadState GameState m) => DiffSpace -> m ()
+movePlayerBy ∷ (MonadWriter [String] m, MonadState GameState m) ⇒ DiffSpace → m ()
 movePlayerBy (DiffSpace spaces) = do
     let fn = coloured Green "movePlayerBy"
     playerIndex <- use playerTurn
     tell [fn <> ": Moving player " <> show playerIndex <> " by " <> show spaces <> " spaces."]
     players . element playerIndex . space %= (Space . (+ spaces) . getSpace)
 
-performTeleportation :: (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) => m ()
+performTeleportation ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m ()
 performTeleportation = do
     let fn = coloured Cyan "performTeleportation"
     teleports' <- view $ board . teleports
     playerIndex <- use playerTurn
-    currentSpace <- use $ (players . Control.Lens.to (!! playerIndex) . space)
+    currentSpace <- use (players . Control.Lens.to (!! playerIndex) . space)
     tell [fn <> ": current space is " <> show currentSpace]
     case M.lookup (FromSpace . getSpace $ currentSpace) (getTeleports teleports')  of
         Just (ToSpace space') -> do
             tell [fn <> ": It was a teleport to " <> show space']
             players . element playerIndex . space .= Space space'
-            currentSpace' <- use $ (players . Control.Lens.to (!! playerIndex) . space)
+            currentSpace' <- use (players . Control.Lens.to (!! playerIndex) . space)
             tell [fn <> ": Cool. We are now at " <> show currentSpace']
         Nothing -> do
             tell [fn <> ": It was not a teleport."]
 
-performRollover :: (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) => m ()
+performRollover ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m ()
 performRollover = do
     let fn = coloured Magenta "performRollover"
     rolloverStrategy' <- view $ ruleset . rolloverStrategy
     playerIndex <- use playerTurn
-    currentSpace <- use $ (players . Control.Lens.to (!! playerIndex) . space)
+    currentSpace <- use (players . Control.Lens.to (!! playerIndex) . space)
     tell [fn <> ": current space is " <> show currentSpace]
     finishingSpace <- view $ board . boardDimensions . stop
     startingSpace <- view $ board . boardDimensions . start
@@ -189,27 +189,27 @@ performRollover = do
                 tell [fn <> ": Gimme!"]
                 movePlayerToPosition $ Space finishingSpace
 
-nextPlayer :: (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) => m ()
+nextPlayer ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m ()
 nextPlayer = do
     let fn = coloured Green "nextPlayer"
     numPlayers' <- view $ ruleset . numPlayers
     currentPlayer <- use playerTurn
-    oldName' <- use $ (players . Control.Lens.to (!! currentPlayer) . name)
+    oldName' <- use (players . Control.Lens.to (!! currentPlayer) . name)
     tell [fn <> ": Current player is " <> show currentPlayer <> ", which is " <> oldName']
-    playerTurn %= ((`mod` (getNumPlayers numPlayers')) . succ)
+    playerTurn %= ((`mod` getNumPlayers numPlayers') . succ)
     newPlayer <- use playerTurn
-    newName' <- use $ (players . Control.Lens.to (!! newPlayer) . name)
+    newName' <- use (players . Control.Lens.to (!! newPlayer) . name)
     tell [fn <> ": Next player is player " <> show newPlayer <> ", which is " <> newName']
 
-roll :: (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) => m ()
+roll ∷ (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) ⇒ m ()
 roll = do
     let fn = coloured Red "roll"
     moveProbabilities' <- view $ ruleset . moveProbabilities
-    randomRoll <- getRandomByFrequencies $ getMoveProbabilities $ moveProbabilities'
+    randomRoll <- getRandomByFrequencies . getMoveProbabilities $ moveProbabilities'
     tell [fn <> ": Moving player by " <> show randomRoll]
     movePlayerBy randomRoll
 
-turn :: (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) => m ()
+turn ∷ (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) ⇒ m ()
 turn = do
     let fn = coloured Blue "turn"
     -- Get the player number
@@ -226,7 +226,7 @@ turn = do
 
 -- Main playing function
 
-playUntilWinner :: (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) => m Player
+playUntilWinner ∷ (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) ⇒ m Player
 playUntilWinner = do
     let fn = coloured Yellow "playUntilWinner"
     tell [fn <> ": making a turn."]
@@ -243,7 +243,7 @@ playUntilWinner = do
 -- Sample boards (@TODO: move into encoded files)
 
 -- https://www.pinterest.com.au/pin/647744358880178687/
-board1 :: Board
+board1 ∷ Board
 board1 = Board (BoardDimensions 1 100) (Teleports (M.fromList [
     (FromSpace 1, ToSpace 38),
     (FromSpace 4, ToSpace 14),
@@ -292,19 +292,19 @@ duSautoyBoard = Board (BoardDimensions 0 10) (Teleports (M.fromList [
 
 -- Sample rulesets (move into encoded files)
 
-fairD6 :: MoveProbabilities
+fairD6 ∷ MoveProbabilities
 fairD6 = MoveProbabilities . M.fromList . zip (DiffSpace <$> [1..]) . replicate 6 $ (1 % 6)
 
-normalRules :: Ruleset
+normalRules ∷ Ruleset
 normalRules = Ruleset Reverse fairD6 (NumPlayers 2)
 
-initialGame :: Game
+initialGame ∷ Game
 initialGame = Game {
     _board = board1,
     _ruleset = normalRules
 }
 
-initialState :: GameState
+initialState ∷ GameState
 initialState = GameState {
     _players = [
         Player {
@@ -356,7 +356,7 @@ instance (FromJSON a, ToJSON a, MonadIO m, MonadFail m) => MonadFile a m where
 -- Main I/O interface
 -- argv: gameboard, ruleset, number of players (names maybe) or --ruleset-option=X
 
-main :: IO ()
+main ∷ IO ()
 main = do
     (winner, endingGameState, writeStream) <- runRWST playUntilWinner initialGame initialState
     mapM_ putStrLn writeStream

@@ -68,7 +68,7 @@ main = do
 
     myRes <- res accessToken stringsToTranslate :: IO (Maybe TR)
 
-    mapM_ putStrLn (myRes <&> _data <&> translations <&> ( <&> translatedText) & fromJust)
+    mapM_ putStrLn (( <&> translatedText) (fromJust (myRes <&> _data <&> translations)))
 
     --a <- runResourceT . runGoogle env $ send myR
     --print $ a

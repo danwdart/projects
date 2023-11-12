@@ -115,7 +115,7 @@ moveManualOptions ∷ Move → Board → Maybe (El, [Coords], Board)
 moveManualOptions (lastMoveElement, lastMoveCoords) board = do
     let nextMovesCoords = validMoves lastMoveCoords
     let nextElement = nextEl lastMoveElement
-    if all isPresent $ fmap (`getEl` board) nextMovesCoords then
+    if all (isPresent . (`getEl` board)) nextMovesCoords then
         Nothing
     else Just (nextElement, nextMovesCoords, board)
 

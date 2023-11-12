@@ -97,7 +97,7 @@ main = do
             Right json -> do
                 let decodedCoffee = A.eitherDecode (BL.fromStrict json) :: Either String Coffee
                 -- print decodedCoffee
-                putStrLn . T.unpack . fromRight "" $ prettyPrintCoffee <$> decodedCoffee
+                (putStrLn . T.unpack) (either (const "") prettyPrintCoffee decodedCoffee)
                 -- let decoded = JWT.decode jwtToDecode
                 -- print decoded
             _ -> putStrLn "Error decoding JSON"
