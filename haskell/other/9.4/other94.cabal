@@ -112,7 +112,7 @@ executable async
 executable binarygame
   import: shared-properties-unsafe
   main-is:             binarygame.hs
-  build-depends:       base >= 4.17.0.0 && < 5, ansi-terminal, ilist, transformers
+  build-depends:       base >= 4.17.0.0 && < 5, ansi-terminal, ilist, mtl
 
 -- simple-bluetooth fails to compile
 -- executable bluetooth

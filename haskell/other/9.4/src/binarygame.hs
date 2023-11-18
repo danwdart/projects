@@ -4,7 +4,7 @@
 module Main (main) where
 
 import Control.Monad.IO.Class
-import Control.Monad.Trans.State
+import Control.Monad.State
 import Data.Bool
 import Data.List.Index
 import System.Console.ANSI
@@ -13,7 +13,7 @@ import System.IO
 process ∷ Char → [Button] → [Button]
 process = toggle . pred . read . pure
 
-render ∷ StateT [Button] IO String
+render ∷ (MonadState [Button] m, MonadIO m) => m String
 render = do
     liftIO resetGame
     st <- get
