@@ -1,8 +1,12 @@
-{-# LANGUAGE DerivingStrategies #-}
-{-# LANGUAGE TemplateHaskell    #-}
+{-# LANGUAGE DeriveAnyClass   #-}
+{-# LANGUAGE DerivingStrategies   #-}
+{-# LANGUAGE TemplateHaskell      #-}
+{-# LANGUAGE TypeFamilies         #-}
+{-# LANGUAGE UndecidableInstances #-}
 
 module Main (main) where
 
+import Control.Exception
 import Control.Lens
 -- import Control.Monad.IO.Class
 import Control.Monad.Except
@@ -14,11 +18,20 @@ import Control.Monad.Random
 import Control.Monad.RWS
 -- import Data.Aeson qualified as A
 import Data.List            qualified as L
+import Data.List.NonEmpty qualified as NE
 import Data.Map             (Map)
 import Data.Map             qualified as M
 import Data.Ratio
 -- import Data.Yaml qualified as Y
 import System.Console.ANSI
+
+-- Enums
+data RolloverStrategy = Exact | Reverse | Rebirth | Gimme
+    deriving stock (Bounded, Enum, Eq, Show)
+
+data AppError = CantFindPlayer Int
+    deriving stock (Show)
+    deriving anyclass (Exception)
 
 -- Datatypes
 
@@ -27,45 +40,61 @@ data BoardDimensions = BoardDimensions {
     _stop  :: Int
 } deriving stock (Eq, Show)
 
-$(makeLenses ''BoardDimensions)
+$(makeClassy ''BoardDimensions)
 
 newtype Space = Space {
-    getSpace :: Int
+    _getSpace :: Int
 } deriving newtype (Eq, Show)
+
+makeWrapped ''Space
 
 newtype FromSpace = FromSpace {
     _getFromSpace :: Int
 } deriving newtype (Eq, Ord, Show)
 
+makeWrapped ''FromSpace
+
 newtype ToSpace = ToSpace {
     _getToSpace :: Int
 } deriving newtype (Eq, Ord, Show)
 
+makeWrapped ''ToSpace
+
 newtype Teleports = Teleports {
-    getTeleports :: Map FromSpace ToSpace
+    _getTeleports :: Map FromSpace ToSpace
 } deriving newtype (Eq, Ord, Show)
 
+makeWrapped ''Teleports
+
 newtype NumPlayers = NumPlayers {
-    getNumPlayers :: Int
+    _getNumPlayers :: Int
 } deriving newtype (Eq, Show)
 
-data Board = Board {
-    _boardDimensions :: BoardDimensions,
-    _teleports       :: Teleports
+makeWrapped ''NumPlayers
+
+data GameBoard = GameBoard {
+    _dimensions :: BoardDimensions,
+    _teleports  :: Teleports
 } deriving stock (Eq, Show)
 
-$(makeLenses ''Board)
+$(makeClassy ''GameBoard)
 
-data RolloverStrategy = Exact | Reverse | Rebirth | Gimme
-    deriving stock (Eq, Show)
+-- Get around classy duplicates (requires undecidable instances)
 
-newtype MoveProbabilities = MoveProbabilities {
-    getMoveProbabilities :: Map DiffSpace Rational
-} deriving newtype (Eq, Show)
+instance HasGameBoard r ⇒ HasBoardDimensions r where
+    boardDimensions = dimensions
 
 newtype DiffSpace = DiffSpace {
     _getDiffSpace :: Int
 } deriving newtype (Eq, Ord, Show)
+
+makeWrapped ''DiffSpace
+
+newtype MoveProbabilities = MoveProbabilities {
+    _getMoveProbabilities :: Map DiffSpace Rational
+} deriving newtype (Eq, Show)
+
+makeWrapped ''MoveProbabilities
 
 data Ruleset = Ruleset {
     _rolloverStrategy  :: RolloverStrategy,
@@ -73,14 +102,21 @@ data Ruleset = Ruleset {
     _numPlayers        :: NumPlayers
 } deriving stock (Eq, Show)
 
-$(makeLenses ''Ruleset)
+$(makeClassy ''Ruleset)
 
 data Game = Game {
-    _board   :: Board,
-    _ruleset :: Ruleset
+    _board :: GameBoard,
+    _rules :: Ruleset
 } deriving stock (Eq, Show)
 
-$(makeLenses ''Game)
+$(makeClassy ''Game)
+
+-- Get around classy duplicates (requires undecidable instances)
+instance HasGame r ⇒ HasGameBoard r where
+    gameBoard = board
+
+instance HasGame r ⇒ HasRuleset r where
+    ruleset = rules
 
 -- @TODO validation
 data Player = Player {
@@ -88,7 +124,7 @@ data Player = Player {
     _space :: Space
 } deriving stock (Eq, Show)
 
-$(makeLenses ''Player)
+$(makeClassy ''Player)
 
 {-}
 newtype PlayerTurn = PlayerTurn {
@@ -97,34 +133,32 @@ newtype PlayerTurn = PlayerTurn {
 -}
 
 data GameState = GameState {
-    _players    :: [Player],
+    _players    :: NE.NonEmpty Player,
     _playerTurn :: Int,
     _turns      :: Int
 } deriving stock (Eq, Show)
 
-$(makeLenses ''GameState)
+$(makeClassy ''GameState)
 
 -- Helper functions
 
 hasWon ∷ Int → Player → Bool
-hasWon finishingSpace player = getSpace (player ^. space) == finishingSpace
+hasWon finishingSpace player' = player' ^. space ^. _Wrapped == finishingSpace
 
 coloured ∷ Color → String → String
-coloured colour str = setSGRCode [SetColor Foreground Vivid colour] <> str <> setSGRCode [Reset]
+coloured colour = (setSGRCode [SetColor Foreground Vivid colour] <>) . (<> setSGRCode [Reset])
 
-getMaybeWinner ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m (Maybe Player)
+getMaybeWinner ∷ (MonadWriter [String] m, MonadReader r m, HasBoardDimensions r, MonadState s m, HasGameState s) ⇒ m (Maybe Player)
 getMaybeWinner = do
     let fn = coloured Red "getMaybeWinner"
     tell [fn <> ": Is there a winner?"]
-    finishingSpace <- view $ board . boardDimensions . stop -- fix asks
+    finishingSpace <- view stop -- fix asks
     players' <- use players
     let mPlayer = L.find (hasWon finishingSpace) players'
     case mPlayer of
-        Nothing     -> tell [fn <> ": No winner yet."]
-        Just player -> tell [fn <> ": The winner is: " <> show player]
+        Nothing      -> tell [fn <> ": No winner yet."]
+        Just player' -> tell [fn <> ": The winner is: " <> show player']
     pure mPlayer
-
--- We're going to need some lenses!
 
 getRandomByFrequencies ∷ (MonadWriter [String] m, MonadRandom m, Show a) ⇒ Map a Rational → m a
 getRandomByFrequencies weights = do
@@ -133,83 +167,97 @@ getRandomByFrequencies weights = do
     tell [fn <> ": Rolled a " <> show roll']
     pure roll'
 
-movePlayerToPosition ∷ (MonadWriter [String] m, MonadState GameState m) ⇒ Space → m ()
+movePlayerToPosition ∷ (MonadWriter [String] m, MonadState s m, HasGameState s) ⇒ Space → m ()
 movePlayerToPosition space' = do
     let fn = coloured Green "movePlayerToPosition"
     playerIndex <- use playerTurn
     tell [fn <> ": Moving player " <> show playerIndex <> " to space " <> show space' <> "."]
     players . element playerIndex . space .= space'
 
-movePlayerBy ∷ (MonadWriter [String] m, MonadState GameState m) ⇒ DiffSpace → m ()
+movePlayerBy ∷ (MonadWriter [String] m, MonadState s m, HasGameState s) ⇒ DiffSpace → m ()
 movePlayerBy (DiffSpace spaces) = do
     let fn = coloured Green "movePlayerBy"
     playerIndex <- use playerTurn
     tell [fn <> ": Moving player " <> show playerIndex <> " by " <> show spaces <> " spaces."]
-    players . element playerIndex . space %= (Space . (+ spaces) . getSpace)
+    players . element playerIndex . space . _Wrapped += spaces
 
-performTeleportation ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m ()
+performTeleportation ∷ (MonadWriter [String] m, MonadError AppError m, MonadReader r m, HasGameBoard r, MonadState s m, HasGameState s) ⇒ m ()
 performTeleportation = do
     let fn = coloured Cyan "performTeleportation"
-    teleports' <- view $ board . teleports
+    teleports' <- view $ teleports . _Wrapped
     playerIndex <- use playerTurn
-    currentSpace <- use (players . Control.Lens.to (!! playerIndex) . space)
-    tell [fn <> ": current space is " <> show currentSpace]
-    case M.lookup (FromSpace . getSpace $ currentSpace) (getTeleports teleports')  of
-        Just (ToSpace space') -> do
-            tell [fn <> ": It was a teleport to " <> show space']
-            players . element playerIndex . space .= Space space'
-            currentSpace' <- use (players . Control.Lens.to (!! playerIndex) . space)
-            tell [fn <> ": Cool. We are now at " <> show currentSpace']
-        Nothing -> do
-            tell [fn <> ": It was not a teleport."]
+    mPlayer <- preuse $ players . element playerIndex
+    case mPlayer of
+        Nothing -> throwError $ CantFindPlayer playerIndex
+        Just player' -> do
+            let currentSpace = player' ^. space ^. _Wrapped
+            tell [fn <> ": current space is " <> show currentSpace]
+            case M.lookup (FromSpace currentSpace) teleports' of
+                Just (ToSpace space') -> do
+                    tell [fn <> ": It was a teleport to " <> show space']
+                    players . element playerIndex . space . _Wrapped .= space'
+                    currentSpace' <- preuse (players . element playerIndex . space)
+                    tell [fn <> ": Cool. We are now at " <> show currentSpace']
+                Nothing -> do
+                    tell [fn <> ": It was not a teleport."]
 
-performRollover ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m ()
+performRollover ∷ (MonadWriter [String] m, MonadError AppError m, MonadReader r m, HasRuleset r, HasBoardDimensions r, MonadState s m, HasGameState s) ⇒ m ()
 performRollover = do
     let fn = coloured Magenta "performRollover"
-    rolloverStrategy' <- view $ ruleset . rolloverStrategy
+    rolloverStrategy' <- view rolloverStrategy
     playerIndex <- use playerTurn
-    currentSpace <- use (players . Control.Lens.to (!! playerIndex) . space)
-    tell [fn <> ": current space is " <> show currentSpace]
-    finishingSpace <- view $ board . boardDimensions . stop
-    startingSpace <- view $ board . boardDimensions . start
-    let overflow = getSpace currentSpace - finishingSpace
-    when (overflow > 0) $ do -- @TODO k ()
-        tell [fn <> ": Looks like there's a rollover to manage."]
-        case rolloverStrategy' of
-            Exact -> pure () -- @TODO check what the roll was!
-            Reverse -> do
-                let newSpace = finishingSpace - overflow
-                tell [fn <> ": Gone off the end, reversing from the end by " <> show overflow <> " to " <> show newSpace]
-                movePlayerToPosition $ Space newSpace
-            Rebirth -> do
-                let newSpace = startingSpace + overflow
-                tell [fn <> ": Gone off the end by " <> show overflow <> " so rebirthing to " <> show newSpace]
-                movePlayerToPosition $ Space newSpace
-            Gimme -> do
-                tell [fn <> ": Gimme!"]
-                movePlayerToPosition $ Space finishingSpace
+    mPlayer <- preuse $ players . element playerIndex
+    case mPlayer of
+        Nothing -> throwError $ CantFindPlayer playerIndex
+        Just player' -> do
+            let currentSpace = player' ^. space ^. _Wrapped
+            tell [fn <> ": current space is " <> show currentSpace]
+            finishingSpace <- view stop
+            startingSpace <- view start
+            let overflow = currentSpace - finishingSpace
+            when (overflow > 0) $ do -- @TODO k ()
+                tell [fn <> ": Looks like there's a rollover to manage."]
+                case rolloverStrategy' of
+                    Exact -> pure () -- @TODO check what the roll was!
+                    Reverse -> do
+                        let newSpace = finishingSpace - overflow
+                        tell [fn <> ": Gone off the end, reversing from the end by " <> show overflow <> " to " <> show newSpace]
+                        movePlayerToPosition $ Space newSpace
+                    Rebirth -> do
+                        let newSpace = startingSpace + overflow
+                        tell [fn <> ": Gone off the end by " <> show overflow <> " so rebirthing to " <> show newSpace]
+                        movePlayerToPosition $ Space newSpace
+                    Gimme -> do
+                        tell [fn <> ": Gimme!"]
+                        movePlayerToPosition $ Space finishingSpace
 
-nextPlayer ∷ (MonadWriter [String] m, MonadReader Game m, MonadState GameState m) ⇒ m ()
+nextPlayer ∷ (MonadWriter [String] m, MonadError AppError m, MonadReader r m, HasRuleset r, MonadState s m, HasGameState s) ⇒ m ()
 nextPlayer = do
     let fn = coloured Green "nextPlayer"
-    numPlayers' <- view $ ruleset . numPlayers
+    numPlayers' <- view $ numPlayers . _Wrapped
     currentPlayer <- use playerTurn
-    oldName' <- use (players . Control.Lens.to (!! currentPlayer) . name)
-    tell [fn <> ": Current player is " <> show currentPlayer <> ", which is " <> oldName']
-    playerTurn %= ((`mod` getNumPlayers numPlayers') . succ)
-    newPlayer <- use playerTurn
-    newName' <- use (players . Control.Lens.to (!! newPlayer) . name)
-    tell [fn <> ": Next player is player " <> show newPlayer <> ", which is " <> newName']
+    mPlayer <- preuse $ players . element currentPlayer
+    case mPlayer of
+        Nothing -> throwError $ CantFindPlayer currentPlayer
+        Just player' -> do
+            tell [fn <> ": Current player is " <> show currentPlayer <> ", which is " <> player' ^. name]
+            playerTurn %= ((`mod` numPlayers') . succ)
+            newPlayer <- use playerTurn
+            mPlayer' <- preuse $ players . element newPlayer
+            case mPlayer' of
+                Nothing -> throwError $ CantFindPlayer currentPlayer
+                Just player'' -> do
+                    tell [fn <> ": Next player is player " <> show newPlayer <> ", which is " <> player'' ^. name]
 
-roll ∷ (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) ⇒ m ()
+roll ∷ (MonadWriter [String] m, MonadRandom m, MonadReader r m, HasRuleset r, MonadState s m, HasGameState s) ⇒ m ()
 roll = do
     let fn = coloured Red "roll"
-    moveProbabilities' <- view $ ruleset . moveProbabilities
-    randomRoll <- getRandomByFrequencies . getMoveProbabilities $ moveProbabilities'
+    moveProbabilities' <- view $ moveProbabilities . _Wrapped
+    randomRoll <- getRandomByFrequencies $ moveProbabilities'
     tell [fn <> ": Moving player by " <> show randomRoll]
     movePlayerBy randomRoll
 
-turn ∷ (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) ⇒ m ()
+turn ∷ (MonadWriter [String] m, MonadRandom m, MonadError AppError m, MonadReader r m, HasRuleset r, HasBoardDimensions r, HasGameBoard r, MonadState s m, HasGameState s) ⇒ m ()
 turn = do
     let fn = coloured Blue "turn"
     -- Get the player number
@@ -226,7 +274,7 @@ turn = do
 
 -- Main playing function
 
-playUntilWinner ∷ (MonadWriter [String] m, MonadRandom m, MonadReader Game m, MonadState GameState m) ⇒ m Player
+playUntilWinner ∷ (MonadWriter [String] m, MonadRandom m, MonadError AppError m, MonadReader r m, HasGame r, HasGameBoard r, HasBoardDimensions r, HasRuleset r, MonadState s m, HasGameState s) ⇒ m Player
 playUntilWinner = do
     let fn = coloured Yellow "playUntilWinner"
     tell [fn <> ": making a turn."]
@@ -243,8 +291,8 @@ playUntilWinner = do
 -- Sample boards (@TODO: move into encoded files)
 
 -- https://www.pinterest.com.au/pin/647744358880178687/
-board1 ∷ Board
-board1 = Board (BoardDimensions 1 100) (Teleports (M.fromList [
+board1 ∷ GameBoard
+board1 = GameBoard (BoardDimensions 1 100) (Teleports (M.fromList [
     (FromSpace 1, ToSpace 38),
     (FromSpace 4, ToSpace 14),
     (FromSpace 9, ToSpace 31),
@@ -301,12 +349,12 @@ normalRules = Ruleset Reverse fairD6 (NumPlayers 2)
 initialGame ∷ Game
 initialGame = Game {
     _board = board1,
-    _ruleset = normalRules
+    _rules = normalRules
 }
 
 initialState ∷ GameState
 initialState = GameState {
-    _players = [
+    _players = NE.fromList [
         Player {
             _name = "Bob",
             _space = Space 1
@@ -358,10 +406,14 @@ instance (FromJSON a, ToJSON a, MonadIO m, MonadFail m) => MonadFile a m where
 
 main ∷ IO ()
 main = do
-    (winner, endingGameState, writeStream) <- runRWST playUntilWinner initialGame initialState
-    mapM_ putStrLn writeStream
-    putStrLn $ "The winner is: " <> winner ^. name <> "! Winning space: " <> show (winner ^. space) <> ". Took " <> show (endingGameState ^. turns) <> " turns."
-    print endingGameState
+    result <- runExceptT $ do
+        (winner, endingGameState, writeStream) <- runRWST playUntilWinner initialGame initialState
+        mapM_ (liftIO . putStrLn) writeStream
+        liftIO .putStrLn $ "The winner is: " <> winner ^. name <> "! Winning space: " <> show (winner ^. space) <> ". Took " <> show (endingGameState ^. turns) <> " turns."
+        liftIO . print $ endingGameState
+    case result of
+        Left err -> print err
+        Right () -> pure ()
 
 -- @TODO average, space per colour
 -- @TODO monadwriter with colours and for each function, add state for spacing
