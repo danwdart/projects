@@ -8,12 +8,13 @@ data Player = Player {
     token               :: Token,
     position            :: Int,
     money               :: Int,
+    doubles             :: Int,
     properties          :: [Property],
     mortgagedProperties :: [Property]
 } deriving stock (Eq, Show)
 
 newPlayer ∷ String → Token → Player
-newPlayer n t = Player n t 0 1500 [] []
+newPlayer n t = Player n t 0 0 1500 [] []
 
 data OwnedStatus = Unowned | Owned | Mortgaged
 

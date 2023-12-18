@@ -14,8 +14,8 @@ import Game.Monopoly.Token
 import System.Random
 
 -- data Round =
-londonBoard :: Board
-londonBoard = Board [
+_londonBoard :: Board
+_londonBoard = Board [
     GoSpace,
     emptyPropertySpace Brown "Old Kent Road" 60,
     RandomSpace CommunityChest,
@@ -56,7 +56,7 @@ londonBoard = Board [
     emptyPropertySpace DarkBlue "Park Lane" 350,
     taxSpace "Super Tax" 100,
     emptyPropertySpace DarkBlue "Mayfair" 400
-    ]
+    ] 0
 
 devonBoard :: Board
 devonBoard = Board [
@@ -70,37 +70,38 @@ devonBoard = Board [
     RandomSpace Chance,
     emptyPropertySpace LightBlue "Okehampton, Dartmoor" 100,
     emptyPropertySpace LightBlue "Combe Martin, Exmoor" 120,
+    -- The normal jail space isn't achievable except under special circumstances.
     JustVisitingSpace,
     emptyPropertySpace Pink "Plainmoor" 140,
     utilitySpace "Electric Company",
     emptyPropertySpace Pink "St James' Park, Exeter" 140,
-    emptyPropertySpace Pink "" 160,
-    stationSpace "",
-    emptyPropertySpace Orange "" 180,
+    emptyPropertySpace Pink "Plymouth Argyle, ???" 160,
+    stationSpace "Grand Western Canal",
+    emptyPropertySpace Orange "Barton Hill Road, Torquay" 180,
     RandomSpace CommunityChest,
-    emptyPropertySpace Orange "" 180,
-    emptyPropertySpace Orange "" 200,
+    emptyPropertySpace Orange "????" 180,
+    emptyPropertySpace Orange "????" 200,
     FreeParkingSpace,
-    emptyPropertySpace Red "" 220,
+    emptyPropertySpace Red "Sidmouth" 220,
     RandomSpace Chance,
-    emptyPropertySpace Red "" 220,
-    emptyPropertySpace Red "" 240,
-    stationSpace "",
-    emptyPropertySpace Yellow "" 260,
-    emptyPropertySpace Yellow "" 260,
+    emptyPropertySpace Red "Budleigh Salterton" 220,
+    emptyPropertySpace Red "??????" 240,
+    stationSpace "Okehampton Station",
+    emptyPropertySpace Yellow "Powderham Castle, ???" 260,
+    emptyPropertySpace Yellow "The Landmark Theatre, Ilfracombe" 260,
     utilitySpace "Water Works",
-    emptyPropertySpace Yellow "" 280,
+    emptyPropertySpace Yellow "Boutport Street, Barnstaple" 280,
     GoToJailSpace,
-    emptyPropertySpace Green "" 300,
-    emptyPropertySpace Green "" 300,
+    emptyPropertySpace Green "County Hall, Exeter" 300,
+    emptyPropertySpace Green "Drake Circus, Plymouth" 300,
     RandomSpace CommunityChest,
-    emptyPropertySpace Green "" 320,
-    stationSpace "",
+    emptyPropertySpace Green "The Queen's Drive, Exeter" 320,
+    stationSpace "Tarka Trail",
     RandomSpace Chance,
-    emptyPropertySpace DarkBlue "" 350,
-    taxSpace "Super Tax" 100,
-    emptyPropertySpace DarkBlue "" 400
-    ]
+    emptyPropertySpace DarkBlue "Widecombe-in-the-Moor" 350,
+    taxSpace "Bank Deposit" 100,
+    emptyPropertySpace DarkBlue "Exeter Cathedral" 400
+    ] 0
 
 myGame ∷ Game
 myGame = Game
@@ -110,7 +111,7 @@ myGame = Game
         newPlayer "Jim" Dog
     ] (
         ExtraRules (
-            Set.fromList [HitGoExactlyReceive400, FreeParkingMoney]
+            Set.fromList [HitGoExactlyReceive400, FreeParkingMoney, ThrowThreeDoublesGoToJail]
         )
     )
 

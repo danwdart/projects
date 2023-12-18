@@ -12,10 +12,22 @@ processLand ∷ Player → Board → Space → IO (Player, Board)
 processLand player b space = case space of
         GoSpace -> do
             putStrLn "You win some money."
+            -- @TODO check rule.
             let player' = addMoney 200 player
             pure (player', b)
         PropertySpace p -> do
+            -- @TODO check rule. This is force.
             putStrLn $ "Unimplemented: " <> show p
+            -- 1. Check owner
+            -- 2. If owned, check house status.
+            -- 3. If not owned
+            -- 4. Check money
+                -- a. No money -> if buy rule is auction then auction otherwise ignore
+                -- b. Money ->
+                    -- i. if buy rule is force then buy property
+                    -- ii. if buy rule is not force then prompt
+                        -- I. yes -> buy property
+                        -- II. no -> if buy rule is auction then auction otherwise ignore
             pure (player, b)
         RandomSpace t -> do
             putStrLn $ "Unimplemented: " <> show t
@@ -27,11 +39,11 @@ processLand player b space = case space of
             putStrLn $ "Unimplemented: " <> show u
             pure (player, b)
         TaxSpace t -> do
-            putStrLn "You hit the tax space!"
+            putStrLn $ "You hit a tax space: " <> show t <> "!"
             let (player', b') = taxMoney t player b
             pure (player', b')
         JailSpace -> do
-            putStrLn "You are in jail."
+            putStrLn "You are in jail. You must throw three doubles to get out."
             pure (player, b)
         JustVisitingSpace -> do
             putStrLn "Just visiting right now..."
