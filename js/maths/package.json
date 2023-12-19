@@ -4,18 +4,18 @@
   "description": "maths demos",
   "main": "",
   "dependencies": {
-    "@snyk/protect": "^1.1108.0",
-    "bignumber.js": "^9.1.1",
-    "cytoscape": "^3.23.0",
+    "@snyk/protect": "^1.1264.0",
+    "bignumber.js": "^9.1.2",
+    "cytoscape": "^3.28.0",
     "esm": "^3.2.25",
-    "gl-matrix": "^3.4.3",
+    "gl-matrix": "^4.0.0-beta.1",
     "node-fetch": "^4.0.0-beta.4",
-    "typescript": "^5.0.0-dev.20230222"
+    "typescript": "^5.4.0-dev.20231219"
   },
   "devDependencies": {
-    "@babel/cli": "7.21.0",
+    "@babel/cli": "8.0.0-alpha.5",
     "@std/esm": "^0.26.0",
-    "eslint": "^8.34.0",
+    "eslint": "^8.56.0",
     "mocha": "^10.2.0"
   },
   "scripts": {
