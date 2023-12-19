@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@snyk/protect": "^1.1108.0",
-    "gl-matrix": "^3.4.3"
+    "@snyk/protect": "^1.1264.0",
+    "gl-matrix": "^4.0.0-beta.1"
   }
 }
