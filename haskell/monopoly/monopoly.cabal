@@ -1,0 +1,85 @@
+cabal-version:       3.4
+-- Newer versions complain
+name:                monopoly
+version:             0.1.0.0
+homepage:            https://github.com/danwdart/dansstuff#readme
+license:             AGPL-3.0-only
+author:              Dan Dart
+maintainer:          cabal@dandart.co.uk
+copyright:           2019 Dan Dart
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+
+library
+  hs-source-dirs: lib
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
+  build-depends:       base >= 4.17.0.0 && < 5, containers, lens
+  exposed-modules:
+    , Game.Monopoly.Addons
+    , Game.Monopoly.Board
+    , Game.Monopoly.Board.Devon
+    , Game.Monopoly.Board.London
+    , Game.Monopoly.Colour
+    , Game.Monopoly.Dice
+    , Game.Monopoly.Game
+    , Game.Monopoly.Helpers
+    , Game.Monopoly.Player
+    , Game.Monopoly.Property
+    , Game.Monopoly.Random
+    , Game.Monopoly.Rules
+    , Game.Monopoly.Space
+    , Game.Monopoly.Station
+    , Game.Monopoly.Tax
+    , Game.Monopoly.Token
+    , Game.Monopoly.Utility
+  ghc-options:         -Wall -Werror 
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-missing-local-signatures
+
+common shared-properties
+  hs-source-dirs:      src
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
+  build-depends:       base >= 4.17.0.0 && < 5
+  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+                       -Weverything
+                       -Wno-unsafe -Wno-safe
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-implicit-prelude
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-missing-kind-signatures
+                       -Wno-missing-local-signatures
+  ghcjs-options:       -dedupe
+
+executable monopoly
+  import: shared-properties
+  main-is:             Main.hs
+  build-depends:       base >= 4.17.0.0 && < 5, containers, lens, monopoly, MonadRandom
+
+test-suite monopoly-test
+  import: shared-properties
+  hs-source-dirs:      test
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  other-modules:
+    Game.BounceSpec
+  -- build-tool-depends:
+  --   hspec-discover:hspec-discover == 2.*
+  default-language:    GHC2021
+  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
+  build-depends:
+      base >= 4.17.0.0 && < 5
+    , monopoly
+    , hspec
+    -- , hspec-core
+    -- , hspec-expectations
+    , QuickCheck
