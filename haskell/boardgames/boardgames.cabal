@@ -18,20 +18,6 @@ library
   build-depends:       base >= 4.17.0.0 && < 5, containers
   exposed-modules:
       Game.Bounce
-    , Game.Monopoly.Addons
-    , Game.Monopoly.Board
-    , Game.Monopoly.Colour
-    , Game.Monopoly.Game
-    , Game.Monopoly.Helpers
-    , Game.Monopoly.Player
-    , Game.Monopoly.Property
-    , Game.Monopoly.Random
-    , Game.Monopoly.Rules
-    , Game.Monopoly.Space
-    , Game.Monopoly.Station
-    , Game.Monopoly.Tax
-    , Game.Monopoly.Token
-    , Game.Monopoly.Utility
   ghc-options:         -Wall -Werror 
                        -Weverything
                        -Wno-unsafe -Wno-safe
@@ -87,11 +73,6 @@ executable hangman
   import: shared-properties
   main-is:             hangman.hs
   build-depends:       base >= 4.17.0.0 && < 5
-
-executable monopoly
-  import: shared-properties
-  main-is:             monopoly.hs
-  build-depends:       base >= 4.17.0.0 && < 5, boardgames, containers, random
 
 --executable razzledazzle
 --  hs-source-dirs:      src
