@@ -1,94 +1,91 @@
-cabal-version:       3.4
+cabal-version:      3.4
+
 -- Newer versions complain
-name:                onlycore
-version:             0.1.0.0
+name:               onlycore
+version:            0.1.0.0
+
 -- synopsis:
 -- description:
-homepage:            https://github.com/danwdart/projects#readme
-license:             AGPL-3.0-only
+homepage:           https://github.com/danwdart/projects#readme
+license:            AGPL-3.0-only
+
 -- license-file:        LICENSE
-author:              Dan Dart
-maintainer:          cabal@dandart.co.uk
-copyright:           2019 Dan Dart
-category:            Web
-build-type:          Simple
-extra-source-files:  README.md
-data-dir:            data
-data-files:          example.form
+author:             Dan Dart
+maintainer:         cabal@dandart.co.uk
+copyright:          2019 Dan Dart
+category:           Web
+build-type:         Simple
+extra-source-files: README.md
+data-dir:           data
+data-files:         example.form
 
 common shared-properties-base
-  hs-source-dirs:      src
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  ghcjs-options:       -dedupe
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  ghcjs-options:      -dedupe
 
 common shared-properties-lib
-  import: shared-properties-base
+  import:             shared-properties-base
   ghc-options:
-    -Weverything
-    -Wno-compat-unqualified-imports
-    -Wno-implicit-prelude
-    -Wno-inferred-safe-imports
-    -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists
-    -Wno-missing-import-lists
-    -Wno-missing-kind-signatures
-    -Werror
-    -haddock
-  build-depends:       base >= 4.17.0.0 && < 5
-  default-extensions:
-    NoGeneralizedNewtypeDeriving
+    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Wno-missing-kind-signatures -Werror -haddock
+
+  build-depends:      base >=4.17.0.0 && <5
+  default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
-  import: shared-properties-base
+  import:             shared-properties-base
   ghc-options:
-    -Weverything
-    -Wno-compat-unqualified-imports
-    -Wno-implicit-prelude
-    -Wno-inferred-safe-imports
-    -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists
-    -Wno-missing-import-lists
-    -Wno-missing-kind-signatures
-    -Werror
-    -haddock
-    -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base >= 4.17.0.0 && < 5
-  default-extensions:
-    NoGeneralizedNewtypeDeriving
+    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Wno-missing-kind-signatures -Werror -haddock -threaded -rtsopts
+    -with-rtsopts=-N
+
+  build-depends:      base >=4.17.0.0 && <5
+  default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
-  import: shared-properties-unsafe
+  import:             shared-properties-unsafe
   default-extensions:
     NoGeneralizedNewtypeDeriving
     Safe
 
 -- TODO: unsafe?
 library
-  import: shared-properties-lib
-  hs-source-dirs:      lib
-  build-depends: base >= 4.17.0.0 && < 5
-               , array
-               , bytestring
-               , containers
-               , directory
-               , mtl
-               , parsec
-               , template-haskell
-               , text
+  import:          shared-properties-lib
+  hs-source-dirs:  lib
+  build-depends:
+    , array
+    , base              >=4.17.0.0 && <5
+    , bytestring
+    , containers
+    , directory
+    , mtl
+    , parsec
+    , template-haskell
+    , text
+
   exposed-modules:
     BubbleSort
     Control.Concurrent.Async.Undiscarded
     Control.Monad.State.Disparate
     Control.Monad.Trans.State.Disparate
     Control.Monad.Trans.State.Undiscarded
-    Env.Env
     Env.AbstractExtension
     Env.Class
-    Env.Instance
-    Env.ExtendedInstance
-    Env.WithOrig
+    Env.Env
     Env.Extend
+    Env.ExtendedInstance
+    Env.Instance
+    Env.WithOrig
     Form
     LCDBlock
     RuntimeTypes
@@ -99,155 +96,219 @@ library
     World
 
 executable array
-  import: shared-properties-unsafe
-  main-is:             array.hs
-  build-depends:       base >= 4.17.0.0 && < 5, array
+  import:        shared-properties-unsafe
+  main-is:       array.hs
+  build-depends:
+    , array
+    , base   >=4.17.0.0 && <5
 
 executable bashy
-  import: shared-properties-safe
-  main-is:             bashy.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore
+  import:        shared-properties-safe
+  main-is:       bashy.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlycore
 
 executable cli_contt
-  import: shared-properties-safe
-  main-is:             cli_contt.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       cli_contt.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable cont
-  import: shared-properties-safe
-  main-is:             cont.hs
-  build-depends:       base >= 4.17.0.0 && < 5, directory, transformers
+  import:        shared-properties-safe
+  main-is:       cont.hs
+  build-depends:
+    , base          >=4.17.0.0 && <5
+    , directory
+    , transformers
 
 executable cont-monad
-  import: shared-properties-safe
-  main-is:             cont-monad.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       cont-monad.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable cont-variadic
-  import: shared-properties-safe
-  main-is:             cont-variadic.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       cont-variadic.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable embed
-  import: shared-properties-unsafe
-  main-is:             embed.hs
-  build-depends:       base >= 4.17.0.0 && < 5, template-haskell
+  import:        shared-properties-unsafe
+  main-is:       embed.hs
+  build-depends:
+    , base              >=4.17.0.0 && <5
+    , template-haskell
 
 executable endo
-  import: shared-properties-safe
-  main-is:             endo.hs
-  build-depends:       base >= 4.17.0.0 && < 5, text
+  import:        shared-properties-safe
+  main-is:       endo.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , text
 
 executable files
-  import: shared-properties-safe
-  main-is:             files.hs
-  build-depends:       base >= 4.17.0.0 && < 5, directory
+  import:        shared-properties-safe
+  main-is:       files.hs
+  build-depends:
+    , base       >=4.17.0.0 && <5
+    , directory
 
 executable fixedlength
-  import: shared-properties-safe
-  main-is:             fixedlength.hs
-  build-depends:       base >= 4.17.0.0 && < 5, array
+  import:        shared-properties-safe
+  main-is:       fixedlength.hs
+  build-depends:
+    , array
+    , base   >=4.17.0.0 && <5
 
 executable forms
-  import: shared-properties-safe
-  main-is:             forms.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore, parsec
-  other-modules:
-    Paths_onlycore
-  autogen-modules:
-    Paths_onlycore
+  import:          shared-properties-safe
+  main-is:         forms.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlycore
+    , parsec
+
+  other-modules:   Paths_onlycore
+  autogen-modules: Paths_onlycore
 
 executable lcdblock
-  import: shared-properties-safe
-  main-is:             lcdblock.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore
+  import:        shared-properties-safe
+  main-is:       lcdblock.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlycore
 
 executable mtl
-  import: shared-properties-safe
-  main-is:             mtl.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       mtl.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable profunctor-lenses
-  import: shared-properties-safe
-  main-is:             profunctor-lenses.hs
-  build-depends:       base >= 4.17.0.0 && < 5
+  import:        shared-properties-safe
+  main-is:       profunctor-lenses.hs
+  build-depends: base >=4.17.0.0 && <5
 
 executable python5
-  import: shared-properties-safe
-  main-is:             python5.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore
+  import:        shared-properties-safe
+  main-is:       python5.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlycore
 
 executable qq
-  import: shared-properties-safe
-  main-is:             qq.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore
+  import:        shared-properties-safe
+  main-is:       qq.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlycore
 
 executable reader
-  import: shared-properties-safe
-  main-is:             reader.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       reader.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable reader-fn
-  import: shared-properties-safe
-  main-is:             reader-fn.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       reader-fn.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable reader-override
-  import: shared-properties-safe
-  main-is:             reader-override.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl, onlycore
+  import:        shared-properties-safe
+  main-is:       reader-override.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , mtl
+    , onlycore
 
 executable runtime-types
-  import: shared-properties-unsafe
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore, template-haskell
-  main-is:             runtime-types.hs
+  import:        shared-properties-unsafe
+  build-depends:
+    , base              >=4.17.0.0 && <5
+    , onlycore
+    , template-haskell
+
+  main-is:       runtime-types.hs
 
 executable rws
-  import: shared-properties-safe
-  main-is:             rws.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       rws.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable sha
-  import: shared-properties-safe
-  main-is:             sha.hs
-  build-depends:       base >= 4.17.0.0 && < 5, bytestring, onlycore
+  import:        shared-properties-safe
+  main-is:       sha.hs
+  build-depends:
+    , base        >=4.17.0.0 && <5
+    , bytestring
+    , onlycore
 
 executable state
-  import: shared-properties-safe
-  main-is:             state.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       state.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl
 
 executable stm
-  import: shared-properties-safe
-  main-is:             stm.hs
-  build-depends:       base >= 4.17.0.0 && < 5, stm
+  import:        shared-properties-safe
+  main-is:       stm.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , stm
 
 executable th
-  import: shared-properties-unsafe
-  main-is:             th.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore
+  import:        shared-properties-unsafe
+  main-is:       th.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlycore
 
 executable tinylang
-  import: shared-properties-safe
-  main-is:             tinylang.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore
+  import:        shared-properties-safe
+  main-is:       tinylang.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlycore
 
 executable trace
-  import: shared-properties-unsafe
-  main-is:             trace.hs
-  build-depends:       base >= 4.17.0.0 && < 5, transformers
+  import:        shared-properties-unsafe
+  main-is:       trace.hs
+  build-depends:
+    , base          >=4.17.0.0 && <5
+    , transformers
 
 executable transformers
-  import: shared-properties-safe
-  main-is:             transformers.hs
-  build-depends:       base >= 4.17.0.0 && < 5, transformers
+  import:        shared-properties-safe
+  main-is:       transformers.hs
+  build-depends:
+    , base          >=4.17.0.0 && <5
+    , transformers
 
 executable world
-  import: shared-properties-safe
-  main-is:             world.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlycore, mtl
+  import:        shared-properties-safe
+  main-is:       world.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , mtl
+    , onlycore
 
 executable writer
-  import: shared-properties-safe
-  main-is:             writer.hs
-  build-depends:       base >= 4.17.0.0 && < 5, mtl
+  import:        shared-properties-safe
+  main-is:       writer.hs
+  build-depends:
+    , base  >=4.17.0.0 && <5
+    , mtl

@@ -1,32 +1,39 @@
-cabal-version:       3.4
+cabal-version:      3.4
+
 -- Newer versions complain
-name:                tumblr-api
-version:             0.1.0.0
-license:             AGPL-3.0-only
-author:              Dan Dart
-maintainer:          git@dandart.co.uk
-build-type:          Simple
-extra-source-files:  CHANGELOG.md, README.md
+name:               tumblr-api
+version:            0.1.0.0
+license:            AGPL-3.0-only
+author:             Dan Dart
+maintainer:         git@dandart.co.uk
+build-type:         Simple
+extra-source-files:
+  CHANGELOG.md
+  README.md
 
 executable tumblr-api
-  main-is:             Main.hs
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.17.0.0 && <5
-                     , bytestring
-                     , dotenv
-                     , http-conduit
-                     , humblr
-                     , mtl
-                     , resourcet
-  hs-source-dirs:      src
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -Wno-missing-kind-signatures
-                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
+  main-is:            Main.hs
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:
+    , base          >=4.17.0.0 && <5
+    , bytestring
+    , dotenv
+    , http-conduit
+    , humblr
+    , mtl
+    , resourcet
+
+  hs-source-dirs:     src
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-local-signatures
+
+  ghcjs-options:      -dedupe

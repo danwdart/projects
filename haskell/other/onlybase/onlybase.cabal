@@ -1,83 +1,92 @@
-cabal-version:       3.4
+cabal-version:      3.4
+
 -- Newer versions complain
-name:                onlybase
-version:             0.1.0.0
+name:               onlybase
+version:            0.1.0.0
+
 -- synopsis:
 -- description:
-homepage:            https://github.com/danwdart/projects#readme
-license:             AGPL-3.0-only
+homepage:           https://github.com/danwdart/projects#readme
+license:            AGPL-3.0-only
+
 -- license-file:        LICENSE
-author:              Dan Dart
-maintainer:          cabal@dandart.co.uk
-copyright:           2019 Dan Dart
-category:            Web
-build-type:          Simple
-extra-source-files:  README.md
+author:             Dan Dart
+maintainer:         cabal@dandart.co.uk
+copyright:          2019 Dan Dart
+category:           Web
+build-type:         Simple
+extra-source-files: README.md
 
 common shared-properties-base
-  hs-source-dirs:      src
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  ghcjs-options:       -dedupe
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  ghcjs-options:      -dedupe
 
 common shared-properties-lib
-  import: shared-properties-base
+  import:             shared-properties-base
   ghc-options:
-    -Weverything
-    -Wno-compat-unqualified-imports
-    -Wno-implicit-prelude
-    -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists
-    -Wno-missing-import-lists
-    -Wno-missing-kind-signatures
-    -Werror
+    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Wno-missing-deriving-strategies -Wno-missing-export-lists
+    -Wno-missing-import-lists -Wno-missing-kind-signatures -Werror
     -haddock
-  build-depends:       base >= 4.17.0.0 && < 5
-  default-extensions:
-    NoGeneralizedNewtypeDeriving
+
+  build-depends:      base >=4.17.0.0 && <5
+  default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
-  import: shared-properties-base
+  import:        shared-properties-base
   ghc-options:
-    -Weverything
-    -Wno-compat-unqualified-imports
-    -Wno-implicit-prelude
-    -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists
-    -Wno-missing-import-lists
-    -Wno-missing-kind-signatures
-    -Werror
-    -haddock
-    -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base >= 4.17.0.0 && < 5
+    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Wno-missing-deriving-strategies -Wno-missing-export-lists
+    -Wno-missing-import-lists -Wno-missing-kind-signatures -Werror
+    -haddock -threaded -rtsopts -with-rtsopts=-N
+
+  build-depends: base >=4.17.0.0 && <5
 
 common shared-properties-safe
-  import: shared-properties-unsafe
+  import:             shared-properties-unsafe
   default-extensions:
     NoGeneralizedNewtypeDeriving
     Safe
 
 library
-  import: shared-properties-lib
-  hs-source-dirs: lib
+  import:          shared-properties-lib
+  hs-source-dirs:  lib
   exposed-modules:
+    Auth
+    BetterBools
+    BreakEverything
+    Cipher
+    Computer
     Control.Monad.Free
-    Data.Digits.Roman
-    Data.Either.Collect
-    Data.Functor.Multi
-    Data.Set.Ordered
-    Data.Set.Unordered
+    Credential
+    Currency
     Data.DependentLength
+    Data.Digits.Roman
     Data.DisparateList
+    Data.Either.Collect
     Data.Email
     Data.ErrorBars
+    Data.Functor.Multi
     Data.ListIndex
     Data.Measure
     Data.Name
     Data.NotSet
     Data.Password
+    Data.Set.Ordered
+    Data.Set.Unordered
     Data.User
-    -- Data.Logic.
+    Disparate
+    DoubleCompose
+    Factorial
+    List
+    MagicString
+    MyLens
     MyLens.Attribute
     MyLens.Date
     MyLens.Event
@@ -86,19 +95,6 @@ library
     MyLens.Title
     MyLens.Triple
     MyLens.Tuple
-    Auth
-    BetterBools
-    BreakEverything
-    Cipher
-    Computer
-    Credential
-    Currency
-    Disparate
-    DoubleCompose
-    Factorial
-    List
-    MagicString
-    MyLens
     OOP
     Parser
     Person
@@ -116,366 +112,442 @@ library
     Vec
     Wave
 
+-- Data.Logic.
 executable algsys
-  import: shared-properties-safe
-  main-is:             algebra-systems.hs
+  import:  shared-properties-safe
+  main-is: algebra-systems.hs
 
 executable applicativedo
-  import: shared-properties-safe
-  main-is:             applicativedo.hs
+  import:  shared-properties-safe
+  main-is: applicativedo.hs
 
 executable bar
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             bar.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       bar.hs
 
 executable baz
-  import: shared-properties-safe
-  main-is:             baz.hs
+  import:  shared-properties-safe
+  main-is: baz.hs
 
 executable betterbools
-  import: shared-properties-unsafe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             betterbools.hs
+  import:        shared-properties-unsafe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       betterbools.hs
 
 executable bifunctor
-  import: shared-properties-safe
-  main-is:             bifunctor.hs
-  build-depends:       base >= 4.17.0.0 && < 5
+  import:        shared-properties-safe
+  main-is:       bifunctor.hs
+  build-depends: base >=4.17.0.0 && <5
 
 executable breakeverything
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             breakeverything.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       breakeverything.hs
 
 executable callstack
-  import: shared-properties-safe
-  main-is:             callstack.hs
+  import:  shared-properties-safe
+  main-is: callstack.hs
 
 executable church
-  import: shared-properties-safe
-  main-is:             church.hs
+  import:  shared-properties-safe
+  main-is: church.hs
 
 executable cipher
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             cipher.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       cipher.hs
 
 executable class
-  import: shared-properties-safe
-  main-is:             class.hs
+  import:  shared-properties-safe
+  main-is: class.hs
 
 executable classes1
-  import: shared-properties-safe
-  main-is:             classes1.hs
+  import:  shared-properties-safe
+  main-is: classes1.hs
 
 executable classifier
-  import: shared-properties-safe
-  main-is:             classifier.hs
+  import:  shared-properties-safe
+  main-is: classifier.hs
 
 executable cli
-  import: shared-properties-safe
-  main-is:             cli.hs
+  import:  shared-properties-safe
+  main-is: cli.hs
 
 executable composefunctors
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             composefunctors.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       composefunctors.hs
 
 executable composition-eta
-  import: shared-properties-safe
-  main-is:             composition-eta.hs
+  import:  shared-properties-safe
+  main-is: composition-eta.hs
 
 executable cpostprocess
-  import: shared-properties-safe
-  main-is:             cpostprocess.hs
+  import:  shared-properties-safe
+  main-is: cpostprocess.hs
 
 executable crackme
-  import: shared-properties-safe
-  main-is:             crackme.hs
+  import:  shared-properties-safe
+  main-is: crackme.hs
 
 executable currency
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             currency.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       currency.hs
 
 executable cyclesinmixedset
-  import: shared-properties-safe
-  main-is:             cyclesinmixedset.hs
+  import:  shared-properties-safe
+  main-is: cyclesinmixedset.hs
 
 executable data
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             data.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       data.hs
 
 executable data2
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             data2.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       data2.hs
 
 executable datatypes
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             datatypes.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       datatypes.hs
 
 executable dci
-  import: shared-properties-safe
-  main-is:             dci.hs
+  import:  shared-properties-safe
+  main-is: dci.hs
 
 executable disparate
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             disparate.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       disparate.hs
 
 executable do
-  import: shared-properties-safe
-  main-is:             do.hs
+  import:  shared-properties-safe
+  main-is: do.hs
 
 executable dokis
-  import: shared-properties-unsafe
-  main-is:             dokis.hs
+  import:  shared-properties-unsafe
+  main-is: dokis.hs
 
 executable dorar
-  import: shared-properties-safe
-  main-is:             dorar.hs
+  import:  shared-properties-safe
+  main-is: dorar.hs
 
 executable echo
-  import: shared-properties-safe
-  main-is:             echo.hs
+  import:  shared-properties-safe
+  main-is: echo.hs
 
 executable enum
-  import: shared-properties-safe
-  main-is:             enum.hs
-
+  import:  shared-properties-safe
+  main-is: enum.hs
 
 executable errors
-  import: shared-properties-safe
-  main-is:             errors.hs
+  import:  shared-properties-safe
+  main-is: errors.hs
 
 executable evidence
-  import: shared-properties-safe
-  main-is:             evidence.hs
+  import:  shared-properties-safe
+  main-is: evidence.hs
 
 executable eviloop
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             eviloop.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       eviloop.hs
 
 executable exception-safety
-  import: shared-properties-safe
-  main-is:             exception-safety.hs
+  import:  shared-properties-safe
+  main-is: exception-safety.hs
 
 executable existentialism
-  import: shared-properties-safe
-  main-is:             existentialism.hs
+  import:  shared-properties-safe
+  main-is: existentialism.hs
 
 executable fixmap
-  import: shared-properties-safe
-  main-is:             fixmap.hs
+  import:  shared-properties-safe
+  main-is: fixmap.hs
 
 executable ffi
-  import: shared-properties-unsafe
-  main-is:             ffi.hs
+  import:  shared-properties-unsafe
+  main-is: ffi.hs
 
 executable fold
-  import: shared-properties-safe
-  main-is:             fold.hs
+  import:  shared-properties-safe
+  main-is: fold.hs
 
 executable foo
-  import: shared-properties-safe
-  main-is:             foo.hs
+  import:  shared-properties-safe
+  main-is: foo.hs
 
 executable free-monads
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             free-monads.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       free-monads.hs
 
 executable frp
-  import: shared-properties-safe
-  main-is:             frp.hs
+  import:  shared-properties-safe
+  main-is: frp.hs
 
 executable gadts
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             gadts.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       gadts.hs
 
 executable generics
-  import: shared-properties-safe
-  main-is:             generics.hs
+  import:  shared-properties-safe
+  main-is: generics.hs
 
 executable heact
-  import: shared-properties-safe
-  main-is:             heact.hs
+  import:  shared-properties-safe
+  main-is: heact.hs
 
 executable holup
-  import: shared-properties-safe
-  main-is:             holup.hs
+  import:  shared-properties-safe
+  main-is: holup.hs
 
 executable interact
-  import: shared-properties-safe
-  main-is:             interact.hs
+  import:  shared-properties-safe
+  main-is: interact.hs
 
 executable ioref
-  import: shared-properties-safe
-  main-is:             ioref.hs
+  import:  shared-properties-safe
+  main-is: ioref.hs
 
 executable iostate
-  import: shared-properties-unsafe
-  main-is:             iostate.hs
+  import:  shared-properties-unsafe
+  main-is: iostate.hs
 
 executable moonmadness
-  import: shared-properties-safe
-  main-is:             moonmadness.hs
+  import:  shared-properties-safe
+  main-is: moonmadness.hs
 
 executable monad
-  import: shared-properties-safe
-  main-is:             monad.hs
+  import:  shared-properties-safe
+  main-is: monad.hs
 
 executable mvar
-  import: shared-properties-safe
-  main-is:             mvar.hs
+  import:  shared-properties-safe
+  main-is: mvar.hs
 
 executable mylens
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             mylens.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       mylens.hs
 
 executable noecho
-  import: shared-properties-safe
-  main-is:             noecho.hs
+  import:  shared-properties-safe
+  main-is: noecho.hs
 
 -- executable nonary
 --   import: shared-properties-safe
 --   main-is:             nonary.hs
 
 executable overlap
-  import: shared-properties-safe
-  main-is:             overlap.hs
+  import:  shared-properties-safe
+  main-is: overlap.hs
 
 executable parser
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             parser.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       parser.hs
 
 executable pipeline
-  import: shared-properties-safe
-  main-is:             pipeline.hs
+  import:  shared-properties-safe
+  main-is: pipeline.hs
 
 executable pointers
-  import: shared-properties-safe
-  main-is:             pointers.hs
+  import:  shared-properties-safe
+  main-is: pointers.hs
 
 executable postfixops
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             postfixops.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       postfixops.hs
 
 executable prim
-  import: shared-properties-unsafe
-  main-is:             prim.hs
+  import:  shared-properties-unsafe
+  main-is: prim.hs
 
 executable propagators
-  import: shared-properties-safe
-  main-is:             propagators.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
+  import:        shared-properties-safe
+  main-is:       propagators.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
 
 executable read
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             read.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       read.hs
 
 executable rebindable
-  import: shared-properties-safe
-  main-is:             rebindable.hs
+  import:  shared-properties-safe
+  main-is: rebindable.hs
 
 executable secrets
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             secrets.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       secrets.hs
 
 executable schema
-  import: shared-properties-safe
-  main-is:             schema.hs
+  import:  shared-properties-safe
+  main-is: schema.hs
 
 executable sequence
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             sequence.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       sequence.hs
 
 executable sequences
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             sequences.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       sequences.hs
 
 executable shop
-  import: shared-properties-safe
-  main-is:             shop.hs
+  import:  shared-properties-safe
+  main-is: shop.hs
 
 executable something
-  import: shared-properties-safe
-  main-is:             something.hs
+  import:  shared-properties-safe
+  main-is: something.hs
 
 executable st
-  import: shared-properties-safe
-  main-is:             st.hs
+  import:  shared-properties-safe
+  main-is: st.hs
 
 executable stddebug
-  import: shared-properties-safe
-  main-is:             stddebug.hs
+  import:  shared-properties-safe
+  main-is: stddebug.hs
 
 executable tagless-final
-  import: shared-properties-safe
-  main-is:             tagless-final.hs
+  import:  shared-properties-safe
+  main-is: tagless-final.hs
 
 executable texttodec
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             textToDec.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       textToDec.hs
 
 executable texttodeccrazy
-  import: shared-properties-safe
-  main-is:             textToDecCrazy.hs
+  import:  shared-properties-safe
+  main-is: textToDecCrazy.hs
 
 executable tinylang
-  import: shared-properties-safe
-  main-is:             tinylang.hs
+  import:  shared-properties-safe
+  main-is: tinylang.hs
 
 executable trip
-  import: shared-properties-safe
-  main-is:             trip.hs
+  import:  shared-properties-safe
+  main-is: trip.hs
 
 executable typeable
-  import: shared-properties-safe
-  main-is:             typeable.hs
+  import:  shared-properties-safe
+  main-is: typeable.hs
 
 executable typeapplications
-  import: shared-properties-safe
-  main-is:             typeapplications.hs
+  import:  shared-properties-safe
+  main-is: typeapplications.hs
 
 executable types
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             types.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       types.hs
 
 executable variadic
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             variadic.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       variadic.hs
 
 executable wave
-  import: shared-properties-safe
-  main-is:             wave.hs
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
+  import:        shared-properties-safe
+  main-is:       wave.hs
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
 
 executable weird-calls
-  import: shared-properties-safe
-  main-is:             weird-calls.hs
+  import:  shared-properties-safe
+  main-is: weird-calls.hs
 
 executable weird-instances
-  import: shared-properties-safe
-  build-depends:       base >= 4.17.0.0 && < 5, onlybase
-  main-is:             weird-instances.hs
+  import:        shared-properties-safe
+  build-depends:
+    , base      >=4.17.0.0 && <5
+    , onlybase
+
+  main-is:       weird-instances.hs
 
 executable whereinlet
-  import: shared-properties-safe
-  main-is:             whereinlet.hs
+  import:  shared-properties-safe
+  main-is: whereinlet.hs

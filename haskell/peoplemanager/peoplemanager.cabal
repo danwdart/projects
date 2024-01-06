@@ -1,42 +1,53 @@
-cabal-version:       3.4
+cabal-version:      3.4
+
 -- Newer versions complain
-name:                peoplemanager
-version:             0.1.0.0
-synopsis:            People Manager Game
-description:         Game to manage people
+name:               peoplemanager
+version:            0.1.0.0
+synopsis:           People Manager Game
+description:        Game to manage people
+
 -- bug-reports:
-license:             AGPL-3.0-only
-license-file:        LICENCE
-author:              Dan Dart
-maintainer:          Dan Dart
+license:            AGPL-3.0-only
+license-file:       LICENCE
+author:             Dan Dart
+maintainer:         Dan Dart
+
 -- copyright:
-category:            game
-build-type:          Simple
-extra-source-files:  CHANGELOG.md, LICENCE, README.md
+category:           game
+build-type:         Simple
+extra-source-files:
+  CHANGELOG.md
+  LICENCE
+  README.md
 
 executable peoplemanager
-  main-is:             Main.hs
-  hs-source-dirs:      src
+  main-is:            Main.hs
+  hs-source-dirs:     src
+
   -- other-modules:
   -- other-extensions:
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.17.0.0 && <5
-    -- , brick
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:
+    , base         >=4.17.0.0 && <5
     , containers
     , fakedata
     , MonadRandom
     , text
     , time
     , uuid
-    -- , vector
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -Wno-missing-kind-signatures
-                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
+
+  -- , brick
+  -- , vector
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-local-signatures
+
+  ghcjs-options:      -dedupe

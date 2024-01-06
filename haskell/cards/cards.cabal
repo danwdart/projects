@@ -1,136 +1,179 @@
-cabal-version:       3.4
+cabal-version:      3.4
+
 -- Newer versions complain
-name:                cards
-version:             0.1.0.0
+name:               cards
+version:            0.1.0.0
+
 -- synopsis:
 -- description:
-homepage:            https://github.com/danwdart/dansstuff#readme
-license:             AGPL-3.0-only
+homepage:           https://github.com/danwdart/dansstuff#readme
+license:            AGPL-3.0-only
+
 -- license-file:        LICENSE
-author:              Dan Dart
-maintainer:          cabal@dandart.co.uk
-copyright:           2019 Dan Dart
-category:            Web
-build-type:          Simple
-extra-source-files:  README.md
+author:             Dan Dart
+maintainer:         cabal@dandart.co.uk
+copyright:          2019 Dan Dart
+category:           Web
+build-type:         Simple
+extra-source-files: README.md
 
 common shared-properties
-  hs-source-dirs:      src
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.17.0.0 && < 5
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -Wno-missing-kind-signatures
-                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:      base >=4.17.0.0 && <5
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-local-signatures
+
+  ghcjs-options:      -dedupe
 
 library
-  hs-source-dirs:      lib
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.17.0.0 && < 5, ansi-terminal, containers, extra, MonadRandom, random
-  ghc-options:         -Wall -Werror -haddock
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -Wno-missing-kind-signatures
-                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
-  exposed-modules:     ANSI
-                     , Data.Enum.Extra
-                     , Data.List.Pairs
-                     , Data.Statistics
-                     , Suit.Bounded.Standard
-                     , Suit.Class
-                     , Suit.Unbounded
-                     -- todo these could be a depended library
-                     , Uno.Action.Bounded
-                     , Uno.Action.Class
-                     , Uno.Action.Unbounded
-                     , Uno.Colour.Bounded
-                     , Uno.Colour.Class
-                     , Uno.Colour.Unbounded
-                     , Uno.Value.Bounded
-                     , Uno.Value.Class
-                     , Uno.Value.Unbounded
-                     , Uno.Wild.Bounded
-                     , Uno.Wild.Class
-                     , Uno.Wild.Unbounded
-                     , Uno.Card
-                     , Value.Bounded.Number
-                     , Value.Bounded.Jill
-                     , Value.Bounded.Standard
-                     , Value.Class
-                     , Value.Unbounded
-                     , Card
-                     , Deck
-                     , Instances
-                     , Ordering
-                     , Shuffle
-                     , Symbol
+  hs-source-dirs:     lib
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
 
+  build-depends:
+    , ansi-terminal
+    , base           >=4.17.0.0 && <5
+    , containers
+    , extra
+    , MonadRandom
+    , random
+
+  ghc-options:
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-local-signatures
+
+  ghcjs-options:      -dedupe
+  exposed-modules:
+    ANSI
+    Card
+    Data.Enum.Extra
+    Data.List.Pairs
+    Data.Statistics
+    Deck
+    Instances
+    Ordering
+    Shuffle
+    Suit.Bounded.Standard
+    Suit.Class
+    Suit.Unbounded
+    Symbol
+    Uno.Action.Bounded
+    Uno.Action.Class
+    Uno.Action.Unbounded
+    Uno.Card
+    Uno.Colour.Bounded
+    Uno.Colour.Class
+    Uno.Colour.Unbounded
+    Uno.Value.Bounded
+    Uno.Value.Class
+    Uno.Value.Unbounded
+    Uno.Wild.Bounded
+    Uno.Wild.Class
+    Uno.Wild.Unbounded
+    Value.Bounded.Jill
+    Value.Bounded.Number
+    Value.Bounded.Standard
+    Value.Class
+    Value.Unbounded
+
+-- todo these could be a depended library
 executable cards
-  import: shared-properties
-  main-is:             cards.hs
-  build-depends:       base >= 4.17.0.0 && < 5, cards, containers, extra, MonadRandom, random-shuffle, utility-ht
+  import:        shared-properties
+  main-is:       cards.hs
+  build-depends:
+    , base            >=4.17.0.0 && <5
+    , cards
+    , containers
+    , extra
+    , MonadRandom
+    , random-shuffle
+    , utility-ht
 
 executable demo
-  import: shared-properties
-  main-is:             demo.hs
-  build-depends:       base >= 4.17.0.0 && < 5, cards, extra
+  import:        shared-properties
+  main-is:       demo.hs
+  build-depends:
+    , base   >=4.17.0.0 && <5
+    , cards
+    , extra
 
 executable ohsol
-  import: shared-properties
-  main-is:             ohsol.hs
-  build-depends:       base >= 4.17.0.0 && < 5, cards, MonadRandom, random-shuffle
+  import:        shared-properties
+  main-is:       ohsol.hs
+  build-depends:
+    , base            >=4.17.0.0 && <5
+    , cards
+    , MonadRandom
+    , random-shuffle
 
 executable primesnap
-  import: shared-properties
-  main-is:             primesnap.hs
-  build-depends:       base >= 4.17.0.0 && < 5, cards, MonadRandom, primes, random-shuffle
+  import:        shared-properties
+  main-is:       primesnap.hs
+  build-depends:
+    , base            >=4.17.0.0 && <5
+    , cards
+    , MonadRandom
+    , primes
+    , random-shuffle
 
 executable faro-shuffles
-  import: shared-properties
-  main-is:             faro-shuffles.hs
-  build-depends:       base >= 4.17.0.0 && < 5, cards, extra
+  import:        shared-properties
+  main-is:       faro-shuffles.hs
+  build-depends:
+    , base   >=4.17.0.0 && <5
+    , cards
+    , extra
 
 executable uno
-  import: shared-properties
-  main-is:             uno.hs
-  build-depends:       base >= 4.17.0.0 && < 5, cards, extra, random-shuffle
+  import:        shared-properties
+  main-is:       uno.hs
+  build-depends:
+    , base            >=4.17.0.0 && <5
+    , cards
+    , extra
+    , random-shuffle
 
 test-suite cards-test
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -Wno-missing-kind-signatures
-                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
-  hs-source-dirs:      test
-  type:                exitcode-stdio-1.0
-  main-is:             Spec.hs
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-local-signatures
+
+  ghcjs-options:      -dedupe
+  hs-source-dirs:     test
+  type:               exitcode-stdio-1.0
+  main-is:            Spec.hs
   other-modules:
+
   -- build-tool-depends:
   --  hspec-discover:hspec-discover
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:
-    --   base >= 4.17.0.0 && < 5
-    -- , cards
-    , hspec
-    -- , hspec-core
-    -- , hspec-expectations
-    -- , QuickCheck
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:      hspec
+
+--   base >= 4.17.0.0 && < 5
+-- , cards
+-- , hspec-core
+-- , hspec-expectations
+-- , QuickCheck

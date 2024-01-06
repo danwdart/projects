@@ -1,7 +1,7 @@
 module Main (main) where
 
 import Control.Monad
-import Data.Set              qualified as Set
+import Data.Set                  qualified as Set
 import Game.Monopoly.Board
 import Game.Monopoly.Board.Devon
 import Game.Monopoly.Colour

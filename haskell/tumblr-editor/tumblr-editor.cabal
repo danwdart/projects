@@ -1,28 +1,33 @@
-cabal-version:       3.0
+cabal-version:      3.0
+
 -- Newer versions complain
-name:                tumblr-editor
-version:             0.1.0.0
-license:             AGPL-3.0-only
-author:              Dan Dart
-maintainer:          git@dandart.co.uk
-build-type:          Simple
-extra-source-files:  CHANGELOG.md
+name:               tumblr-editor
+version:            0.1.0.0
+license:            AGPL-3.0-only
+author:             Dan Dart
+maintainer:         git@dandart.co.uk
+build-type:         Simple
+extra-source-files: CHANGELOG.md
 
 executable tumblr-editor
-  main-is:             Main.hs
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.14.1.0 && <5
-                     , text
-                     , webdriver >= 0.11.0.0
-  hs-source-dirs: src
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -- -Wno-missing-kind-signatures -- only works on recent ghc
-                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
+  main-is:            Main.hs
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:
+    , base       >=4.14.1.0 && <5
+    , text
+    , webdriver  >=0.11.0.0
+
+  hs-source-dirs:     src
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures
+
+  -- -Wno-missing-kind-signatures -- only works on recent ghc
+  ghcjs-options:      -dedupe

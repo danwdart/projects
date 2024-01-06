@@ -2,7 +2,7 @@ module Game.Monopoly.Board.Devon where
 
 import Game.Monopoly.Board
 
-devonBoard :: Board
+devonBoard ∷ Board
 devonBoard = Board [
     GoSpace,
     emptyPropertySpace Brown "Hayedown, Tavistock" 60,

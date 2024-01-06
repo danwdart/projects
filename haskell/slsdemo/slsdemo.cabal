@@ -1,44 +1,48 @@
-cabal-version:       3.0
-name:           slsdemo
-version:        0.1.0
-description:    Please see the README on GitHub at <https://github.com/danwdart/projects#readme>
-homepage:       https://github.com/danwdart/projects#readme
-bug-reports:    https://github.com/danwdart/projects/issues
-author:         Dan Dart
-maintainer:     stack@dandart.co.uk
-copyright:      2019 Dan Dart
-license:        AGPL-3.0-only
-build-type:     Simple
+cabal-version:      3.0
+name:               slsdemo
+version:            0.1.0
+description:
+  Please see the README on GitHub at <https://github.com/danwdart/projects#readme>
+
+homepage:           https://github.com/danwdart/projects#readme
+bug-reports:        https://github.com/danwdart/projects/issues
+author:             Dan Dart
+maintainer:         stack@dandart.co.uk
+copyright:          2019 Dan Dart
+license:            AGPL-3.0-only
+build-type:         Simple
 extra-source-files:
-    README.md
-    ChangeLog.md
+  ChangeLog.md
+  README.md
 
 source-repository head
-  type: git
+  type:     git
   location: https://github.com/danwdart/sls
 
 common shared-properties
-  hs-source-dirs:      src
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.7 && < 5
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -- -Wno-missing-kind-signatures -- only works on recent ghc
-                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:      base >=4.7 && <5
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures
+
+  -- -Wno-missing-kind-signatures -- only works on recent ghc
+  ghcjs-options:      -dedupe
 
 executable githubpr
-  import: shared-properties
-  main-is: github-pr.hs
+  import:        shared-properties
+  main-is:       github-pr.hs
   build-depends:
-      aeson
-    , base >= 4.7 && <5
+    , aeson
+    , base                >=4.7 && <5
     , bytestring
     , containers
     , github
@@ -47,26 +51,25 @@ executable githubpr
     , text
 
 executable emailme
-  import: shared-properties
-  main-is: emailme.hs
+  import:        shared-properties
+  main-is:       emailme.hs
   build-depends:
-      aeson
-    , base >= 4.7 && <5
+    , aeson
+    , amazonka-ses
+    , base                >=4.7 && <5
     , bytestring
     , containers
     , lens
-    , amazonka-ses
     , serverless-haskell
     , text
 
 executable html
-  import: shared-properties
-  main-is: index.hs
-  hs-source-dirs:
-      html
+  import:         shared-properties
+  main-is:        index.hs
+  hs-source-dirs: html
   build-depends:
-      base >= 4.7 && <5
     , aeson
+    , base          >=4.7 && <5
     , blaze-html
     , blaze-markup
     , bytestring

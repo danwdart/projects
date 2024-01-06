@@ -7,97 +7,93 @@ license:            AGPL-3.0-or-later
 license-file:       LICENSE
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
+
 -- copyright:
 category:           Development
 build-type:         Simple
 extra-doc-files:    CHANGELOG.md
 extra-source-files:
-                    cbits/*.h
-                    cbits/*.c
+  cbits/*.c
+  cbits/*.h
 
 common shared-properties-base
-  hs-source-dirs:      src
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  ghcjs-options:       -dedupe
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  ghcjs-options:      -dedupe
 
 common shared-properties-lib
-  import: shared-properties-base
+  import:             shared-properties-base
   ghc-options:
-    -Weverything
-    -Wno-compat-unqualified-imports
-    -Wno-implicit-prelude
-    -Wno-inferred-safe-imports
-    -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists
-    -Wno-missing-import-lists
-    -Wno-missing-kind-signatures
-    -Werror
-    -haddock
-  build-depends:       base >= 4.17.0.0 && < 5
-  default-extensions:
-    NoGeneralizedNewtypeDeriving
+    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Wno-missing-kind-signatures -Werror -haddock
+
+  build-depends:      base >=4.17.0.0 && <5
+  default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
-  import: shared-properties-base
+  import:             shared-properties-base
   ghc-options:
-    -Weverything
-    -Wno-compat-unqualified-imports
-    -Wno-implicit-prelude
-    -Wno-inferred-safe-imports
-    -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists
-    -Wno-missing-import-lists
-    -Wno-missing-kind-signatures
-    -Werror
-    -haddock
-    -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base >= 4.17.0.0 && < 5
-  default-extensions:
-    NoGeneralizedNewtypeDeriving
+    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Wno-missing-kind-signatures -Werror -haddock -threaded -rtsopts
+    -with-rtsopts=-N
+
+  build-depends:      base >=4.17.0.0 && <5
+  default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
-  import: shared-properties-unsafe
+  import:             shared-properties-unsafe
   default-extensions:
     NoGeneralizedNewtypeDeriving
     Safe
 
 common shared-properties-nobase
-  import: shared-properties-base
+  import:      shared-properties-base
   ghc-options:
-    -Weverything
-    -Wno-compat-unqualified-imports
-    -Wno-implicit-prelude
-    -Wno-inferred-safe-imports
-    -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists
-    -Wno-missing-import-lists
-    -Wno-missing-kind-signatures
-    -Werror
-    -haddock
-    -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Wno-missing-kind-signatures -Werror -haddock -threaded -rtsopts
+    -with-rtsopts=-N
 
 library
-    import:           shared-properties-lib
-    exposed-modules:  
-        Queue.Foreign
-    -- cc-options: -std=c88
-    c-sources:
-        -- cbits/queue.h
-        cbits/queue.c
-    include-dirs:
-        cbits
-    extra-libraries: pthread
-    -- other-modules:
-    -- other-extensions:
-    build-depends:    base >= 4.17.0.0
-    hs-source-dirs:   lib
+  import:          shared-properties-lib
+  exposed-modules: Queue.Foreign
+
+  -- cc-options: -std=c88
+  c-sources:       cbits/queue.c
+
+  -- cbits/queue.h
+  include-dirs:    cbits
+  extra-libraries: pthread
+
+  -- other-modules:
+  -- other-extensions:
+  build-depends:   base >=4.17.0.0
+  hs-source-dirs:  lib
 
 test-suite test
-  type:                exitcode-stdio-1.0
-  hs-source-dirs:      test
-  main-is:             Spec.hs
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.17.0.0 && < 5, ffi-quickcheck, hspec, QuickCheck
-  other-modules:       Queue.ForeignSpec
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     test
+  main-is:            Spec.hs
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:
+    , base            >=4.17.0.0 && <5
+    , ffi-quickcheck
+    , hspec
+    , QuickCheck
+
+  other-modules:      Queue.ForeignSpec

@@ -2,7 +2,7 @@ module Game.Monopoly.Board.London where
 
 import Game.Monopoly.Board
 
-londonBoard :: Board
+londonBoard ∷ Board
 londonBoard = Board [
     GoSpace,
     emptyPropertySpace Brown "Old Kent Road" 60,

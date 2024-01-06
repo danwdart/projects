@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass   #-}
+{-# LANGUAGE DeriveAnyClass       #-}
 {-# LANGUAGE DerivingStrategies   #-}
 {-# LANGUAGE TemplateHaskell      #-}
 {-# LANGUAGE TypeFamilies         #-}
@@ -18,7 +18,7 @@ import Control.Monad.Random
 import Control.Monad.RWS
 -- import Data.Aeson qualified as A
 import Data.List            qualified as L
-import Data.List.NonEmpty qualified as NE
+import Data.List.NonEmpty   qualified as NE
 import Data.Map             (Map)
 import Data.Map             qualified as M
 import Data.Ratio
@@ -143,7 +143,7 @@ $(makeClassy ''GameState)
 -- Helper functions
 
 hasWon ∷ Int → Player → Bool
-hasWon finishingSpace player' = player' ^. space ^. _Wrapped == finishingSpace
+hasWon finishingSpace player' = (player' ^. (space . _Wrapped)) == finishingSpace
 
 coloured ∷ Color → String → String
 coloured colour = (setSGRCode [SetColor Foreground Vivid colour] <>) . (<> setSGRCode [Reset])
@@ -190,7 +190,7 @@ performTeleportation = do
     case mPlayer of
         Nothing -> throwError $ CantFindPlayer playerIndex
         Just player' -> do
-            let currentSpace = player' ^. space ^. _Wrapped
+            let currentSpace = player' ^. (space . _Wrapped)
             tell [fn <> ": current space is " <> show currentSpace]
             case M.lookup (FromSpace currentSpace) teleports' of
                 Just (ToSpace space') -> do
@@ -210,7 +210,7 @@ performRollover = do
     case mPlayer of
         Nothing -> throwError $ CantFindPlayer playerIndex
         Just player' -> do
-            let currentSpace = player' ^. space ^. _Wrapped
+            let currentSpace = player' ^. (space . _Wrapped)
             tell [fn <> ": current space is " <> show currentSpace]
             finishingSpace <- view stop
             startingSpace <- view start
@@ -253,7 +253,7 @@ roll ∷ (MonadWriter [String] m, MonadRandom m, MonadReader r m, HasRuleset r, 
 roll = do
     let fn = coloured Red "roll"
     moveProbabilities' <- view $ moveProbabilities . _Wrapped
-    randomRoll <- getRandomByFrequencies $ moveProbabilities'
+    randomRoll <- getRandomByFrequencies moveProbabilities'
     tell [fn <> ": Moving player by " <> show randomRoll]
     movePlayerBy randomRoll
 

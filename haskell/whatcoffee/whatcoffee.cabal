@@ -1,42 +1,62 @@
-cabal-version:       3.4
+cabal-version:      3.4
+
 -- Newer versions complain
-name:                whatcoffee
-version:             0.1.0.0
-license:             AGPL-3.0-only
-author:              Dan Dart
-maintainer:          git@dandart.co.uk
-build-type:          Simple
-extra-source-files:  CHANGELOG.md
+name:               whatcoffee
+version:            0.1.0.0
+license:            AGPL-3.0-only
+author:             Dan Dart
+maintainer:         git@dandart.co.uk
+build-type:         Simple
+extra-source-files: CHANGELOG.md
 
 library
-  hs-source-dirs:      lib
+  hs-source-dirs:     lib
+
   -- can't use base64 because of errors
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.17.0.0 && < 5, aeson, base64-bytestring, bytestring, jwt, text, time, uuid-types
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:
+    , aeson
+    , base               >=4.17.0.0 && <5
+    , base64-bytestring
+    , bytestring
+    , jwt
+    , text
+    , time
+    , uuid-types
+
   exposed-modules:
-  ghc-options:         -Wall -Werror -haddock
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -Wno-missing-kind-signatures
-                       -Wno-missing-local-signatures
+  ghc-options:
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-local-signatures
 
 executable whatcoffee
-  hs-source-dirs:      src
-  main-is:             Main.hs
-  default-language:    GHC2021
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  build-depends:       base >= 4.17.0.0 && < 5, aeson, base64-bytestring, bytestring, text, time, uuid-types
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -Wno-missing-safe-haskell-mode
-                       -Wno-missing-kind-signatures
-                       -Wno-missing-local-signatures
+  hs-source-dirs:     src
+  main-is:            Main.hs
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:
+    , aeson
+    , base               >=4.17.0.0 && <5
+    , base64-bytestring
+    , bytestring
+    , text
+    , time
+    , uuid-types
+
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-local-signatures
