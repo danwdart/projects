@@ -11,8 +11,8 @@
   },
   "license": "AGPL-3.0",
   "dependencies": {
-    "@snyk/protect": "^1.1264.0",
-    "nw": "^0.82.0"
+    "@snyk/protect": "^1.1268.0",
+    "nw": "^0.83.0"
   },
   "snyk": true
 }
