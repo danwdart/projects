@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@snyk/protect": "^1.1264.0",
-    "@types/node": "^20.10.5",
-    "typescript": "^5.4.0-dev.20231219"
+    "@snyk/protect": "^1.1268.0",
+    "@types/node": "^20.10.8",
+    "typescript": "^5.4.0-dev.20240110"
   }
 }
