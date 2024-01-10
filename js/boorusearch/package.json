@@ -16,11 +16,11 @@
   "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
   "license": "AGPL-3.0",
   "dependencies": {
-    "@snyk/protect": "^1.1108.0",
-    "core-js": "^3.28.0",
-    "download": "^8.0.0",
+    "@snyk/protect": "^1.1268.0",
+    "core-js": "^3.35.0",
+    "download": "^3.3.0",
     "esm": "^3.2.25",
     "node-fetch": "^4.0.0-beta.4",
-    "serve": "^14.2.0"
+    "serve": "^14.2.1"
   }
 }
