@@ -16,6 +16,6 @@
     "@babel/plugin-proposal-decorators": "8.0.0-alpha.5"
   },
   "dependencies": {
-    "@snyk/protect": "^1.1264.0"
+    "@snyk/protect": "^1.1268.0"
   }
 }
