@@ -11,10 +11,10 @@
   "author": "Dan Dart <npm@dandart.co.uk> (https://dandart.co.uk/)",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "eslint": "^8.56.0",
+    "eslint": "^9.0.0-alpha.0",
     "web-ext": "^0.0.1"
   },
   "dependencies": {
-    "@snyk/protect": "^1.1264.0"
+    "@snyk/protect": "^1.1268.0"
   }
 }
