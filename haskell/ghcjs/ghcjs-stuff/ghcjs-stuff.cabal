@@ -1,55 +1,105 @@
-cabal-version:       2.4
-name:                ghcjs-stuff
-version:             0.1.0.0
+cabal-version:      2.4
+name:               ghcjs-stuff
+version:            0.1.0.0
+
 -- synopsis:
 -- description:
-homepage:            https://github.com/danwdart/dansstuff#readme
-license:             AGPL-3.0-only
-author:              Dan Dart
-maintainer:          cabal@dandart.co.uk
-copyright:           2019 Dan Dart
-category:            Web
-build-type:          Simple
-extra-source-files:  README.md
+homepage:           https://github.com/danwdart/dansstuff#readme
+license:            AGPL-3.0-only
+author:             Dan Dart
+maintainer:         cabal@dandart.co.uk
+copyright:          2019 Dan Dart
+category:           Web
+build-type:         Simple
+extra-source-files: README.md
+data-files:         *.html
+data-dir:           data
 
 common shared-properties
-  hs-source-dirs:      src
-  default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-  default-language:    Haskell2010
-  build-depends:       base >= 4.14.3.0 && < 5
-  ghc-options:         -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-                       -Weverything
-                       -Wno-unsafe -Wno-safe
-                       -Wno-missing-import-lists
-                       -Wno-missing-export-lists
-                       -Wno-implicit-prelude
-                       -- -Wno-missing-safe-haskell-mode
-                       -- -Wno-missing-kind-signatures -- only works on recent ghc
-                       --                       -Wno-missing-local-signatures
-  ghcjs-options:       -dedupe
-  cpp-options:         -DGHCJS_BROWSER
+  hs-source-dirs:     src
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
 
-executable unfart
-  import: shared-properties
-  main-is:             extension/unfart.hs
-  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, containers, jsaddle, ghcjs-base, ghcjs-dom
+  default-language:   Haskell2010
+  build-depends:      base >=4.14.3.0 && <5
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+
+  -- -Wno-missing-safe-haskell-mode
+  -- -Wno-missing-kind-signatures -- only works on recent ghc
+  --                       -Wno-missing-local-signatures
+  ghcjs-options:      -dedupe
+  cpp-options:        -DGHCJS_BROWSER
+
+executable canvas
+  import:        shared-properties
+  main-is:       canvas.hs
+  build-depends:
+    , base          >=4.14.3.0 && <5
+    , ghcjs-dom
+    -- , jsaddle-warp
+
+executable cfe
+  import:        shared-properties
+  main-is:       cfe.hs
+  build-depends:
+    , base          >=4.14.3.0 && <5
+    , blaze-html
+    , bytestring
+    , ghcjs-dom
+    -- , jsaddle-warp
+    , split
 
 executable frp
-  import: shared-properties
-  main-is:             frp.hs
-  build-depends:       base >= 4.14.3.0 && < 5, blaze-html, blaze-markup, bytestring, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp, reactive-banana
+  import:        shared-properties
+  main-is:       frp.hs
+  build-depends:
+    , base             >=4.14.3.0 && <5
+    , blaze-html
+    , blaze-markup
+    , bytestring
+    , ghcjs-dom
+    -- , jsaddle-warp
+    -- , reactive-banana
 
-executable graph
-  import: shared-properties
-  main-is:             graph.hs
-  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, ghcjs-base, ghcjs-dom, jsaddle
+-- xecutable graph
+--  import:        shared-properties
+--  main-is:       graph.hs
+--  build-depends:
+--    , base           >=4.14.3.0 && <5
+--    -- , jsaddle
+--    , ghcjs-dom
 
 executable helloworld
-  import: shared-properties
-  main-is:             HelloMain.hs
-  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
+  import:        shared-properties
+  main-is:       HelloMain.hs
+  build-depends:
+    , base           >=4.14.3.0 && <5
+    , ghcjs-dom
 
 executable mine
-  import: shared-properties
-  main-is:             mine.hs
-  build-depends:       base >= 4.14.3.0 && < 5, Cabal, cabal-doctest, containers, ghcjs-dom, jsaddle, jsaddle-dom, jsaddle-warp
+  import:        shared-properties
+  main-is:       mine.hs
+  build-depends:
+    , base           >=4.14.3.0 && <5
+    , ghcjs-dom
+
+executable pure-demo
+  import:        shared-properties
+  main-is:       pure-demo.hs
+  build-depends:
+    , base          >=4.14.3.0 && <5
+    , blaze-html
+    , bytestring
+    , ghcjs-dom
+    
+executable unfart
+  import:        shared-properties
+  main-is:       extension/unfart.hs
+  build-depends:
+    , base           >=4.14.3.0 && <5
+    , containers

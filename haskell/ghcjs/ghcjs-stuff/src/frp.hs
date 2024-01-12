@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Unsafe            #-}
 
 module Main (main) where
 
@@ -26,7 +27,7 @@ import GHCJS.DOM.Types
 
 -- import Language.Javascript.JSaddle.Debug
 -- import Language.Javascript.JSaddle.Object
-import Language.Javascript.JSaddle.Warp
+-- import Language.Javascript.JSaddle.Warp
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5                 as H hiding (main)
 import Text.Blaze.Html5                 qualified as H (main)
@@ -54,4 +55,4 @@ jsMain = do
     setInnerHTML elBody . BSL.unpack $ renderHtml page
 
 main ∷ IO ()
-main = run 5000 jsMain
+main = liftJSM jsMain

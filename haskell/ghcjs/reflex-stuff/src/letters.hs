@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedLists   #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecursiveDo       #-}
+{-# LANGUAGE Unsafe            #-}
 {-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-local-binds -Wno-unused-top-binds #-}
 
 module Main (main) where
@@ -24,7 +25,7 @@ css = do
         height (px 50)
         width (px 50)
         margin (px 2) (px 2) (px 2) (px 2)
-        border solid (px 2) black
+        border (px 2) solid black
         fontSize (px 40)
         fontFamily [] [sansSerif]
         fontWeight bold

@@ -1,12 +1,16 @@
 {-# LANGUAGE JavaScriptFFI #-}
+{-# LANGUAGE Unsafe        #-}
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-unused-top-binds -Wno-unused-imports #-}
 
 module Main (main) where
 
-import Data.JSString         ()
 import GHCJS.DOM
-import GHCJS.Types
-import JavaScript.Web.Canvas qualified as C
+import GHCJS.DOM.Types
+-- import GHCJS.Types
+import GHCJS.DOM.Document
+import GHCJS.DOM.HTMLCanvasElement
+import GHCJS.DOM.CanvasPath
+import GHCJS.DOM.CanvasRenderingContext2D
 
 foreign import javascript unsafe "window.alert($1)" js_alert :: JSString → IO ()
 foreign import javascript unsafe "console.log($1)" js_log :: JSVal → IO ()
@@ -24,14 +28,14 @@ data Line2D = Line2D {
 
 -- ctx :: Reader
 
-draw ∷ Line2D → C.Context → IO ()
+draw ∷ Line2D → RenderingContext → IO ()
 draw (Line2D (Point2D x0 y0) (Point2D x1 y1)) ctx = do
-    C.beginPath ctx
-    C.moveTo x0 y0 ctx
-    C.lineTo x1 y1 ctx
-    C.stroke ctx
+    beginPath ctx
+    moveTo x0 y0 ctx
+    lineTo x1 y1 ctx
+    stroke ctx
 
-drawGrid ∷ C.Context → IO ()
+drawGrid ∷ RenderingContext → IO ()
 drawGrid ctx = pure () -- do
     -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0.0..16.0]
     -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0.0..16.0]
@@ -40,8 +44,8 @@ drawGrid ctx = pure () -- do
 
 main ∷ IO ()
 main = do
-    c <- C.create 800 800
+    c <- _create 800 800
     js_append $ jsval c
-    ctx <- C.getContext c
-    C.strokeStyle 0 0 0 1.0 ctx
+    ctx <- getContextUnsafe c
+    js_setStrokeStyle ctx "0 0 0 1.0" 
     drawGrid ctx

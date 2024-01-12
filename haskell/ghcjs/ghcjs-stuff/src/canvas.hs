@@ -1,14 +1,16 @@
+{-# LANGUAGE Unsafe            #-}
+
 module Main (main) where
 
-import JSDOM
-import JSDOM.CanvasPath
-import JSDOM.CanvasRenderingContext2D
-import JSDOM.Document
-import JSDOM.Element
-import JSDOM.HTMLCanvasElement
-import JSDOM.Node
-import Language.Javascript.JSaddle
-import Language.Javascript.JSaddle.Warp
+import GHCJS.DOM
+import GHCJS.DOM.CanvasPath
+import GHCJS.DOM.CanvasRenderingContext2D
+import GHCJS.DOM.Document
+import GHCJS.DOM.Element
+import GHCJS.DOM.HTMLCanvasElement
+import GHCJS.DOM.Node
+import GHCJS.DOM.Types
+-- import Language.Javascript.JSaddle.Warp
 
 -- add type aliases?
 cartesianToGraph ∷ (Double, Double) → (Double, Double)
@@ -79,4 +81,4 @@ jsMain = do
     plotGraph ctx
 
 main ∷ IO ()
-main = run 5000 jsMain
+main = liftJSM jsMain

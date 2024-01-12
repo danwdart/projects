@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Unsafe            #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-local-binds #-}
 
 module Main (main) where
@@ -8,12 +9,12 @@ import Data.ByteString.Lazy.Char8       qualified as BSL
 import Data.Char
 import Data.List.Split
 import Data.Ratio
-import JSDOM
-import JSDOM.Document
-import JSDOM.Element                    (setInnerHTML)
-import JSDOM.Types
-import Language.Javascript.JSaddle      hiding ((!))
-import Language.Javascript.JSaddle.Warp
+import GHCJS.DOM
+import GHCJS.DOM.Document
+import GHCJS.DOM.Element
+import GHCJS.DOM.ParentNode
+import GHCJS.DOM.Types
+-- import Language.Javascript.JSaddle.Warp
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5                 as H hiding (main)
 import Text.Blaze.Html5                 qualified as H (main)
@@ -33,12 +34,6 @@ myHead = H.head $ do
         \    margin-bottom: 0;\
         \}\
         \"
-
-scripts ∷ Html
-scripts = do
-    script ! src "https://code.jquery.com/jquery-3.3.1.slim.min.js" $ mempty
-    script ! src "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" $ mempty
-    script ! src "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" $ mempty
 
 myBody ∷ Html
 myBody = body ! class_ "bg-dark" $ do
@@ -65,15 +60,11 @@ myBody = body ! class_ "bg-dark" $ do
                             sup "1"
                             "⁄"
                             sub "10")
-    scripts
 
 page ∷ Html
 page =  do
     myHead
     myBody
-
-jq ∷ String → JSM JSVal
-jq = jsg1 ("$" :: String)
 
 splitIntoNumbers ∷ String → [Int]
 splitIntoNumbers s = read <$> splitWhen (not . isNumber) s
@@ -89,17 +80,22 @@ cfToRatio = foldl1 (\t n -> n + (1 / t))
 -- cfToFrac = foldl (\(n, d) m -> (d + (n * m), n)) (1, 1)
 
 getCFEDetails ∷ JSString → Ratio Int
-getCFEDetails str = cfToRatio . fmap fromIntegral . reverse . splitIntoNumbers $ fromJSString str
+getCFEDetails = cfToRatio . fmap fromIntegral . reverse . splitIntoNumbers . fromJSString
 
-callEmptyMethod ∷ String → JSVal → JSM JSVal
-callEmptyMethod m o = o # m $ ([] :: [String])
+qs ∷ String → JSM Element
+qs query = do
+    doc <- currentDocumentUnchecked
+    querySelectorUnchecked doc query
+
+val ∷ Element → JSM JSString
+val el = getAttributeUnchecked el ("value" :: String)
 
 calc ∷ JSM ()
 calc = do
-    cfe <- jq "#cfe"
-    dec <- jq "#dec"
-    cfeVal <- callEmptyMethod "val" cfe
-    cfeStr <- fromJSValUnchecked cfeVal
+    -- doc <- currentDocumentUnchecked
+    cfe <- qs "#cfe"
+    dec <- qs "#dec"
+    cfeStr <- val cfe
     let ratio = getCFEDetails cfeStr
     -- dec # ("html" :: String) $ cfeVal
     pure ()
@@ -111,16 +107,16 @@ jsMain = do
     elHead <- getHeadUnchecked doc
     elDoc <- getDocumentElementUnchecked doc
     setInnerHTML elDoc . BSL.unpack $ renderHtml page
-    cfe <- jq "#cfe"
-    dec <- jq "#dec"
-    fracNum <- jq "#frac sup"
-    fracDen <- jq "#frac sub"
-    graph <- jq "canvas#graph"
+    cfe <- qs "#cfe"
+    dec <- qs "#dec"
+    fracNum <- qs "#frac sup"
+    fracDen <- qs "#frac sub"
+    graph <- qs "canvas#graph"
     liftIO . putStrLn $ "Ready"
     pure ()
 
 main ∷ IO ()
-main = run 5000 jsMain
+main = liftJSM jsMain
 
 {-
 const calc = () => {

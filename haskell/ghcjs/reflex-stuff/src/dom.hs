@@ -1,7 +1,9 @@
+{-# LANGUAGE DataKinds                 #-}
 {-# LANGUAGE FlexibleContexts          #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 {-# LANGUAGE OverloadedStrings         #-}
 {-# LANGUAGE RecursiveDo               #-}
+{-# LANGUAGE Unsafe                    #-}
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
 module Main (main) where
@@ -19,8 +21,7 @@ main = mainWidgetWithHead (
     elInput <- inputElement $ def & inputElementConfig_initialValue .~ "Hi!"
     dynText $ _inputElement_value elInput
     (elBtn, _) <- el' "button" $ text "Click me!"
-    let eClick = domEvent Click elBtn
-    clicks <- count eClick
+    clicks <- count (domEvent Click elBtn)
     display clicks
     el "section" $ mdo
         el "p" $ text "Section 1"
@@ -42,8 +43,7 @@ main = mainWidgetWithHead (
         el "h1" $ text "Hello World."
         el "h2" $ text "Something."
     (elBtn2, _) <- el' "button" $ display eTogBtn
-    let eBtnClick = domEvent Click elBtn2
-    eTogBtn <- toggle False eBtnClick
+    eTogBtn <- toggle False (domEvent Click elBtn2)
     el "section" $ do
         text "The button is "
         display eTogBtn

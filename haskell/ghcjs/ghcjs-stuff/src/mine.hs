@@ -1,6 +1,8 @@
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Unsafe #-}
+
 module Main (main) where
 
-import Control.Monad
 import Control.Monad.IO.Class             (liftIO)
 -- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
 
@@ -20,8 +22,9 @@ import GHCJS.DOM.HTMLCanvasElement
 import GHCJS.DOM.Node
 import GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
-import Language.Javascript.JSaddle.Object
-import Language.Javascript.JSaddle.Warp
+-- import GHCJS.DOM.Object
+import GHCJS.DOM.Window (confirm, prompt)
+-- import Language.Javascript.JSaddle.Warp
 
 {-
 helloMain :: JSM ()
@@ -70,34 +73,35 @@ main = serve $ do
     pure ()
 
 serve ∷ JSM () → IO ()
-serve = run 5000
+serve = liftJSM
+
+foreign import javascript unsafe "console.log($1)" consoleLogString :: JSString -> IO ()
 
 logHere ∷ JSM ()
-logHere = void . (jsg "console" # "log") $ ["Hi folks!"]
+logHere = consoleLogString "Hi folks!"
 
 -- Prints Maybe Bool properly - but there's no answer if not that
 getConfirmFromClient ∷ JSM Bool
 getConfirmFromClient = do
-    info <- jsg1 "confirm" ["Are you sure?"]
-    v <- fromJSVal info
-    pure . fromJust $ v
+    win <- currentWindowUnchecked
+    confirm win (Just ("Are you sure?" :: JSString))
 
 -- Prints Maybe String but includes Maybe "null" - JSNull should be Nothing?
 getPromptFromClient ∷ JSM (Maybe String)
 getPromptFromClient = do
-    info <- jsg1 "prompt" ["What is your name"]
-    fromJSVal info -- no need to pure because returns anyway
+    win <- currentWindowUnchecked
+    prompt win (Just ("What is your name" :: String)) (Nothing :: Maybe String)
 
 newContextFromNewCanvas ∷ JSM CanvasRenderingContext2D
 newContextFromNewCanvas = do
     d <- currentDocumentUnchecked
     b <- getBodyUnchecked d
-    c <- createElement d "canvas"
-    setAttribute c "height" "800px"
-    setAttribute c "width" "800px"
+    c <- createElement d ("canvas" :: JSString)
+    setAttribute c ("height" :: JSString) ("800px" :: JSString)
+    setAttribute c ("width" :: JSString) ("800px" :: JSString)
     canNode <- appendChild b c
     let canEl = uncheckedCastTo HTMLCanvasElement canNode
-    mCtx <- getContext canEl "2d" [""]
+    mCtx <- getContext canEl ("2d" :: JSString) [("" :: JSString)]
     let gCtx = fromJust mCtx
     pure . uncheckedCastTo CanvasRenderingContext2D $ gCtx
 
@@ -111,7 +115,7 @@ line (x1, y1) (x2, y2) ctx = do
 drawOnNewCanvas ∷ JSM ()
 drawOnNewCanvas = do
     ctx <- newContextFromNewCanvas
-    setStrokeStyle ctx "1px solid black"
+    setStrokeStyle ctx ("1px solid black" :: JSString)
     line (100, 100) (700, 700) ctx
     line (100, 700) (700, 100) ctx
 

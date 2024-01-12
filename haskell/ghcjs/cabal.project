@@ -1,4 +1,4 @@
 packages:
-    jsaddle-stuff/jsaddle-stuff.cabal
+    ghcjs-stuff/ghcjs-stuff.cabal
     reflex-stuff/reflex-stuff.cabal
 tests: True

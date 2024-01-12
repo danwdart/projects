@@ -1,5 +1,6 @@
 {-# LANGUAGE JavaScriptFFI     #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Unsafe            #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds #-}
 
 module Main (main) where
@@ -12,10 +13,9 @@ const doReplaceTweets = twitterUr; === window.location.href ?
     () => {};
 -}
 
-import Data.JSString ()
 import Data.Map      (Map)
 import Data.Map      qualified as Map
-import GHCJS.Types
+-- import GHCJS.DOM
 -- import JavaScript.Web. qualified
 
 
