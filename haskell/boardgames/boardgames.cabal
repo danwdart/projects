@@ -22,7 +22,6 @@ library
 
   build-depends:
     , base        >=4.17.0.0 && <5
-    , containers
 
   exposed-modules:    Game.Bounce
   ghc-options:
