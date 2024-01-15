@@ -1,6 +1,9 @@
 module Game.Monopoly.Board.London where
 
 import Game.Monopoly.Board
+import Game.Monopoly.Colour
+import Game.Monopoly.Space
+import Game.Monopoly.Random
 
 londonBoard ∷ Board
 londonBoard = Board [

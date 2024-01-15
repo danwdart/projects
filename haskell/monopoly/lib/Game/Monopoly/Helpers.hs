@@ -59,4 +59,4 @@ addMoney ∷ Int → Player → Player
 addMoney income player = player {money = money player + income}
 
 taxMoney ∷ Tax → Player → Board → (Player, Board)
-taxMoney (Tax _ fee) player b = (player {money = money player - fee}, b {freeParkingMoney = freeParkingMoney b + fee})
+taxMoney (Tax _ fee) player b = (player {money = money player - fee}, b {_freeParkingMoney = _freeParkingMoney b + fee})

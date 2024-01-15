@@ -2,7 +2,7 @@
 
 module Game.Monopoly.Board where
 
-import Data.Lens
+import Control.Lens
 import Game.Monopoly.Space
 
 data Board = Board {
