@@ -358,6 +358,10 @@ executable iostate
   import:  shared-properties-unsafe
   main-is: iostate.hs
 
+executable lazy-io
+  import:  shared-properties-unsafe
+  main-is: lazy-io.hs
+
 executable moonmadness
   import:  shared-properties-safe
   main-is: moonmadness.hs
