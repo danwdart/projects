@@ -63,7 +63,9 @@ library
     Data.List.Safer
     Factor
     Frobenius
+    Numeric.DiffFactor
     Numeric.Napier
+    Numeric.Tree
     NumList
     Period
     Semiprimes
