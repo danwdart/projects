@@ -7,7 +7,6 @@
 }).project ({ pkgs, ... }: {
   packages = {
     ghcjs-stuff = ./ghcjs-stuff;
-    jsaddle-stuff = ./jsaddle-stuff;
     reflex-stuff = ./reflex-stuff;
   };
 
@@ -32,8 +31,8 @@
   };
 
   shells = {
-    ghc = ["jsaddle-stuff" "reflex-stuff"];
-    ghcjs = ["ghcjs-stuff" "jsaddle-stuff" "reflex-stuff"];
-    wasm = ["ghcjs-stuff" "jsaddle-stuff" "reflex-stuff"];
+    ghc = ["reflex-stuff"];
+    ghcjs = ["ghcjs-stuff" "reflex-stuff"];
+    wasm = ["ghcjs-stuff" "reflex-stuff"];
   };
 })

@@ -10,17 +10,17 @@ trap pwd ERR
 nix-build -o result/ghcjs-stuff/ghcjs -A ghcjs.ghcjs-stuff 2>&1 | sed 's/^/ghcjs.ghcjs-stuff: /'
 nix-build -o result/reflex-stuff/ghcjs -A ghcjs.reflex-stuff 2>&1 | sed 's/^/ghcjs.reflex-stuff: /' # cache broken
 
-nix-build -o result/reflex-stuff/android -A android.reflex-stuff 2>&1 | sed 's/^/android.reflex-stuff: /'
+# nix-build -o result/reflex-stuff/android -A android.reflex-stuff 2>&1 | sed 's/^/android.reflex-stuff: /'
 
 # nix-store -qR --include-outputs $(nix-instantiate -A shells.ghc) | cachix push dandart
 # nix-store -qR --include-outputs $(nix-instantiate -A shells.ghc) | xargs nix-copy-closure --gzip -s --include-outputs dwd@cache.jolharg.com
-nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | cachix push dandart
+nix-store -qR --include-outputs $(nix-instantiate --add-root result/shell --indirect -A shells.ghcjs) | cachix push dandart
 # nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | xargs nix-copy-closure --gzip -s --include-outputs dwd@cache.jolharg.com
 # nix-store -qR --include-outputs $(nix-instantiate -A ghc.reflex-stuff) | cachix push dandart
 ##nix-store -qR --include-outputs $(nix-instantiate -A ghc.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs dwd@cache.jolharg.com
-nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | cachix push dandart
+nix-store -qR --include-outputs $(nix-instantiate --add-root result/ghcjs-stuff --indirect -A ghcjs.ghcjs-stuff) | cachix push dandart
 # nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | xargs nix-copy-closure --gzip -s --include-outputs dwd@cache.jolharg.com
-nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | cachix push dandart
+nix-store -qR --include-outputs $(nix-instantiate --add-root result/reflex-stuff --indirect -A ghcjs.reflex-stuff) | cachix push dandart
 # nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs dwd@cache.jolharg.com
 # nix-store -qR --include-outputs $(nix-instantiate -A android.reflex-stuff) | cachix push dandart
 # nix-store -qR --include-outputs $(nix-instantiate -A android.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs dwd@cache.jolharg.com
