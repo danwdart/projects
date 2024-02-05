@@ -1,0 +1,3 @@
+packages:
+    ./cards-ui.cabal
+tests: True
