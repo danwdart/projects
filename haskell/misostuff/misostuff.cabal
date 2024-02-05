@@ -42,6 +42,5 @@ executable misostuff
       aeson
     , base          >=4.12.0  && <5
     , containers
-    , jsaddle-warp
     , miso          >=1.7.1.0
     , transformers

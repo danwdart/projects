@@ -16,20 +16,10 @@ import Data.Bool
 import Data.Map                         qualified as M
 import Data.Monoid
 import GHC.Generics
-import Language.Javascript.JSaddle
-import Language.Javascript.JSaddle.Warp as JSaddle
 import Miso
 import Miso.Effect
 import Miso.String                      (MisoString)
 import Miso.String                      qualified as S
-
--- import Language.Javascript.JSaddle.WKWebView as JSaddle
-
--- runApp :: JSM () -> IO ()
--- runApp = JSaddle.run
-
-runApp ∷ JSM () → IO ()
-runApp = JSaddle.run 8080
 
 default (MisoString)
 
@@ -88,7 +78,7 @@ data Msg
    deriving Show
 
 main ∷ IO ()
-main = runApp $ startApp App { initialAction = NoOp, ..}
+main = liftJSM $ startApp App { initialAction = NoOp, ..}
   where
     model      = emptyModel
     update     = updateModel
