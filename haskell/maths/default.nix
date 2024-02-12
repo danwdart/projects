@@ -4,8 +4,6 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  # integer-roots doesn't support ghc 9.4 because ghc-bignum < 1.3
-  # https://github.com/Bodigrim/integer-roots/issues/2
   compiler ? "ghc94"
 }:
 let
