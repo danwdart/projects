@@ -25,13 +25,13 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.17.0.0 && <5
+  build-depends:      base >=4.18.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-local-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
 
   ghcjs-options:      -dedupe
 
@@ -44,7 +44,7 @@ library
     UnicodeSyntax
 
   build-depends:
-    , base    >=4.17.0.0 && <5
+    , base    >=4.18.0.0 && <5
     , primes
 
   ghc-options:
@@ -52,6 +52,7 @@ library
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations
 
   ghcjs-options:      -dedupe
   exposed-modules:
@@ -65,32 +66,29 @@ library
 executable projecteuler
   import:        shared-properties
   build-depends:
-    , base          >=4.17.0.0
+    , base          >=4.18.0.0
     , projecteuler
 
   main-is:       Main.hs
-
-test-suite projecteuler-test
   hs-source-dirs:     src
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
-
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-local-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
 
+test-suite projecteuler-test
   ghcjs-options:      -dedupe
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
   other-modules:
-
   -- build-tool-depends:
   --  hspec-discover:hspec-discover
   default-language:   GHC2021
@@ -98,12 +96,4 @@ test-suite projecteuler-test
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
-
   build-depends:      hspec
-
--- base >= 4.17.0.0 && < 5
--- , projecteuler
--- , 
--- , hspec-core
--- , hspec-expectations
--- , QuickCheck
