@@ -12,4 +12,4 @@ import TH
 main ∷ IO ()
 main = do
     putStrLn $(self)
-    putStrLn $$(selfTyped)
+    putStrLn $$selfTyped
