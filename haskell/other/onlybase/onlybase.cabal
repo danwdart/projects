@@ -32,10 +32,10 @@ common shared-properties-lib
   ghc-options:
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
-    -Wno-missing-import-lists -Wno-missing-kind-signatures -Werror
-    -haddock
+    -Wno-missing-import-lists -Wno-missing-kind-signatures
+    -Wno-all-missed-specialisations -Werror -haddock
 
-  build-depends:      base >=4.17.0.0 && <5
+  build-depends:      base >=4.18.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -43,10 +43,11 @@ common shared-properties-unsafe
   ghc-options:
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
-    -Wno-missing-import-lists -Wno-missing-kind-signatures -Werror
-    -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wno-missing-import-lists -Wno-missing-kind-signatures
+    -Wno-all-missed-specialisations -Werror -haddock -threaded -rtsopts
+    -with-rtsopts=-N
 
-  build-depends: base >=4.17.0.0 && <5
+  build-depends: base >=4.18.0.0 && <5
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -125,15 +126,17 @@ executable applicativedo
 executable args
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
+
   main-is:       args.hs
 
 executable bar
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
+
   main-is:       bar.hs
 
 executable baz
@@ -143,7 +146,7 @@ executable baz
 executable betterbools
   import:        shared-properties-unsafe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       betterbools.hs
@@ -151,12 +154,12 @@ executable betterbools
 executable bifunctor
   import:        shared-properties-safe
   main-is:       bifunctor.hs
-  build-depends: base >=4.17.0.0 && <5
+  build-depends: base >=4.18.0.0 && <5
 
 executable breakeverything
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       breakeverything.hs
@@ -172,7 +175,7 @@ executable church
 executable cipher
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       cipher.hs
@@ -196,7 +199,7 @@ executable cli
 executable composefunctors
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       composefunctors.hs
@@ -216,7 +219,7 @@ executable crackme
 executable currency
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       currency.hs
@@ -228,7 +231,7 @@ executable cyclesinmixedset
 executable data
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       data.hs
@@ -236,7 +239,7 @@ executable data
 executable data2
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       data2.hs
@@ -244,7 +247,7 @@ executable data2
 executable datatypes
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       datatypes.hs
@@ -256,7 +259,7 @@ executable dci
 executable disparate
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       disparate.hs
@@ -292,7 +295,7 @@ executable evidence
 executable eviloop
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       eviloop.hs
@@ -324,7 +327,7 @@ executable foo
 executable free-monads
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       free-monads.hs
@@ -336,7 +339,7 @@ executable frp
 executable gadts
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       gadts.hs
@@ -384,7 +387,7 @@ executable mvar
 executable mylens
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       mylens.hs
@@ -404,7 +407,7 @@ executable overlap
 executable parser
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       parser.hs
@@ -420,7 +423,7 @@ executable pointers
 executable postfixops
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       postfixops.hs
@@ -433,13 +436,13 @@ executable propagators
   import:        shared-properties-safe
   main-is:       propagators.hs
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
 executable read
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       read.hs
@@ -451,7 +454,7 @@ executable rebindable
 executable secrets
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       secrets.hs
@@ -463,7 +466,7 @@ executable schema
 executable sequence
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       sequence.hs
@@ -471,7 +474,7 @@ executable sequence
 executable sequences
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       sequences.hs
@@ -499,7 +502,7 @@ executable tagless-final
 executable texttodec
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       textToDec.hs
@@ -527,7 +530,7 @@ executable typeapplications
 executable types
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       types.hs
@@ -535,7 +538,7 @@ executable types
 executable variadic
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       variadic.hs
@@ -544,7 +547,7 @@ executable wave
   import:        shared-properties-safe
   main-is:       wave.hs
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
 executable weird-calls
@@ -554,7 +557,7 @@ executable weird-calls
 executable weird-instances
   import:        shared-properties-safe
   build-depends:
-    , base      >=4.17.0.0 && <5
+    , base      >=4.18.0.0 && <5
     , onlybase
 
   main-is:       weird-instances.hs
