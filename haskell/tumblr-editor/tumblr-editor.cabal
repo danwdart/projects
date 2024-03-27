@@ -28,6 +28,7 @@ executable tumblr-editor
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations
 
   -- -Wno-missing-kind-signatures -- only works on recent ghc
   ghcjs-options:      -dedupe
