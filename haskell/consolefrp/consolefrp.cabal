@@ -16,7 +16,7 @@ executable consolefrp
     UnicodeSyntax
 
   build-depends:
-    , base        >=4.17.0.0 && <5
+    , base        >=4.18.0.0 && <5
     , reflex-vty
     , vty
 
@@ -26,4 +26,4 @@ executable consolefrp
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-local-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
