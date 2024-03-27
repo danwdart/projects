@@ -21,7 +21,7 @@ library
 
   build-depends:
     , aeson
-    , base               >=4.17.0.0 && <5
+    , base               >=4.18.0.0 && <5
     , base64-bytestring
     , bytestring
     , jwt
@@ -35,6 +35,7 @@ library
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations
 
 executable whatcoffee
   hs-source-dirs:     src
@@ -47,7 +48,7 @@ executable whatcoffee
 
   build-depends:
     , aeson
-    , base               >=4.17.0.0 && <5
+    , base               >=4.18.0.0 && <5
     , base64-bytestring
     , bytestring
     , text
@@ -59,4 +60,5 @@ executable whatcoffee
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-local-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-all-missed-specialisations
