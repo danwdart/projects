@@ -3,8 +3,6 @@
 
 module Main (main) where
 
-import Control.Applicative (liftA2)
-
 data Yaml
   = String String
   | Object [(String, Yaml)]

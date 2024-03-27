@@ -15,15 +15,14 @@ data B = B {
     d :: A
 }
 
-mkAIO :: IO A
-mkAIO = pure $ trace "Making A" $ A 1 "Yo"
+mkAIO ∷ IO A
+mkAIO = pure . trace "Making A" $ A 1 "Yo"
 
-mkBIO :: IO B
+mkBIO ∷ IO B
 mkBIO = do
-    a <- mkAIO
-    pure $ trace "Making B" $ B 1 a
+    trace "Making B" . B 1 <$> mkAIO
 
-main :: IO ()
+main ∷ IO ()
 main = do
     b <- mkBIO
     print $ c b

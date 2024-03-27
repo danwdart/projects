@@ -15,6 +15,7 @@
 {-# OPTIONS_GHC -Wno-missing-import-lists #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 {-# OPTIONS_GHC -Wno-safe #-}
+{-# OPTIONS_GHC -Wno-all-missed-specialisations #-}
 {-# LANGUAGE IncoherentInstances          #-}
 {-# LANGUAGE TypeFamilies                 #-}
 {-# LANGUAGE UndecidableSuperClasses      #-}
