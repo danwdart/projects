@@ -20,12 +20,13 @@ library
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.17.0.0 && <5
+  build-depends:      base >=4.18.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations
 
   exposed-modules:
 
@@ -37,13 +38,13 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.17.0.0 && <5
+  build-depends:      base >=4.18.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-local-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
 
   ghcjs-options:      -dedupe
 
