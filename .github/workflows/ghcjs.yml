@@ -1,4 +1,4 @@
- ghcjs.yml.disabledname: "GHCJS Stuff"
+name: "GHCJS Stuff"
 on:
   schedule:
     - cron: "0 2 * * *"
@@ -21,11 +21,6 @@ jobs:
       run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         git submodule update --init --recursive
-    - name: Setup SSH key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
     - name: Install Nix
       uses: cachix/install-nix-action@v20
       with:
@@ -44,9 +39,6 @@ jobs:
     - name: Push GHCJS shell stuff to Cachix
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | cachix push dandart
-    - name: Push GHCJS shell stuff to private cache server
-      run: |
-        nix-store -qR --include-outputs $(nix-instantiate -A shells.ghcjs) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
   ghcjs-stuff:
     runs-on: ubuntu-latest
     steps:
@@ -56,11 +48,6 @@ jobs:
       run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         git submodule update --init --recursive
-    - name: Setup SSH key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
     - name: Install Nix
       uses: cachix/install-nix-action@v20
       with:
@@ -83,9 +70,6 @@ jobs:
     - name: Push GHCJS stuff to Cachix
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | cachix push dandart
-    - name: Push GHCJS stuff to private cache server
-      run: |
-        nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
   reflex-ghcjs-stuff:
     runs-on: ubuntu-latest
     steps:
@@ -95,11 +79,6 @@ jobs:
       run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
         git submodule update --init --recursive
-    - name: Setup SSH key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
     - name: Install Nix
       uses: cachix/install-nix-action@v20
       with:
@@ -122,6 +101,3 @@ jobs:
     - name: Push Reflex GHCJS stuff to Cachix
       run: |
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | cachix push dandart
-    - name: Push Reflex GHCJS stuff to private cache server
-      run: |
-        nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
