@@ -41,6 +41,3 @@ jobs:
     - name: Push dependencies to Cachix
       run: |
         nix-store -qR --include-outputs $(nix-instantiate shell.nix --add-root result/shell --indirect) | cachix push dandart
-    - name: Push dependencies to private cache
-      run: |
-        nix-store -qR --include-outputs $(nix-instantiate shell.nix --add-root result/shell --indirect) | xargs nix-copy-closure --gzip -s --include-outputs ${{ vars.CACHE_USER }}@${{ vars.CACHE_SERVER }}
