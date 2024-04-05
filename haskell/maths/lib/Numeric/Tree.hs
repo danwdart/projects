@@ -11,7 +11,7 @@ data Expr =
     Negate Expr |
     Abs Expr |
     Signum Expr
-    deriving (Eq, Show) -- equal structure not unique value necessarily
+    deriving stock (Eq, Show) -- equal structure not unique value necessarily
 
 instance Num Expr where
     (+) = Add
