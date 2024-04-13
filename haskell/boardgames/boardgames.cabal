@@ -20,7 +20,7 @@ library
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.18.0.0 && <5
+  build-depends:      base >=4.18.2.0 && <5
   exposed-modules:    Game.Bounce
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
@@ -37,7 +37,7 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.18.0.0 && <5
+  build-depends:      base >=4.18.2.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -51,14 +51,14 @@ executable 1010
   import:        shared-properties
   main-is:       1010.hs
   build-depends:
-    , base        >=4.18.0.0 && <5
+    , base        >=4.18.2.0 && <5
     , containers
 
 executable 10x10grid
   import:        shared-properties
   main-is:       10x10grid.hs
   build-depends:
-    , base         >=4.18.0.0 && <5
+    , base         >=4.18.2.0 && <5
     , bifunctors
     , MonadRandom
 
@@ -66,38 +66,38 @@ executable 2048
   import:        shared-properties
   main-is:       2048.hs
   build-depends:
-    , base         >=4.18.0.0 && <5
+    , base         >=4.18.2.0 && <5
     , MonadRandom
 
 executable bounce
   import:        shared-properties
   main-is:       bounce.hs
-  build-depends: base >=4.18.0.0 && <5
+  build-depends: base >=4.18.2.0 && <5
 
 executable frog
   import:        shared-properties
   main-is:       frog.hs
   build-depends:
-    , base         >=4.18.0.0 && <5
+    , base         >=4.18.2.0 && <5
     , containers
     , MonadRandom
 
 executable hangman
   import:        shared-properties
   main-is:       hangman.hs
-  build-depends: base >=4.18.0.0 && <5
+  build-depends: base >=4.18.2.0 && <5
 
 --executable razzledazzle
 --  hs-source-dirs:      src
 --  main-is:             razzledazzle.hs
---  --  build-depends:       base >= 4.18.0.0 && < 5, monad-loops, probability, random, rando, utility-ht
+--  --  build-depends:       base >= 4.18.2.0 && < 5, monad-loops, probability, random, rando, utility-ht
 
 executable snl
   import:        shared-properties
   main-is:       snl.hs
   build-depends:
     , ansi-terminal
-    , base           >=4.18.0.0 && <5
+    , base           >=4.18.2.0 && <5
     , containers
     , lens
     , MonadRandom
@@ -109,7 +109,7 @@ executable sudoku
   import:        shared-properties
   main-is:       sudoku.hs
   build-depends:
-    , base        >=4.18.0.0 && <5
+    , base        >=4.18.2.0 && <5
     , containers
     , extra
     , lattices
@@ -131,7 +131,7 @@ test-suite boardgames-test
     UnicodeSyntax
 
   build-depends:
-    , base        >=4.18.0.0 && <5
+    , base        >=4.18.2.0 && <5
     , boardgames
     , hspec
     , QuickCheck

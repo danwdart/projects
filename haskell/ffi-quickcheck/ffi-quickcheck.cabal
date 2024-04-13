@@ -35,7 +35,7 @@ common shared-properties-lib
     -Wno-missing-kind-signatures -Wno-all-missed-specialisations
     -Werror -haddock
 
-  build-depends:      base >=4.18.0.0 && <5
+  build-depends:      base >=4.18.2.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -47,7 +47,7 @@ common shared-properties-unsafe
     -Wno-missing-kind-signatures -Wno-all-missed-specialisations
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends:      base >=4.18.0.0 && <5
+  build-depends:      base >=4.18.2.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
@@ -78,7 +78,7 @@ library
 
   -- other-modules:
   -- other-extensions:
-  build-depends:   base >=4.18.0.0
+  build-depends:   base >=4.18.2.0
   hs-source-dirs:  lib
 
 test-suite test
@@ -92,7 +92,7 @@ test-suite test
     UnicodeSyntax
 
   build-depends:
-    , base            >=4.18.0.0 && <5
+    , base            >=4.18.2.0 && <5
     , ffi-quickcheck
     , hspec
     , QuickCheck

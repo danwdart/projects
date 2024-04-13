@@ -25,7 +25,7 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.18.0.0 && <5
+  build-depends:      base >=4.18.2.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -45,7 +45,7 @@ library
 
   build-depends:
     , ansi-terminal
-    , base           >=4.18.0.0 && <5
+    , base           >=4.18.2.0 && <5
     , containers
     , extra
     , MonadRandom
@@ -97,7 +97,7 @@ executable cards
   import:        shared-properties
   main-is:       cards.hs
   build-depends:
-    , base            >=4.18.0.0 && <5
+    , base            >=4.18.2.0 && <5
     , cards
     , containers
     , extra
@@ -109,7 +109,7 @@ executable demo
   import:        shared-properties
   main-is:       demo.hs
   build-depends:
-    , base   >=4.18.0.0 && <5
+    , base   >=4.18.2.0 && <5
     , cards
     , extra
 
@@ -117,7 +117,7 @@ executable ohsol
   import:        shared-properties
   main-is:       ohsol.hs
   build-depends:
-    , base            >=4.18.0.0 && <5
+    , base            >=4.18.2.0 && <5
     , cards
     , MonadRandom
     , random-shuffle
@@ -126,7 +126,7 @@ executable primesnap
   import:        shared-properties
   main-is:       primesnap.hs
   build-depends:
-    , base            >=4.18.0.0 && <5
+    , base            >=4.18.2.0 && <5
     , cards
     , MonadRandom
     , primes
@@ -136,7 +136,7 @@ executable faro-shuffles
   import:        shared-properties
   main-is:       faro-shuffles.hs
   build-depends:
-    , base   >=4.18.0.0 && <5
+    , base   >=4.18.2.0 && <5
     , cards
     , extra
 
@@ -144,7 +144,7 @@ executable uno
   import:        shared-properties
   main-is:       uno.hs
   build-depends:
-    , base            >=4.18.0.0 && <5
+    , base            >=4.18.2.0 && <5
     , cards
     , extra
     , random-shuffle
@@ -173,7 +173,7 @@ test-suite cards-test
 
   build-depends:      hspec
 
---   base >= 4.18.0.0 && < 5
+--   base >= 4.18.2.0 && < 5
 -- , cards
 -- , hspec-core
 -- , hspec-expectations
