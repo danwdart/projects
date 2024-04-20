@@ -5,7 +5,7 @@ module Numeric.DiffFactor where
 
 -- >>> Diff 5 + Factor 7 * Normal 2
 data DiffFactor a = Normal a | Diff a | Factor a
-    deriving (Eq, Show) -- maybe inverse
+    deriving stock (Eq, Show) -- maybe inverse
 
 instance Num a => Num (DiffFactor a) where
     Normal a + Diff b = Normal (a + b)
@@ -20,3 +20,4 @@ instance Num a => Num (DiffFactor a) where
     signum _ = error "can't signum a non-normal value"
     fromInteger a = Normal (fromInteger a)
     negate (Normal a) = Normal (negate a)
+    negate _ = error "can't negate a non-normal value"

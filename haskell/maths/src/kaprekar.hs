@@ -69,13 +69,15 @@ kap = stable . iterate kapIter
 setAt :: k -> v -> [(k, v)] -> [(k, v)]
 setAt = undefined
 
+{-}
 grouped :: [(a, b)] -> [(a, [b])]
 grouped xs = go xs [] where
     go :: [(a, b)] -> [(a, [b])] -> [(a, [b])]
     go [] sofar = sofar
-    go (a, b):xs sofar = case find ((== a) . snd) sofar of
-        Nothing -> go xs (a, [b]):sofar
-        Just (k, v) -> go xs (setAt k a:v sofar)
+    go ((k, v):xs) sofar = case L.find ((== k) . fst) sofar of
+        Nothing -> go xs (k, [v]):sofar
+        Just (k, v) -> go xs (setAt k v:vs sofar)
+-}
 
 main ∷ IO ()
 main = pure ()
