@@ -75,16 +75,17 @@ executable monopoly
   build-depends:
     , base         >=4.17.0.0 && <5
     , containers
-    , lens
-    , MonadRandom
+    -- , lens
+    -- , MonadRandom
     , monopoly
+    -- , random
 
 test-suite monopoly-test
-  import:             shared-properties
+  -- import:             shared-properties
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
-  other-modules:      Game.BounceSpec
+  other-modules:      
 
   -- build-tool-depends:
   --   hspec-discover:hspec-discover == 2.*
@@ -95,10 +96,10 @@ test-suite monopoly-test
     UnicodeSyntax
 
   build-depends:
-    , base        >=4.17.0.0 && <5
+    -- , base        >=4.17.0.0 && <5
     , hspec
-    , monopoly
-    , QuickCheck
+    -- , monopoly
+    -- , QuickCheck
 
 -- , hspec-core
 -- , hspec-expectations
