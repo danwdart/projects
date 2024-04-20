@@ -436,12 +436,12 @@ executable sdl
 
 -- reflex-sdl2
 
-executable serial
-  import:        shared-properties-safe
-  main-is:       serial.hs
-  build-depends:
-    , base    >=4.17.0.0 && <5
-    , serial
+-- executable serial
+--   import:        shared-properties-safe
+--   main-is:       serial.hs
+--   build-depends:
+--     , base    >=4.17.0.0 && <5
+--     , serial
 
 executable shell
   import:        shared-properties-unsafe
