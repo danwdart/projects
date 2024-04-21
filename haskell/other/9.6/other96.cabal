@@ -1,7 +1,7 @@
 cabal-version:      3.4
 
 -- Newer versions complain
-name:               other94
+name:               other96
 version:            0.1.0.0
 
 -- synopsis:
@@ -168,7 +168,7 @@ executable dynamic-schema
   main-is:       dynamic-schema.hs
   build-depends:
     , base              >=4.17.0.0 && <5
-    , other94
+    , other96
     , template-haskell
     , yaml
 
@@ -422,7 +422,7 @@ executable req
   main-is:       req.hs
   build-depends:
     , base  >=4.17.0.0 && <5
-    , mtl
+    -- , mtl
     , req
     , text
 
@@ -583,7 +583,7 @@ test-suite test
   build-depends:
     , base        >=4.17.0.0 && <5
     , hspec
-    , other94
+    , other96
     , QuickCheck
 
   other-modules:

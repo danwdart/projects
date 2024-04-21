@@ -4,7 +4,7 @@
 
 module Main (main) where
 
-import Control.Monad.Except
+import Control.Monad
 -- import Control.Monad.IO.Class (MonadIO, liftIO)
 -- import Control.Retry
 -- import Data.Aeson

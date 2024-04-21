@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc94"
+  compiler ? "ghc96"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -46,12 +46,12 @@ let
       HGamer3D = lib.doJailbreak (lib.markUnbroken super.HGamer3D);
       # ghc-typelits-presburger = self.callHackage "ghc-typelits-presburger" "0.7.1.0" {};
       # ghc-typelits-natnormalise = self.callHackage "ghc-typelits-natnormalise" "0.7.7" {};
-      other94 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other94" (gitignore ./.) {})));
+      other96 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other96" (gitignore ./.) {})));
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other94
+      p.other96
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -60,9 +60,9 @@ let
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext nixpkgs.nodejs_20 nixpkgs.php82 ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other94);
+  exe = lib.justStaticExecutables (myHaskellPackages.other96);
 in
 {
   inherit shell;
-  other94 = lib.justStaticExecutables (myHaskellPackages.other94);
+  other96 = lib.justStaticExecutables (myHaskellPackages.other96);
 }
