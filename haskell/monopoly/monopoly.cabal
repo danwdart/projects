@@ -21,7 +21,7 @@ library
     UnicodeSyntax
 
   build-depends:
-    , base        >=4.17.0.0 && <5
+    , base        >=4.18.0.0 && <5
     , containers
     , lens
     , MonadRandom
@@ -59,7 +59,7 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.17.0.0 && <5
+  build-depends:      base >=4.18.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -73,7 +73,7 @@ executable monopoly
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base         >=4.17.0.0 && <5
+    , base         >=4.18.0.0 && <5
     , containers
     -- , lens
     -- , MonadRandom
@@ -96,7 +96,7 @@ test-suite monopoly-test
     UnicodeSyntax
 
   build-depends:
-    -- , base        >=4.17.0.0 && <5
+    -- , base        >=4.18.0.0 && <5
     , hspec
     -- , monopoly
     -- , QuickCheck
