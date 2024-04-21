@@ -66,9 +66,11 @@ jobs:
         mkdir -p result/ghcjs-stuff
     - name: Build GHCJS stuff
       run: |
+        cd haskell/ghcjs
         nix-build -o result/ghcjs-stuff/ghcjs -A ghcjs.ghcjs-stuff
     - name: Push GHCJS stuff to Cachix
       run: |
+        cd haskell/ghcjs
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.ghcjs-stuff) | cachix push dandart
   reflex-ghcjs-stuff:
     runs-on: ubuntu-latest
@@ -97,7 +99,9 @@ jobs:
         mkdir -p result/reflex-stuff
     - name: Build Reflex GHCJS stuff
       run: |
+        cd haskell/ghcjs
         nix-build -o result/reflex-stuff/ghcjs -A ghcjs.reflex-stuff
     - name: Push Reflex GHCJS stuff to Cachix
       run: |
+        cd haskell/ghcjs
         nix-store -qR --include-outputs $(nix-instantiate -A ghcjs.reflex-stuff) | cachix push dandart
