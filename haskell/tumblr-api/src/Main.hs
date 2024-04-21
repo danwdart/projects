@@ -3,6 +3,7 @@
 module Main (main) where
 
 import Configuration.Dotenv
+import Control.Monad
 import Control.Monad.Reader
 import Control.Monad.Trans.Resource
 import Data.ByteString.Char8
