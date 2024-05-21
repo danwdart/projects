@@ -353,6 +353,14 @@ executable happy
     , digits
     , maths
 
+executable happygraph
+  import:        shared-properties
+  main-is:       happygraph.hs
+  build-depends:
+    , base    >=4.18.0.0 && <5
+    , digits
+    , graphite
+
 executable harmonic-limit
   import:        shared-properties
   main-is:       harmonic-limit.hs
