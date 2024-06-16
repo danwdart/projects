@@ -17,7 +17,7 @@
   "license": "WTFPL",
   "dependencies": {
     "@snyk/protect": "^1.1268.0",
-    "pug": "^3.0.2",
+    "pug": "^3.0.3",
     "pug-cli": "^1.0.0-alpha6"
   },
   "snyk": true
