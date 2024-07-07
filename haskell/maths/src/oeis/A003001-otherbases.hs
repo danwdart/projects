@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wno-unused-imports -Wno-type-defaults -Wno-unused-top-binds -Wno-unused-matches #-}
+{-# OPTIONS_GHC -Wno-unused-imports -Wno-type-defaults -Wno-unused-top-binds -Wno-unused-matches -Wno-x-partial #-}
 
 module Main (main) where
 

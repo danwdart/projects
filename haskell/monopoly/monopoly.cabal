@@ -21,7 +21,7 @@ library
     UnicodeSyntax
 
   build-depends:
-    , base        >=4.18.0.0 && <5
+    , base        >=4.19.1.0 && <5
     , containers
     , lens
     , MonadRandom
@@ -49,7 +49,7 @@ library
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
-    -Wno-missing-kind-signatures -Wno-missing-local-signatures
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
 
 common shared-properties
   hs-source-dirs:     src
@@ -59,12 +59,12 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.18.0.0 && <5
+  build-depends:      base >=4.19.1.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-missing-local-signatures
 
   ghcjs-options:      -dedupe
@@ -73,7 +73,7 @@ executable monopoly
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base         >=4.18.0.0 && <5
+    , base         >=4.19.1.0 && <5
     , containers
     -- , lens
     -- , MonadRandom
@@ -96,7 +96,7 @@ test-suite monopoly-test
     UnicodeSyntax
 
   build-depends:
-    -- , base        >=4.18.0.0 && <5
+    -- , base        >=4.19.1.0 && <5
     , hspec
     -- , monopoly
     -- , QuickCheck

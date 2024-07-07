@@ -1,5 +1,5 @@
 {-# LANGUAGE Trustworthy #-}
-{-# OPTIONS_GHC -Wno-unsafe #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-x-partial #-}
 
 module XPath (processXPath) where
 

@@ -32,10 +32,11 @@ common shared-properties-lib
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
-    -Wno-missing-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base >=4.18.2.0 && <5
+  build-depends:      base >=4.19.1.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -44,10 +45,11 @@ common shared-properties-unsafe
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
-    -Wno-missing-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends:      base >=4.18.2.0 && <5
+  build-depends:      base >=4.19.1.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
@@ -62,7 +64,8 @@ common shared-properties-nobase
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
-    -Wno-missing-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
 library
@@ -78,7 +81,7 @@ library
 
   -- other-modules:
   -- other-extensions:
-  build-depends:   base >=4.18.2.0
+  build-depends:   base >=4.19.1.0
   hs-source-dirs:  lib
 
 test-suite test
@@ -92,7 +95,7 @@ test-suite test
     UnicodeSyntax
 
   build-depends:
-    , base            >=4.18.2.0 && <5
+    , base            >=4.19.1.0 && <5
     , ffi-quickcheck
     , hspec
     , QuickCheck

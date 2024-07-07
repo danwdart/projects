@@ -1,4 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
+{-# OPTIONS_GHC -Wno-x-partial #-}
 
 module Data.List.Repeat (takeUntilRepeat, takeUntilSeen) where
 

@@ -12,8 +12,9 @@ process' ∷ String → [String] → String
 process' cmd args = "Command: " <> cmd <> ", args = " <> show args
 
 process ∷ String → String
-process a = process' (head x) (tail x) where
-    x = words a
+process a = case words a of
+    [] -> "Nuthin'"
+    (h:t) -> process' h t
 
 main ∷ IO ()
 main = do

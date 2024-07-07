@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wno-unused-local-binds -Wno-unused-top-binds -Wno-unused-matches -Wno-missing-signatures #-}
+{-# OPTIONS_GHC -Wno-unused-local-binds -Wno-unused-top-binds -Wno-unused-matches -Wno-missing-signatures -Wno-x-partial#-}
 
 -- Neural Network
 -- @see https://victorzhou.com/blog/intro-to-neural-networks/

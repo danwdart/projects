@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc96"
+  compiler ? "ghc98"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -22,6 +22,13 @@ let
       cf = lib.dontCheck (lib.markUnbroken super.cf);
 
       factory = lib.dontCheck (lib.markUnbroken super.factory);
+
+      # not in nix and callHackage didn't work
+      partial-isomorphisms = self.callHackageDirect {
+        pkg = "partial-isomorphisms";
+        ver = "0.2.4.0";
+        sha256 = "sha256-JvIo+FJv5P6s124o+WKjclrnyy1/pslxAMsxrg87oEg=";
+      } {};
 
       maths = lib.dontHaddock (self.callCabal2nix "maths" (gitignore ./.) {});
     };

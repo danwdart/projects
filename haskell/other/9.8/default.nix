@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc96"
+  compiler ? "ghc98"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -36,7 +36,7 @@ let
       # #req = self.callHackage "req" "3.13.0" {};
       # # template-haskell >=2.11 && <2.19
       freer-simple = lib.doJailbreak (lib.markUnbroken super.freer-simple);
-      # #sdl2 = lib.doJailbreak super.sdl2;
+      sdl2 = lib.doJailbreak super.sdl2;
       text-display = lib.doJailbreak (lib.markUnbroken super.text-display);
       ilist = lib.doJailbreak (lib.markUnbroken super.ilist);
       # #graphql = lib.doJailbreak super.graphql;
@@ -46,12 +46,12 @@ let
       HGamer3D = lib.doJailbreak (lib.markUnbroken super.HGamer3D);
       # ghc-typelits-presburger = self.callHackage "ghc-typelits-presburger" "0.7.1.0" {};
       # ghc-typelits-natnormalise = self.callHackage "ghc-typelits-natnormalise" "0.7.7" {};
-      other96 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other96" (gitignore ./.) {})));
+      other98 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other98" (gitignore ./.) {})));
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other96
+      p.other98
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -60,9 +60,9 @@ let
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext nixpkgs.nodejs_20 nixpkgs.php82 ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other96);
+  exe = lib.justStaticExecutables (myHaskellPackages.other98);
 in
 {
   inherit shell;
-  other96 = lib.justStaticExecutables (myHaskellPackages.other96);
+  other98 = lib.justStaticExecutables (myHaskellPackages.other98);
 }

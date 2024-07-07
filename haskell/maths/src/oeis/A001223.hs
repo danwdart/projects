@@ -1,5 +1,5 @@
 
-{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-x-partial #-}
 
 module Main (main) where
 

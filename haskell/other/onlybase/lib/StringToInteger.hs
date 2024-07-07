@@ -1,4 +1,5 @@
 {-# LANGUAGE Safe #-}
+{-# OPTIONS_GHC -Wno-x-partial #-}
 
 module StringToInteger where
 

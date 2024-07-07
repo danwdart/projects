@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-x-partial #-}
+
 module Data.List.Pairs where
 
 import Data.Bifoldable

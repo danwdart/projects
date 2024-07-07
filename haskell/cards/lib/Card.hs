@@ -1,4 +1,3 @@
-
 module Card where
 
 import Data.Char

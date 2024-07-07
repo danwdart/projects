@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedLists #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches  -Wno-type-defaults -Wno-unused-imports #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches -Wno-type-defaults -Wno-unused-imports -Wno-x-partial #-}
 
 module Main (main) where
 

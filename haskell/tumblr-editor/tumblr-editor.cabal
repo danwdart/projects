@@ -18,7 +18,7 @@ executable tumblr-editor
     UnicodeSyntax
 
   build-depends:
-    , base       >=4.14.1.0 && <5
+    , base       >=4.19.1.0 && <5
     , text
     , webdriver  >=0.11.0.0
 
@@ -29,6 +29,5 @@ executable tumblr-editor
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures
     -Wno-all-missed-specialisations
-
-  -- -Wno-missing-kind-signatures -- only works on recent ghc
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
   ghcjs-options:      -dedupe

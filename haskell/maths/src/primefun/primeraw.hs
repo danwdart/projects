@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-incomplete-patterns #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-incomplete-patterns -Wno-x-partial #-}
 
 module Main (main) where
 

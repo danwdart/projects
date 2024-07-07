@@ -54,11 +54,11 @@ main = defaultMain [
     bgroup "fib" [
         bgroup "list" [
             bench "naive" $ nf (fibsNaive !!) 100,
-            bench "tail recuesive" $ nf (fibsTailRecursive !!) 100
+            bench "tail recursive" $ nf (fibsTailRecursive !!) 100
             ],
         bgroup "direct" [
             bench "naive" $ nf fibsNaive 100,
-            bench "tail recuesive" $ nf fibsTailRecursive 100
+            bench "tail recursive" $ nf fibsTailRecursive 100
             ]
         ]-}
     ]

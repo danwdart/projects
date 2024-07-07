@@ -1,8 +1,6 @@
-module Data.List.Safer where
+{-# OPTIONS_GHC -Wno-x-partial #-}
 
-tailOrEmpty ∷ [a] → [a]
-tailOrEmpty [] = []
-tailOrEmpty xs = tail xs
+module Data.List.Safer where
 
 initOrEmpty ∷ [a] → [a]
 initOrEmpty [] = []

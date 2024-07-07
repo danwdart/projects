@@ -5,11 +5,11 @@ module Main (main) where
 import Control.Monad.Cont
 import Data.Function
 
-c ∷ a → Cont b a
-c = cont . (&)
+fnC ∷ a → Cont b a
+fnC = cont . (&)
 
-d ∷ (String → a) → Int → a
-d = flip (.) show
+fnD ∷ (String → a) → Int → a
+fnD = flip (.) show
 
 printf ∷ Cont a (String → IO ())
 printf = cont ($ putStrLn)
@@ -39,6 +39,6 @@ combineCont k f1 f2 a = f1 $ f2 . a ... k
 
 main ∷ IO ()
 main = do
-    runCont (c "foo") print
-    runCont printf (d % ($)) 10 "hi"
+    runCont (fnC "foo") print
+    runCont printf (fnD % ($)) 10 "hi"
     runCont printf (($) % ($) % ($)) "my" "name" "bob"

@@ -1,4 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
+{-# OPTIONS_GHC -Wno-x-partial #-}
 
 module Game.Monopoly.Board where
 

@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-x-partial #-}
+
 module Main (main) where
 
 import Control.Monad
@@ -28,12 +30,12 @@ moonAddWith fn a b = reverse . take (maxLength a b) $ zipWith fn (rppZeroes a) (
     rppZeroes n = reverse n <> zeroes
 
 moonMulWith ∷ (Int → Int → Int) → (Int → Int → Int) → [Int] → [Int] → [Int]
-moonMulWith fnMul fnAdd a b = foldl1 (moonAddWith fnAdd) (mulTwo fnMul a b)
+moonMulWith fnMul fnAdd n1 n2 = foldl1 (moonAddWith fnAdd) (mulTwo fnMul n1 n2)
 
 mulTwo ∷ Num a1 ⇒ (a2 → a2 → a1) → [a2] → [a2] → [[a1]]
-mulTwo fnMul a b = transpose (concat (transpose (splitEvery maxLen (liftM2 fnMul a b)):[threeTwoOneZero minLen])) where
-    maxLen = maxLength a b
-    minLen = minLength a b
+mulTwo fnMul n1 n2 = transpose (concat (transpose (splitEvery maxLen (liftM2 fnMul n1 n2)):[threeTwoOneZero minLen])) where
+    maxLen = maxLength n1 n2
+    minLen = minLength n1 n2
     threeTwoOneZero ∷ Num a ⇒ Int → [[a]]
     threeTwoOneZero n = reverse . tail $ take n (inits $ repeat 0)
 

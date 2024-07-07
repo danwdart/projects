@@ -37,7 +37,7 @@ data OEISResult = OEISResult {
     deriving anyclass (Out)
 
 instance FromJSON OEISResult where
-    parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = tail }
+    parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = drop 1 }
 
 newtype OEISResponse = OEISResponse {
     results :: [OEISResult]

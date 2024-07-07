@@ -5,7 +5,6 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeFamilies        #-}
 {-# LANGUAGE Unsafe              #-}
-{-# OPTIONS_GHC -fplugin GHC.TypeLits.Presburger #-}
 {-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wwarn #-}
 
@@ -51,8 +50,6 @@ type MaxL m a = forall n. (n <= m) ⇒ Vec n a
 type ML m a = forall m1 n. (n <= m1, m1 ~ m) ⇒ Vec n a
 
 -- $> :set -XDataKinds
-
--- $> :set -fplugin GHC.TypeLits.Presburger
 
 -- $> :set -fplugin GHC.TypeLits.Normalise
 
