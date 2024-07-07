@@ -21,7 +21,7 @@ import Data.Kind
 -- import Data.Eq
 -- import Data.Ord
 -- import Data.Proxy
--- import Data.Type.Equality
+import Data.Type.Equality
 import GHC.Err
 -- import GHC.IsList
 import GHC.Num
