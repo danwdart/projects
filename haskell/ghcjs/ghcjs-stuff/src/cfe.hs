@@ -5,7 +5,7 @@
 module Main (main) where
 
 import Control.Monad.IO.Class
-import Data.ByteString.Lazy.Char8       qualified as BSL
+import Data.ByteString.Lazy.Char8    qualified as BSL
 import Data.Char
 import Data.List.Split
 import Data.Ratio
@@ -16,9 +16,9 @@ import GHCJS.DOM.ParentNode
 import GHCJS.DOM.Types
 -- import Language.Javascript.JSaddle.Warp
 import Text.Blaze.Html.Renderer.Utf8
-import Text.Blaze.Html5                 as H hiding (main)
-import Text.Blaze.Html5                 qualified as H (main)
-import Text.Blaze.Html5.Attributes      as A
+import Text.Blaze.Html5              as H hiding (main)
+import Text.Blaze.Html5              qualified as H (main)
+import Text.Blaze.Html5.Attributes   as A
 
 myHead ∷ Html
 myHead = H.head $ do

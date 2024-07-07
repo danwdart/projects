@@ -6,7 +6,7 @@ module Main (main) where
 -- import Control.Monad
 --import Control.Monad.IO.Class (MonadIO(..))
 -- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
-import Data.ByteString.Lazy.Char8       qualified as BSL
+import Data.ByteString.Lazy.Char8    qualified as BSL
 -- import Data.Function ((&))
 -- import Data.Functor ((<&>))
 -- import Data.Maybe
@@ -29,9 +29,9 @@ import GHCJS.DOM.Types
 -- import Language.Javascript.JSaddle.Object
 -- import Language.Javascript.JSaddle.Warp
 import Text.Blaze.Html.Renderer.Utf8
-import Text.Blaze.Html5                 as H hiding (main)
-import Text.Blaze.Html5                 qualified as H (main)
-import Text.Blaze.Html5.Attributes      as A
+import Text.Blaze.Html5              as H hiding (main)
+import Text.Blaze.Html5              qualified as H (main)
+import Text.Blaze.Html5.Attributes   as A
 
 page ∷ Html
 page = docTypeHtml ! lang "en-GB" $ do

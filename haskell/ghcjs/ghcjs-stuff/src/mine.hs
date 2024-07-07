@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE Unsafe #-}
+{-# LANGUAGE Unsafe            #-}
 
 module Main (main) where
 
@@ -23,7 +23,7 @@ import GHCJS.DOM.Node
 import GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
 -- import GHCJS.DOM.Object
-import GHCJS.DOM.Window (confirm, prompt)
+import GHCJS.DOM.Window                   (confirm, prompt)
 -- import Language.Javascript.JSaddle.Warp
 
 {-
@@ -75,7 +75,7 @@ main = serve $ do
 serve ∷ JSM () → IO ()
 serve = liftJSM
 
-foreign import javascript unsafe "console.log($1)" consoleLogString :: JSString -> IO ()
+foreign import javascript unsafe "console.log($1)" consoleLogString :: JSString → IO ()
 
 logHere ∷ JSM ()
 logHere = consoleLogString "Hi folks!"
@@ -101,7 +101,7 @@ newContextFromNewCanvas = do
     setAttribute c ("width" :: JSString) ("800px" :: JSString)
     canNode <- appendChild b c
     let canEl = uncheckedCastTo HTMLCanvasElement canNode
-    mCtx <- getContext canEl ("2d" :: JSString) [("" :: JSString)]
+    mCtx <- getContext canEl ("2d" :: JSString) ["" :: JSString]
     let gCtx = fromJust mCtx
     pure . uncheckedCastTo CanvasRenderingContext2D $ gCtx
 

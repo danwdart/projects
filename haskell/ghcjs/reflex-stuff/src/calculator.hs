@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
 
-main :: IO ()
+
+main ∷ IO ()
 main = pure ()

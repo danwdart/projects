@@ -26,4 +26,4 @@ executable hsjava
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-local-signatures
 
--- -Wno-missing-kind-signatures -- only works on recent ghc
+-- -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -- only works on recent ghc

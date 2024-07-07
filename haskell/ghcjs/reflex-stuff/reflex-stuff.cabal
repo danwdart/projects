@@ -22,7 +22,7 @@ common shared-properties
     -Wno-missing-export-lists -Wno-implicit-prelude
 
   -- -Wno-missing-safe-haskell-mode
-  -- -Wno-missing-kind-signatures -- only works on recent ghc
+  -- -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -- only works on recent ghc
   --                       -Wno-missing-local-signatures
   ghcjs-options:      -dedupe
   cpp-options:        -DGHCJS_BROWSER
@@ -39,7 +39,7 @@ executable adding-machine
 executable dom
   import:        shared-properties
   main-is:       dom.hs
-  ghc-options:    -fsimpl-tick-factor=100000
+  ghc-options:   -fsimpl-tick-factor=100000
   build-depends:
     , base        >=4.14.3.0 && <5
     , reflex-dom

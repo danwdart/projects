@@ -12,7 +12,6 @@ let
   lib = nixpkgs.pkgsCross.ghcjs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgsCross.ghcjs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      
       js-backend = lib.dontHaddock (self.callCabal2nix "js-backend" (gitignore ./.) {});
     };
   };

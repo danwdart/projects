@@ -11,15 +11,15 @@
 module Main (main) where
 
 import Control.Monad.IO.Class
-import Data.Aeson                       hiding (Object)
+import Data.Aeson             hiding (Object)
 import Data.Bool
-import Data.Map                         qualified as M
+import Data.Map               qualified as M
 import Data.Monoid
 import GHC.Generics
 import Miso
 import Miso.Effect
-import Miso.String                      (MisoString)
-import Miso.String                      qualified as S
+import Miso.String            (MisoString)
+import Miso.String            qualified as S
 
 default (MisoString)
 

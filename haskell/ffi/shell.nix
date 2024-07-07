@@ -5,7 +5,7 @@ runCommand "ffi" {
         pkgsStatic.libffi
         pkgsStatic.gmp
         musl
-        pkgsMusl.haskell.compiler.ghc96
+        pkgsMusl.haskell.compiler.ghc98
         cabal-install
     ];
 } ""

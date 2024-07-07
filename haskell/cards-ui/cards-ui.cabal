@@ -27,16 +27,15 @@ common shared-properties
     -Wno-missing-export-lists -Wno-implicit-prelude
 
   -- -Wno-missing-safe-haskell-mode
-  -- -Wno-missing-kind-signatures -- only works on recent ghc
+  -- -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -- only works on recent ghc
   --                       -Wno-missing-local-signatures
   ghcjs-options:      -dedupe
   cpp-options:        -DGHCJS_BROWSER
 
 library
   hs-source-dirs: lib
-  import:        shared-properties
-  build-depends:
-    , base        >=4.14.3.0 && <5
+  import:         shared-properties
+  build-depends:  base >=4.14.3.0 && <5
 
 executable cards-ui
   import:        shared-properties

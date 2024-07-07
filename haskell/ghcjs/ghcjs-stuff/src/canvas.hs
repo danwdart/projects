@@ -1,4 +1,5 @@
-{-# LANGUAGE Unsafe            #-}
+{-# LANGUAGE Unsafe #-}
+{-# OPTIONS_GHC -Wno-x-partial #-}
 
 module Main (main) where
 
