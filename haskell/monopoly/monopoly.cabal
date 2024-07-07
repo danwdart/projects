@@ -21,7 +21,7 @@ library
     UnicodeSyntax
 
   build-depends:
-    , base        >=4.19.1.0 && <5
+    , base         >=4.19.1.0 && <5
     , containers
     , lens
     , MonadRandom
@@ -49,7 +49,8 @@ library
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
-    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures
 
 common shared-properties
   hs-source-dirs:     src
@@ -64,8 +65,8 @@ common shared-properties
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-missing-local-signatures
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
 
   ghcjs-options:      -dedupe
 
@@ -73,19 +74,20 @@ executable monopoly
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base         >=4.19.1.0 && <5
+    , base        >=4.19.1.0 && <5
     , containers
-    -- , lens
-    -- , MonadRandom
     , monopoly
-    -- , random
+
+-- , lens
+-- , MonadRandom
+-- , random
 
 test-suite monopoly-test
   -- import:             shared-properties
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
-  other-modules:      
+  other-modules:
 
   -- build-tool-depends:
   --   hspec-discover:hspec-discover == 2.*
@@ -95,11 +97,11 @@ test-suite monopoly-test
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:
-    -- , base        >=4.19.1.0 && <5
-    , hspec
-    -- , monopoly
-    -- , QuickCheck
+  build-depends:      hspec
+
+-- , base        >=4.19.1.0 && <5
+-- , monopoly
+-- , QuickCheck
 
 -- , hspec-core
 -- , hspec-expectations

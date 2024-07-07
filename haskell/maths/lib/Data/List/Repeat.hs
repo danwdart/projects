@@ -21,10 +21,10 @@ takeUntilRepeat xs = ((++) <$> fmap fst <*> pure . snd . last) .
 -- >>> takeUntilSeen [1,2,3,4,5,1]
 -- [1,2,3,4,5]
 --
-takeUntilSeen :: Eq a => [a] -> [a]
+takeUntilSeen ∷ Eq a ⇒ [a] → [a]
 takeUntilSeen xs = go xs [] where
-    go :: Eq a => [a] -> [a] -> [a]
+    go ∷ Eq a ⇒ [a] → [a] → [a]
     go [] _ = []
     go (x:xss) seen = case L.find (== x) seen of
         Nothing -> x : go xss (x:seen)
-        Just _ -> []
+        Just _  -> []

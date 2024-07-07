@@ -13,7 +13,7 @@ import System.IO
 process ∷ Char → [Button] → [Button]
 process = toggle . pred . read . pure
 
-render ∷ (MonadState [Button] m, MonadIO m) => m String
+render ∷ (MonadState [Button] m, MonadIO m) ⇒ m String
 render = do
     liftIO resetGame
     st <- get

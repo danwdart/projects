@@ -33,7 +33,7 @@ executable tumblr-api
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-missing-local-signatures
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
 
   ghcjs-options:      -dedupe

@@ -44,5 +44,5 @@ aliquot = sum . properFactors
 abundance ∷ (Integral a, Fractional b) ⇒ a → b
 abundance n = (fromIntegral . sum . properFactors $ n) / fromIntegral n
 
-aliquotSequence :: Integral a => a -> [a]
+aliquotSequence ∷ Integral a ⇒ a → [a]
 aliquotSequence = takeUntilSeen . iterate aliquot

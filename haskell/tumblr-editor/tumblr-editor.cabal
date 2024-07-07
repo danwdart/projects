@@ -28,6 +28,8 @@ executable tumblr-editor
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
+
   ghcjs-options:      -dedupe

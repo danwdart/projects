@@ -33,9 +33,10 @@ common shared-properties-lib
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
-    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures
+    -Wno-unrecognised-warning-flags -Werror -haddock
 
   build-depends:      base >=4.19.1.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
@@ -46,9 +47,11 @@ common shared-properties-unsafe
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
-    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures
+    -Wno-unrecognised-warning-flags -Werror -haddock -threaded -rtsopts
+    -with-rtsopts=-N
 
   build-depends:      base >=4.19.1.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
@@ -65,9 +68,10 @@ common shared-properties-nobase
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
-    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-missing-kind-signatures
+    -Wno-unrecognised-warning-flags -Werror -haddock
 
 -- TODO: unsafe?
 library
@@ -78,11 +82,11 @@ library
   build-depends:
     , base                       >=4.19.1.0 && <5
     , ghc-typelits-natnormalise
-    -- , ghc-typelits-presburger
     , template-haskell
     , text
     , yaml
 
+  -- , ghc-typelits-presburger
   -- , free -- later
   -- , hxt, hxt-xpath
   exposed-modules:
@@ -426,10 +430,10 @@ executable req
   main-is:       req.hs
   build-depends:
     , base  >=4.19.1.0 && <5
-    -- , mtl
     , req
     , text
 
+-- , mtl
 executable sdl
   import:        shared-properties-unsafe
   main-is:       sdl.hs

@@ -4,7 +4,7 @@ module Numeric.Tree where
 
 -- >>> 3 + 4 * 8 :: Expr
 data Expr =
-    FromInteger Integer | 
+    FromInteger Integer |
     Add Expr Expr |
     Sub Expr Expr |
     Mul Expr Expr |

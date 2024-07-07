@@ -24,14 +24,17 @@ common shared-properties
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+
   build-depends:      base >=4.19.1.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
     -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+
   ghcjs-options:      -dedupe
 
 library
@@ -41,17 +44,21 @@ library
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+
   build-depends:
     , base    >=4.19.1.0 && <5
     , digits
     , primes
+
   ghc-options:
     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-missing-local-signatures -Wno-all-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags
+
   ghcjs-options:      -dedupe
   exposed-modules:
     Collatz
@@ -354,7 +361,7 @@ executable happygraph
   import:        shared-properties
   main-is:       happygraph.hs
   build-depends:
-    , base    >=4.19.1.0 && <5
+    , base      >=4.19.1.0 && <5
     , digits
     , graphite
 

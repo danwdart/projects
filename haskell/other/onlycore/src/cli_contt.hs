@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Control.Monad (unless, void, when)
+import Control.Monad          (unless, void, when)
 import Control.Monad.Cont
 import Control.Monad.IO.Class
 import System.IO
@@ -13,7 +13,7 @@ process' cmd args = "Command: " <> cmd <> ", args = " <> show args
 
 process ∷ String → String
 process a = case words a of
-    [] -> "Nuthin'"
+    []    -> "Nuthin'"
     (h:t) -> process' h t
 
 main ∷ IO ()

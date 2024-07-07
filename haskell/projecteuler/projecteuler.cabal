@@ -30,8 +30,9 @@ common shared-properties
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
     -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
 
   ghcjs-options:      -dedupe
@@ -52,9 +53,11 @@ library
     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
-    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-unrecognised-warning-flags
 
   ghcjs-options:      -dedupe
   exposed-modules:
@@ -66,24 +69,26 @@ library
     Numeric.ProjectEuler.Solution6
 
 executable projecteuler
-  import:        shared-properties
+  import:             shared-properties
   build-depends:
     , base          >=4.19.1.0
     , projecteuler
 
-  main-is:       Main.hs
+  main-is:            Main.hs
   hs-source-dirs:     src
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
     -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
 
 test-suite projecteuler-test
@@ -92,6 +97,7 @@ test-suite projecteuler-test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
   other-modules:
+
   -- build-tool-depends:
   --  hspec-discover:hspec-discover
   default-language:   GHC2021
@@ -99,4 +105,5 @@ test-suite projecteuler-test
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+
   build-depends:      hspec

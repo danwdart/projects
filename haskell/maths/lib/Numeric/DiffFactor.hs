@@ -7,17 +7,17 @@ module Numeric.DiffFactor where
 data DiffFactor a = Normal a | Diff a | Factor a
     deriving stock (Eq, Show) -- maybe inverse
 
-instance Num a => Num (DiffFactor a) where
+instance Num a ⇒ Num (DiffFactor a) where
     Normal a + Diff b = Normal (a + b)
     Diff a + Normal b = Normal (a + b)
-    _ + _ = error "can't add a [t] to a [s]"
+    _ + _             = error "can't add a [t] to a [s]"
     Normal a * Factor b = Normal (a * b)
     Factor a * Normal b = Normal (a * b)
-    _ * _ = error "can't mu;tiply a [t] to a [s]"
+    _ * _               = error "can't mu;tiply a [t] to a [s]"
     abs (Normal a) = Normal (abs a)
-    abs _ = error "can't abs a non-normal value"
+    abs _          = error "can't abs a non-normal value"
     signum (Normal a) = Normal (signum a)
-    signum _ = error "can't signum a non-normal value"
+    signum _          = error "can't signum a non-normal value"
     fromInteger a = Normal (fromInteger a)
     negate (Normal a) = Normal (negate a)
-    negate _ = error "can't negate a non-normal value"
+    negate _          = error "can't negate a non-normal value"

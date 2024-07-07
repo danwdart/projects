@@ -42,7 +42,7 @@ lfts                 = [let j = 3 * (3 * i + 1) * (3 * i + 2)
 next ((q,r,s,t),i)   = div (q * x + 5 * r) (s * x + 5 * t) where x = 27 * i + 15
 safe ((q,r,s,t),i) n = n == div (q * x + 125 * r) (s * x + 125 * t)
                         where x = 675 * i - 216
-prod (z,i) n         = (comp (10,-10 * n, 0, 1) z, i)
+prod (z,i) n         = (comp (10,- (10 * n), 0, 1) z, i)
 cons (z,i) z'        = (comp z z', i + 1)
 
 pigi = stream next safe prod cons init lfts where
@@ -50,7 +50,7 @@ pigi = stream next safe prod cons init lfts where
     lfts      = [(k, 4 * k + 2, 0, 2 * k + 1) | k <- [1..]]
     next z    = floor (extr z 3)
     safe z n  = n == floor (extr z 4)
-    prod z n  = comp (10,-10 * n, 0, 1) z
+    prod z n  = comp (10,- (10 * n), 0, 1) z
     cons = comp
 
 piL = stream next safe prod cons init lfts where
@@ -60,7 +60,7 @@ piL = stream next safe prod cons init lfts where
         x = 2 * i - 1
         safe ((q,r,s,t),i) n = n == floor ((q * x + 2 * r) % (s * x + 2 * t))
             where x = 5 * i - 2
-                  prod (z,i) n         = (comp (10,-10 * n, 0, 1) z, i)
+                  prod (z,i) n         = (comp (10,- (10 * n), 0, 1) z, i)
                   cons (z,i) z'        = (comp z z', i + 1)
 
 
@@ -73,7 +73,7 @@ process next prod cons u (x:xs)
               y = next v
 
 
-piG3 = g(1, 180, 60, 2) where
-    g(q, r, t, i) = let (u, y) = (3 * (3 * i + 1) * (3 * i + 2),div(q * (27 * i - 12) + 5 * r)(5 * t))
-                 in y : g(10 * q * i * (2 * i - 1), 10 * u * (q * (5 * i - 2) + r - y * t), t * u, i + 1)
+piG3 = g (1, 180, 60, 2) where
+    g(q, r, t, i) = let (u, y) = (3 * (3 * i + 1) * (3 * i + 2),div (q * (27 * i - 12) + 5 * r) (5 * t))
+                 in y : g (10 * q * i * (2 * i - 1), 10 * u * (q * (5 * i - 2) + r - y * t), t * u, i + 1)
 

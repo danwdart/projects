@@ -37,11 +37,11 @@ main = print $ filter saa [1..10000000]
 -- String with leading zeroes, reverse, int, add.
 
 -- >>> revAdd 3285
-kapIter :: Integer -> Integer
-kapIter n = (read . reverse . L.sort . show $ n) - (read . L.sort . show $ n)
+kapIter ∷ Integer → Integer
+kapIter n = (read . sortBy (comparing Data.Ord.Down) . show $ n) - (read . L.sort . show $ n)
 
 -- https://stackoverflow.com/questions/7442892/repeatedly-applying-a-function-until-the-result-is-stable
-convergeSingle :: Eq a => (a -> a) -> a -> a
+convergeSingle ∷ Eq a ⇒ (a → a) → a → a
 convergeSingle = until =<< ((==) =<<)
 {-# WARNING convergeSingle "Partial function. Loops forever on some inputs." #-}
 
@@ -53,20 +53,18 @@ convergeSingle = until =<< ((==) =<<)
 -}
 -- | Ugh, very complex. That's gonna be like... at least n^2
 -- Maybe we can do it backwards... with a vector or something. Because finding from the beginning? Nah nah nah.
-stable :: Eq a => [a] -> [a]
+stable ∷ Eq a ⇒ [a] → [a]
 stable xs = reverse $ go xs [] [] where
-    go :: Eq a => [a] -> [a] -> [a] -> [a]
+    go ∷ Eq a ⇒ [a] → [a] → [a] → [a]
     go [] _ _ = []
-    go (x:xs') seenOnce seenTwice = case any (== x) seenTwice of
-        False -> case any (== x) seenOnce of
-            False -> go xs' (x : seenOnce) seenTwice
-            True -> go xs' seenOnce (x : seenTwice)
-        True -> seenTwice
+    go (x:xs') seenOnce seenTwice = if any (== x) seenTwice then seenTwice else (case any (== x) seenOnce of
+        False -> go xs' (x : seenOnce) seenTwice
+        True  -> go xs' seenOnce (x : seenTwice))
 
-kap :: Integer -> [Integer]
+kap ∷ Integer → [Integer]
 kap = stable . iterate kapIter
 
-setAt :: k -> v -> [(k, v)] -> [(k, v)]
+setAt ∷ k → v → [(k, v)] → [(k, v)]
 setAt = undefined
 
 {-}
