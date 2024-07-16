@@ -34,6 +34,6 @@
   },
   "snyk": true,
   "dependencies": {
-    "@snyk/protect": "^1.1268.0"
+    "@snyk/protect": "^1.1292.1"
   }
 }
