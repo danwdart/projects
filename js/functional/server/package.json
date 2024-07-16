@@ -12,13 +12,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.10.8",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.10",
     "esm": "^3.2.25",
-    "mocha": "^10.2.0",
+    "mocha": "^10.6.0",
     "ts-mocha": "^10.0.0",
     "ts-node": "^11.0.0-beta.1",
-    "typescript": "^5.4.0-dev.20240110"
+    "typescript": "^5.5.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@snyk/protect": "^1.1292.1"
+  }
 }
