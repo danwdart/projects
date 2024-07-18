@@ -13,6 +13,7 @@ alphabeticalWords = [
     "chimp",
     "chimps",
     "chintz",
+    "forty",
     "sponge",
     "sponged",
     "wronged"
