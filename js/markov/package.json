@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@snyk/protect": "^1.1292.1",
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.14.11",
     "typescript": "^5.5.3"
   }
 }
