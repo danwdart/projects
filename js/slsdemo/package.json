@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@snyk/protect": "^1.1292.1",
-    "serverless": "^4.1.12",
+    "serverless": "^4.1.15",
     "serverless-offline": "^13.6.0"
   }
 }
