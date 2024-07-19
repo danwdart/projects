@@ -13,8 +13,8 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-flow": "8.0.0-alpha.5",
-    "flow-bin": "^0.239.1",
-    "flow-remove-types": "^2.239.1"
+    "flow-bin": "^0.241.0",
+    "flow-remove-types": "^2.241.0"
   },
   "dependencies": {
     "@snyk/protect": "^1.1292.1"
