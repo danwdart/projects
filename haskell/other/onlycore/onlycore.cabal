@@ -41,7 +41,7 @@ common shared-properties-lib
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base >=4.19.1.0 && <5
+  build-depends:      base >=4.20.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -56,7 +56,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends:      base >=4.19.1.0 && <5
+  build-depends:      base >=4.20.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
@@ -201,7 +201,7 @@ executable mtl
 executable profunctor-lenses
   import:        shared-properties-safe
   main-is:       profunctor-lenses.hs
-  build-depends: base >=4.19.1.0 && <5
+  build-depends: base >=4.20.0.0 && <5
 
 executable python5
   import:        shared-properties-safe

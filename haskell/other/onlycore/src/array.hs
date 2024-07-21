@@ -1,5 +1,5 @@
-{-# LANGUAGE Trustworthy #-}
-{-# OPTIONS_GHC -Wno-unsafe #-}
+{-# LANGUAGE Safe #-}
+{-# OPTIONS_GHC -Wno-safe -Wno-unsafe #-}
 
 module Main (main) where
 
