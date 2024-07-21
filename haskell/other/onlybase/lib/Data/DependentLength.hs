@@ -2,9 +2,10 @@
 {-# LANGUAGE DerivingStrategies  #-}
 {-# LANGUAGE GADTs               #-}
 {-# LANGUAGE NoImplicitPrelude   #-}
-{-# LANGUAGE Safe                #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeFamilies        #-}
+{-# LANGUAGE Unsafe              #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
 -- Based on
 module Data.DependentLength where

@@ -38,7 +38,7 @@ common shared-properties-lib
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-unrecognised-warning-flags -Werror -haddock
 
-  build-depends:      base >=4.19.1.0 && <5
+  build-depends:      base >=4.20.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -53,7 +53,7 @@ common shared-properties-unsafe
     -Wno-unrecognised-warning-flags -Werror -haddock -threaded -rtsopts
     -with-rtsopts=-N
 
-  build-depends: base >=4.19.1.0 && <5
+  build-depends: base >=4.20.0.0 && <5
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -160,7 +160,7 @@ executable betterbools
 executable bifunctor
   import:        shared-properties-safe
   main-is:       bifunctor.hs
-  build-depends: base >=4.19.1.0 && <5
+  build-depends: base >=4.20.0.0 && <5
 
 executable breakeverything
   import:        shared-properties-safe
