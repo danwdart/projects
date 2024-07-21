@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghcHEAD"
+  compiler ? "ghc98"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -23,7 +23,7 @@ let
       gen-hie > hie.yaml
       for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
     '';
-    buildInputs = tools.defaultBuildTools ++ (with nixpkgs; [
+    nativeBuildInputs = tools.defaultBuildTools ++ (with nixpkgs; [
         nodejs_20
         closurecompiler
     ]);

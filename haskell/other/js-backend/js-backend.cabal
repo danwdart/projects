@@ -14,6 +14,11 @@ build-type:      Simple
 extra-doc-files: CHANGELOG.md
 
 -- extra-source-files:
+data-dir:           data
+data-files:
+  css/*.css
+  img/*.png
+  index.html
 
 common warnings
   ghc-options: -Wall
@@ -23,26 +28,43 @@ common warnings
 --     exposed-modules:  MyLib
 --     -- other-modules:
 --     -- other-extensions:
---     build-depends:    base >=4.19.1.0
+--     build-depends:    base >=4.20.0.0
 --     hs-source-dirs:   lib
 --     default-language: GHC2021
 --     default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
 
-executable js-backend
+executable for-node
   import:             warnings
   main-is:            Main.hs
   other-modules:      MyLib
-
   -- other-extensions:
   build-depends:
     , base        >=4.19.1.0
-
+    , aeson
   hs-source-dirs:     src lib
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+  ghcjs-options:      -dedupe
+
+executable for-browser
+  import:             warnings
+  main-is:            Main.hs
+  other-modules:      MyLib
+  -- other-extensions:
+  build-depends:
+    , base        >=4.19.1.0
+    , aeson
+  hs-source-dirs:     src lib
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+  ghcjs-options:      -dedupe
+  cpp-options:        -DGHCJS_BROWSER
 
 test-suite js-backend-test
   import:             warnings
@@ -57,4 +79,4 @@ test-suite js-backend-test
   type:               exitcode-stdio-1.0
   hs-source-dirs:     lib test
   main-is:            Main.hs
-  build-depends:      base >=4.19.1.0
+  build-depends:      base >=4.20.0.0
