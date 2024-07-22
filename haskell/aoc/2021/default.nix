@@ -3,7 +3,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98"
+  compiler ? "ghc910"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -21,8 +21,7 @@ let
     buildInputs = tools.defaultBuildTools;
     # withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.aoc2021);
-in
+  in
 {
   inherit shell;
   aoc2021 = lib.justStaticExecutables (myHaskellPackages.aoc2021);
