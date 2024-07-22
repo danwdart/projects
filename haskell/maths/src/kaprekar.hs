@@ -2,7 +2,8 @@
 
 module Main (main) where
 
-import Data.List qualified as L (sort)
+import Data.List qualified as L (sort, sortBy)
+import Data.Ord (comparing, Down(..))
 
 {-
 function saa(n) {
@@ -38,7 +39,7 @@ main = print $ filter saa [1..10000000]
 
 -- >>> revAdd 3285
 kapIter ∷ Integer → Integer
-kapIter n = (read . sortBy (comparing Data.Ord.Down) . show $ n) - (read . L.sort . show $ n)
+kapIter n = (read . L.sortBy (comparing Data.Ord.Down) . show $ n) - (read . L.sort . show $ n)
 
 -- https://stackoverflow.com/questions/7442892/repeatedly-applying-a-function-until-the-result-is-stable
 convergeSingle ∷ Eq a ⇒ (a → a) → a → a
