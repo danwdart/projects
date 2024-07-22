@@ -1,2 +1,52 @@
 cradle:
   cabal:
+    - path: "ghcjs-stuff/./canvas.hs"
+      component: "ghcjs-stuff:exe:canvas"
+
+    - path: "ghcjs-stuff/./cfe.hs"
+      component: "ghcjs-stuff:exe:cfe"
+
+    - path: "ghcjs-stuff/./frp.hs"
+      component: "ghcjs-stuff:exe:frp"
+
+    - path: "ghcjs-stuff/./HelloMain.hs"
+      component: "ghcjs-stuff:exe:helloworld"
+
+    - path: "ghcjs-stuff/./mine.hs"
+      component: "ghcjs-stuff:exe:mine"
+
+    - path: "ghcjs-stuff/./pure-demo.hs"
+      component: "ghcjs-stuff:exe:pure-demo"
+
+    - path: "ghcjs-stuff/./extension/unfart.hs"
+      component: "ghcjs-stuff:exe:unfart"
+
+    - path: "src/Main.hs"
+      component: "js-backend:exe:for-node"
+
+    - path: "lib/Main.hs"
+      component: "js-backend:exe:for-node"
+
+    - path: "src/MyLib.hs"
+      component: "js-backend:exe:for-node"
+
+    - path: "lib/MyLib.hs"
+      component: "js-backend:exe:for-node"
+
+    - path: "src/Main.hs"
+      component: "js-backend:exe:for-browser"
+
+    - path: "lib/Main.hs"
+      component: "js-backend:exe:for-browser"
+
+    - path: "src/MyLib.hs"
+      component: "js-backend:exe:for-browser"
+
+    - path: "lib/MyLib.hs"
+      component: "js-backend:exe:for-browser"
+
+    - path: "lib"
+      component: "js-backend:test:js-backend-test"
+
+    - path: "test"
+      component: "js-backend:test:js-backend-test"

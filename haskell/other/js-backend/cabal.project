@@ -1,3 +1,6 @@
-packages: *
+packages:
+    js-backend.cabal
+    ghcjs-stuff/ghcjs-stuff.cabal
+    -- reflex-stuff/reflex-stuff.cabal
 with-compiler: javascript-unknown-ghcjs-ghc
--- with-hc-pkg: javascript-unknown-ghcjs-ghc-pkg
+with-hc-pkg: javascript-unknown-ghcjs-ghc-pkg

@@ -13,11 +13,15 @@ let
   myHaskellPackages = nixpkgs.pkgsCross.ghcjs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       js-backend = lib.dontHaddock (self.callCabal2nix "js-backend" (gitignore ./.) {});
+      ghcjs-stuff = lib.dontHaddock (self.callCabal2nix "ghcjs-stuff" (gitignore ./ghcjs-stuff) {});
+      # reflex-stuff = lib.dontHaddock (self.callCabal2nix "reflex-stuff" (gitignore ./reflex-stuff) {});
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
       p.js-backend
+      p.ghcjs-stuff
+      # p.reflex-stuff
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -29,9 +33,10 @@ let
     ]);
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.js-backend);
 in
 {
   inherit shell;
   js-backend = lib.justStaticExecutables (myHaskellPackages.js-backend);
+  ghcjs-stuff = lib.justStaticExecutables (myHaskellPackages.ghcjs-stuff);
+  # reflex-stuff = lib.justStaticExecutables (myHaskellPackages.reflex-stuff);
 }
