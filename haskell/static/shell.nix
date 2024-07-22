@@ -5,6 +5,6 @@ runCommand "static" {
         pkgsStatic.gmp
         musl
         pkgsMusl.gcc
-        pkgsMusl.haskell.compiler.ghc98
+        pkgsMusl.haskell.compiler.ghc910
     ];
 } ""
