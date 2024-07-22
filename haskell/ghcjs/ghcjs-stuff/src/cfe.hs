@@ -67,7 +67,7 @@ page =  do
     myBody
 
 splitIntoNumbers ∷ String → [Int]
-splitIntoNumbers s = read <$> splitWhen (not . isNumber) s
+splitIntoNumbers s' = read <$> splitWhen (not . isNumber) s'
 
 intToRatio ∷ Int → Ratio Int
 intToRatio = (% 1)
