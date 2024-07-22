@@ -60,8 +60,7 @@ let
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext nixpkgs.nodejs_20 nixpkgs.php82 ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.other98);
-in
+  in
 {
   inherit shell;
   other98 = lib.justStaticExecutables (myHaskellPackages.other98);

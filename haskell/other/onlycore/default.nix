@@ -26,12 +26,8 @@ let
     buildInputs = tools.defaultBuildTools;
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.onlycore);
-in
+  in
 {
   inherit shell;
-  inherit exe;
-
-   inherit myHaskellPackages;
   onlycore = lib.justStaticExecutables (myHaskellPackages.onlycore);
 }

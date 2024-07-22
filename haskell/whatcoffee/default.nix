@@ -22,8 +22,7 @@ let
     buildInputs = tools.defaultBuildTools;
     # withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.whatcoffee);
-in
+  in
 {
   inherit shell;
   whatcoffee = lib.justStaticExecutables (myHaskellPackages.whatcoffee);

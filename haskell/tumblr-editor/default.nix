@@ -28,8 +28,7 @@ let
     buildInputs = tools.defaultBuildTools;
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.tumblr-editor);
-in
+  in
 {
   inherit shell;
   tumblr-editor = lib.justStaticExecutables (myHaskellPackages.tumblr-editor);
