@@ -23,7 +23,7 @@ newtype P = P Text
     deriving Display via (OpaqueInstance "redacted" P)
 
 instance Display K where
-    displayBuilder = fromText . pack . show . s
+    displayBuilder = fromString . show . s
 
 
 main ∷ IO ()

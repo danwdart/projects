@@ -6,7 +6,7 @@ version:            0.1.0.0
 
 -- synopsis:
 -- description:
-homepage:           https://github.com/danwdart/dansstuff#readme
+homepage:           https://github.com/danwdart/projects#readme
 license:            AGPL-3.0-only
 
 -- license-file:        LICENSE
@@ -396,6 +396,14 @@ executable kaprekar
   import:  shared-properties
   main-is: kaprekar.hs
 
+executable keyboardlength
+  import:  shared-properties
+  main-is: keyboardlength.hs
+  build-depends:
+    , base    >=4.19.1.0 && <5
+    , bytestring
+    , text
+
 -- Disabled because of https://github.com/alx741/graphite/issues/7
 -- executable localgraph
 --   import: shared-properties
@@ -405,6 +413,10 @@ executable kaprekar
 executable lucas
   import:  shared-properties
   main-is: lucas.hs
+
+executable matrices
+  import:  shared-properties
+  main-is: matrices.hs
 
 executable mirror
   import:        shared-properties

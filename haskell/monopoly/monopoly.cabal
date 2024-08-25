@@ -3,7 +3,7 @@ cabal-version:      3.4
 -- Newer versions complain
 name:               monopoly
 version:            0.1.0.0
-homepage:           https://github.com/danwdart/dansstuff#readme
+homepage:           https://github.com/danwdart/projects#readme
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         cabal@dandart.co.uk
