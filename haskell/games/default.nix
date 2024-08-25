@@ -12,12 +12,12 @@ let
   tools = haskell-tools compiler;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      boardgames = lib.dontHaddock (self.callCabal2nix "boardgames" (gitignore ./.) {});
+      games = lib.dontHaddock (self.callCabal2nix "games" (gitignore ./.) {});
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.boardgames
+      p.games
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -26,9 +26,9 @@ let
     buildInputs = tools.defaultBuildTools;
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.boardgames);
+  exe = lib.justStaticExecutables (myHaskellPackages.games);
 in
 {
   inherit shell;
-  boardgames = lib.justStaticExecutables (myHaskellPackages.boardgames);
+  games = lib.justStaticExecutables (myHaskellPackages.games);
 }

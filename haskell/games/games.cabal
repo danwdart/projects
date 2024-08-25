@@ -1,9 +1,9 @@
 cabal-version:      3.4
 
 -- Newer versions complain
-name:               boardgames
+name:               games
 version:            0.1.0.0
-homepage:           https://github.com/danwdart/dansstuff#readme
+homepage:           https://github.com/danwdart/projects#readme
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         cabal@dandart.co.uk
@@ -19,9 +19,11 @@ library
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
-
   build-depends:      base >=4.19.1.0 && <5
-  exposed-modules:    Game.Bounce
+  exposed-modules:    
+      Control.Exception.RangeException
+    , Game.Bounce
+    , Numeric.Range
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
@@ -79,6 +81,30 @@ executable bounce
   main-is:       bounce.hs
   build-depends: base >=4.19.1.0 && <5
 
+executable bingo
+  import:        shared-properties
+  main-is:       bingo.hs
+  build-depends:
+    , base         >=4.19.1.0 && <5
+    , fakedata
+    , games
+    , MonadRandom
+    -- , mtl
+    , text
+    , text-display
+    , vector
+
+executable countdown
+  import:        shared-properties
+  main-is:       countdown.hs
+  build-depends:
+    , base         >=4.19.1.0 && <5
+    , games
+    -- , MonadRandom
+    -- , mtl
+    , text
+    , text-display
+
 executable frog
   import:        shared-properties
   main-is:       frog.hs
@@ -120,7 +146,7 @@ executable sudoku
     , lattices
     , vector
 
-test-suite boardgames-test
+test-suite games-test
   import:             shared-properties
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
@@ -137,7 +163,7 @@ test-suite boardgames-test
 
   build-depends:
     , base        >=4.19.1.0 && <5
-    , boardgames
+    , games
     , hspec
     , QuickCheck
 
