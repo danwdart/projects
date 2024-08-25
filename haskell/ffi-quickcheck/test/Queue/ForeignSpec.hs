@@ -35,24 +35,24 @@ testAction = do
 prop_EmptyQueueHasCorrectSize ∷ Int → Property
 prop_EmptyQueueHasCorrectSize size = size > 0 ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     size <- run $ do
-        q <- queue_new size
-        queue_size q
+        q <- cqueue_new size
+        cqueue_size q
     assert $ size == 0
 
 prop_QueueWithFewerElementsAsSizeShowUpInSize ∷ Int → [Int] → Property
-prop_QueueWithFewerElementsAsSizeShowUpInSize size elements = size > 0 && length elements < size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
+prop_QueueWithFewerElementsAsSizeShoupg wUpInSize size elements = size > 0 && length elements < size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     size <- run $ do
-        q <- queue_new size
-        mapM_ (queue_put q) elements
-        queue_size q
+        q <- cqueue_new size
+        mapM_ (cqueue_put q) elements
+        cqueue_size q
     assert $ size == length elements
 
 prop_QueueWithFewerElementsAsSizeShowUpInGet ∷ Int → [Int] → Property
 prop_QueueWithFewerElementsAsSizeShowUpInGet size elements = size > 0 && length elements <= size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     elementsOut <- run $ do
-        q <- queue_new size
-        mapM_ (queue_put q) elements
-        replicateM (length elements) (queue_get q)
+        q <- cqueue_new size
+        mapM_ (cqueue_put q) elements
+        replicateM (length elements) (cqueue_get q)
     assert $ elements == elementsOut
 
 
