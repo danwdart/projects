@@ -1,15 +1,15 @@
-name: "Board Games"
+name: "Games"
 on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
     paths:
-      - .github/workflows/boardgames.yml
-      - haskell/boardgames/**
+      - .github/workflows/games.yml
+      - haskell/games/**
   push:
     paths:
-      - .github/workflows/boardgames.yml
-      - haskell/boardgames/**
+      - .github/workflows/games.yml
+      - haskell/games/**
   workflow_dispatch:
 jobs:
   build-and-deploy:
@@ -31,7 +31,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - name: Build
       run: |
-        cd haskell/boardgames
+        cd haskell/games
         nix-build
     - name: Push dependencies to Cachix
       run: |
