@@ -1,4 +1,4 @@
-{-# LANGUAGE Safe #-}
+{-# LANGUAGE Safe, UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-type-defaults #-}
 
 module MyLens where
@@ -25,7 +25,7 @@ lens ∷ (s → a) → (s → b → t) → Lens s t a b
 lens sa sbt afa s = sbt s <$> afa (sa s)
 
 view ∷ Lens s t a b → s → a
-view l s = runConst $ l Const s
+view l = runConst . l Const -- todo
 
 (^.) ∷ Lens s t a b → s → a
 (^.) = view
