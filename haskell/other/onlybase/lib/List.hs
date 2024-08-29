@@ -9,7 +9,10 @@ module List where
 -- Nothing
 
 -- >>> maybeIndex 100 [1,2,3]
--- Prelude.!!: index too large
+-- Nothing
 
 maybeIndex ∷ Int → [a] → Maybe a
-maybeIndex index xs = if null xs then Nothing else Just $ xs !! index
+maybeIndex index xs
+  | index > length xs = Nothing
+  | null xs = Nothing
+  | otherwise = Just $ xs !! index

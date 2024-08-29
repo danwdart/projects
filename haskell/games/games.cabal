@@ -89,7 +89,8 @@ executable bingo
     , fakedata
     , games
     , MonadRandom
-    -- , mtl
+    , mtl
+    , random-shuffle
     , text
     , text-display
     , vector

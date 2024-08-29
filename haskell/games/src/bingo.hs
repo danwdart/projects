@@ -1,180 +1,148 @@
-{-# LANGUAGE DeriveAnyClass, DerivingStrategies, OverloadedStrings #-}
-{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-packages -Wno-partial-fields -Wno-unused-matches #-}
-
--- import Control.Exception
-import Control.Exception.RangeException
-import Control.Monad.Random
--- import Data.Kind
--- import Faker
-import Faker.Class
--- import Faker.Name
-import Numeric.Natural
--- import Data.Text qualified as T
-import Data.Text (Text)
-import Data.Text.Display
-import Data.Text.Lazy.Builder qualified as TB
-import Data.Vector (Vector)
-import Data.Vector qualified as V
-import Numeric.Range
+import Control.Monad.Error
+import Control.Monad.State
+import System.Random.Shuffle (shuffleM)
 
 main :: IO ()
 main = pure ()
 
--- TODO distribute possibilities from a given pile
--- probably best is https://hackage.haskell.org/package/lens-4.5/docs/Control-Lens-Cons.html
+data Combo = Corner | LinesOfLength Int Int
 
--- | Classes
-
-data Game cardType possibilityType = Game {
-    balls :: Vector possibilityType,
-    discard :: Vector possibilityType,
-    players :: Vector (cardType possibilityType)
+data LineConfig = LineConfig {
+    lines :: Int,
+    numbersPerLine :: Int,
 }
 
-mkPlayer :: {-(MonadFake m, MonadRandom m, Card cardType possibilityType, Possibility possibilityType) => -} m (Player cardType possibilityType)
-mkPlayer = undefined
-
-mkGame :: (MonadFake m, MonadRandom m {- }, Card cardType possibilityType, Possibility possibilityType -}) => m (Game cardType possibilityType)
-mkGame = do
-    numPlayers <- getRandom :: MonadRandom m => m Int -- TODO Natural
-    let balls = undefined -- V.fromList $ makeNumber <$> [1..75]
-    let discard = V.fromList []
-    players <- undefined -- _ . V.fromList <$> replicateM numPlayers mkPlayer -- TODO sequenceA
-    pure $ Game balls discard players
-
-
--- Better Bool!
-data MarkStatus = Unmarked | Marked deriving stock (Eq, Show, Ord, Enum)
-
-data NumberWithMarkStatus a = NumberWithMarkStatus {
-    _getNumber :: a,
-    _markStatus :: MarkStatus
+data WinningCombo = WinningCombo {
+    corners :: Bool, -- are we doing four corners
+    diagonals :: Bool,
+    horizontalLines :: Maybe LineConfig,
+    verticalLines :: Maybe LineConfig
 }
 
--- TODO do we even need functor
--- TODO lenses
-mark :: NumberWithMarkStatus a -> NumberWithMarkStatus a
-mark nw = nw { _markStatus = Marked }
+data Ruleset = Ruleset {
+    pool :: Int,
+    rows :: Int,
+    colSetup :: [(Int, Int)] -- for each col, number choices from a to b
+    freeSpaces :: [(Int, Int)], -- x, y for each free space
+    winningCombo :: WinningCombo
+}
 
+defaultRulesForCombo :: WinningCombo -> Ruleset
+defaultRulesForCombo = Ruleset 90 3 [(1,10),(11,20),(21,30),(31,40),(41,50),(51,60),(61,70),(71,80),(81,90)] [] 4
 
--- type Possibility :: Type -> Constraint
-class Possibility p where
-    mkRandomPossibility :: MonadRandom m => m p
+comboFourCorners :: WinningCombo
+comboFourCorners = WinningCombo {
+    corners = True,
+    diagonals = False,
+    horizontalLines = Nothing,
+    verticalLines = Nothing
+}
 
-instance Possibility p => Possibility (NumberWithMarkStatus p) where
-    mkRandomPossibility :: MonadRandom m => m (NumberWithMarkStatus p)
-    mkRandomPossibility = mkRandomPossibility >>= \n -> pure NumberWithMarkStatus {
-        _getNumber = n,
-        _markStatus = Unmarked
+comboOneLine :: WinningCombo
+comboOneLine = WinningCombo {
+    corners = False,
+    diagonals = False,
+    horizontalLines = Just (1, 5, 4),
+    verticalLines = Nothing
+}
+
+comboTwoLines :: WinningCombo
+comboTwoLines = WinningCombo {
+    corners = False,
+    diagonals = False,
+    horizontalLines = Just (2, 5, 4),
+    verticalLines = Nothing
+}
+
+comboNZSuperHousie :: WinningCombo
+comboNZSuperHousie = WinningCombo {
+    corners = False,
+    diagonals = False,
+    horizontalLines = Just (1, 5, 4),
+    verticalLines = Nothing
+}
+
+comboFullHouse :: WinningCombo
+
+rulesUS :: Ruleset
+rulesUS = Ruleset {
+    pool = 75,
+    rows = 5,
+    colSetup = [(1,15),(16,30),(31,45),(46,60),(61,75)],
+    freeSpaces = [(2,2)],
+    winningCombo = WinningCombo {
+        corners = False,
+        diagonals = True,
+        horizontalLines = Just (1, 5),
+        verticalLines = Just (1, 5)
     }
-
--- type Card :: Type -> Constraint
-class Possibility p => Card c p where
-    mkRandomCard :: (MonadRandom m) => m (c p)
-
-data Player card possibility = Player {
-    name :: Text,
-    card :: card possibility
 }
 
--- | Static Possibilities
-data ColStatic = ColB | ColI | ColN | ColG | ColO deriving stock (Eq, Show, Ord, Enum)
 
--- TODO FixedInt 15
-data OffsetStatic = SO0 | SO1 | SO2 | SO3 | SO4 | SO5 | SO6 | SO7 | SO8 | SO9 | SO10 | SO11 | SO12 | SO13 | SO14 deriving stock (Eq, Show, Ord, Enum)
+type ErrorMessage = String
 
-data NumberStatic = NumberStatic {
-    staticCol :: ColStatic,
-    staticOffset :: OffsetStatic
-}
+type NumOnCard = (Int, Bool)
 
-instance Display NumberStatic where
-    displayBuilder _ = TB.fromText "TODO"
+-- Take one random unique value from a state of list of them and keep the rest.
+takeS :: (MonadState [a] m, MonadError ErrorMessage m) => m a
+takeS = do
+    -- TODO deal with the error state
+    emptyList <- gets null
+    when emptyList $ throwError "Empty list"
+    a <- gets head -- (a:as) <- get
+    modify tail -- put as
+    pure a
 
-instance Possibility NumberStatic where
-    mkRandomPossibility :: m NumberStatic
-    mkRandomPossibility = undefined
+-- Take n random unique values from a list of a to b.
+takeNS :: (MonadState [a] m, MonadError ErrorMessage m) => Int -> m [a]
+takeNS = replicateM
 
--- | Dynamic Possibilities
+-- Generate a column.
+genRandomCol4 :: MonadRandom m => m [NumOnCard]
+genRandomCol4 = fmap (, False) . take 2 <$> shuffleM [31..45] <>
+    [(0, True)] <>
+    fmap (, False) . take 2 <$> shuffleM [31..45]
 
--- don't use this constructor (TODO export smart constructor from an external module)
-newtype NumberDynamic = NumberDynamic Natural deriving stock (Eq, Show, Ord) deriving newtype (Enum)
+genRandomCol5 :: MonadRandom m => Int -> m [NumOnCard]
+genRandomCol5 col = fmap (, False) . take 5 <$> shuffleM [((col - 1) * 15 + 1)..(col * 15)] -- kak but efficient
 
-instance Bounded NumberDynamic where
-    minBound = NumberDynamic 1
-    maxBound = NumberDynamic 75
+-- Generate a card.
+genRandomCard :: MonadRandom m => m [[NumOnCard]]
+genRandomCard = do
+    -- TODO tersify
+    col1 <- genRandomCol5 1
+    col2 <- genRandomCol5 2
+    col3 <- genRandomCol4
+    col4 <- genRandomCol5 4
+    col5 <- genRandomCol5 5
+    pure [col1, col2, col3, col4, col5]
 
-instance Possibility NumberDynamic where
-    mkRandomPossibility :: m NumberDynamic
-    mkRandomPossibility = undefined
+-- Mark a card.
 
--- smart constructor
-mkNumberDynamic :: Natural -> Either (RangeException Natural) NumberDynamic
-mkNumberDynamic = mkWithRange NumberDynamic 1 75
+markCard :: Int -> [[NumOnCard]]
+markCard n = fmap (fmap (\x -> if fst x == n then (n, True) else x ))
 
--- Stolen from Data.List.Extra
-enumerate :: (Bounded a, Enum a) => [a]
-enumerate = [minBound..maxBound]
+-- Check if a card has won.
 
-allNumbers :: [NumberDynamic]
-allNumbers = enumerate
+checkHWin :: [[NumOnCard]] -> Bool
+checkHWin = undefined
 
--- | Dynamic Cards
+checkVWin :: [[NumOnCard]] -> Bool
+checkVWin = undefined
 
-data ColDynamic a = RowDynamicFull {
-    choices :: [a]
-} | RowDynamicSplit {
-    choicesLeft :: [a],
-    choicesRight :: [a]
-}
+checkDWin :: [[NumOnCard]] -> Bool
+checkDWin = undefined
 
-newtype CardDynamic a = CardDynamic [ColDynamic a]
+-- Generate a player.
 
-instance (Possibility p) => Card CardDynamic p where
-    mkRandomCard :: m (CardDynamic p)
-    mkRandomCard = undefined
+-- Generate a number of players
 
--- | Static Cards
-data Col4 a = Col4 {
-    b4 :: a,
-    i4 :: a,
-    -- this is where free would go
-    g4 :: a,
-    o4 :: a
-}
+-- Mark all cards
 
-data Col5 a = Col5 {
-    b5 :: a,
-    i5 :: a,
-    n5 :: a,
-    g5 :: a,
-    o5 :: a
-}
+-- Randomise the balls.
 
-data CardStatic a = CardStatic {
-    r1 :: Col5 a,
-    r2 :: Col5 a,
-    r3 :: Col4 a,
-    r4 :: Col5 a,
-    r5 :: Col5 a
-}
+-- Take a ball from a list.
 
--- TODO: mark the cards? Use MarkableNumber n: UnmarkedNumber n | MarkedNumber n to replace the number with.
+-- Run one round.
 
-instance Possibility p => Card CardStatic p where
-    mkRandomCard :: m (CardStatic p)
-    mkRandomCard = undefined
-
--- | Generate an unmarked card.
-
--- | Generate a player.
-
--- | Generate a room of players.
-
--- | Draw a number.
-
--- | Mark a card with a number.
-
--- | Check if a player has won.
-
--- | Run a game to completion.
+-- Run the game to completion.
