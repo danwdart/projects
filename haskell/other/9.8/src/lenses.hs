@@ -104,11 +104,11 @@ describeGirthily person' = person' ^. personName . nameTitle . to show
         <>
         " was set upon in "
         <>
-        person' ^. personDiary . _Wrapped . partsOf (traverse . eventDate . year . to show) . to (intercalate ", ")
+        person' ^. personDiary . _Wrapped . partsOf (traverse . eventDate . year . to show) . commaSeparated
         <>
         " and decided respectively: "
         <>
-        person' ^. personDiary . _Wrapped . partsOf (traverse . event . eventSummary) . to (intercalate ", ")
+        person' ^. personDiary . _Wrapped . partsOf (traverse . event . eventSummary) . commaSeparated
         <>
         ". These were the dates: "
         <>
