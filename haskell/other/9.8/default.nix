@@ -36,7 +36,7 @@ let
       # #req = self.callHackage "req" "3.13.0" {};
       # # template-haskell >=2.11 && <2.19
       freer-simple = lib.doJailbreak (lib.markUnbroken super.freer-simple);
-      sdl2 = lib.doJailbreak super.sdl2;
+      # sdl2 = lib.doJailbreak super.sdl2;
       text-display = lib.doJailbreak (lib.markUnbroken super.text-display);
       ilist = lib.doJailbreak (lib.markUnbroken super.ilist);
       # #graphql = lib.doJailbreak super.graphql;

@@ -330,6 +330,8 @@ executable lenses
   build-depends:
     , base  >=4.19.1.0 && <5
     , lens
+    , time
+    -- , time-lens
 
 executable linear
   import:        shared-properties-nobase
@@ -434,13 +436,13 @@ executable req
     , text
 
 -- , mtl
-executable sdl
-  import:        shared-properties-unsafe
-  main-is:       sdl.hs
-  build-depends:
-    , base    >=4.19.1.0 && <5
-    , OpenGL
-    , sdl2
+-- executable sdl
+--   import:        shared-properties-unsafe
+--   main-is:       sdl.hs
+--   build-depends:
+--     , base    >=4.19.1.0 && <5
+--     , OpenGL
+--     , sdl2
 
 -- reflex-sdl2
 
