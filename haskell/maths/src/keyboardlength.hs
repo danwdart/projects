@@ -1,9 +1,14 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 -- Stolen from Matt Parker.
 
 import Data.ByteString.Char8 qualified as B
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as TE
 import Data.Text (Text)
+
+main :: IO ()
+main = pure ()
 
 -- | Definitions
 

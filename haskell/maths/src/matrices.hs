@@ -4,9 +4,9 @@ main = pure ()
 newtype Matrix a = Matrix [[a]]
 
 instance Num (Matrix a) where
-    Matrix a + Matrix b = undefined
-    Matrix a * Matrix b = undefined
-    abs (Matrix a) = undefined
-    signum (Matrix a) = undefined
-    fromInteger a = Matrix [[a]]
-    negate (Matrix a) = undefined
+    Matrix _ + Matrix _ = undefined
+    Matrix _ * Matrix _ = undefined
+    abs (Matrix _) = undefined
+    signum (Matrix _) = undefined
+    fromInteger _ = undefined
+    negate (Matrix _) = undefined
