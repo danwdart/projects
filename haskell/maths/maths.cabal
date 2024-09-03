@@ -174,6 +174,15 @@ executable oeisA171607
     , base        >=4.19.1.0 && <5
     , containers
 
+executable oeisA177715
+  import:  shared-properties
+  main-is: oeis/A177715.hs
+  build-depends:
+    , base        >=4.19.1.0 && <5
+    , cf
+    , numbers
+    , text
+
 executable oeisA181391
   import:  shared-properties
   main-is: oeis/A181391.hs
@@ -598,8 +607,8 @@ test-suite maths-test
   main-is:            Spec.hs
   other-modules:      UlamSpec
 
-  -- build-tool-depends:
-  --  hspec-discover:hspec-discover
+  build-tool-depends:
+    hspec-discover:hspec-discover
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
@@ -608,7 +617,7 @@ test-suite maths-test
 
   build-depends:
     , base   >=4.19.1.0 && <5
-    , hspec
+    , hspec >= 2.11.9
     , maths
 
 -- , hspec-core
