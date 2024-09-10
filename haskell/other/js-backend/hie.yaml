@@ -21,6 +21,9 @@ cradle:
     - path: "ghcjs-stuff/./extension/unfart.hs"
       component: "ghcjs-stuff:exe:unfart"
 
+    - path: "lib"
+      component: "lib:js-backend"
+
     - path: "src/Main.hs"
       component: "js-backend:exe:for-node"
 

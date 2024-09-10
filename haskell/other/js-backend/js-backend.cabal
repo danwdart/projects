@@ -23,25 +23,28 @@ data-files:
 common warnings
   ghc-options: -Wall
 
--- library
---     import:           warnings
---     exposed-modules:  MyLib
---     -- other-modules:
---     -- other-extensions:
---     build-depends:    base >=4.20.0.0
---     hs-source-dirs:   lib
---     default-language: GHC2021
---     default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
+library
+    import:           warnings
+    exposed-modules:  MyLib
+    -- other-modules:
+    -- other-extensions:
+    build-depends:    base >=4.19.1.0
+    hs-source-dirs:   lib
+    default-language: GHC2021
+    default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
+    if arch(javascript)
+      js-sources:
+        jsbits/lib.js
 
 executable for-node
   import:             warnings
   main-is:            Main.hs
-  other-modules:      MyLib
   -- other-extensions:
   build-depends:
     , base        >=4.19.1.0
     , aeson
-  hs-source-dirs:     src lib
+    , js-backend
+  hs-source-dirs:     src
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
@@ -52,12 +55,12 @@ executable for-node
 executable for-browser
   import:             warnings
   main-is:            Main.hs
-  other-modules:      MyLib
   -- other-extensions:
   build-depends:
     , base        >=4.19.1.0
     , aeson
-  hs-source-dirs:     src lib
+    , js-backend
+  hs-source-dirs:     src
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
@@ -77,6 +80,7 @@ test-suite js-backend-test
   -- other-modules:
   -- other-extensions:
   type:               exitcode-stdio-1.0
-  hs-source-dirs:     lib test
+  hs-source-dirs:     test
   main-is:            Main.hs
-  build-depends:      base >=4.20.0.0
+  build-depends:      base >=4.19.1.0
+                    , js-backend
