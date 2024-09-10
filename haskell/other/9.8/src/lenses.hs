@@ -1,4 +1,5 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE Trustworthy     #-}
 {-# LANGUAGE TypeFamilies     #-}
@@ -9,6 +10,8 @@
 module Main (main) where
 
 import Data.List
+import Data.Map qualified as Map
+import Data.Map (Map)
 import Data.Time
 -- import Data.Time.Calendar
 -- import Data.Time.Format.ISO8601
@@ -86,33 +89,31 @@ formattedDay = to showGregorian
 commaSeparated :: Getter [String] String
 commaSeparated = to (intercalate ", ")
 
+appended :: Semigroup a => a -> Getter a a
+appended s = to (<> s)
+
+written :: Getter String (IO ())
+written = to putStrLn
+
+printed :: Show a => Getter a (IO ())
+printed = to print
+
 -- idk
-describeGirthily :: Person -> String
-describeGirthily person' = person' ^. personName . nameTitle . to show
-        <>
-        " "
-        <>
-        person' ^. personName . nameGivenName
-        <>
-        ", also known as "
-        <>
-        person' ^. personName . nameOfficialName
-        <>
-        ", born on "
-        <>
-        (person' ^. personDOB . formattedDay)
-        <>
-        " was set upon in "
-        <>
-        person' ^. personDiary . _Wrapped . partsOf (traverse . eventDate . year . to show) . commaSeparated
-        <>
-        " and decided respectively: "
-        <>
-        person' ^. personDiary . _Wrapped . partsOf (traverse . event . eventSummary) . commaSeparated
-        <>
-        ". These were the dates: "
-        <>
+describeGirthily :: Getter Person String
+describeGirthily = to $ \person' -> unwords [
+        person' ^. personName . nameTitle . to show,
+        person' ^. personName . nameGivenName . appended ",",
+        "also known as",
+        person' ^. personName . nameOfficialName <> ",",
+        "born on",
+        person' ^. personDOB . formattedDay,
+        "was set upon in",
+        person' ^. personDiary . _Wrapped . partsOf (traverse . eventDate . year . to show) . commaSeparated,
+        "and decided respectively:",
+        person' ^. personDiary . _Wrapped . partsOf (traverse . event . eventSummary) . commaSeparated <> ".",
+        "These were the dates:",
         person' ^. personDiary . _Wrapped . partsOf (traverse . eventDate . to utctDay . to showGregorian) . commaSeparated
+    ]
 
 defaultPerson ∷ Person
 defaultPerson = Person (
@@ -147,11 +148,12 @@ newman = defaultPerson
 main ∷ IO ()
 main = do
     let a = (1, 2) :: (Int, Int)
-    print a
-    print $ a ^. _2
-    print $ set _2 (42 :: Int) a
-    print . (_2 .~ (42 :: Int)) $ a
-    print $ "Bob" ^. to length
-    print $ view _2 a
-    print $ (((1,0),(2,"Two"),(3,0)) :: ((Int, Int), (Int, String), (Int, Int)) ) ^. _2 . _2 . to length
-    putStrLn $ describeGirthily newman
+    ((Map.empty :: Map Int String) & at 2 ?~ "hello" & at 3 ?~ "world") ^. printed
+    a ^. printed
+    a ^. _2 . printed
+    set _2 (42 :: Int) a ^. printed
+    (a & _2 .~ (42 :: Int)) ^. printed
+    "Bob" ^. to length . printed
+    view _2 a ^. printed
+    (((1,0),(2,"Two"),(3,0)) :: ((Int, Int), (Int, String), (Int, Int)) ) ^. _2 . _2 . to length . printed
+    newman ^. (describeGirthily . written)

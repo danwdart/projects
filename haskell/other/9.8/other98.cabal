@@ -329,6 +329,7 @@ executable lenses
   main-is:       lenses.hs
   build-depends:
     , base  >=4.19.1.0 && <5
+    , containers
     , lens
     , time
     -- , time-lens
