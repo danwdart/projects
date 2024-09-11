@@ -29,6 +29,7 @@ library
     -- other-modules:
     -- other-extensions:
     build-depends:    base >=4.19.1.0
+                    , template-haskell
     hs-source-dirs:   lib
     default-language: GHC2021
     default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost

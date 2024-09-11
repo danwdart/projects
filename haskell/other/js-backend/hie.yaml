@@ -27,29 +27,8 @@ cradle:
     - path: "src/Main.hs"
       component: "js-backend:exe:for-node"
 
-    - path: "lib/Main.hs"
-      component: "js-backend:exe:for-node"
-
-    - path: "src/MyLib.hs"
-      component: "js-backend:exe:for-node"
-
-    - path: "lib/MyLib.hs"
-      component: "js-backend:exe:for-node"
-
     - path: "src/Main.hs"
       component: "js-backend:exe:for-browser"
-
-    - path: "lib/Main.hs"
-      component: "js-backend:exe:for-browser"
-
-    - path: "src/MyLib.hs"
-      component: "js-backend:exe:for-browser"
-
-    - path: "lib/MyLib.hs"
-      component: "js-backend:exe:for-browser"
-
-    - path: "lib"
-      component: "js-backend:test:js-backend-test"
 
     - path: "test"
       component: "js-backend:test:js-backend-test"

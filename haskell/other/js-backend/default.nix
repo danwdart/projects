@@ -4,7 +4,8 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98"
+  compiler ? "ghc98",
+  ENV ? "Unset"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -12,7 +13,9 @@ let
   lib = nixpkgs.pkgsCross.ghcjs.haskell.lib;
   myHaskellPackages = nixpkgs.pkgsCross.ghcjs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
-      js-backend = lib.dontHaddock (self.callCabal2nix "js-backend" (gitignore ./.) {});
+      js-backend = (lib.dontHaddock (self.callCabal2nix "js-backend" (gitignore ./.) {})).overrideAttrs(oldEnv: {
+        ENV = ENV;
+      });
       ghcjs-stuff = lib.dontHaddock (self.callCabal2nix "ghcjs-stuff" (gitignore ./ghcjs-stuff) {});
       # reflex-stuff = lib.dontHaddock (self.callCabal2nix "reflex-stuff" (gitignore ./reflex-stuff) {});
     };
