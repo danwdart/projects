@@ -1,6 +1,8 @@
 { system ? builtins.currentSystem,
   nixpkgs ? import <nixpkgs> {},
-  lib ? nixpkgs.pkgs.haskell.lib }:
+  lib ? nixpkgs.pkgs.haskell.lib,
+  ENV ? "Unset env"
+}:
 (import ./external/reflex-platform {
   inherit system;
   config.android_sdk.accept_license = true;
@@ -16,6 +18,7 @@
   };
 
   overrides = self: super: {
+    ghcjs-stuff = super.ghcjs-stuff.overrideAttrs(oldEnv: { ENV = ENV; });
     # reactive-banana = self.callHackage "reactive-banana" "1.2.2.0" {};
   };
 
@@ -23,15 +26,21 @@
   withHoogle = false;
 
   android = {
+    ghcjs-stuff = {
+      executableName = "mine";
+      applicationId = "com.jolharg.ghcjsstuff.mine";
+      displayName = "GHCJS Stuff - Mine";
+    };
     reflex-stuff = {
       executableName = "dom";
       applicationId = "com.jolharg.reflexstuff.dom";
-      displayName = "Reflex DOM Demo";
+      displayName = "Reflex Stuff - DOM";
     };
   };
 
   shells = {
-    ghc = ["reflex-stuff"];
+    android = ["ghcjs-stuff" "reflex-stuff"];
+    ghc = ["ghcjs-stuff" "reflex-stuff"];
     ghcjs = ["ghcjs-stuff" "reflex-stuff"];
     wasm = ["ghcjs-stuff" "reflex-stuff"];
   };
