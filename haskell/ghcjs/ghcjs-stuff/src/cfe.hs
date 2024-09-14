@@ -14,7 +14,7 @@ import GHCJS.DOM.Document
 import GHCJS.DOM.Element
 import GHCJS.DOM.ParentNode
 import GHCJS.DOM.Types
--- import Language.Javascript.JSaddle.Warp
+import Run
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5              as H hiding (main)
 import Text.Blaze.Html5              qualified as H (main)
@@ -62,7 +62,7 @@ myBody = body ! class_ "bg-dark" $ do
                             sub "10")
 
 page ∷ Html
-page =  do
+page = do
     myHead
     myBody
 
@@ -116,7 +116,7 @@ jsMain = do
     pure ()
 
 main ∷ IO ()
-main = liftJSM jsMain
+main = run jsMain
 
 {-
 const calc = () => {

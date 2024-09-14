@@ -12,7 +12,7 @@ import GHCJS.DOM.GlobalEventHandlers
 import GHCJS.DOM.HTMLHyperlinkElementUtils
 import GHCJS.DOM.Node
 import GHCJS.DOM.Types
--- import Language.Javascript.JSaddle.Warp
+import Run
 
 -- | This is the main function of this application it is shared by all the different executable
 -- types included in this package.  Its type JSM () is like IO () but for anything that needs
@@ -72,4 +72,4 @@ helloMain = do
     setInnerHTML body "<h1>Ka kite ano (See you later)</h1>"
 
 main ∷ IO ()
-main = liftJSM helloMain
+main = run helloMain

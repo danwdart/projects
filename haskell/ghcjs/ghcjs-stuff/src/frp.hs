@@ -24,10 +24,8 @@ import GHCJS.DOM.Element
 -- import GHCJS.DOM.Node
 import GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
-
--- import Language.Javascript.JSaddle.Debug
 -- import Language.Javascript.JSaddle.Object
--- import Language.Javascript.JSaddle.Warp
+import Run
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5              as H hiding (main)
 import Text.Blaze.Html5              qualified as H (main)
@@ -55,4 +53,4 @@ jsMain = do
     setInnerHTML elBody . BSL.unpack $ renderHtml page
 
 main ∷ IO ()
-main = liftJSM jsMain
+main = run jsMain

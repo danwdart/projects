@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP               #-}
 {-# LANGUAGE JavaScriptFFI     #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE Unsafe            #-}
@@ -11,14 +12,18 @@ import GHCJS.DOM.Element                (setInnerHTML)
 -- import GHCJS.DOM.HTMLCollection
 import GHCJS.DOM.ParentNode
 import GHCJS.DOM.Types
--- import Language.Javascript.JSaddle.Warp
+import Run
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5                 as H hiding (main)
 import Text.Blaze.Html5                 qualified as H (main)
 import Text.Blaze.Html5.Attributes      as A
 
-foreign import javascript unsafe
-  "console.log($1)" consoleLogElement :: Element → JSM ()
+#if defined(__GHCJS__)
+foreign import javascript unsafe "console.log($1)" consoleLogElement :: Element → JSM ()
+#else
+consoleLogElement :: Element -> JSM ()
+consoleLogElement _ = pure ()
+#endif
 
 page ∷ Html
 page = docTypeHtml ! lang "en-GB" $ do
@@ -45,4 +50,4 @@ jsMain = do
     pure ()
 
 main ∷ IO ()
-main = liftJSM jsMain
+main = run jsMain

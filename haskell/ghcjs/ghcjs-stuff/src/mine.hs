@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP               #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE Unsafe            #-}
 
@@ -24,7 +25,7 @@ import GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
 -- import GHCJS.DOM.Object
 import GHCJS.DOM.Window                   (confirm, prompt)
--- import Language.Javascript.JSaddle.Warp
+import Run
 
 {-
 helloMain :: JSM ()
@@ -63,7 +64,7 @@ helloMain = do
 -}
 
 main ∷ IO ()
-main = serve $ do
+main = run $ do
     logHere
     _ <- getConfirmFromClient
     _ <- getPromptFromClient
@@ -72,10 +73,12 @@ main = serve $ do
     liftIO . putStrLn $ body
     pure ()
 
-serve ∷ JSM () → IO ()
-serve = liftJSM
-
-foreign import javascript unsafe "console.log($1)" consoleLogString :: JSString → IO ()
+#if defined(__GHCJS__)
+foreign import javascript unsafe "console.log($1)" consoleLogString :: JSString → JSM ()
+#else
+consoleLogString :: JSString -> JSM ()
+consoleLogString _ = pure () -- lol no
+#endif
 
 logHere ∷ JSM ()
 logHere = consoleLogString "Hi folks!"

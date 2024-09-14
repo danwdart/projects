@@ -28,20 +28,36 @@ common shared-properties
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
-
   -- -Wno-missing-safe-haskell-mode
   -- -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -- only works on recent ghc
   --                       -Wno-missing-local-signatures
-  ghcjs-options:      -dedupe
+  -- ghcjs-options:      -dedupe -- oh dear it kills it
   cpp-options:        -DGHCJS_BROWSER
 
+library
+  import:        shared-properties
+  build-depends:
+    , base       >=4.14.3.0 && <5
+  exposed-modules:
+    Env
+    Run
+  hs-source-dirs: lib
+  if impl(ghcjs)
+    build-depends:
+        ghcjs-dom-jsffi
+  if !impl(ghcjs) && !arch(javascript)
+    build-depends:
+        jsaddle
+      , jsaddle-warp
+      -- not on android - disabled for now 
+      
 executable canvas
   import:        shared-properties
   main-is:       canvas.hs
   build-depends:
     , base       >=4.14.3.0 && <5
     , ghcjs-dom
-
+    , ghcjs-stuff
 -- , jsaddle-warp
 
 executable cfe
@@ -52,7 +68,16 @@ executable cfe
     , blaze-html
     , bytestring
     , ghcjs-dom
+    , ghcjs-stuff
     , split
+
+executable env-test
+  import:        shared-properties
+  main-is:       env-test.hs
+  build-depends:
+    , base        >=4.14.3.0 && <5
+    , ghcjs-stuff
+    , template-haskell
 
 -- , jsaddle-warp
 executable frp
@@ -64,6 +89,7 @@ executable frp
     , blaze-markup
     , bytestring
     , ghcjs-dom
+    , ghcjs-stuff
 
 -- , jsaddle-warp
 -- , reactive-banana
@@ -82,6 +108,7 @@ executable helloworld
   build-depends:
     , base       >=4.14.3.0 && <5
     , ghcjs-dom
+    , ghcjs-stuff
 
 executable mine
   import:        shared-properties
@@ -89,6 +116,7 @@ executable mine
   build-depends:
     , base       >=4.14.3.0 && <5
     , ghcjs-dom
+    , ghcjs-stuff
 
 executable pure-demo
   import:        shared-properties
@@ -98,10 +126,12 @@ executable pure-demo
     , blaze-html
     , bytestring
     , ghcjs-dom
+    , ghcjs-stuff
 
-executable unfart
-  import:        shared-properties
-  main-is:       extension/unfart.hs
-  build-depends:
-    , base        >=4.14.3.0 && <5
-    , containers
+-- executable unfart
+--   import:        shared-properties
+--   main-is:       extension/unfart.hs
+--   build-depends:
+--     , base        >=4.14.3.0 && <5
+--     , containers
+--     , ghcjs-stuff

@@ -15,7 +15,9 @@ const doReplaceTweets = twitterUr; === window.location.href ?
 
 import Data.Map      (Map)
 import Data.Map      qualified as Map
--- import GHCJS.DOM
+import GHCJS.DOM
+import GHCJS.DOM.Types
+import Run
 -- import JavaScript.Web. qualified
 
 
@@ -38,22 +40,22 @@ replacements = Map.fromList
     ,("Trump", "Fart")
     ]
 
-replaceNames ∷ IO ()
+replaceNames ∷ JSM ()
 replaceNames = undefined
 
-replaceTweets ∷ IO ()
+replaceTweets ∷ JSM ()
 replaceTweets = undefined
 
-performReplacements ∷ IO ()
+performReplacements ∷ JSM ()
 performReplacements = do
     replaceNames
     replaceTweets
 
-onLoad ∷ IO () → IO ()
+onLoad ∷ JSM () → JSM ()
 onLoad _ = undefined
 
 main ∷ IO ()
-main =
+main = run $
     --js_log "Unfart initialised"
     onLoad performReplacements
     --js_log "Unfart finished"
