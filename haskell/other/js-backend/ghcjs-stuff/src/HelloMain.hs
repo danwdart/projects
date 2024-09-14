@@ -12,7 +12,6 @@ import GHCJS.DOM.GlobalEventHandlers
 import GHCJS.DOM.HTMLHyperlinkElementUtils
 import GHCJS.DOM.Node
 import GHCJS.DOM.Types
--- import Language.Javascript.JSaddle.Warp
 
 -- | This is the main function of this application it is shared by all the different executable
 -- types included in this package.  Its type JSM () is like IO () but for anything that needs

@@ -11,7 +11,6 @@ import GHCJS.DOM.Element
 import GHCJS.DOM.HTMLCanvasElement
 import GHCJS.DOM.Node
 import GHCJS.DOM.Types
--- import Language.Javascript.JSaddle.Warp
 
 -- add type aliases?
 cartesianToGraph ∷ (Double, Double) → (Double, Double)

@@ -11,7 +11,6 @@ import GHCJS.DOM.Element                (setInnerHTML)
 -- import GHCJS.DOM.HTMLCollection
 import GHCJS.DOM.ParentNode
 import GHCJS.DOM.Types
--- import Language.Javascript.JSaddle.Warp
 import Text.Blaze.Html.Renderer.Utf8
 import Text.Blaze.Html5                 as H hiding (main)
 import Text.Blaze.Html5                 qualified as H (main)

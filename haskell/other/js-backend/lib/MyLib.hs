@@ -22,7 +22,7 @@ someFunc = do
 -- static struct??? why??? we don't do this yet
 -- foreign export javascript "h$someFunc" someFunc :: IO ()
 
-foreign import javascript "inject" inject :: IO ()
+foreign import javascript unsafe "inject" inject :: IO ()
 
-foreign import javascript "((x, y) => { this[x] = y })"
+foreign import javascript unsafe "((x, y) => { this[x] = y })"
   creaGloVar :: JSVal -> JSVal -> IO ()

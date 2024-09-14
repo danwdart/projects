@@ -24,7 +24,6 @@ import GHCJS.DOM.Types
 -- import GHCJS.DOM.WebGL2RenderingContext
 -- import GHCJS.DOM.Object
 import GHCJS.DOM.Window                   (confirm, prompt)
--- import Language.Javascript.JSaddle.Warp
 
 {-
 helloMain :: JSM ()
