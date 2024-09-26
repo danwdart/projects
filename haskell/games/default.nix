@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98"
+  compiler ? "ghc910"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -13,6 +13,9 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       games = lib.dontHaddock (self.callCabal2nix "games" (gitignore ./.) {});
+      universe-base = lib.doJailbreak super.universe-base;
+      reverse-instances = lib.doJailbreak super.reverse-instances;
+      universe-reverse-instances = lib.doJailbreak super.universe-reverse-instances;
     };
   };
   shell = myHaskellPackages.shellFor {

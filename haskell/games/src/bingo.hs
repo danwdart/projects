@@ -1,4 +1,7 @@
-import Control.Monad.Error
+{-# OPTIONS_GHC -Wwarn #-}
+
+import Control.Monad.Except
+import Control.Monad.Random
 import Control.Monad.State
 import System.Random.Shuffle (shuffleM)
 
@@ -9,7 +12,7 @@ data Combo = Corner | LinesOfLength Int Int
 
 data LineConfig = LineConfig {
     lines :: Int,
-    numbersPerLine :: Int,
+    numbersPerLine :: Int
 }
 
 data WinningCombo = WinningCombo {
@@ -22,7 +25,7 @@ data WinningCombo = WinningCombo {
 data Ruleset = Ruleset {
     pool :: Int,
     rows :: Int,
-    colSetup :: [(Int, Int)] -- for each col, number choices from a to b
+    colSetup :: [(Int, Int)], -- for each col, number choices from a to b
     freeSpaces :: [(Int, Int)], -- x, y for each free space
     winningCombo :: WinningCombo
 }
@@ -63,6 +66,7 @@ comboNZSuperHousie = WinningCombo {
 }
 
 comboFullHouse :: WinningCombo
+comboFullHouse = undefined
 
 rulesUS :: Ruleset
 rulesUS = Ruleset {
@@ -77,7 +81,6 @@ rulesUS = Ruleset {
         verticalLines = Just (1, 5)
     }
 }
-
 
 type ErrorMessage = String
 
