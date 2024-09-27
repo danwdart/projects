@@ -16,8 +16,8 @@ executable consolefrp
     UnicodeSyntax
 
   build-depends:
-    , base        >=4.19.1.0 && <5
-    , reflex-vty
+    , base        >=4.20.0.0 && <5
+    , reflex-vty >= 0.5.2.1
     , vty
 
   hs-source-dirs:     src

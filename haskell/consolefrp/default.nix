@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98"
+  compiler ? "ghc910"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -15,11 +15,16 @@ let
       consolefrp = lib.dontHaddock (self.callCabal2nix "consolefrp" (gitignore ./.) {});
       # 9.0.2 -> 9.2.2
       # monoidal-containers = lib.doJailbreak super.monoidal-containers;
-      # patch = lib.doJailbreak super.patch;
+      patch = lib.doJailbreak super.patch;
       reflex-vty = lib.doJailbreak (lib.markUnbroken super.reflex-vty); # self.callHackage "reflex-vty"
+      reflex = self.callCabal2nix "reflex" (nixpkgs.fetchFromGitHub {
+        owner = "ymeister";
+        repo = "reflex";
+        rev = "844d88d10cbf0db8ad8677a9c72f6a10e811c0f4";
+        sha256 = "EIMAtC4q+zvpckisAp6W1I8S4Lk1f70Yaii0tIhScQQ=";
+      }) {};
       #vty = lib.doJailbreak super.vty;
       #string-qq = lib.doJailbreak super.string-qq;
-      #reflex = lib.doJailbreak (self.callHackage "reflex" "0.9.0.0" {});
     };
   };
   shell = myHaskellPackages.shellFor {
