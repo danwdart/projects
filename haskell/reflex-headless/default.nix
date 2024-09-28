@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98"
+  compiler ? "ghc910"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -13,6 +13,13 @@ let
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       reflex-headless = lib.dontHaddock (self.callCabal2nix "reflex-headless" (gitignore ./.) {});
+      reflex = self.callCabal2nix "reflex" (nixpkgs.fetchFromGitHub {
+        owner = "ymeister";
+        repo = "reflex";
+        rev = "844d88d10cbf0db8ad8677a9c72f6a10e811c0f4";
+        sha256 = "EIMAtC4q+zvpckisAp6W1I8S4Lk1f70Yaii0tIhScQQ=";
+      }) {};
+      patch = lib.doJailbreak super.patch;
     };
   };
   shell = myHaskellPackages.shellFor {
