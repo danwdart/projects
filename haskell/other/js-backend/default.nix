@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98",
+  compiler ? "ghc910",
   ENV ? "Unset"
 }:
 let
