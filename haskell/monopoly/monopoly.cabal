@@ -21,7 +21,7 @@ library
     UnicodeSyntax
 
   build-depends:
-    , base         >=4.19.1.0 && <5
+    , base         >=4.20.0.0 && <5
     , containers
     , lens
     , MonadRandom
@@ -60,7 +60,7 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.19.1.0 && <5
+  build-depends:      base >=4.20.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -74,7 +74,7 @@ executable monopoly
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base        >=4.19.1.0 && <5
+    , base        >=4.20.0.0 && <5
     , containers
     , monopoly
 
@@ -88,20 +88,15 @@ test-suite monopoly-test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
   other-modules:
-
-  -- build-tool-depends:
-  --   hspec-discover:hspec-discover == 2.*
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
-
   build-depends:      hspec
-
--- , base        >=4.19.1.0 && <5
+-- , base        >=4.20.0.0 && <5
 -- , monopoly
 -- , QuickCheck
-
 -- , hspec-core
 -- , hspec-expectations
+  build-tool-depends: hspec-discover:hspec-discover

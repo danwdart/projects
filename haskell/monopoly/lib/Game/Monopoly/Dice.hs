@@ -8,3 +8,4 @@ randomRoll = do
     die1 <- randomRIO (1, 6) -- randomR wouldn't cut it
     die2 <- randomRIO (1, 6)
     pure (die1 + die2, die1 == die2)
+{-# INLINABLE randomRoll #-}
