@@ -21,7 +21,7 @@ library
 
   build-depends:
     , aeson
-    , base               >=4.19.1.0 && <5
+    , base               >=4.20.0.0 && <5
     , base64-bytestring
     , bytestring
     , jwt
@@ -51,7 +51,7 @@ executable whatcoffee
 
   build-depends:
     , aeson
-    , base               >=4.19.1.0 && <5
+    , base               >=4.20.0.0 && <5
     , base64-bytestring
     , bytestring
     , text
