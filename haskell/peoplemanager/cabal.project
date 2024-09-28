@@ -1,0 +1,3 @@
+packages: peoplemanager.cabal
+
+allow-newer: text

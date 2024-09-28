@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98"
+  compiler ? "ghc910"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -17,6 +17,9 @@ let
       # nixpkgs only has 5.33
       #vty = lib.doJailbreak (self.callHackage "vty" "5.37" {});
       peoplemanager = lib.dontHaddock (self.callCabal2nix "peoplemanager" (gitignore ./.) {});
+      pcre-heavy = lib.dontCheck super.pcre-heavy;
+      string-random = lib.doJailbreak super.string-random;
+      uuid = lib.doJailbreak super.uuid;
     };
   };
   shell = myHaskellPackages.shellFor {
