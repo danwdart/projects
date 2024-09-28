@@ -38,7 +38,7 @@ common shared-properties-lib
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base >=4.19.1.0 && <5
+  build-depends:      base >=4.20.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -53,7 +53,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends:      base >=4.19.1.0 && <5
+  build-depends:      base >=4.20.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
@@ -87,7 +87,7 @@ library
 
   -- other-modules:
   -- other-extensions:
-  build-depends:   base >=4.19.1.0
+  build-depends:   base >=4.20.0.0
   hs-source-dirs:  lib
 
 test-suite test
@@ -99,11 +99,10 @@ test-suite test
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
-
   build-depends:
-    , base            >=4.19.1.0 && <5
+    , base            >=4.20.0.0 && <5
     , ffi-quickcheck
     , hspec
     , QuickCheck
-
+  build-tool-depends: hspec-discover:hspec-discover
   other-modules:      Queue.ForeignSpec

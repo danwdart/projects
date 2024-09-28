@@ -40,7 +40,7 @@ prop_EmptyQueueHasCorrectSize size = size > 0 ==> withMaxSuccess 10000 . collect
     assert $ size == 0
 
 prop_QueueWithFewerElementsAsSizeShowUpInSize ∷ Int → [Int] → Property
-prop_QueueWithFewerElementsAsSizeShoupg wUpInSize size elements = size > 0 && length elements < size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
+prop_QueueWithFewerElementsAsSizeShowUpInSize size elements = size > 0 && length elements < size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     size <- run $ do
         q <- cqueue_new size
         mapM_ (cqueue_put q) elements
