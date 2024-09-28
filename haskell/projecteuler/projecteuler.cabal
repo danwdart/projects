@@ -25,7 +25,7 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.19.1.0 && <5
+  build-depends:      base >=4.20.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -46,7 +46,7 @@ library
     UnicodeSyntax
 
   build-depends:
-    , base    >=4.19.1.0 && <5
+    , base    >=4.20.0.0 && <5
     , primes
 
   ghc-options:
@@ -71,7 +71,7 @@ library
 executable projecteuler
   import:             shared-properties
   build-depends:
-    , base          >=4.19.1.0
+    , base          >=4.20.0.0
     , projecteuler
 
   main-is:            Main.hs
@@ -97,13 +97,10 @@ test-suite projecteuler-test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
   other-modules:
-
-  -- build-tool-depends:
-  --  hspec-discover:hspec-discover
   default-language:   GHC2021
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
-
   build-depends:      hspec
+  build-tool-depends: hspec-discover:hspec-discover
