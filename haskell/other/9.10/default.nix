@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc98"
+  compiler ? "ghc910"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -35,7 +35,6 @@ let
       # # not released on nix yet
       # #req = self.callHackage "req" "3.13.0" {};
       # # template-haskell >=2.11 && <2.19
-      freer-simple = lib.doJailbreak (lib.markUnbroken super.freer-simple);
       # sdl2 = lib.doJailbreak super.sdl2;
       text-display = lib.doJailbreak (lib.markUnbroken super.text-display);
       ilist = lib.doJailbreak (lib.markUnbroken super.ilist);
@@ -46,12 +45,34 @@ let
       HGamer3D = lib.doJailbreak (lib.markUnbroken super.HGamer3D);
       # ghc-typelits-presburger = self.callHackage "ghc-typelits-presburger" "0.7.1.0" {};
       # ghc-typelits-natnormalise = self.callHackage "ghc-typelits-natnormalise" "0.7.7" {};
-      other98 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other98" (gitignore ./.) {})));
+      dbus = lib.doJailbreak super.dbus;
+      other910 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other910" (gitignore ./.) {})));
+      bsb-http-chunked = lib.dontCheck super.bsb-http-chunked;
+      gloss-rendering = lib.doJailbreak super.gloss-rendering;
+      gloss = lib.doJailbreak super.gloss;
+      graphql = lib.doJailbreak super.graphql;
+      monads-tf = lib.doJailbreak super.monads-tf;
+      freer-simple = self.callCabal2nix "freer-simple" (builtins.fetchGit {
+        url = "https://github.com/georgefst/freer-simple.git";
+        ref = "ghc-9.10";
+        rev = "365bf9294477783b29186cdf48dc608e060a6ec9";
+      }) {};
+      patch = lib.doJailbreak super.patch;
+      reflex = self.callCabal2nix "reflex" (nixpkgs.fetchFromGitHub {
+        owner = "ymeister";
+        repo = "reflex";
+        rev = "844d88d10cbf0db8ad8677a9c72f6a10e811c0f4";
+        sha256 = "EIMAtC4q+zvpckisAp6W1I8S4Lk1f70Yaii0tIhScQQ=";
+      }) {};
+      hgettext = lib.doJailbreak super.hgettext;
+      serialise = lib.doJailbreak super.serialise;
+      http2 = lib.doJailbreak super.http2;
+      microstache = lib.doJailbreak super.microstache;
     };
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other98
+      p.other910
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -63,5 +84,5 @@ let
   in
 {
   inherit shell;
-  other98 = lib.justStaticExecutables (myHaskellPackages.other98);
+  other910 = lib.justStaticExecutables (myHaskellPackages.other910);
 }
