@@ -16,7 +16,7 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "WTFPL",
   "dependencies": {
-    "@snyk/protect": "^1.1292.1",
+    "@snyk/protect": "^1.1293.1",
     "pug": "^3.0.3",
     "pug-cli": "^1.0.0-alpha6"
   },
