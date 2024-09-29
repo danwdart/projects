@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@snyk/protect": "^1.1292.1",
+    "@snyk/protect": "^1.1293.1",
     "bonjour": "^3.3.0"
   }
 }
