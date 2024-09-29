@@ -1,15 +1,15 @@
-name: "Other 9.8"
+name: "Other 9.10"
 on:
   schedule:
     - cron: "0 2 * * *"
   pull_request:
     paths:
-      - .github/workflows/other98.yml
-      - haskell/other/9.8/**
+      - .github/workflows/other910.yml
+      - haskell/other/9.10/**
   push:
     paths:
-      - .github/workflows/other98.yml
-      - haskell/other/9.8/**
+      - .github/workflows/other910.yml
+      - haskell/other/9.10/**
   workflow_dispatch:
 jobs:
   build-and-deploy:
@@ -35,7 +35,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - name: Build
       run: |
-        cd haskell/other/9.8
+        cd haskell/other/9.10
         nix-build
     - name: Push dependencies to Cachix
       run: |
