@@ -147,6 +147,12 @@ executable sudoku
     , lattices
     , vector
 
+executable yesyes
+  import:        shared-properties
+  main-is:       yesyes.hs
+  build-depends:
+    , base        >=4.20.0.0 && <5
+
 test-suite games-test
   import:             shared-properties
   hs-source-dirs:     test
