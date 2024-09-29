@@ -15,21 +15,21 @@
     "@babel/core": "^8.0.0-alpha.5",
     "@babel/eslint-parser": "^8.0.0-alpha.5",
     "@babel/preset-env": "^8.0.0-alpha.5",
-    "@types/three": "^0.166.0",
-    "babel-loader": "^9.1.3",
+    "@types/three": "^0.169.0",
+    "babel-loader": "^9.2.1",
     "css-loader": "^7.1.2",
-    "eslint": "^9.7.0",
+    "eslint": "^9.11.1",
     "file-loader": "^6.2.0",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.5.3",
+    "typescript": "^5.6.2",
     "url-loader": "^4.1.1",
-    "webpack": "^5.93.0",
+    "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
-    "@snyk/protect": "^1.1292.1",
-    "three": "^0.166.1"
+    "@snyk/protect": "^1.1293.1",
+    "three": "^0.169.0"
   }
 }
