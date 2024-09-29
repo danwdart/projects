@@ -3,7 +3,6 @@
 
 module Run where
 
-
 #if defined(__GHCJS__)
 run :: a -> a
 run = id
