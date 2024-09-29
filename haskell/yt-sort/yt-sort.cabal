@@ -1,0 +1,108 @@
+cabal-version:      3.4
+
+-- Newer versions complain
+name:               yt-sort
+version:            0.1.0.0
+
+-- synopsis:
+-- description:
+homepage:           https://github.com/danwdart/projects#readme
+license:            AGPL-3.0-only
+
+-- license-file:        LICENSE
+author:             Dan Dart
+maintainer:         cabal@dandart.co.uk
+copyright:          2019 Dan Dart
+category:           Web
+build-type:         Simple
+extra-source-files: README.md
+
+common shared-properties
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  build-depends:      base >=4.20.0.0 && <5
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+
+  ghcjs-options:      -dedupe
+
+-- library
+--   hs-source-dirs:     lib
+--   default-language:   GHC2021
+--   default-extensions:
+--     DerivingStrategies
+--     ImportQualifiedPost
+--     UnicodeSyntax
+-- 
+--   build-depends:
+--     , base           >=4.20.0.0 && <5
+--     , gogol
+--     , gogol-youtube
+--     , lens
+-- 
+--   ghc-options:
+--     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+--     -Wno-missing-import-lists -Wno-missing-export-lists
+--     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+--     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+--     -Wno-missing-local-signatures -Wno-all-missed-specialisations
+--     -Wno-missed-specialisations -Wno-missing-role-annotations
+--     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+--     -Wno-unrecognised-warning-flags
+-- 
+--   ghcjs-options:      -dedupe
+--   exposed-modules:
+
+-- todo these could be a depended library
+executable yt-sort
+  import:        shared-properties
+  hs-source-dirs:     src
+  main-is:       Main.hs
+  build-depends:
+    , base            >=4.20.0.0 && <5
+    -- , gogol
+    -- , gogol-youtube
+    -- , lens
+    -- , text
+
+-- test-suite yt-sort-test
+--   ghc-options:
+--     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+--     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+--     -Wno-missing-export-lists -Wno-implicit-prelude
+--     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+--     -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+--     -Wno-all-missed-specialisations -Wno-missed-specialisations
+--     -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+-- 
+--   ghcjs-options:      -dedupe
+--   hs-source-dirs:     test
+--   type:               exitcode-stdio-1.0
+--   main-is:            Spec.hs
+--   other-modules:
+-- 
+--   -- build-tool-depends:
+--   --  hspec-discover:hspec-discover
+--   default-language:   GHC2021
+--   default-extensions:
+--     DerivingStrategies
+--     ImportQualifiedPost
+--     UnicodeSyntax
+-- 
+--   build-depends:      hspec
+
+--   base >= 4.19.1.0 && < 5
+-- , yt-sort
+-- , hspec-core
+-- , hspec-expectations
+-- , QuickCheck
