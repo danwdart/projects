@@ -1,6 +1,11 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -p haskell.compiler.ghc910 -i runghc
-
+#!/usr/bin/env cabal
+{- cabal:
+build-depends: base ^>= 4.20
+             , containers
+-}
+{- project:
+packages: *
+-}
 {-# LANGUAGE OverloadedLists #-}
 
 module Main (main) where
