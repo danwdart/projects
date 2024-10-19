@@ -9,7 +9,7 @@ do
     for TAG in $TAGS
     do
         echo $TAG
-        mkdir -p tags/$TAG
-        ln -sv $PWD/$FILE $PWD/tags/$TAG/
+        mkdir -p "tags/$TAG"
+        ln -sv "$PWD/$FILE" "$PWD/tags/$TAG/"
     done
 done
