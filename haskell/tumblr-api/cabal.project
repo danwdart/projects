@@ -4,3 +4,5 @@ source-repository-package
   tag: a0e466b8bb51407ec1131d172e4f6eab994970ef
 
 packages: *
+
+allow-newer: base

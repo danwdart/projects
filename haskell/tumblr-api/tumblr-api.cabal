@@ -20,7 +20,7 @@ executable tumblr-api
     UnicodeSyntax
 
   build-depends:
-    , base          >=4.19.1.0 && <5
+    , base          >=4.20.0.0 && <5
     , bytestring
     , dotenv
     , http-conduit
