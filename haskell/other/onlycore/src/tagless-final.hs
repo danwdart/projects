@@ -1,14 +1,17 @@
+{-# LANGUAGE DerivingStrategies, GeneralisedNewtypeDeriving, PackageImports, Unsafe #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-safe -Wno-unsafe #-}
+
 module Main (main) where
 
-{-}
 import Control.Monad.IO.Class
+import Control.Monad.Fix
 import "mtl" Control.Monad.Reader
 import "mtl" Control.Monad.Writer
 import "mtl" Control.Monad.State
 import "mtl" Control.Monad.RWS
 import Data.String
-import Data.Text qualified as T
-import Data.Text (Text)
+-- import Data.Text qualified as T
+-- import Data.Text (Text)
 
 type AppRead = String
 type AppState = Int
@@ -16,10 +19,10 @@ type AppWriter = [String]
 type AppMonad = IO
 type AppReturn = Char
 
-default (Text)
+-- default (Text)
 
 class MonadConsole a where
-    puts :: IsString s => s -> a ()
+    puts :: Show s => s -> a ()
     gets :: IsString s => a s
 
 instance MonadConsole IO where
@@ -27,11 +30,11 @@ instance MonadConsole IO where
     gets = fromString <$> getLine
 
 class MonadFile a where
-    writef :: IsString s => FilePath -> s -> a ()
+    writef :: Show s => FilePath -> s -> a ()
     readf :: IsString s => FilePath -> a s
 
 instance MonadFile IO where
-    writef f s = writeFile f s
+    writef f s = writeFile f (show s)
     readf f = fromString <$> readFile f
 
 newtype Fake a = Fake {
@@ -43,14 +46,13 @@ instance Applicative Fake where
     Fake a <*> Fake b = Fake (a b)
 
 instance Monad Fake where
-    pure = Fake
     Fake a >>= f = f a
 
 newtype AppM a = AppM {
     unApp :: RWST AppRead AppWriter AppState AppMonad a
 } deriving stock (
     Functor
-) deriving anyclass (
+    ) deriving newtype (
     Applicative,
     Monad,
     MonadIO,
@@ -74,7 +76,3 @@ stuff3 = do
 main :: IO ()
 main = do
     print =<< runAppM stuff3 "aeiou" 1
--}
-
-main ∷ IO ()
-main = pure ()

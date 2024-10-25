@@ -16,7 +16,7 @@ copyright:          2019 Dan Dart
 category:           Web
 build-type:         Simple
 extra-source-files: README.md
-
+F
 common shared-properties-base
   hs-source-dirs:     src
   default-language:   GHC2021
@@ -500,10 +500,6 @@ executable st
 executable stddebug
   import:  shared-properties-safe
   main-is: stddebug.hs
-
-executable tagless-final
-  import:  shared-properties-safe
-  main-is: tagless-final.hs
 
 executable texttodec
   import:        shared-properties-safe

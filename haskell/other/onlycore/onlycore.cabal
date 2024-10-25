@@ -277,6 +277,14 @@ executable stm
     , base  >=4.20.0.0 && <5
     , stm
 
+executable tagless-final
+  import:  shared-properties-unsafe
+  main-is: tagless-final.hs
+  build-depends:
+    , base  >=4.20.0.0 && <5
+    , mtl
+    , text
+
 executable th
   import:        shared-properties-unsafe
   main-is:       th.hs
