@@ -15,3 +15,6 @@ main = do
     print (toEnum 0 :: Lights)
     print (toEnum (fromEnum Off) :: Bool)
     print (coerceEnum On :: Bool)
+    print (Booly True :: Booly BoolyThing)
+    print (Booly False :: Booly OtherBoolyThing)
+
