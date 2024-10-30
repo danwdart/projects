@@ -283,7 +283,6 @@ executable tagless-final
   build-depends:
     , base  >=4.20.0.0 && <5
     , mtl
-    , text
 
 executable th
   import:        shared-properties-unsafe
