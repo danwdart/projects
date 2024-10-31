@@ -14,11 +14,7 @@ int main(int argc, char* argv[]) {
     char* err;
 
     void* handle;
-    #ifdef HELPER_MODULE
-    handle = dlopen("libHSDemo_withhelper.so", RTLD_LAZY);
-    #else
-    handle = dlopen("libHSDemo.so", RTLD_LAZY);
-    #endif
+    handle = dlopen("MODULE.so", RTLD_LAZY);
     if (!handle) {
         fprintf(stderr, "Error opening shared library: %s\n", dlerror());
         return 1;

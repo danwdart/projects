@@ -1,4 +1,6 @@
 {-# LANGUAGE CApiFFI #-}
+{-# LANGUAGE Unsafe  #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
 module Lib where
 

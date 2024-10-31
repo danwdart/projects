@@ -1,5 +1,7 @@
 {-# LANGUAGE CApiFFI #-}
 {-# LANGUAGE CPP     #-}
+{-# LANGUAGE Unsafe  #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
 module Main (main) where
 
@@ -55,6 +57,7 @@ main = do
         fn <- mkFn <$> dlsym libHandler "fn"
         add <- mkAdd <$> dlsym libHandler "add"
         question <- newCString "Can't yet import static value from dynamic library"
-        let answer = 0
+        let answer :: Int
+            answer = 0
 #endif
         run question answer datas io fn add

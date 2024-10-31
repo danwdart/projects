@@ -14,6 +14,3 @@ jwt.secret
 stan.html
 main
 *_stub.h
-build
-obj
-lib
