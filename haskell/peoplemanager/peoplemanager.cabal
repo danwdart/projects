@@ -26,10 +26,8 @@ executable peoplemanager
 
   -- other-modules:
   -- other-extensions:
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   build-depends:

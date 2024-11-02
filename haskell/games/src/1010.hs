@@ -1,5 +1,3 @@
-{-# LANGUAGE DataKinds          #-}
-{-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE OverloadedLists    #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
 

@@ -1,4 +1,3 @@
-{-# LANGUAGE DataKinds   #-}
 {-# LANGUAGE Trustworthy #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-unused-matches  #-}
 

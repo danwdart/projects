@@ -1,5 +1,4 @@
 {-# LANGUAGE DeriveAnyClass       #-}
-{-# LANGUAGE DerivingStrategies   #-}
 {-# LANGUAGE TemplateHaskell      #-}
 {-# LANGUAGE TypeFamilies         #-}
 {-# LANGUAGE UndecidableInstances #-}

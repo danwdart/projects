@@ -1,15 +1,5 @@
 -- https://www.youtube.com/watch?v=PHS3Q-tRjFQ
-{-# LANGUAGE ConstraintKinds              #-}
-{-# LANGUAGE DataKinds                    #-}
-{-# LANGUAGE DerivingStrategies           #-}
-{-# LANGUAGE FlexibleInstances            #-}
-{-# LANGUAGE GADTs                        #-}
 {-# LANGUAGE MultiParamTypeClasses        #-}
-{-# LANGUAGE NoGeneralisedNewtypeDeriving #-}
-{-# LANGUAGE ScopedTypeVariables          #-}
-{-# LANGUAGE StandaloneDeriving           #-}
-{-# LANGUAGE StandaloneKindSignatures     #-}
-{-# LANGUAGE TypeOperators                #-}
 {-# LANGUAGE Unsafe                       #-}
 {-# OPTIONS_GHC -Weverything -Werror #-}
 {-# OPTIONS_GHC -Wno-missing-import-lists #-}

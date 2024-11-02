@@ -1,8 +1,4 @@
-{-# LANGUAGE DataKinds           #-}
-{-# LANGUAGE DerivingStrategies  #-}
-{-# LANGUAGE GADTs               #-}
 {-# LANGUAGE NoImplicitPrelude   #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeFamilies        #-}
 {-# LANGUAGE Unsafe              #-}
 {-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise #-}
@@ -49,20 +45,21 @@ type MaxL m a = forall n. (n <= m) ⇒ Vec n a
 
 type ML m a = forall m1 n. (n <= m1, m1 ~ m) ⇒ Vec n a
 
--- $> :set -XDataKinds
-
 -- $> :set -fplugin GHC.TypeLits.Normalise
 
 -- $> :t ('a' :> 'b' :> 'c' :> Nil) :: MaxL 3 Char
 
 -- >>> :t ('a' :> 'b' :> 'c' :> Nil) :: MaxL 3 Char
--- <interactive>:1:36: error:
---     Illegal type: ‘3’ Perhaps you intended to use DataKinds
+-- (Error while loading modules for evaluation)
+-- <BLANKLINE>
+-- <no location info>: error:
+--     Could not find module ‘GHC.TypeLits.Normalise’
+-- Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+-- Failed, no modules loaded.
 --
 
 type MinL m a = forall n. (m <= n) ⇒ Vec n a
 
--- >>> :set -XDataKinds
 -- >>> :set -XAllowAmbiguousTypes
 -- >>> :t 'a' :> 'b' :> Nil :: (2 <= n) => Vec n Char
 

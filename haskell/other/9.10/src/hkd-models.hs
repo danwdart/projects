@@ -1,6 +1,5 @@
 {-# LANGUAGE DeriveAnyClass             #-}
 {-# LANGUAGE DerivingVia                #-}
-{-# LANGUAGE GeneralisedNewtypeDeriving #-}
 {-# LANGUAGE Trustworthy                #-}
 {-# LANGUAGE UndecidableInstances       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wwarn #-}

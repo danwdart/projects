@@ -1,4 +1,4 @@
-{-# LANGUAGE DerivingStrategies, GeneralisedNewtypeDeriving, PackageImports, Unsafe #-}
+{-# LANGUAGE PackageImports, Unsafe #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-safe -Wno-unsafe #-}
 
 module Main (main) where

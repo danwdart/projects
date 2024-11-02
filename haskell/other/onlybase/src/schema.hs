@@ -1,4 +1,3 @@
-{-# LANGUAGE GADTs #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 module Main (main) where

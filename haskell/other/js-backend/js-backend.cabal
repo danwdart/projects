@@ -31,7 +31,7 @@ library
     build-depends:    base >=4.20.0.0
                     , template-haskell
     hs-source-dirs:   lib
-    default-language: GHC2021
+    default-language: GHC2024
     default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
     if arch(javascript)
       js-sources:
@@ -46,7 +46,7 @@ executable for-node
     , aeson
     , js-backend
   hs-source-dirs:     src
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
@@ -62,7 +62,7 @@ executable for-browser
     , aeson
     , js-backend
   hs-source-dirs:     src
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
@@ -72,7 +72,7 @@ executable for-browser
 
 test-suite js-backend-test
   import:             warnings
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost

@@ -13,10 +13,8 @@ extra-source-files:
 
 executable tumblr-api
   main-is:            Main.hs
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   build-depends:

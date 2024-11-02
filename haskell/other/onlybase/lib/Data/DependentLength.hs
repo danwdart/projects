@@ -1,8 +1,4 @@
-{-# LANGUAGE DataKinds           #-}
-{-# LANGUAGE DerivingStrategies  #-}
-{-# LANGUAGE GADTs               #-}
 {-# LANGUAGE NoImplicitPrelude   #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeFamilies        #-}
 {-# LANGUAGE Unsafe              #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
@@ -55,7 +51,6 @@ type ML m a = forall m1 n. (n <= m1, m1 ~ m) ⇒ Vec n a
 
 type MinL m a = forall n. (m <= n) ⇒ Vec n a
 
--- >>> :set -XDataKinds
 -- >>> :set -XAllowAmbiguousTypes
 -- >>> :t 'a' :> 'b' :> Nil :: (2 <= n) => Vec n Char
 

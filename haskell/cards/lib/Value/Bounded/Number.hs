@@ -1,5 +1,3 @@
-{-# LANGUAGE LambdaCase #-}
-
 module Value.Bounded.Number where
 
 import Symbol

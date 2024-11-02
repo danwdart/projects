@@ -1,8 +1,6 @@
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-safe #-}
 -- where do I put {-# INLINABLE Element #-}
-{-# LANGUAGE DeriveFunctor       #-}
 {-# LANGUAGE OverloadedLists     #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE Unsafe              #-}
 
 

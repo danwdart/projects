@@ -1,4 +1,3 @@
-{-# LANGUAGE GADTs      #-}
 {-# LANGUAGE MultiWayIf #-}
 
 module Main (main) where

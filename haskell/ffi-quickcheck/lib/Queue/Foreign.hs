@@ -1,5 +1,4 @@
 {-# LANGUAGE CApiFFI                  #-}
-{-# LANGUAGE ForeignFunctionInterface #-}
 {-# LANGUAGE Unsafe                   #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 

@@ -1,5 +1,3 @@
-{-# LANGUAGE DerivingStrategies #-}
-
 module Game.Monopoly.Addons where
 
 data Addons = NoAddons | OneHouse | TwoHouses | ThreeHouses | FourHouses | Hotel deriving stock (Eq, Ord, Enum, Bounded)

@@ -1,1 +1,1 @@
-:set -XForeignFunctionInterface -XCApiFFI -fobject-code -no-keep-o-files -no-keep-hi-files
+:set -XCApiFFI -fobject-code -no-keep-o-files -no-keep-hi-files

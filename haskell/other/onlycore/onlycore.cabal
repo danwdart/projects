@@ -21,10 +21,8 @@ data-files:         example.form
 
 common shared-properties-base
   hs-source-dirs:     src
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   ghcjs-options:      -dedupe
@@ -57,7 +55,6 @@ common shared-properties-unsafe
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
   build-depends:      base >=4.20.0.0 && <5
-  default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -103,7 +100,7 @@ library
     World
 
 executable array
-  import:        shared-properties-unsafe
+  import:        shared-properties-safe
   main-is:       array.hs
   build-depends:
     , array

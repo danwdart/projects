@@ -1,6 +1,4 @@
 -- Stolen from https://serokell.io/blog/haskell-type-level-witness
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE GADTs     #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
 module Main (main) where

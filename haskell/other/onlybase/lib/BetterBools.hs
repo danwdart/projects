@@ -1,4 +1,4 @@
-{-# LANGUAGE DerivingStrategies, Safe, NoGeneralisedNewtypeDeriving, UnicodeSyntax #-}
+{-# LANGUAGE Safe, NoGeneralisedNewtypeDeriving, UnicodeSyntax #-}
 
 module BetterBools where
 

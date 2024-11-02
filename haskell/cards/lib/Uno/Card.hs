@@ -1,4 +1,3 @@
-{-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC -Wno-partial-fields -Wno-orphans #-}
 
 module Uno.Card where

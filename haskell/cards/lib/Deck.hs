@@ -1,5 +1,3 @@
-{-# LANGUAGE DeriveFoldable #-}
-
 module Deck where
 
 import Card

@@ -19,10 +19,8 @@ extra-source-files: README.md
 
 common shared-properties-base
   hs-source-dirs:     src
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   ghcjs-options:      -dedupe
@@ -54,7 +52,6 @@ common shared-properties-unsafe
     -with-rtsopts=-N
 
   build-depends:      base >=4.20.0.0 && <5
-  default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -585,10 +582,8 @@ test-suite test
   type:               exitcode-stdio-1.0
   hs-source-dirs:     test
   main-is:            Spec.hs
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
   build-depends:
     , base        >=4.20.0.0 && <5
@@ -611,10 +606,8 @@ benchmark listStringVsVectorText
   type:               exitcode-stdio-1.0
   hs-source-dirs:     bench
   main-is:            listStringVsVectorText.hs
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   build-depends:
@@ -631,10 +624,8 @@ benchmark sums
   type:               exitcode-stdio-1.0
   hs-source-dirs:     bench
   main-is:            sums.hs
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   build-depends:
@@ -648,10 +639,8 @@ benchmark recursiveFacFibs
   type:               exitcode-stdio-1.0
   hs-source-dirs:     bench
   main-is:            recursiveFacFibs.hs
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   build-depends:

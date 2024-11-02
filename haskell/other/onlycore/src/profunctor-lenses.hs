@@ -1,6 +1,5 @@
 {-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -Wwarn #-}
-{-# LANGUAGE LambdaCase    #-}
 
 module Main (main) where
 

@@ -1,4 +1,3 @@
-{-# LANGUAGE LambdaCase      #-}
 {-# LANGUAGE PatternSynonyms #-}
 
 -- With some help from: https://www.youtube.com/watch?v=SPC_R5nwFqo

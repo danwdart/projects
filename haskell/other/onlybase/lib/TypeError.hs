@@ -1,6 +1,5 @@
 -- Stolen from: https://www.youtube.com/watch?v=37uTCZqpqmk
 
-{-# LANGUAGE DataKinds            #-}
 {-# LANGUAGE Safe                 #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-orphans #-}

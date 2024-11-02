@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass, DerivingStrategies #-}
+{-# LANGUAGE DeriveAnyClass #-}
 
 module Control.Exception.RangeException (RangeException(..)) where
 

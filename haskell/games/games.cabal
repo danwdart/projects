@@ -14,10 +14,8 @@ extra-source-files: README.md
 
 library
   hs-source-dirs:     lib
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
   build-depends:      base >=4.20.0.0 && <5
   exposed-modules:    
@@ -36,10 +34,8 @@ library
 
 common shared-properties
   hs-source-dirs:     src
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   build-depends:      base >=4.20.0.0 && <5
@@ -159,10 +155,8 @@ test-suite games-test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
   other-modules:      Game.BounceSpec
-  default-language:   GHC2021
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
   build-depends:
     , base        >=4.20.0.0 && <5

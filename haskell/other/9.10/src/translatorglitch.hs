@@ -95,4 +95,4 @@ makeT xs = translateTextRequest
     & ttrQ .~ xs
 
 --myR :: TranslationsTranslate
---myR = myT & translationsTranslate & ttPp .~ True{-# LANGUAGE DeriveAnyClass, DeriveGeneric, OverloadedStrings #-}
+--myR = myT & translationsTranslate & ttPp .~ True{-# LANGUAGE DeriveAnyClass, OverloadedStrings #-}
