@@ -1,4 +1,3 @@
-{-# LANGUAGE DerivingStrategies #-}
 {-# OPTIONS_GHC -Wwarn -Wno-unused-top-binds -Wno-unused-matches #-}
 
 module Main (main) where

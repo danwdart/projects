@@ -1,4 +1,3 @@
-{-# LANGUAGE DataKinds #-}
 
 module Main (main) where
 
