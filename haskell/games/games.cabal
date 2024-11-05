@@ -15,13 +15,13 @@ extra-source-files: README.md
 library
   hs-source-dirs:     lib
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
   build-depends:      base >=4.20.0.0 && <5
-  exposed-modules:    
-      Control.Exception.RangeException
-    , Game.Bounce
-    , Numeric.Range
+  exposed-modules:
+    Control.Exception.RangeException
+    Game.Bounce
+    Numeric.Range
+
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
@@ -35,9 +35,7 @@ library
 common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:      base >=4.20.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
@@ -95,13 +93,13 @@ executable countdown
   import:        shared-properties
   main-is:       countdown.hs
   build-depends:
-    , base         >=4.20.0.0 && <5
+    , base          >=4.20.0.0 && <5
     , games
-    -- , MonadRandom
-    -- , mtl
     , text
     , text-display
 
+-- , MonadRandom
+-- , mtl
 executable frog
   import:        shared-properties
   main-is:       frog.hs
@@ -146,8 +144,7 @@ executable sudoku
 executable yesyes
   import:        shared-properties
   main-is:       yesyes.hs
-  build-depends:
-    , base        >=4.20.0.0 && <5
+  build-depends: base >=4.20.0.0 && <5
 
 test-suite games-test
   import:             shared-properties
@@ -156,13 +153,14 @@ test-suite games-test
   main-is:            Spec.hs
   other-modules:      Game.BounceSpec
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
   build-depends:
     , base        >=4.20.0.0 && <5
     , games
     , hspec
     , QuickCheck
+
   build-tool-depends: hspec-discover:hspec-discover
+
 -- , hspec-core
 -- , hspec-expectations

@@ -1,6 +1,6 @@
-{-# LANGUAGE NoImplicitPrelude   #-}
-{-# LANGUAGE TypeFamilies        #-}
-{-# LANGUAGE Unsafe              #-}
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE TypeFamilies      #-}
+{-# LANGUAGE Unsafe            #-}
 {-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wwarn #-}
 

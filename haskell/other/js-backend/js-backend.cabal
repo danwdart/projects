@@ -14,7 +14,7 @@ build-type:      Simple
 extra-doc-files: CHANGELOG.md
 
 -- extra-source-files:
-data-dir:           data
+data-dir:        data
 data-files:
   css/*.css
   img/*.png
@@ -24,49 +24,61 @@ common warnings
   ghc-options: -Wall
 
 library
-    import:           warnings
-    exposed-modules:  MyLib
-    -- other-modules:
-    -- other-extensions:
-    build-depends:    base >=4.20.0.0
-                    , template-haskell
-    hs-source-dirs:   lib
-    default-language: GHC2024
-    default-extensions:  DerivingStrategies, UnicodeSyntax, ImportQualifiedPost
-    if arch(javascript)
-      js-sources:
-        jsbits/lib.js
+  import:             warnings
+  exposed-modules:    MyLib
+
+  -- other-modules:
+  -- other-extensions:
+  build-depends:
+    , base              >=4.20.0.0
+    , template-haskell
+
+  hs-source-dirs:     lib
+  default-language:   GHC2024
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  if arch(javascript)
+    js-sources: jsbits/lib.js
 
 executable for-node
   import:             warnings
   main-is:            Main.hs
+
   -- other-extensions:
   build-depends:
-    , base        >=4.20.0.0
     , aeson
+    , base        >=4.20.0.0
     , js-backend
+
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+
   ghcjs-options:      -dedupe
 
 executable for-browser
   import:             warnings
   main-is:            Main.hs
+
   -- other-extensions:
   build-depends:
-    , base        >=4.20.0.0
     , aeson
+    , base        >=4.20.0.0
     , js-backend
+
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+
   ghcjs-options:      -dedupe
   cpp-options:        -DGHCJS_BROWSER
 
@@ -77,11 +89,14 @@ test-suite js-backend-test
     DerivingStrategies
     ImportQualifiedPost
     UnicodeSyntax
+
   -- other-modules:
   -- other-extensions:
   type:               exitcode-stdio-1.0
   hs-source-dirs:     test
   main-is:            Main.hs
-  build-depends:      base >=4.20.0.0
-                    , js-backend
+  build-depends:
+    , base        >=4.20.0.0
+    , js-backend
+
   build-tool-depends: hspec-discover:hspec-discover

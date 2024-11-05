@@ -4,18 +4,18 @@
 
 module Lib where
 
-import Control.Monad ( (>=>) )
-import Foreign.C ( CString, newCString, peekCString )
+import Control.Monad ((>=>))
+import Foreign.C     (CString, newCString, peekCString)
 
 -- This is just a function that returns some data. There's probably no plain string.
-dataraw :: Int
+dataraw ∷ Int
 dataraw = 42
 
 -- This is just a function that returns some data. There's probably no plain string.
-datas :: IO CString
+datas ∷ IO CString
 datas = newCString "Data"
 
-fn :: CString -> IO CString
+fn ∷ CString → IO CString
 fn = peekCString >=> pure . (<> "!") >=> newCString
 
 -- Alternatively arrowly written as:
@@ -23,14 +23,14 @@ fn = peekCString >=> pure . (<> "!") >=> newCString
 -- fnA :: CString -> IO CString
 -- fnA = runKleisli $ Kleisli peekCString <<< Kleisli (pure . (<> "!")) <<< Kleisli newCString
 
-io :: IO ()
+io ∷ IO ()
 io = putStrLn "Hello from Haskell!"
 
-add :: Int -> Int
+add ∷ Int → Int
 add = (+ 42)
 
 foreign export capi "dataraw" dataraw :: Int
 foreign export capi "data" datas :: IO CString
-foreign export capi "fn" fn :: CString -> IO CString
+foreign export capi "fn" fn :: CString → IO CString
 foreign export capi "io" io :: IO ()
-foreign export capi "add" add :: Int -> Int
+foreign export capi "add" add :: Int → Int

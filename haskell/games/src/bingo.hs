@@ -5,35 +5,35 @@ import Control.Monad.Random
 import Control.Monad.State
 import System.Random.Shuffle (shuffleM)
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 data Combo = Corner | LinesOfLength Int Int
 
 data LineConfig = LineConfig {
-    lines :: Int,
+    lines          :: Int,
     numbersPerLine :: Int
 }
 
 data WinningCombo = WinningCombo {
-    corners :: Bool, -- are we doing four corners
-    diagonals :: Bool,
+    corners         :: Bool, -- are we doing four corners
+    diagonals       :: Bool,
     horizontalLines :: Maybe LineConfig,
-    verticalLines :: Maybe LineConfig
+    verticalLines   :: Maybe LineConfig
 }
 
 data Ruleset = Ruleset {
-    pool :: Int,
-    rows :: Int,
-    colSetup :: [(Int, Int)], -- for each col, number choices from a to b
-    freeSpaces :: [(Int, Int)], -- x, y for each free space
+    pool         :: Int,
+    rows         :: Int,
+    colSetup     :: [(Int, Int)], -- for each col, number choices from a to b
+    freeSpaces   :: [(Int, Int)], -- x, y for each free space
     winningCombo :: WinningCombo
 }
 
-defaultRulesForCombo :: WinningCombo -> Ruleset
+defaultRulesForCombo ∷ WinningCombo → Ruleset
 defaultRulesForCombo = Ruleset 90 3 [(1,10),(11,20),(21,30),(31,40),(41,50),(51,60),(61,70),(71,80),(81,90)] [] 4
 
-comboFourCorners :: WinningCombo
+comboFourCorners ∷ WinningCombo
 comboFourCorners = WinningCombo {
     corners = True,
     diagonals = False,
@@ -41,7 +41,7 @@ comboFourCorners = WinningCombo {
     verticalLines = Nothing
 }
 
-comboOneLine :: WinningCombo
+comboOneLine ∷ WinningCombo
 comboOneLine = WinningCombo {
     corners = False,
     diagonals = False,
@@ -49,7 +49,7 @@ comboOneLine = WinningCombo {
     verticalLines = Nothing
 }
 
-comboTwoLines :: WinningCombo
+comboTwoLines ∷ WinningCombo
 comboTwoLines = WinningCombo {
     corners = False,
     diagonals = False,
@@ -57,7 +57,7 @@ comboTwoLines = WinningCombo {
     verticalLines = Nothing
 }
 
-comboNZSuperHousie :: WinningCombo
+comboNZSuperHousie ∷ WinningCombo
 comboNZSuperHousie = WinningCombo {
     corners = False,
     diagonals = False,
@@ -65,10 +65,10 @@ comboNZSuperHousie = WinningCombo {
     verticalLines = Nothing
 }
 
-comboFullHouse :: WinningCombo
+comboFullHouse ∷ WinningCombo
 comboFullHouse = undefined
 
-rulesUS :: Ruleset
+rulesUS ∷ Ruleset
 rulesUS = Ruleset {
     pool = 75,
     rows = 5,
@@ -87,7 +87,7 @@ type ErrorMessage = String
 type NumOnCard = (Int, Bool)
 
 -- Take one random unique value from a state of list of them and keep the rest.
-takeS :: (MonadState [a] m, MonadError ErrorMessage m) => m a
+takeS ∷ (MonadState [a] m, MonadError ErrorMessage m) ⇒ m a
 takeS = do
     -- TODO deal with the error state
     emptyList <- gets null
@@ -97,20 +97,20 @@ takeS = do
     pure a
 
 -- Take n random unique values from a list of a to b.
-takeNS :: (MonadState [a] m, MonadError ErrorMessage m) => Int -> m [a]
+takeNS ∷ (MonadState [a] m, MonadError ErrorMessage m) ⇒ Int → m [a]
 takeNS = replicateM
 
 -- Generate a column.
-genRandomCol4 :: MonadRandom m => m [NumOnCard]
-genRandomCol4 = fmap (, False) . take 2 <$> shuffleM [31..45] <>
+genRandomCol4 ∷ MonadRandom m ⇒ m [NumOnCard]
+genRandomCol4 = (fmap (, False) . take 2) . (shuffleM [31..45] <>
     [(0, True)] <>
-    fmap (, False) . take 2 <$> shuffleM [31..45]
+    fmap (, False) . take 2) <$> shuffleM [31..45]
 
-genRandomCol5 :: MonadRandom m => Int -> m [NumOnCard]
+genRandomCol5 ∷ MonadRandom m ⇒ Int → m [NumOnCard]
 genRandomCol5 col = fmap (, False) . take 5 <$> shuffleM [((col - 1) * 15 + 1)..(col * 15)] -- kak but efficient
 
 -- Generate a card.
-genRandomCard :: MonadRandom m => m [[NumOnCard]]
+genRandomCard ∷ MonadRandom m ⇒ m [[NumOnCard]]
 genRandomCard = do
     -- TODO tersify
     col1 <- genRandomCol5 1
@@ -122,18 +122,18 @@ genRandomCard = do
 
 -- Mark a card.
 
-markCard :: Int -> [[NumOnCard]]
+markCard ∷ Int → [[NumOnCard]]
 markCard n = fmap (fmap (\x -> if fst x == n then (n, True) else x ))
 
 -- Check if a card has won.
 
-checkHWin :: [[NumOnCard]] -> Bool
+checkHWin ∷ [[NumOnCard]] → Bool
 checkHWin = undefined
 
-checkVWin :: [[NumOnCard]] -> Bool
+checkVWin ∷ [[NumOnCard]] → Bool
 checkVWin = undefined
 
-checkDWin :: [[NumOnCard]] -> Bool
+checkDWin ∷ [[NumOnCard]] → Bool
 checkDWin = undefined
 
 -- Generate a player.

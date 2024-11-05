@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unused-matches -Wno-all-missed-specialisations -Wno-missed-specialisations -Wno-safe #-}
 -- where do I put {-# INLINABLE Element #-}
-{-# LANGUAGE OverloadedLists     #-}
-{-# LANGUAGE Unsafe              #-}
+{-# LANGUAGE OverloadedLists #-}
+{-# LANGUAGE Unsafe          #-}
 
 
 module Data.ListIndex where

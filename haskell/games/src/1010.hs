@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedLists    #-}
+{-# LANGUAGE OverloadedLists #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
 
 module Main (main) where

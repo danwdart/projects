@@ -19,9 +19,7 @@ extra-source-files:
 common shared-properties-base
   hs-source-dirs:     src
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
 
 common shared-properties-lib
@@ -40,7 +38,7 @@ common shared-properties-lib
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
-  import:             shared-properties-base
+  import:        shared-properties-base
   ghc-options:
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
@@ -51,7 +49,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends: base >=4.20.0.0 && <5
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -92,12 +90,12 @@ test-suite test
   hs-source-dirs:     test
   main-is:            Spec.hs
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
   build-depends:
     , base            >=4.20.0.0 && <5
     , ffi-quickcheck
     , hspec
     , QuickCheck
+
   build-tool-depends: hspec-discover:hspec-discover
   other-modules:      Queue.ForeignSpec

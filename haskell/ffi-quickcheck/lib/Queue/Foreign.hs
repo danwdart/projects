@@ -1,5 +1,5 @@
-{-# LANGUAGE CApiFFI                  #-}
-{-# LANGUAGE Unsafe                   #-}
+{-# LANGUAGE CApiFFI #-}
+{-# LANGUAGE Unsafe  #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
 module Queue.Foreign where
@@ -24,7 +24,7 @@ foreign import capi "queue.h size" cqueue_size :: Ptr CQueue → IO Int
 -- Now do we foreign import malloc? Probably not. We have Foreign.Marshal.Alloc for that!
 
 -- Reimplement in Cstuff
-queueNew :: Int → IO (Ptr CQueue)
+queueNew ∷ Int → IO (Ptr CQueue)
 queueNew = undefined
 {-
 assert(("Length of queue must be greater than 0", n > 0)); /* how can haskell catch that? can it even? */
@@ -35,14 +35,14 @@ assert(("Length of queue must be greater than 0", n > 0)); /* how can haskell ca
     return qptr;
 -}
 
-queuePut :: Ptr CQueue → Int → IO ()
+queuePut ∷ Ptr CQueue → Int → IO ()
 queuePut = undefined
 {-
     q->buf[q->inp] = n;
     q->inp = (q->inp + 1) % q->size;
 -}
 
-queueGet :: Ptr CQueue → IO Int
+queueGet ∷ Ptr CQueue → IO Int
 queueGet = undefined
 {-
     int ans = q->buf[q->outp];
@@ -50,7 +50,7 @@ queueGet = undefined
     return ans;
 -}
 
-queueSize :: Ptr CQueue → IO Int
+queueSize ∷ Ptr CQueue → IO Int
 queueSize = undefined
 {-
 return (q->inp - q->outp) % q->size;

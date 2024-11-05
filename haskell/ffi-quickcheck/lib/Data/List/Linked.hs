@@ -4,10 +4,10 @@ data LL = LL deriving (Show)
 
 data LinkedList = LinkedList {
     value :: String,
-    next :: Maybe LinkedList
+    next  :: Maybe LinkedList
 }
 
-printList :: LinkedList -> IO ()
+printList ∷ LinkedList → IO ()
 printList LinkedList { next = Nothing } = undefined
 {-
 printf("%d: %s\n", from, list->value);
@@ -17,7 +17,7 @@ printf("%d: %s\n", from, list->value);
     }
 -}
 
-fromHList :: [String] -> LinkedList
+fromHList ∷ [String] → LinkedList
 fromHList = undefined
 {-
 LL* list = newlist();
@@ -26,12 +26,12 @@ LL* list = newlist();
         list->value = array[i];
         list->next = newlist();
         list = list->next;
-    }    
+    }
     return orig_list;
 -}
 
 -- from array?
-insertList :: String -> LinkedList -> LinkedList
+insertList ∷ String → LinkedList → LinkedList
 insertList = undefined
 {-
 char **tracer;

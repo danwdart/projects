@@ -14,9 +14,7 @@ extra-source-files:
 executable tumblr-api
   main-is:            Main.hs
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:
     , base          >=4.20.0.0 && <5
     , bytestring

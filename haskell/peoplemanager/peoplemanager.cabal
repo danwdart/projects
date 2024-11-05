@@ -27,13 +27,11 @@ executable peoplemanager
   -- other-modules:
   -- other-extensions:
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:
     , base         >=4.20.0.0 && <5
     , containers
-    , fakedata >= 1.0.3
+    , fakedata     >=1.0.3
     , MonadRandom
     , text
     , time

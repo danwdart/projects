@@ -1,15 +1,15 @@
 -- https://www.youtube.com/watch?v=PHS3Q-tRjFQ
-{-# LANGUAGE MultiParamTypeClasses        #-}
-{-# LANGUAGE Unsafe                       #-}
+{-# LANGUAGE MultiParamTypeClasses   #-}
+{-# LANGUAGE Unsafe                  #-}
 {-# OPTIONS_GHC -Weverything -Werror #-}
 {-# OPTIONS_GHC -Wno-missing-import-lists #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 {-# OPTIONS_GHC -Wno-safe #-}
 {-# OPTIONS_GHC -Wno-all-missed-specialisations -Wno-missed-specialisations #-}
 {-# OPTIONS_GHC -Wno-missing-role-annotations #-}
-{-# LANGUAGE IncoherentInstances          #-}
-{-# LANGUAGE TypeFamilies                 #-}
-{-# LANGUAGE UndecidableSuperClasses      #-}
+{-# LANGUAGE IncoherentInstances     #-}
+{-# LANGUAGE TypeFamilies            #-}
+{-# LANGUAGE UndecidableSuperClasses #-}
 -- | Length Index-Vector
 module Vec (Vec(..), and, head, init, map, length) where
 

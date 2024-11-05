@@ -19,9 +19,7 @@ extra-source-files: README.md
 
 common shared-properties
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:      base >=4.20.0.0 && <5
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
@@ -61,15 +59,15 @@ common shared-properties
 
 -- todo these could be a depended library
 executable yt-sort
-  import:        shared-properties
-  hs-source-dirs:     src
-  main-is:       Main.hs
-  build-depends:
-    , base            >=4.20.0.0 && <5
-    -- , gogol
-    -- , gogol-youtube
-    -- , lens
-    -- , text
+  import:         shared-properties
+  hs-source-dirs: src
+  main-is:        Main.hs
+  build-depends:  base >=4.20.0.0 && <5
+
+-- , gogol
+-- , gogol-youtube
+-- , lens
+-- , text
 
 -- test-suite yt-sort-test
 --   ghc-options:

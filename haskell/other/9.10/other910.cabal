@@ -20,9 +20,7 @@ extra-source-files: README.md
 common shared-properties-base
   hs-source-dirs:     src
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
 
 common shared-properties-lib
@@ -40,7 +38,7 @@ common shared-properties-lib
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
-  import:             shared-properties-base
+  import:        shared-properties-base
   ghc-options:
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
@@ -51,7 +49,7 @@ common shared-properties-unsafe
     -Wno-unrecognised-warning-flags -Werror -haddock -threaded -rtsopts
     -with-rtsopts=-N
 
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends: base >=4.20.0.0 && <5
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -325,11 +323,12 @@ executable lenses
   import:        shared-properties-unsafe
   main-is:       lenses.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base        >=4.20.0.0 && <5
     , containers
     , lens
     , time
-    -- , time-lens
+
+-- , time-lens
 
 executable linear
   import:        shared-properties-nobase
@@ -583,13 +582,13 @@ test-suite test
   hs-source-dirs:     test
   main-is:            Spec.hs
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
   build-depends:
     , base        >=4.20.0.0 && <5
     , hspec
     , other910
     , QuickCheck
+
   build-tool-depends: hspec-discover:hspec-discover
   other-modules:
     Data.DependentLengthSpec
@@ -607,9 +606,7 @@ benchmark listStringVsVectorText
   hs-source-dirs:     bench
   main-is:            listStringVsVectorText.hs
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:
     , array
     , base        >=4.20.0.0 && <5
@@ -625,9 +622,7 @@ benchmark sums
   hs-source-dirs:     bench
   main-is:            sums.hs
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:
     , array
     , base       >=4.20.0.0 && <5
@@ -640,9 +635,7 @@ benchmark recursiveFacFibs
   hs-source-dirs:     bench
   main-is:            recursiveFacFibs.hs
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:
     , array
     , base       >=4.20.0.0 && <5

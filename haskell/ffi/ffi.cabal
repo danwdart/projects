@@ -1,17 +1,18 @@
-cabal-version:      3.4
-name:               ffi
-version:            0.1.0.0
-synopsis:           Some FFI demos
-description:        Some FFI demos
-license:            AGPL-3.0-or-later
-license-file:       LICENSE
-author:             Dan Dart
-maintainer:         git@dandart.co.uk
+cabal-version:   3.4
+name:            ffi
+version:         0.1.0.0
+synopsis:        Some FFI demos
+description:     Some FFI demos
+license:         AGPL-3.0-or-later
+license-file:    LICENSE
+author:          Dan Dart
+maintainer:      git@dandart.co.uk
 
 -- copyright:
-category:           Development
-build-type:         Simple
-extra-doc-files:    CHANGELOG.md
+category:        Development
+build-type:      Simple
+extra-doc-files: CHANGELOG.md
+
 -- extra-source-files:
 --   cbits/*.c
 --   cbits/*.h
@@ -19,8 +20,7 @@ extra-doc-files:    CHANGELOG.md
 common shared-properties-base
   hs-source-dirs:     src
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
 
 common shared-properties-lib
@@ -34,11 +34,12 @@ common shared-properties-lib
     -Wno-missing-role-annotations -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
+
   build-depends:      base >=4.20.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
-  import:             shared-properties-base
+  import:        shared-properties-base
   ghc-options:
     -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
@@ -48,7 +49,8 @@ common shared-properties-unsafe
     -Wno-missing-role-annotations -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
-  build-depends:      base >=4.20.0.0 && <5
+
+  build-depends: base >=4.20.0.0 && <5
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -81,32 +83,35 @@ common shared-properties-nobase
 
 -- foreign library is when you want to import a haskell library using a wrapper into something C-like
 foreign-library haskelldemo_withhelper
-  import:          shared-properties-lib
-  type: native-shared
-  if os(Windows)
+  import:            shared-properties-lib
+  type:              native-shared
+
+  if os(windows)
     options: standalone
-  c-sources:
-    cbits/hswrapper.c
-  cpp-options: -DMODULE=libHSDemo_withhelper
-  build-depends:   base >=4.20.0.0
+
+  c-sources:         cbits/hswrapper.c
+  cpp-options:       -DMODULE=libHSDemo_withhelper
+  build-depends:     base >=4.20.0.0
+
   -- lib-version-info: 0:0:0
   lib-version-linux: 0.0.0
-  hs-source-dirs:  lib
-  other-modules:
-    Lib
+  hs-source-dirs:    lib
+  other-modules:     Lib
 
 foreign-library haskelldemo
-  import:          shared-properties-lib
-  type: native-shared
-  if os(Windows)
+  import:            shared-properties-lib
+  type:              native-shared
+
+  if os(windows)
     options: standalone
-  cpp-options: -DMODULE=libHSDemo
-  build-depends:   base >=4.20.0.0
+
+  cpp-options:       -DMODULE=libHSDemo
+  build-depends:     base >=4.20.0.0
+
   -- lib-version-info: 0:0:0
   lib-version-linux: 0.0.0
-  hs-source-dirs:  lib
-  other-modules:
-    Lib
+  hs-source-dirs:    lib
+  other-modules:     Lib
 
 -- executable ffihstoc
 --   import:          shared-properties-unsafe
@@ -118,14 +123,18 @@ foreign-library haskelldemo
 --   main-is:         Main.hs
 
 executable dlhstoc
-  import:          shared-properties-unsafe
-  build-depends:   base >=4.20.0.0, unix
+  import:         shared-properties-unsafe
+  build-depends:
+    , base  >=4.20.0.0
+    , unix
+
   -- c-sources:
   --   src/libdemo.c
-  cpp-options: -DDYNAMIC_LIBRARY
+  cpp-options:    -DDYNAMIC_LIBRARY
+
   -- extra-libraries: libdemo
-  hs-source-dirs:  src
-  main-is:         Main.hs
+  hs-source-dirs: src
+  main-is:        Main.hs
 
 -- executable ffi
 --   import:          shared-properties-unsafe

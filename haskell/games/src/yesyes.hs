@@ -3,18 +3,18 @@ module Main where
 
 import Prelude hiding (getLine)
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 -- Graphics
 
-filled :: Char
+filled ∷ Char
 filled = '■'
 
-unfilled :: Char
+unfilled ∷ Char
 unfilled = '⮽'
 
-unknown :: Char
+unknown ∷ Char
 unknown = '□'
 
 -- Data types
@@ -29,26 +29,26 @@ newtype Clues = Clues {
 
 data Clueset = Clueset {
     columns :: Clues,
-    rows :: Clues
+    rows    :: Clues
 }
 
 class ToChar a where
-    toChar :: a -> Char
+    toChar :: a → Char
 
 data Cell = Unknown | Unfilled | Filled
 
 instance ToChar Cell where
-    toChar Unknown = unknown
+    toChar Unknown  = unknown
     toChar Unfilled = unfilled
-    toChar Filled = filled
+    toChar Filled   = filled
 
 newtype Line = Line {
     getLine :: [Cell]
 }
 
 class IsLine line where
-    toLine :: line -> Line
-    fromLine :: Line -> line
+    toLine :: line → Line
+    fromLine :: Line → line
 
 newtype Row = Row {
     getRow :: [Cell]
@@ -80,10 +80,10 @@ newtype Grid = Grid {
 --     putGridCol :: Int -> col -> grid -> grid
 --     -- _rows :: Lens' Grid Rows
 --     -- _cols :: Lens' Grid Cols
--- 
+--
 -- -- yeah yeah...
 -- -- TODO lenses
--- 
+--
 -- instance IsGrid Grid Row Col where
 --     getGridRow n grid = getGrid grid !! n
 --     putGridRow n row grid = undefined
@@ -92,7 +92,7 @@ newtype Grid = Grid {
 
 -- Functions
 
-solve :: Clueset -> Grid
+solve ∷ Clueset → Grid
 solve = undefined
 
 -- getPossibilitiesForClues :: IsLine line => Clues -> line -> line

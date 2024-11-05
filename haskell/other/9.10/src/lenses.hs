@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE Trustworthy     #-}
-{-# LANGUAGE TypeFamilies     #-}
+{-# LANGUAGE TypeFamilies    #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-redundant-constraints -Wno-unused-top-binds #-}
 
 -- TODO explain this??? find out the difference between traverse & the other one
@@ -9,8 +9,8 @@
 module Main (main) where
 
 import Data.List
-import Data.Map qualified as Map
-import Data.Map (Map)
+import Data.Map     (Map)
+import Data.Map     qualified as Map
 import Data.Time
 -- import Data.Time.Calendar
 -- import Data.Time.Format.ISO8601
@@ -27,10 +27,10 @@ data Name = Name {
 } deriving stock (Eq, Show)
 
 -- TODO prettyprint with contravariant
-nameTitleGiven :: Name -> String
+nameTitleGiven ∷ Name → String
 nameTitleGiven p = printf "%s %s" (show (_nameTitle p)) (_nameGivenName p)
 
-toTitleGiven :: Getter Name String
+toTitleGiven ∷ Getter Name String
 toTitleGiven = to nameTitleGiven
 
 makeClassy ''Name
@@ -50,15 +50,15 @@ makeWrapped ''Diary
 data RelationType = Friend | Family | Acquaintance deriving stock (Eq, Show, Read)
 
 data Person = Person {
-    _personName       :: Name,
-    _personDOB        :: Day,
-    _personRelations  :: Relations,
-    _personDiary      :: Diary
+    _personName      :: Name,
+    _personDOB       :: Day,
+    _personRelations :: Relations,
+    _personDiary     :: Diary
 } deriving stock (Eq, Show)
 
 data Relation = Relation {
     _relationPerson :: Person,
-    _relationType :: RelationType
+    _relationType   :: RelationType
 } deriving stock (Eq, Show)
 
 newtype Relations = Relations [Relation] deriving newtype (Eq, Show)
@@ -67,38 +67,38 @@ makeWrapped ''Relations
 makeClassy ''Person
 makeClassy ''Relation
 
-getYearsSince :: UTCTime -> IO Int
+getYearsSince ∷ UTCTime → IO Int
 getYearsSince t = do
     now <- getCurrentTime
     let diffGreg = diffUTCTime now t
     let years = floor $ diffGreg / 365.2421 / 86400
     pure years
 
-getAge :: Day -> IO Int
+getAge ∷ Day → IO Int
 getAge t = do
     let inUTC = UTCTime t 0
     getYearsSince inUTC
 
-year :: Getter UTCTime Integer
+year ∷ Getter UTCTime Integer
 year = to utctDay . to toGregorian . _1
 
-formattedDay :: Getter Day String
+formattedDay ∷ Getter Day String
 formattedDay = to showGregorian
 
-commaSeparated :: Getter [String] String
+commaSeparated ∷ Getter [String] String
 commaSeparated = to (intercalate ", ")
 
-appended :: Semigroup a => a -> Getter a a
+appended ∷ Semigroup a ⇒ a → Getter a a
 appended s = to (<> s)
 
-written :: Getter String (IO ())
+written ∷ Getter String (IO ())
 written = to putStrLn
 
-printed :: Show a => Getter a (IO ())
+printed ∷ Show a ⇒ Getter a (IO ())
 printed = to print
 
 -- idk
-describeGirthily :: Getter Person String
+describeGirthily ∷ Getter Person String
 describeGirthily = to $ \person' -> unwords [
         person' ^. personName . nameTitle . to show,
         person' ^. personName . nameGivenName . appended ",",

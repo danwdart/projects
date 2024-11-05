@@ -9,17 +9,17 @@ data Queue = Queue {
 } deriving Show
 
 -- Implement in Haskell
-mkQueue :: Int → Queue
+mkQueue ∷ Int → Queue
 mkQueue = undefined
 
-put :: Queue → Int → Queue
+put ∷ Queue → Int → Queue
 put = undefined
 {-
 q->buf[q->inp] = n;
     q->inp = (q->inp + 1) % q->size;
 -}
 
-get :: Queue → Int
+get ∷ Queue → Int
 get = undefined
 {-
     int ans = q->buf[q->outp];
@@ -27,7 +27,7 @@ get = undefined
     return ans;
 -}
 
-getSize :: Queue → Int
+getSize ∷ Queue → Int
 getSize = undefined
 {-
 return (q->inp - q->outp) % q->size;

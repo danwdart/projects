@@ -1,14 +1,15 @@
-{-# LANGUAGE PackageImports, Unsafe #-}
+{-# LANGUAGE PackageImports #-}
+{-# LANGUAGE Unsafe         #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-safe -Wno-unsafe #-}
 
 module Main (main) where
 
-import Control.Monad.IO.Class
 import Control.Monad.Fix
+import Control.Monad.IO.Class
 import "mtl" Control.Monad.Reader
-import "mtl" Control.Monad.Writer
-import "mtl" Control.Monad.State
 import "mtl" Control.Monad.RWS
+import "mtl" Control.Monad.State
+import "mtl" Control.Monad.Writer
 import Data.String
 -- import Data.Text qualified as T
 -- import Data.Text (Text)
@@ -22,16 +23,16 @@ type AppReturn = Char
 -- default (Text)
 
 class MonadConsole a where
-    puts :: Show s => s -> a ()
-    gets :: IsString s => a s
+    puts :: Show s ⇒ s → a ()
+    gets :: IsString s ⇒ a s
 
 instance MonadConsole IO where
     puts s = putStrLn (read . show $ s)
     gets = fromString <$> getLine
 
 class MonadFile a where
-    writef :: Show s => FilePath -> s -> a ()
-    readf :: IsString s => FilePath -> a s
+    writef :: Show s ⇒ FilePath → s → a ()
+    readf :: IsString s ⇒ FilePath → a s
 
 instance MonadFile IO where
     writef f s = writeFile f (show s)
@@ -63,16 +64,16 @@ newtype AppM a = AppM {
     MonadState AppState
     )
 
-runAppM :: AppM a -> AppRead -> AppState -> AppMonad (a, AppState, AppWriter)
+runAppM ∷ AppM a → AppRead → AppState → AppMonad (a, AppState, AppWriter)
 runAppM = runRWST . unApp
 
-stuff3 :: AppM AppReturn
+stuff3 ∷ AppM AppReturn
 stuff3 = do
     tell ["yo"]
     liftIO . print $ "Fool!"
     put 2
     asks (!! 0)
 
-main :: IO ()
+main ∷ IO ()
 main = do
     print =<< runAppM stuff3 "aeiou" 1

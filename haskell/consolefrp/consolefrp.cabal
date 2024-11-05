@@ -10,12 +10,10 @@ extra-source-files: CHANGELOG.md
 executable consolefrp
   main-is:            Main.hs
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   build-depends:
     , base        >=4.20.0.0 && <5
-    , reflex-vty >= 0.5.2.1
+    , reflex-vty  >=0.5.2.1
     , vty
 
   hs-source-dirs:     src

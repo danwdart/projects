@@ -9,13 +9,13 @@ module Main where
 --  import Network.Google
 --  import Network.Google.YouTube
 --  import Network.Google.Resource.YouTube.Subscriptions.List
---  
+--
 --  mySubs :: IO a
 --  mySubs = do
 --      lgr <- newLogger Debug stdout
 --      _env <- newEnv <&> (envLogger .~ lgr) . (envScopes .~ youTubeReadOnlyScope)
 --      pure ()
--- 
+--
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()

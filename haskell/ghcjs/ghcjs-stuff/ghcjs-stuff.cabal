@@ -28,6 +28,7 @@ common shared-properties
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
+
   -- -Wno-missing-safe-haskell-mode
   -- -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -- only works on recent ghc
   --                       -Wno-missing-local-signatures
@@ -35,36 +36,39 @@ common shared-properties
   cpp-options:        -DGHCJS_BROWSER
 
 library
-  import:        shared-properties
-  build-depends:
-    , base       >=4.14.3.0 && <5
+  import:          shared-properties
+  build-depends:   base >=4.14.3.0 && <5
   exposed-modules:
     Env
     Run
-  hs-source-dirs: lib
+
+  hs-source-dirs:  lib
+
   if impl(ghcjs)
+    build-depends: ghcjs-dom-jsffi
+
+  if (!impl(ghcjs) && !arch(javascript))
     build-depends:
-        ghcjs-dom-jsffi
-  if !impl(ghcjs) && !arch(javascript)
-    build-depends:
-        jsaddle
+      , jsaddle
       , jsaddle-warp
-      -- not on android - disabled for now 
-      
+
+-- not on android - disabled for now 
+
 executable canvas
   import:        shared-properties
   main-is:       canvas.hs
   build-depends:
-    , base       >=4.14.3.0 && <5
+    , base         >=4.14.3.0 && <5
     , ghcjs-dom
     , ghcjs-stuff
+
 -- , jsaddle-warp
 
 executable cfe
   import:        shared-properties
   main-is:       cfe.hs
   build-depends:
-    , base        >=4.14.3.0 && <5
+    , base         >=4.14.3.0 && <5
     , blaze-html
     , bytestring
     , ghcjs-dom
@@ -75,7 +79,7 @@ executable env-test
   import:        shared-properties
   main-is:       env-test.hs
   build-depends:
-    , base        >=4.14.3.0 && <5
+    , base              >=4.14.3.0 && <5
     , ghcjs-stuff
     , template-haskell
 
@@ -106,7 +110,7 @@ executable helloworld
   import:        shared-properties
   main-is:       HelloMain.hs
   build-depends:
-    , base       >=4.14.3.0 && <5
+    , base         >=4.14.3.0 && <5
     , ghcjs-dom
     , ghcjs-stuff
 
@@ -114,7 +118,7 @@ executable mine
   import:        shared-properties
   main-is:       mine.hs
   build-depends:
-    , base       >=4.14.3.0 && <5
+    , base         >=4.14.3.0 && <5
     , ghcjs-dom
     , ghcjs-stuff
 
@@ -122,7 +126,7 @@ executable pure-demo
   import:        shared-properties
   main-is:       pure-demo.hs
   build-depends:
-    , base        >=4.14.3.0 && <5
+    , base         >=4.14.3.0 && <5
     , blaze-html
     , bytestring
     , ghcjs-dom

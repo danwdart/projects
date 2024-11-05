@@ -73,12 +73,12 @@ main = run $ do
     liftIO . putStrLn $ body
     pure ()
 
-#if defined(__GHCJS__)
-foreign import javascript unsafe "console.log($1)" consoleLogString :: JSString → JSM ()
-#else
-consoleLogString :: JSString -> JSM ()
+
+
+
+consoleLogString ∷ JSString → JSM ()
 consoleLogString _ = pure () -- lol no
-#endif
+
 
 logHere ∷ JSM ()
 logHere = consoleLogString "Hi folks!"

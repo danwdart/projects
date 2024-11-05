@@ -59,12 +59,12 @@ executable frp
   import:        shared-properties
   main-is:       frp.hs
   build-depends:
-    , base          >=4.14.3.0 && <5
+    , base        >=4.14.3.0 && <5
     , blaze-html
-    -- , blaze-markup
     , bytestring
     , ghcjs-dom
 
+-- , blaze-markup
 -- , jsaddle-warp
 -- , reactive-banana
 
