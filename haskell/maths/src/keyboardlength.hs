@@ -3,11 +3,11 @@
 -- Stolen from Matt Parker.
 
 import Data.ByteString.Char8 qualified as B
-import Data.Text qualified as T
-import Data.Text.Encoding qualified as TE
-import Data.Text (Text)
+import Data.Text             (Text)
+import Data.Text             qualified as T
+import Data.Text.Encoding    qualified as TE
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 -- | Definitions
@@ -15,7 +15,7 @@ main = pure ()
 -- | Keyboard layouts.
 
 -- | Get the word list.
-wordList :: IO [Text]
+wordList ∷ IO [Text]
 wordList = T.words . TE.decodeUtf8 <$> B.readFile "words"
 
 -- | For a list of somethings and their attribute, get the something for the closest attribute.

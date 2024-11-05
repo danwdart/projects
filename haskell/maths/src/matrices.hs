@@ -1,11 +1,11 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-main :: IO ()
+main ∷ IO ()
 main = pure ()
 
 class Matrix n a where
-    size :: a -> (n, n)
-    getEntry :: a -> a -> n -> a
+    size :: a → (n, n)
+    getEntry :: a → a → n → a
 
 -- class IndexedMatrix i n a where
 --     sizeIndexed :: a -> (i, i) -- why error???

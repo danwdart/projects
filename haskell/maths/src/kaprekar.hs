@@ -3,7 +3,7 @@
 module Main (main) where
 
 import Data.List qualified as L (sort, sortBy)
-import Data.Ord (comparing, Down(..))
+import Data.Ord  (Down (..), comparing)
 
 {-
 function saa(n) {
@@ -58,9 +58,7 @@ stable ∷ Eq a ⇒ [a] → [a]
 stable xs = reverse $ go xs [] [] where
     go ∷ Eq a ⇒ [a] → [a] → [a] → [a]
     go [] _ _ = []
-    go (x:xs') seenOnce seenTwice = if any (== x) seenTwice then seenTwice else (case any (== x) seenOnce of
-        False -> go xs' (x : seenOnce) seenTwice
-        True  -> go xs' seenOnce (x : seenTwice))
+    go (x:xs') seenOnce seenTwice = if elem x seenTwice then seenTwice else (if any (== x) seenOnce then go xs' seenOnce (x : seenTwice) else go xs' (x : seenOnce) seenTwice)
 
 kap ∷ Integer → [Integer]
 kap = stable . iterate kapIter
