@@ -532,6 +532,17 @@ executable unicode
     , base-unicode-symbols
     , mtl
 
+executable unlifting
+  import:        shared-properties-unsafe
+  main-is:       unlifting.hs
+  build-depends:
+    , base    >=4.20.0.0 && <5
+    -- , monad-control
+    , mtl
+    -- , lifted-async
+    -- , lifted-base
+    -- , unliftio
+
 executable vector
   import:        shared-properties-unsafe
   main-is:       vector.hs

@@ -1,1 +1,2 @@
 :set -XUnicodeSyntax
+:set -Wno-missing-local-signatures
