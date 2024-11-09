@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
-{-# LANGUAGE Unsafe, DeriveAnyClass, DerivingVia, OverloadedStrings #-}
+-- why is it unused? it's not unused wtf
+{-# LANGUAGE Unsafe, DeriveAnyClass, DerivingVia, OverloadedStrings, TemplateHaskell #-}
 
 module Schema where
 
@@ -41,9 +42,9 @@ newtype Schema = Schema [(Text, Field)]
 
 expToDecsQ :: TExp Schema -> DecsQ
 expToDecsQ _ = [d|
-        data Book = Book {
-            title :: Text,
-            author :: Text,
-            isbn :: Text
-        } deriving (Show, Eq, Generic, FromJSON, ToJSON, Lift)
+    data Book = Book {
+        title :: Text,
+        author :: Text,
+        isbn :: Text
+    } deriving (Show, Eq, Generic, FromJSON, ToJSON, Lift)
     |]
