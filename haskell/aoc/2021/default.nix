@@ -18,6 +18,10 @@ let
     packages = p: [
       p.aoc2021
     ];
+    shellHook = ''
+      gen-hie > hie.yaml
+      for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
+    '';
     buildInputs = tools.defaultBuildTools;
     # withHoogle = false;
   };

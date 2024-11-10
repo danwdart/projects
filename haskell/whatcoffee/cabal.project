@@ -12,5 +12,5 @@
 
 packages: ./whatcoffee.cabal
 
-package *
-  ghc-options: -fwrite-ide-info -hiedir=.hie
+program-options
+  ghc-options: -fwrite-ide-info

@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 runCommand "yt-sort" {
     buildInputs = [
-        (haskell.packages.ghc98.ghcWithPackages (ghc: with ghc; [
+        (haskell.packages.ghc910.ghcWithPackages (ghc: with ghc; [
             # apply-refact
             # cabal-fmt
             cabal-install
