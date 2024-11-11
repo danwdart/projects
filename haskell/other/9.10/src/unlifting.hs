@@ -1,7 +1,7 @@
 {-# LANGUAGE Unsafe #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
 
-module Main where
+module Main (main) where
 
 import Control.Monad.Reader
 import Control.Monad.RWS

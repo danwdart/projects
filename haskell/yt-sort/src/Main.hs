@@ -4,7 +4,7 @@
 
 -- Get all subscriptions for a user (the logged in user, mayhaps)
 
-module Main where
+module Main (main) where
 
 --  import Network.Google
 --  import Network.Google.YouTube
