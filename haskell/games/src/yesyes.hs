@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
+
 -- Nonogram solver.
 module Main (main) where
 
