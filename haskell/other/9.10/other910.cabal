@@ -476,6 +476,13 @@ executable sockets
     , bytestring
     , network
 
+executable statevar
+  import:        shared-properties-safe
+  main-is:       statevar.hs
+  build-depends:
+    , base        >=4.20.0.0 && <5
+    , StateVar
+
 executable tagged
   import:        shared-properties-safe
   main-is:       tagged.hs
