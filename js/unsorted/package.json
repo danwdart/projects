@@ -10,9 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/eslint-parser": "^8.0.0-alpha.5",
-    "eslint": "^9.11.1"
+    "eslint": "^9.15.0"
   },
   "dependencies": {
-    "@snyk/protect": "^1.1293.1"
+    "@snyk/protect": "^1.1294.0"
   }
 }
