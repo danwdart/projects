@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@snyk/protect": "^1.1293.1",
-    "socket.io": "4.8.0"
+    "@snyk/protect": "^1.1294.0",
+    "socket.io": "4.8.1"
   },
   "snyk": true
 }
