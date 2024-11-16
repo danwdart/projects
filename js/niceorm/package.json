@@ -15,6 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@snyk/protect": "^1.1293.1"
+    "@snyk/protect": "^1.1294.0"
   }
 }
