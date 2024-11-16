@@ -19,13 +19,13 @@
     "ioredis": "^5.4.1",
     "kafka-node": "^5.0.0",
     "leveldown": "^6.1.1",
-    "mongodb": "^6.9.0",
-    "mqtt": "^5.10.1",
+    "mongodb": "^6.10.0",
+    "mqtt": "^5.10.2",
     "msgpack-lite": "^0.1.26",
     "qlobber-fsq": "^14.0.0",
     "reflect-metadata": "^0.2.2",
-    "serverless": "^4.4.3",
-    "serverless-appsync-plugin": "^2.8.0",
+    "serverless": "^4.4.10",
+    "serverless-appsync-plugin": "^2.9.1",
     "serverless-domain-manager": "^7.4.0",
     "serverless-haskell": "^0.12.6"
   },
@@ -33,7 +33,7 @@
     "fullstack-serverless": "^0.8.0",
     "serverless-appsync-offline": "^1.4.0",
     "serverless-dynamodb-local": "^1.0.2",
-    "serverless-offline": "^14.3.2",
+    "serverless-offline": "^14.3.4",
     "serverless-s3-local": "^0.8.5",
     "serverless-static": "^1.0.0"
   }
