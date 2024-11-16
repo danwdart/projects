@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@snyk/protect": "^1.1293.1",
-    "serverless": "^4.4.3",
+    "@snyk/protect": "^1.1294.0",
+    "serverless": "^4.4.10",
     "serverless-offline": "^14.3.4"
   }
 }
