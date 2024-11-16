@@ -12,10 +12,10 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^9.11.1"
+    "eslint": "^9.15.0"
   },
   "dependencies": {
-    "@snyk/protect": "^1.1293.1",
+    "@snyk/protect": "^1.1294.0",
     "EventEmitter": "^1.0.0"
   }
 }
