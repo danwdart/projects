@@ -57,6 +57,11 @@ common shared-properties-safe
     NoGeneralizedNewtypeDeriving
     Safe
 
+common shared-properties-dev-safe
+  import:             shared-properties-safe
+  hs-source-dirs: src lib
+  ghc-options: -Wwarn
+
 common shared-properties-nobase
   import:      shared-properties-base
   ghc-options:
@@ -398,6 +403,21 @@ executable profunctor-transformers
     , base         >=4.20.0.0 && <5
     , mtl
     , profunctors
+
+executable propagators
+  import:        shared-properties-safe
+  main-is:       propagators.hs
+  build-depends:
+    , base      >=4.20.0.0 && <5
+    , other910
+
+executable propagators-dev
+  import:        shared-properties-dev-safe
+  main-is:       propagators.hs
+  other-modules:
+    Propagator
+  build-depends:
+    , base      >=4.20.0.0 && <5
 
 -- , transformers
 

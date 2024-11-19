@@ -17,8 +17,6 @@ category:           Web
 build-type:         Simple
 extra-source-files: README.md
 
-f
-
 common shared-properties-base
   hs-source-dirs:     src
   default-language:   GHC2024
@@ -435,13 +433,6 @@ executable postfixops
 executable prim
   import:  shared-properties-unsafe
   main-is: prim.hs
-
-executable propagators
-  import:        shared-properties-safe
-  main-is:       propagators.hs
-  build-depends:
-    , base      >=4.20.0.0 && <5
-    , onlybase
 
 executable read
   import:        shared-properties-safe
