@@ -6,68 +6,69 @@ import Propagator
 main ∷ IO ()
 main = do
     putStrLn "SCENARIO 1"
-    putStrLn "Adding a new cell lower."
-    lower <- cell "lower"
-    putStrLn "Adding a new cell upper."
-    upper <- cell "upper"
-    putStrLn "Adding a new lift."
+    lower <- cell
+    upper <- cell
     lift toUpper lower upper
-    putStrLn "Adding the iso lift."
     lift toLower upper lower
-    putStrLn "Writing a to lower manually."
-    write lower (Just 'a')
-    putStrLn "Getting content of upper manually."
+    write lower 'a'
     c <- content upper
-    putStrLn "lift toUpper of a"
     print c
 
     putStrLn ""
     putStrLn "SCENARIO 2"
-    putStrLn "Creating cell inL."
-    inL <- cell "inL"
-    putStrLn "Creating cell inR."
-    inR <- cell "inR"
-    putStrLn "Creating cell out."
-    out <- cell "out"
-    putStrLn "Initiating one-directional adder."
+    inL <- cell @Int
+    inR <- cell @Int
+    out <- cell @Int
     adder inL inR out
-    putStrLn "Writing 1 to inL manually."
-    write inL (Just 1)
-    putStrLn "Extracting out manually."
+    write inL 1
     c' <- content out
-    putStrLn "adder of 1"
     print c'
-    putStrLn "Writing 2 to inR manually."
-    write inR (Just 2)
-    putStrLn "Reading out manually."
+    write inR 2
     c2 <- content out
-    putStrLn "adder of 2 also"
     print c2
 
     putStrLn ""
     putStrLn "SCENARIO 3"
-    inL2 <- cell "inL2"
-    inR2 <- cell "inR2"
-    out2 <- cell "out2"
+    inL2 <- cell @Int
+    inR2 <- cell @Int
+    out2 <- cell @Int
     adderBi inL2 inR2 out2
-    putStrLn "Writing 1 to inL2 manually."
-    write inL2 (Just 1)
-    putStrLn "Writing 1 to out2 manually."
-    write out2 (Just 1)
-    putStrLn "Extracting content of inR2 manually."
+    write inL2 1
+    write out2 1
     c3 <- content inR2
     putStrLn "adderBi of 1 and 1, backwards"
     print c3
 
+    putStrLn ""
+    putStrLn "SCENARIO 4"
+    bool1 <- cell
+    bool2 <- cell
+    lift not bool1 bool2
+    lift not bool2 bool1
+    write bool1 True
+    bool2Out <- content bool2
+    print bool2Out
+
+    putStrLn ""
+    putStrLn "SCENARIO 5"
+    boolRec1 <- cell
+    boolRec2 <- cell
+    boolRec3 <- cell
+    lift not boolRec1 boolRec2
+    lift not boolRec2 boolRec3
+    lift not boolRec3 boolRec1
+    write boolRec1 True
+    print =<< traverse content [boolRec1, boolRec2, boolRec3]
+
+    pure ()
+
     where
-        adder ∷ Cell Int → Cell Int → Cell Int → IO ()
+        adder ∷ (Num a, Eq a) ⇒ Cell a → Cell a → Cell a → IO ()
         adder l r o = do
-            putStrLn "Adder created."
             lift2 (+) l r o
 
-        adderBi ∷ Cell Int → Cell Int → Cell Int → IO ()
+        adderBi ∷ (Num a, Eq a) ⇒ Cell a → Cell a → Cell a → IO ()
         adderBi l r o = do
-            putStrLn "adderBi created."
             lift2 (+) l r o
             lift2 (-) o l r
             lift2 (-) o r l
