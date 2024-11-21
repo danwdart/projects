@@ -1,5 +1,4 @@
 {-# LANGUAGE Safe #-}
-{-# OPTIONS_GHC -Wwarn -Wno-type-defaults #-}
 
 module Propagator (Cell(), cell, lift, lift2, write, content) where
 

@@ -81,7 +81,6 @@ library
   hs-source-dirs:  lib
   build-depends:
     , base                       >=4.20.0.0 && <5
-    , containers
     , ghc-typelits-natnormalise
     , lattices
     , template-haskell
@@ -413,7 +412,6 @@ executable propagators
   build-depends:
     , base      >=4.20.0.0 && <5
     , other910
-    , universe-base
 
 executable propagators-dev
   import:        shared-properties-dev-safe
@@ -422,9 +420,7 @@ executable propagators-dev
     Propagator
   build-depends:
     , base      >=4.20.0.0 && <5
-    , containers
     , lattices
-    , universe-base
 
 -- , transformers
 
