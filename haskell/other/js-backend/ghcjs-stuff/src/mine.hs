@@ -3,6 +3,7 @@
 
 module Main (main) where
 
+import Control.Monad (void)
 import Control.Monad.IO.Class             (liftIO)
 -- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
 
@@ -33,7 +34,7 @@ helloMain = do
     setInnerHTML body "<h1>Hello, in HTML</h1>"
 
     -- Add a mouse click event handler to the document
-    _ <- on doc click $ do
+    void . on doc click $ do
         (x, y) <- mouseClientXY
         newParagraph <- uncheckedCastTo HTMLParagraphElement <$> createElement doc "p"
         text <- createTextNode doc $ "Click location was " ++ show (x, y)
@@ -51,7 +52,7 @@ helloMain = do
     -- (demonstraights synchronous callbacks into haskell, as preventDefault
     -- must be called inside the JavaScript event handler function).
     setHref exit ""
-    _ <- on exit click $ preventDefault >> liftIO (putMVar exitMVar ())
+    void . on exit click $ preventDefault >> liftIO (putMVar exitMVar ())
 
     -- Force all all the lazy JSaddle evaluation to be executed
     syncPoint
@@ -64,8 +65,8 @@ helloMain = do
 main ∷ IO ()
 main = serve $ do
     logHere
-    _ <- getConfirmFromClient
-    _ <- getPromptFromClient
+    void getConfirmFromClient
+    void getPromptFromClient
     drawOnNewCanvas
     body <- getMyBody
     liftIO . putStrLn $ body

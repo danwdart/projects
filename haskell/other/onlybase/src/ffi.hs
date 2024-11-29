@@ -3,6 +3,7 @@
 
 module Main (main) where
 
+import Control.Monad (void)
 -- import Foreign.Ptr
 -- import Foreign.ForeignPtr
 import Foreign.C.String
@@ -23,7 +24,7 @@ memfrob ∷ String → Int → IO String
 memfrob s n = do
     cs <- newCString s
     let ci = fromIntegral n :: CInt
-    _ <- c_memfrob cs ci
+    void $ c_memfrob cs ci
     peekCString cs
 
 -- c_exp :: Double -> Double
@@ -62,17 +63,17 @@ cFlush = newCString "\n" >>= c_printf
 main ∷ IO ()
 main = do
     print $ c_exp1 0.1
-    _ <- newCString "Bob\n" >>= c_printf
+    void $ newCString "Bob\n" >>= c_printf
     param1 <- newCString "My name is %s."
     param2 <- newCString "Dan"
     putStrLn "Printing..."
     res <- c_printf2 param1 param2
-    _ <- cFlush
+    void cFlush
     putStrLn "Result was..."
     print res
     putStrLn "And again..."
     res2 <- c_printf param2
-    _ <- cFlush
+    void cFlush
     putStrLn "Result was..."
     print res2
     putStrLn "Yeah?"
@@ -88,7 +89,7 @@ main = do
     free buf
     putStrLn "So we wrote..."
     print bW
-    _ <- cFlush
+    void cFlush
     putStr "Please write something: "
     str <- getLine
     str' <- memfrob str 20

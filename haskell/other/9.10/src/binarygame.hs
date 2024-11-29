@@ -3,9 +3,11 @@
 
 module Main (main) where
 
+import Control.Monad (void)
 import Control.Monad.IO.Class
 import Control.Monad.State
 import Data.Bool
+import Data.Foldable
 import Data.List.Index
 import System.Console.ANSI
 import System.IO
@@ -18,7 +20,7 @@ render = do
     liftIO resetGame
     st <- get
     modify $ select 1
-    mapM_ (liftIO . putStr . renderButton) st
+    traverse_ (liftIO . putStr . renderButton) st
     ch <- liftIO getChar
     put $ process ch st
     render
@@ -121,5 +123,5 @@ resetTerm = showCursor
 
 main ∷ IO ()
 main = do
-    _ <- runStateT render makeInitialButtons
+    void $ runStateT render makeInitialButtons
     resetTerm

@@ -20,14 +20,14 @@ encodeDanImage version _ = if "03" /= version then Nothing else Just $ "DAN" <> 
 
 danParserMonadic ∷ Parsec String u DanImage
 danParserMonadic = do
-    _ <- string "DAN"
+    void string "DAN"
     version <- many digit
     when (version /= "03") $ fail "Unsupported version"
-    _ <- newline
+    void newline
     width <- number
-    _ <- char ','
+    void char ','
     height <- number
-    _ <- newline
+    void newline
     -- todo count
     pixels <- sepBy (sepBy (toEnum . read <$> many digit) (char ',')) newline
     when (height /= length pixels) $ fail "Height not correct"

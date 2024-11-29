@@ -3,6 +3,7 @@
 module Main (main) where
 
 import "mtl" Control.Monad.Writer
+import Data.Foldable
 
 type MyWriter = Writer [String] Int
 
@@ -29,7 +30,7 @@ newExample = do
 
 main ∷ IO ()
 main = do
-    mapM_ print [
+    traverse_ print [
         runWriter withFns,
         runWriter withDo
         ]

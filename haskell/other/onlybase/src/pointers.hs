@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wno-unused-imports #-}
 
+import Data.Foldable
 import Foreign
 
 i ∷ Int
@@ -15,7 +16,7 @@ main = do
     b' <- peek a
     print b'
 
-    mapM_ (\n -> do
+    traverse_ (\n -> do
         let p = plusPtr a (negate n) :: Ptr Int
         p' <- peek p :: IO Int
         print (n, p')

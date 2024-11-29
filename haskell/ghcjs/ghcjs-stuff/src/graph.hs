@@ -5,6 +5,7 @@
 
 module Main (main) where
 
+-- import Data.Foldable
 import GHCJS.DOM
 import GHCJS.DOM.Types
 -- import GHCJS.Types
@@ -48,8 +49,8 @@ draw (Line2D (Point2D x0 y0) (Point2D x1 y1)) ctx = do
 
 drawGrid ∷ RenderingContext → JSM ()
 drawGrid ctx = pure () -- do
-    -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0.0..16.0]
-    -- mapM_ (`draw` ctx) . (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0.0..16.0]
+    -- traverse_ (`draw` ctx) . (\n -> Line2D (Point2D 0 (n * 50)) (Point2D 800 (n * 50))) [0.0..16.0]
+    -- traverse_ (`draw` ctx) . (\n -> Line2D (Point2D (n * 50) 0) (Point2D (n * 50) 800)) [0.0..16.0]
 
 -- fillGridSquare :: Int -> Int -> C.Context -> IO ()
 

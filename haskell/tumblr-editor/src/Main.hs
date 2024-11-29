@@ -5,8 +5,9 @@
 module Main (main) where
 
 import Control.Concurrent
-import Control.Monad          (forM_)
+import Control.Monad (void)
 import Control.Monad.IO.Class
+import Data.Foldable
 import Data.Functor.Compose
 import Data.Text              (pack, unpack)
 import System.Environment
@@ -57,7 +58,7 @@ main = do
         click agreeButton
         liftIO (threadDelay 500000)
         postElements <- findElems (ByCSS "[data-id]")
-        forM_ postElements $ \postElement -> do
+        for_ postElements $ \postElement -> do
             -- use then findElemFrom
             editButton <- findElemFrom postElement (ByCSS "[aria-label=\"Edit\"")
             click editButton
@@ -69,7 +70,7 @@ main = do
             clearInput contentSourceBox
             sendKeys newsource contentSourceBox
             saveButton <- findElem (ByClass "create_post_button")
-            _ <- findElem (ByCSS "[data-js-clickableclose]")
+            void $ findElem (ByCSS "[data-js-clickableclose]")
             click saveButton
             focusFrame DefaultFrame
             liftIO (threadDelay 1000000)

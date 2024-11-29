@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Data.Foldable
 import Data.Function
 import Data.List     (intercalate, nub)
 
@@ -55,8 +56,8 @@ outputNaive = nub $ fmap myStruct [1..1000000]
 -- outputTwo = nub $ map myStruct allCombos
 
 -- By formula
--- mapM_ print $ nubBy (on (==) snd) $ map (\(n, x) -> (n, length (breakDown x) - 1)) [(n, 10^n-1) | n <- [1..1000]]
+-- traverse_ print $ nubBy (on (==) snd) $ map (\(n, x) -> (n, length (breakDown x) - 1)) [(n, 10^n-1) | n <- [1..1000]]
 
 
 main ∷ IO ()
-main = mapM_ print outputNaive
+main = traverse_ print outputNaive

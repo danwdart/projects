@@ -1,5 +1,7 @@
 module Main (main) where
 
+-- import Data.Foldable
+
 {-
 120 has some interesting numbers.
 120 is highly composite.
@@ -94,5 +96,5 @@ result4 = [
     a <- [2..10] :: [Integer], b <- [2..10] :: [Integer], c <- [2..10] :: [Integer]]
 
 main ∷ IO ()
-main = mapM_ putStrLn result4
+main = traverse_ putStrLn result4
 

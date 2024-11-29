@@ -2,6 +2,8 @@
 
 module Main (main) where
 
+import Control.Monad (void)
+
 data Yaml
   = String String
   | Object [(String, Yaml)]

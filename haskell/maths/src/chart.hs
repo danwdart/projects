@@ -40,7 +40,7 @@ main = do
     result <- runExceptT $ do
         let nums ∷ [[Integer]]
             nums = take 16 $ L.inits lucases
-        iandps <- mapM iandp nums
+        iandps <- traverse iandp nums
         let incdels ∷ [(Palette, GifDelay, Image Pixel8)]
             incdels = fmap (\(i, p) -> (p, 20, i)) iandps
         liftIO $ putStrLn "Encoding as GIF..."

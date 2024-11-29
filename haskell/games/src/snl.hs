@@ -16,6 +16,7 @@ import Control.Monad.Random
 -- import Control.Monad.Writer
 import Control.Monad.RWS
 -- import Data.Aeson qualified as A
+import Data.Foldable
 import Data.List            qualified as L
 import Data.List.NonEmpty   qualified as NE
 import Data.Map             (Map)
@@ -407,7 +408,7 @@ main ∷ IO ()
 main = do
     result <- runExceptT $ do
         (winner, endingGameState, writeStream) <- runRWST playUntilWinner initialGame initialState
-        mapM_ (liftIO . putStrLn) writeStream
+        traverse_ (liftIO . putStrLn) writeStream
         liftIO .putStrLn $ "The winner is: " <> winner ^. name <> "! Winning space: " <> show (winner ^. space) <> ". Took " <> show (endingGameState ^. turns) <> " turns."
         liftIO . print $ endingGameState
     case result of

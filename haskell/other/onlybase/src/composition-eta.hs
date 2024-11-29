@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Data.Foldable
 import Data.Function
 
 -- We're often faced with something difficult to eta-reduce, like...
@@ -76,7 +77,7 @@ testBUDup ∷ String → String
 testBUDup a = on bis uns a a
 
 main ∷ IO ()
-main = mapM_ putStrLn [
+main = traverse_ putStrLn [
     testUU "Bob",
     testUB1 "Bob",
     testUB "Bob" "Frog",

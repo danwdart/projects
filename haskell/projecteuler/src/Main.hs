@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Data.Foldable
 import Numeric.ProjectEuler.Solution1 as S1
 import Numeric.ProjectEuler.Solution2 as S2
 import Numeric.ProjectEuler.Solution3 as S3
@@ -13,7 +14,7 @@ explain = printf "The solution to Project Euler problem %lld is %lld"
 
 -- @TODO args
 main ∷ IO ()
-main = mapM_ (putStrLn . uncurry explain) $ zip [1..] [
+main = traverse_ (putStrLn . uncurry explain) $ zip [1..] [
     S1.solution,
     S2.solution,
     S3.solution,

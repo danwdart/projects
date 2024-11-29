@@ -13,6 +13,7 @@ import Data.Aeson               qualified as A
 -- import Data.Aeson.Types (parse)
 import Data.ByteString          qualified as BS
 import Data.ByteString.Lazy     qualified as BSL
+import Data.Foldable
 import Data.Function
 import Data.Functor
 import Data.Text                as T
@@ -69,7 +70,7 @@ main = do
 
     myRes <- res accessToken stringsToTranslate :: IO (Maybe TR)
 
-    mapM_ putStrLn (( <&> translatedText) (translations (_data (fromJust myRes))))
+    traverse_ putStrLn (( <&> translatedText) (translations (_data (fromJust myRes))))
 
     --a <- runResourceT . runGoogle env $ send myR
     --print $ a

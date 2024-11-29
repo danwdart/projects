@@ -3,6 +3,7 @@
 module Main (main) where
 
 import Control.Concurrent.MVar             (newEmptyMVar, putMVar, takeMVar)
+import Control.Monad (void)
 import Control.Monad.IO.Class              (MonadIO (..))
 import GHCJS.DOM
 import GHCJS.DOM.Document
@@ -43,7 +44,7 @@ helloMain = do
     setInnerHTML body "<h1>Kia ora (Hi)</h1>"
 
     -- Add a mouse click event handler to the document
-    _ <- on doc click $ do
+    void . on doc click $ do
         (x, y) <- mouseClientXY
         newParagraph <- uncheckedCastTo HTMLParagraphElement <$> createElement doc "p"
         text <- createTextNode doc $ "Click " <> show (x, y)
@@ -61,7 +62,7 @@ helloMain = do
     -- (demonstraights synchronous callbacks into haskell, as preventDefault
     -- must be called inside the JavaScript event handler function).
     setHref exit "https://github.com/ghcjs/ghcjs-dom-hello"
-    _ <- on exit click $ preventDefault >> liftIO (putMVar exitMVar ())
+    void . on exit click $ preventDefault >> liftIO (putMVar exitMVar ())
 
     -- Force all all the lazy JSaddle evaluation to be executed
     syncPoint

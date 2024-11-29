@@ -3,6 +3,7 @@
 module Main (main) where
 
 import Data.Bifunctor
+import Data.Foldable
 import Data.List.Extra
 import Deck
 import Ordering
@@ -48,7 +49,7 @@ calculateWith ∷ (DeckStd → DeckStd) → Maybe Int
 calculateWith fn = untilTimesAtLeastOne 100000 (== cards) fn cards
 
 main ∷ IO ()
-main = mapM_ (\(name, calculation) -> putStrLn $ name <> ": " <> show (calculateWith calculation)) [
+main = traverse_ (\(name, calculation) -> putStrLn $ name <> ": " <> show (calculateWith calculation)) [
     ("Out", faroShuffleOut),
     ("In", faroShuffleIn),
     ("In Out", faroShuffleOut . faroShuffleIn),

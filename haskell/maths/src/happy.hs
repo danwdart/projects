@@ -3,6 +3,7 @@
 module Main (main) where
 
 import Data.Digits
+import Data.Foldable
 import Data.List         (intercalate)
 import Data.List.Iterate
 import Debug.Trace
@@ -16,7 +17,7 @@ formatList ∷ [Int] → String
 formatList = intercalate " => " . (show <$>)
 
 main ∷ IO ()
-main = mapM_ putStrLn $ formatList <$> answers
+main = traverse_ putStrLn $ formatList <$> answers
 
 happify ∷ Int → Int → Int → Int
 happify power base = sum . fmap (^ power) . digits base

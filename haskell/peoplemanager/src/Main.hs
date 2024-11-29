@@ -6,6 +6,7 @@ module Main (main) where
 
 import Control.Monad
 import Control.Monad.Random
+import Data.Foldable
 import Data.Functor
 -- import Data.Set qualified as S
 import Data.Set             (Set)
@@ -99,7 +100,7 @@ makePerson = do
     -- TODO combinator for monads to records - seq? sig: m a -> m b -> (a -> b -> m c) -> m c etc.
     -- maybe it's https://hackage.haskell.org/package/monad-state-0.2.0.3/docs/Control-Monad-Record.html ?
     -- TODO unzip?
-    [name, city, country] <- mapM generateND [FN.name, FA.city, FA.country]
+    [name, city, country] <- traverse generateND [FN.name, FA.city, FA.country]
     uuid <- nextRandom
     title <- randomIO :: IO Title
     dob <- ModifiedJulianDay <$> randomRIO (20000, 50000)
@@ -152,5 +153,5 @@ main ∷ IO ()
 main =  do
     putStrLn "Generating people..." -- lol I'm god
     people <- makePeople 20
-    mapM_ print people
+    traverse_ print people
     putStrLn "Mapping relationships..."

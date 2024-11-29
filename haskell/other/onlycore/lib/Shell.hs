@@ -3,11 +3,12 @@
 
 module Shell where
 
+import Data.Foldable
 import System.Directory
 
 -- >>> ls
 ls ∷ IO ()
-ls = getCurrentDirectory >>= listDirectory >>= mapM_ putStrLn
+ls = getCurrentDirectory >>= listDirectory >>= traverse_ putStrLn
 
 -- >>> cat /etc/passwd
 cat ∷ String → IO ()

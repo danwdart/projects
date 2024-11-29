@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Data.Foldable
 import Data.List.Extra
 import Ordering
 import Suit.Bounded.Standard
@@ -8,5 +9,5 @@ import Value.Bounded.Standard
 
 main ∷ IO ()
 main = do
-    mapM_ putStr $ symbol . getBySuitThenValue @Value @Suit <$> enumerate
+    traverse_ (putStr . symbol . getBySuitThenValue @Value @Suit) enumerate
     putStrLn ""

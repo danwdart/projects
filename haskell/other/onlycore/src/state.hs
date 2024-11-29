@@ -1,6 +1,8 @@
 module Main (main) where
 
+import Control.Monad (void)
 import Control.Monad.State
+import Data.Foldable
 
 type MyState = State [Int] Int
 
@@ -16,13 +18,13 @@ stateProcessByFns = state1 1 >>= stateModifier
 stateProcessByDo ∷ MyState
 stateProcessByDo = do
     x <- state1 1
-    _ <- stateModifier x
-    _ <- stateModifier x
-    _ <- get
-    _ <- put [1, 2]
+    void $ stateModifier x
+    void $ stateModifier x
+    void get
+    void $ put [1, 2]
     pure 1
 
 main ∷ IO ()
-main = mapM_ print [
+main = traverse_ print [
     runState stateProcessByFns [],
     runState stateProcessByDo [] ]

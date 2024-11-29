@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Data.Foldable
 import Data.These
 
 thisOne ∷ These Int Int
@@ -12,7 +13,7 @@ these12 ∷ These Int Int
 these12 = These 1 2
 
 main ∷ IO ()
-main = mapM_ putStrLn [
+main = traverse_ putStrLn [
     show these12,
     show thisOne,
     show thatTwo,

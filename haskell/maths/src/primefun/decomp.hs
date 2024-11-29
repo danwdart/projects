@@ -1,5 +1,6 @@
 module Main (main) where
 
+-- import Data.Foldable
 -- import Data.Numbers.Primes
 
 -- bintodec :: [Int] -> Int
@@ -22,7 +23,7 @@ module Main (main) where
 
 main ∷ IO ()
 main = pure ()
--- main = mapM_ putStrLn [printIt x | x <- [1..100]]
+-- main = traverse_ putStrLn [printIt x | x <- [1..100]]
 
 -- zecked?
 -- something :: [Integer]

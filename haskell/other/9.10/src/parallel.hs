@@ -39,11 +39,11 @@ newtype Par f a = Par {
 main ∷ IO ()
 main = do
     putStrLn "Serial"
-    numbers <- time $ mapM (slow "serial") [1..20 :: Int]
+    numbers <- time $ traverse (slow "serial") [1..20 :: Int]
     print numbers
 
     putStrLn "Parallel wrapper (needs to actually be parallel)"
-    numbersPar  <- time $ mapM (slow "par") (Par [1..20 :: Int])
+    numbersPar  <- time $ traverse (slow "par") (Par [1..20 :: Int])
     print numbersPar
 
     putStrLn "Concurrent"

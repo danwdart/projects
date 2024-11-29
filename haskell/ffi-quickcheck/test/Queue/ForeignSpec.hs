@@ -1,6 +1,7 @@
 module Queue.ForeignSpec where
 
 import Control.Monad
+import Data.Foldable
 import Data.Kind
 import Foreign
 import Queue.Foreign
@@ -43,7 +44,7 @@ prop_QueueWithFewerElementsAsSizeShowUpInSize ∷ Int → [Int] → Property
 prop_QueueWithFewerElementsAsSizeShowUpInSize size elements = size > 0 && length elements < size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     size <- run $ do
         q <- cqueue_new size
-        mapM_ (cqueue_put q) elements
+        traverse_ (cqueue_put q) elements
         cqueue_size q
     assert $ size == length elements
 
@@ -51,7 +52,7 @@ prop_QueueWithFewerElementsAsSizeShowUpInGet ∷ Int → [Int] → Property
 prop_QueueWithFewerElementsAsSizeShowUpInGet size elements = size > 0 && length elements <= size ==> withMaxSuccess 10000 . collect size . monadicIO $ do
     elementsOut <- run $ do
         q <- cqueue_new size
-        mapM_ (cqueue_put q) elements
+        traverse_ (cqueue_put q) elements
         replicateM (length elements) (cqueue_get q)
     assert $ elements == elementsOut
 

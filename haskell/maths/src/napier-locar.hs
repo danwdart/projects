@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Data.Foldable
 import Numeric.Napier
 
 -- Words which are in alphabetical order (either) and with no repeats.
@@ -20,6 +21,6 @@ alphabeticalWords = [
     ]
 
 main ∷ IO ()
-main = mapM_ (\word ->
+main = traverse_ (\word ->
     putStrLn $ "The word " <> word <> " translated to Napier notation is equal to the value " <> show (symToInt word)
     ) alphabeticalWords

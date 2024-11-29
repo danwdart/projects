@@ -47,7 +47,8 @@ powerDigit = (LNE.fromList "⁰¹²³⁴⁵⁶⁷⁸⁹" LNE.!!)
 powerOf ∷ Int → String
 powerOf = fmap (powerDigit . read @Int . L.singleton) . show
 
--- >>> mapM_ putStrLn $ (\i -> show i <> ": (" <> showPoly i <> ")") <$> [0..4]
+-- >>> import Data.Foldable
+-- >>> traverse_ putStrLn $ (\i -> show i <> ": (" <> showPoly i <> ")") <$> [0..4]
 -- 0: ()
 -- 1: (x)
 -- 2: (x²)

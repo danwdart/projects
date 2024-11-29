@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Control.Monad (void)
 import Control.Monad.IO.Class
 import Reflex
 import Reflex.Host.Headless
@@ -15,6 +16,6 @@ main = runHeadlessApp $ do
     e6 <- performEvent (liftIO . putStrLn . (: []) <$> e4)
     e7 <- performEvent (liftIO getLine <$ e6)
     e8 <- performEvent (liftIO . putStrLn . ("You said: " ++) <$> e7)
-    _ <- performEvent ((liftIO . aExit $ ()) <$ e8)
+    void $ performEvent ((liftIO . aExit $ ()) <$ e8)
     -- Now todo experiment on behaviours etc
     pure eExit -- When do we exit?

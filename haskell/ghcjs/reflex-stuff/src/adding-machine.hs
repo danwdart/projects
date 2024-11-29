@@ -89,8 +89,8 @@ widget = mdo
         let eEnterDown = "Enter Down" <$ keydown KeyK main
 
         btnsPressed <- el "div" $ do
-            ps <- mapM (\p -> el "div" $ do
-                ns <- mapM (btn main p) (Prelude.reverse [1..9])
+            ps <- traverse (\p -> el "div" $ do
+                ns <- traverse (btn main p) (Prelude.reverse [1..9])
                 pure $ leftmost ns
                 ) (Prelude.reverse [1..4])
             pure $ leftmost ps

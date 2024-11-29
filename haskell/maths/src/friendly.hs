@@ -2,6 +2,7 @@
 
 module Main (main) where
 
+import Data.Foldable
 import Data.List           (sort)
 import Data.Numbers.Primes
 import Data.Ratio
@@ -42,4 +43,4 @@ resultUpTo maxN = go [1..maxN] [] where
     go (x:xs) sofar = go xs $ appendToVal (index x) [x] sofar
 
 main ∷ IO ()
-main = mapM_ print . sort $ resultUpTo 100
+main = traverse_ print . sort $ resultUpTo 100

@@ -1,6 +1,7 @@
 module Main (main) where
 
 import Data.Digits
+import Data.Foldable
 -- import Data.Numbers.Primes
 import Factor
 
@@ -23,4 +24,4 @@ highlyComposite = go 0 1 where
         | otherwise = go record (n + 1)
 
 main ∷ IO ()
-main = mapM_ print $ read @Integer . concatMap show . digits 2 <$> take 16 highlyComposite
+main = traverse_ (print . read @Integer . concatMap show . digits 2) (take 16 highlyComposite)

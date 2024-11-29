@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Control.Monad (void)
 import Sound.Pulse
 import Sound.Pulse.Context
 import Sound.Pulse.Mainloop.Simple
@@ -11,7 +12,7 @@ main = do
     ml <- getMainloopImpl
     ctx <- getContext ml "HaskellSound"
     print ctx
-    _ <- subscribeEvents ctx [SubscriptionMaskAll] (\a b -> print a >> print b)
+    void $ subscribeEvents ctx [SubscriptionMaskAll] (\a b -> print a >> print b)
     connRet <- connectContext ctx (Just "localhost") [ContextNoflags]
     print connRet
     runPulse_ ctx $ pure ()

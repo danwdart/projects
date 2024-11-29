@@ -5,6 +5,7 @@
 
 module Main (main) where
 
+import Control.Monad (void)
 -- import Control.Monad.Trans (liftIO)
 import Database.MongoDB
 
@@ -14,6 +15,6 @@ import Database.MongoDB
 main ∷ IO ()
 main = do
     mongoconn <- connect $ host "localhost"
-    _ <- access mongoconn master "bob" (insert "bobs" ["name" =: ("Jim" :: String)] >> find (select [] "bobs") >>= rest)
+    void $ access mongoconn master "bob" (insert "bobs" ["name" =: ("Jim" :: String)] >> find (select [] "bobs") >>= rest)
 
     pure ()

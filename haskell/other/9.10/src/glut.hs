@@ -3,6 +3,7 @@
 
 module Main (main) where
 
+import Control.Monad (void)
 import Graphics.UI.GLUT
 import Graphics.UI.GLUT.Begin
 import Graphics.UI.GLUT.Initialization
@@ -11,8 +12,8 @@ main ∷ IO ()
 main = do
     initialWindowPosition $= Position 100 100
     initialWindowSize $= Size 900 500
-    _ <- initialize "OpenGL Demo" []
-    _ <- createWindow "OpenGL Demo"
+    void $ initialize "OpenGL Demo" []
+    void $ createWindow "OpenGL Demo"
     displayCallback $= do
         putStrLn "Display!"
         pure ()

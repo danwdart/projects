@@ -286,6 +286,6 @@ reqMain sEmail sPassword = do
 main ∷ IO ()
 main = void . runExceptT $ catchE (
     do
-        [sEmail, sPassword] <- liftIO (mapM getEnv ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"])
+        [sEmail, sPassword] <- liftIO (traverse getEnv ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"])
         void . liftIO . runReq defaultHttpConfig $ reqMain sEmail sPassword
     ) (const . liftIO . putStrLn $ "Environment variables not present. Needed: DOMINOS_EMAIL, DOMINOS_PASSWORD")

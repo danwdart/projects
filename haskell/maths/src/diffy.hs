@@ -2,6 +2,8 @@
 
 module Main (main) where
 
+-- import Data.Foldable
+
 shl ∷ [a] → [a]
 shl []     = []
 shl (x:xs) = xs <> [x]
@@ -40,5 +42,5 @@ main ∷ IO ()
 main = do
     print $ diffCount [1,2,3,4::Int]
     print $ diffCount [112211,2,3,4000::Int]
-    -- mapM_ print $ soln 50
+    -- traverse_ print $ soln 50
     print . length $ soln 25

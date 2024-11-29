@@ -2,6 +2,7 @@ module Main (main) where
 
 -- import Control.Monad
 import Data.Bifunctor
+import Data.Foldable
 
 type ESI = Either String Int
 type EtoE = ESI → ESI
@@ -24,4 +25,4 @@ bm = bimap ("Was going to add one but it doesn't matter: " ++) (+ 1)
 
 
 main ∷ IO ()
-main = mapM_ print $ [fm,sm,bm] <*> [myResult1, myResult2]
+main = traverse_ print $ [fm,sm,bm] <*> [myResult1, myResult2]

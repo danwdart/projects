@@ -2,6 +2,7 @@
 
 module Main (main) where
 
+import Control.Monad (void)
 import Control.Monad.Reader
 
 -- Reader a b is a -> b
@@ -20,8 +21,8 @@ rtSimple = ask >>= liftIO . putStrLn
 
 rt ∷ ReaderT String IO ()
 rt = ReaderT $ do
-    _ <- ask
-    _ <- asks (++ "Bob")
+    void ask
+    void $ asks (++ "Bob")
     liftIO . putStrLn
 
 rWithLocal ∷ Reader String String

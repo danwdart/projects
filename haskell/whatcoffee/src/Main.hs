@@ -11,6 +11,7 @@ import Data.ByteString.Base64 qualified as B64
 import Data.ByteString.Char8  qualified as B
 import Data.ByteString.Lazy   qualified as BL
 import Data.Either
+import Data.Foldable
 import Data.Maybe
 import Data.Text              (Text)
 import Data.Text              qualified as T
@@ -87,7 +88,7 @@ main = do
             getContents
         else
             readFile $ head files
-    mapM_ (\jwt -> do
+    traverse_ (\jwt -> do
         let jwtSegments = T.split (== '.') jwt
         -- let jwtToDecode = T.intercalate "." $ tail jwtSegments
         -- print jwtToDecode

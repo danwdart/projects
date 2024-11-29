@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 import Data.ByteString.Lazy.Char8    qualified as BSL
+import Data.Foldable
 import System.Environment
 import System.Path
 import Text.Blaze.Html.Renderer.Utf8
@@ -20,7 +21,7 @@ page env = docTypeHtml ! lang "en-GB" $ do
             H.title "Test"
     H.body $ do
         H.h1 "Test"
-        H.ul $ mapM_ (\(key, value') -> H.li $ do
+        H.ul $ traverse_ (\(key, value') -> H.li $ do
             strong (string key)
             string ": "
             string value'

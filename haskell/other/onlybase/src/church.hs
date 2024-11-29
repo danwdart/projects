@@ -1,9 +1,21 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-matches #-}
+{-# LANGUAGE UnicodeSyntax #-}
 
 module Main (main) where
 
 main ∷ IO ()
 main = pure ()
+
+data Nat = Zero | Succ Nat
+
+-- implying T F order
+true :: a -> b -> a
+true a b = a
+
+false :: a -> b -> b
+false a b = b
+
+-- iff t f x = 
 
 zero ∷ a → b → b
 zero f x = x

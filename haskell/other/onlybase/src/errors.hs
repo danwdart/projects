@@ -4,6 +4,7 @@
 module Main (main) where
 
 import Control.Exception
+import Data.Foldable
 
 newtype DBConnectionInfo = DBConnectionInfo String
     deriving Show
@@ -71,7 +72,7 @@ main = do
 
     -- todo MonadError
     -- todo indexed
-    mapM_ (\case
+    traverse_ (\case
         Left x -> putStrLn $ "Error: " <> show x
         Right res' -> putStrLn $ "Found: " <> show res'
         ) xs

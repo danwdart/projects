@@ -8,6 +8,7 @@ import Control.Monad
 -- import Control.Monad.IO.Class (MonadIO, liftIO)
 -- import Control.Retry
 -- import Data.Aeson
+import Data.Foldable
 import Data.Text
 import Network.HTTP.Req
 
@@ -39,4 +40,4 @@ usernames = [thePopesUsername, "bobbybobbobsonsthethird"]
 
 
 main ∷ IO ()
-main = mapM_ (prettyPrintDoesUserExist >=> putStrLn . unpack) usernames
+main = traverse_ (prettyPrintDoesUserExist >=> putStrLn . unpack) usernames

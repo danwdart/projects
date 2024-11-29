@@ -3,6 +3,7 @@
 module Main (main) where
 
 import Control.Arrow
+import Data.Foldable
 import Data.List     (group, sort)
 
 mk ∷ Int → [[Int]]
@@ -14,4 +15,4 @@ fn p = (p,
     )
 
 main ∷ IO ()
-main = mapM_ (print . fn) [1 .. 10]
+main = traverse_ (print . fn) [1 .. 10]

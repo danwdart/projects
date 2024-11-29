@@ -2,6 +2,7 @@
 
 module Main (main) where
 
+import Data.Foldable
 -- import Data.List qualified as L
 import Data.Map  qualified as M
 import Data.Set  qualified as S
@@ -27,10 +28,10 @@ summarise ∷ (Show k, Show v) ⇒  M.Map k (S.Set v) → M.Map k String
 summarise = M.mapWithKey (\k v -> show k <> ": " <> show (S.size v) <> " (" <> show v <> ")")
 
 speakOfIt ∷ IO ()
-speakOfIt = mapM_ putStrLn . summarise . accum $ maps 5
+speakOfIt = traverse_ putStrLn . summarise . accum $ maps 5
 
 speakOfThat ∷ IO ()
-speakOfThat = mapM_ putStrLn . summarise . accum $ specificMaps 5
+speakOfThat = traverse_ putStrLn . summarise . accum $ specificMaps 5
 
 main ∷ IO ()
 main = pure ()

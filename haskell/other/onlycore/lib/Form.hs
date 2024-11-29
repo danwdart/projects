@@ -3,6 +3,7 @@
 
 module Form where
 
+import Control.Monad (void)
 import Data.Text   (Text)
 import Data.Text   qualified as T
 import Text.Parsec
@@ -55,7 +56,7 @@ elementParser = do
 formParser ∷ Parsec Text u Form
 formParser = do
     formTitle' <- T.pack <$> many1 (noneOf "\n")
-    _ <- newline
-    _ <- newline
+    void newline
+    void newline
     els <- many1 (elementParser <* optional newline)
     pure $ Form formTitle' els

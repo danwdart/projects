@@ -1,6 +1,7 @@
 module Main (main) where
 
 import Credential
+import Data.Foldable
 import Person
 
 myCreds ∷ Creds
@@ -23,7 +24,7 @@ someone = Person {
 }
 
 main ∷ IO ()
-main = mapM_ putStrLn [
+main = traverse_ putStrLn [
     printCreds myCreds,
     "My name is " <> firstName me,
     describePerson me,

@@ -2,6 +2,7 @@
 
 module Main (main) where
 
+import Control.Monad (void)
 import System.Locale.SetLocale
 import Text.I18N.GetText
 import Text.Printf
@@ -22,9 +23,9 @@ main ∷ IO ()
 main = do
     let __ = getText
 
-    _ <- setLocale LC_ALL (Just "")
-    _ <- bindTextDomain "gettext" (Just "i18n")
-    _ <- textDomain (Just "gettext")
+    void $ setLocale LC_ALL (Just "")
+    void $ bindTextDomain "gettext" (Just "i18n")
+    void $ textDomain (Just "gettext")
 
     putStrLn =<< __ "What is your name?"
     putStr "> "

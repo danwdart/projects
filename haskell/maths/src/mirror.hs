@@ -3,6 +3,7 @@
 module Main (main) where
 
 import Data.Digits
+import Data.Foldable
 import Prelude
 
 -- there's probably a more efficient way to do this.
@@ -62,4 +63,4 @@ formatAnswer (x, answer) = show x <> " => " <> maybe "Probable Lychrel" show ans
 
 main ∷ IO ()
 main = do
-    mapM_ putStrLn $ formatAnswer <$> {- A240510 -} filter (\(_, answer) -> Just 8813200023188 == answer) (palindromeAnswer <$> [1..2000])
+    traverse_ putStrLn $ formatAnswer <$> {- A240510 -} filter (\(_, answer) -> Just 8813200023188 == answer) (palindromeAnswer <$> [1..2000])

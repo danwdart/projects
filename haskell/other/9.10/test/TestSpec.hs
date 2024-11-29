@@ -1,6 +1,7 @@
 module TestSpec where
 
 import Control.Exception     (evaluate)
+import Control.Monad (void)
 import Test.Hspec
 import Test.Hspec.QuickCheck
 import Test.QuickCheck
@@ -25,5 +26,5 @@ spec = describe "tests" $ do
         -- length <$> readFile "/etc/passwd" `shouldReturn` 3512
         readFile "/etc/shadow" `shouldThrow` anyException
         (`shouldThrow` anyException) $ do
-            _ <- readFile "/etc/shadow"
+            void $ readFile "/etc/shadow"
             readFile "/etc/passwd"

@@ -2,6 +2,7 @@
 
 module Main (main) where
 
+import Data.Foldable
 import GHCJS.DOM
 import GHCJS.DOM.CanvasPath
 import GHCJS.DOM.CanvasRenderingContext2D
@@ -43,14 +44,14 @@ plotFormula fn startX endX skipX ctx = do
     clearRect ctx 0 0 1600 800
     let points = getPoints startX endX skipX
     let p = pairs $ zipFn fn points
-    mapM_ (\(p1, p2) -> line p1 p2 ctx) p
+    traverse_ (\(p1, p2) -> line p1 p2 ctx) p
 
 plotRecurrenceRelation ∷ MonadDOM m ⇒ (Double → Double) → Double → Double → Double → Double → Double → CanvasRenderingContext2D → m ()
 plotRecurrenceRelation rr startY scaleY startX endX skipX ctx = do
     clearRect ctx 0 0 1600 800
     let pointsX = getPoints startX endX skipX
     let p = pairs . zip pointsX $ ((*scaleY) <$> iterate rr startY)
-    mapM_ (\(p1, p2) -> line p1 p2 ctx) p
+    traverse_ (\(p1, p2) -> line p1 p2 ctx) p
 
 plotGraph ∷ MonadDOM m ⇒ CanvasRenderingContext2D → m ()
 plotGraph ctx = do

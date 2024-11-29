@@ -1,8 +1,11 @@
+module Main (main) where
+
+import Data.Foldable    
 import Data.List.Nub
 import Data.List.Repeat
 
 main ∷ IO ()
-main = mapM_ print $ records 100000
+main = traverse_ print $ records 100000
 
 step ∷ Integer → Integer
 step = product . fmap (read . (: [])) . show

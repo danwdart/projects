@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Data.Foldable
 import Data.List  (findIndex, isPrefixOf, tails)
 import Data.Maybe
 -- import Control.Monad
@@ -46,4 +47,4 @@ mapping number = maybeApplyToSecondIf (>) positionToFoundMessage resultLength =<
     positionToFoundMessage = foundMsg number root
 
 main ∷ IO ()
-main = mapM_ putStrLn (take 1000 $ mapMaybe mapping [1..])
+main = traverse_ putStrLn (take 1000 $ mapMaybe mapping [1..])

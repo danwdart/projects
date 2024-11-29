@@ -4,6 +4,7 @@
 
 module Main (main) where
 
+import Data.Foldable
 import Data.List (transpose)
 
 elems ∷ [Int]
@@ -38,7 +39,7 @@ calculateWith ∷ ([Int] → [Int]) → Maybe Int
 calculateWith fn = untilTimesAtLeastOne 100000 (== elems) fn elems
 
 main ∷ IO ()
-main = mapM_ (\(name, calculation) -> putStrLn $ name <> ": " <> show (calculateWith calculation)) [
+main = traverse_ (\(name, calculation) -> putStrLn $ name <> ": " <> show (calculateWith calculation)) [
     ("Out", faroOut),
     ("In", faroIn),
     ("In Out", faroOut . faroIn),

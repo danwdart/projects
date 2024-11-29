@@ -5,6 +5,7 @@ module Main (main) where
 -- Reader for function arrow.
 
 import Control.Monad.Reader
+import Data.Foldable
 import Data.Word
 import Text.Printf
 
@@ -70,7 +71,7 @@ doSomethingVeryImportant config' = do
     performAnotherTask config'
 
 performTaskIndividually ∷ Config → IO ()
-performTaskIndividually config' = mapM_ (performSubtaskIndividually config') [1..5]
+performTaskIndividually config' = traverse_ (performSubtaskIndividually config') [1..5]
 
 performSubtaskIndividually ∷ Config → Int → IO ()
 performSubtaskIndividually config' time = do
@@ -90,7 +91,7 @@ doSomethingVeryImportantF config' = do -- todo without?
     performAnotherTaskF config'
 
 performTaskIndividuallyF ∷ Config → IO ()
-performTaskIndividuallyF config' = mapM_ (`performSubtaskIndividuallyF` config') [1..5] -- todo without?
+performTaskIndividuallyF config' = traverse_ (`performSubtaskIndividuallyF` config') [1..5] -- todo without?
 
 performSubtaskIndividuallyF ∷ Int → Config → IO ()
 performSubtaskIndividuallyF time config' = do
@@ -111,7 +112,7 @@ doSomethingVeryImportantR = do
     performAnotherTaskR
 
 performTaskIndividuallyR ∷ (MonadReader Config m, MonadIO m) ⇒ m ()
-performTaskIndividuallyR = mapM_ performSubtaskIndividuallyR [1..5]
+performTaskIndividuallyR = traverse_ performSubtaskIndividuallyR [1..5]
 
 performSubtaskIndividuallyR ∷ (MonadReader Config m, MonadIO m) ⇒ Int → m ()
 performSubtaskIndividuallyR time = do
