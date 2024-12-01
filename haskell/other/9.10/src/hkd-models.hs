@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveAnyClass       #-}
 {-# LANGUAGE DerivingVia          #-}
 {-# LANGUAGE Trustworthy          #-}
+{-# LANGUAGE TypeFamilies         #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wwarn #-}
 
@@ -36,10 +37,26 @@ deriving instance AllBF Read f Person ⇒ Read (Person f)
 deriving instance AllBF Show f Person ⇒ Show (Person f)
 deriving instance AllBF Eq   f Person ⇒ Eq   (Person f)
 
+type family HKD f a where
+    HKD Identity a = a
+    HKD f a = f a
+
+data Person' f = Person' {
+    name'       :: HKD f Name,
+    profession' :: HKD f Profession
+}
+    deriving stock (Generic)
+
 myPerson ∷ Person Identity
 myPerson = Person {
     name = Identity (Name "Dan"),
     profession = Identity (Profession "Coder")
+}
+
+myPerson' :: Person' Identity
+myPerson' = Person' {
+    name' = Name "Dan",
+    profession' = Profession "Coder"
 }
 
 myPossiblyPerson ∷ Person Maybe
