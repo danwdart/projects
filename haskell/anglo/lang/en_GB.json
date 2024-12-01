@@ -1,0 +1,55 @@
+{
+    "start": [
+        [
+            "a", "ai", "au",
+            "e", "ea", "ee", "ei", "eu",
+            "i", "ia",
+            "o", "oa", "oi", "oo", "ou",
+            "u"
+        ],
+        [
+            "b", "br", "c", "ch", "cr", "cy",
+            "d", "dr", "f", "g", "gh",
+            "h", "j", "k", "l", "m",
+            "n", "p", "ph", "qu", "r",
+            "s", "sc", "sk", "sh", "st", "str", "t", "tr",
+            "v", "w", "wh", "x", "y", "z"
+        ]
+    ],
+    "middle": [
+        [
+            "a", "aa", "ae", "ai",
+            "e", "ea", "ee", "ei", "eu",
+            "i", "ia", "ie",
+            "o", "oa", "oe", "oi", "oo", "ou",
+            "u", "ui",
+            "y"
+        ],
+        [
+            "b", "br", "c", "ck", "ch", "cr", "cs", "ct", "cy",
+            "d", "dr", "f", "fh", "g", "gh", "gth",
+            "h", "j", "k", "l", "ll", "m", "mm",
+            "n", "nn", "p", "ph", "qu", "r",
+            "s", "sc", "sh", "sk", "st", "str", "t", "tch", "tr",
+            "v", "w", "wh", "x", "y", "z"
+        ]
+    ],
+    "end": [
+        [
+            "a", "aa", "ae", "ai",
+            "e", "ea", "ee", "ei",
+            "i", "ia", "ie",
+            "o", "oa", "oe", "oi", "oo", "ou", "ough",
+            "ui",
+            "y"
+        ],
+        [
+            "b", "br", "c", "ck", "ch", "cr", "cs", "ct", "cy",
+            "d", "dr", "f", "fh", "g", "gh", "gth",
+            "h", "k", "l", "ll", "m", "mm",
+            "n", "nn", "p", "ph", "r",
+            "s", "sc", "sh", "sk", "st", "str", "t", "tch", "tr",
+            "w", "x", "y", "z"
+        ]
+    ]
+}

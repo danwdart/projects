@@ -1,0 +1,88 @@
+cabal-version:      3.4
+
+-- Newer versions complain
+name:               anglo
+version:            0.1.0.0
+homepage:           https://github.com/danwdart/projects#readme
+license:            AGPL-3.0-only
+author:             Dan Dart
+maintainer:         cabal@dandart.co.uk
+copyright:          2019 Dan Dart
+category:           Web
+build-type:         Simple
+extra-source-files: README.md
+
+library
+  hs-source-dirs:     lib
+  default-language:   GHC2024
+  default-extensions: UnicodeSyntax
+  build-depends:      
+      base >=4.20.0.0 && <5
+    , aeson
+    , MonadRandom
+    , mtl
+  exposed-modules:
+      Word
+
+  ghc-options:
+    -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-unrecognised-warning-flags
+
+common shared-properties
+  hs-source-dirs:     src
+  default-language:   GHC2024
+  default-extensions: UnicodeSyntax
+  build-depends:      base >=4.20.0.0 && <5
+  ghc-options:
+    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+
+  ghcjs-options:      -dedupe
+
+executable anglo
+  import:        shared-properties
+  main-is:       Main.hs
+  build-depends:
+    , base        >=4.20.0.0 && <5
+    , anglo
+
+executable anglo-dev
+  import:        shared-properties
+  main-is:       Main.hs
+  other-modules:
+      Word
+  build-depends:
+    , base        >=4.20.0.0 && <5
+    , aeson
+    , MonadRandom
+    , mtl
+
+test-suite anglo-test
+  import:             shared-properties
+  hs-source-dirs:     test
+  type:               exitcode-stdio-1.0
+  main-is:            Spec.hs
+  other-modules:      
+  default-language:   GHC2024
+  default-extensions: UnicodeSyntax
+  build-depends:
+    , base        >=4.20.0.0 && <5
+    , anglo
+    , hspec
+    , QuickCheck
+
+  build-tool-depends: hspec-discover:hspec-discover
+
+-- , hspec-core
+-- , hspec-expectations
