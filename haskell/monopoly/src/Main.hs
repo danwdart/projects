@@ -1,7 +1,7 @@
 module Main (main) where
 
-import Control.Monad
 import Data.Set                  qualified as Set
+import Data.Traversable
 import Game.Monopoly.Board
 import Game.Monopoly.Board.Devon
 -- import Game.Monopoly.Colour
@@ -31,7 +31,7 @@ performRound ∷ Game → IO Game
 performRound (Game board' players' rules') = do
     putStrLn "Let's go!"
     -- let numSpaces = length (spaces board)
-    newPlayers' <- forM players' $ \player' -> do
+    newPlayers' <- for players' $ \player' -> do
         putStrLn $ name player' <> (" (the " <> (show (token player') <> (") is on " <> show (playerSpace (_spaces board') player'))))
         (roll, _isDouble) <- randomRoll
         putStrLn $ "Roll: " <> show roll
