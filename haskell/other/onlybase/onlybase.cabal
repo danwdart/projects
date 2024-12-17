@@ -385,6 +385,10 @@ executable monad
 executable mvar
   import:  shared-properties-safe
   main-is: mvar.hs
+  
+executable mvar-concurrent
+  import:  shared-properties-safe
+  main-is: mvar-concurrent.hs
 
 executable mylens
   import:        shared-properties-safe
