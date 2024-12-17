@@ -19,6 +19,7 @@ library
   build-depends:      
       base >=4.20.0.0 && <5
     , aeson
+    , containers
     , MonadRandom
     , mtl
   exposed-modules:
@@ -59,12 +60,15 @@ executable anglo
 
 executable anglo-dev
   import:        shared-properties
+  ghc-options: -Wwarn
+  hs-source-dirs: lib src
   main-is:       Main.hs
   other-modules:
       Word
   build-depends:
     , base        >=4.20.0.0 && <5
     , aeson
+    , containers
     , MonadRandom
     , mtl
 
