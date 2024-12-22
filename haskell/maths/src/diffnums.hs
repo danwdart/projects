@@ -19,6 +19,7 @@ best :: (Eq b, Num b, Foldable f) => (b -> b -> b) -> (a -> b) -> f a -> (Int, b
 best cmp f = foldr' (\x (count, bestb, besta) -> if bestb == cmp bestb (f x) then (1 + count, bestb, besta <> [x]) else (1, f x, [x])) (0, 0, mempty)
 
 -- huh why is... oh
+-- todo max of min?
 bestDS :: [[Int]] -> (Int, Int, [[Int]])
 bestDS = best max (snd . diffsum)
 
