@@ -28,7 +28,7 @@ common shared-properties-base
 common shared-properties-lib
   import:             shared-properties-base
   ghc-options:
-    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Weverything -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -37,13 +37,13 @@ common shared-properties-lib
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base >=4.21.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
   import:        shared-properties-base
   ghc-options:
-    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Weverything -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -52,7 +52,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base >=4.21.0.0 && <5
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -66,7 +66,7 @@ library
   hs-source-dirs:  lib
   build-depends:
     , array
-    , base              >=4.20.0.0 && <5
+    , base              >=4.21.0.0 && <5
     , bytestring
     , containers
     , directory
@@ -102,27 +102,27 @@ executable array
   main-is:       array.hs
   build-depends:
     , array
-    , base   >=4.20.0.0 && <5
+    , base   >=4.21.0.0 && <5
 
 executable bashy
   import:        shared-properties-unsafe
   main-is:       bashy.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , onlycore
 
 executable cli_contt
   import:        shared-properties-safe
   main-is:       cli_contt.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable cont
   import:        shared-properties-unsafe
   main-is:       cont.hs
   build-depends:
-    , base          >=4.20.0.0 && <5
+    , base          >=4.21.0.0 && <5
     , directory
     , transformers
 
@@ -130,35 +130,35 @@ executable cont-monad
   import:        shared-properties-safe
   main-is:       cont-monad.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable cont-variadic
   import:        shared-properties-safe
   main-is:       cont-variadic.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable embed
   import:        shared-properties-unsafe
   main-is:       embed.hs
   build-depends:
-    , base              >=4.20.0.0 && <5
+    , base              >=4.21.0.0 && <5
     , template-haskell
 
 executable endo
   import:        shared-properties-safe
   main-is:       endo.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , text
 
 executable files
   import:        shared-properties-unsafe
   main-is:       files.hs
   build-depends:
-    , base       >=4.20.0.0 && <5
+    , base       >=4.21.0.0 && <5
     , directory
 
 executable fixedlength
@@ -166,13 +166,13 @@ executable fixedlength
   main-is:       fixedlength.hs
   build-depends:
     , array
-    , base   >=4.20.0.0 && <5
+    , base   >=4.21.0.0 && <5
 
 executable forms
   import:          shared-properties-safe
   main-is:         forms.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , onlycore
     , parsec
 
@@ -183,61 +183,61 @@ executable lcdblock
   import:        shared-properties-safe
   main-is:       lcdblock.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , onlycore
 
 executable mtl
   import:        shared-properties-safe
   main-is:       mtl.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable profunctor-lenses
   import:        shared-properties-safe
   main-is:       profunctor-lenses.hs
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base >=4.21.0.0 && <5
 
 executable python5
   import:        shared-properties-safe
   main-is:       python5.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , onlycore
 
 executable qq
   import:        shared-properties-safe
   main-is:       qq.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , onlycore
 
 executable reader
   import:        shared-properties-safe
   main-is:       reader.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable reader-fn
   import:        shared-properties-safe
   main-is:       reader-fn.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable reader-override
   import:        shared-properties-safe
   main-is:       reader-override.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , mtl
     , onlycore
 
 executable runtime-types
   import:        shared-properties-unsafe
   build-depends:
-    , base              >=4.20.0.0 && <5
+    , base              >=4.21.0.0 && <5
     , onlycore
     , template-haskell
 
@@ -247,14 +247,14 @@ executable rws
   import:        shared-properties-safe
   main-is:       rws.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable sha
   import:        shared-properties-safe
   main-is:       sha.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
+    , base        >=4.21.0.0 && <5
     , bytestring
     , onlycore
 
@@ -262,56 +262,56 @@ executable state
   import:        shared-properties-safe
   main-is:       state.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable stm
   import:        shared-properties-safe
   main-is:       stm.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , stm
 
 executable tagless-final
   import:        shared-properties-unsafe
   main-is:       tagless-final.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
 
 executable th
   import:        shared-properties-unsafe
   main-is:       th.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , onlycore
 
 executable tinylang
   import:        shared-properties-safe
   main-is:       tinylang.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , onlycore
 
 executable trace
   import:        shared-properties-unsafe
   main-is:       trace.hs
   build-depends:
-    , base          >=4.20.0.0 && <5
+    , base          >=4.21.0.0 && <5
     , transformers
 
 executable transformers
   import:        shared-properties-safe
   main-is:       transformers.hs
   build-depends:
-    , base          >=4.20.0.0 && <5
+    , base          >=4.21.0.0 && <5
     , transformers
 
 executable world
   import:        shared-properties-safe
   main-is:       world.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
+    , base      >=4.21.0.0 && <5
     , mtl
     , onlycore
 
@@ -319,5 +319,5 @@ executable writer
   import:        shared-properties-safe
   main-is:       writer.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
+    , base  >=4.21.0.0 && <5
     , mtl
