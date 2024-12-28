@@ -1,7 +1,7 @@
 module Main (main) where
 
 import Cipher
-import Control.Monad
+import Data.Foldable
 import System.IO
 
 main ∷ IO ()
