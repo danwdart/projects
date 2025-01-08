@@ -258,6 +258,14 @@ executable sha
     , bytestring
     , onlycore
 
+executable shortcuts
+  import:        shared-properties-safe
+  main-is:       shortcuts.hs
+  build-depends:
+    , base        >=4.21.0.0 && <5
+    , mtl
+    , transformers
+
 executable state
   import:        shared-properties-safe
   main-is:       state.hs
