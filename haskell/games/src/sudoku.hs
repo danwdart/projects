@@ -1,33 +1,38 @@
-{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-imports #-}
-
 module Main (main) where
 
-import Algebra.Lattice
 import Data.List.Extra (enumerate)
 import Data.Set        (Set)
 import Data.Set        qualified as S
 import Data.Vector     (Vector)
 import Data.Vector     qualified as V
+import Propagator
 
 -- | The individual cell value.
-data Choice = One | Two | Three | Four | Five | Six | Seven | Eight | Nine
-    deriving stock (Eq, Show, Ord, Enum, Bounded)
-
--- We should be using the bounded join semilattice for Set Choice
--- so its bottom would be "contradiction" which is nothing in the set
--- and its top would be "no information" which is everything in the set
--- then "meet" would be set difference and "join" would be union? Something like that?
-
--- Now we can run the algorithm of all the things to check... at once, as a fixpoint?
-solveFour ∷ Vector (Vector Choice) → Vector (Vector Choice)
-solveFour = undefined
 
 -- | Show the choice as a string.
--- >>> concat $ prettyShow <$> enumerate
--- "123456789"
---
-prettyShow ∷ Choice → String
-prettyShow = show . succ . fromEnum
+class PrettyShow a where
+    prettyShow :: a -> String
+    default prettyShow :: (Enum a, Bounded a) => a -> String
+    prettyShow = show . succ . fromEnum
+
+data Choice4 = C4One | C4Two | C4Three | C4Four
+    deriving stock (Eq, Show, Ord, Enum, Bounded)
+
+instance PrettyShow Choice4
+
+data Choice9 = C9One | C9Two | C9Three | C9Four | C9Five | C9Six | C9Seven | C9Eight | C9Nine
+    deriving stock (Eq, Show, Ord, Enum, Bounded)
+
+instance PrettyShow Choice9
+
+-- One|Three Two|Four
+-- SET A1 to Four is equivalent to Others = Others /\ Four?
+
+-- For each cell, for those related, do the \/
+newtype Board = Board (Vector (Vector (Cell (Set Choice))))
+
+mkBoard :: IO Board
+mkBoard = Board <$> V.replicateM 9 (V.replicateM 9 cell)
 
 main ∷ IO ()
 main = pure ()

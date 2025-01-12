@@ -16,11 +16,14 @@ library
   hs-source-dirs:     lib
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      
+      base >=4.20.0.0 && <5
+    , lattices
   exposed-modules:
     Control.Exception.RangeException
     Game.Bounce
     Numeric.Range
+    Propagator
 
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
@@ -134,6 +137,20 @@ executable snl
 executable sudoku
   import:        shared-properties
   main-is:       sudoku.hs
+  build-depends:
+    , base        >=4.20.0.0 && <5
+    , containers
+    , extra
+    , games
+    , vector
+
+executable sudoku-dev
+  import:        shared-properties
+  ghc-options:   -Wwarn
+  hs-source-dirs: src lib
+  main-is:       sudoku.hs
+  other-modules:
+    Propagator
   build-depends:
     , base        >=4.20.0.0 && <5
     , containers
