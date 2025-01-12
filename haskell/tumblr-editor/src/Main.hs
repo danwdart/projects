@@ -5,7 +5,7 @@
 module Main (main) where
 
 import Control.Concurrent
-import Control.Monad (void)
+import Control.Monad          (void)
 import Control.Monad.IO.Class
 import Data.Foldable
 import Data.Functor.Compose

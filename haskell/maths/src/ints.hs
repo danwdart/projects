@@ -4,8 +4,8 @@ module Main (main) where
 
 import Data.Foldable
 -- import Data.List qualified as L
-import Data.Map  qualified as M
-import Data.Set  qualified as S
+import Data.Map      qualified as M
+import Data.Set      qualified as S
 import Data.Word
 
 weirdSequence ∷ [Word8]

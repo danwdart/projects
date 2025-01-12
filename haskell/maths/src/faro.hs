@@ -5,7 +5,7 @@
 module Main (main) where
 
 import Data.Foldable
-import Data.List (transpose)
+import Data.List     (transpose)
 
 elems ∷ [Int]
 elems = [0..51]

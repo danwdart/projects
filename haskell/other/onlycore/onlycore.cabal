@@ -28,14 +28,13 @@ common shared-properties-base
 common shared-properties-lib
   import:             shared-properties-base
   ghc-options:
-    -Weverything -Wno-implicit-prelude
-    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies -Wno-missing-export-lists
+    -Wno-missing-import-lists -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock
+    -Wno-unrecognised-warning-flags -Werror -haddock
 
   build-depends:      base >=4.21.0.0 && <5
   default-extensions: NoGeneralizedNewtypeDeriving
@@ -43,14 +42,14 @@ common shared-properties-lib
 common shared-properties-unsafe
   import:        shared-properties-base
   ghc-options:
-    -Weverything -Wno-implicit-prelude
-    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies -Wno-missing-export-lists
+    -Wno-missing-import-lists -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wno-unrecognised-warning-flags -Werror -haddock -threaded -rtsopts
+    -with-rtsopts=-N
 
   build-depends: base >=4.21.0.0 && <5
 
@@ -262,7 +261,7 @@ executable shortcuts
   import:        shared-properties-safe
   main-is:       shortcuts.hs
   build-depends:
-    , base        >=4.21.0.0 && <5
+    , base          >=4.21.0.0 && <5
     , mtl
     , transformers
 

@@ -1,7 +1,7 @@
 module Main (main) where
 
 import Data.Foldable
-import Data.List  (findIndex, isPrefixOf, tails)
+import Data.List     (findIndex, isPrefixOf, tails)
 import Data.Maybe
 -- import Control.Monad
 

@@ -1,4 +1,4 @@
-{-# LANGUAGE MultiWayIf #-}
+
 
 module Main (main) where
 
@@ -41,7 +41,7 @@ cautiouslyPrint go = catches (go >>= print) [
       | Just (array :: ArrayException) <- cast e -> putStrLn ("array: " <> show array)
       | otherwise -> putStrLn ("Something else: " <> show e)
   -}
-  
+
 main ∷ IO ()
 main = do
   putStrLn $ showable s

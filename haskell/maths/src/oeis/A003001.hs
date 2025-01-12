@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Data.Foldable    
+import Data.Foldable
 import Data.List.Nub
 import Data.List.Repeat
 

@@ -53,22 +53,22 @@ data Person' f = Person' {
 -- https://reasonablypolymorphic.com/blog/higher-kinded-data/
 
 class GValidate i o where
-  gvalidate :: i p -> Maybe (o p)
+  gvalidate :: i p → Maybe (o p)
 
 instance GValidate (K1 a (Maybe k)) (K1 a k) where
   gvalidate (K1 k) = K1 <$> k
   {-# INLINE gvalidate #-}
 
-instance (GValidate i o, GValidate i' o') => GValidate (i :*: i') (o :*: o') where
+instance (GValidate i o, GValidate i' o') ⇒ GValidate (i :*: i') (o :*: o') where
   gvalidate (l :*: r) = (:*:) <$> gvalidate l <*> gvalidate r
   {-# INLINE gvalidate #-}
 
-instance (GValidate i o, GValidate i' o') => GValidate (i :+: i') (o :+: o') where
+instance (GValidate i o, GValidate i' o') ⇒ GValidate (i :+: i') (o :+: o') where
   gvalidate (L1 l) = L1 <$> gvalidate l
   gvalidate (R1 r) = R1 <$> gvalidate r
   {-# INLINE gvalidate #-}
 
-instance GValidate i o => GValidate (M1 _a _b i) (M1 _a' _b' o) where
+instance GValidate i o ⇒ GValidate (M1 _a _b i) (M1 _a' _b' o) where
   gvalidate (M1 x) = M1 <$> gvalidate x
   {-# INLINE gvalidate #-}
 
@@ -80,8 +80,8 @@ instance GValidate U1 U1 where
   gvalidate U1 = Just U1
   {-# INLINE gvalidate #-}
 
-validate :: (Generic (f Maybe), Generic (f Identity), GValidate (Rep (f Maybe)) (Rep (f Identity)))
-    => f Maybe -> Maybe (f Identity)
+validate ∷ (Generic (f Maybe), Generic (f Identity), GValidate (Rep (f Maybe)) (Rep (f Identity)))
+    ⇒ f Maybe → Maybe (f Identity)
 validate = fmap to . gvalidate . from
 
 myPerson ∷ Person Identity
@@ -90,7 +90,7 @@ myPerson = Person {
     profession = Identity (Profession "Coder")
 }
 
-myPerson' :: Person' Identity
+myPerson' ∷ Person' Identity
 myPerson' = Person' {
     name' = Name "Dan",
     profession' = Profession "Coder"

@@ -1,7 +1,7 @@
 module TestSpec where
 
 import Control.Exception     (evaluate)
-import Control.Monad (void)
+import Control.Monad         (void)
 import Test.Hspec
 import Test.Hspec.QuickCheck
 import Test.QuickCheck

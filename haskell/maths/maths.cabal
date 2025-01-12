@@ -312,12 +312,11 @@ executable cyclic
   main-is: cyclic.hs
 
 executable diffnums
-  import:  shared-properties
-  main-is: diffnums.hs
+  import:        shared-properties
+  main-is:       diffnums.hs
   build-depends:
-    , base   >=4.20.0.0 && <5
+    , base        >=4.20.0.0 && <5
     , containers
-
 
 executable diffy
   import:  shared-properties

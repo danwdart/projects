@@ -1,7 +1,7 @@
-{-# LANGUAGE DerivingStrategies #-} -- default for ghc - dw
+{-# LANGUAGE DerivingStrategies     #-}
 {-# LANGUAGE FunctionalDependencies #-}
-{-# LANGUAGE UndecidableInstances #-}
-{-# LANGUAGE UnicodeSyntax #-} -- default for ghc - dw
+{-# LANGUAGE UndecidableInstances   #-}
+{-# LANGUAGE UnicodeSyntax          #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-redundant-constraints #-}
 
 import Data.List.NonEmpty qualified as LNE
@@ -10,14 +10,14 @@ main ∷ IO ()
 main = pure ()
 
 -- In the Star
--- 
--- 
+--
+--
 -- dimap :: ((c -> d) -> a) -> (b -> (x, y)) -> Star f a b -> Star f (c -> d) (x, y)
 
 -- BCPFG :: (Profunctor p, Functor f) => (p a b) -> (p c d) -> (p b (f c)) -> (p a (f d))
--- 
+--
 -- BCPF ::  Profunctor p => (p a b) -> (p c d) -> (p b (f c)) -> (p a (f d))
--- 
+--
 -- BCC :: Profunctor p => (p pcd a) -> (p b xy) -> (p a (f b)) -> (p pcd (f xy))
 
 -- backAndForthCurried :: (c -> d -> a) -> (b -> (x, y)) -> (a -> f b) -> (c -> d -> f (x, y))
@@ -33,12 +33,12 @@ class IndexedFunctor i f where
     ifmap :: (a -> b) -> f i a -> f i b -- just have f i as a functor tbh
 
 class IndexedFoldable i t where
-    ifoldMap :: Monoid m => (i -> a -> m) -> t (i, a) -> m 
+    ifoldMap :: Monoid m => (i -> a -> m) -> t (i, a) -> m
     ifoldr :: (i -> a -> b -> b) -> (i, b) -> t (i, a) -> (i, b) -- take this higher?
 
 class IndexedTraversable i t where
-    itraverse :: Applicative f => (i -> a -> f b) -> t (i, a) -> f (t (i, b)) 
-    isequenceA :: Applicative f => t (f a) -> f (t a) 
+    itraverse :: Applicative f => (i -> a -> f b) -> t (i, a) -> f (t (i, b))
+    isequenceA :: Applicative f => t (f a) -> f (t a)
 
 class DoubleFunctor f where
 
@@ -61,7 +61,7 @@ newtype Width a = Width a
     deriving newtype (Eq, Ord, Num)
 
 data Size2D a = Size2D {
-    width :: Width a,
+    width  :: Width a,
     height :: Height a
 }
 
@@ -79,7 +79,7 @@ data StaticModTwo = Zero | One
 class Zero a where
     zero :: a
 
-instance (Num a) => Zero a where
+instance (Num a) ⇒ Zero a where
     zero = 0
 
 instance Zero StaticModTwo where
@@ -88,60 +88,60 @@ instance Zero StaticModTwo where
 class One a where
     one :: a
 
-instance (Num a) => One a where
+instance (Num a) ⇒ One a where
     one = 1
 
 instance One StaticModTwo where
     one = One
 
-convertListTo2DList :: Size2D Int -> LNE.NonEmpty entry -> LNE.NonEmpty (LNE.NonEmpty entry)
+convertListTo2DList ∷ Size2D Int → LNE.NonEmpty entry → LNE.NonEmpty (LNE.NonEmpty entry)
 convertListTo2DList = undefined
 
-convert2DListToList :: LNE.NonEmpty (LNE.NonEmpty entry) -> LNE.NonEmpty entry
+convert2DListToList ∷ LNE.NonEmpty (LNE.NonEmpty entry) → LNE.NonEmpty entry
 convert2DListToList = undefined
 
-convertIndexedListToIndexed2DList :: LNE.NonEmpty (Coordinate2D index, entry) -> LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry))
+convertIndexedListToIndexed2DList ∷ LNE.NonEmpty (Coordinate2D index, entry) → LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry))
 convertIndexedListToIndexed2DList = undefined
 
-convertIndexed2DListToIndexedList :: LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry)) -> LNE.NonEmpty (Coordinate2D index, entry)
+convertIndexed2DListToIndexedList ∷ LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry)) → LNE.NonEmpty (Coordinate2D index, entry)
 convertIndexed2DListToIndexedList = undefined
 
-sizeOf2DList :: LNE.NonEmpty (LNE.NonEmpty a) -> Size2D Int
+sizeOf2DList ∷ LNE.NonEmpty (LNE.NonEmpty a) → Size2D Int
 sizeOf2DList xs@(y LNE.:| _) = Size2D {
     width = Width $ LNE.length y,
     height = Height $ LNE.length xs
 }
 
 class Matrix2D entry matrix | matrix -> entry where
-    createDefault :: entry -> Size2D Int -> matrix
-    fromListOfEntries :: Size2D Int -> LNE.NonEmpty entry -> matrix -- exceptionally, we don't know the dimension yet
+    createDefault :: entry → Size2D Int → matrix
+    fromListOfEntries :: Size2D Int → LNE.NonEmpty entry → matrix -- exceptionally, we don't know the dimension yet
     fromListOfEntries dimension entries = from2DListOfEntries (convertListTo2DList dimension entries)
-    from2DListOfEntries :: LNE.NonEmpty (LNE.NonEmpty entry) -> matrix
+    from2DListOfEntries :: LNE.NonEmpty (LNE.NonEmpty entry) → matrix
     from2DListOfEntries entries = fromListOfEntries (sizeOf2DList entries) (convert2DListToList entries)
-    toListOfEntries :: matrix -> LNE.NonEmpty entry
+    toListOfEntries :: matrix → LNE.NonEmpty entry
     toListOfEntries = convert2DListToList . to2DListOfEntries
-    to2DListOfEntries :: matrix -> LNE.NonEmpty (LNE.NonEmpty entry)
+    to2DListOfEntries :: matrix → LNE.NonEmpty (LNE.NonEmpty entry)
     to2DListOfEntries matrix = convertListTo2DList (size matrix) (toListOfEntries matrix)
-    size :: matrix -> Size2D Int
-    getEntry :: Coordinate2D Int -> matrix -> entry
+    size :: matrix → Size2D Int
+    getEntry :: Coordinate2D Int → matrix → entry
 
 class IndexedMatrix2D index entry matrix | matrix -> entry where
-    createDefaultIndexed :: (Zero index, Enum index) => entry -> Size2D index -> matrix
-    toListOfIndexedEntries :: matrix -> LNE.NonEmpty (Coordinate2D index, entry)
+    createDefaultIndexed :: (Zero index, Enum index) ⇒ entry → Size2D index → matrix
+    toListOfIndexedEntries :: matrix → LNE.NonEmpty (Coordinate2D index, entry)
     toListOfIndexedEntries = convertIndexed2DListToIndexedList . toListOf2DIndexedEntries
-    toListOf2DIndexedEntries :: matrix -> LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry))
+    toListOf2DIndexedEntries :: matrix → LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry))
     toListOf2DIndexedEntries = convertIndexedListToIndexed2DList . toListOfIndexedEntries
-    fromListOfIndexedEntries :: LNE.NonEmpty (Coordinate2D index, entry) -> matrix
+    fromListOfIndexedEntries :: LNE.NonEmpty (Coordinate2D index, entry) → matrix
     fromListOfIndexedEntries = fromListOf2DIndexedEntries . convertIndexedListToIndexed2DList
-    fromListOf2DIndexedEntries :: LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry)) -> matrix
+    fromListOf2DIndexedEntries :: LNE.NonEmpty (CoordY index, LNE.NonEmpty (CoordX index, entry)) → matrix
     fromListOf2DIndexedEntries = fromListOfIndexedEntries . convertIndexed2DListToIndexedList
-    sizeIndexed :: matrix -> Size2D index
-    getEntryIndexed :: Coordinate2D index -> matrix -> entry
+    sizeIndexed :: matrix → Size2D index
+    getEntryIndexed :: Coordinate2D index → matrix → entry
 
 newtype MatrixList2D a = MatrixList2D (LNE.NonEmpty (LNE.NonEmpty a))
     deriving stock (Eq, Show)
 
-instance (Num a, Zero a) => Matrix2D a (MatrixList2D a) where
+instance (Num a, Zero a) ⇒ Matrix2D a (MatrixList2D a) where
     createDefault defVal (Size2D { width = Width width', height = Height height' }) = MatrixList2D .
         LNE.fromList .
         replicate height' .
@@ -159,7 +159,7 @@ newtype MatrixListIndexed2D i a = MatrixListIndexed2D (LNE.NonEmpty (i, LNE.NonE
 -- we should be able to use custom datatypes to make default indexeds. So replicate is almost definitely not correct.
 -- We should be able to get the "whole lot" - to the point of which we decide. Some enum thing I suppose.
 -- fmap (const x) [from..to] where from = zero and to = max (which is )
-instance Integral i => IndexedMatrix2D i a (MatrixListIndexed2D i a) where
+instance Integral i ⇒ IndexedMatrix2D i a (MatrixListIndexed2D i a) where
     createDefaultIndexed defVal (Size2D { width = Width width', height = Height height' }) = MatrixListIndexed2D .
         LNE.fromList .
         zip [zero..] .

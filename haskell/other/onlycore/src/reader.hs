@@ -2,7 +2,7 @@
 
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad        (void)
 import Control.Monad.Reader
 
 -- Reader a b is a -> b

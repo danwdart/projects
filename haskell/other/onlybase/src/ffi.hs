@@ -3,7 +3,7 @@
 
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad         (void)
 -- import Foreign.Ptr
 -- import Foreign.ForeignPtr
 import Foreign.C.String

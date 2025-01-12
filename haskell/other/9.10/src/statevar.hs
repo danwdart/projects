@@ -9,13 +9,13 @@ import Data.StateVar
 
 type LiftedGettableStateVar m = m
 
-makeLiftedGettableStateVar :: m a -> LiftedGettableStateVar m a
+makeLiftedGettableStateVar ∷ m a → LiftedGettableStateVar m a
 makeLiftedGettableStateVar = id
 
 -- instance forall m a. MonadIO m => HasGetter (LiftedGettableStateVar m a) a where
 --     get = id
 
-newtype LiftedSettableStateVar m a = LiftedSettableStateVar (a -> m ())
+newtype LiftedSettableStateVar m a = LiftedSettableStateVar (a → m ())
 
 instance Contravariant (LiftedSettableStateVar m) where
     contramap c (LiftedSettableStateVar f) = LiftedSettableStateVar (f . c)
@@ -23,10 +23,10 @@ instance Contravariant (LiftedSettableStateVar m) where
 -- instance HasSetter (LiftedSettableStateVar m a) a where
 --     LiftedSettableStateVar f $= x = f x
 
-makeLiftedSettableStateVar :: (a -> m ()) -> LiftedSettableStateVar m a
+makeLiftedSettableStateVar ∷ (a → m ()) → LiftedSettableStateVar m a
 makeLiftedSettableStateVar = LiftedSettableStateVar
 
-data LiftedStateVar m a = LiftedStateVar (m a) (a -> m ())
+data LiftedStateVar m a = LiftedStateVar (m a) (a → m ())
 
 -- instance HasGetter (LiftedStateVar m a) a where
 --     get (LiftedStateVar getter _) = getter
@@ -36,20 +36,20 @@ data LiftedStateVar m a = LiftedStateVar (m a) (a -> m ())
 
 -- instance HasUpdate (LiftedStateVar m a) a a where
 
-svWriteFile :: FilePath -> SettableStateVar String
+svWriteFile ∷ FilePath → SettableStateVar String
 svWriteFile fileName = SettableStateVar (writeFile fileName)
 
-liftedSvWriteFile :: MonadIO m => FilePath -> LiftedSettableStateVar m String -- generic
+liftedSvWriteFile ∷ MonadIO m ⇒ FilePath → LiftedSettableStateVar m String -- generic
 liftedSvWriteFile fileName = makeLiftedSettableStateVar (liftIO . writeFile fileName)
 
 -- genericLiftedSvWriteFile :: HasSetter s String => s String
 -- genericLiftedSvWriteFile = _ . liftIO . writeFile
 
 
-svReadFile :: FilePath -> GettableStateVar String
+svReadFile ∷ FilePath → GettableStateVar String
 svReadFile = makeLiftedGettableStateVar readFile
 
-liftedSvReadFile :: MonadIO m => FilePath -> LiftedGettableStateVar m String -- generic
+liftedSvReadFile ∷ MonadIO m ⇒ FilePath → LiftedGettableStateVar m String -- generic
 liftedSvReadFile = makeLiftedGettableStateVar . liftIO . readFile
 
 {-}
@@ -57,10 +57,10 @@ genericLiftedSvReadFile :: (HasGetter _ String, MonadIO m) => m String
 genericLiftedSvReadFile = _ . liftIO . readFile
 -}
 
-svRWFile :: FilePath -> StateVar String
+svRWFile ∷ FilePath → StateVar String
 svRWFile fileName = StateVar (readFile fileName) (writeFile fileName)
 
-liftedSvRWFile :: MonadIO m => FilePath -> LiftedStateVar m String
+liftedSvRWFile ∷ MonadIO m ⇒ FilePath → LiftedStateVar m String
 liftedSvRWFile fileName = LiftedStateVar (liftIO $ readFile fileName) (liftIO . writeFile fileName)
 
 {-}
@@ -68,16 +68,16 @@ genericSvRWFile :: (HasGetter s String, HasSetter s String) => s _
 genericSvRWFile = _ . _ (liftIO . readFile) (liftIO . writeFile)
 -}
 
-writeBob :: SettableStateVar String
+writeBob ∷ SettableStateVar String
 writeBob = svWriteFile "bob.txt"
 
-rwBob :: StateVar String
+rwBob ∷ StateVar String
 rwBob = svRWFile "bob.txt"
 
-readBob :: GettableStateVar String
+readBob ∷ GettableStateVar String
 readBob = svReadFile "bob.txt"
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Writing..."
     writeBob $= "Hi!"

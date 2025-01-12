@@ -4,7 +4,7 @@
 
 module Word where
 
-import Control.Monad (unless)
+import Control.Monad        (unless)
 import Control.Monad.Random
 import Control.Monad.Reader
 import Control.Monad.State

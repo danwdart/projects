@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
 -- why is it unused? it's not unused wtf
-{-# LANGUAGE Unsafe, DeriveAnyClass, DerivingVia, OverloadedStrings, TemplateHaskell #-}
+{-# LANGUAGE Unsafe, DeriveAnyClass, DerivingVia, OverloadedStrings #-}
 
 module Schema where
 

@@ -10,14 +10,14 @@ calcThunk ∷ Int → Int → MVar Int → IO ()
 calcThunk a b mVar = do
     threadId <- myThreadId
     putStrLn $ "Hello from " <> show threadId
-    
+
     putMVar mVar $ a + b
 
 calcSelf ∷ Int → Int → MVar Int → IO ()
 calcSelf a b mVar = do
     threadId <- myThreadId
     putStrLn $ "Hello from " <> show threadId
-    
+
     putMVar mVar $! a + b
 
 main ∷ IO ()

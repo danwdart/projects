@@ -1,4 +1,4 @@
-{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE DerivingStrategies   #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE UnicodeSyntax        #-}
 {-# LANGUAGE Unsafe               #-}
@@ -84,7 +84,7 @@ newtype NoConsole m a = NoConsole {
     runNoConsole :: m a
 } deriving newtype (Functor, Applicative, Monad) -- , MonadLift, MonadTrans
 
-instance (Applicative m) => MonadConsole (NoConsole m) where
+instance (Applicative m) ⇒ MonadConsole (NoConsole m) where
     putStrC _ = pure ()
     getStrC = pure (fromString "")
 

@@ -16,9 +16,10 @@ library
   hs-source-dirs:     lib
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      
-      base >=4.20.0.0 && <5
+  build-depends:
+    , base      >=4.20.0.0 && <5
     , lattices
+
   exposed-modules:
     Control.Exception.RangeException
     Game.Bounce
@@ -145,12 +146,11 @@ executable sudoku
     , vector
 
 executable sudoku-dev
-  import:        shared-properties
-  ghc-options:   -Wwarn
+  import:         shared-properties
+  ghc-options:    -Wwarn
   hs-source-dirs: src lib
-  main-is:       sudoku.hs
-  other-modules:
-    Propagator
+  main-is:        sudoku.hs
+  other-modules:  Propagator
   build-depends:
     , base        >=4.20.0.0 && <5
     , containers

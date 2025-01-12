@@ -58,7 +58,10 @@ stable ∷ Eq a ⇒ [a] → [a]
 stable xs = reverse $ go xs [] [] where
     go ∷ Eq a ⇒ [a] → [a] → [a] → [a]
     go [] _ _ = []
-    go (x:xs') seenOnce seenTwice = if elem x seenTwice then seenTwice else (if any (== x) seenOnce then go xs' seenOnce (x : seenTwice) else go xs' (x : seenOnce) seenTwice)
+    go (x:xs') seenOnce seenTwice
+      | elem x seenTwice = seenTwice
+      | any (== x) seenOnce = go xs' seenOnce (x : seenTwice)
+      | otherwise = go xs' (x : seenOnce) seenTwice
 
 kap ∷ Integer → [Integer]
 kap = stable . iterate kapIter

@@ -5,21 +5,21 @@ import Control.Monad.Except
 import Control.Monad.IO.Class
 import Control.Monad.Trans.Maybe
 
-shortcutMaybe :: Maybe String
+shortcutMaybe ∷ Maybe String
 shortcutMaybe = do
     a <- Just "Hello, "
     c <- Just "World!"
     d <- Nothing
     pure $ a <> c <> d
 
-shortcutMaybeFail :: MonadFail m => m String
+shortcutMaybeFail ∷ MonadFail m ⇒ m String
 shortcutMaybeFail = do
-    a <- pure "Hello, "
-    c <- pure "World!"
+    let a = "Hello, "
+    let c = "World!"
     d <- fail "Nah"
     pure $ a <> c <> d
 
-shortcutMaybeT :: MaybeT IO String
+shortcutMaybeT ∷ MaybeT IO String
 shortcutMaybeT = do
     a <- hoistMaybe $ Just "Hello, "
     let b = Just "World!"
@@ -28,43 +28,43 @@ shortcutMaybeT = do
     liftIO . putStrLn $ "You shouldn't see this."
     pure $ a <> c <> d
 
-shortcutMaybeTFail :: (MonadFail m, MonadIO m) => m String
+shortcutMaybeTFail ∷ (MonadFail m, MonadIO m) ⇒ m String
 shortcutMaybeTFail = do
-    a <- pure "Hello, "
-    c <- pure "World!"
+    let a = "Hello, "
+    let c = "World!"
     d <- fail "Nope."
     liftIO . putStrLn $ "You shouldn't see this."
     pure $ a <> c <> d
 
-shortcutEither :: Either String Int
+shortcutEither ∷ Either String Int
 shortcutEither = do
     a <- Right 12
     c <- Right 24
     d <- Left "Nah"
     pure $ a + c + d
 
-shortcutEitherError :: (MonadError String m) => m Int
+shortcutEitherError ∷ (MonadError String m) ⇒ m Int
 shortcutEitherError = do
-    a <- pure 12
-    c <- pure 24
+    let a = 12
+    let c = 24
     d <- throwError "Nah"
     pure $ a + c + d
 
-shortcutExcept :: Except String Int
+shortcutExcept ∷ Except String Int
 shortcutExcept = do
     a <- liftEither $ Right 12
     c <- liftEither $ Right 24
     d <- liftEither <$> Left $ "Nah"
     pure $ a + c + d
 
-shortcutExceptError :: (MonadError String m) => m Int
+shortcutExceptError ∷ (MonadError String m) ⇒ m Int
 shortcutExceptError = do
-    a <- pure 12
-    c <- pure 24
+    let a = 12
+    let c = 24
     d <- throwError "Nah"
     pure $ a + c + d
 
-shortcutExceptT :: ExceptT String IO Int
+shortcutExceptT ∷ ExceptT String IO Int
 shortcutExceptT = do
     a <- liftEither $ Right 12
     c <- liftEither $ pure 24
@@ -72,7 +72,7 @@ shortcutExceptT = do
     liftIO . putStrLn $ "You shouldn't see this."
     pure $ a + c + d
 
-shortcutExceptTError :: (MonadError String m, MonadIO m) => m Int
+shortcutExceptTError ∷ (MonadError String m, MonadIO m) ⇒ m Int
 shortcutExceptTError = do
     a <- liftEither $ Right 12
     c <- liftEither $ pure 24
@@ -80,37 +80,37 @@ shortcutExceptTError = do
     liftIO . putStrLn $ "You shouldn't see this."
     pure $ a + c + d
 
-shortcutCont :: Cont String String
+shortcutCont ∷ Cont String String
 shortcutCont = callCC $ \k -> do
-    a <- pure 'a'
-    c <- pure 'c'
+    let a = 'a'
+    let c = 'c'
     d <- k "How dare you!"
     pure [a, c, d]
 
-shortcutContMC :: MonadCont m => m String
+shortcutContMC ∷ MonadCont m ⇒ m String
 shortcutContMC = callCC $ \k -> do
-    a <- pure 'a'
-    c <- pure 'c'
+    let a = 'a'
+    let c = 'c'
     d <- k "How dare you!"
     pure [a, c, d]
 
-shortcutContT :: ContT String IO String
+shortcutContT ∷ ContT String IO String
 shortcutContT = callCC $ \k -> do
-    a <- pure 'a'
-    c <- pure 'c'
+    let a = 'a'
+    let c = 'c'
     d <- k "How dare you!"
     liftIO . putStrLn $ "You shouldn't see this."
     pure [a, c, d]
 
-shortcutContTMC :: (MonadCont m, MonadIO m) => m String
+shortcutContTMC ∷ (MonadCont m, MonadIO m) ⇒ m String
 shortcutContTMC = callCC $ \k -> do
-    a <- pure 'a'
-    c <- pure 'c'
+    let a = 'a'
+    let c = 'c'
     d <- k "How dare you!"
     liftIO . putStrLn $ "You shouldn't see this."
     pure [a, c, d]
 
-main :: IO ()
+main ∷ IO ()
 main = do
     putStrLn "Maybe"
     print shortcutMaybe

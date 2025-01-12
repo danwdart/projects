@@ -2,7 +2,7 @@
 
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad               (void)
 import Graphics.UI.Threepenny      qualified as UI
 import Graphics.UI.Threepenny.Core
 

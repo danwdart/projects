@@ -8,7 +8,7 @@ import Control.Monad.RWS
 import Data.IORef
 
 data AppState = AppState {
-    anInt :: Int,
+    anInt   :: Int,
     aString :: String
 } deriving (Eq, Show)
 
@@ -20,12 +20,12 @@ newtype AppWriter = AppWriter {
 
 data AppEnv = AppEnv {
     serverName :: String,
-    port :: Int
+    port       :: Int
 }
 
 data RTEnv = RTEnv {
-    appEnv :: AppEnv,
-    appState :: IORef AppState,
+    appEnv    :: AppEnv,
+    appState  :: IORef AppState,
     appWriter :: IORef AppWriter
 }
 
@@ -48,7 +48,7 @@ newtype AppRWSTM a = AppRWSTM {
 -- Crazy external library thing!
 
 
-app :: (MonadReader AppEnv m, MonadWriter AppWriter m, MonadState AppState m, MonadIO m) => m String
+app ∷ (MonadReader AppEnv m, MonadWriter AppWriter m, MonadState AppState m, MonadIO m) ⇒ m String
 app = do
     port' <- asks port
     serverName' <- asks serverName
@@ -59,7 +59,7 @@ app = do
     liftIO . putStrLn $ "Hello"
     pure "yea"
 
-main :: IO ()
+main ∷ IO ()
 main = do
     let env = AppEnv { serverName = "SN", port = 40000 }
     let initialState = AppState { anInt = 1, aString = "s" }

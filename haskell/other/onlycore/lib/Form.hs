@@ -4,8 +4,8 @@
 module Form where
 
 import Control.Monad (void)
-import Data.Text   (Text)
-import Data.Text   qualified as T
+import Data.Text     (Text)
+import Data.Text     qualified as T
 import Text.Parsec
 
 data IsDropdown = NotDropdown | Dropdown  deriving stock (Enum, Show)

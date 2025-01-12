@@ -3,7 +3,7 @@
 
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad                      (void)
 import Control.Monad.IO.Class             (liftIO)
 -- import Control.Concurrent.MVar (takeMVar, putMVar, newEmptyMVar)
 

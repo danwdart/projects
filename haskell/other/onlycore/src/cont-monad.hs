@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad      (void)
 import Control.Monad.Cont
 
 -- ContT doesn't require the wrapping m to actually even be a monad.

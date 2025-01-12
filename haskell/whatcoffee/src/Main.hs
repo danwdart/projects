@@ -88,7 +88,7 @@ main = do
             getContents
         else
             readFile $ head files
-    traverse_ (\jwt -> do
+    traverse_ ((\jwt -> do
         let jwtSegments = T.split (== '.') jwt
         -- let jwtToDecode = T.intercalate "." $ tail jwtSegments
         -- print jwtToDecode
@@ -102,4 +102,4 @@ main = do
                 -- let decoded = JWT.decode jwtToDecode
                 -- print decoded
             _ -> putStrLn "Error decoding JSON"
-        ) $ T.pack <$> lines toRead
+        ) . T.pack) (lines toRead)

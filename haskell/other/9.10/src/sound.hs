@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad               (void)
 import Sound.Pulse
 import Sound.Pulse.Context
 import Sound.Pulse.Mainloop.Simple

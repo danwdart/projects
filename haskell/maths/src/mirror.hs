@@ -63,4 +63,4 @@ formatAnswer (x, answer) = show x <> " => " <> maybe "Probable Lychrel" show ans
 
 main ∷ IO ()
 main = do
-    traverse_ putStrLn $ formatAnswer <$> {- A240510 -} filter (\(_, answer) -> Just 8813200023188 == answer) (palindromeAnswer <$> [1..2000])
+    traverse_ (putStrLn . formatAnswer) ( {- A240510 -}filter (\(_, answer) -> Just 8813200023188 == answer) (palindromeAnswer <$> [1..2000]))

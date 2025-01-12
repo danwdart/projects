@@ -1,7 +1,7 @@
 -- n-adic numbers (in a way)
 
 import Data.Foldable
-import GHC.Natural (powModNatural)
+import GHC.Natural   (powModNatural)
 
 main ∷ IO ()
 main = do

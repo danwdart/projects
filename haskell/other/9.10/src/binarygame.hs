@@ -3,7 +3,7 @@
 
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad          (void)
 import Control.Monad.IO.Class
 import Control.Monad.State
 import Data.Bool

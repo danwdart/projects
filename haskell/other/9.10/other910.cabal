@@ -58,9 +58,9 @@ common shared-properties-safe
     Safe
 
 common shared-properties-dev-safe
-  import:             shared-properties-safe
+  import:         shared-properties-safe
   hs-source-dirs: src lib
-  ghc-options: -Wwarn
+  ghc-options:    -Wwarn
 
 common shared-properties-nobase
   import:      shared-properties-base
@@ -81,6 +81,7 @@ library
   hs-source-dirs:  lib
   build-depends:
     , base                       >=4.20.0.0 && <5
+    , contravariant
     , ghc-typelits-natnormalise
     , lattices
     , template-haskell
@@ -416,8 +417,7 @@ executable propagators
 executable propagators-dev
   import:        shared-properties-dev-safe
   main-is:       propagators.hs
-  other-modules:
-    Propagator
+  other-modules: Propagator
   build-depends:
     , base      >=4.20.0.0 && <5
     , lattices
@@ -503,7 +503,7 @@ executable statevar
   import:        shared-properties-safe
   main-is:       statevar.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
+    , base      >=4.20.0.0 && <5
     , StateVar
 
 executable tagged
@@ -566,12 +566,13 @@ executable unlifting
   import:        shared-properties-unsafe
   main-is:       unlifting.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    -- , monad-control
+    , base  >=4.20.0.0 && <5
     , mtl
-    -- , lifted-async
-    -- , lifted-base
-    -- , unliftio
+
+-- , monad-control
+-- , lifted-async
+-- , lifted-base
+-- , unliftio
 
 executable vector
   import:        shared-properties-unsafe

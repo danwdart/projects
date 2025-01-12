@@ -3,7 +3,7 @@
 module Main (main) where
 
 import Control.Concurrent.MVar             (newEmptyMVar, putMVar, takeMVar)
-import Control.Monad (void)
+import Control.Monad                       (void)
 import Control.Monad.IO.Class              (MonadIO (..))
 import GHCJS.DOM
 import GHCJS.DOM.Document

@@ -2,7 +2,7 @@
 
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad           (void)
 import System.Locale.SetLocale
 import Text.I18N.GetText
 import Text.Printf

@@ -16,15 +16,14 @@ library
   hs-source-dirs:     lib
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      
-      base >=4.20.0.0 && <5
+  build-depends:
     , aeson
+    , base         >=4.20.0.0 && <5
     , containers
     , MonadRandom
     , mtl
-  exposed-modules:
-      Word
 
+  exposed-modules:    Word
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
@@ -55,19 +54,18 @@ executable anglo
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
     , anglo
+    , base   >=4.20.0.0 && <5
 
 executable anglo-dev
-  import:        shared-properties
-  ghc-options: -Wwarn
+  import:         shared-properties
+  ghc-options:    -Wwarn
   hs-source-dirs: lib src
-  main-is:       Main.hs
-  other-modules:
-      Word
+  main-is:        Main.hs
+  other-modules:  Word
   build-depends:
-    , base        >=4.20.0.0 && <5
     , aeson
+    , base         >=4.20.0.0 && <5
     , containers
     , MonadRandom
     , mtl
@@ -77,12 +75,12 @@ test-suite anglo-test
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
-  other-modules:      
+  other-modules:
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base        >=4.20.0.0 && <5
     , anglo
+    , base        >=4.20.0.0 && <5
     , hspec
     , QuickCheck
 

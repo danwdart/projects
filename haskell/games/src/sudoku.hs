@@ -11,8 +11,8 @@ import Propagator
 
 -- | Show the choice as a string.
 class PrettyShow a where
-    prettyShow :: a -> String
-    default prettyShow :: (Enum a, Bounded a) => a -> String
+    prettyShow :: a → String
+    default prettyShow :: (Enum a, Bounded a) ⇒ a → String
     prettyShow = show . succ . fromEnum
 
 data Choice4 = C4One | C4Two | C4Three | C4Four
@@ -31,7 +31,7 @@ instance PrettyShow Choice9
 -- For each cell, for those related, do the \/
 newtype Board = Board (Vector (Vector (Cell (Set Choice))))
 
-mkBoard :: IO Board
+mkBoard ∷ IO Board
 mkBoard = Board <$> V.replicateM 9 (V.replicateM 9 cell)
 
 main ∷ IO ()

@@ -3,7 +3,7 @@
 
 module Main (main) where
 
-import Control.Monad (void)
+import Control.Monad                   (void)
 import Graphics.UI.GLUT
 import Graphics.UI.GLUT.Begin
 import Graphics.UI.GLUT.Initialization
