@@ -1,0 +1,1 @@
+-l -a -r --restart=anglo.cabal --reload=lang --reverse-errors --no-height-limit --command="cabal repl anglo:exe:anglo-dev"

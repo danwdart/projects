@@ -1,0 +1,4 @@
+:set -Wno-unused-packages
+:set -Wno-prepositive-qualified-module
+:set -XUnicodeSyntax
+:set -Wwarn
