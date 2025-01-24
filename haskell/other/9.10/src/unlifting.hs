@@ -1,5 +1,5 @@
 {-# LANGUAGE Unsafe #-}
-{-# OPTIONS_GHC -Wno-unsafe -Wno-safe #-}
+{-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wno-unused-top-binds #-}
 
 module Main (main) where
 
@@ -31,7 +31,7 @@ data RTEnv = RTEnv {
 
 newtype AppRTM a = AppRTM {
     runAppRTM :: ReaderT RTEnv IO a
-} deriving newtype (Functor, Applicative, Monad)
+} deriving newtype (Functor, Applicative, Monad, MonadReader RTEnv)
 
 newtype AppRWSTM a = AppRWSTM {
     runAppRWSTM :: RWST AppEnv AppWriter AppState IO a
@@ -65,7 +65,6 @@ main = do
     let initialState = AppState { anInt = 1, aString = "s" }
     (ret, w, s) <- runRWST (runAppRWSTM app) env initialState
     print (ret, w, s)
-
 {-}
     stateRef <- newIORef initialState
     writerRef <- newIORef $ AppWriter []
@@ -77,5 +76,4 @@ main = do
 
     readResult <- runReaderT (runAppRTM app) rtEnv
     print readResult
-
 -}

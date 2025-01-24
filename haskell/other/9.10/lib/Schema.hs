@@ -1,6 +1,11 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
 -- why is it unused? it's not unused wtf
-{-# LANGUAGE Unsafe, DeriveAnyClass, DerivingVia, OverloadedStrings #-}
+{-# LANGUAGE DeriveAnyClass        #-}
+{-# LANGUAGE DerivingVia           #-}
+{-# LANGUAGE OverloadedStrings     #-}
+{-# LANGUAGE QuasiQuotes           #-}
+{-# LANGUAGE TemplateHaskellQuotes #-}
+{-# LANGUAGE Unsafe                #-}
 
 module Schema where
 
@@ -8,7 +13,7 @@ module Schema where
 
 -- import Data.Map
 import Data.Text
-import Data.Yaml hiding (decodeFile)
+import Data.Yaml                  hiding (decodeFile)
 import GHC.Generics
 import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
@@ -40,7 +45,7 @@ data Field = Field {
 newtype Schema = Schema [(Text, Field)]
     deriving (Eq, Show, Generic, FromJSON, ToJSON, Lift)
 
-expToDecsQ :: TExp Schema -> DecsQ
+expToDecsQ ∷ TExp Schema → DecsQ
 expToDecsQ _ = [d|
     data Book = Book {
         title :: Text,

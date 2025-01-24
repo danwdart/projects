@@ -33,7 +33,6 @@ let
       # #gloss-rendering = lib.doJailbreak super.gloss-rendering;
       # #gloss = lib.doJailbreak super.gloss;
       # # not released on nix yet
-      # #req = self.callHackage "req" "3.13.0" {};
       # # template-haskell >=2.11 && <2.19
       # sdl2 = lib.doJailbreak super.sdl2;
       text-display = lib.doJailbreak (lib.markUnbroken super.text-display);
@@ -42,7 +41,7 @@ let
       # #http-api-data = lib.doJailbreak super.http-api-data;
       # linear-generics = lib.doJailbreak super.linear-generics;
       # #HaskellNet = lib.doJailbreak super.HaskellNet;
-      HGamer3D = lib.doJailbreak (lib.markUnbroken super.HGamer3D);
+      # HGamer3D = lib.doJailbreak (lib.markUnbroken super.HGamer3D);
       # ghc-typelits-presburger = self.callHackage "ghc-typelits-presburger" "0.7.1.0" {};
       # ghc-typelits-natnormalise = self.callHackage "ghc-typelits-natnormalise" "0.7.7" {};
       dbus = lib.doJailbreak super.dbus;
@@ -65,9 +64,14 @@ let
         sha256 = "EIMAtC4q+zvpckisAp6W1I8S4Lk1f70Yaii0tIhScQQ=";
       }) {};
       hgettext = lib.doJailbreak super.hgettext;
-      serialise = lib.doJailbreak super.serialise;
+      # serialise = lib.dontCheck (lib.doJailbreak super.serialise);
+      # serialise = null;
+      # binary-serialise-cbor = null;
+      # fresco-binding = null;
       http2 = lib.doJailbreak super.http2;
       microstache = lib.doJailbreak super.microstache;
+      universe-base = lib.doJailbreak super.universe-base;
+      universe-reverse-instances = lib.doJailbreak super.universe-reverse-instances;
     };
   };
   shell = myHaskellPackages.shellFor {

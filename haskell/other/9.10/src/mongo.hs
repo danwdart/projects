@@ -6,7 +6,7 @@
 module Main (main) where
 
 import Control.Monad    (void)
--- import Control.Monad.Trans (liftIO)
+-- import Control.Monad (liftIO)
 import Database.MongoDB
 
 -- import Data.Text (pack)

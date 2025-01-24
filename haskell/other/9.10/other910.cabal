@@ -81,7 +81,7 @@ library
   hs-source-dirs:  lib
   build-depends:
     , base                       >=4.20.0.0 && <5
-    , contravariant
+    -- , contravariant
     , ghc-typelits-natnormalise
     , lattices
     , template-haskell
@@ -94,6 +94,9 @@ library
   exposed-modules:
     BookStatic
     Data.DependentLength
+    Data.HKD
+    Data.HKD.Generic
+    Data.Thriple
     Propagator
     Schema
     Seq
@@ -165,6 +168,7 @@ executable delay
     , ansi-terminal
     , base           >=4.20.0.0 && <5
     , random
+    -- , text
 
 executable doctestme
   import:        shared-properties-unsafe
@@ -276,13 +280,13 @@ executable glut
     , base  >=4.20.0.0 && <5
     , GLUT
 
-executable hgamer3d
-  import:        shared-properties-unsafe
-  main-is:       hgamer3d.hs
-  build-depends:
-    , base      >=4.20.0.0 && <5
-    , clock
-    , HGamer3D
+-- executable hgamer3d
+--   import:        shared-properties-unsafe
+--   main-is:       hgamer3d.hs
+--   build-depends:
+--     , base      >=4.20.0.0 && <5
+--     , clock
+--     , HGamer3D
 
 executable hkd
   import:        shared-properties-unsafe
@@ -389,8 +393,9 @@ executable pizza
     , bytestring
     , GenericPretty
     , http-client
+    , mtl
     , req
-    , transformers
+    -- , transformers
 
 executable profunctor
   import:        shared-properties-safe
@@ -586,7 +591,20 @@ executable validation
   main-is:       validation.hs
   build-depends:
     , base    >=4.20.0.0 && <5
+    , other910
     , either
+
+executable validation-dev
+  import:        shared-properties-safe
+  main-is:       validation.hs
+  build-depends:
+    , base    >=4.20.0.0 && <5
+    , either
+  hs-source-dirs: src lib
+  other-modules:
+    Data.HKD
+    Data.HKD.Generic
+    Data.Thriple
 
 executable wai
   import:        shared-properties-unsafe

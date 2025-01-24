@@ -14,7 +14,7 @@ tagBy p a = if p a then Right a else Left a
 
 sequenceEither ∷ [Either x r] → ([x], [r])
 -- sequenceEither s = bipure (lefts s) (rights s) -- two loops you see.
-sequenceEither = foldl eitherBucketSort ([],[]) -- now just one!
+sequenceEither = foldl' eitherBucketSort ([],[]) -- now just one!
 
 -- there's certainly a more efficient way to do this one specifically
 -- then maybe we can do the other one

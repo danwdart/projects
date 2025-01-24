@@ -8,7 +8,7 @@ module Main (main) where
 -- Order me a pizza
 import Control.Monad
 import Control.Monad.IO.Class
-import Control.Monad.Trans.Except
+import Control.Monad.Except
 import Data.Aeson
 -- import Data.Aeson.Encode.Pretty
 -- import Data.Aeson.Types
@@ -174,14 +174,14 @@ type Token = BS.ByteString
 getXsrfToken ∷ HC.CookieJar → Token
 getXsrfToken cj = (HC.cookie_value . fromJust) . find (("XSRF-TOKEN" ==) . HC.cookie_name) $ HC.destroyCookieJar cj
 
-getHomepage ∷ Req (HC.CookieJar, Token)
+getHomepage ∷ MonadHttp m ⇒ m (HC.CookieJar, Token)
 getHomepage = do
     resPage <- req GET uriGetLogin NoReqBody bsResponse uaHeader
     let jar = responseCookieJar resPage
     let token = getXsrfToken jar
     pure (jar, token)
 
-login ∷ Email → Password → Token → HC.CookieJar → Req (HC.CookieJar, Token, LoginResponseData)
+login ∷ MonadHttp m ⇒ Email → Password → Token → HC.CookieJar → m (HC.CookieJar, Token, LoginResponseData)
 login sEmail sPassword xsrfToken jar = do
     resLogin <- req POST uriPostLogin (ReqBodyJson (Login sEmail sPassword)) jsonResponse
         (
@@ -197,7 +197,7 @@ login sEmail sPassword xsrfToken jar = do
     pure (loggedInJar, loggedInXsrfToken, stateObject)
 
 
-processLogin ∷ LoginResponseData → Token → HC.CookieJar → Req HC.CookieJar
+processLogin ∷ MonadHttp m ⇒ LoginResponseData → Token → HC.CookieJar → m HC.CookieJar
 processLogin stateObject xsrfToken loggedInJar = do
     resProcess <- req POST uriProcessLogin (ReqBodyJson stateObject) ignoreResponse
         (
@@ -208,7 +208,7 @@ processLogin stateObject xsrfToken loggedInJar = do
         )
     pure $ responseCookieJar resProcess
 
-basket ∷ HC.CookieJar → Req (HC.CookieJar, Token)
+basket ∷ MonadHttp m ⇒ HC.CookieJar → m (HC.CookieJar, Token)
 basket processedJar = do
     resBasket <- req GET uriBasket NoReqBody bsResponse (cookieJar processedJar)
     let basketJar = responseCookieJar resBasket
@@ -223,7 +223,7 @@ createDefaultHeaders basketJar basketXsrfToken = defaultHeaders <>
 
 -- This 'Https is from DataKinds
 {-
-getBasket :: Option 'Https -> Req IgnoreResponse
+getBasket :: MonadHttp m => Option 'Https -> m IgnoreResponse
 getBasket newDefaultHeaders = req GET uriGetBasket NoReqBody ignoreResponse (
     queryParam "noCache" (Just ("67512637912536197" :: String)) <>
     newDefaultHeaders
@@ -231,12 +231,12 @@ getBasket newDefaultHeaders = req GET uriGetBasket NoReqBody ignoreResponse (
 -}
 
 {-
-basketInfo :: Option 'Https -> Req IgnoreResponse
+basketInfo :: MonadHttp m => Option 'Https -> m IgnoreResponse
 basketInfo newDefaultHeaders = req GET uriBasketInfo NoReqBody ignoreResponse newDefaultHeaders
 -}
 
 {-}
-dealsInfo :: Req (JsonResponse [DealsResponse])
+dealsInfo :: MonadHttp m => m (JsonResponse [DealsResponse])
 dealsInfo = req GET uriDeals NoReqBody jsonResponse (
     queryParam "dealsVersion" (Just ("637036279849230000" :: String)) <>
     queryParam "fulfilmentMethod" (Just ("1" :: String)) <>
@@ -246,21 +246,21 @@ dealsInfo = req GET uriDeals NoReqBody jsonResponse (
     )
 -}
 
-nav ∷ Option 'Https → Req (JsonResponse NavResponse)
+nav ∷ MonadHttp m ⇒ Option 'Https → m (JsonResponse NavResponse)
 nav = req GET uriNav NoReqBody jsonResponse
 
-greet ∷ JsonResponse NavResponse → Req ()
+greet ∷ MonadHttp m ⇒ JsonResponse NavResponse → m ()
 greet resNav = do
     let navResponse = responseBody resNav
     liftIO . putStrLn $ "Hello " <> (userName navResponse <> (", your local store seems to be " <> storeName navResponse))
 
--- debugJSON :: JsonResponse Value -> Req ()
+-- debugJSON :: MonadHttp m => JsonResponse Value -> m ()
 -- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
 
--- debug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
+-- debug :: MonadHttp m => (FromJSON a, Show a) => JsonResponse a -> m ()
 -- debug = liftIO . print . responseBody
 
--- debugPP :: (FromJSON a, Out a) => JsonResponse a -> Req ()
+-- debugPP :: MonadHttp m => (FromJSON a, Out a) => JsonResponse a -> m ()
 -- debugPP = liftIO . pp . responseBody
 
 -- valueToObject :: Value -> Object
@@ -269,7 +269,7 @@ greet resNav = do
 -- valueToArray :: Value -> Array
 -- valueToArray (Array a) = a
 
-reqMain ∷ Email → Password → Req ()
+reqMain ∷ MonadHttp m ⇒ Email → Password → m ()
 reqMain sEmail sPassword = do
     (jar, xsrfToken) <- getHomepage
     (loggedInJar, _, stateObject) <- login sEmail sPassword xsrfToken jar
@@ -284,7 +284,7 @@ reqMain sEmail sPassword = do
     -- resDeals <- dealsInfo
     -- debugPP resDeals
 main ∷ IO ()
-main = void . runExceptT $ catchE (
+main = void . runExceptT $ catchError (
     do
         [sEmail, sPassword] <- liftIO (traverse getEnv ["DOMINOS_EMAIL", "DOMINOS_PASSWORD"])
         void . liftIO . runReq defaultHttpConfig $ reqMain sEmail sPassword
