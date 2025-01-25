@@ -25,7 +25,7 @@ let
       # not in nix yet
       #patch = lib.doJailbreak (self.callHackage "patch" "0.0.7.0" {});
       # https://github.com/reflex-frp/reflex/issues/482
-      reflex-gloss = lib.doJailbreak (lib.markUnbroken super.reflex-gloss);
+      # reflex-gloss = lib.doJailbreak (lib.markUnbroken super.reflex-gloss);
       # #gloss-rendering = lib.doJailbreak (self.callHackage "gloss-rendering" "1.13.1.2" {});
       # #gloss = lib.doJailbreak (self.callHackage "gloss" "1.13.2.2" {});
       # #hlint = self.callHackage "hlint" "3.5" {};
@@ -72,6 +72,8 @@ let
       microstache = lib.doJailbreak super.microstache;
       universe-base = lib.doJailbreak super.universe-base;
       universe-reverse-instances = lib.doJailbreak super.universe-reverse-instances;
+      # not yet here
+      text = self.callHackage "text" "2.1.2" {};
     };
   };
   shell = myHaskellPackages.shellFor {

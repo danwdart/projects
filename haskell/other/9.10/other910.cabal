@@ -85,7 +85,7 @@ library
     , ghc-typelits-natnormalise
     , lattices
     , template-haskell
-    , text
+    , text >=2.1.2
     , yaml
 
   -- , ghc-typelits-presburger
@@ -97,6 +97,7 @@ library
     Data.HKD
     Data.HKD.Generic
     Data.Thriple
+    Data.Thriple.Things
     Propagator
     Schema
     Seq
@@ -168,7 +169,7 @@ executable delay
     , ansi-terminal
     , base           >=4.20.0.0 && <5
     , random
-    -- , text
+    -- , text >=2.1.2
 
 executable doctestme
   import:        shared-properties-unsafe
@@ -221,7 +222,7 @@ executable eventloop
 -- executable fake
 --   import: shared-properties-safe
 --   main-is:             fake.hs
---   build-depends:       base >= 4.19.1.0 && < 5, fakedata >= 1.0.3, text
+--   build-depends:       base >= 4.19.1.0 && < 5, fakedata >= 1.0.3, text >=2.1.2
 
 executable fieldTrans
   import:        shared-properties-unsafe
@@ -395,7 +396,6 @@ executable pizza
     , http-client
     , mtl
     , req
-    -- , transformers
 
 executable profunctor
   import:        shared-properties-safe
@@ -427,8 +427,6 @@ executable propagators-dev
     , base      >=4.20.0.0 && <5
     , lattices
 
--- , transformers
-
 executable random
   import:        shared-properties-safe
   main-is:       random.hs
@@ -436,14 +434,14 @@ executable random
     , base    >=4.20.0.0 && <5
     , random
 
-executable reflex-gloss
-  import:        shared-properties-base
-  main-is:       reflex-gloss.hs
-  build-depends:
-    , base          >=4.20.0.0 && <5
-    , gloss
-    , reflex
-    , reflex-gloss
+-- executable reflex-gloss
+--   import:        shared-properties-base
+--   main-is:       reflex-gloss.hs
+--   build-depends:
+--     , base          >=4.20.0.0 && <5
+--     , gloss
+--     , reflex
+--     , reflex-gloss
 
 executable regex
   import:        shared-properties-unsafe
@@ -458,7 +456,7 @@ executable req
   build-depends:
     , base  >=4.20.0.0 && <5
     , req
-    , text
+    , text >=2.1.2
 
 -- , mtl
 -- executable sdl
@@ -537,7 +535,7 @@ executable text-display
   main-is:       text-display.hs
   build-depends:
     , base          >=4.20.0.0 && <5
-    , text
+    , text >=2.1.2
     , text-display
 
 executable these
@@ -552,12 +550,12 @@ executable these
 --   main-is:             translatorglitch.hs
 --   build-depends:       base >= 4.19.1.0 && < 5, bytestring, gogol, req
 
-executable udev
-  import:        shared-properties-unsafe
-  main-is:       udev.hs
-  build-depends:
-    , base  >=4.20.0.0 && <5
-    , udev
+-- executable udev
+--   import:        shared-properties-unsafe
+--   main-is:       udev.hs
+--   build-depends:
+--     , base  >=4.20.0.0 && <5
+--     , udev
 
 executable unicode
   import:        shared-properties-safe
@@ -600,11 +598,13 @@ executable validation-dev
   build-depends:
     , base    >=4.20.0.0 && <5
     , either
+    , text >=2.1.2
   hs-source-dirs: src lib
   other-modules:
     Data.HKD
     Data.HKD.Generic
     Data.Thriple
+    Data.Thriple.Things
 
 executable wai
   import:        shared-properties-unsafe
@@ -674,7 +674,7 @@ benchmark listStringVsVectorText
     , containers
     , criterion
     , deepseq
-    , text
+    , text >=2.1.2
     , vector
 
 benchmark sums
