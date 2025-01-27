@@ -15,4 +15,6 @@ maybeIndex ∷ Int → [a] → Maybe a
 maybeIndex index xs
   | index > length xs = Nothing
   | null xs = Nothing
-  | otherwise = Just $ xs !! index
+  | otherwise = Just $ (case drop index xs of
+   x : _ -> x
+   []    -> error _)

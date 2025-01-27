@@ -123,7 +123,7 @@ executable cont
   build-depends:
     , base          >=4.21.0.0 && <5
     , directory
-    , transformers
+    , mtl
 
 executable cont-monad
   import:        shared-properties-safe
@@ -263,7 +263,6 @@ executable shortcuts
   build-depends:
     , base          >=4.21.0.0 && <5
     , mtl
-    , transformers
 
 executable state
   import:        shared-properties-safe
@@ -305,7 +304,7 @@ executable trace
   main-is:       trace.hs
   build-depends:
     , base          >=4.21.0.0 && <5
-    , transformers
+    , mtl
 
 executable transformers
   import:        shared-properties-safe

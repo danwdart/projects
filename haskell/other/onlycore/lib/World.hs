@@ -6,6 +6,8 @@ module World where
 import Control.Monad.State
 import GHC.IO
 
+{-# ANN module "HLint: ignore Avoid restricted function" #-}
+
 -- World
 data World = World deriving Show
 

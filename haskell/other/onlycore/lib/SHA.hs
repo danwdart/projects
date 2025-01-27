@@ -28,25 +28,25 @@ step2 = step1 <> B.packBytes (P.replicate (56 - lstr) 0)
 
 word64ToWord8sBE ∷ Word64 → [Word8]
 word64ToWord8sBE x = [
-    fromIntegral (shiftR x 56),
-    fromIntegral (shiftR x 48),
-    fromIntegral (shiftR x 40),
-    fromIntegral (shiftR x 32),
-    fromIntegral (shiftR x 16),
-    fromIntegral (shiftR x 8),
+    fromIntegral (shift x (- 56)),
+    fromIntegral (shift x (- 48)),
+    fromIntegral (shift x (- 40)),
+    fromIntegral (shift x (- 32)),
+    fromIntegral (shift x (- 16)),
+    fromIntegral (shift x (- 8)),
     fromIntegral x
     ]
 
 word64ToWord8sLE ∷ Word64 → [Word8]
 word64ToWord8sLE x = [
     fromIntegral x,
-    fromIntegral (shiftR x 8),
-    fromIntegral (shiftR x 16),
-    fromIntegral (shiftR x 24),
-    fromIntegral (shiftR x 32),
-    fromIntegral (shiftR x 40),
-    fromIntegral (shiftR x 48),
-    fromIntegral (shiftR x 56)
+    fromIntegral (shift x (- 8)),
+    fromIntegral (shift x (- 16)),
+    fromIntegral (shift x (- 24)),
+    fromIntegral (shift x (- 32)),
+    fromIntegral (shift x (- 40)),
+    fromIntegral (shift x (- 48)),
+    fromIntegral (shift x (- 56))
     ]
 
 word8sToWord32BE ∷ [Word8] → Word32
@@ -79,11 +79,10 @@ step5 ∷ [Word32]
 step5 = extend step4 where
     extend ∷ [Word32] → [Word32]
     extend xs = xs <> [
-        ((xs !! (P.length xs - 3)) `xor`
+        rotate ((xs !! (P.length xs - 3)) `xor`
         (xs !! (P.length xs - 8)) `xor`
         (xs !! (P.length xs - 14)) `xor`
-        (xs !! (P.length xs - 16)))
-        `rotateL` 1
+        (xs !! (P.length xs - 16))) 1
         ]
 
 lstr ∷ Int

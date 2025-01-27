@@ -259,13 +259,13 @@ executable free-monads
 --   main-is:             gd.hs
 --   build-depends:       base >= 4.19.1.0 && < 5, gd, other92
 
-executable gettext
-  import:        shared-properties-safe
-  main-is:       gettext.hs
-  build-depends:
-    , base       >=4.20.0.0 && <5
-    , hgettext
-    , setlocale
+-- executable gettext
+--   import:        shared-properties-safe
+--   main-is:       gettext.hs
+--   build-depends:
+--     , base       >=4.20.0.0 && <5
+--     , hgettext
+--     , setlocale
 
 executable gloss
   import:        shared-properties-unsafe
@@ -324,13 +324,13 @@ executable json
     , aeson-qq
     , base      >=4.20.0.0 && <5
 
-executable langparse
-  import:        shared-properties-unsafe
-  main-is:       langparse.hs
-  build-depends:
-    , base                 >=4.20.0.0 && <5
-    , language-c
-    , language-javascript
+-- executable langparse
+--   import:        shared-properties-unsafe
+--   main-is:       langparse.hs
+--   build-depends:
+--     , base                 >=4.20.0.0 && <5
+--     , language-c
+--     , language-javascript
 
 executable lenses
   import:        shared-properties-unsafe
@@ -443,12 +443,12 @@ executable random
 --     , reflex
 --     , reflex-gloss
 
-executable regex
-  import:        shared-properties-unsafe
-  main-is:       regex.hs
-  build-depends:
-    , base        >=4.20.0.0 && <5
-    , regex-tdfa
+-- executable regex
+--   import:        shared-properties-unsafe
+--   main-is:       regex.hs
+--   build-depends:
+--     , base        >=4.20.0.0 && <5
+--     , regex-tdfa
 
 executable req
   import:        shared-properties-unsafe

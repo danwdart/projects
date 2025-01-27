@@ -16,6 +16,10 @@ main = print =<< r where
     fma = fmap (maybeIndex 0) getArgs
     fffsi = fff stringToInteger
     maybeIndex ∷ Int → [a] → Maybe a
-    maybeIndex index xs = if null xs then Nothing else Just $ xs !! index
+    maybeIndex index xs = if null xs then Nothing else Just $ (case drop index xs of
+       x : _ -> x
+       []    -> error _)
     stringToInteger ∷ String → Int
-    stringToInteger string = fst $ head (readHex $ concatMap ((`showHex` "") . ord) (filter (/= ' ') string) )
+    stringToInteger string = fst $ (case readHex $ concatMap ((`showHex` "") . ord) (filter (/= ' ') string) of
+       x : _ -> x
+       []    -> error _)

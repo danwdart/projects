@@ -3,7 +3,7 @@
 
 module Main (main) where
 
-import Control.Monad.Trans.State.Lazy
+import Control.Monad.State.Lazy
 import Debug.Trace
 
 st ∷ StateT Int IO Int

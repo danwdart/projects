@@ -40,9 +40,9 @@ Prelude> pure print Just 1
 
 -- rrr a b c = a b (a b c)
 
--- foldl (&) "Bob" (replicate 5 change)
+-- foldl' (&) "Bob" (replicate 5 change)
 
--- marp = (.) flip foldl (&) $ replicate 5 change
+-- marp = (.) flip foldl' (&) $ replicate 5 change
 
 -- fmap marp getLine
 

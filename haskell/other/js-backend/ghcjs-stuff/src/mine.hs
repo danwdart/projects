@@ -102,7 +102,9 @@ newContextFromNewCanvas = do
     canNode <- appendChild b c
     let canEl = uncheckedCastTo HTMLCanvasElement canNode
     mCtx <- getContext canEl ("2d" :: JSString) ["" :: JSString]
-    let gCtx = fromJust mCtx
+    let gCtx = (case mCtx of
+           Just x  -> x
+           Nothing -> error _)
     pure . uncheckedCastTo CanvasRenderingContext2D $ gCtx
 
 line ∷ (Double, Double) → (Double, Double) → CanvasRenderingContext2D → JSM ()

@@ -13,7 +13,7 @@ tryRead ∷ String → IO (Either SomeException String)
 tryRead = try . readFile
 
 sampleIO ∷ IO ()
-sampleIO = throw $ userError "Bob"
+sampleIO = throwIO $ userError "Bob"
 
 failer ∷ IO String
 failer = fail "Bob"
@@ -36,7 +36,7 @@ main = do
     tryRead "Jim" >>= print
     tryer >>= print
     sampleIO `catch` danHandler `catch` sampleHandler
-    throw DanException `catch` danHandler `catch` sampleHandler
-    throw (userError "Bob again") `catch` danHandler `catch` sampleHandler
-    catch @DanException (throw DanException) danHandler
-    catch @SomeException (throw $ userError "Bob again again") sampleHandler
+    throwIO DanException `catch` danHandler `catch` sampleHandler
+    throwIO (userError "Bob again") `catch` danHandler `catch` sampleHandler
+    catch @DanException (throwIO DanException) danHandler
+    catch @SomeException (throwIO $ userError "Bob again again") sampleHandler

@@ -6,7 +6,7 @@ module Main (main) where
 -- Cont demo
 import Control.Monad
 import Control.Monad.IO.Class
-import Control.Monad.Trans.Cont
+import Control.Monad.Cont
 import System.Directory
 import System.IO
 

@@ -74,9 +74,9 @@ totalMorality CountryMorality {
     capitalPunishment = cp',
     genderEquality = ge',
     sexualityEquality = se'
-} = capitalPunishment moralityWeightings * fromEnum cp' +
-    genderEquality moralityWeightings * fromEnum ge' +
-    sexualityEquality moralityWeightings * fromEnum se'
+} = capitalPunishment moralityWeightings * undefined cp' +
+    genderEquality moralityWeightings * undefined ge' +
+    sexualityEquality moralityWeightings * undefined se'
 
 main ∷ IO ()
 main = print $ summariseCountry <$> countryData

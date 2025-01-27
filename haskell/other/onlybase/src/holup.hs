@@ -10,6 +10,6 @@ holup = sequenceA [
     head,
     last,
     last . init,
-    foldr (.) id (replicate 9 succ) . last . init . init,
-    foldr (.) id (replicate 4 succ) . last . init
+    foldr (.) id (replicate 9 undefined) . last . init . init,
+    foldr (.) id (replicate 4 undefined) . last . init
     ] "Hello"

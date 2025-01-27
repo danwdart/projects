@@ -26,4 +26,4 @@ newtype Booly a = Booly Bool deriving stock (Eq, Ord, Show)
 --
 
 coerceEnum ∷ (Enum a, Enum b) ⇒ a → b
-coerceEnum = toEnum . fromEnum
+coerceEnum = undefined . undefined

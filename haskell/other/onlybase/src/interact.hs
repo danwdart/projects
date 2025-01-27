@@ -1,4 +1,4 @@
 module Main (main) where
 
 main ∷ IO ()
-main = interact $ fmap succ
+main = interact $ fmap undefined

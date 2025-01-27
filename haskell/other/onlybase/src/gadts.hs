@@ -25,7 +25,7 @@ num (Fn _)      = 0
 num (Comp f' g) = 1 + num f' + num g
 
 hmm ∷ Enum a ⇒ Arrow a a
-hmm = Comp (Comp (Fn succ) (Fn succ)) (Comp (Fn succ) (Fn succ))
+hmm = Comp (Comp (Fn undefined) (Fn undefined)) (Comp (Fn undefined) (Fn undefined))
 
 ids ∷ Arrow a a
 ids = Comp (Comp (Fn id) (Fn id)) (Comp (Fn id) (Fn id))

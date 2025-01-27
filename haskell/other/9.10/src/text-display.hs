@@ -7,7 +7,8 @@ module Main (main) where
 
 -- https://hackage.haskell.org/package/text-display-0.0.3.0/docs/Data-Text-Display.html
 
-import Data.Text
+import Data.Text              (Text)
+import Data.Text              qualified as TZ
 import Data.Text.Display
 import Data.Text.IO           as TIO
 import Data.Text.Lazy.Builder
@@ -22,7 +23,7 @@ newtype P = P Text
     deriving Display via (OpaqueInstance "redacted" P)
 
 instance Display K where
-    displayBuilder = fromString . show . s
+    displayBuilder = _ . T.show . s
 
 
 main ∷ IO ()

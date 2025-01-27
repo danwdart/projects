@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE LambdaCase        #-}
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -8,18 +9,19 @@ import Data.Either.Validation
 import Data.Functor.Const
 -- import Data.Functor.Identity
 -- import Data.HKD
--- import Data.HKD.Generic
+import Data.HKD.Generic
 import Data.List              qualified as L
 import Data.Text              (Text)
 import Data.Text              qualified as T
 import Data.Thriple
+import GHC.Generics
 import Text.Read
 
 type DBCol = Text
 
 data DBField = VarChar Text | MediumInt Int | TinyInt Bool
 
-stringToBool :: String -> Either String Bool
+stringToBool ∷ String → Either String Bool
 stringToBool x
     | x == "True" = Right True
     | x == "TRUE" = Right True
@@ -43,11 +45,11 @@ type ErrMsgs = [ErrMsg]
 
 newtype EnvParser a = EnvParser {
     runEnvParser :: String → Validation ErrMsgs a
-}
+} deriving stock (Generic)
 
 newtype DBParser a = DBParser {
     runDBParser :: DBField → Validation ErrMsgs a
-}
+} deriving stock (Generic)
 
 descr ∷ Thriple (Const Text)
 descr = Thriple {
@@ -70,14 +72,14 @@ cols = Thriple {
     c = "colC"
 }
 
-colLoc :: Thriple (Const Int)
+colLoc ∷ Thriple (Const Int)
 colLoc = Thriple {
     a = 0,
     b = 1,
     c = 2
 }
 
-envVars :: Thriple (Const String) -- TODO OsString
+envVars ∷ Thriple (Const String) -- TODO OsString
 envVars = Thriple {
     a = "ENV_INT_A",
     b = "ENV_TEXT_B",
@@ -106,10 +108,10 @@ dbParser = Thriple {
 
 dbTable ∷ Thriple (Const DBField)
 dbTable = Thriple {
-    a = MediumInt 10,
-    b = VarChar "It's A",
-    c = TinyInt True
+    a = Const $ MediumInt 10,
+    b = Const $ VarChar "It's A",
+    c = Const $ TinyInt True
 }
- 
--- getFromT :: Thriple (Validation ErrMsgs)
--- getFromT =  hzipWith (\p f -> runDBParser p $ getConst f) $ dbParser dbTable
+
+getFromT ∷ Thriple (Validation ErrMsgs)
+getFromT = hzipWith (\p f -> runDBParser p $ getConst f) dbParser dbTable

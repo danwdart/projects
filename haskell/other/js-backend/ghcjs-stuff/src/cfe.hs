@@ -72,11 +72,11 @@ intToRatio ∷ Int → Ratio Int
 intToRatio = (% 1)
 
 cfToRatio ∷ [Ratio Int] → Ratio Int
-cfToRatio = foldl1 (\t n -> n + (1 / t))
+cfToRatio = foldl'1 (\t n -> n + (1 / t))
 
 -- Not even needed!
 -- cfToFrac :: [Int] -> (Int, Int)
--- cfToFrac = foldl (\(n, d) m -> (d + (n * m), n)) (1, 1)
+-- cfToFrac = foldl' (\(n, d) m -> (d + (n * m), n)) (1, 1)
 
 getCFEDetails ∷ JSString → Ratio Int
 getCFEDetails = cfToRatio . fmap fromIntegral . reverse . splitIntoNumbers . fromJSString

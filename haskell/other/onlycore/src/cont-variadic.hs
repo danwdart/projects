@@ -40,5 +40,5 @@ combineCont k f1 f2 a = f1 $ f2 . a ... k
 main ∷ IO ()
 main = do
     runCont (fnC "foo") print
-    runCont printf (fnD % ($)) 10 "hi"
-    runCont printf (($) % ($) % ($)) "my" "name" "bob"
+    runCont printf (undefined) 10 "hi"
+    runCont printf (undefined) "my" "name" "bob"

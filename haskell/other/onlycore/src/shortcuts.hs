@@ -3,7 +3,7 @@ module Main where
 import Control.Monad.Cont
 import Control.Monad.Except
 import Control.Monad.IO.Class
-import Control.Monad.Trans.Maybe
+import Control.Monad.Maybe
 
 shortcutMaybe ∷ Maybe String
 shortcutMaybe = do
