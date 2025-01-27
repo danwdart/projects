@@ -11,5 +11,6 @@ type family HKD f a where
   HKD Identity  a = a
   -- actually this screws with the generic stuff, we'll have to make extra cases which I cba to do now
   -- maybe we need to define the generic instance *in terms* of this.
+  -- This seems to just cause issues though.
   -- HKD (Const b) _ = b
   HKD f         a = f a
