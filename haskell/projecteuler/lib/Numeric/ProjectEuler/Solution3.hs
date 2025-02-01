@@ -5,4 +5,4 @@ import Data.Numbers.Primes
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 
 solution ∷ Integer
-solution = last  $ primeFactors 600851475143
+solution = last $ primeFactors 600851475143

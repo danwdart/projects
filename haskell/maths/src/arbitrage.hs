@@ -4,8 +4,6 @@ module Main (main) where
 
 import Data.Ratio
 
-{-# ANN module "HLint: ignore Avoid restricted function" #-}
-
 newtype Bookmaker = Bookmaker String
     deriving stock (Show, Eq)
 

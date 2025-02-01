@@ -2,8 +2,9 @@
 
 -- import Control.Exception
 import Control.Exception.RangeException
+import Data.Text.Builder.Linear qualified  as TBL
 import Data.Text.Display                (Display (..))
-import Data.Text.Lazy.Builder           qualified as TB
+import Data.Text qualified as T
 import Numeric.Natural
 import Numeric.Range
 
@@ -19,7 +20,7 @@ class NumberCard a where
 data SmallNumber = C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 deriving stock (Show, Eq, Ord, Enum)
 
 instance Display SmallNumber where
-    displayBuilder = TB.fromString . show . getValue
+    displayBuilder = TBL.fromText . T.show . getValue
 
 -- >>> getValue C4
 -- 4
@@ -30,7 +31,7 @@ instance NumberCard SmallNumber where
 data LargeNumber = C25 | C50 | C75 | C100 deriving stock (Show, Eq, Ord, Enum)
 
 instance Display LargeNumber where
-    displayBuilder = TB.fromString . show . getValue
+    displayBuilder = TBL.fromText . T.show . getValue
 
 -- >>> getValue C25
 -- 25

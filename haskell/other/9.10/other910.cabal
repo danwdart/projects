@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               other910
-version:            0.1.0.0
+version:            0.2.0.0
 
 -- synopsis:
 -- description:
@@ -34,7 +34,7 @@ common shared-properties-lib
     -Wno-missing-role-annotations -Wno-missing-kind-signatures
     -Wno-unrecognised-warning-flags -Werror -haddock
 
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -49,7 +49,7 @@ common shared-properties-unsafe
     -Wno-unrecognised-warning-flags -Werror -haddock -threaded -rtsopts
     -with-rtsopts=-N
 
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base ^>=4.20.0.0
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -80,17 +80,18 @@ library
   --ghc-options: -Wno-unused-packages
   hs-source-dirs:  lib
   build-depends:
-    , base                       >=4.20.0.0 && <5
-    -- , contravariant
-    , ghc-typelits-natnormalise
-    , lattices
-    , template-haskell
-    , text >=2.1.2
-    , yaml
+    , base                       ^>=4.20.0.0
+    , ghc-typelits-natnormalise  ^>=0.7.10
+    , lattices                   ^>=2.2.1
+    , template-haskell           ^>=2.22.0
+    , text                       ^>=2.1.2
+    , yaml                       ^>=0.11.11.2
 
+  -- , contravariant ^>=1.5.5
+  -- for ghc 9.10.1
   -- , ghc-typelits-presburger
   -- , free -- later
-  -- , hxt, hxt-xpath
+  -- , hxt, hxt-xpath ^>=9.1.2.2
   exposed-modules:
     BookStatic
     Data.DependentLength
@@ -109,363 +110,366 @@ library
 -- executable asm
 --   import: shared-properties-base
 --   main-is:             asm.hs
---   build-depends:       base >= 4.19.1.0 && < 5, inline-asm
+--   build-depends:       base ^>=4.20.0.0, inline-asm
 
 executable async
   import:        shared-properties-safe
   main-is:       async.hs
   build-depends:
-    , async
-    , base   >=4.20.0.0 && <5
+    , async  ^>=2.2.5
+    , base   ^>=4.20.0.0
 
 executable binarygame
   import:        shared-properties-unsafe
   main-is:       binarygame.hs
   build-depends:
-    , ansi-terminal
-    , base           >=4.20.0.0 && <5
-    , ilist
-    , mtl
+    , ansi-terminal  ^>=1.1.2
+    , base           ^>=4.20.0.0
+    , ilist          ^>=0.4.0.2
+    , mtl            ^>=2.3.1
 
 -- simple-bluetooth fails to compile
 -- executable bluetooth
 --   import: shared-properties
 --   main-is:             bluetooth.hs
---   build-depends:       base >= 4.19.1.0 && < 5, simple-bluetooth
+--   build-depends:       base ^>=4.20.0.0, simple-bluetooth
 
 executable c
   import:        shared-properties-unsafe
   main-is:       c.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
-    , inline-c
+    , base      ^>=4.20.0.0
+    , inline-c  ^>=0.9.1.10
 
 executable comonads
   import:        shared-properties-safe
   main-is:       comonads.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , comonad
-    , containers
+    , base        ^>=4.20.0.0
+    , comonad     ^>=5.0.9
+    , containers  ^>=0.7
 
 executable contravariant
   import:        shared-properties-safe
   main-is:       contravariant.hs
   build-depends:
-    , base           >=4.20.0.0 && <5
-    , contravariant
+    , base           ^>=4.20.0.0
+    , contravariant  ^>=1.5.5
 
 executable cplusplus
   import:        shared-properties-unsafe
   main-is:       cplusplus.hs
   build-depends:
-    , base          >=4.20.0.0 && <5
-    , inline-c-cpp
+    , base          ^>=4.20.0.0
+    , inline-c-cpp  ^>=0.5.0.2
 
 executable delay
   import:        shared-properties-safe
   main-is:       delay.hs
   build-depends:
-    , ansi-terminal
-    , base           >=4.20.0.0 && <5
-    , random
-    -- , text >=2.1.2
+    , ansi-terminal  ^>=1.1.2
+    , base           ^>=4.20.0.0
+    , random         ^>=1.3.0
+
+-- , text ^>=2.1.2
 
 executable doctestme
   import:        shared-properties-unsafe
   main-is:       doctestme.hs
   build-depends:
-    , base              >=4.20.0.0 && <5
-    , doctest
-    , template-haskell
+    , base              ^>=4.20.0.0
+    , doctest           ^>=0.23.0
+    , template-haskell  ^>=2.22.0
 
+-- for ghc 9.10.1
 executable dynamic-schema
   import:        shared-properties-unsafe
   main-is:       dynamic-schema.hs
   build-depends:
-    , base              >=4.20.0.0 && <5
-    , other910
-    , template-haskell
-    , yaml
+    , base              ^>=4.20.0.0
+    , other910          ^>=0.2.0.0
+    , template-haskell  ^>=2.22.0
+    , yaml              ^>=0.11.11.2
 
+-- for ghc 9.10.1
 executable effects
   import:        shared-properties-unsafe
   main-is:       effects.hs
   build-depends:
-    , base          >=4.20.0.0 && <5
-    , freer-simple
+    , base          ^>=4.20.0.0
+    , freer-simple  ^>=1.2.1.2
 
 executable elf
   import:        shared-properties-unsafe
   main-is:       elf.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , bytestring
-    , elf
+    , base        ^>=4.20.0.0
+    , bytestring  ^>=0.12.2.0
+    , elf         ^>=0.31
 
 executable error-collection
   import:        shared-properties-safe
   main-is:       error-collection.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , bifunctors
-    , containers
+    , base        ^>=4.20.0.0
+    , bifunctors  ^>=5.6.2
+    , containers  ^>=0.7
 
 executable eventloop
   import:        shared-properties-unsafe
   main-is:       event-loop.hs
   build-depends:
-    , base              >=4.20.0.0 && <5
-    , concurrent-extra
-    , lifted-async
+    , base              ^>=4.20.0.0
+    , concurrent-extra  ^>=0.7.0.12
+    , lifted-async      ^>=0.10.2.7
 
 -- executable fake
 --   import: shared-properties-safe
 --   main-is:             fake.hs
---   build-depends:       base >= 4.19.1.0 && < 5, fakedata >= 1.0.3, text >=2.1.2
+--   build-depends:       base ^>=4.20.0.0, fakedata ^>= 1.0.3, text ^>=2.1.2
 
 executable fieldTrans
   import:        shared-properties-unsafe
   main-is:       fieldTrans.hs
   build-depends:
-    , aeson
-    , base   >=4.20.0.0 && <5
-    , mtl
+    , aeson  ^>=2.2.3.0
+    , base   ^>=4.20.0.0
+    , mtl    ^>=2.3.1
 
 executable fileformat
   import:        shared-properties-safe
   main-is:       fileformat.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , binary
-    , bytestring
+    , base        ^>=4.20.0.0
+    , binary      ^>=0.8.9.3
+    , bytestring  ^>=0.12.2.0
 
 executable flow
   import:        shared-properties-safe
   main-is:       flow.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
-    , flow
+    , base  ^>=4.20.0.0
+    , flow  ^>=2.0.0.5
 
 executable free-monads
   import:        shared-properties-safe
   main-is:       free-monads.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
-    , free
+    , base  ^>=4.20.0.0
+    , free  ^>=5.2
 
 -- executable gd
 --   import: shared-properties-safe
 --   main-is:             gd.hs
---   build-depends:       base >= 4.19.1.0 && < 5, gd, other92
+--   build-depends:       base ^>=4.20.0.0, gd, other92
 
 -- executable gettext
 --   import:        shared-properties-safe
 --   main-is:       gettext.hs
 --   build-depends:
---     , base       >=4.20.0.0 && <5
---     , hgettext
---     , setlocale
+--     , base       ^>=4.20.0.0
+--     , hgettext ^>=0.1.40.2
+--     , setlocale ^>=1.0.0.10
 
 executable gloss
   import:        shared-properties-unsafe
   main-is:       gloss.hs
   build-depends:
-    , base   >=4.20.0.0 && <5
-    , gloss
+    , base   ^>=4.20.0.0
+    , gloss  ^>=1.13.2.2
 
 executable glut
   import:        shared-properties-unsafe
   main-is:       glut.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
-    , GLUT
+    , base  ^>=4.20.0.0
+    , GLUT  ^>=2.7.0.16
 
 -- executable hgamer3d
 --   import:        shared-properties-unsafe
 --   main-is:       hgamer3d.hs
 --   build-depends:
---     , base      >=4.20.0.0 && <5
---     , clock
---     , HGamer3D
+--     , base      ^>=4.20.0.0
+--     , clock ^>=0.8.4
+--     , HGamer3D ^>=0.9.5
 
 executable hkd
   import:        shared-properties-unsafe
   main-is:       hkd.hs
   build-depends:
-    , barbies
-    , base     >=4.20.0.0 && <5
+    , barbies  ^>=2.1.1.0
+    , base     ^>=4.20.0.0
 
 executable hkd-models
   import:        shared-properties-unsafe
   main-is:       hkd-models.hs
   build-depends:
-    , barbies
-    , base     >=4.20.0.0 && <5
+    , barbies  ^>=2.1.1.0
+    , base     ^>=4.20.0.0
 
 -- deprecated stuff but I know it works so never mind
 -- executable hnet
 --   import: shared-properties-unsafe
 --   main-is:             hnet.hs
---   build-depends:       base >= 4.14.3.0 && < 5, HaskellNet
+--   build-depends:       base >= 4.14.3.0 && < 5, HaskellNet ^>=0.6.1.2
 
 executable iso
   import:        shared-properties-safe
   main-is:       iso.hs
   build-depends:
-    , base           >=4.20.0.0 && <5
-    , semigroupoids
+    , base           ^>=4.20.0.0
+    , semigroupoids  ^>=6.0.1
 
 executable json
   import:        shared-properties-unsafe
   main-is:       json.hs
   build-depends:
-    , aeson
-    , aeson-qq
-    , base      >=4.20.0.0 && <5
+    , aeson     ^>=2.2.3.0
+    , aeson-qq  ^>=0.8.4
+    , base      ^>=4.20.0.0
 
 -- executable langparse
 --   import:        shared-properties-unsafe
 --   main-is:       langparse.hs
 --   build-depends:
---     , base                 >=4.20.0.0 && <5
---     , language-c
---     , language-javascript
+--     , base                 ^>=4.20.0.0
+--     , language-c ^>=0.10.0
+--     , language-javascript ^>=0.7.1.0
 
 executable lenses
   import:        shared-properties-unsafe
   main-is:       lenses.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , containers
-    , lens
-    , time
+    , base        ^>=4.20.0.0
+    , containers  ^>=0.7
+    , lens        ^>=5.3.3
+    , time        ^>=1.14
 
 -- , time-lens
 
 executable linear
   import:        shared-properties-nobase
   main-is:       linear.hs
-  build-depends: linear-base
+  build-depends: linear-base ^>=0.4.0
 
 executable mdns
   import:        shared-properties-unsafe
   main-is:       mdns.hs
   build-depends:
-    , avahi
-    , base   >=4.20.0.0 && <5
+    , avahi  ^>=0.2.0
+    , base   ^>=4.20.0.0
 
 executable mmio
   import:        shared-properties-unsafe
   main-is:       mmio.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
-    , mmap
+    , base  ^>=4.20.0.0
+    , mmap  ^>=0.5.9
 
 executable mongo
   import:        shared-properties-unsafe
   main-is:       mongo.hs
   build-depends:
-    , base     >=4.14.3.0 && <5
-    , mongoDB
+    , base     >=4.14.3.0 && <4.22.0.0
+    , mongoDB  ^>=2.7.1.4
 
 executable parsec
   import:        shared-properties-safe
   main-is:       parsec.hs
   build-depends:
-    , ansi-terminal
-    , base           >=4.20.0.0 && <5
-    , parsec
+    , ansi-terminal  ^>=1.1.2
+    , base           ^>=4.20.0.0
+    , parsec         ^>=3.1.18.0
 
 executable parallel
   import:        shared-properties-unsafe
   main-is:       parallel.hs
   build-depends:
-    , async
-    , base      >=4.20.0.0 && <5
-    , parallel
+    , async     ^>=2.2.5
+    , base      ^>=4.20.0.0
+    , parallel  ^>=3.2.2.0
 
 executable pizza
   import:        shared-properties-unsafe
   main-is:       pizza.hs
   build-depends:
-    , aeson
-    , base           >=4.20.0.0 && <5
-    , bytestring
-    , GenericPretty
-    , http-client
-    , mtl
-    , req
+    , aeson          ^>=2.2.3.0
+    , base           ^>=4.20.0.0
+    , bytestring     ^>=0.12.2.0
+    , GenericPretty  ^>=1.2.2
+    , http-client    ^>=0.7.18
+    , mtl            ^>=2.3.1
+    , req            ^>=3.13.4
 
 executable profunctor
   import:        shared-properties-safe
   main-is:       profunctor.hs
   build-depends:
-    , base         >=4.20.0.0 && <5
-    , profunctors
+    , base         ^>=4.20.0.0
+    , profunctors  ^>=5.6.2
 
 executable profunctor-transformers
   import:        shared-properties-safe
   main-is:       profunctor-transformers.hs
   build-depends:
-    , base         >=4.20.0.0 && <5
-    , mtl
-    , profunctors
+    , base         ^>=4.20.0.0
+    , mtl          ^>=2.3.1
+    , profunctors  ^>=5.6.2
 
 executable propagators
   import:        shared-properties-safe
   main-is:       propagators.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
-    , other910
+    , base      ^>=4.20.0.0
+    , other910  ^>=0.2.0.0
 
 executable propagators-dev
   import:        shared-properties-dev-safe
   main-is:       propagators.hs
   other-modules: Propagator
   build-depends:
-    , base      >=4.20.0.0 && <5
-    , lattices
+    , base      ^>=4.20.0.0
+    , lattices  ^>=2.2.1
 
 executable random
   import:        shared-properties-safe
   main-is:       random.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , random
+    , base    ^>=4.20.0.0
+    , random  ^>=1.3.0
 
 -- executable reflex-gloss
 --   import:        shared-properties-base
 --   main-is:       reflex-gloss.hs
 --   build-depends:
---     , base          >=4.20.0.0 && <5
---     , gloss
---     , reflex
---     , reflex-gloss
+--     , base          ^>=4.20.0.0
+--     , gloss ^>=1.13.2.2
+--     , reflex ^>=0.9.3.3
+--     , reflex-gloss ^>=0.2
 
 -- executable regex
 --   import:        shared-properties-unsafe
 --   main-is:       regex.hs
 --   build-depends:
---     , base        >=4.20.0.0 && <5
---     , regex-tdfa
+--     , base        ^>=4.20.0.0
+--     , regex-tdfa ^>=1.3.2.2
 
 executable req
   import:        shared-properties-unsafe
   main-is:       req.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
-    , req
-    , text >=2.1.2
+    , base  ^>=4.20.0.0
+    , req   ^>=3.13.4
+    , text  ^>=2.1.2
 
--- , mtl
+-- , mtl                  ^>=2.3.1
 -- executable sdl
 --   import:        shared-properties-unsafe
 --   main-is:       sdl.hs
 --   build-depends:
---     , base    >=4.20.0.0 && <5
---     , OpenGL
---     , sdl2
+--     , base    ^>=4.20.0.0
+--     , OpenGL ^>=3.0.3.0
+--     , sdl2 ^>=2.5.5.0
 
 -- reflex-sdl2
 
@@ -473,132 +477,136 @@ executable req
 --   import:        shared-properties-safe
 --   main-is:       serial.hs
 --   build-depends:
---     , base    >=4.20.0.0 && <5
---     , serial
+--     , base    ^>=4.20.0.0
+--     , serial ^>=0.2.7
 
 executable shell
   import:        shared-properties-unsafe
   main-is:       shell.hs
   build-depends:
-    , base           >=4.20.0.0 && <5
-    , shell-conduit
+    , base           ^>=4.20.0.0
+    , shell-conduit  ^>=5.0.0
 
 -- executable sound
 --   import: shared-properties-safe
 --   main-is:             sound.hs
---   build-depends:       base >= 4.19.1.0 && < 5, pulseaudio, jack
+--   build-depends:       base ^>=4.20.0.0, pulseaudio ^>=0.0.2.1, jack ^>=0.7.2.2
 
 -- executable sql
 --   hs-source-dirs:      src
 --   main-is:             sql.hs
---   build-depends:       base >= 4.19.1.0 && < 5, HDBC, HDBC-mysql
+--   build-depends:       base ^>=4.20.0.0, HDBC ^>=2.4.0.4, HDBC-mysql ^>=0.7.1.0 ^>=
 
 executable sockets
   import:        shared-properties-unsafe
   main-is:       sockets.hs
   build-depends:
-    , async
-    , base        >=4.20.0.0 && <5
-    , bytestring
-    , network
+    , async       ^>=2.2.5
+    , base        ^>=4.20.0.0
+    , bytestring  ^>=0.12.2.0
+    , network     ^>=3.2.7.0
 
 executable statevar
   import:        shared-properties-safe
   main-is:       statevar.hs
   build-depends:
-    , base      >=4.20.0.0 && <5
-    , StateVar
+    , base      ^>=4.20.0.0
+    , StateVar  ^>=1.2.2
 
 executable tagged
   import:        shared-properties-safe
   main-is:       tagged.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , tagged
+    , base    ^>=4.20.0.0
+    , tagged  ^>=0.8.9
 
 executable tardis
   import:        shared-properties-safe
   main-is:       tardis.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , tardis
+    , base    ^>=4.20.0.0
+    , tardis  ^>=0.5.0
 
 executable terrain
   import:        shared-properties-safe
   main-is:       terrain.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , random
+    , base    ^>=4.20.0.0
+    , random  ^>=1.3.0
 
 executable text-display
   import:        shared-properties-unsafe
   main-is:       text-display.hs
   build-depends:
-    , base          >=4.20.0.0 && <5
-    , text >=2.1.2
-    , text-display
+    , base          ^>=4.20.0.0
+    , text          ^>=2.1.2
+    , text-display  ^>=1.0.0.0
 
 executable these
   import:        shared-properties-safe
   main-is:       these.hs
   build-depends:
-    , base   >=4.20.0.0 && <5
-    , these
+    , base   ^>=4.20.0.0
+    , these  ^>=1.2.1
 
 -- executable translatorglitch
 --   import: shared-properties
 --   main-is:             translatorglitch.hs
---   build-depends:       base >= 4.19.1.0 && < 5, bytestring, gogol, req
+--   build-depends:       base ^>=4.20.0.0
+-- , bytestring ^>=0.12.2.0
+-- , gogol ^>=0.5.0
+-- , req                  ^>=3.13.4
 
 -- executable udev
 --   import:        shared-properties-unsafe
 --   main-is:       udev.hs
 --   build-depends:
---     , base  >=4.20.0.0 && <5
---     , udev
+--     , base  ^>=4.20.0.0
+--     , udev ^>=0.1.1.0
 
 executable unicode
   import:        shared-properties-safe
   main-is:       unicode.hs
   build-depends:
-    , base                  >=4.20.0.0 && <5
-    , base-unicode-symbols
-    , mtl
+    , base                  ^>=4.20.0.0
+    , base-unicode-symbols  ^>=0.2.4.2
+    , mtl                   ^>=2.3.1
 
 executable unlifting
   import:        shared-properties-unsafe
   main-is:       unlifting.hs
   build-depends:
-    , base  >=4.20.0.0 && <5
-    , mtl
+    , base  ^>=4.20.0.0
+    , mtl   ^>=2.3.1
 
--- , monad-control
--- , lifted-async
--- , lifted-base
--- , unliftio
+-- , monad-control ^>=1.0.3.0
+-- , lifted-async ^>=0.10.2.7
+-- , lifted-base ^>=0.2.3.12
+-- , unliftio ^>=0.2.25.0
 
 executable vector
   import:        shared-properties-unsafe
   main-is:       vector.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , vector
+    , base    ^>=4.20.0.0
+    , vector  ^>=0.13.2.0
 
 executable validation
   import:        shared-properties-safe
   main-is:       validation.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , other910
-    , either
+    , base      ^>=4.20.0.0
+    , either    ^>=5.0.2
+    , other910  ^>=0.2.0.0
 
 executable validation-dev
-  import:        shared-properties-safe
-  main-is:       validation.hs
+  import:         shared-properties-safe
+  main-is:        validation.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , either
-    , text >=2.1.2
+    , base    ^>=4.20.0.0
+    , either  ^>=5.0.2
+    , text    ^>=2.1.2
+
   hs-source-dirs: src lib
   other-modules:
     Data.HKD
@@ -610,32 +618,32 @@ executable wai
   import:        shared-properties-unsafe
   main-is:       wai.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , http-types
-    , wai
-    , warp
+    , base        ^>=4.20.0.0
+    , http-types  ^>=0.12.4
+    , wai         ^>=3.2.4
+    , warp        ^>=3.4.7
 
 executable webtex
   import:        shared-properties-safe
   main-is:       webtex.hs
   build-depends:
-    , ansi-terminal
-    , base           >=4.20.0.0 && <5
+    , ansi-terminal  ^>=1.1.2
+    , base           ^>=4.20.0.0
 
 executable wikidata
   import:        shared-properties-unsafe
   main-is:       wikidata.hs
   build-depends:
-    , base             >=4.20.0.0 && <5
-    , graphql
-    , http-client
-    , http-client-tls
-    , req
+    , base             ^>=4.20.0.0
+    , graphql          ^>=1.5.0.0
+    , http-client      ^>=0.7.18
+    , http-client-tls  ^>=0.3.6.4
+    , req              ^>=3.13.4
 
 -- executable xpath
 --   import: shared-properties-safe
 --   main-is:             xpath.hs
---   build-depends:       base >= 4.19.1.0 && < 5, safe-foldable, other92
+--   build-depends:       base ^>=4.20.0.0, safe-foldable, other92
 
 test-suite test
   type:               exitcode-stdio-1.0
@@ -644,10 +652,10 @@ test-suite test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , hspec
-    , other910
-    , QuickCheck
+    , base        ^>=4.20.0.0
+    , hspec       ^>=2.11.10
+    , other910    ^>=0.2.0.0
+    , QuickCheck  ^>=2.15.0.1
 
   build-tool-depends: hspec-discover:hspec-discover
   other-modules:
@@ -658,7 +666,7 @@ test-suite test
 --  type:                detailed-0.9
 --  hs-source-dirs:      test
 --  test-module:         MyTest
---  build-depends:       base >= 4.19.1.0 && < 5, hspec, QuickCheck, Cabal
+--  build-depends:       base ^>=4.20.0.0, hspec, QuickCheck, Cabal
 --  build-tool-depends: hspec-discover:hspec-discover
 
 benchmark listStringVsVectorText
@@ -668,14 +676,14 @@ benchmark listStringVsVectorText
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , array
-    , base        >=4.20.0.0 && <5
-    , bytestring
-    , containers
-    , criterion
-    , deepseq
-    , text >=2.1.2
-    , vector
+    , array       ^>=0.5.8.0
+    , base        ^>=4.20.0.0
+    , bytestring  ^>=0.12.2.0
+    , containers  ^>=0.7
+    , criterion   ^>=1.6.4.0
+    , deepseq     ^>=1.5.1.0
+    , text        ^>=2.1.2
+    , vector      ^>=0.13.2.0
 
 benchmark sums
   type:               exitcode-stdio-1.0
@@ -684,11 +692,11 @@ benchmark sums
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , array
-    , base       >=4.20.0.0 && <5
-    , criterion
-    , deepseq
-    , vector
+    , array      ^>=0.5.8.0
+    , base       ^>=4.20.0.0
+    , criterion  ^>=1.6.4.0
+    , deepseq    ^>=1.5.1.0
+    , vector     ^>=0.13.2.0
 
 benchmark recursiveFacFibs
   type:               exitcode-stdio-1.0
@@ -697,8 +705,8 @@ benchmark recursiveFacFibs
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , array
-    , base       >=4.20.0.0 && <5
-    , criterion
-    , deepseq
-    , vector
+    , array      ^>=0.5.8.0
+    , base       ^>=4.20.0.0
+    , criterion  ^>=1.6.4.0
+    , deepseq    ^>=1.5.1.0
+    , vector     ^>=0.13.2.0

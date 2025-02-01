@@ -7,7 +7,5 @@ import Data.Char
 import Numeric
 
 stringToInteger ∷ String → Integer
-stringToInteger string = fst $ (case readHex $ concatMap ((`showHex` "") . ord) (filter notSpaces string) of
-   x : _ -> x
-   []    -> error _) where
+stringToInteger string = fst $ head (readHex $ concatMap ((`showHex` "") . ord) (filter notSpaces string)) where
     notSpaces = (/= ' ')

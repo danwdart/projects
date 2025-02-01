@@ -1,7 +1,7 @@
 #!/usr/bin/env cabal
 {- cabal:
 build-depends: base ^>= 4.20
-             , containers
+             , containers >=0.7
 -}
 {- project:
 packages: *

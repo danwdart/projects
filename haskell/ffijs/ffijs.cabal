@@ -24,8 +24,8 @@ executable ffihstojs
   main-is:            Main.hs
   js-sources:         src/libdemo.js
   build-depends:
-    , base
-    , ghcjs-base
+    , base        ^>=4.17.0.0
+    , ghcjs-base  ^>=0.8.0.2
 
   hs-source-dirs:     src
   default-language:   Haskell2010

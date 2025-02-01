@@ -187,9 +187,7 @@ init (a :> as) = a :> init as
 last ∷ Vec n a → a
 last Nil        = error "No last"
 last (x :> Nil) = x
-last (_ :> xs)  = case reverse xs of
-  x : _ -> x
-  []    -> error _
+last (_ :> xs)  = last xs
 
 -- >>> last (1 :> 2 :> 3 :> Nil)
 -- 3
@@ -404,9 +402,7 @@ intersect
 (!!) ∷ Vec n a → Nat → a -- Get the nat
 Nil !! _       = error "Nah"
 (x :> _) !! 0  = x
-(_ :> xs) !! n = case drop (n - 1) xs of
-  x : _ -> x
-  []    -> error _
+(_ :> xs) !! n = xs !! (n-1)
 
 -- >>> 1 :> 2 :> Nil !!! 1
 -- <interactive>:32039:16-18: error:

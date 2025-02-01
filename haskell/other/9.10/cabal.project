@@ -1,4 +1,5 @@
 packages: *.cabal
 benchmarks: True
 tests: True
-allow-newer: base, parsec
+allow-newer: base, bytestring, template-haskell
+allow-older: array, binary, bytestring, deepseq, doctest, ilist, random, time

@@ -1,6 +1,6 @@
 cabal-version:      2.4
 name:               reflex-stuff
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -15,7 +15,7 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.14.3.0 && <5
+  build-depends:      base >=4.14.3.0 && <4.22.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -31,24 +31,24 @@ executable adding-machine
   import:        shared-properties
   main-is:       adding-machine.hs
   build-depends:
-    , base        >=4.14.3.0 && <5
-    , reflex
-    , reflex-dom
-    , text
+    , base        >=4.14.3.0 && <4.22.0.0
+    , reflex      ^>=0.9.3.3
+    , reflex-dom  ^>=0.6.3.3
+    , text        ^>=2.1.2
 
 executable dom
   import:        shared-properties
   main-is:       dom.hs
   ghc-options:   -fsimpl-tick-factor=100000
   build-depends:
-    , base        >=4.14.3.0 && <5
-    , reflex-dom
+    , base        >=4.14.3.0 && <4.22.0.0
+    , reflex-dom  ^>=0.6.3.3
 
 executable letters
   import:        shared-properties
   main-is:       letters.hs
   build-depends:
-    , base        >=4.14.3.0 && <5
-    , clay
-    , reflex-dom
-    , text
+    , base        >=4.14.3.0 && <4.22.0.0
+    , clay        ^>=0.15.0
+    , reflex-dom  ^>=0.6.3.3
+    , text        ^>=2.1.2

@@ -44,7 +44,7 @@ fromList xs = go xs 0 where
     go ∷ (Num ix, Enum ix) ⇒ [a] → ix → ListIndex ix a
     go [] _          = Nil
     go [x] start     = Element start x :> Nil
-    go (x:xs') start = Element start x :> go xs' (undefined start)
+    go (x:xs') start = Element start x :> go xs' (succ start)
 
 toList ∷ ListIndex ix a → [a]
 toList = undefined
@@ -96,7 +96,7 @@ limap _ [] = []
 limap f xs = go f xs 0 where
     go ∷ (Enum ix, Num ix) ⇒ (a → ix → b) → [a] → ix → [b]
     go _ [] _           = []
-    go f' (x:xs') start = f' x start : go f' xs' (undefined start)
+    go f' (x:xs') start = f' x start : go f' xs' (succ start)
 
 class WholeIndexedFunctor f ix where
     wimap :: (a → ix → f a → b) → f a → f b
@@ -114,7 +114,7 @@ lwimap f xs = go f xs 0 where
     -- no type sig or make sure we match them w/ext
     go ∷ (a → ix → [a] → b) → [a] → ix → [b]
     go _ [] _           = []
-    go f' (x:xs') start = f' x start xs : go f' xs' (undefined start)
+    go f' (x:xs') start = f' x start xs : go f' xs' (succ start)
 
 -- integrate the above?
 

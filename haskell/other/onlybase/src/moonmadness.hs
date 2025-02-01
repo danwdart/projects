@@ -30,17 +30,14 @@ moonAddWith fn a b = reverse . take (maxLength a b) $ zipWith fn (rppZeroes a) (
     rppZeroes n = reverse n <> zeroes
 
 moonMulWith ∷ (Int → Int → Int) → (Int → Int → Int) → [Int] → [Int] → [Int]
-moonMulWith fnMul fnAdd n1 n2 = undefined (moonAddWith fnAdd) (mulTwo fnMul n1 n2)
+moonMulWith fnMul fnAdd n1 n2 = foldl1 (moonAddWith fnAdd) (mulTwo fnMul n1 n2)
 
 mulTwo ∷ Num a1 ⇒ (a2 → a2 → a1) → [a2] → [a2] → [[a1]]
 mulTwo fnMul n1 n2 = transpose (concat (transpose (splitEvery maxLen (liftM2 fnMul n1 n2)):[threeTwoOneZero minLen])) where
     maxLen = maxLength n1 n2
     minLen = minLength n1 n2
     threeTwoOneZero ∷ Num a ⇒ Int → [[a]]
-    threeTwoOneZero n = reverse
-      (case take n (inits $ repeat 0) of
-         _ : xs -> xs
-         []     -> error _)
+    threeTwoOneZero n = reverse . tail $ take n (inits $ repeat 0)
 
 (<<+>>) ∷ Int → Int → Int
 a <<+>> b = reduceDigitsIntoInt $ moonAddWith max (splitIntIntoDigits a) (splitIntIntoDigits b)

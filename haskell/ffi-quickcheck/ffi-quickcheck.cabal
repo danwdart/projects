@@ -1,6 +1,6 @@
 cabal-version:      3.4
 name:               ffi-quickcheck
-version:            0.1.0.0
+version:            0.2.0.0
 synopsis:           Quickchecking a couple of C libraries
 description:        Quickchecking a couple of C libraries
 license:            AGPL-3.0-or-later
@@ -34,7 +34,7 @@ common shared-properties-lib
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -49,7 +49,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base ^>=4.20.0.0
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -82,7 +82,7 @@ library
 
   -- other-modules:
   -- other-extensions:
-  build-depends:   base >=4.20.0.0
+  build-depends:   base ^>=4.20.0.0
   hs-source-dirs:  lib
 
 test-suite test
@@ -92,10 +92,10 @@ test-suite test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base            >=4.20.0.0 && <5
-    , ffi-quickcheck
-    , hspec
-    , QuickCheck
+    , base            ^>=4.20.0.0
+    , ffi-quickcheck  ^>=0.2.0.0
+    , hspec           ^>=2.11.10
+    , QuickCheck      ^>=2.15.0.1
 
   build-tool-depends: hspec-discover:hspec-discover
   other-modules:      Queue.ForeignSpec

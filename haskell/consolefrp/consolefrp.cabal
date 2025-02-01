@@ -1,6 +1,6 @@
 cabal-version:      3.4
 name:               consolefrp
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -12,9 +12,9 @@ executable consolefrp
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , reflex-vty  >=0.5.2.1
-    , vty
+    , base        ^>=4.20.0.0
+    , reflex-vty  ^>=0.5.2.1
+    , vty         ^>=6.2
 
   hs-source-dirs:     src
   ghc-options:

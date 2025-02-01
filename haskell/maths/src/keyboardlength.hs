@@ -16,7 +16,7 @@ main = pure ()
 
 -- | Get the word list.
 wordList ∷ IO [Text]
-wordList = T.words . TE.decodeUtf8 <$> B.readFile "words"
+wordList = T.words . TE.decodeUtf8Lenient <$> B.readFile "words"
 
 -- | For a list of somethings and their attribute, get the something for the closest attribute.
 

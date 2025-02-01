@@ -18,7 +18,7 @@ import Control.Monad.RWS
 -- import Data.Aeson qualified as A
 import Data.Foldable
 import Data.List            qualified as L
-import Data.List.NonEmpty   qualified as NE
+import Data.List.NonEmpty   qualified as LNE
 import Data.Map             (Map)
 import Data.Map             qualified as M
 import Data.Ratio
@@ -29,7 +29,7 @@ import System.Console.ANSI
 data RolloverStrategy = Exact | Reverse | Rebirth | Gimme
     deriving stock (Bounded, Enum, Eq, Show)
 
-data AppError = CantFindPlayer Int
+newtype AppError = CantFindPlayer Int
     deriving stock (Show)
     deriving anyclass (Exception)
 
@@ -133,7 +133,7 @@ newtype PlayerTurn = PlayerTurn {
 -}
 
 data GameState = GameState {
-    _players    :: NE.NonEmpty Player,
+    _players    :: LNE.NonEmpty Player,
     _playerTurn :: Int,
     _turns      :: Int
 } deriving stock (Eq, Show)
@@ -354,11 +354,10 @@ initialGame = Game {
 
 initialState ∷ GameState
 initialState = GameState {
-    _players = NE.fromList [
-        Player {
-            _name = "Bob",
-            _space = Space 1
-        },
+    _players = Player {
+        _name = "Bob",
+        _space = Space 1
+    } LNE.:| [
         Player {
             _name = "Jim",
             _space = Space 1

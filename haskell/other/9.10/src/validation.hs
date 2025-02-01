@@ -3,7 +3,7 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-module Main where
+module Main (main) where
 
 import Data.Either.Validation
 import Data.Foldable

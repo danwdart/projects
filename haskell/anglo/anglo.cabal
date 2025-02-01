@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               anglo
-version:            0.1.0.0
+version:            0.2.0.0
 homepage:           https://github.com/danwdart/projects#readme
 license:            AGPL-3.0-only
 author:             Dan Dart
@@ -17,13 +17,14 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , aeson
-    , base         >=4.20.0.0 && <5
-    , containers
-    , MonadRandom
-    , mtl
+    , aeson        ^>=2.2.3.0
+    -- , base         ^>=4.20.0.0
+    , bytestring   ^>=0.12.2.0
+    , containers   ^>=0.7
+    , MonadRandom  ^>=0.6.1
+    , mtl          ^>=2.3.1
 
-  exposed-modules:    Word
+  exposed-modules:
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
@@ -38,7 +39,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.20.0.0 && <5
+  -- build-depends:      base ^>=4.20.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -54,21 +55,26 @@ executable anglo
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , anglo
-    , base   >=4.20.0.0 && <5
+    , aeson      ^>=2.2.3.0
+    -- , anglo      ^>=0.2.0.0
+    , base       ^>=4.20.0.0
+    , bytestring ^>=0.12.2.0
+    , text       ^>=2.1.2
 
 executable anglo-dev
   import:         shared-properties
   ghc-options:    -Wwarn
   hs-source-dirs: lib src
   main-is:        Main.hs
-  other-modules:  Word
+  other-modules:
   build-depends:
-    , aeson
-    , base         >=4.20.0.0 && <5
-    , containers
-    , MonadRandom
-    , mtl
+    , aeson        ^>=2.2.3.0
+    , base         ^>=4.20.0.0
+    , bytestring   ^>=0.12.2.0
+    -- , containers   ^>=0.7
+    -- , MonadRandom  ^>=0.6.1
+    -- , mtl          ^>=2.3.1
+    , text         ^>=2.1.2
 
 test-suite anglo-test
   import:             shared-properties
@@ -79,12 +85,12 @@ test-suite anglo-test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , anglo
-    , base        >=4.20.0.0 && <5
-    , hspec
-    , QuickCheck
+    -- , anglo       ^>=0.2.0.0
+    -- , base        ^>=4.20.0.0
+    , hspec       ^>=2.11.10
+    -- , QuickCheck  ^>=2.15.0.1
 
   build-tool-depends: hspec-discover:hspec-discover
 
--- , hspec-core
--- , hspec-expectations
+-- , hspec-core ^>=2.11.10
+-- , hspec-expectations ^>=0.8.4

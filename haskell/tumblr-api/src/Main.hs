@@ -5,7 +5,7 @@ module Main (main) where
 import Configuration.Dotenv
 import Control.Monad
 import Control.Monad.Reader
-import Control.Monad.Trans.Resource
+import Control.Monad.Resource
 import Data.ByteString.Char8
 import Data.Functor.Compose
 import Network.HTTP.Conduit         qualified as NetConduit

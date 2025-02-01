@@ -4,7 +4,6 @@ import Control.Arrow
 import Control.Monad.Random
 import Data.Biapplicative
 import Data.List            (intercalate)
-import Data.Maybe
 
 main ∷ IO ()
 main = pure ()
@@ -31,9 +30,6 @@ bimapBoth f = bimap f f
 
 (.:) ∷ (c → d) → (a → b → c) → a → b → d
 (.:) = (.) (.) (.)
-
-(!?) ∷ [a] → Int → Maybe a
-xs !? i = if length xs > i then Just (xs !! i) else Nothing
 
 -- stolen from yjtools
 apply2way ∷ (a → b → c) → (d → a) → (d → b) → d → c
@@ -99,7 +95,7 @@ validMoves ∷ Coords → [Coords]
 validMoves = filter validCoords . allMovesFrom
 
 nextEl ∷ El → El
-nextEl = succ
+nextEl = undefined
 
 move ∷ (MonadRandom m) ⇒ Move → Board → m (Maybe (Move, Board))
 move (lastMoveElement, lastMoveCoords) board = do
@@ -132,10 +128,10 @@ moveAndRender (el, coord) board2 = do
     putStrLn $ "Move " <> show el
     putStrLn $ renderBoard board2
     mmb <- move (el, coord) board2
-    if isNothing mmb
-        then putStrLn "Done"
-        else do
-            let (lastMove, lastBoard) = fromJust mmb
+    case mmb of
+        Nothing -> putStrLn "Done"
+        Just mb -> do
+            let (lastMove, lastBoard) = mb
             moveAndRender lastMove lastBoard
 
 renderBoard ∷ Board → String

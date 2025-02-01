@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               tumblr-api
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -16,14 +16,15 @@ executable tumblr-api
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base          >=4.20.0.0 && <5
-    , bytestring
-    , dotenv
-    , http-conduit
+    , base          ^>=4.20.0.0
+    , bytestring    ^>=0.12.2.0
+    , dotenv        ^>=0.12.0.0
+    , http-conduit  ^>=2.3.9.1
     , humblr
-    , mtl
-    , resourcet
+    , mtl           ^>=2.3.1
+    , resourcet     ^>=1.3.0
 
+  -- TODO find version
   hs-source-dirs:     src
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N

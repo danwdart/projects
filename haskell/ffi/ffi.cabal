@@ -1,6 +1,6 @@
 cabal-version:   3.4
 name:            ffi
-version:         0.1.0.0
+version:         0.2.0.0
 synopsis:        Some FFI demos
 description:     Some FFI demos
 license:         AGPL-3.0-or-later
@@ -35,7 +35,7 @@ common shared-properties-lib
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -50,7 +50,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base ^>=4.20.0.0
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -78,7 +78,7 @@ common shared-properties-nobase
 --   -- extra-libraries: pthread
 --   -- other-modules:
 --   -- other-extensions:
---   build-depends:   base >=4.20.0.0
+--   build-depends:   base ^>=4.20.0.0
 --   hs-source-dirs:  lib
 
 -- foreign library is when you want to import a haskell library using a wrapper into something C-like
@@ -91,7 +91,7 @@ foreign-library haskelldemo_withhelper
 
   c-sources:         cbits/hswrapper.c
   cpp-options:       -DMODULE=libHSDemo_withhelper
-  build-depends:     base >=4.20.0.0
+  build-depends:     base ^>=4.20.0.0
 
   -- lib-version-info: 0:0:0
   lib-version-linux: 0.0.0
@@ -106,7 +106,7 @@ foreign-library haskelldemo
     options: standalone
 
   cpp-options:       -DMODULE=libHSDemo
-  build-depends:     base >=4.20.0.0
+  build-depends:     base ^>=4.20.0.0
 
   -- lib-version-info: 0:0:0
   lib-version-linux: 0.0.0
@@ -115,7 +115,7 @@ foreign-library haskelldemo
 
 -- executable ffihstoc
 --   import:          shared-properties-unsafe
---   build-depends:   base >=4.20.0.0
+--   build-depends:   base ^>=4.20.0.0
 --   -- c-sources:
 --   --   src/libdemo.c
 --   extra-libraries: libdemo
@@ -125,8 +125,8 @@ foreign-library haskelldemo
 executable dlhstoc
   import:         shared-properties-unsafe
   build-depends:
-    , base  >=4.20.0.0
-    , unix
+    , base  ^>=4.20.0.0
+    , unix  ^>=2.8.6.0
 
   -- c-sources:
   --   src/libdemo.c
@@ -138,7 +138,7 @@ executable dlhstoc
 
 -- executable ffi
 --   import:          shared-properties-unsafe
---   build-depends:   base >=4.20.0.0
+--   build-depends:   base ^>=4.20.0.0
 --   -- other-libraries: libdemo
 --   hs-source-dirs:  src
 --   main-is:         Main.hs
@@ -151,9 +151,9 @@ executable dlhstoc
 --   default-extensions:
 ------     UnicodeSyntax
 --   build-depends:
---     , base            >=4.20.0.0 && <5
+--     , base            ^>=4.20.0.0
 --     , ffi-quickcheck
---     , hspec
---     , QuickCheck
+--     , hspec                 ^>=2.11.10
+--     , QuickCheck ^>=2.15.0.1
 --   build-tool-depends: hspec-discover:hspec-discover
 --   other-modules:      Queue.ForeignSpec

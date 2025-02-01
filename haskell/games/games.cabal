@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               games
-version:            0.1.0.0
+version:            0.2.0.0
 homepage:           https://github.com/danwdart/projects#readme
 license:            AGPL-3.0-only
 author:             Dan Dart
@@ -17,8 +17,8 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base      >=4.20.0.0 && <5
-    , lattices
+    , base      ^>=4.20.0.0
+    , lattices  ^>=2.2.1
 
   exposed-modules:
     Control.Exception.RangeException
@@ -40,7 +40,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -56,94 +56,95 @@ executable 1010
   import:        shared-properties
   main-is:       1010.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , containers
+    , base        ^>=4.20.0.0
+    , containers  ^>=0.7
 
 executable 10x10grid
   import:        shared-properties
   main-is:       10x10grid.hs
   build-depends:
-    , base         >=4.20.0.0 && <5
-    , bifunctors
-    , MonadRandom
+    , base         ^>=4.20.0.0
+    , bifunctors   ^>=5.6.2
+    , MonadRandom  ^>=0.6.1
 
 executable 2048
   import:        shared-properties
   main-is:       2048.hs
   build-depends:
-    , base         >=4.20.0.0 && <5
-    , MonadRandom
+    , base         ^>=4.20.0.0
+    , MonadRandom  ^>=0.6.1
 
 executable bounce
   import:        shared-properties
   main-is:       bounce.hs
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base ^>=4.20.0.0
 
 -- executable bingo
 --   import:        shared-properties
 --   main-is:       bingo.hs
 --   build-depends:
---     , base         >=4.20.0.0 && <5
---     -- , fakedata >= 1.0.3
---     -- , games
---     , MonadRandom
---     , mtl
---     , random-shuffle
---     -- , text
---     -- , text-display
---     -- , vector
+--     , base         ^>=4.20.0.0
+--     -- , fakedata ^>= 1.0.3
+--     -- , games ^>=0.2.0.0
+--     , MonadRandom ^>=0.6.1
+--     , mtl                  ^>=2.3.1
+--     , random-shuffle ^>=0.0.4
+--     -- , text        ^>=2.1.2
+--     -- , text-display ^>=1.0.0.0
+--     -- , vector ^>=0.13.2.0
 
 executable countdown
   import:        shared-properties
   main-is:       countdown.hs
   build-depends:
-    , base          >=4.20.0.0 && <5
-    , games
-    , text
-    , text-display
+    , base                 ^>=4.20.0.0
+    , games                ^>=0.2.0.0
+    , text                 ^>=2.1.2
+    , text-builder-linear  ^>=0.1.3
+    , text-display         ^>=1.0.0.0
 
--- , MonadRandom
--- , mtl
+-- , MonadRandom ^>=0.6.1
+-- , mtl                  ^>=2.3.1
 executable frog
   import:        shared-properties
   main-is:       frog.hs
   build-depends:
-    , base         >=4.20.0.0 && <5
-    , containers
-    , MonadRandom
+    , base         ^>=4.20.0.0
+    , containers   ^>=0.7
+    , MonadRandom  ^>=0.6.1
 
 executable hangman
   import:        shared-properties
   main-is:       hangman.hs
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base ^>=4.20.0.0
 
 --executable razzledazzle
 --  hs-source-dirs:      src
 --  main-is:             razzledazzle.hs
---  --  build-depends:       base >= 4.19.1.0 && < 5, monad-loops, probability, random, rando, utility-ht
+--  --  build-depends:       base ^>=4.20.0.0, monad-loops, probability, random, rando, utility-ht ^>=0.0.17.2
 
 executable snl
   import:        shared-properties
   main-is:       snl.hs
   build-depends:
-    , ansi-terminal
-    , base           >=4.20.0.0 && <5
-    , containers
-    , lens
-    , MonadRandom
-    , mtl
+    , ansi-terminal  ^>=1.1.2
+    , base           ^>=4.20.0.0
+    , containers     ^>=0.7
+    , lens           ^>=5.3.3
+    , MonadRandom    ^>=0.6.1
+    , mtl            ^>=2.3.1
 
--- aeson, protobuf, random, yaml
+-- aeson, protobuf, random, yaml ^>=0.11.11.2
 
 executable sudoku
   import:        shared-properties
   main-is:       sudoku.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , containers
-    , extra
-    , games
-    , vector
+    , base        ^>=4.20.0.0
+    , containers  ^>=0.7
+    , extra       ^>=1.8
+    , games       ^>=0.2.0.0
+    , vector      ^>=0.13.2.0
 
 executable sudoku-dev
   import:         shared-properties
@@ -152,16 +153,16 @@ executable sudoku-dev
   main-is:        sudoku.hs
   other-modules:  Propagator
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , containers
-    , extra
-    , lattices
-    , vector
+    , base        ^>=4.20.0.0
+    , containers  ^>=0.7
+    , extra       ^>=1.8
+    , lattices    ^>=2.2.1
+    , vector      ^>=0.13.2.0
 
 executable yesyes
   import:        shared-properties
   main-is:       yesyes.hs
-  build-depends: base >=4.20.0.0 && <5
+  build-depends: base ^>=4.20.0.0
 
 test-suite games-test
   import:             shared-properties
@@ -172,12 +173,12 @@ test-suite games-test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , games
-    , hspec
-    , QuickCheck
+    , base        ^>=4.20.0.0
+    , games       ^>=0.2.0.0
+    , hspec       ^>=2.11.10
+    , QuickCheck  ^>=2.15.0.1
 
   build-tool-depends: hspec-discover:hspec-discover
 
--- , hspec-core
--- , hspec-expectations
+-- , hspec-core ^>=2.11.10
+-- , hspec-expectations ^>=0.8.4

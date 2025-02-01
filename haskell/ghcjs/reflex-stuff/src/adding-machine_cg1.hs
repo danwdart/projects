@@ -49,7 +49,7 @@ handleEvent event (accumulator, display) =
     DigitPressed digit -> (accumulator', display')
       where
         accumulator' = accumulator * 10 + fromIntegral digit
-        display' = tshow accumulator'
+        display' = T.show accumulator'
     ClearPressed -> (pure 0, pure "0")
       where
         accumulator'' f acc display' = f acc (read . T.unpack $ display')

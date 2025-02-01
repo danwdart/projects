@@ -8,14 +8,15 @@ module Main (main) where
 import Data.Aeson             qualified as A
 import Data.Aeson.Types
 import Data.ByteString.Base64 qualified as B64
-import Data.ByteString.Char8  qualified as B
-import Data.ByteString.Lazy   qualified as BL
+import Data.ByteString.Char8  qualified as BS
+import Data.ByteString.Lazy   qualified as BSL
 import Data.Either
 import Data.Foldable
 import Data.Maybe
 import Data.Text              (Text)
 import Data.Text              qualified as T
 import Data.Text.Encoding     qualified as TE
+import Data.Text.IO           qualified as TIO
 import Data.Time
 import Data.UUID.Types        (UUID)
 import GHC.Generics
@@ -52,12 +53,12 @@ prettyPrintMachine a          = a
 prettyPrintSite ∷ Id → Text
 prettyPrintSite (Id 60502008)  = "Co-Op Shepton Mallet"
 prettyPrintSite (Id 600022459) = "Tesco Shepton Mallet"
-prettyPrintSite (Id a)         = T.pack (show a)
+prettyPrintSite (Id a)         = T.show a
 
 prettyPrintKey ∷ Id → Text
 prettyPrintKey (Id 119301018123828) = "Co-Op Shepton Mallet"
 prettyPrintKey (Id 114141220125232) = "Tesco Shepton Mallet"
-prettyPrintKey (Id a)               = T.pack (show a)
+prettyPrintKey (Id a)               = T.show a
 
 -- @TODO parse properly
 prettyPrintDrink ∷ Text → Text
@@ -75,7 +76,7 @@ prettyPrintCoffee Coffee {..} =
     "Machine = " <> prettyPrintMachine machineNo <>
     ", price = " <> currency <> " " <> T.pack (printf "%.2g" ((fromIntegral amount :: Double) / 100) :: String) <>
     ", key = from " <> prettyPrintKey keyId <>
-    ", GUID = " <> T.pack (show guid) <>
+    ", GUID = " <> T.show guid <>
     ", drink = " <> prettyPrintDrink drinkId <>
     ", time = " <> timestamp <>
     ", site = " <> prettyPrintSite siteId
@@ -83,23 +84,26 @@ prettyPrintCoffee Coffee {..} =
 main ∷ IO ()
 main = do
     files <- getArgs
-    toRead <- if null files || "-" == head files
+    toRead <- TE.decodeUtf8Lenient <$> if null files || "-" == head files
         then
-            getContents
+            BS.getContents
         else
-            readFile $ head files
-    traverse_ ((\jwt -> do
+            BS.readFile $ head files
+    for_ (T.lines toRead) $ \jwt -> do
         let jwtSegments = T.split (== '.') jwt
         -- let jwtToDecode = T.intercalate "." $ tail jwtSegments
         -- print jwtToDecode
-        let jsonBase64 = jwtSegments !! 2
+        let jsonBase64 = (case drop 2 jwtSegments of
+               x : _ -> x
+               []    -> error "Not at least 3 segments - todo print error properly")
         let eitherJson = B64.decode (TE.encodeUtf8 jsonBase64)
         case eitherJson of
             Right json -> do
-                let decodedCoffee = A.eitherDecode (BL.fromStrict json) :: Either String Coffee
+                let decodedCoffee = A.eitherDecode (BSL.fromStrict json) :: Either String Coffee
                 -- print decodedCoffee
-                (putStrLn . T.unpack) (either (const "") prettyPrintCoffee decodedCoffee)
+                case decodedCoffee of
+                    Left _  -> pure ()
+                    Right t -> TIO.putStrLn . prettyPrintCoffee $ t
                 -- let decoded = JWT.decode jwtToDecode
                 -- print decoded
-            _ -> putStrLn "Error decoding JSON"
-        ) . T.pack) (lines toRead)
+            _ -> TIO.putStrLn "Error decoding JSON"

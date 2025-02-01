@@ -14,4 +14,4 @@ data Board = Board {
 $(makeClassy ''Board)
 
 instance Show Board where
-    show (Board sp fpm) = "Board (spaces: " <> (show (head sp) <> ("Free Parking Money: " <> show fpm))
+    show (Board sp fpm) = "Board (spaces: " <> show sp <> "Free Parking Money: " <> show fpm

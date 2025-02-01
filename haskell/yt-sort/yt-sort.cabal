@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               yt-sort
-version:            0.1.0.0
+version:            0.2.0.0
 
 -- synopsis:
 -- description:
@@ -20,7 +20,7 @@ extra-source-files: README.md
 common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -39,10 +39,10 @@ common shared-properties
 ------     UnicodeSyntax
 -- 
 --   build-depends:
---     , base           >=4.20.0.0 && <5
---     , gogol
---     , gogol-youtube
---     , lens
+--     , base           ^>=4.20.0.0
+--     , gogol ^>=0.5.0
+--     , gogol-youtube ^>=0.5.0
+--     , lens                 ^>=5.3.3
 -- 
 --   ghc-options:
 --     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
@@ -62,12 +62,12 @@ executable yt-sort
   import:         shared-properties
   hs-source-dirs: src
   main-is:        Main.hs
-  build-depends:  base >=4.20.0.0 && <5
+  build-depends:  base ^>=4.20.0.0
 
--- , gogol
--- , gogol-youtube
--- , lens
--- , text
+-- , gogol ^>=0.5.0
+-- , gogol-youtube ^>=0.5.0
+-- , lens                 ^>=5.3.3
+-- , text        ^>=2.1.2
 
 -- test-suite yt-sort-test
 --   ghc-options:
@@ -91,10 +91,10 @@ executable yt-sort
 --   default-extensions:
 ------     UnicodeSyntax
 -- 
---   build-depends:      hspec
+--   build-depends:      hspec ^>=2.11.10
 
---   base >= 4.19.1.0 && < 5
--- , yt-sort
--- , hspec-core
--- , hspec-expectations
--- , QuickCheck
+--   base ^>=4.20.0.0
+-- , yt-sort ^>=0.2.0.0
+-- , hspec-core ^>=2.11.10
+-- , hspec-expectations ^>=0.8.4
+-- , QuickCheck ^>=2.15.0.1

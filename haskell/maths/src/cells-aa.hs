@@ -37,7 +37,7 @@ lookupDefault def key list = fromMaybe def $ lookup key list -- todo eta
 
 -- Alternatively we can use a non-fmap-type operation to traverse real lists. Hmm... I wonder how we might do that.
 
--- For each bit of the imput, determine whether it will be turned on based on the patterns of it and its neighbours.
+-- For each bit of the input, determine whether it will be turned on based on the patterns of it and its neighbours.
 -- for each bit:
     -- get the number of the pattern around it n, and check the nth bit of the rule to see whether to persist the bit..
     -- e.g. bit 3, 4, 5 have  1, 1, 0 turned on. 110 is 6 and bit 6 of the rule is 1, so set bit 4 of the output to 1.
@@ -48,8 +48,7 @@ iterate rule val = fromBinary $ fmap (
             lookupDefault 0 index ixBinRep,
             lookupDefault 0 (index + 1) ixBinRep
             ]
-    ) ixBinRep
-    where
+    ) ixBinRep where
         ixBinRule ∷ [(Int, Int)]
         ixBinRule = toIndexed binRule
         binRule ∷ [Int]

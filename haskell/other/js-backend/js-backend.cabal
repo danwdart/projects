@@ -1,6 +1,6 @@
 cabal-version:   3.4
 name:            js-backend
-version:         0.1.0.0
+version:         0.2.0.0
 
 -- synopsis:
 -- description:
@@ -30,9 +30,10 @@ library
   -- other-modules:
   -- other-extensions:
   build-depends:
-    , base              >=4.20.0.0
-    , template-haskell
+    , base              ^>=4.20.0.0
+    , template-haskell  ^>=2.22.0
 
+  -- for ghc 9.10.1
   hs-source-dirs:     lib
   default-language:   GHC2024
   default-extensions:
@@ -49,9 +50,9 @@ executable for-node
 
   -- other-extensions:
   build-depends:
-    , aeson
-    , base        >=4.20.0.0
-    , js-backend
+    , aeson       ^>=2.2.3.0
+    , base        ^>=4.20.0.0
+    , js-backend  ^>=0.2.0.0
 
   hs-source-dirs:     src
   default-language:   GHC2024
@@ -68,9 +69,9 @@ executable for-browser
 
   -- other-extensions:
   build-depends:
-    , aeson
-    , base        >=4.20.0.0
-    , js-backend
+    , aeson       ^>=2.2.3.0
+    , base        ^>=4.20.0.0
+    , js-backend  ^>=0.2.0.0
 
   hs-source-dirs:     src
   default-language:   GHC2024
@@ -96,7 +97,7 @@ test-suite js-backend-test
   hs-source-dirs:     test
   main-is:            Main.hs
   build-depends:
-    , base        >=4.20.0.0
-    , js-backend
+    , base        ^>=4.20.0.0
+    , js-backend  ^>=0.2.0.0
 
   build-tool-depends: hspec-discover:hspec-discover

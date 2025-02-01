@@ -1,29 +1,37 @@
+{-# LANGUAGE DeriveAnyClass  #-}
+{-# LANGUAGE OverloadedLists #-}
+{-# OPTIONS_GHC -Wno-orphans #-}
+
 module Main (main) where
 
+import Data.Aeson
+import Data.Aeson.Types
+import Data.ByteString.Char8 (ByteString)
+-- import Data.ByteString.Char8 qualified as BS
+import Data.Text.Encoding
+import GHC.Generics
+
+data WordsVC = WordsVC {
+    vowels     :: [ByteString],
+    consonants :: [ByteString]
+} deriving stock (Show)
+
+instance FromJSON ByteString where
+    parseJSON (String a) = pure (encodeUtf8 a)
+    parseJSON a = typeMismatch "String" a
+
+instance FromJSON WordsVC where
+    parseJSON (Array [vs, cs]) = WordsVC <$> parseJSON vs <*> parseJSON cs
+    parseJSON other = typeMismatch "Array" other
+
+data WordData = WordData {
+    start  :: WordsVC,
+    middle :: WordsVC,
+    end    :: WordsVC
+} deriving stock (Show, Generic)
+    deriving anyclass (FromJSON)
+
 main ∷ IO ()
-main = pure ()
-
-{-
-
-#!/usr/bin/env node
-
-var fs = require('fs'),
-    Word = require('./word'),
-    argv = process.argv,
-    // Number casting is more efficient than parseInt()...
-    nPhonemes = Number(argv[2]),
-    lang = argv[3],
-    phonemes = JSON.parse(fs.readFileSync(__dirname+'/lang/'+(('undefined' == typeof lang)?'en_GB':String(lang))+'.json')),
-    strWord;
-
-// ... but still requires some error checking
-if ('number' !== typeof nPhonemes || isNaN(nPhonemes)) {
-    console.log('Usage: '+argv[1]+' (number of phonemes) [lang e.g. en_GB]');
-    return process.exit(1);
-}
-
-strWord = Word(nPhonemes, phonemes);
-
-console.log(strWord);
-
--}
+main = do
+    worddata <- decodeFileStrict' "lang/en_GB.json" :: IO (Maybe WordData)
+    print worddata

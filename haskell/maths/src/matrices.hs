@@ -140,7 +140,7 @@ class IndexedMatrix2D index entry matrix | matrix -> entry where
 
 newtype MatrixList2D a = MatrixList2D (LNE.NonEmpty (LNE.NonEmpty a))
     deriving stock (Eq, Show)
-
+{-}
 instance (Num a, Zero a) ⇒ Matrix2D a (MatrixList2D a) where
     createDefault defVal (Size2D { width = Width width', height = Height height' }) = MatrixList2D .
         LNE.fromList .
@@ -151,6 +151,7 @@ instance (Num a, Zero a) ⇒ Matrix2D a (MatrixList2D a) where
     to2DListOfEntries = undefined
     size = undefined
     getEntry = undefined
+-}
 
 newtype MatrixListIndexed2D i a = MatrixListIndexed2D (LNE.NonEmpty (i, LNE.NonEmpty (i, a)))
     deriving stock (Eq, Show)

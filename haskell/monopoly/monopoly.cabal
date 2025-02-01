@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               monopoly
-version:            0.1.0.0
+version:            0.2.0.0
 homepage:           https://github.com/danwdart/projects#readme
 license:            AGPL-3.0-only
 author:             Dan Dart
@@ -17,10 +17,10 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base         >=4.20.0.0 && <5
-    , containers
-    , lens
-    , MonadRandom
+    , base         ^>=4.20.0.0
+    , containers   ^>=0.7
+    , lens         ^>=5.3.3
+    , MonadRandom  ^>=0.6.1
 
   exposed-modules:
     Game.Monopoly.Addons
@@ -52,7 +52,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -66,13 +66,13 @@ executable monopoly
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base        >=4.20.0.0 && <5
-    , containers
-    , monopoly
+    , base        ^>=4.20.0.0
+    , containers  ^>=0.7
+    , monopoly    ^>=0.2.0.0
 
--- , lens
--- , MonadRandom
--- , random
+-- , lens                 ^>=5.3.3
+-- , MonadRandom ^>=0.6.1
+-- , random ^>=1.3.0
 
 test-suite monopoly-test
   -- import:             shared-properties
@@ -82,11 +82,11 @@ test-suite monopoly-test
   other-modules:
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      hspec
+  build-depends:      hspec ^>=2.11.10
 
-  -- , base        >=4.20.0.0 && <5
-  -- , monopoly
-  -- , QuickCheck
-  -- , hspec-core
-  -- , hspec-expectations
+  -- , base        ^>=4.20.0.0
+  -- , monopoly ^>=0.2.0.0
+  -- , QuickCheck ^>=2.15.0.1
+  -- , hspec-core ^>=2.11.10
+  -- , hspec-expectations ^>=0.8.4
   build-tool-depends: hspec-discover:hspec-discover

@@ -1,5 +1,3 @@
-{-# LANGUAGE Safe #-}
-
 module Propagator (Cell(), cell, lift, lift2, write, content) where
 
 import Algebra.Lattice

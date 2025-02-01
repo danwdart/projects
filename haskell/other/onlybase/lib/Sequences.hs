@@ -11,9 +11,7 @@ continueSequence1 _ [x]        = [x]
 continueSequence1 _ []         = []
 
 makeSeq ∷ (Integer → Integer → Integer) → [Integer] → [[Integer]]
-makeSeq fn nums = reverse (case tails nums of
-  _ : xs -> xs
-  []     -> error _) <> iterate (continueSequence1 fn) nums
+makeSeq fn nums = reverse (tail (tails nums)) <> iterate (continueSequence1 fn) nums
 
 fibonacci ∷ [[Integer]]
 fibonacci = makeSeq (+) [1, 1]

@@ -34,11 +34,11 @@ infixr 9 >---
 combineCont ∷ (d → e → f) → ((d → a) → b) → ((e → c) → a) → (f → c) → b
 combineCont k f1 f2 a = f1 $ f2 . a ... k
 
-(%) ∷ ((String → a) → b) → ((String → c) → a) → (String → c) → b
-(%) = combineCont (++)
+(+.+) ∷ ((String → a) → b) → ((String → c) → a) → (String → c) → b
+(+.+) = combineCont (++)
 
 main ∷ IO ()
 main = do
     runCont (fnC "foo") print
-    runCont printf (undefined) 10 "hi"
-    runCont printf (undefined) "my" "name" "bob"
+    runCont printf (fnD +.+ ($)) 10 "hi"
+    runCont printf (($) +.+ ($) +.+ ($)) "my" "name" "bob"

@@ -2,7 +2,7 @@ cabal-version:      3.0
 
 -- Newer versions complain
 name:               projecteuler
-version:            0.1.0.0
+version:            0.2.0.0
 
 -- synopsis:
 -- description:
@@ -21,7 +21,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -38,8 +38,8 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , primes
+    , base    ^>=4.20.0.0
+    , primes  ^>=0.2.1.0
 
   ghc-options:
     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
@@ -63,8 +63,8 @@ library
 executable projecteuler
   import:             shared-properties
   build-depends:
-    , base          >=4.20.0.0
-    , projecteuler
+    , base          ^>=4.20.0.0
+    , projecteuler  ^>=0.2.0.0
 
   main-is:            Main.hs
   hs-source-dirs:     src
@@ -87,5 +87,5 @@ test-suite projecteuler-test
   other-modules:
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      hspec
+  build-depends:      hspec ^>=2.11.10
   build-tool-depends: hspec-discover:hspec-discover

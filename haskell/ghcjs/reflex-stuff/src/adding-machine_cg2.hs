@@ -60,8 +60,5 @@ displayInput events = do
       setInt = ("type" =: "number") <> ("step" =: "1")
       setMin = "min" =: "0"
       attrs = constDyn $ setInt <> setMin
-  display events initialValue $ \x -> inputElement $ def & inputElementConfig_initialValue .~ tshow x
-                                                           & inputElementConfig_setValue .~ fmap tshow events
-
-tshow ∷ Show a ⇒ a → Text
-tshow = T.pack . show
+  display events initialValue $ \x -> inputElement $ def & inputElementConfig_initialValue .~ T.show x
+                                                           & inputElementConfig_setValue .~ fmap T.show events

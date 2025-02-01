@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               whatcoffee
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -16,14 +16,14 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , aeson
-    , base               >=4.20.0.0 && <5
-    , base64-bytestring
-    , bytestring
-    , jwt
-    , text
-    , time
-    , uuid-types
+    , aeson              ^>=2.2.3.0
+    , base               ^>=4.20.0.0
+    , base64-bytestring  ^>=1.2.1.0
+    , bytestring         ^>=0.12.2.0
+    , jwt                ^>=0.11.0
+    , text               ^>=2.1.2
+    , time               ^>=1.14
+    , uuid-types         ^>=1.0.6
 
   exposed-modules:
   ghc-options:
@@ -42,13 +42,13 @@ executable whatcoffee
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , aeson
-    , base               >=4.20.0.0 && <5
-    , base64-bytestring
-    , bytestring
-    , text
-    , time
-    , uuid-types
+    , aeson              ^>=2.2.3.0
+    , base               ^>=4.20.0.0
+    , base64-bytestring  ^>=1.2.1.0
+    , bytestring         ^>=0.12.2.0
+    , text               ^>=2.1.2
+    , time               ^>=1.14
+    , uuid-types         ^>=1.0.6
 
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N

@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               peoplemanager
-version:            0.1.0.0
+version:            0.2.0.0
 synopsis:           People Manager Game
 description:        Game to manage people
 
@@ -29,16 +29,16 @@ executable peoplemanager
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base         >=4.20.0.0 && <5
-    , containers
-    , fakedata     >=1.0.3
-    , MonadRandom
-    , text
-    , time
-    , uuid
+    , base         ^>=4.20.0.0
+    , containers   ^>=0.7
+    , fakedata     ^>=1.0.3
+    , MonadRandom  ^>=0.6.1
+    , text         ^>=2.1.2
+    , time         ^>=1.14
+    , uuid         ^>=1.3.16
 
-  -- , brick
-  -- , vector
+  -- , brick ^>=2.7
+  -- , vector ^>=0.13.2.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists

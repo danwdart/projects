@@ -72,7 +72,7 @@ btn main n p = mdo
             )
             ]
             ) dPressed
-        ) . text . T.pack . show $ (n :: Int)
+        ) . text . T.show $ (n :: Int)
 
     let eClick = domEvent Click btn
     let eKeyDown = keydown ((!! p) . Prelude.head $ numberKeys) main

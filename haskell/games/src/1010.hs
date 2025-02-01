@@ -3,11 +3,12 @@
 
 module Main (main) where
 
-import Data.Map    (Map)
-import Data.Map    qualified as M
+import Data.Foldable
+import Data.Map      (Map)
+import Data.Map      qualified as M
 import Data.Monoid
-import Data.Set    (Set)
-import Data.Set    qualified as S
+import Data.Set      (Set)
+import Data.Set      qualified as S
 
 height, width ∷ Int
 height = 10
@@ -43,7 +44,7 @@ placeSquare coord board@(Board coords) = if hasSquare coord board
     else Just $ Board (S.insert coord coords)
 
 foldMapA ∷ (Foldable t, Applicative f, Monoid b) ⇒ (a → f b) → t a → f b
-foldMapA f = getAp . foldMap (Ap . f)
+foldMapA f = getAp . foldMap' (Ap . f)
 
 moveTile ∷ Coord → Tile → Tile
 moveTile coord (Tile coords) = Tile (S.map (<> coord) coords)

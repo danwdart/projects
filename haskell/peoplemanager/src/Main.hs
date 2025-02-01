@@ -42,7 +42,7 @@ data ADHDType = PrimarilyHyperactive | PrimarilyInattentive
 data AnxietyType = Generalised | SituationalAnxiety
     deriving stock (Eq, Show, Ord) -- just so we can shove it in a Set
 
-data AutismLevel = HighFunctioning | MidFunctioning | LowFunctioning
+data AutismLevel = L1 | L2 | L3
     deriving stock (Eq, Show, Ord) -- just so we can shove it in a Set
 
 data DepressionType = Clinical | SituationalDepression

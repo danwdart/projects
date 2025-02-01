@@ -1,5 +1,7 @@
 module Main (main) where
 
+import Data.Foldable
+
 -- import Data.Foldable
 
 {-

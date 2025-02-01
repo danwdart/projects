@@ -1,9 +1,9 @@
-module Main where
+module Main (main) where
 
 import Control.Monad.Cont
 import Control.Monad.Except
 import Control.Monad.IO.Class
-import Control.Monad.Maybe
+import Control.Monad.Trans.Maybe
 
 shortcutMaybe ∷ Maybe String
 shortcutMaybe = do
@@ -45,8 +45,8 @@ shortcutEither = do
 
 shortcutEitherError ∷ (MonadError String m) ⇒ m Int
 shortcutEitherError = do
-    let a = 12
-    let c = 24
+    let a = 12 :: Int
+    let c = 24 :: Int
     d <- throwError "Nah"
     pure $ a + c + d
 
@@ -59,8 +59,8 @@ shortcutExcept = do
 
 shortcutExceptError ∷ (MonadError String m) ⇒ m Int
 shortcutExceptError = do
-    let a = 12
-    let c = 24
+    let a = 12 :: Int
+    let c = 24 :: Int
     d <- throwError "Nah"
     pure $ a + c + d
 

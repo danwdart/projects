@@ -1,6 +1,6 @@
 cabal-version:      2.4
 name:               cards-ui
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -20,7 +20,7 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.14.3.0 && <5
+  build-depends:      base >=4.14.3.0 && <4.22.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -35,11 +35,11 @@ common shared-properties
 library
   hs-source-dirs: lib
   import:         shared-properties
-  build-depends:  base >=4.14.3.0 && <5
+  build-depends:  base >=4.14.3.0 && <4.22.0.0
 
 executable cards-ui
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base        >=4.14.3.0 && <5
-    , reflex-dom
+    , base        >=4.14.3.0 && <4.22.0.0
+    , reflex-dom  ^>=0.6.3.3

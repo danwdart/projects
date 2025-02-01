@@ -2,7 +2,7 @@ cabal-version:      3.4
 
 -- Newer versions complain
 name:               reflex-headless
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -16,7 +16,7 @@ common shared-properties
     DerivingStrategies
     UnicodeSyntax
 
-  build-depends:      base >=4.20.0.0 && <5
+  build-depends:      base ^>=4.20.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -32,13 +32,13 @@ executable reflex
   import:        shared-properties
   main-is:       reflex.hs
   build-depends:
-    , base    >=4.20.0.0 && <5
-    , reflex
+    , base    ^>=4.20.0.0
+    , reflex  ^>=0.9.3.3
 
 executable minishop
   import:        shared-properties
   main-is:       minishop.hs
   build-depends:
-    , ansi-terminal
-    , base           >=4.20.0.0 && <5
-    , reflex
+    , ansi-terminal  ^>=1.1.2
+    , base           ^>=4.20.0.0
+    , reflex         ^>=0.9.3.3

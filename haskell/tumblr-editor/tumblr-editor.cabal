@@ -2,7 +2,7 @@ cabal-version:      3.0
 
 -- Newer versions complain
 name:               tumblr-editor
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -14,9 +14,9 @@ executable tumblr-editor
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base       >=4.20.0.0 && <5
-    , text
-    , webdriver  >=0.11.0.0
+    , base       ^>=4.20.0.0
+    , text       ^>=2.1.2
+    , webdriver  ^>=0.12.0.1
 
   hs-source-dirs:     src
   ghc-options:

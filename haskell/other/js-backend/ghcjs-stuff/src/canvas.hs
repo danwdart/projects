@@ -30,9 +30,8 @@ line (x1, y1) (x2, y2) ctx = do
 -- e.g. [1,2,3] -> [(1, 2), (2, 3)]
 -}
 pairs ∷ [a] → [(a,a)]
-pairs a = zip a (case a of
-   _ : xs -> xs
-   []     -> error _)
+pairs a@(_:as) = zip a as
+pairs _ = []
 
 -- like Graphics.Gnuplot.Plot.ThreeDimensional.functionToGraph
 zipFn ∷ (a → b) → [a] → [(a, b)]

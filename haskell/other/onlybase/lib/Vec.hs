@@ -105,9 +105,7 @@ head (x :> _) = x
 --     (bound at /home/dwd/code/mine/multi/projects/haskell/other/onlybase/lib/Vec.hs:87:2)
 init ∷ Vec ('Succ n) a → Vec n a
 init (_ :> Nil)         = Nil
-init (x :> xs@(_ :> _)) = x :> (case reverse xs of
-   _ : xs -> reverse xs
-   []     -> error _)
+init (x :> xs@(_ :> _)) = x :> init xs
 
 -- >>> map succ $ 1 :> 2 :> Nil
 -- 2 :> (3 :> Nil)

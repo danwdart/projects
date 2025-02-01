@@ -7,7 +7,7 @@ import Control.Monad
 main ∷ IO ()
 main = do
     print $ dupMonad (+) 12
-    print $ bindFnInt undefined (+) 2
+    print $ bindFnInt succ (+) 2
 
 {-
  $> :t join @((->) Int)

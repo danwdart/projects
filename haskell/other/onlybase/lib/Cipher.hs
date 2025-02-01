@@ -27,9 +27,7 @@ cipherChar ∷ Int → Char → Maybe Char
 cipherChar n c = toChar n <$> index c
 
 modIndex ∷ Int → [a] → a
-modIndex i xs = case drop (i `mod` length xs) xs of
-  x : _ -> x
-  []    -> error _
+modIndex i xs = xs !! (i `mod` length xs)
 
 toChar ∷ Int → Letter Int → Char
 toChar i (Consonant n) = modIndex (n + i) consonants

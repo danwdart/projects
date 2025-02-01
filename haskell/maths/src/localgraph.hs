@@ -3,6 +3,7 @@
 module Main (main) where
 
 import Control.Concurrent
+import Control.Concurrent.Async
 import Data.Graph.DGraph
 import Data.Graph.Inductive.Graph
 import Data.Graph.Inductive.PatriciaTree
@@ -107,7 +108,7 @@ main = pure ()
 plotUGraphEdged ∷ (Hashable v, Ord v, PrintDot v, Show v, Show e)
  ⇒ UGraph v e
  → IO ThreadId
-plotUGraphEdged g = forkIO $ runGraphvizCanvas Sfdp (toUndirectedDot True g) Xlib
+plotUGraphEdged g = runGraphvizCanvas Sfdp (toUndirectedDot True g) Xlib
 
 labeledNodes ∷ (Data.Graph.Types.Graph g, Show v) ⇒ g v e → [(v, String)]
 labeledNodes g = (\v -> (v, show v)) <$> vertices g

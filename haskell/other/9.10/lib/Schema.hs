@@ -14,6 +14,7 @@ module Schema where
 -- import Data.Map
 import Data.Text
 import Data.Yaml                  hiding (decodeFile)
+import Data.Yaml.Parser
 import GHC.Generics
 import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
@@ -26,16 +27,15 @@ instance FromJSON ColumnType where
         | s == "Text" = pure $ ColumnType ''Text
         | s == "Maybe Text" = pure $ ColumnType ''Text
         | s == "Maybe Int" = pure $ ColumnType ''Int
-        | otherwise = error $ "Nah, that's no good: " <> unpack s
-    parseJSON _ = error "not string"
+        | otherwise = typeMismatch "Text | Maybe Text | Int" s
+    parseJSON invalid = typeMismatch "String" invalid
 
 instance ToJSON ColumnType where
     toJSON (ColumnType n) = toJSON (show n)
 
 instance Lift ColumnType where
     lift c = lift (show c)
-    liftTyped _ = undefined -- Code $ liftTyped c
-
+    liftTyped c = Code $ liftTyped c
 
 data Field = Field {
     columnName :: Text,

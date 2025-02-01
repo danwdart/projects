@@ -43,16 +43,16 @@ newtype OEISResponse = OEISResponse {
     deriving anyclass FromJSON
     deriving newtype Out
 
--- debugJSON :: JsonResponse Value -> Req ()
+-- debugJSON :: (MonadHttp m, MonadIO m) => JsonResponse Value -> m ()
 -- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
 
--- debug :: (FromJSON a, Show a) => JsonResponse a -> Req ()
+-- debug :: (FromJSON a, Show a, MonadIO m, MonadHttp m) => JsonResponse a -> m ()
 -- debug = liftIO . print . responseBody
 
-debugPP ∷ (FromJSON a, Out a) ⇒ JsonResponse a → Req ()
+debugPP ∷ (FromJSON a, Out a, MonadIO m) ⇒ JsonResponse a → m ()
 debugPP = liftIO . pp . responseBody
 
-reqMain ∷ Req ()
+reqMain ∷ (MonadHttp m) ⇒ m ()
 reqMain = do
     resSearchBySequence <- req GET (https "oeis.org" /: "search") NoReqBody jsonResponse (
         queryParam "fmt" (Just ("json" :: String)) <>
