@@ -1,4 +1,4 @@
-cabal-version:      3.4
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               cards
@@ -21,7 +21,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base ^>=4.20.0.0
+  build-depends:      base ^>=4.21.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -39,8 +39,8 @@ library
   default-extensions: UnicodeSyntax
   build-depends:
     , ansi-terminal  ^>=1.1.2
-    , base           ^>=4.20.0.0
-    , containers     ^>=0.7
+    , base           ^>=4.21.0.0
+    , containers     ^>=0.8
     , extra          ^>=1.8
     , MonadRandom    ^>=0.6.1
     , random         ^>=1.2.1.3
@@ -91,14 +91,25 @@ library
     Value.Class
     Value.Unbounded
 
--- todo these could be a depended library
+executable bugger
+  import:        shared-properties
+  main-is:       bugger.hs
+  build-depends:
+    , base                   ^>=4.21.0.0
+    , MonadRandom            ^>=0.6.1
+    , perfect-vector-shuffle ^>=0.1.1.2
+    , primitive              ^>=0.9.0.0
+    , random                 ^>=1.2.1.3
+    , vector                 ^>=0.13.2.0
+    , vector-extras          ^>=0.2.8.2
+
 executable cards
   import:        shared-properties
   main-is:       cards.hs
   build-depends:
-    , base            ^>=4.20.0.0
+    , base            ^>=4.21.0.0
     , cards           ^>=0.2.0.0
-    , containers      ^>=0.7
+    , containers      ^>=0.8
     , extra           ^>=1.8
     , MonadRandom     ^>=0.6.1
     , random-shuffle  ^>=0.0.4
@@ -108,7 +119,7 @@ executable demo
   import:        shared-properties
   main-is:       demo.hs
   build-depends:
-    , base   ^>=4.20.0.0
+    , base   ^>=4.21.0.0
     , cards  ^>=0.2.0.0
     , extra  ^>=1.8
 
@@ -116,7 +127,7 @@ executable ohsol
   import:        shared-properties
   main-is:       ohsol.hs
   build-depends:
-    , base            ^>=4.20.0.0
+    , base            ^>=4.21.0.0
     , cards           ^>=0.2.0.0
     , MonadRandom     ^>=0.6.1
     , random-shuffle  ^>=0.0.4
@@ -125,7 +136,7 @@ executable primesnap
   import:        shared-properties
   main-is:       primesnap.hs
   build-depends:
-    , base            ^>=4.20.0.0
+    , base            ^>=4.21.0.0
     , cards           ^>=0.2.0.0
     , MonadRandom     ^>=0.6.1
     , primes          ^>=0.2.1.0
@@ -135,7 +146,7 @@ executable faro-shuffles
   import:        shared-properties
   main-is:       faro-shuffles.hs
   build-depends:
-    , base   ^>=4.20.0.0
+    , base   ^>=4.21.0.0
     , cards  ^>=0.2.0.0
     , extra  ^>=1.8
 
@@ -143,7 +154,7 @@ executable uno
   import:        shared-properties
   main-is:       uno.hs
   build-depends:
-    , base            ^>=4.20.0.0
+    , base            ^>=4.21.0.0
     , cards           ^>=0.2.0.0
     , extra           ^>=1.8
     , random-shuffle  ^>=0.0.4
@@ -168,7 +179,7 @@ test-suite cards-test
   default-extensions: UnicodeSyntax
   build-depends:      hspec ^>=2.11.10
 
---   base ^>=4.20.0.0
+--   base ^>=4.21.0.0
 -- , cards
 -- , hspec-core ^>=2.11.10
 -- , hspec-expectations ^>=0.8.4
