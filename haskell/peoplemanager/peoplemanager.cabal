@@ -1,4 +1,4 @@
-cabal-version:      3.4
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               peoplemanager
@@ -29,8 +29,8 @@ executable peoplemanager
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base         ^>=4.20.0.0
-    , containers   ^>=0.7
+    , base         ^>=4.21.0.0
+    , containers   ^>=0.8
     , fakedata     ^>=1.0.3
     , MonadRandom  ^>=0.6.1
     , text         ^>=2.1.2
