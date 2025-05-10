@@ -1,4 +1,4 @@
-cabal-version:      3.4
+cabal-version:      3.12
 name:               consolefrp
 version:            0.2.0.0
 license:            AGPL-3.0-only
@@ -12,9 +12,9 @@ executable consolefrp
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base        ^>=4.20.0.0
-    , reflex-vty  ^>=0.5.2.1
-    , vty         ^>=6.2
+    , base        ^>=4.21.0.0
+    , reflex-vty  ^>=0.6.1.0
+    , vty         ^>=6.4
 
   hs-source-dirs:     src
   ghc-options:
