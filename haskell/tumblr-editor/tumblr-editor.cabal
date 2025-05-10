@@ -1,4 +1,4 @@
-cabal-version:      3.0
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               tumblr-editor
@@ -14,7 +14,7 @@ executable tumblr-editor
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base       ^>=4.20.0.0
+    , base       ^>=4.21.0.0
     , text       ^>=2.1.2
     , webdriver  ^>=0.12.0.1
 
