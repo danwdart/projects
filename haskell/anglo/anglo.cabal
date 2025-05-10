@@ -1,4 +1,4 @@
-cabal-version:      3.4
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               anglo
@@ -18,9 +18,9 @@ library
   default-extensions: UnicodeSyntax
   build-depends:
     , aeson        ^>=2.2.3.0
-    -- , base         ^>=4.20.0.0
+    -- , base         ^>=4.21.0.0
     , bytestring   ^>=0.12.2.0
-    , containers   ^>=0.7
+    , containers   ^>=0.8
     , MonadRandom  ^>=0.6.1
     , mtl          ^>=2.3.1
 
@@ -39,7 +39,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  -- build-depends:      base ^>=4.20.0.0
+  -- build-depends:      base ^>=4.21.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -57,7 +57,7 @@ executable anglo
   build-depends:
     , aeson      ^>=2.2.3.0
     -- , anglo      ^>=0.2.0.0
-    , base       ^>=4.20.0.0
+    , base       ^>=4.21.0.0
     , bytestring ^>=0.12.2.0
     , text       ^>=2.1.2
 
@@ -69,9 +69,9 @@ executable anglo-dev
   other-modules:
   build-depends:
     , aeson        ^>=2.2.3.0
-    , base         ^>=4.20.0.0
+    , base         ^>=4.21.0.0
     , bytestring   ^>=0.12.2.0
-    -- , containers   ^>=0.7
+    -- , containers   ^>=0.8
     -- , MonadRandom  ^>=0.6.1
     -- , mtl          ^>=2.3.1
     , text         ^>=2.1.2
@@ -86,7 +86,7 @@ test-suite anglo-test
   default-extensions: UnicodeSyntax
   build-depends:
     -- , anglo       ^>=0.2.0.0
-    -- , base        ^>=4.20.0.0
+    -- , base        ^>=4.21.0.0
     , hspec       ^>=2.11.10
     -- , QuickCheck  ^>=2.15.0.1
 
