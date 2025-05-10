@@ -1,4 +1,4 @@
-cabal-version:      3.4
+cabal-version:      3.12
 name:               ffi-quickcheck
 version:            0.2.0.0
 synopsis:           Quickchecking a couple of C libraries
@@ -25,7 +25,7 @@ common shared-properties-base
 common shared-properties-lib
   import:             shared-properties-base
   ghc-options:
-    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Weverything -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -34,13 +34,13 @@ common shared-properties-lib
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base ^>=4.20.0.0
+  build-depends:      base ^>=4.21.0.0
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
   import:        shared-properties-base
   ghc-options:
-    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Weverything -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -49,7 +49,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
 
-  build-depends: base ^>=4.20.0.0
+  build-depends: base ^>=4.21.0.0
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -60,7 +60,7 @@ common shared-properties-safe
 common shared-properties-nobase
   import:      shared-properties-base
   ghc-options:
-    -Weverything -Wno-compat-unqualified-imports -Wno-implicit-prelude
+    -Weverything -Wno-implicit-prelude
     -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -82,7 +82,7 @@ library
 
   -- other-modules:
   -- other-extensions:
-  build-depends:   base ^>=4.20.0.0
+  build-depends:   base ^>=4.21.0.0
   hs-source-dirs:  lib
 
 test-suite test
@@ -92,7 +92,7 @@ test-suite test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base            ^>=4.20.0.0
+    , base            ^>=4.21.0.0
     , ffi-quickcheck  ^>=0.2.0.0
     , hspec           ^>=2.11.10
     , QuickCheck      ^>=2.15.0.1
