@@ -1,4 +1,4 @@
-cabal-version:      3.4
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               monopoly
@@ -17,8 +17,8 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base         ^>=4.20.0.0
-    , containers   ^>=0.7
+    , base         ^>=4.21.0.0
+    , containers   ^>=0.8
     , lens         ^>=5.3.3
     , MonadRandom  ^>=0.6.1
 
@@ -52,7 +52,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base ^>=4.20.0.0
+  build-depends:      base ^>=4.21.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -66,8 +66,8 @@ executable monopoly
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base        ^>=4.20.0.0
-    , containers  ^>=0.7
+    , base        ^>=4.21.0.0
+    , containers  ^>=0.8
     , monopoly    ^>=0.2.0.0
 
 -- , lens                 ^>=5.3.3
@@ -84,7 +84,7 @@ test-suite monopoly-test
   default-extensions: UnicodeSyntax
   build-depends:      hspec ^>=2.11.10
 
-  -- , base        ^>=4.20.0.0
+  -- , base        ^>=4.21.0.0
   -- , monopoly ^>=0.2.0.0
   -- , QuickCheck ^>=2.15.0.1
   -- , hspec-core ^>=2.11.10
