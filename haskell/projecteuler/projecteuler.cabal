@@ -1,4 +1,4 @@
-cabal-version:      3.0
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               projecteuler
@@ -21,7 +21,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base ^>=4.20.0.0
+  build-depends:      base ^>=4.21.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
@@ -38,7 +38,7 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base    ^>=4.20.0.0
+    , base    ^>=4.21.0.0
     , primes  ^>=0.2.1.0
 
   ghc-options:
@@ -63,7 +63,7 @@ library
 executable projecteuler
   import:             shared-properties
   build-depends:
-    , base          ^>=4.20.0.0
+    , base          ^>=4.21.0.0
     , projecteuler  ^>=0.2.0.0
 
   main-is:            Main.hs
