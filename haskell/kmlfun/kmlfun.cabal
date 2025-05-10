@@ -1,4 +1,4 @@
-cabal-version:      2.4
+cabal-version:      3.12
 name:               kmlfun
 version:            0.2.0.0
 synopsis:           kml fun
@@ -14,8 +14,8 @@ extra-source-files: CHANGELOG.md
 executable kmlfun
   main-is:            Main.hs
   build-depends:
-    , base  ^>=4.10.1.0
-    , gps   ^>=1.2
+    , base  ^>=4.21.0.0
+    -- , gps   ^>=1.2
 
   hs-source-dirs:     src
   default-language:   Haskell2010
