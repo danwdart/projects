@@ -53,3 +53,6 @@ startingGame players = Game <$> startingHandsForPlayers players <*> pure V.empty
 
 -- TODO check how it works
 -- move :: 
+
+main :: IO ()
+main = pure ()

@@ -1,4 +1,5 @@
 tests: True
 packages: *
 -- for perfect-vector-shuffle & vector-extras
-allow-newer: base, primitive, containers
+allow-newer: base, containers, primitive, random
+-- primitive, containers
