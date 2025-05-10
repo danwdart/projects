@@ -1,4 +1,4 @@
-cabal-version:      3.4
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               onlycore
@@ -67,7 +67,7 @@ library
     , array             ^>=0.5.8.0
     , base              ^>=4.21.0.0
     , bytestring        ^>=0.12.2.0
-    , containers        ^>=0.7
+    , containers        ^>=0.8
     , directory         ^>=1.3.9.0
     , mtl               ^>=2.3.1
     , parsec            ^>=3.1.18.0
