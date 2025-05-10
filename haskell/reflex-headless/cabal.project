@@ -1,6 +1,6 @@
 packages: reflex-headless.cabal
 
--- allow-newer: base, lens, patch, reflex, template-haskell
+-- -- allow-newer: base, lens, patch, reflex, template-haskell
 -- 
 -- source-repository-package
 --   type: git
