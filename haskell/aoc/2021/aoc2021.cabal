@@ -1,8 +1,8 @@
-cabal-version:      3.4
+cabal-version:      3.12
 
 -- Newer versions complain
 name:               aoc2021
-version:            0.1.0.0
+version:            0.2.0.0
 homepage:           https://github.com/danwdart/projects#readme
 license:            AGPL-3.0-only
 author:             Dan Dart
@@ -16,7 +16,7 @@ library
   hs-source-dirs:     lib
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base ^>=4.20.0.0
+  build-depends:      base ^>=4.21.0.0
   ghc-options:
     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
@@ -33,7 +33,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base ^>=4.20.0.0
+  build-depends:      base ^>=4.21.0.0
   ghc-options:
     -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
