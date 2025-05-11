@@ -4,7 +4,7 @@
     nixpkgs = nixpkgs;
     compiler = compiler;
   },
-  compiler ? "ghc910"
+  compiler ? "ghc912"
 }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
@@ -45,7 +45,7 @@ let
       # ghc-typelits-presburger = self.callHackage "ghc-typelits-presburger" "0.7.1.0" {};
       # ghc-typelits-natnormalise = self.callHackage "ghc-typelits-natnormalise" "0.7.7" {};
       dbus = lib.doJailbreak super.dbus;
-      other910 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other910" (gitignore ./.) {})));
+      other912 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other912" (gitignore ./.) {})));
       bsb-http-chunked = lib.dontCheck super.bsb-http-chunked;
       gloss-rendering = lib.doJailbreak super.gloss-rendering;
       gloss = lib.doJailbreak super.gloss;
@@ -85,7 +85,7 @@ let
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other910
+      p.other912
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -97,5 +97,5 @@ let
   in
 {
   inherit shell;
-  other910 = lib.justStaticExecutables (myHaskellPackages.other910);
+  other912 = lib.justStaticExecutables (myHaskellPackages.other912);
 }

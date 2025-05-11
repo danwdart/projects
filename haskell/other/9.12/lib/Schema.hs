@@ -12,9 +12,10 @@ module Schema where
 {- Provide a dynamic schema. -}
 
 -- import Data.Map
-import Data.Text
+-- import Data.Text                  qualified as T
+import Data.Text                  (Text)
 import Data.Yaml                  hiding (decodeFile)
-import Data.Yaml.Parser
+-- import Data.Yaml.Parser
 import GHC.Generics
 import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
@@ -27,15 +28,15 @@ instance FromJSON ColumnType where
         | s == "Text" = pure $ ColumnType ''Text
         | s == "Maybe Text" = pure $ ColumnType ''Text
         | s == "Maybe Int" = pure $ ColumnType ''Int
-        | otherwise = typeMismatch "Text | Maybe Text | Int" s
-    parseJSON invalid = typeMismatch "String" invalid
+        | otherwise = fail "Invalid type; expected Text | Maybe Text | Int"
+    parseJSON _ = fail "Invalid type; expected String"
 
 instance ToJSON ColumnType where
     toJSON (ColumnType n) = toJSON (show n)
 
 instance Lift ColumnType where
     lift c = lift (show c)
-    liftTyped c = Code $ liftTyped c
+    liftTyped _ = Code $ undefined -- liftTyped c
 
 data Field = Field {
     columnName :: Text,

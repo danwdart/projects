@@ -4,11 +4,11 @@ on:
     - cron: "0 2 * * *"
   pull_request:
     paths:
-      - .github/workflows/other910.yml
+      - .github/workflows/other912.yml
       - haskell/other/9.10/**
   push:
     paths:
-      - .github/workflows/other910.yml
+      - .github/workflows/other912.yml
       - haskell/other/9.10/**
   workflow_dispatch:
 jobs:

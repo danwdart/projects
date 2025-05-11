@@ -1,7 +1,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE TypeFamilies      #-}
 {-# LANGUAGE Unsafe            #-}
-{-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise #-}
+-- {-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wwarn #-}
 
 -- Based on
@@ -45,7 +45,7 @@ type MaxL m a = forall n. (n <= m) ⇒ Vec n a
 
 type ML m a = forall m1 n. (n <= m1, m1 ~ m) ⇒ Vec n a
 
--- $> :set -fplugin GHC.TypeLits.Normalise
+-- $> -- :set -fplugin GHC.TypeLits.Normalise
 
 -- $> :t ('a' :> 'b' :> 'c' :> Nil) :: MaxL 3 Char
 

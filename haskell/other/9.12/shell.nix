@@ -5,6 +5,8 @@ mkShell rec {
         haskell.compiler.ghc912
         cabal-install
         zlib.dev
+        libGL.dev
+        libGLU.dev
     ];
     # maybe we can include the copy to store stuff in here? as mkShell is a custom stdenv.mkDerivation
     # shellHook = ''
