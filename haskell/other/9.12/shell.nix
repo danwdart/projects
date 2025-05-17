@@ -4,6 +4,7 @@ mkShell rec {
     packages = [
         haskell.compiler.ghc912
         cabal-install
+        pkg-config
         zlib.dev
         libGL.dev
         libGLU.dev

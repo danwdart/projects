@@ -4,6 +4,7 @@ mkShell rec {
     packages = [
         haskell.compiler.ghc912
         cabal-install
+        pkg-config
         zlib.dev
     ];
     # maybe we can include the copy to store stuff in here? as mkShell is a custom stdenv.mkDerivation
