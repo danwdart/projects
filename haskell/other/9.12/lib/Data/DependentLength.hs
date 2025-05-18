@@ -20,7 +20,7 @@ import Data.Kind
 import Data.Type.Equality
 import GHC.Err
 -- import GHC.IsList
-import GHC.Num
+-- import GHC.Num
 import GHC.TypeNats
 import Text.Show
 

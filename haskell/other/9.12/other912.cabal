@@ -79,30 +79,48 @@ library
 
   --ghc-options: -Wno-unused-packages
   hs-source-dirs:  lib
-  build-depends:
-    , base                       ^>=4.21.0.0
-    , either                     ^>=5.0.2
-    --, ghc-typelits-natnormalise  ^>=0.7.10
-    , lattices                   ^>=2.2.1
-    , template-haskell           ^>=2.23.0
-    , text                       ^>=2.1.2
-    , yaml                       ^>=0.11.11.2
+  if arch(javascript)
+    build-depends:
+      , base                       ^>=4.21.0.0
+      , either                     ^>=5.0.2
+      --, ghc-typelits-natnormalise  ^>=0.7.10
+      , lattices                   ^>=2.2.1
+      , text                       ^>=2.1.2
+  else
+    build-depends:
+      , base                       ^>=4.21.0.0
+      , either                     ^>=5.0.2
+      --, ghc-typelits-natnormalise  ^>=0.7.10
+      , lattices                   ^>=2.2.1
+      , template-haskell           ^>=2.23.0
+      , text                       ^>=2.1.2
+      , yaml                       ^>=0.11.11.2
 
   -- , contravariant ^>=1.5.5
   -- for ghc 9.10.1
   -- , ghc-typelits-presburger
   -- , free -- later
   -- , hxt, hxt-xpath ^>=9.1.2.2
-  exposed-modules:
-    BookStatic
-    Data.DependentLength
-    Data.HKD
-    Data.HKD.Generic
-    Data.Thriple
-    Data.Thriple.Things
-    Propagator
-    Schema
-    Seq
+  if arch(javascript)
+    exposed-modules:
+      Data.DependentLength
+      Data.HKD
+      Data.HKD.Generic
+      Data.Thriple
+      Data.Thriple.Things
+      Propagator
+      Seq
+  else
+    exposed-modules:
+      BookStatic
+      Data.DependentLength
+      Data.HKD
+      Data.HKD.Generic
+      Data.Thriple
+      Data.Thriple.Things
+      Propagator
+      Schema
+      Seq
 
 -- XPath
 
@@ -159,6 +177,9 @@ executable contravariant
 
 executable cplusplus
   import:        shared-properties-unsafe
+  -- no emc++ only em++?
+  if arch(javascript)
+    buildable: False
   main-is:       cplusplus.hs
   build-depends:
     , base          ^>=4.21.0.0
@@ -185,6 +206,8 @@ executable delay
 -- for ghc 9.10.1
 executable dynamic-schema
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       dynamic-schema.hs
   build-depends:
     , base              ^>=4.21.0.0
@@ -355,6 +378,8 @@ executable linear
 
 executable mdns
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       mdns.hs
   build-depends:
     , avahi  ^>=0.2.0
@@ -369,6 +394,8 @@ executable mmio
 
 executable mongo
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       mongo.hs
   build-depends:
     , base     ^>=4.21.0.0
@@ -392,6 +419,8 @@ executable parallel
 
 executable pizza
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       pizza.hs
   build-depends:
     , aeson          ^>=2.2.3.0
@@ -457,6 +486,8 @@ executable random
 
 executable req
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       req.hs
   build-depends:
     , base  ^>=4.21.0.0
@@ -483,6 +514,8 @@ executable req
 
 executable shell
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       shell.hs
   build-depends:
     , base           ^>=4.21.0.0
@@ -500,6 +533,8 @@ executable shell
 
 executable sockets
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       sockets.hs
   build-depends:
     , async       ^>=2.2.5
@@ -617,6 +652,8 @@ executable validation-dev
 
 executable wai
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       wai.hs
   build-depends:
     , base        ^>=4.21.0.0
@@ -633,6 +670,8 @@ executable webtex
 
 executable wikidata
   import:        shared-properties-unsafe
+  if arch(javascript)
+    buildable: False
   main-is:       wikidata.hs
   build-depends:
     , base             ^>=4.21.0.0
