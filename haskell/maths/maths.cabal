@@ -22,8 +22,10 @@ common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wall -Werror -haddock
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
@@ -287,7 +289,7 @@ executable cells-aa
 
 executable chart
   import:        shared-properties
-  if arch(javascript)
+  if arch(javascript) || os(wasi)
     buildable: False
   main-is:       chart.hs
   build-depends:
@@ -385,6 +387,9 @@ executable frobenius
 
 executable gamma
   import:        shared-properties
+  -- th-orphans dies in wasm
+  if os(wasi)
+    buildable: False
   main-is:       gamma.hs
   build-depends:
     , base        ^>=4.21.0.0
@@ -508,7 +513,7 @@ executable numbertypes
 
 executable oeis
   import:        shared-properties
-  if arch(javascript)
+  if arch(javascript) || os(wasi)
     buildable: False
   main-is:       oeis.hs
   build-depends:
@@ -553,7 +558,7 @@ executable pills
 
 executable plotter
   import:        shared-properties
-  if arch(javascript)
+  if arch(javascript) || os(wasi)
     buildable: False
   main-is:       plotter.hs
   build-depends:
@@ -676,7 +681,7 @@ executable semiprime
 
 executable upperlower
   import:        shared-properties
-  if arch(javascript)
+  if arch(javascript) || os(wasi)
     buildable: False
   main-is:       primefun/upperlower.hs
   build-depends:

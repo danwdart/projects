@@ -8,7 +8,7 @@ import Data.Maybe
 import Data.Vector (Vector)
 import Data.Vector qualified as V
 import Immutable.Shuffle
-import VectorExtras.Immutable
+import VectorExtras.Generic
 
 class GenericCard a where
     toCardsNext :: a -> Natural

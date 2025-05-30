@@ -22,8 +22,10 @@ common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wall -Werror -haddock
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
@@ -90,6 +92,9 @@ library
 
 executable bugger
   import:        shared-properties
+  -- deferred-folds is screwy on wasm
+  if os(wasi)
+    buildable: False
   main-is:       bugger.hs
   build-depends:
     , base                   ^>=4.21.0.0
@@ -98,10 +103,13 @@ executable bugger
     , primitive              ^>=0.9.0.0
     -- , random                 ^>=1.3.1
     , vector                 ^>=0.13.2.0
-    , vector-extras          ^>=0.2.8.2
+    , vector-extras          ^>=0.3
 
 executable cards
   import:        shared-properties
+  -- no clock nor getpid
+  if os(wasi)
+    buildable: False
   main-is:       cards.hs
   build-depends:
     , base            ^>=4.21.0.0
@@ -122,6 +130,9 @@ executable demo
 
 executable ohsol
   import:        shared-properties
+  -- no clock nor getpid
+  if os(wasi)
+    buildable: False
   main-is:       ohsol.hs
   build-depends:
     , base            ^>=4.21.0.0
@@ -131,6 +142,9 @@ executable ohsol
 
 executable primesnap
   import:        shared-properties
+  -- no clock nor getpid
+  if os(wasi)
+    buildable: False
   main-is:       primesnap.hs
   build-depends:
     , base            ^>=4.21.0.0
@@ -149,6 +163,9 @@ executable faro-shuffles
 
 executable uno
   import:        shared-properties
+  -- no clock nor getpid
+  if os(wasi)
+    buildable: False
   main-is:       uno.hs
   build-depends:
     , base            ^>=4.21.0.0
@@ -157,8 +174,10 @@ executable uno
     , random-shuffle  ^>=0.0.4
 
 test-suite cards-test
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wall -Werror -haddock
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures

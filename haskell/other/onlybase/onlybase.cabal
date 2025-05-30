@@ -39,6 +39,8 @@ common shared-properties-lib
 
 common shared-properties-unsafe
   import:        shared-properties-base
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Weverything -Wno-implicit-prelude -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
@@ -46,7 +48,7 @@ common shared-properties-unsafe
     -Wno-all-missed-specialisations -Wno-missed-specialisations
     -Wno-missing-role-annotations -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Werror -haddock
 
   build-depends: base ^>=4.21.0.0
 
@@ -315,6 +317,8 @@ executable fixmap
 
 executable ffi
   import:  shared-properties-unsafe
+  if os(wasi)
+    buildable: False
   main-is: ffi.hs
 
 executable fold

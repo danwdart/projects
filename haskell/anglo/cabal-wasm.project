@@ -1,0 +1,4 @@
+packages: *
+with-compiler: wasm32-wasi-ghc
+with-hc-pkg: wasm32-wasi-ghc-pkg
+allow-newer: containers

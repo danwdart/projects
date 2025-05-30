@@ -20,6 +20,7 @@ divides a b = b `mod` a == 0
 -- [1,2,3,4,6,8,12,24]
 --
 factors ∷ Integral a ⇒ a → [a]
+factors 1 = []
 factors n = properFactors n <> [n]
 
 -- >>> properFactors 24
