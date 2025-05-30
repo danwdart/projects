@@ -1,0 +1,111 @@
+cabal-version:   3.12
+name:            wasm-backend
+version:         0.2.0.0
+
+-- synopsis:
+-- description:
+license:         AGPL-3.0-only
+license-file:    LICENSE
+author:          Dan Dart
+maintainer:      cabal@dandart.co.uk
+
+-- copyright:
+build-type:      Simple
+extra-doc-files: CHANGELOG.md
+
+-- extra-source-files:
+data-dir:        data
+data-files:
+  css/*.css
+  img/*.png
+  index.html
+
+common warnings
+  ghc-options: -Wall -Wwarn -Weverything
+    -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+    -Wno-missed-specialisations
+
+-- library
+--   import:             warnings
+--   exposed-modules:    MyLib
+-- 
+--   -- other-modules:
+--   -- other-extensions:
+--   build-depends:
+--     , base              ^>=4.21.0.0
+--     , template-haskell  ^>=2.23.0
+--     , ghc-experimental  ^>=9.1202.0
+-- 
+--   -- for ghc 9.10.1
+--   hs-source-dirs:     lib
+--   default-language:   GHC2024
+--   default-extensions:
+--     DerivingStrategies
+--     ImportQualifiedPost
+--     UnicodeSyntax
+-- 
+--   if arch(javascript)
+--     js-sources: jsbits/lib.js
+
+executable for-node
+  import:             warnings
+  main-is:            Main.hs
+
+  -- other-extensions:
+  build-depends:
+    -- , aeson       ^>=2.2.3.0
+    , base        ^>=4.21.0.0
+    -- , wasm-backend  ^>=0.2.0.0
+
+  hs-source-dirs:     src
+  default-language:   GHC2024
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  ghcjs-options:      -dedupe
+
+executable for-browser
+  import:             warnings
+  main-is:            Main.hs
+
+  -- other-extensions:
+  build-depends:
+    -- , aeson       ^>=2.2.3.0
+    , base        ^>=4.21.0.0
+    -- , wasm-backend  ^>=0.2.0.0
+
+  hs-source-dirs:     src
+  default-language:   GHC2024
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  ghcjs-options:      -dedupe
+  cpp-options:        -DGHCJS_BROWSER
+
+test-suite wasm-backend-test
+  import:             warnings
+  default-language:   GHC2024
+  default-extensions:
+    DerivingStrategies
+    ImportQualifiedPost
+    UnicodeSyntax
+
+  -- other-modules:
+  -- other-extensions:
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     test
+  main-is:            Main.hs
+  build-depends:
+    , base        ^>=4.21.0.0
+    , wasm-backend  ^>=0.2.0.0
+
+  build-tool-depends: hspec-discover:hspec-discover

@@ -19,8 +19,10 @@ executable tumblr-editor
     , webdriver  ^>=0.12.0.1
 
   hs-source-dirs:     src
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wall -Werror -haddock
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures

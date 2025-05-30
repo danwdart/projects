@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -p "haskell.packages.ghc910.ghcWithPackages (pkgs: with pkgs; [ containers text ])" -i runghc
+#! nix-shell -p "haskell.packages.ghc912.ghcWithPackages (pkgs: with pkgs; [ containers text ])" -i runghc
 
 {-# LANGUAGE OverloadedLists   #-}
 {-# LANGUAGE OverloadedStrings #-}

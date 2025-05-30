@@ -1,4 +1,4 @@
-cabal-version:      2.4
+cabal-version:      3.12
 name:               cards-ui
 version:            0.2.0.0
 license:            AGPL-3.0-only
@@ -20,9 +20,11 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.14.3.0 && <4.22.0.0
+  build-depends:      base ^>=4.21.0.0
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wall -Werror -haddock
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
 
@@ -35,11 +37,11 @@ common shared-properties
 library
   hs-source-dirs: lib
   import:         shared-properties
-  build-depends:  base >=4.14.3.0 && <4.22.0.0
+  build-depends:  base >=4.21.0.0
 
 executable cards-ui
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , base        >=4.14.3.0 && <4.22.0.0
+    , base        >=4.21.0.0
     , reflex-dom  ^>=0.6.3.3

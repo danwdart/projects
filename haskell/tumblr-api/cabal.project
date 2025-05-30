@@ -5,4 +5,4 @@ source-repository-package
 
 packages: *
 
-allow-newer: base
+-- allow-newer: base

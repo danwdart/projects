@@ -8,11 +8,11 @@ maintainer:         cabal@dandart.co.uk
 category:           Nothing
 build-type:         Simple
 extra-source-files: ChangeLog.md
-cabal-version:      1.12
+cabal-version:      3.12
 
 executable hsjava
   main-is:            Main.hs
-  build-depends:      base >=4.11 && <5
+  build-depends:      base ^>=4.21.0.0
   default-extensions:
     DerivingStrategies
     ImportQualifiedPost

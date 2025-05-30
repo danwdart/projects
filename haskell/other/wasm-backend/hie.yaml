@@ -1,0 +1,10 @@
+cradle:
+  cabal:
+    - path: "src/Main.hs"
+      component: "wasm-backend:exe:for-node"
+
+    - path: "src/Main.hs"
+      component: "wasm-backend:exe:for-browser"
+
+    - path: "test"
+      component: "wasm-backend:test:wasm-backend-test"

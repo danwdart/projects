@@ -21,7 +21,16 @@ data-files:
   index.html
 
 common warnings
-  ghc-options: -Wall
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+  ghc-options: -Wall -Wwarn -Weverything
+    -Wno-unsafe -Wno-safe -Wno-missing-import-lists
+    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
+    -Wno-all-missed-specialisations -Wno-missed-specialisations
+    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+    -Wno-missed-specialisations
 
 library
   import:             warnings
@@ -50,7 +59,7 @@ executable for-node
 
   -- other-extensions:
   build-depends:
-    , aeson       ^>=2.2.3.0
+    -- , aeson       ^>=2.2.3.0
     , base        ^>=4.21.0.0
     , js-backend  ^>=0.2.0.0
 
@@ -69,7 +78,7 @@ executable for-browser
 
   -- other-extensions:
   build-depends:
-    , aeson       ^>=2.2.3.0
+    -- , aeson       ^>=2.2.3.0
     , base        ^>=4.21.0.0
     , js-backend  ^>=0.2.0.0
 

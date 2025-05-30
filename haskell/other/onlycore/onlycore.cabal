@@ -41,6 +41,8 @@ common shared-properties-lib
 
 common shared-properties-unsafe
   import:        shared-properties-base
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
@@ -48,8 +50,7 @@ common shared-properties-unsafe
     -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
     -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-unrecognised-warning-flags -Werror -haddock -threaded -rtsopts
-    -with-rtsopts=-N
+    -Wno-unrecognised-warning-flags -Werror -haddock
 
   build-depends: base ^>=4.21.0.0
 
@@ -73,28 +74,49 @@ library
     , parsec            ^>=3.1.18.0
     , template-haskell  ^>=2.23.0
     , text              ^>=2.1.2
-
-  exposed-modules:
-    BubbleSort
-    Control.Concurrent.Async.Undiscarded
-    Control.Monad.State.Disparate
-    Control.Monad.Trans.State.Disparate
-    Control.Monad.Trans.State.Undiscarded
-    Env.AbstractExtension
-    Env.Class
-    Env.Env
-    Env.Extend
-    Env.ExtendedInstance
-    Env.Instance
-    Env.WithOrig
-    Form
-    LCDBlock
-    RuntimeTypes
-    SHA
-    Shell
-    TH
-    TinyLang
-    World
+  if arch(javascript) || os(wasi)
+    exposed-modules:
+      BubbleSort
+      Control.Concurrent.Async.Undiscarded
+      Control.Monad.State.Disparate
+      Control.Monad.Trans.State.Disparate
+      Control.Monad.Trans.State.Undiscarded
+      Env.AbstractExtension
+      Env.Class
+      Env.Env
+      Env.Extend
+      Env.ExtendedInstance
+      Env.Instance
+      Env.WithOrig
+      Form
+      LCDBlock
+      RuntimeTypes
+      Shell
+      TH
+      TinyLang
+      World
+  else
+    exposed-modules:
+        BubbleSort
+        Control.Concurrent.Async.Undiscarded
+        Control.Monad.State.Disparate
+        Control.Monad.Trans.State.Disparate
+        Control.Monad.Trans.State.Undiscarded
+        Env.AbstractExtension
+        Env.Class
+        Env.Env
+        Env.Extend
+        Env.ExtendedInstance
+        Env.Instance
+        Env.WithOrig
+        Form
+        LCDBlock
+        RuntimeTypes
+        SHA
+        Shell
+        TH
+        TinyLang
+        World
 
 executable array
   import:        shared-properties-safe
@@ -206,6 +228,8 @@ executable python5
 
 executable qq
   import:        shared-properties-safe
+  if os(wasi)
+    buildable: False
   main-is:       qq.hs
   build-depends:
     , base      ^>=4.21.0.0
@@ -235,6 +259,8 @@ executable reader-override
 
 executable runtime-types
   import:        shared-properties-unsafe
+  if os(wasi)
+    buildable: False
   build-depends:
     , base              ^>=4.21.0.0
     , onlycore          ^>=0.2.0.0
@@ -251,6 +277,8 @@ executable rws
 
 executable sha
   import:        shared-properties-safe
+  if arch(javascript) || os(wasi)
+    buildable: False
   main-is:       sha.hs
   build-depends:
     , base        ^>=4.21.0.0
@@ -288,6 +316,8 @@ executable tagless-final
 
 executable th
   import:        shared-properties-unsafe
+  if os(wasi)
+    buildable: False
   main-is:       th.hs
   build-depends:
     , base      ^>=4.21.0.0

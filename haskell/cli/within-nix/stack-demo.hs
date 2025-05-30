@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -p "haskell.packages.ghc910.ghcWithPackages (pkgs: with pkgs; [ stack ])" -i stack
+#! nix-shell -p haskell.compiler.ghc912 stack -i stack
 -- stack --resolver nightly-2020-12-03 script
 
 {-# LANGUAGE OverloadedLists #-}

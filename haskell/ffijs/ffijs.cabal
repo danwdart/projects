@@ -1,6 +1,6 @@
-cabal-version:      2.4
+cabal-version:      3.12
 name:               ffijs
-version:            0.1.0.0
+version:            0.2.0.0
 synopsis:           ffijs
 description:        ffijs
 bug-reports:        https://github.com/danwdart/projects/issues
@@ -24,7 +24,7 @@ executable ffihstojs
   main-is:            Main.hs
   js-sources:         src/libdemo.js
   build-depends:
-    , base        ^>=4.17.0.0
+    , base        ^>=4.21.0.0
     , ghcjs-base  ^>=0.8.0.2
 
   hs-source-dirs:     src

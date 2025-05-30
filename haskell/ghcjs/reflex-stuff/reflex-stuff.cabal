@@ -1,4 +1,4 @@
-cabal-version:      2.4
+cabal-version:      3.12
 name:               reflex-stuff
 version:            0.2.0.0
 license:            AGPL-3.0-only
@@ -15,9 +15,11 @@ common shared-properties
     ImportQualifiedPost
     UnicodeSyntax
 
-  build-depends:      base >=4.14.3.0 && <4.22.0.0
+  build-depends:      base ^>=4.21.0.0
+  if !os(wasi)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -haddock -threaded -rtsopts -with-rtsopts=-N
+    -Wall -Werror -haddock
     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
 
@@ -31,7 +33,7 @@ executable adding-machine
   import:        shared-properties
   main-is:       adding-machine.hs
   build-depends:
-    , base        >=4.14.3.0 && <4.22.0.0
+    , base        ^>=4.21.0.0
     , reflex      ^>=0.9.3.3
     , reflex-dom  ^>=0.6.3.3
     , text        ^>=2.1.2
@@ -41,14 +43,14 @@ executable dom
   main-is:       dom.hs
   ghc-options:   -fsimpl-tick-factor=100000
   build-depends:
-    , base        >=4.14.3.0 && <4.22.0.0
+    , base        ^>=4.21.0.0
     , reflex-dom  ^>=0.6.3.3
 
 executable letters
   import:        shared-properties
   main-is:       letters.hs
   build-depends:
-    , base        >=4.14.3.0 && <4.22.0.0
+    , base        ^>=4.21.0.0
     , clay        ^>=0.15.0
     , reflex-dom  ^>=0.6.3.3
     , text        ^>=2.1.2

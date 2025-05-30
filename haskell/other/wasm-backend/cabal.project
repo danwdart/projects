@@ -1,0 +1,4 @@
+packages:
+    wasm-backend.cabal
+with-compiler: wasm32-wasi-ghc
+with-hc-pkg: wasm32-wasi-ghc-pkg

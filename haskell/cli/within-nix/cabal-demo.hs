@@ -1,8 +1,8 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -p "haskell.packages.ghc910.ghcWithPackages (pkgs: with pkgs; [ cabal-install ])" -i cabal
+#! nix-shell -p haskell.compiler.ghc912 cabal-install -i cabal
 {- cabal:
 build-depends: base ^>= 4.20
-             , containers
+             , containers ^>=0.8.0
              , text >=2.1.2
 -}
 {- project:
