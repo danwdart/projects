@@ -14,6 +14,8 @@ extra-source-files: README.md
 
 library
   hs-source-dirs:     lib
+  if arch(javascript)
+    js-sources: jsbits/emcc-config.js
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
@@ -31,6 +33,8 @@ library
 
 common shared-properties
   hs-source-dirs:     src
+  if arch(javascript)
+    js-sources: jsbits/emcc-config.js
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0

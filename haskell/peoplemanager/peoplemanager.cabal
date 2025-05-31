@@ -23,6 +23,8 @@ extra-source-files:
 executable peoplemanager
   main-is:            Main.hs
   hs-source-dirs:     src
+  if arch(javascript)
+    js-sources: jsbits/emcc-config.js
 
   -- other-modules:
   -- other-extensions:

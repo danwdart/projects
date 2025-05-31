@@ -17,6 +17,8 @@ executable consolefrp
     , vty         ^>=6.4
 
   hs-source-dirs:     src
+  if arch(javascript)
+    js-sources: jsbits/emcc-config.js
   if !os(wasi)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:

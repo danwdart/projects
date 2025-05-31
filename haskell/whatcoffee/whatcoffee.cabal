@@ -11,6 +11,8 @@ extra-source-files: CHANGELOG.md
 
 library
   hs-source-dirs:     lib
+  if arch(javascript)
+    js-sources: jsbits/emcc-config.js
 
   -- can't use base64 because of errors
   default-language:   GHC2024
@@ -38,6 +40,8 @@ library
 
 executable whatcoffee
   hs-source-dirs:     src
+  if arch(javascript)
+    js-sources: jsbits/emcc-config.js
   main-is:            Main.hs
   default-language:   GHC2024
   default-extensions: UnicodeSyntax

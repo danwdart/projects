@@ -11,6 +11,8 @@ extra-source-files: CHANGELOG.md
 
 common shared-properties
   hs-source-dirs:     src
+  if arch(javascript)
+    js-sources: jsbits/emcc-config.js
   default-language:   GHC2024
   default-extensions:
     DerivingStrategies
