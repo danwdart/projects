@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wno-x-partial #-}
 
+module Main (main) where
+
 import Data.Number.CReal
 import Data.Text                 qualified as T
 import Data.Text.Internal.Search

@@ -1,4 +1,5 @@
 -- n-adic numbers (in a way)
+module Main (main) where
 
 import Data.Foldable
 import GHC.Natural   (powModNatural)

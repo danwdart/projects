@@ -4,6 +4,8 @@
 {-# LANGUAGE UnicodeSyntax          #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-redundant-constraints #-}
 
+module Main (main) where
+
 import Data.List.NonEmpty qualified as LNE
 
 main ∷ IO ()
