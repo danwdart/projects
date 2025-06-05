@@ -41,7 +41,7 @@ common shared-properties-lib
 
 common shared-properties-unsafe
   import:        shared-properties-base
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Weverything -Wno-implicit-prelude
@@ -82,7 +82,7 @@ library
 
   --ghc-options: -Wno-unused-packages
   hs-source-dirs:  lib
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     build-depends:
       , base                       ^>=4.21.0.0
       , either                     ^>=5.0.2
@@ -104,7 +104,7 @@ library
   -- , ghc-typelits-presburger
   -- , free -- later
   -- , hxt, hxt-xpath ^>=9.1.2.2
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     exposed-modules:
       Data.DependentLength
       Data.HKD
@@ -158,7 +158,7 @@ executable binarygame
 
 executable c
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       c.hs
   build-depends:
@@ -183,7 +183,7 @@ executable contravariant
 executable cplusplus
   import:        shared-properties-unsafe
   -- no emc++ only em++?
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       cplusplus.hs
   build-depends:
@@ -192,7 +192,7 @@ executable cplusplus
 
 executable delay
   import:        shared-properties-safe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       delay.hs
   build-depends:
@@ -213,7 +213,7 @@ executable delay
 -- for ghc 9.10.1
 executable dynamic-schema
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       dynamic-schema.hs
   build-depends:
@@ -304,7 +304,7 @@ executable free-monads
 
 executable gloss
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       gloss.hs
   build-depends:
@@ -313,7 +313,7 @@ executable gloss
 
 executable glut
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       glut.hs
   build-depends:
@@ -357,7 +357,7 @@ executable iso
 
 executable json
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       json.hs
   build-depends:
@@ -375,7 +375,7 @@ executable json
 
 executable lenses
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       lenses.hs
   build-depends:
@@ -389,14 +389,14 @@ executable lenses
 executable linear
   import:        shared-properties-nobase
   -- no linear-generics
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       linear.hs
   build-depends: linear-base ^>=0.5.0
 
 executable mdns
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       mdns.hs
   build-depends:
@@ -406,7 +406,7 @@ executable mdns
 executable mmio
   import:        shared-properties-unsafe
   -- no mmap
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       mmio.hs
   build-depends:
@@ -415,7 +415,7 @@ executable mmio
 
 executable mongo
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       mongo.hs
   build-depends:
@@ -440,7 +440,7 @@ executable parallel
 
 executable pizza
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       pizza.hs
   build-depends:
@@ -484,7 +484,7 @@ executable propagators-dev
 
 executable random
   import:        shared-properties-safe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       random.hs
   build-depends:
@@ -509,7 +509,7 @@ executable random
 
 executable req
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       req.hs
   build-depends:
@@ -537,7 +537,7 @@ executable req
 
 executable shell
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       shell.hs
   build-depends:
@@ -556,7 +556,7 @@ executable shell
 
 executable sockets
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       sockets.hs
   build-depends:
@@ -588,7 +588,7 @@ executable tardis
 
 executable terrain
   import:        shared-properties-safe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       terrain.hs
   build-depends:
@@ -597,7 +597,7 @@ executable terrain
 
 executable text-display
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       text-display.hs
   build-depends:
@@ -679,7 +679,7 @@ executable validation-dev
 
 executable wai
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       wai.hs
   build-depends:
@@ -697,7 +697,7 @@ executable webtex
 
 executable wikidata
   import:        shared-properties-unsafe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       wikidata.hs
   build-depends:
@@ -713,6 +713,8 @@ executable wikidata
 --   build-depends:       base ^>=4.21.0.0, safe-foldable, other92
 
 test-suite test
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   type:               exitcode-stdio-1.0
   hs-source-dirs:     test
   main-is:            Spec.hs
@@ -737,6 +739,8 @@ test-suite test
 --  build-tool-depends: hspec-discover:hspec-discover
 
 benchmark listStringVsVectorText
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   type:               exitcode-stdio-1.0
   hs-source-dirs:     bench
   main-is:            listStringVsVectorText.hs
@@ -753,6 +757,8 @@ benchmark listStringVsVectorText
     , vector      ^>=0.13.2.0
 
 benchmark sums
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   type:               exitcode-stdio-1.0
   hs-source-dirs:     bench
   main-is:            sums.hs
@@ -766,6 +772,8 @@ benchmark sums
     , vector     ^>=0.13.2.0
 
 benchmark recursiveFacFibs
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   type:               exitcode-stdio-1.0
   hs-source-dirs:     bench
   main-is:            recursiveFacFibs.hs

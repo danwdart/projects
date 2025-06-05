@@ -24,7 +24,7 @@ common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Wall -Werror -haddock
@@ -97,7 +97,7 @@ library
 executable bugger
   import:        shared-properties
   -- deferred-folds is screwy on wasm
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       bugger.hs
   build-depends:
@@ -112,7 +112,7 @@ executable bugger
 executable cards
   import:        shared-properties
   -- no clock nor getpid
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       cards.hs
   build-depends:
@@ -135,7 +135,7 @@ executable demo
 executable ohsol
   import:        shared-properties
   -- no clock nor getpid
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       ohsol.hs
   build-depends:
@@ -147,7 +147,7 @@ executable ohsol
 executable primesnap
   import:        shared-properties
   -- no clock nor getpid
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       primesnap.hs
   build-depends:
@@ -168,7 +168,7 @@ executable faro-shuffles
 executable uno
   import:        shared-properties
   -- no clock nor getpid
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       uno.hs
   build-depends:
@@ -178,7 +178,9 @@ executable uno
     , random-shuffle  ^>=0.0.4
 
 test-suite cards-test
-  if !os(wasi)
+  if arch(javascript) || arch(wasm32)
+    buildable: False
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Wall -Werror -haddock

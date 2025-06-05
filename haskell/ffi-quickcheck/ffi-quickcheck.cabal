@@ -41,7 +41,7 @@ common shared-properties-lib
 
 common shared-properties-unsafe
   import:        shared-properties-base
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Weverything -Wno-implicit-prelude
@@ -63,7 +63,7 @@ common shared-properties-safe
 
 common shared-properties-nobase
   import:      shared-properties-base
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Weverything -Wno-implicit-prelude
@@ -92,6 +92,8 @@ library
   hs-source-dirs:  lib
 
 test-suite test
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   type:               exitcode-stdio-1.0
   hs-source-dirs:     test
   main-is:            Spec.hs

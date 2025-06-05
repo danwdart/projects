@@ -21,7 +21,7 @@ executable tumblr-editor
   hs-source-dirs:     src
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Wall -Werror -haddock

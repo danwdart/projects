@@ -43,7 +43,7 @@ common shared-properties-lib
 
 common shared-properties-unsafe
   import:        shared-properties-base
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
@@ -76,7 +76,7 @@ library
     , parsec            ^>=3.1.18.0
     , template-haskell  ^>=2.23.0
     , text              ^>=2.1.2
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     exposed-modules:
       BubbleSort
       Control.Concurrent.Async.Undiscarded
@@ -230,7 +230,7 @@ executable python5
 
 executable qq
   import:        shared-properties-safe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       qq.hs
   build-depends:
@@ -261,7 +261,7 @@ executable reader-override
 
 executable runtime-types
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   build-depends:
     , base              ^>=4.21.0.0
@@ -279,7 +279,7 @@ executable rws
 
 executable sha
   import:        shared-properties-safe
-  if arch(javascript) || os(wasi)
+  if arch(javascript) || arch(wasm32)
     buildable: False
   main-is:       sha.hs
   build-depends:
@@ -318,7 +318,7 @@ executable tagless-final
 
 executable th
   import:        shared-properties-unsafe
-  if os(wasi)
+  if arch(wasm32)
     buildable: False
   main-is:       th.hs
   build-depends:

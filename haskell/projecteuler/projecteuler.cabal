@@ -24,7 +24,7 @@ common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Wall -Werror -haddock
@@ -76,7 +76,7 @@ executable projecteuler
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Wall -Werror -haddock
@@ -88,6 +88,8 @@ executable projecteuler
     -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
 
 test-suite projecteuler-test
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   ghcjs-options:      -dedupe
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0

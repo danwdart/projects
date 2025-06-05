@@ -93,6 +93,8 @@ executable for-browser
 
 test-suite wasm-backend-test
   import:             warnings
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   default-language:   GHC2024
   default-extensions:
     DerivingStrategies

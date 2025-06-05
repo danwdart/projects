@@ -41,7 +41,7 @@ executable peoplemanager
 
   -- , brick ^>=2.7
   -- , vector ^>=0.13.2.0
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Wall -Werror -haddock

@@ -21,7 +21,7 @@ common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
-  if !os(wasi)
+  if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
     -Wall -Werror -haddock
@@ -72,7 +72,9 @@ executable yt-sort
 -- , text        ^>=2.1.2
 
 -- test-suite yt-sort-test
---   if !os(wasi)
+--   if arch(javascript) || arch(wasm32)
+--     buildable: False
+--   if !arch(wasm32)
 --     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
 --   ghc-options:
 --     -Wall -Werror -haddock 
