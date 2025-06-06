@@ -60,11 +60,6 @@ common shared-properties-safe
     NoGeneralizedNewtypeDeriving
     Safe
 
-common shared-properties-dev-safe
-  import:         shared-properties-safe
-  hs-source-dirs: src lib
-  ghc-options:    -Wwarn
-
 common shared-properties-nobase
   import:      shared-properties-base
   ghc-options:
@@ -474,14 +469,6 @@ executable propagators
     , base      ^>=4.21.0.0
     , other912  ^>=0.2.0.0
 
-executable propagators-dev
-  import:        shared-properties-dev-safe
-  main-is:       propagators.hs
-  other-modules: Propagator
-  build-depends:
-    , base      ^>=4.21.0.0
-    , lattices  ^>=2.2.1
-
 executable random
   import:        shared-properties-safe
   if arch(wasm32)
@@ -661,14 +648,6 @@ executable validation
     , base      ^>=4.21.0.0
     , either    ^>=5.0.2
     , other912  ^>=0.2.0.0
-
-executable validation-dev
-  import:         shared-properties-safe
-  main-is:        validation.hs
-  build-depends:
-    , base    ^>=4.21.0.0
-    , either  ^>=5.0.2
-    , text    ^>=2.1.2
 
   hs-source-dirs: src lib
   other-modules:

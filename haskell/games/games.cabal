@@ -161,19 +161,6 @@ executable sudoku
     , games       ^>=0.2.0.0
     , vector      ^>=0.13.2.0
 
-executable sudoku-dev
-  import:         shared-properties
-  ghc-options:    -Wwarn
-  hs-source-dirs: src lib
-  main-is:        sudoku.hs
-  other-modules:  Propagator
-  build-depends:
-    , base        ^>=4.21.0.0
-    , containers  ^>=0.8
-    , extra       ^>=1.8
-    , lattices    ^>=2.2.1
-    , vector      ^>=0.13.2.0
-
 executable yesyes
   import:        shared-properties
   main-is:       yesyes.hs

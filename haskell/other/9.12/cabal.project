@@ -8,3 +8,4 @@ allow-newer: containers, base
 -- allow-older: containers
 -- allow-newer: base, bytestring, template-haskell
 -- allow-older: array, binary, bytestring, deepseq, doctest, ilist, random, time
+multi-repl: True
