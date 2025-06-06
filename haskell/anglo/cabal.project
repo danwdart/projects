@@ -2,3 +2,4 @@ packages: *.cabal
 benchmarks: True
 tests: True
 allow-newer: containers
+multi-repl: True

@@ -67,21 +67,6 @@ executable anglo
     , bytestring ^>=0.12.2.0
     , text       ^>=2.1.2
 
-executable anglo-dev
-  import:         shared-properties
-  ghc-options:    -Wwarn
-  hs-source-dirs: lib src
-  main-is:        Main.hs
-  other-modules:
-  build-depends:
-    , aeson        ^>=2.2.3.0
-    , base         ^>=4.21.0.0
-    , bytestring   ^>=0.12.2.0
-    -- , containers   ^>=0.8
-    -- , MonadRandom  ^>=0.6.1
-    -- , mtl          ^>=2.3.1
-    , text         ^>=2.1.2
-
 test-suite anglo-test
   import:             shared-properties
   if arch(javascript) || arch(wasm32)
