@@ -649,13 +649,6 @@ executable validation
     , either    ^>=5.0.2
     , other912  ^>=0.2.0.0
 
-  hs-source-dirs: src lib
-  other-modules:
-    Data.HKD
-    Data.HKD.Generic
-    Data.Thriple
-    Data.Thriple.Things
-
 executable wai
   import:        shared-properties-unsafe
   if arch(javascript) || arch(wasm32)
