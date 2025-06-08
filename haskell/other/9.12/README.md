@@ -1,7 +1,7 @@
-# cabal repl
+# cabal new-repl
 
 Use flags:
-    `cabal repl PACKAGE --ghc-options="-Wno-missing-local-signatures"
+    `cabal new-repl PACKAGE --ghc-options="-Wno-missing-local-signatures"
 
 # "other" packages
 

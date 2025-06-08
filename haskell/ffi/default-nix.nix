@@ -21,7 +21,7 @@ let
     ];
     shellHook = ''
       gen-hie > hie.yaml
-      for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
+      for i in $(find -type f | grep -v "dist-*"); do krank $i; done
     '';
      buildInputs = tools.defaultBuildTools ++ [ nixpkgs.haskell.packages.${compiler}.c2hs nixpkgs.haskell.packages.${compiler}.hsc2hs ];
     withHoogle = false;

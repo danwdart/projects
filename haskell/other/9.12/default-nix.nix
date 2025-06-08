@@ -89,7 +89,7 @@ let
     ];
     shellHook = ''
       gen-hie > hie.yaml
-      for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
+      for i in $(find -type f | grep -v "dist-*"); do krank $i; done
     '';
     buildInputs = tools.defaultBuildTools ++ [ nixpkgs.gettext nixpkgs.nodejs_20 nixpkgs.php82 ];
     withHoogle = false;

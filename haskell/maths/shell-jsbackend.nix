@@ -5,14 +5,13 @@ mkShell rec {
         pkgsCross.ghcjs.pkgsBuildHost.haskell.compiler.ghc912
         pkgsCross.ghcjs.pkgsBuildHost.haskell.packages.ghc912.hsc2hs
         cabal-install
-        pkg-config
-        zlib.dev
+        # pkg-config
+        # zlib.dev
         nodejs
         emscripten
-        cairo.dev
-        expat
-        xorg.libXdmcp # ???
-        zlib.dev
+        # cairo.dev
+        # expat
+        # xorg.libXdmcp # ???#
     ];
     shellHook = ''
         rm -rf /tmp/.cache

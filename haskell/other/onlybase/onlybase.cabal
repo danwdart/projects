@@ -17,6 +17,10 @@ category:           Web
 build-type:         Simple
 extra-source-files: README.md
 
+flag musl
+  description: Set if we are building with musl.
+  default: False
+
 common shared-properties-base
   hs-source-dirs:     src
   if arch(javascript)
@@ -319,7 +323,7 @@ executable fixmap
 
 executable ffi
   import:  shared-properties-unsafe
-  if arch(wasm32)
+  if arch(wasm32) || flag(musl)
     buildable: False
   main-is: ffi.hs
 

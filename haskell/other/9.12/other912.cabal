@@ -17,6 +17,10 @@ category:           Web
 build-type:         Simple
 extra-source-files: README.md
 
+flag musl
+  description: Set if we are building with musl.
+  default: False
+
 common shared-properties-base
   hs-source-dirs:     src
   if arch(javascript)
@@ -299,7 +303,7 @@ executable free-monads
 
 executable gloss
   import:        shared-properties-unsafe
-  if arch(wasm32)
+  if arch(wasm32) || flag(musl)
     buildable: False
   main-is:       gloss.hs
   build-depends:
@@ -308,7 +312,7 @@ executable gloss
 
 executable glut
   import:        shared-properties-unsafe
-  if arch(wasm32)
+  if arch(wasm32) || flag(musl)
     buildable: False
   main-is:       glut.hs
   build-depends:
@@ -391,7 +395,7 @@ executable linear
 
 executable mdns
   import:        shared-properties-unsafe
-  if arch(javascript) || arch(wasm32)
+  if arch(javascript) || arch(wasm32) || flag(musl)
     buildable: False
   main-is:       mdns.hs
   build-depends:
@@ -410,7 +414,7 @@ executable mmio
 
 executable mongo
   import:        shared-properties-unsafe
-  if arch(javascript) || arch(wasm32)
+  if arch(javascript) || arch(wasm32) || flag(musl)
     buildable: False
   main-is:       mongo.hs
   build-depends:
@@ -435,7 +439,7 @@ executable parallel
 
 executable pizza
   import:        shared-properties-unsafe
-  if arch(javascript) || arch(wasm32)
+  if arch(javascript) || arch(wasm32) || flag(musl)
     buildable: False
   main-is:       pizza.hs
   build-depends:
@@ -496,7 +500,7 @@ executable random
 
 executable req
   import:        shared-properties-unsafe
-  if arch(javascript) || arch(wasm32)
+  if arch(javascript) || arch(wasm32) || flag(musl)
     buildable: False
   main-is:       req.hs
   build-depends:
@@ -524,7 +528,7 @@ executable req
 
 executable shell
   import:        shared-properties-unsafe
-  if arch(javascript) || arch(wasm32)
+  if arch(javascript) || arch(wasm32) || flag(musl)
     buildable: False
   main-is:       shell.hs
   build-depends:
@@ -651,7 +655,7 @@ executable validation
 
 executable wai
   import:        shared-properties-unsafe
-  if arch(javascript) || arch(wasm32)
+  if arch(javascript) || arch(wasm32) || flag(musl)
     buildable: False
   main-is:       wai.hs
   build-depends:
@@ -669,7 +673,7 @@ executable webtex
 
 executable wikidata
   import:        shared-properties-unsafe
-  if arch(javascript) || arch(wasm32)
+  if arch(javascript) || arch(wasm32) || flag(musl)
     buildable: False
   main-is:       wikidata.hs
   build-depends:

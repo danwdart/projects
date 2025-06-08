@@ -1,1 +1,1 @@
--l -a -c "cabal repl projecteuler:exe:projecteuler" --restart lib --restart .ghcid --restart projecteuler.cabal
+-l -a -c "cabal new-repl projecteuler:exe:projecteuler" --restart lib --restart .ghcid --restart projecteuler.cabal

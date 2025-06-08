@@ -4,8 +4,6 @@ mkShell rec {
     packages = [
         pkgsCross.ghcjs.pkgsBuildHost.haskell.compiler.ghc912
         cabal-install
-        pkg-config
-        zlib.dev
         nodejs
         emscripten
     ];

@@ -18,6 +18,7 @@ foreign import ccall "exp" c_exp1 :: Double → Double
 foreign import ccall "printf" c_printf :: CString → IO CInt
 foreign import ccall "printf" c_printf2 :: CString → CString → IO CInt
 foreign import ccall "sprintf" c_sprintf2 :: CString → CString → CString → IO CInt
+-- glibc only!
 foreign import ccall "memfrob" c_memfrob :: CString → CInt → IO CString
 
 memfrob ∷ String → Int → IO String

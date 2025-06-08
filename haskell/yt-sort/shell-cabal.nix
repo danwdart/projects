@@ -27,7 +27,7 @@ runCommand "yt-sort" {
     ];
     shellHook = ''
         gen-hie > hie.yaml
-        for i in $(find -type f | grep -v dist-newstyle); do krank $i; done
+        for i in $(find -type f | grep -v "dist-*"); do krank $i; done
     '';
 } ""
 
