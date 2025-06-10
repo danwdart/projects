@@ -14,3 +14,4 @@ build/tesths: src/test.hs
 
 clean:
 	$(RM) -r build
+	$(RM) -r src/test.{hi,o}
