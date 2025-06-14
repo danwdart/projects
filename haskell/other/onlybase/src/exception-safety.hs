@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DerivingVia #-}
 
 module Main (main) where
 
@@ -21,7 +21,10 @@ failer = fail "Bob"
 tryer ∷ IO (Either SomeException String)
 tryer = try failer
 
-data DanException = DanException deriving stock (Show) deriving anyclass (Exception)
+data DanException = DanException
+    deriving stock (Show)
+
+instance Exception DanException
 
 sampleHandler ∷ SomeException → IO ()
 sampleHandler (SomeException ex) = putStrLn $ "Caught error: (" <> displayException ex <> ")"

@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DerivingVia    #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE Trustworthy       #-}
 {-# OPTIONS_GHC -Wno-unsafe -Wno-incomplete-uni-patterns #-}
@@ -37,7 +37,7 @@ data Login = Login {
     password :: Password
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (FromJSON, ToJSON)
+    deriving (FromJSON, ToJSON) via Generically Login
 
 data LoginResponse = LoginResponse {
     _data        :: Maybe LoginResponseData,
@@ -54,7 +54,7 @@ newtype LoginResponseData = LoginResponseData {
     stateId :: String
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (ToJSON)
+    deriving (ToJSON) via Generically LoginResponseData
 
 instance FromJSON LoginResponseData where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = \(f:fs) -> toUpper f : fs}
@@ -76,7 +76,7 @@ data GetBasketResponse = GetBasketResponse {
     minimumOrderValue               :: Float
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (FromJSON)
+    deriving (FromJSON) via Generically GetBasketResponse
 
 data BasketInfoResponse = BasketInfoResponse {
     totalPrice  :: Float,
@@ -106,14 +106,16 @@ data NavResponse = NavResponse {
     pageType                              :: String
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (FromJSON)
+    deriving (FromJSON) via Generically NavResponse
 
 data Step = Step {
     imageUrl    :: String,
     description :: String
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (FromJSON, Out)
+    deriving (FromJSON) via Generically Step
+
+instance Out Step
 
 data DealsDealsResponse = DealsDealsResponse {
     displayOrder     :: Int,
@@ -126,7 +128,9 @@ data DealsDealsResponse = DealsDealsResponse {
     feedsPeopleCount :: Int
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (FromJSON, Out)
+    deriving (FromJSON) via Generically DealsDealsResponse
+
+instance Out DealsDealsResponse
 
 data StoreDealsResponse = StoreDealsResponse {
     -- displayOrder :: Int,
@@ -139,13 +143,17 @@ data StoreDealsResponse = StoreDealsResponse {
     -- description :: String
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (FromJSON, Out)
+    deriving (FromJSON) via Generically StoreDealsResponse
+
+instance Out StoreDealsResponse
 
 newtype DealsResponse = DealsResponse {
     storeDeals :: [StoreDealsResponse]
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (FromJSON, Out)
+    deriving (FromJSON) via Generically DealsResponse
+
+instance Out DealsResponse
 
 host ∷ Url 'Https
 host = https "www.dominos.co.uk"

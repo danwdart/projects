@@ -1,4 +1,3 @@
-{-# LANGUAGE DeriveAnyClass  #-}
 {-# LANGUAGE OverloadedLists #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
@@ -16,7 +15,8 @@ newtype Polynomial = Polynomial {
 
 data PolynomialError = EmptyListException | AllZeroException
     deriving stock (Show)
-    deriving anyclass (Exception) -- can I do that with override displayException
+
+instance Exception PolynomialError
 
 -- >>> pretty <$> fromIntList [1,2,3]
 -- Right "1 + 2x + 3x\178"

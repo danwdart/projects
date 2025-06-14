@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DerivingVia    #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Main (main) where
@@ -32,7 +32,8 @@ rowId = RowId 123
 
 data NonsenseException = NonsenseException String | UnexpectedException
     deriving stock (Show)
-    deriving anyclass (Exception)
+
+instance Exception NonsenseException
 
 formatRow ∷ DBRow → Either NonsenseException String
 formatRow DBRow { dbRowId = RowId _, dbRowName = dbRowName' }
@@ -42,7 +43,8 @@ formatRow DBRow { dbRowId = RowId _, dbRowName = dbRowName' }
 
 data DBException = RowNotFoundException RowId | DBConnectionException DBConnectionInfo
     deriving stock (Show)
-    deriving anyclass (Exception)
+
+instance Exception DBException
 
 getRow ∷ Int → Either DBException DBRow
 getRow id'
@@ -52,7 +54,8 @@ getRow id'
 
 data ClientException = NotFoundException Url | InternalServerError
     deriving stock (Show)
-    deriving anyclass (Exception)
+
+instance Exception ClientException
 
 -- TODO refactor first/second
 fetchRow ∷ Url → Int → Either ClientException String

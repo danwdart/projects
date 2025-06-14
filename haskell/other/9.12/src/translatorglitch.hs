@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DerivingVia    #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-x-partial #-}
 
@@ -44,13 +44,13 @@ data TRT = TRT {
     translatedText :: String
 }
     deriving stock (Generic, Show)
-    deriving anyclass (FromJSON)
+    deriving (FromJSON) via Generically TRT
 
 newtype TRD = TRD {
     translations :: [TRT]
 }
     deriving stock (Generic, Show)
-    deriving anyclass (FromJSON)
+    deriving (FromJSON) via Generically TRD
 
 newtype TR = TR {
     _data :: TRD
@@ -96,4 +96,4 @@ makeT xs = translateTextRequest
     & ttrQ .~ xs
 
 --myR :: TranslationsTranslate
---myR = myT & translationsTranslate & ttPp .~ True{-# LANGUAGE DeriveAnyClass, OverloadedStrings #-}
+--myR = myT & translationsTranslate & ttPp .~ True

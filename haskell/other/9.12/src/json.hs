@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DerivingVia    #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes       #-}
 {-# LANGUAGE Trustworthy       #-}
@@ -18,7 +18,7 @@ data Person = Person {
     , age  :: Int
 }
     deriving stock (Generic, Show)
-    deriving anyclass (FromJSON, ToJSON)
+    deriving (FromJSON, ToJSON) via Generically Person
 
 myPerson ∷ Person
 myPerson = Person {

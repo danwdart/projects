@@ -1,5 +1,4 @@
 {-# OPTIONS_GHC -ddump-splices -Wno-unsafe #-}
-{-# LANGUAGE DeriveAnyClass  #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE Unsafe          #-}
 

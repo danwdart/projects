@@ -22,15 +22,13 @@ flag musl
   default: False
 
 common shared-properties-base
-  hs-source-dirs:     src
+  build-depends:
+    , base      ^>=4.21.0.0
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
-
-common shared-properties-lib
-  import:             shared-properties-base
   ghc-options:
     -Weverything -Wno-implicit-prelude -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
@@ -40,33 +38,28 @@ common shared-properties-lib
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Werror -haddock
 
-  build-depends:      base ^>=4.21.0.0
-  default-extensions: NoGeneralizedNewtypeDeriving
+common shared-properties-src
+  import:        shared-properties-base
+  hs-source-dirs:     src
+  if !arch(wasm32)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
 common shared-properties-unsafe
-  import:        shared-properties-base
-  if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+  import:             shared-properties-src
   ghc-options:
-    -Weverything -Wno-implicit-prelude -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists -Wno-missing-import-lists
-    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock
-
-  build-depends: base ^>=4.21.0.0
+    -Wno-unsafe -Wno-safe
+  default-extensions: Unsafe
 
 common shared-properties-safe
-  import:             shared-properties-unsafe
+  import:             shared-properties-src
   default-extensions:
     NoGeneralizedNewtypeDeriving
     Safe
 
 library
-  import:          shared-properties-lib
+  import:             shared-properties-base
   hs-source-dirs:  lib
+  default-extensions: NoGeneralizedNewtypeDeriving
   exposed-modules:
     Auth
     BetterBools
@@ -294,7 +287,7 @@ executable enum
   main-is: enum.hs
 
 executable errors
-  import:  shared-properties-safe
+  import:  shared-properties-unsafe
   main-is: errors.hs
 
 executable evidence
@@ -310,7 +303,7 @@ executable eviloop
   main-is:       eviloop.hs
 
 executable exception-safety
-  import:  shared-properties-safe
+  import:  shared-properties-unsafe
   main-is: exception-safety.hs
 
 executable existentialism
@@ -444,7 +437,7 @@ executable postfixops
   main-is:       postfixops.hs
 
 executable prim
-  import:  shared-properties-unsafe
+  import:  shared-properties-src
   main-is: prim.hs
 
 executable read

@@ -1,4 +1,3 @@
-{-# LANGUAGE DeriveAnyClass       #-}
 {-# LANGUAGE TemplateHaskell      #-}
 {-# LANGUAGE TypeFamilies         #-}
 {-# LANGUAGE UndecidableInstances #-}
@@ -31,7 +30,8 @@ data RolloverStrategy = Exact | Reverse | Rebirth | Gimme
 
 newtype AppError = CantFindPlayer Int
     deriving stock (Show)
-    deriving anyclass (Exception)
+
+instance Exception AppError
 
 -- Datatypes
 

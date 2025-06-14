@@ -1,6 +1,5 @@
 {-# OPTIONS_GHC -Wno-unsafe #-}
 -- why is it unused? it's not unused wtf
-{-# LANGUAGE DeriveAnyClass        #-}
 {-# LANGUAGE DerivingVia           #-}
 {-# LANGUAGE OverloadedStrings     #-}
 {-# LANGUAGE QuasiQuotes           #-}
@@ -36,15 +35,17 @@ instance ToJSON ColumnType where
 
 instance Lift ColumnType where
     lift c = lift (show c)
-    liftTyped _ = Code $ undefined -- liftTyped c
+    liftTyped _ = Code undefined -- liftTyped c
 
 data Field = Field {
     columnName :: Text,
     columnType :: ColumnType
-} deriving (Eq, Show, Generic, FromJSON, ToJSON, Lift)
+} deriving stock (Eq, Show, Generic, Lift)
+    deriving (FromJSON, ToJSON) via Generically Field
 
 newtype Schema = Schema [(Text, Field)]
-    deriving (Eq, Show, Generic, FromJSON, ToJSON, Lift)
+    deriving stock (Eq, Show, Generic, Lift)
+    deriving (FromJSON, ToJSON) via Generically Schema
 
 expToDecsQ ∷ TExp Schema → DecsQ
 expToDecsQ _ = [d|
@@ -52,5 +53,6 @@ expToDecsQ _ = [d|
         title :: Text,
         author :: Text,
         isbn :: Text
-    } deriving (Show, Eq, Generic, FromJSON, ToJSON, Lift)
+    } deriving stock (Show, Eq, Generic, Lift)
+        deriving anyclass (FromJSON, ToJSON)
     |]

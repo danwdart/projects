@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass  #-}
+{-# LANGUAGE DerivingVia  #-}
 {-# LANGUAGE OverloadedLists #-}
 {-# OPTIONS_GHC -Wno-orphans #-}
 
@@ -29,7 +29,7 @@ data WordData = WordData {
     middle :: WordsVC,
     end    :: WordsVC
 } deriving stock (Show, Generic)
-    deriving anyclass (FromJSON)
+    deriving (FromJSON) via Generically WordData
 
 main ∷ IO ()
 main = do

@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DerivingVia    #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards   #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-x-partial #-}
@@ -44,7 +44,7 @@ data Coffee = Coffee {
     siteId    :: Id
 }
     deriving stock (Show, Eq, Generic)
-    deriving anyclass (A.FromJSON)
+    deriving (A.FromJSON) via Generically Coffee
 
 prettyPrintMachine ∷ Text → Text
 prettyPrintMachine "11317961" = "Co-Op Shepton Mallet"
