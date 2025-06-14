@@ -22,6 +22,7 @@ import GHC.Err
 import GHC.Num
 import GHC.TypeNats
 import Text.Show
+import GHC.Stack (HasCallStack)
 
 -- More generic monads required I think.
 
@@ -153,7 +154,7 @@ find
 head
 -}
 
-head ∷ Vec n a → a
+head ∷ HasCallStack => Vec n a → a
 head Nil      = error "No head"
 head (x :> _) = x
 
@@ -184,7 +185,7 @@ init (a :> as) = a :> init as
 -- 1
 --
 
-last ∷ Vec n a → a
+last ∷ HasCallStack => Vec n a → a
 last Nil        = error "No last"
 last (x :> Nil) = x
 last (_ :> xs)  = last xs
@@ -399,7 +400,7 @@ intersect
 -}
 
 
-(!!) ∷ Vec n a → Nat → a -- Get the nat
+(!!) ∷ HasCallStack => Vec n a → Nat → a -- Get the nat
 Nil !! _       = error "Nah"
 (x :> _) !! 0  = x
 (_ :> xs) !! n = xs !! (n-1)

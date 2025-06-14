@@ -4,6 +4,7 @@
 
 module Main (main) where
 
+import GHC.Stack
 import Sequence.Fibonacci
 import Sequence.Lucas
 import Sequence.Period
@@ -12,7 +13,7 @@ import Sequence.Period
 
 valueEqual ∷ [Integer] → [Integer] → [Integer]
 valueEqual xs ys = go xs ys 0 [] where
-    go ∷ [Integer] → [Integer] → Integer → [Integer] → [Integer]
+    go ∷ HasCallStack => [Integer] → [Integer] → Integer → [Integer] → [Integer]
     go [] [] _ list = list
     go (x:xs') (y:ys') ix list
         | x == y = x : go xs' ys' (ix + 1) list

@@ -9,6 +9,7 @@ import Data.ByteString          as B
 import Data.ByteString.Internal as B
 import Data.Word
 import Prelude                  as P
+import GHC.Stack
 
 h0, h1, h2, h3, h4 ∷ Int
 h0 = 0x67452301
@@ -49,11 +50,11 @@ word64ToWord8sLE x = [
     fromIntegral (shift x (- 56))
     ]
 
-word8sToWord32BE ∷ [Word8] → Word32
+word8sToWord32BE ∷ HasCallStack => [Word8] → Word32
 word8sToWord32BE [a,b,c,d] = ((((fromIntegral a * 256) + fromIntegral b) * 256) + fromIntegral c) * 256 + fromIntegral d
 word8sToWord32BE _ = error "Need 4 Word8s"
 
-word8sToWord32LE ∷ [Word8] → Word32
+word8sToWord32LE ∷ HasCallStack => [Word8] → Word32
 -- @TODO reverse call
 word8sToWord32LE [a,b,c,d] = ((((fromIntegral d * 256) + fromIntegral c) * 256) + fromIntegral b) * 256 + fromIntegral a
 word8sToWord32LE _ = error "Need 4 Word8s"

@@ -4,6 +4,7 @@
 module Data.Functor.Multi where
 
 import Data.Monoid
+import GHC.Stack (HasCallStack)
 -- bimap isn't quite enough, there should be a generalised version of that
 
 -- I'd like to write something like this:
@@ -23,7 +24,7 @@ apTest = [(+), (-), (*)] <*> [1,2,3] <*> [4,5,6]
 -- [2,4]
 --
 
-manualOne ∷ [a → b] → [a] → [b]
+manualOne ∷ HasCallStack => [a → b] → [a] → [b]
 manualOne [] []         = []
 manualOne (f:fs) (x:xs) = f x : manualOne fs xs
 manualOne _ _           = error "Incorrect list lengths"
@@ -31,7 +32,7 @@ manualOne _ _           = error "Incorrect list lengths"
 -- >>> manualTwo [(+), (*)] [1, 2] [2, 3]
 -- [3,6]
 --
-manualTwo ∷ [a → b → c] → [a] → [b] → [c]
+manualTwo ∷ HasCallStack => [a → b → c] → [a] → [b] → [c]
 manualTwo [] [] []             = []
 manualTwo (f:fs) (x:xs) (y:ys) = f x y : manualTwo fs xs ys
 manualTwo _ _ _                = error "Incorrect list lengths"

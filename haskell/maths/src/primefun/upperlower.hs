@@ -1,7 +1,8 @@
+module Main (main) where
+
+import Chart
 import Data.Foldable
 import Factor
-import Graphics.Rendering.Chart.Backend.Cairo
-import Graphics.Rendering.Chart.Easy
 
 main :: IO ()
 main = do
@@ -16,16 +17,10 @@ main = do
         for_ [100, 1000, 10000 :: Integer] $ \n -> do
             let funResultE = fmap func [2..n]
             putStrLn $ name <> " to " <> show n
-            seqToPng ("upperlower" <> name <> show n <> ".png") "Upper/Lower" "ul x" $ funResultE
+            seqToPng ("upperlower" <> name <> show n <> ".png") "Upper/Lower" "ul x" 2 $ funResultE
 
 -- outsides :: Integer -> [Integer]
 -- outsides n = fmap (floor . (sqrt :: Double -> Double) . fromIntegral) $ ([2..n] :: [Integer])
-
-seqToPng ∷ FilePath → String -> String → [Integer] → IO ()
-seqToPng fileName plotTitle lineTitle numberSequence = toFile @(Layout Integer Integer) def fileName $ do
-    layout_title .= plotTitle
-    plot (line lineTitle [ zip [2..] numberSequence ])
-    -- plot (line "sqrtx" [ zip [2..] (outsides n) ])
 
 fun :: Integer -> Integer
 fun n = fromIntegral (length (factors (n + 1))) - fromIntegral (length (factors (n - 1)))

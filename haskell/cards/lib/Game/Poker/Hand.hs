@@ -4,6 +4,7 @@
 module Game.Poker.Hand where
 
 import GHC.Exts
+import GHC.Stack
 
 {-# ANN module "HLint: ignore Avoid restricted function" #-}
 
@@ -16,7 +17,7 @@ data StaticPokerHand a = StaticPokerHand {
     _5 :: a
 } deriving stock Show
 
-instance IsList (StaticPokerHand a) where
+instance HasCallStack => IsList (StaticPokerHand a) where
 
     type (Item (StaticPokerHand a)) = a
 

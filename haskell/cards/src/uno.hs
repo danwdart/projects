@@ -7,6 +7,7 @@ import Data.List.Extra
 import Data.List.NonEmpty    qualified as LNE
 import Data.Maybe
 -- import           Debug.Trace
+import GHC.Stack
 import System.Random.Shuffle
 import Uno.Action.Bounded
 import Uno.Card
@@ -55,7 +56,7 @@ cardsPerPlayer = 7
 initialPlayDirection ∷ PlayDirection
 initialPlayDirection = Ascending
 
-startGame ∷ Deck → Discard → (Deck, Discard)
+startGame ∷ HasCallStack => Deck → Discard → (Deck, Discard)
 startGame deck discard = do
     case deck of
         (tryMatch:deck') -> do

@@ -1,20 +1,12 @@
 module Main (main) where
 
+import Chart
 import Codec.Picture
 import Codec.Picture.ColorQuant
 import Control.Monad.Except
 import Control.Monad.IO.Class
 import Data.List                              qualified as L
-import Graphics.Rendering.Chart.Backend.Cairo
-import Graphics.Rendering.Chart.Easy
 import System.Directory
-
--- @TODO openTempFile
-
-seqToPng ∷ FilePath → [Integer] → IO ()
-seqToPng fileName numberSequence = toFile @(Layout Integer Integer) def fileName $ do
-    layout_title .= "Lucas"
-    plot (line "Lucas" [ zip [0..] numberSequence ])
 
 pngToImage ∷ FilePath → ExceptT String IO DynamicImage
 pngToImage = ExceptT . readImage
@@ -22,7 +14,7 @@ pngToImage = ExceptT . readImage
 seqToImage ∷ [Integer] → ExceptT String IO DynamicImage
 seqToImage numberSequence = do
     liftIO $ putStrLn "Creating image..."
-    liftIO $ seqToPng "tmp.png" numberSequence
+    liftIO $ seqToPng "tmp.png" "Lucas" "Lucas" 0 numberSequence
     liftIO $ putStrLn "Decoding image..."
     i0 <- pngToImage "tmp.png"
     liftIO $ putStrLn "Deleting image..."

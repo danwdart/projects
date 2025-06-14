@@ -20,6 +20,7 @@ import Data.Text.IO           qualified as TIO
 import Data.Time
 import Data.UUID.Types        (UUID)
 import GHC.Generics
+import GHC.Stack              (HasCallStack)
 import System.Environment
 import Text.Printf            (printf)
 -- import Web.JWT qualified as JWT
@@ -81,7 +82,7 @@ prettyPrintCoffee Coffee {..} =
     ", time = " <> timestamp <>
     ", site = " <> prettyPrintSite siteId
 
-main ∷ IO ()
+main ∷ HasCallStack ⇒ IO ()
 main = do
     files <- getArgs
     toRead <- TE.decodeUtf8Lenient <$> if null files || "-" == head files

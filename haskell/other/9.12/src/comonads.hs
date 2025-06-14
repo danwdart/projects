@@ -14,6 +14,7 @@ import Data.Map               (Map)
 import Data.Map               qualified as M
 import Data.Set               (Set)
 import Data.Set               qualified as S
+import GHC.Stack
 
 newtype MyComonad a = MyComonad a deriving stock (Functor, Show)
 
@@ -62,7 +63,7 @@ fromList xs = go (cycle xs)
 countStream ∷ Stream Int
 countStream = fromList [0..]
 
-ix ∷ Int → Stream a → a
+ix ∷ HasCallStack => Int → Stream a → a
 ix n _ | n < 0 = error "whoops"
 ix 0 (a :> _) = a
 ix n (_ :> rest) = ix (n - 1) rest
