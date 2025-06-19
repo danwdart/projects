@@ -9,10 +9,8 @@ extra-source-files: CHANGELOG.md
 
 common shared-properties
   hs-source-dirs:     src
-  default-language:   Haskell2010
+  default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   build-depends:      base ^>=4.21.0.0

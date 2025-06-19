@@ -1,5 +1,3 @@
-{-# LANGUAGE DerivingStrategies #-}
-
 {-# LANGUAGE UnicodeSyntax      #-}
 
 module Format where

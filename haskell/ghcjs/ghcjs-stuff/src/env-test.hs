@@ -1,8 +1,6 @@
 {-# LANGUAGE CPP              #-}
 {-# LANGUAGE JavaScriptFFI    #-}
-{-# LANGUAGE MonoLocalBinds   #-}
 {-# LANGUAGE TemplateHaskell  #-}
-{-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE Unsafe           #-}
 {-# OPTIONS_GHC -Wno-type-defaults -Wno-unused-matches -Wno-unused-local-binds #-}
 

@@ -1,5 +1,4 @@
 {-# LANGUAGE DefaultSignatures #-}
-{-# LANGUAGE LambdaCase        #-}
 {-# LANGUAGE Safe              #-}
 {-# LANGUAGE UnicodeSyntax     #-}
 

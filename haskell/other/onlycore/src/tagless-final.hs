@@ -1,4 +1,3 @@
-{-# LANGUAGE DerivingStrategies   #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE UnicodeSyntax        #-}
 {-# LANGUAGE Unsafe               #-}

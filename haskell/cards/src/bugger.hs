@@ -1,4 +1,3 @@
-{-# LANGUAGE DerivingStrategies #-}
 {-# OPTIONS_GHC -Wwarn #-}
 
 import Control.Monad.Primitive

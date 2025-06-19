@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #! nix-shell -p haskell.compiler.ghc912 cabal-install -i cabal
 {- cabal:
-build-depends: base ^>= 4.20
+build-depends: base ^>= 4.21
              , containers ^>=0.8.0
              , text >=2.1.2
 -}

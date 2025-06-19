@@ -46,8 +46,6 @@ library
   hs-source-dirs:     lib
   default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   if arch(javascript)
@@ -66,8 +64,6 @@ executable for-node
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   ghcjs-options:      -dedupe
@@ -85,8 +81,6 @@ executable for-browser
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   ghcjs-options:      -dedupe
@@ -98,8 +92,6 @@ test-suite js-backend-test
     buildable: False
   default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
-    ImportQualifiedPost
     UnicodeSyntax
 
   -- other-modules:

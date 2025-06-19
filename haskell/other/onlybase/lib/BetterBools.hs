@@ -1,5 +1,3 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE NoGeneralisedNewtypeDeriving #-}
 {-# LANGUAGE Safe                         #-}
 {-# LANGUAGE UnicodeSyntax                #-}
@@ -94,7 +92,6 @@ optChoice2 = no
 
 -- We don't even need to make useless data types up...
 
--- >>> :set -XDataKinds
 -- >>> Booly True :: Booly "Should we be doing this right now"
 -- Booly True
 --

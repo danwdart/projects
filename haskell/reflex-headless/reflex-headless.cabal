@@ -15,7 +15,6 @@ common shared-properties
     js-sources: jsbits/emcc-config.js
   default-language:   GHC2024
   default-extensions:
-    DerivingStrategies
     UnicodeSyntax
 
   build-depends:      base ^>=4.21.0.0

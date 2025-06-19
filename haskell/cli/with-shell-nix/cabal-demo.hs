@@ -1,6 +1,6 @@
 #!/usr/bin/env cabal
 {- cabal:
-build-depends: base ^>= 4.20
+build-depends: base ^>= 4.21
              , containers >=0.8
 -}
 {- project:

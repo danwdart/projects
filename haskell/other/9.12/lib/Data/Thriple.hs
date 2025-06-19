@@ -1,4 +1,3 @@
-{-# LANGUAGE DeriveGeneric        #-}
 {-# LANGUAGE PackageImports       #-}
 {-# LANGUAGE Safe                 #-}
 {-# LANGUAGE UndecidableInstances #-}

@@ -1,5 +1,3 @@
-{-# LANGUAGE DerivingStrategies #-}
-
 module Control.Exception.RangeException (RangeException(..)) where
 
 import Control.Exception

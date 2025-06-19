@@ -1,4 +1,3 @@
-{-# LANGUAGE DerivingStrategies     #-}
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE UndecidableInstances   #-}
 {-# LANGUAGE UnicodeSyntax          #-}

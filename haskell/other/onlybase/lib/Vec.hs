@@ -1,5 +1,4 @@
 -- https://www.youtube.com/watch?v=PHS3Q-tRjFQ
-{-# LANGUAGE MultiParamTypeClasses   #-}
 {-# LANGUAGE Unsafe                  #-}
 {-# OPTIONS_GHC -Weverything -Werror #-}
 {-# OPTIONS_GHC -Wno-missing-import-lists #-}

@@ -205,4 +205,4 @@ test-suite cards-test
 -- , cards
 -- , hspec-core ^>=2.11.10
 -- , hspec-expectations ^>=0.8.4
--- , QuickCheck ^>=2.15.0.1
+-- , QuickCheck ^>=2.16.0.0
