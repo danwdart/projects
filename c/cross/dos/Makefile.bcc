@@ -1,0 +1,16 @@
+CC = bcc
+CFLAGS = -Md
+EXECUTABLES = build/small-bcc.com
+
+.PHONY: all
+
+all: build $(EXECUTABLES)
+
+build:
+	mkdir build
+
+build/%-bcc.com: src/%.c
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	$(RM) -r build

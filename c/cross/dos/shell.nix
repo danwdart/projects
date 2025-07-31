@@ -1,7 +1,8 @@
 with import <nixpkgs> {};
 runCommand "cross-dos" {
     buildInputs = [
-      open-watcom-v2
+      dev86
       djgpp_i686
+      open-watcom-v2
     ];
 } ""
