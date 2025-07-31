@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveAnyClass    #-}
+{-# LANGUAGE DerivingVia    #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Main (main) where
@@ -7,6 +7,7 @@ import Control.Monad.IO.Class
 import Data.Aeson
 -- import Data.Aeson.Encode.Pretty
 -- import Data.ByteString.Lazy.Char8 qualified as BSL
+import GHC.Generics
 import Network.HTTP.Req
 import Text.PrettyPrint.GenericPretty
 
@@ -32,7 +33,8 @@ data OEISResult = OEISResult {
     _keyword     :: String
 }
     deriving stock (Eq, Generic, Show)
-    deriving anyclass (Out)
+
+instance Out OEISResult
 
 instance FromJSON OEISResult where
     parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = drop 1 }
@@ -40,8 +42,9 @@ instance FromJSON OEISResult where
 newtype OEISResponse = OEISResponse {
     results :: [OEISResult]
 } deriving stock (Eq, Generic, Show)
-    deriving anyclass FromJSON
-    deriving newtype Out
+    deriving (FromJSON) via Generically OEISResponse
+
+instance Out OEISResponse
 
 -- debugJSON :: (MonadHttp m, MonadIO m) => JsonResponse Value -> m ()
 -- debugJSON = liftIO . BSL.putStrLn . encodePretty . responseBody
