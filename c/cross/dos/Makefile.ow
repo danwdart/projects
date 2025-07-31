@@ -1,0 +1,16 @@
+CC = wcl
+CFLAGS = -bt=dos
+EXECUTABLES = build/main-ow.exe
+
+.PHONY: all
+
+all: build $(EXECUTABLES)
+
+build:
+	mkdir build
+
+build/%-ow.exe: src/%.c
+	$(CC) $(CFLAGS) $< -fe=$@
+
+clean:
+	$(RM) -r build

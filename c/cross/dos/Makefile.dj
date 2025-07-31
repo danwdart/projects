@@ -1,0 +1,16 @@
+CC = i686-pc-msdosdjgpp-gcc
+CFLAGS =
+EXECUTABLES = build/main-dj.exe
+
+.PHONY: all
+
+all: build $(EXECUTABLES)
+
+build:
+	mkdir build
+
+build/%-dj.exe: src/%.c
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	$(RM) -r build
