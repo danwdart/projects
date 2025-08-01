@@ -66,7 +66,7 @@ main = do
     lgr <- newLogger Trace stdout
     setEnv "GOOGLE_APPLICATION_CREDENTIALS" "./google.json"
     env <- newEnv <&> (envLogger .~ lgr) . (envScopes .~ cloudTranslationScope)
-    accessToken <- retrieveTokenFromStore (env ^. envStore) lgr (env ^.envManager) <&> _tokenAccess
+    accessToken <- retrieveTokenFromStore (env ^. envStore) lgr (env ^. envManager) <&> _tokenAccess
 
     myRes <- res accessToken stringsToTranslate :: IO (Maybe TR)
 
