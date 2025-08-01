@@ -5,6 +5,7 @@
 
 module Main where
 
+import Data.Bits
 import Data.Kind
 import Data.Proxy
 import GHC.TypeNats (KnownNat (..), Nat, natVal)
@@ -36,6 +37,34 @@ instance KnownNat n => Enum (Mod n) where
 instance KnownNat n => Bounded (Mod n) where
     minBound = 0
     maxBound = (-1)
+
+instance KnownNat n => Bits (Mod n) where
+    Mod a .&. Mod b = Mod ((a .&. b) `mod` n) where -- not integer?
+        n = fromIntegral $ natVal (Proxy :: Proxy n)
+    Mod a .|. Mod b = Mod ((a .|. b) `mod` n) where -- not integer?
+        n = fromIntegral $ natVal (Proxy :: Proxy n)
+    (Mod a) `xor` (Mod b) = Mod ((a `xor` b) `mod` n) where -- not integer?
+        n = fromIntegral $ natVal (Proxy :: Proxy n)
+    complement (Mod a) = Mod ((complement a) `mod` n) where -- not integer?
+        n = fromIntegral $ natVal (Proxy :: Proxy n)
+    shift (Mod a) leftBy = Mod ((shift a leftBy) `mod` n) where -- not integer?
+        n = fromIntegral $ natVal (Proxy :: Proxy n)
+    rotate (Mod a) leftBy = Mod ((rotate a leftBy) `mod` n) where -- not integer?
+        n = fromIntegral $ natVal (Proxy :: Proxy n)
+    bitSize (Mod a) = bitSize a
+    bitSizeMaybe (Mod a) = bitSizeMaybe a
+    isSigned (Mod a) = isSigned a
+    testBit (Mod a) = testBit a
+    bit loc = Mod ((bit loc) `mod` n) where -- not integer?
+        n = fromIntegral $ natVal (Proxy :: Proxy n)
+    popCount (Mod a) = popCount a
+
+-- >>> 10 `xor` 2 :: Mod 3
+-- Mod {getMod = 0}
+--
+
+-- trinary stuff?
+
 
 coprime :: Int -> Int -> Bool
 coprime x y = gcd x y == 1
@@ -104,9 +133,33 @@ coprimeTable n f = fmap (\x -> fmap (\y -> f x y) nums) nums where
 --
 -- >>> displayTable $ coprimeTable 6 (*)
 -- "1 5\n5 1\n"
+
+-- >>> displayTable $ fullTable 2 0 xor
+-- "0 1\n1 0\n"
+--
+
+-- >>> displayTable $ fullTable 2 0 (+)
+-- "0 1\n1 0\n"
+
+-- >>> displayTable $ fullTable 2 0 (*)
+-- "0 0\n0 1\n"
+--
+
+-- >>> displayTable $ fullTable 2 0 (.&.)
+-- "0 0\n0 1\n"
+--
+
+-- >>> displayTable $ fullTable 2 0 (.&.)
+-- <interactive>:630:31-35: error: [GHC-39999]
+--     • No instance for ‘Bits (Mod 2)’ arising from a use of ‘.&.’
+--     • In the third argument of ‘fullTable’, namely ‘(.&.)’
+--       In the second argument of ‘($)’, namely ‘fullTable 2 0 (.&.)’
+--       In the expression: displayTable $ fullTable 2 0 (.&.)
+-- <BLANKLINE>
 --
 displayTable :: [[Mod n]] -> String
 displayTable = unlines . fmap (unwords . fmap (show . getMod))
+
 
 main ∷ IO ()
 main = putStrLn . displayTable $ coprimeTable 12 (*)
