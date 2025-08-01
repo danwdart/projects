@@ -117,6 +117,9 @@ allValsFrom n = [n..maxBound]
 fullTable ∷ forall n -> KnownNat n => Mod n -> (Mod n -> Mod n -> Mod n) -> [[Mod n]]
 fullTable _ minNum f = fmap (\x -> f x <$> allValsFrom minNum) (allValsFrom minNum)
 
+binaryOneBitTruthTable :: (Mod 2 -> Mod 2 -> Mod 2) -> [[Mod 2]]
+binaryOneBitTruthTable = fullTable 2 0
+
 -- >>> coprimeTable 4 (*)
 -- [[Mod {getMod = 1},Mod {getMod = 3}],[Mod {getMod = 3},Mod {getMod = 1}]]
 --
@@ -134,14 +137,14 @@ coprimeTable n f = fmap (\x -> fmap (\y -> f x y) nums) nums where
 -- >>> displayTable $ coprimeTable 6 (*)
 -- "1 5\n5 1\n"
 
--- >>> displayTable $ fullTable 2 0 xor
+-- >>> displayTable $ binaryOneBitTruthTable xor
 -- "0 1\n1 0\n"
 --
 
--- >>> displayTable $ fullTable 2 0 (+)
+-- >>> displayTable $ binaryOneBitTruthTable (+)
 -- "0 1\n1 0\n"
 
--- >>> displayTable $ fullTable 2 0 (*)
+-- >>> displayTable $ binaryOneBitTruthTable(*)
 -- "0 0\n0 1\n"
 --
 
