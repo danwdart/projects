@@ -18,15 +18,16 @@ data-dir:           data
 common shared-properties
   hs-source-dirs:     src
   default-extensions:
-
   default-language:   GHC2024
   build-depends:      base ^>=4.21.0.0
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude
 
   -- -Wno-missing-safe-haskell-mode
   -- -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -- only works on recent ghc
@@ -40,7 +41,9 @@ library
   exposed-modules:
     Env
     Run
+
   hs-source-dirs:  lib
+
   if (!impl(ghcjs) && !arch(javascript))
     build-depends:
       , jsaddle       ^>=0.9.9.2

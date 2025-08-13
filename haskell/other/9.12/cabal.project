@@ -3,7 +3,7 @@ benchmarks: True
 tests: True
 -- base for ilist
 -- template-haskell for freer-simple
-allow-newer: containers, base, QuickCheck
+allow-newer: containers, base, QuickCheck, time
 -- doctest -> ghc
 -- allow-older: containers
 -- allow-newer: base, bytestring, template-haskell

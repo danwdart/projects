@@ -1,21 +1,19 @@
+cabal-version:      3.12
 name:               hsjava
 version:            0.2.0.0
 synopsis:           Nothing
-license:            AGPL-3.0
+license:            AGPL-3.0-only
 license-file:       LICENSE
 author:             Dan Dart
 maintainer:         cabal@dandart.co.uk
 category:           Nothing
 build-type:         Simple
 extra-source-files: ChangeLog.md
-cabal-version:      3.12
 
 executable hsjava
   main-is:            Main.hs
   build-depends:      base ^>=4.21.0.0
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   hs-source-dirs:     src
   default-language:   GHC2024
   ghc-options:

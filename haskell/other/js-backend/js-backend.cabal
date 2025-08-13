@@ -22,15 +22,16 @@ data-files:
 
 common warnings
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
-  ghc-options: -Wall -Wwarn -Weverything
-    -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
-    -Wno-missed-specialisations
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
+  ghc-options:
+    -Wall -Wwarn -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags -Wno-missed-specialisations
 
 library
   import:             warnings
@@ -45,8 +46,7 @@ library
   -- for ghc 9.10.1
   hs-source-dirs:     lib
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
 
   if arch(javascript)
     js-sources: jsbits/lib.js
@@ -57,15 +57,13 @@ executable for-node
 
   -- other-extensions:
   build-depends:
-    -- , aeson       ^>=2.2.3.0
     , base        ^>=4.21.0.0
     , js-backend  ^>=0.2.0.0
 
+  -- , aeson       ^>=2.2.3.0
   hs-source-dirs:     src
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
 
 executable for-browser
@@ -74,25 +72,24 @@ executable for-browser
 
   -- other-extensions:
   build-depends:
-    -- , aeson       ^>=2.2.3.0
     , base        ^>=4.21.0.0
     , js-backend  ^>=0.2.0.0
 
+  -- , aeson       ^>=2.2.3.0
   hs-source-dirs:     src
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
   cpp-options:        -DGHCJS_BROWSER
 
 test-suite js-backend-test
   import:             warnings
-  if arch(javascript) || arch(wasm32)
+
+  if (arch(javascript) || arch(wasm32))
     buildable: False
+
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
 
   -- other-modules:
   -- other-extensions:

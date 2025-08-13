@@ -21,14 +21,14 @@ data-files:
   index.html
 
 common warnings
-  ghc-options: -Wall -Wwarn -Weverything
-    -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
-    -Wno-missed-specialisations
+  ghc-options:
+    -Wall -Wwarn -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags -Wno-missed-specialisations
 
 -- library
 --   import:             warnings
@@ -55,15 +55,14 @@ executable for-node
   main-is:            Main.hs
 
   -- other-extensions:
-  build-depends:
-    -- , aeson       ^>=2.2.3.0
-    , base        ^>=4.21.0.0
-    -- , wasm-backend  ^>=0.2.0.0
+  build-depends:      base ^>=4.21.0.0
+
+  -- , aeson       ^>=2.2.3.0
+  -- , wasm-backend  ^>=0.2.0.0
 
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions:
-
   ghcjs-options:      -dedupe
 
 executable for-browser
@@ -71,26 +70,25 @@ executable for-browser
   main-is:            Main.hs
 
   -- other-extensions:
-  build-depends:
-    -- , aeson       ^>=2.2.3.0
-    , base        ^>=4.21.0.0
-    -- , wasm-backend  ^>=0.2.0.0
+  build-depends:      base ^>=4.21.0.0
+
+  -- , aeson       ^>=2.2.3.0
+  -- , wasm-backend  ^>=0.2.0.0
 
   hs-source-dirs:     src
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
-
+  default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
   cpp-options:        -DGHCJS_BROWSER
 
 test-suite wasm-backend-test
   import:             warnings
-  if arch(javascript) || arch(wasm32)
+
+  if (arch(javascript) || arch(wasm32))
     buildable: False
+
   default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
+  default-extensions: UnicodeSyntax
 
   -- other-modules:
   -- other-extensions:
@@ -98,7 +96,7 @@ test-suite wasm-backend-test
   hs-source-dirs:     test
   main-is:            Main.hs
   build-depends:
-    , base        ^>=4.21.0.0
+    , base          ^>=4.21.0.0
     , wasm-backend  ^>=0.2.0.0
 
   build-tool-depends: hspec-discover:hspec-discover

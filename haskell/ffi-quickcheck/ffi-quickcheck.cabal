@@ -18,8 +18,10 @@ extra-source-files:
 
 common shared-properties-base
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
@@ -27,31 +29,31 @@ common shared-properties-base
 common shared-properties-lib
   import:             shared-properties-base
   ghc-options:
-    -Weverything -Wno-implicit-prelude
-    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies -Wno-missing-export-lists
+    -Wno-missing-import-lists -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock
+    -Wno-unrecognised-warning-flags -Werror -haddock
 
   build-depends:      base ^>=4.21.0.0
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
   import:        shared-properties-base
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Weverything -Wno-implicit-prelude
-    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies -Wno-missing-export-lists
+    -Wno-missing-import-lists -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock
+    -Wno-unrecognised-warning-flags -Werror -haddock
 
   build-depends: base ^>=4.21.0.0
 
@@ -63,17 +65,18 @@ common shared-properties-safe
 
 common shared-properties-nobase
   import:      shared-properties-base
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Weverything -Wno-implicit-prelude
-    -Wno-inferred-safe-imports -Wno-missing-deriving-strategies
-    -Wno-missing-export-lists -Wno-missing-import-lists
+    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -Wno-missing-deriving-strategies -Wno-missing-export-lists
+    -Wno-missing-import-lists -Wno-missing-kind-signatures
+    -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
-    -Werror -haddock
+    -Wno-unrecognised-warning-flags -Werror -haddock
 
 library
   import:          shared-properties-lib
@@ -92,8 +95,9 @@ library
   hs-source-dirs:  lib
 
 test-suite test
-  if arch(javascript) || arch(wasm32)
+  if (arch(javascript) || arch(wasm32))
     buildable: False
+
   type:               exitcode-stdio-1.0
   hs-source-dirs:     test
   main-is:            Spec.hs

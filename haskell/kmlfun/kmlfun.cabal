@@ -13,17 +13,17 @@ extra-source-files: CHANGELOG.md
 
 executable kmlfun
   main-is:            Main.hs
-  build-depends:
-    , base  ^>=4.21.0.0
-    -- , gps   ^>=1.2
+  build-depends:      base ^>=4.21.0.0
+
+  -- , gps   ^>=1.2
 
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
-  default-language:   GHC2024
-  default-extensions:
-    UnicodeSyntax
 
+  default-language:   GHC2024
+  default-extensions: UnicodeSyntax
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists

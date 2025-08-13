@@ -9,7 +9,7 @@ version:            0.2.0.0
 -- synopsis:
 -- description:
 -- bug-reports:
-license:            AGPL-3.0
+license:            AGPL-3.0-only
 
 -- license-file:        LICENSE
 author:             Dan Dart
@@ -27,18 +27,19 @@ executable misostuff
   default-extensions:
 
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-local-signatures
 
   -- -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures -- only works on recent ghc
   ghcjs-options:      -dedupe
   cpp-options:        -DGHCJS_BROWSER
   build-depends:
-      aeson       ^>=2.2.3.0
+    , aeson       ^>=2.2.3.0
     , base        ^>=4.21.0.0
     , containers  ^>=0.8
     , miso        ^>=1.7.1.0

@@ -16,20 +16,23 @@ executable tumblr-editor
   build-depends:
     , base       ^>=4.21.0.0
     , text       ^>=2.1.2
-    , webdriver  ^>=0.12.0.1
+    , webdriver  ^>=0.13.0.0
 
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-unrecognised-warning-flags
 
   ghcjs-options:      -dedupe

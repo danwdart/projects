@@ -19,13 +19,14 @@ extra-source-files: README.md
 
 flag musl
   description: Set if we are building with musl.
-  default: False
+  default:     False
 
 common shared-properties-base
-  build-depends:
-    , base      ^>=4.21.0.0
+  build-depends:      base ^>=4.21.0.0
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
@@ -39,15 +40,15 @@ common shared-properties-base
     -Werror -haddock
 
 common shared-properties-src
-  import:        shared-properties-base
-  hs-source-dirs:     src
+  import:         shared-properties-base
+  hs-source-dirs: src
+
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
 common shared-properties-unsafe
   import:             shared-properties-src
-  ghc-options:
-    -Wno-unsafe -Wno-safe
+  ghc-options:        -Wno-unsafe -Wno-safe
   default-extensions: Unsafe
 
 common shared-properties-safe
@@ -58,7 +59,7 @@ common shared-properties-safe
 
 library
   import:             shared-properties-base
-  hs-source-dirs:  lib
+  hs-source-dirs:     lib
   default-extensions: NoGeneralizedNewtypeDeriving
   exposed-modules:
     Auth
@@ -316,8 +317,10 @@ executable fixmap
 
 executable ffi
   import:  shared-properties-unsafe
-  if arch(wasm32) || flag(musl)
+
+  if (arch(wasm32) || flag(musl))
     buildable: False
+
   main-is: ffi.hs
 
 executable fold

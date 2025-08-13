@@ -19,28 +19,34 @@ extra-source-files: README.md
 
 common shared-properties
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags
 
   ghcjs-options:      -dedupe
 
 library
   hs-source-dirs:     lib
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
@@ -76,20 +82,23 @@ executable projecteuler
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags
 
 test-suite projecteuler-test
-  if arch(javascript) || arch(wasm32)
+  if (arch(javascript) || arch(wasm32))
     buildable: False
+
   ghcjs-options:      -dedupe
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0

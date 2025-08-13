@@ -14,8 +14,10 @@ extra-source-files: README.md
 
 library
   hs-source-dirs:     lib
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
@@ -40,21 +42,25 @@ library
 
 common shared-properties
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      base ^>=4.21.0.0
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags
 
   ghcjs-options:      -dedupe
 
@@ -75,8 +81,10 @@ executable 10x10grid
 
 executable 2048
   import:        shared-properties
+
   if arch(wasm32)
     buildable: False
+
   main-is:       2048.hs
   build-depends:
     , base         ^>=4.21.0.0
@@ -103,9 +111,11 @@ executable bounce
 
 executable countdown
   import:        shared-properties
+
   -- no text-builder-linear in wasm
   if arch(wasm32)
     buildable: False
+
   main-is:       countdown.hs
   build-depends:
     , base                 ^>=4.21.0.0
@@ -118,8 +128,10 @@ executable countdown
 -- , mtl                  ^>=2.3.1
 executable frog
   import:        shared-properties
+
   if arch(wasm32)
     buildable: False
+
   main-is:       frog.hs
   build-depends:
     , base         ^>=4.21.0.0
@@ -138,8 +150,10 @@ executable hangman
 
 executable snl
   import:        shared-properties
+
   if arch(wasm32)
     buildable: False
+
   main-is:       snl.hs
   build-depends:
     , ansi-terminal  ^>=1.1.2
@@ -168,8 +182,10 @@ executable yesyes
 
 test-suite games-test
   import:             shared-properties
-  if arch(javascript) || arch(wasm32)
+
+  if (arch(javascript) || arch(wasm32))
     buildable: False
+
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs

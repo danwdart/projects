@@ -18,7 +18,7 @@
   };
 
   overrides = self: super: {
-    ghcjs-stuff = super.ghcjs-stuff.overrideAttrs(oldEnv: { ENV = ENV; });
+    ghcjs-stuff = super.ghcjs-stuff.overrideAttrs(oldEnv: { inherit ENV; });
     # reactive-banana = self.callHackage "reactive-banana" "1.2.2.0" {};
   };
 

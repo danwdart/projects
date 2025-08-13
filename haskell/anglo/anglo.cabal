@@ -14,18 +14,19 @@ extra-source-files: README.md
 
 library
   hs-source-dirs:     lib
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
     , aeson        ^>=2.2.3.0
-    -- , base         ^>=4.21.0.0
     , bytestring   ^>=0.12.2.0
     , containers   ^>=0.8
     , MonadRandom  ^>=0.6.1
     , mtl          ^>=2.3.1
-
+  
   exposed-modules:
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
@@ -39,21 +40,25 @@ library
 
 common shared-properties
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
+
   -- build-depends:      base ^>=4.21.0.0
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags
 
   ghcjs-options:      -dedupe
 
@@ -61,29 +66,24 @@ executable anglo
   import:        shared-properties
   main-is:       Main.hs
   build-depends:
-    , aeson      ^>=2.2.3.0
-    -- , anglo      ^>=0.2.0.0
-    , base       ^>=4.21.0.0
-    , bytestring ^>=0.12.2.0
-    , text       ^>=2.1.2
+    , aeson       ^>=2.2.3.0
+    , base        ^>=4.21.0.0
+    , bytestring  ^>=0.12.2.0
+    , text        ^>=2.1.2
 
 test-suite anglo-test
   import:             shared-properties
-  if arch(javascript) || arch(wasm32)
+
+  if (arch(javascript) || arch(wasm32))
     buildable: False
+
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   main-is:            Spec.hs
   other-modules:
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:
-    -- , anglo       ^>=0.2.0.0
-    -- , base        ^>=4.21.0.0
-    , hspec       ^>=2.11.10
-    -- , QuickCheck  ^>=2.16.0.0
+  build-depends:      hspec ^>=2.11.10
+
 
   build-tool-depends: hspec-discover:hspec-discover
-
--- , hspec-core ^>=2.11.10
--- , hspec-expectations ^>=0.8.4

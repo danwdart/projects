@@ -21,8 +21,10 @@ data-files:         example.form
 
 common shared-properties-base
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
@@ -43,8 +45,10 @@ common shared-properties-lib
 
 common shared-properties-unsafe
   import:        shared-properties-base
+
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
     -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
@@ -64,8 +68,8 @@ common shared-properties-safe
 
 -- TODO: unsafe?
 library
-  import:          shared-properties-lib
-  hs-source-dirs:  lib
+  import:         shared-properties-lib
+  hs-source-dirs: lib
   build-depends:
     , array             ^>=0.5.8.0
     , base              ^>=4.21.0.0
@@ -76,7 +80,8 @@ library
     , parsec            ^>=3.1.18.0
     , template-haskell  ^>=2.23.0
     , text              ^>=2.1.2
-  if arch(javascript) || arch(wasm32)
+
+  if (arch(javascript) || arch(wasm32))
     exposed-modules:
       BubbleSort
       Control.Concurrent.Async.Undiscarded
@@ -97,28 +102,29 @@ library
       TH
       TinyLang
       World
+
   else
     exposed-modules:
-        BubbleSort
-        Control.Concurrent.Async.Undiscarded
-        Control.Monad.State.Disparate
-        Control.Monad.Trans.State.Disparate
-        Control.Monad.Trans.State.Undiscarded
-        Env.AbstractExtension
-        Env.Class
-        Env.Env
-        Env.Extend
-        Env.ExtendedInstance
-        Env.Instance
-        Env.WithOrig
-        Form
-        LCDBlock
-        RuntimeTypes
-        SHA
-        Shell
-        TH
-        TinyLang
-        World
+      BubbleSort
+      Control.Concurrent.Async.Undiscarded
+      Control.Monad.State.Disparate
+      Control.Monad.Trans.State.Disparate
+      Control.Monad.Trans.State.Undiscarded
+      Env.AbstractExtension
+      Env.Class
+      Env.Env
+      Env.Extend
+      Env.ExtendedInstance
+      Env.Instance
+      Env.WithOrig
+      Form
+      LCDBlock
+      RuntimeTypes
+      SHA
+      Shell
+      TH
+      TinyLang
+      World
 
 executable array
   import:        shared-properties-safe
@@ -230,8 +236,10 @@ executable python5
 
 executable qq
   import:        shared-properties-safe
+
   if arch(wasm32)
     buildable: False
+
   main-is:       qq.hs
   build-depends:
     , base      ^>=4.21.0.0
@@ -261,8 +269,10 @@ executable reader-override
 
 executable runtime-types
   import:        shared-properties-unsafe
+
   if arch(wasm32)
     buildable: False
+
   build-depends:
     , base              ^>=4.21.0.0
     , onlycore          ^>=0.2.0.0
@@ -279,8 +289,10 @@ executable rws
 
 executable sha
   import:        shared-properties-safe
-  if arch(javascript) || arch(wasm32)
+
+  if (arch(javascript) || arch(wasm32))
     buildable: False
+
   main-is:       sha.hs
   build-depends:
     , base        ^>=4.21.0.0
@@ -318,8 +330,10 @@ executable tagless-final
 
 executable th
   import:        shared-properties-unsafe
+
   if arch(wasm32)
     buildable: False
+
   main-is:       th.hs
   build-depends:
     , base      ^>=4.21.0.0

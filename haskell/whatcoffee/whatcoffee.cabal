@@ -11,6 +11,7 @@ extra-source-files: CHANGELOG.md
 
 library
   hs-source-dirs:     lib
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
 
@@ -24,7 +25,7 @@ library
     , bytestring         ^>=0.12.2.0
     , jwt                ^>=0.11.0
     , text               ^>=2.1.2
-    , time               ^>=1.14
+    , time               ^>=1.15
     , uuid-types         ^>=1.0.6
 
   exposed-modules:
@@ -40,8 +41,10 @@ library
 
 executable whatcoffee
   hs-source-dirs:     src
+
   if arch(javascript)
     js-sources: jsbits/emcc-config.js
+
   main-is:            Main.hs
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
@@ -51,19 +54,20 @@ executable whatcoffee
     , base64-bytestring  ^>=1.2.1.0
     , bytestring         ^>=0.12.2.0
     , text               ^>=2.1.2
-    , time               ^>=1.14
+    , time               ^>=1.15
     , uuid-types         ^>=1.0.6
 
   if !arch(wasm32)
-    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+
   ghc-options:
-    -Wall -Werror -haddock
-    -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
-    -Wno-missing-export-lists -Wno-implicit-prelude
-    -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-missing-local-signatures
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
-    -Wno-all-missed-specialisations -Wno-missed-specialisations
-    -Wno-missing-role-annotations -Wno-missing-kind-signatures
-    -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
+    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -Wno-missing-import-lists -Wno-missing-export-lists
+    -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-missing-local-signatures -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-unrecognised-warning-flags -Wno-all-missed-specialisations
+    -Wno-missed-specialisations -Wno-missing-role-annotations
+    -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
+    -Wno-unrecognised-warning-flags

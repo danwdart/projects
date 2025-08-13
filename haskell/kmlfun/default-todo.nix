@@ -2,7 +2,7 @@
   compiler ? "ghc912" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
-  lib = nixpkgs.pkgs.haskell.lib;
+  inherit (nixpkgs.pkgs.haskell) lib;
   myHaskellPackages = nixpkgs.pkgs.haskell.packages.${compiler}.override {
     overrides = self: super: rec {
       #gpx-conduit = lib.doJailbreak (self.callHackage "gpx-conduit" "0.1.1" {});
@@ -31,9 +31,9 @@ let
     ];
     withHoogle = false;
   };
-  exe = lib.justStaticExecutables (myHaskellPackages.kmlfun);
+  exe = lib.justStaticExecutables myHaskellPackages.kmlfun;
 in
 {
   inherit shell;
-  kmlfun = lib.justStaticExecutables (myHaskellPackages.kmlfun);
+  kmlfun = lib.justStaticExecutables myHaskellPackages.kmlfun;
 }
