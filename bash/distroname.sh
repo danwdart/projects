@@ -1,5 +1,5 @@
 #!/bin/bash
-RELEASE=`cat /etc/*release`
+RELEASE=$(cat /etc/*release)
 if [[ $RELEASE == *Ubuntu* ]]
 then
         echo Ubuntu
