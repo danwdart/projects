@@ -1,2 +1,2 @@
 #!/bin/bash
-xdg-open $PWD/src/$1.html
+xdg-open "$PWD"/src/"$1".html

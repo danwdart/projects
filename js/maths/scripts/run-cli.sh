@@ -1,2 +1,2 @@
 #!/bin/bash
-node --experimental-modules src/$1
+node --experimental-modules src/"$1"
