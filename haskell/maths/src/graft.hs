@@ -20,7 +20,7 @@ fn = (exp 1 *)
 -- ssp needle haystack = (findIndex . isPrefixOf) needle (tails haystack)
 
 substringPosition ∷ String → String → Maybe Int
-substringPosition haystack = ($ tails haystack) . findIndex . isPrefixOf
+substringPosition haystack = flip (findIndex . isPrefixOf) (tails haystack)
 
 foundMsg ∷ Int → Double → Int → String
 foundMsg number root position = "Found " <> (show number <> (

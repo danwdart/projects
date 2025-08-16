@@ -26,7 +26,7 @@ library
     , containers   ^>=0.8
     , MonadRandom  ^>=0.6.1
     , mtl          ^>=2.3.1
-  
+
   exposed-modules:
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
@@ -84,6 +84,4 @@ test-suite anglo-test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:      hspec ^>=2.11.10
-
-
   build-tool-depends: hspec-discover:hspec-discover

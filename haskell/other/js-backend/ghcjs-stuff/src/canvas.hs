@@ -31,7 +31,7 @@ line (x1, y1) (x2, y2) ctx = do
 -}
 pairs ∷ [a] → [(a,a)]
 pairs a@(_:as) = zip a as
-pairs _ = []
+pairs _        = []
 
 -- like Graphics.Gnuplot.Plot.ThreeDimensional.functionToGraph
 zipFn ∷ (a → b) → [a] → [(a, b)]

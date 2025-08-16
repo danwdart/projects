@@ -1,4 +1,4 @@
-{-# LANGUAGE PackageImports       #-}
+
 {-# LANGUAGE Safe                 #-}
 {-# LANGUAGE UndecidableInstances #-}
 

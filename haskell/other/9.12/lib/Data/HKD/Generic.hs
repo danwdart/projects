@@ -1,4 +1,4 @@
-{-# LANGUAGE DefaultSignatures #-}
+
 {-# LANGUAGE Safe              #-}
 {-# LANGUAGE UnicodeSyntax     #-}
 
