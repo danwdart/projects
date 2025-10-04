@@ -20,7 +20,7 @@ extra-source-files: README.md
 common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base ^>=4.21.0.0
+  build-depends:      base >=4.21.0.0 && <4.23.0.0
 
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -43,7 +43,7 @@ common shared-properties
 ------     UnicodeSyntax
 -- 
 --   build-depends:
---     , base           ^>=4.21.0.0
+--     , base           >=4.21.0.0 && <4.23.0.0
 --     , gogol ^>=0.5.0
 --     , gogol-youtube ^>=0.5.0
 --     , lens                 ^>=5.3.3
@@ -66,7 +66,7 @@ executable yt-sort
   import:         shared-properties
   hs-source-dirs: src
   main-is:        Main.hs
-  build-depends:  base ^>=4.21.0.0
+  build-depends:  base >=4.21.0.0 && <4.23.0.0
 
 -- , gogol ^>=0.5.0
 -- , gogol-youtube ^>=0.5.0
@@ -101,7 +101,7 @@ executable yt-sort
 -- 
 --   build-depends:      hspec ^>=2.11.10
 
---   base ^>=4.21.0.0
+--   base >=4.21.0.0 && <4.23.0.0
 -- , yt-sort ^>=0.2.0.0
 -- , hspec-core ^>=2.11.10
 -- , hspec-expectations ^>=0.8.4

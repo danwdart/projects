@@ -34,7 +34,7 @@ common shared-properties-lib
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-unrecognised-warning-flags -Werror -haddock
 
-  build-depends:      base ^>=4.21.0.0
+  build-depends:      base >=4.21.0.0 && <4.23.0.0
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -52,7 +52,7 @@ common shared-properties-unsafe
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-unrecognised-warning-flags -Werror -haddock
 
-  build-depends: base ^>=4.21.0.0
+  build-depends: base >=4.21.0.0 && <4.23.0.0
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -83,7 +83,7 @@ common shared-properties-nobase
 --   -- extra-libraries: pthread
 --   -- other-modules:
 --   -- other-extensions:
---   build-depends:   base ^>=4.21.0.0
+--   build-depends:   base >=4.21.0.0 && <4.23.0.0
 --   hs-source-dirs:  lib
 
 -- foreign library is when you want to import a haskell library using a wrapper into something C-like
@@ -96,7 +96,7 @@ foreign-library haskelldemo_withhelper
 
   c-sources:         cbits/hswrapper.c
   cpp-options:       -DMODULE=libHSDemo_withhelper
-  build-depends:     base ^>=4.21.0.0
+  build-depends:     base >=4.21.0.0 && <4.23.0.0
 
   -- lib-version-info: 0:0:0
   lib-version-linux: 0.0.0
@@ -111,7 +111,7 @@ foreign-library haskelldemo
     options: standalone
 
   cpp-options:       -DMODULE=libHSDemo
-  build-depends:     base ^>=4.21.0.0
+  build-depends:     base >=4.21.0.0 && <4.23.0.0
 
   -- lib-version-info: 0:0:0
   lib-version-linux: 0.0.0
@@ -120,7 +120,7 @@ foreign-library haskelldemo
 
 -- executable ffihstoc
 --   import:          shared-properties-unsafe
---   build-depends:   base ^>=4.21.0.0
+--   build-depends:   base >=4.21.0.0 && <4.23.0.0
 --   -- c-sources:
 --   --   src/libdemo.c
 --   extra-libraries: libdemo
@@ -130,7 +130,7 @@ foreign-library haskelldemo
 executable dlhstoc
   import:         shared-properties-unsafe
   build-depends:
-    , base  ^>=4.21.0.0
+    , base  >=4.21.0.0 && <4.23.0.0
     , unix  ^>=2.8.6.0
 
   -- c-sources:
@@ -143,7 +143,7 @@ executable dlhstoc
 
 -- executable ffi
 --   import:          shared-properties-unsafe
---   build-depends:   base ^>=4.21.0.0
+--   build-depends:   base >=4.21.0.0 && <4.23.0.0
 --   -- other-libraries: libdemo
 --   hs-source-dirs:  src
 --   main-is:         Main.hs
@@ -158,7 +158,7 @@ executable dlhstoc
 --   default-extensions:
 ------     UnicodeSyntax
 --   build-depends:
---     , base            ^>=4.21.0.0
+--     , base            >=4.21.0.0 && <4.23.0.0
 --     , ffi-quickcheck
 --     , hspec                 ^>=2.11.10
 --     , QuickCheck ^>=2.16.0.0
