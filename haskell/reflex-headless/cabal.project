@@ -1,5 +1,5 @@
 packages: reflex-headless.cabal
-
+allow-newer: base, ghc-bignum, template-haskell
 -- -- allow-newer: base, lens, patch, reflex, template-haskell
 -- 
 -- source-repository-package

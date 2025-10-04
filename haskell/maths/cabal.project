@@ -1,2 +1,2 @@
 packages: *
-allow-newer: containers
+allow-newer: base, containers, ghc-bignum, template-haskell

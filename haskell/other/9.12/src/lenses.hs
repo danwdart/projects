@@ -22,13 +22,13 @@ data Title = Citizen | Professor | Doctor | Alien | Earthling deriving stock (Eq
 
 data Name = Name {
     _nameTitle        :: Title,
-    _nameGivenName    :: String,
+    _nameChosenName    :: String,
     _nameOfficialName :: String
 } deriving stock (Eq, Show)
 
 -- TODO prettyprint with contravariant
 nameTitleGiven ∷ Name → String
-nameTitleGiven p = printf "%s %s" (show (_nameTitle p)) (_nameGivenName p)
+nameTitleGiven p = printf "%s %s" (show (_nameTitle p)) (_nameChosenName p)
 
 toTitleGiven ∷ Getter Name String
 toTitleGiven = to nameTitleGiven
@@ -101,7 +101,7 @@ printed = to print
 describeGirthily ∷ Getter Person String
 describeGirthily = to $ \person' -> unwords [
         person' ^. personName . nameTitle . to show,
-        person' ^. personName . nameGivenName . appended ",",
+        person' ^. personName . nameChosenName . appended ",",
         "also known as",
         person' ^. personName . nameOfficialName <> ",",
         "born on",
@@ -128,7 +128,7 @@ defaultPerson = Person (
 newman ∷ Person
 newman = defaultPerson
     & personName %~ (
-        (nameGivenName .~ "Bobby") .
+        (nameChosenName .~ "Bobby") .
         (nameOfficialName .~ "Bobby Jimbo III")
     )
     & personDiary . _Wrapped %~ (

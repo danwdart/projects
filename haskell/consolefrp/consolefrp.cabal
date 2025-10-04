@@ -12,9 +12,9 @@ executable consolefrp
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base        ^>=4.21.0.0
+    , base        >=4.21.0.0 && <4.23.0.0
     , reflex-vty  ^>=0.6.1.0
-    , vty         ^>=6.4
+    , vty         ^>=6.5
 
   hs-source-dirs:     src
 

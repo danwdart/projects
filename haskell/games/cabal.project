@@ -1,6 +1,6 @@
 packages: *.cabal
 benchmarks: True
 tests: True
-allow-newer: containers, QuickCheck
+allow-newer: base, containers, ghc-bignum, QuickCheck, template-haskell
 -- allow-newer: text
 multi-repl: True

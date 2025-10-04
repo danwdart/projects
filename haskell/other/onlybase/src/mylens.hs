@@ -29,7 +29,7 @@ defaultPerson = Person (
 
 newman ∷ Person
 newman = defaultPerson
-    & name . givenName .~ "Bobby"
+    & name . chosenName .~ "Bobby"
     & name . officialName .~ "Bobby Jimbo III" -- TODO shortcut
 
 main ∷ IO ()
@@ -39,7 +39,7 @@ main = do
         <>
         " "
         <>
-        (name . givenName ^. newman)
+        (name . chosenName ^. newman)
         <>
         ", also known as "
         <>

@@ -1,5 +1,5 @@
 packages: *.cabal
 benchmarks: True
 tests: True
-allow-newer: containers
+allow-newer: base, containers, ghc-bignum, template-haskell
 multi-repl: True

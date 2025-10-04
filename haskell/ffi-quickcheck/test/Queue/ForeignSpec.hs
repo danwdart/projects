@@ -10,6 +10,8 @@ import Test.Hspec.QuickCheck
 import Test.QuickCheck
 import Test.QuickCheck.Monadic
 
+{- HLINT ignore "Use camelCase" -}
+
 -- prop :: [Int] -> [Int] -<
 
 -- prop ∷ [Int] → [Int] → Property

@@ -2,6 +2,7 @@
 {-# LANGUAGE GHC2024               #-}
 {-# LANGUAGE RequiredTypeArguments #-}
 {-# LANGUAGE UnicodeSyntax         #-}
+{-# OPTIONS_GHC -Wno-deprecations #-}
 
 module Main where
 
@@ -36,7 +37,7 @@ instance KnownNat n => Enum (Mod n) where
 
 instance KnownNat n => Bounded (Mod n) where
     minBound = 0
-    maxBound = (-1)
+    maxBound = -1
 
 instance KnownNat n => Bits (Mod n) where
     Mod a .&. Mod b = Mod ((a .&. b) `mod` n) where -- not integer?
@@ -45,17 +46,17 @@ instance KnownNat n => Bits (Mod n) where
         n = fromIntegral $ natVal (Proxy :: Proxy n)
     (Mod a) `xor` (Mod b) = Mod ((a `xor` b) `mod` n) where -- not integer?
         n = fromIntegral $ natVal (Proxy :: Proxy n)
-    complement (Mod a) = Mod ((complement a) `mod` n) where -- not integer?
+    complement (Mod a) = Mod (complement a `mod` n) where -- not integer?
         n = fromIntegral $ natVal (Proxy :: Proxy n)
-    shift (Mod a) leftBy = Mod ((shift a leftBy) `mod` n) where -- not integer?
+    shift (Mod a) leftBy = Mod (shift a leftBy `mod` n) where -- not integer?
         n = fromIntegral $ natVal (Proxy :: Proxy n)
-    rotate (Mod a) leftBy = Mod ((rotate a leftBy) `mod` n) where -- not integer?
+    rotate (Mod a) leftBy = Mod (rotate a leftBy `mod` n) where -- not integer?
         n = fromIntegral $ natVal (Proxy :: Proxy n)
     bitSize (Mod a) = bitSize a
     bitSizeMaybe (Mod a) = bitSizeMaybe a
     isSigned (Mod a) = isSigned a
     testBit (Mod a) = testBit a
-    bit loc = Mod ((bit loc) `mod` n) where -- not integer?
+    bit loc = Mod (bit loc `mod` n) where -- not integer?
         n = fromIntegral $ natVal (Proxy :: Proxy n)
     popCount (Mod a) = popCount a
 
@@ -124,7 +125,7 @@ binaryOneBitTruthTable = fullTable 2 0
 -- [[Mod {getMod = 1},Mod {getMod = 3}],[Mod {getMod = 3},Mod {getMod = 1}]]
 --
 coprimeTable ∷ forall n -> KnownNat n => (Mod n -> Mod n -> Mod n) -> [[Mod n]]
-coprimeTable n f = fmap (\x -> fmap (\y -> f x y) nums) nums where
+coprimeTable n f = fmap (\x -> fmap (f x) nums) nums where
     nums :: [Mod n]
     nums = Mod . fromIntegral <$> coprimeLessThan (fromIntegral $ natVal (Proxy :: Proxy n))
 

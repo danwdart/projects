@@ -208,7 +208,7 @@ instance Applicative f => Choice (Star f) where
 newtype Costar f a b = Costar { runCostar :: f a → b }
 
 instance Functor f ⇒ Profunctor (Costar f) where
-    dimap :: Functor f ⇒ (a → b) → (c → d) → Costar f b c → Costar f a d
+    dimap :: (a → b) → (c → d) → Costar f b c → Costar f a d
     dimap f g (Costar costar) = Costar (g . costar . fmap f)
 
 {-

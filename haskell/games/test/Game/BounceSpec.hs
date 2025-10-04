@@ -11,6 +11,8 @@ import Test.QuickCheck
 import Test.QuickCheck.Arbitrary
 import Test.QuickCheck.Monadic
 
+{- HLINT ignore "Use camelCase" -}
+
 instance Arbitrary Corner where
     arbitrary = arbitraryBoundedEnum
 
