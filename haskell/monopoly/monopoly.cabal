@@ -101,7 +101,7 @@ test-suite monopoly-test
 
   -- , base        >=4.21.0.0 && <4.23.0.0
   -- , monopoly ^>=0.2.0.0
-  -- , QuickCheck ^>=2.16.0.0
+  -- , QuickCheck ^>=2.17.0.0
   -- , hspec-core ^>=2.11.10
   -- , hspec-expectations ^>=0.8.4
   build-tool-depends: hspec-discover:hspec-discover

@@ -750,7 +750,7 @@ test-suite test
     , base        >=4.21.0.0 && <4.23.0.0
     , hspec       ^>=2.11.10
     , other912    ^>=0.2.0.0
-    , QuickCheck  ^>=2.16.0.0
+    , QuickCheck  ^>=2.17.0.0
 
   build-tool-depends: hspec-discover:hspec-discover
   other-modules:
