@@ -483,6 +483,10 @@ executable sequences
 
   main-is:       sequences.hs
 
+executable shapeshift
+  import:  shared-properties-unsafe
+  main-is: shapeshift.hs
+
 executable shop
   import:  shared-properties-safe
   main-is: shop.hs
