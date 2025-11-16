@@ -5,14 +5,16 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE UndecidableInstances #-}
+{-# OPTIONS_GHC -Wno-unused-top-binds #-}
 
-module Main where
+module Main (main) where
 
 import Data.Functor.Identity
 import Data.Functor.Const
 import Data.Kind
 import Data.String
 -- import Data.Void
+import GHC.TypeNats -- TypeLits
 
 data UserType = Normal | OrgAdmin | Super
     deriving stock (Eq, Show)
@@ -48,28 +50,6 @@ data User f = User {
 
 -- how about per field of this?
 
-data HKDUser f = HKDUser {
-    userId :: HKD f ID,
-    name :: HKD f Name,
-    userType :: HKD f UserType
-}
-
-deriving instance (
-    Eq (HKD f String),
-    Eq (HKD f Name),
-    Eq (HKD f Int),
-    Eq (HKD f ID),
-    Eq (HKD f UserType)
-    ) => Eq (HKDUser f)
-
-deriving instance (
-    Show (HKD f String),
-    Show (HKD f Name),
-    Show (HKD f Int),
-    Show (HKD f ID),
-    Show (HKD f UserType)
-    ) => Show (HKDUser f)
-
 newtype HideUserType a = HideUserType a
 
 type family HKD (f :: Type -> Type) (a :: Type) :: Type where
@@ -78,6 +58,24 @@ type family HKD (f :: Type -> Type) (a :: Type) :: Type where
     HKD HideUserType a = a
     HKD (Const b) _ = b
     HKD f a = f a
+
+data HKDUser f = HKDUser {
+    userId :: HKD f ID,
+    name :: HKD f Name,
+    userType :: HKD f UserType
+}
+
+deriving instance (
+    Eq (HKD f Name),
+    Eq (HKD f ID),
+    Eq (HKD f UserType)
+    ) => Eq (HKDUser f)
+
+deriving instance (
+    Show (HKD f Name),
+    Show (HKD f ID),
+    Show (HKD f UserType)
+    ) => Show (HKDUser f)
 
 newtype MakeOptionalType a = MakeOptionalType a
 
@@ -98,17 +96,13 @@ data HKDOptionalUser f t = HKDOptionalUser {
 }
 
 deriving instance (
-    Eq (HKDOptional f t String),
     Eq (HKDOptional f t Name),
-    Eq (HKDOptional f t Int),
     Eq (HKDOptional f t ID),
     Eq (HKDOptional f t UserType)
     ) => Eq (HKDOptionalUser f t)
 
 deriving instance (
-    Show (HKDOptional f t String),
     Show (HKDOptional f t Name),
-    Show (HKDOptional f t Int),
     Show (HKDOptional f t ID),
     Show (HKDOptional f t UserType)
     ) => Show (HKDOptionalUser f t)
@@ -121,7 +115,12 @@ fromDB = HKDUser {
 }
 
 -- >>> fromDB
--- HKDUser {userId = ID 123, name = Name "Bob", userType = Normal}
+-- (Error while loading modules for evaluation)
+-- [1 of 2] Compiling Main             ( /home/dwd/code/mine/multi/projects/haskell/other/onlybase/src/shapeshift.hs, interpreted )
+-- /home/dwd/code/mine/multi/projects/haskell/other/onlybase/src/shapeshift.hs:115:5: error: [GHC-58481]
+--     parse error on input ‘)’
+-- <BLANKLINE>
+-- Failed, no modules to be reloaded.
 --
 
 realUser :: HKDUser HideUserType
@@ -191,6 +190,61 @@ realUser6 = HKDOptionalUser {
 -- HKDOptionalUser {opuuid = 1, opname = "Bob", opuserType = Normal}
 --
 
+-- now can we index it?
+
+
+-- at this point it's just a static map
+
+type family HKDIndexed (n :: Nat) (f :: Type -> Type) (a :: Type) :: Type where
+    HKDIndexed 2 _ a = Maybe a
+    HKDIndexed _ Identity a = a
+    HKDIndexed _ (Const b) _ = b
+    HKDIndexed _ f a = f a
+
+
+data HKDIndexedUser f = HKDIndexedUser {
+    ixuuid :: HKDIndexed 1 f ID,
+    ixname :: HKDIndexed 2 f Name,
+    ixuserType :: HKDIndexed 3 f UserType
+}
+
+deriving instance (Show (HKDIndexed 1 f ID), Show (HKDIndexed 3 f UserType)) => Show (HKDIndexedUser f)
+
+exampleIndexed :: HKDIndexedUser Identity
+exampleIndexed = HKDIndexedUser {
+    ixuuid = 1,
+    ixname = Just "bob",
+    ixuserType = Normal
+}
+
+-- >>> exampleIndexed
+-- HKDIndexedUser {ixuuid = ID 1, ixname = Just (Name "bob"), ixuserType = Normal}
+--
+
+type family HKDNamed n (f :: Type -> Type) (a :: Type) :: Type where -- Symbol? String?
+    HKDNamed "Name" _ a = Maybe a
+    HKDNamed _ Identity a = a
+    HKDNamed _ (Const b) _ = b
+    HKDNamed _ f a = f a
+
+data HKDNamedUser f = HKDNamedUser {
+    nameduuid :: HKDNamed "ID" f ID,
+    namedname :: HKDNamed "Name" f Name,
+    nameduserType :: HKDNamed "UserType" f UserType
+}
+
+deriving instance (Show (HKDNamed "UserType" f UserType), Show (HKDNamed "ID" f ID)) => Show (HKDNamedUser f)
+
+exampleNamed :: HKDNamedUser Identity
+exampleNamed = HKDNamedUser {
+    nameduuid = 1,
+    namedname = Just "bob",
+    nameduserType = Normal
+}
+
+-- >>> exampleNamed
+-- HKDNamedUser {nameduuid = ID 1, namedname = Just (Name "bob"), nameduserType = Normal}
+--
 
 main :: IO ()
 main = pure ()
