@@ -39,7 +39,7 @@ common warnings
 --   build-depends:
 --     , base              >=4.21 && <4.23
 --     , template-haskell  >=2.23 && <2.25
---     , ghc-experimental  ^>=9.12
+--     , ghc-experimental  ^>=9.1202.0
 -- 
 --   -- for ghc 9.10.1
 --   hs-source-dirs:     lib
