@@ -12,7 +12,7 @@ extra-source-files: ChangeLog.md
 
 executable hsjava
   main-is:            Main.hs
-  build-depends:      base >=4.21.0.0 && <4.23.0.0
+  build-depends:      base >=4.21 && <4.23
   default-extensions: UnicodeSyntax
   hs-source-dirs:     src
   default-language:   GHC2024

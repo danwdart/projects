@@ -19,7 +19,7 @@ common shared-properties
   hs-source-dirs:     src
   default-extensions:
   default-language:   GHC2024
-  build-depends:      base >=4.21.0.0 && <4.23.0.0
+  build-depends:      base >=4.21 && <4.23
 
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -37,7 +37,7 @@ common shared-properties
 
 library
   import:          shared-properties
-  build-depends:   base >=4.21.0.0 && <4.23.0.0
+  build-depends:   base >=4.21 && <4.23
   exposed-modules:
     Env
     Run
@@ -55,9 +55,9 @@ executable canvas
   import:        shared-properties
   main-is:       canvas.hs
   build-depends:
-    , base         >=4.21.0.0 && <4.23.0.0
+    , base         >=4.21 && <4.23
     , ghcjs-dom    ^>=0.9.9.2
-    , ghcjs-stuff  ^>=0.2.0.0
+    , ghcjs-stuff  ^>=0.2
 
 -- , jsaddle-warp ^>=0.9.9.2
 
@@ -65,20 +65,20 @@ executable cfe
   import:        shared-properties
   main-is:       cfe.hs
   build-depends:
-    , base         >=4.21.0.0 && <4.23.0.0
-    , blaze-html   ^>=0.9.2.0
-    , bytestring   ^>=0.12.2.0
+    , base         >=4.21 && <4.23
+    , blaze-html   ^>=0.9.2
+    , bytestring   ^>=0.12.2
     , ghcjs-dom    ^>=0.9.9.2
-    , ghcjs-stuff  ^>=0.2.0.0
+    , ghcjs-stuff  ^>=0.2
     , split        ^>=0.2.5
 
 executable env-test
   import:        shared-properties
   main-is:       env-test.hs
   build-depends:
-    , base              >=4.21.0.0 && <4.23.0.0
-    , ghcjs-stuff       ^>=0.2.0.0
-    , template-haskell  >=2.23.0 && <2.25
+    , base              >=4.21 && <4.23
+    , ghcjs-stuff       ^>=0.2
+    , template-haskell  >=2.23 && <2.25
 
 -- for ghc 9.10.1
 -- , jsaddle-warp ^>=0.9.9.2
@@ -86,12 +86,12 @@ executable frp
   import:        shared-properties
   main-is:       frp.hs
   build-depends:
-    , base          >=4.21.0.0 && <4.23.0.0
-    , blaze-html    ^>=0.9.2.0
-    , blaze-markup  ^>=0.8.3.0
-    , bytestring    ^>=0.12.2.0
+    , base          >=4.21 && <4.23
+    , blaze-html    ^>=0.9.2
+    , blaze-markup  ^>=0.8.3
+    , bytestring    ^>=0.12.2
     , ghcjs-dom     ^>=0.9.9.2
-    , ghcjs-stuff   ^>=0.2.0.0
+    , ghcjs-stuff   ^>=0.2
 
 -- , jsaddle-warp ^>=0.9.9.2
 -- , reactive-banana
@@ -100,7 +100,7 @@ executable frp
 --  import:        shared-properties
 --  main-is:       graph.hs
 --  build-depends:
---    , base           >=4.21.0.0 && <4.23.0.0
+--    , base           >=4.21 && <4.23
 --    -- , jsaddle ^>=0.9.9.2
 --    , ghcjs-dom ^>=0.9.9.2
 
@@ -108,32 +108,32 @@ executable helloworld
   import:        shared-properties
   main-is:       HelloMain.hs
   build-depends:
-    , base         >=4.21.0.0 && <4.23.0.0
+    , base         >=4.21 && <4.23
     , ghcjs-dom    ^>=0.9.9.2
-    , ghcjs-stuff  ^>=0.2.0.0
+    , ghcjs-stuff  ^>=0.2
 
 executable mine
   import:        shared-properties
   main-is:       mine.hs
   build-depends:
-    , base         >=4.21.0.0 && <4.23.0.0
+    , base         >=4.21 && <4.23
     , ghcjs-dom    ^>=0.9.9.2
-    , ghcjs-stuff  ^>=0.2.0.0
+    , ghcjs-stuff  ^>=0.2
 
 executable pure-demo
   import:        shared-properties
   main-is:       pure-demo.hs
   build-depends:
-    , base         >=4.21.0.0 && <4.23.0.0
-    , blaze-html   ^>=0.9.2.0
-    , bytestring   ^>=0.12.2.0
+    , base         >=4.21 && <4.23
+    , blaze-html   ^>=0.9.2
+    , bytestring   ^>=0.12.2
     , ghcjs-dom    ^>=0.9.9.2
-    , ghcjs-stuff  ^>=0.2.0.0
+    , ghcjs-stuff  ^>=0.2
 
 -- executable unfart
 --   import:        shared-properties
 --   main-is:       extension/unfart.hs
 --   build-depends:
---     , base        >=4.21.0.0 && <4.23.0.0
+--     , base        >=4.21 && <4.23
 --     , containers           ^>=0.8
---     , ghcjs-stuff ^>=0.2.0.0
+--     , ghcjs-stuff ^>=0.2

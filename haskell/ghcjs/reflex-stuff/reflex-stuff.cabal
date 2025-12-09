@@ -11,7 +11,7 @@ common shared-properties
   hs-source-dirs:     src
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.21.0.0 && <4.23.0.0
+  build-depends:      base >=4.21 && <4.23
 
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -31,7 +31,7 @@ executable adding-machine
   import:        shared-properties
   main-is:       adding-machine.hs
   build-depends:
-    , base        >=4.21.0.0 && <4.23.0.0
+    , base        >=4.21 && <4.23
     , reflex      ^>=0.9.3.3
     , reflex-dom  ^>=0.6.3.3
     , text        ^>=2.1.2
@@ -41,14 +41,14 @@ executable dom
   main-is:       dom.hs
   ghc-options:   -fsimpl-tick-factor=100000
   build-depends:
-    , base        >=4.21.0.0 && <4.23.0.0
+    , base        >=4.21 && <4.23
     , reflex-dom  ^>=0.6.3.3
 
 executable letters
   import:        shared-properties
   main-is:       letters.hs
   build-depends:
-    , base        >=4.21.0.0 && <4.23.0.0
-    , clay        ^>=0.15.0
+    , base        >=4.21 && <4.23
+    , clay        ^>=0.15
     , reflex-dom  ^>=0.6.3.3
     , text        ^>=2.1.2

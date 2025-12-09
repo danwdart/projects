@@ -39,8 +39,8 @@ executable misostuff
   ghcjs-options:      -dedupe
   cpp-options:        -DGHCJS_BROWSER
   build-depends:
-    , aeson       ^>=2.2.3.0
-    , base        >=4.21.0.0 && <4.23.0.0
+    , aeson       ^>=2.2.3
+    , base        >=4.21 && <4.23
     , containers  ^>=0.8
-    , miso        ^>=1.7.1.0
+    , miso        ^>=1.7.1
     , mtl         ^>=2.3.1

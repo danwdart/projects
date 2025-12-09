@@ -19,11 +19,11 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , aeson              ^>=2.2.3.0
-    , base               >=4.21.0.0 && <4.23.0.0
-    , base64-bytestring  ^>=1.2.1.0
-    , bytestring         ^>=0.12.2.0
-    , jwt                ^>=0.11.0
+    , aeson              ^>=2.2.3
+    , base               >=4.21 && <4.23
+    , base64-bytestring  ^>=1.2.1
+    , bytestring         ^>=0.12.2
+    , jwt                ^>=0.11
     , text               ^>=2.1.2
     , time               ^>=1.15
     , uuid-types         ^>=1.0.6
@@ -49,10 +49,10 @@ executable whatcoffee
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , aeson              ^>=2.2.3.0
-    , base               >=4.21.0.0 && <4.23.0.0
-    , base64-bytestring  ^>=1.2.1.0
-    , bytestring         ^>=0.12.2.0
+    , aeson              ^>=2.2.3
+    , base               >=4.21 && <4.23
+    , base64-bytestring  ^>=1.2.1
+    , bytestring         ^>=0.12.2
     , text               ^>=2.1.2
     , time               ^>=1.15
     , uuid-types         ^>=1.0.6

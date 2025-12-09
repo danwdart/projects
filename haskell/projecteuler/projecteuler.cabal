@@ -25,7 +25,7 @@ common shared-properties
 
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.21.0.0 && <4.23.0.0
+  build-depends:      base >=4.21 && <4.23
 
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -50,8 +50,8 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base    >=4.21.0.0 && <4.23.0.0
-    , primes  ^>=0.2.1.0
+    , base    >=4.21 && <4.23
+    , primes  ^>=0.2.1
 
   ghc-options:
     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
@@ -75,8 +75,8 @@ library
 executable projecteuler
   import:             shared-properties
   build-depends:
-    , base          >=4.21.0.0 && <4.23.0.0
-    , projecteuler  ^>=0.2.0.0
+    , base          >=4.21 && <4.23
+    , projecteuler  ^>=0.2
 
   main-is:            Main.hs
   hs-source-dirs:     src
@@ -106,5 +106,5 @@ test-suite projecteuler-test
   other-modules:
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      hspec ^>=2.11.10
+  build-depends:      hspec ^>=2.11.15
   build-tool-depends: hspec-discover:hspec-discover

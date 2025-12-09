@@ -32,7 +32,7 @@ executable peoplemanager
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base         >=4.21.0.0 && <4.23.0.0
+    , base         >=4.21 && <4.23
     , containers   ^>=0.8
     , fakedata     ^>=1.0.3
     , MonadRandom  ^>=0.6.1
@@ -41,7 +41,7 @@ executable peoplemanager
     , uuid         ^>=1.3.16
 
   -- , brick ^>=2.7
-  -- , vector ^>=0.13.2.0
+  -- , vector ^>=0.13.2
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 

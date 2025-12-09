@@ -24,7 +24,7 @@ executable ffihstojs
   main-is:            Main.hs
   js-sources:         src/libdemo.js
   build-depends:
-    , base        >=4.21.0.0 && <4.23.0.0
+    , base        >=4.21 && <4.23
     , ghcjs-base  ^>=0.8.0.2
 
   hs-source-dirs:     src
