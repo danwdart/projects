@@ -416,7 +416,7 @@ executable linear
     buildable: False
 
   main-is:       linear.hs
-  build-depends: linear-base ^>=0.5
+  build-depends: linear-base ^>=0.6
 
 executable mdns
   import:        shared-properties-unsafe
