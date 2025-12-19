@@ -3,8 +3,8 @@ CFLAGS =
 CFLAGS_build/dlopen = -rdynamic -ldl
 CFLAGS_build/shared.so = -fPIC
 LDFLAGS =
-EXECUTABLES = build/dlopen
-SHARED_LIBRARIES = build/preload.so build/shared.so
+EXECUTABLES = build/dlopen build/game
+SHARED_LIBRARIES = build/preload.so build/shared.so build/darkside.so build/derand.so build/evilstrs.so
 
 .PHONY: all
 
