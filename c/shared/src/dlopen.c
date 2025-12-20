@@ -40,17 +40,17 @@ int main(int argc, char **argv) {
 
     /* NOT: fn = (char *(*)(char *)) dlsym(handle, "fn"); */
 
-    char *(*fn)(char *);
-    *(void **) (&fn) = dlsym(handle, "fn");
+    // char *(*fn)(char *);
+    // *(void **) (&fn) = dlsym(handle, "fn");
 
-    if ((err = dlerror()) != NULL)  {
-        fprintf(stderr, "Error grabbing fn: %s\n", err);
-        return 1;
-    }
+    // if ((err = dlerror()) != NULL)  {
+    //     fprintf(stderr, "Error grabbing fn: %s\n", err);
+    //     return 1;
+    // }
 
-    char *stuff;
-    stuff = (*fn)("hi");
-    printf("Stuff: %s\n", stuff);
+    // char *stuff;
+    // stuff = (*fn)("hi");
+    // printf("Stuff: %s\n", stuff);
 
     dlclose(handle);
 

@@ -4,7 +4,7 @@ CFLAGS_build/dlopen = -rdynamic -ldl
 CFLAGS_build/shared.so = -fPIC
 LDFLAGS =
 EXECUTABLES = build/dlopen build/game
-SHARED_LIBRARIES = build/preload.so build/shared.so build/darkside.so build/derand.so build/evilstrs.so
+SHARED_LIBRARIES = build/preload.so build/shared.so build/darkside.so build/derand.so build/evilstrs.so build/memfuck.so build/wrap.so build/memlog.so
 
 .PHONY: all
 

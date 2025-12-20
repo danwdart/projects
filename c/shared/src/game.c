@@ -5,7 +5,9 @@
 int main(int argc, char *argv[]) {
     srand(time(NULL));
 
-    printf("Here is a random number: %d", rand());
+    int randno = rand();
+
+    printf("Here is a random number: %d", randno);
     
     return 0;
-}  
+}
