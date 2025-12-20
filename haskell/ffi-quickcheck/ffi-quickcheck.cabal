@@ -37,7 +37,7 @@ common shared-properties-lib
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-unrecognised-warning-flags -Werror -haddock
 
-  build-depends:      base >=4.21 && <4.23
+  build-depends:      base ^>=4.22
   default-extensions: NoGeneralizedNewtypeDeriving
 
 common shared-properties-unsafe
@@ -55,7 +55,7 @@ common shared-properties-unsafe
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-unrecognised-warning-flags -Werror -haddock
 
-  build-depends: base >=4.21 && <4.23
+  build-depends: base ^>=4.22
 
 common shared-properties-safe
   import:             shared-properties-unsafe
@@ -91,7 +91,7 @@ library
 
   -- other-modules:
   -- other-extensions:
-  build-depends:   base >=4.21 && <4.23
+  build-depends:   base ^>=4.22
   hs-source-dirs:  lib
 
 test-suite test
@@ -104,7 +104,7 @@ test-suite test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base            >=4.21 && <4.23
+    , base            ^>=4.22
     , ffi-quickcheck  ^>=0.2
     , hspec           ^>=2.11.15
     , QuickCheck      ^>=2.17
