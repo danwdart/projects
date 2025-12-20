@@ -1,9 +1,9 @@
-# https://hydra.nixos.org/job/nixpkgs/haskell-updates/haskell.compiler.ghc9122.x86_64-linux#tabs-status
-with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/cf127972bbf111593f302e81ef3a9778da162fc4.tar.gz") {};
+# https://hydra.nixos.org/job/nixpkgs/haskell-updates/haskell.compiler.ghc9141.x86_64-linux#tabs-status
+with import (builtins.fetchTarball "https://github.com/guibou/nixpkgs/archive/ghc-914.zip") {};
 # needs mkShell in order to use headers/etc. from deps! how do we do that from nix-shell 
 mkShell rec {
     packages = [
-        pkgsMusl.haskell.compiler.ghc912
+        pkgsMusl.haskell.compiler.ghc914
         cabal-install
         # pkg-config
         # zlib.dev

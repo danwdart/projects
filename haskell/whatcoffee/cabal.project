@@ -9,4 +9,4 @@
 --   tag: 3b081e3ad027b0550fc87f171dffecbb20dedafe
 
 packages: ./whatcoffee.cabal
-allow-newer: base, time
+allow-newer: base, ghc-bignum, template-haskell, time

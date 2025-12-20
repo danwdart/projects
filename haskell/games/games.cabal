@@ -21,7 +21,7 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base      >=4.21 && <4.23
+    , base      ^>=4.22
     , lattices  ^>=2.2.1
 
   exposed-modules:
@@ -48,7 +48,7 @@ common shared-properties
 
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
-  build-depends:      base >=4.21 && <4.23
+  build-depends:      base ^>=4.22
 
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -68,14 +68,14 @@ executable 1010
   import:        shared-properties
   main-is:       1010.hs
   build-depends:
-    , base        >=4.21 && <4.23
+    , base        ^>=4.22
     , containers  ^>=0.8
 
 executable 10x10grid
   import:        shared-properties
   main-is:       10x10grid.hs
   build-depends:
-    , base         >=4.21 && <4.23
+    , base         ^>=4.22
     , bifunctors   ^>=5.6.2
     , MonadRandom  ^>=0.6.1
 
@@ -87,19 +87,19 @@ executable 2048
 
   main-is:       2048.hs
   build-depends:
-    , base         >=4.21 && <4.23
+    , base         ^>=4.22
     , MonadRandom  ^>=0.6.1
 
 executable bounce
   import:        shared-properties
   main-is:       bounce.hs
-  build-depends: base >=4.21 && <4.23
+  build-depends: base ^>=4.22
 
 -- executable bingo
 --   import:        shared-properties
 --   main-is:       bingo.hs
 --   build-depends:
---     , base         >=4.21 && <4.23
+--     , base         ^>=4.22
 --     -- , fakedata ^>= 1.3
 --     -- , games ^>=0.2
 --     , MonadRandom ^>=0.6.1
@@ -118,7 +118,7 @@ executable countdown
 
   main-is:       countdown.hs
   build-depends:
-    , base                 >=4.21 && <4.23
+    , base                 ^>=4.22
     , games                ^>=0.2
     , text                 ^>=2.1.2
     , text-builder-linear  ^>=0.1.3
@@ -134,19 +134,19 @@ executable frog
 
   main-is:       frog.hs
   build-depends:
-    , base         >=4.21 && <4.23
+    , base         ^>=4.22
     , containers   ^>=0.8
     , MonadRandom  ^>=0.6.1
 
 executable hangman
   import:        shared-properties
   main-is:       hangman.hs
-  build-depends: base >=4.21 && <4.23
+  build-depends: base ^>=4.22
 
 --executable razzledazzle
 --  hs-source-dirs:      src
 --  main-is:             razzledazzle.hs
---  --  build-depends:       base >=4.21 && <4.23, monad-loops, probability, random, rando, utility-ht ^>.17.2
+--  --  build-depends:       base ^>=4.22, monad-loops, probability, random, rando, utility-ht ^>.17.2
 
 executable snl
   import:        shared-properties
@@ -157,7 +157,7 @@ executable snl
   main-is:       snl.hs
   build-depends:
     , ansi-terminal  ^>=1.1.2
-    , base           >=4.21 && <4.23
+    , base           ^>=4.22
     , containers     ^>=0.8
     , lens           ^>=5.3.3
     , MonadRandom    ^>=0.6.1
@@ -169,7 +169,7 @@ executable sudoku
   import:        shared-properties
   main-is:       sudoku.hs
   build-depends:
-    , base        >=4.21 && <4.23
+    , base        ^>=4.22
     , containers  ^>=0.8
     , extra       ^>=1.8
     , games       ^>=0.2
@@ -178,7 +178,7 @@ executable sudoku
 executable yesyes
   import:        shared-properties
   main-is:       yesyes.hs
-  build-depends: base >=4.21 && <4.23
+  build-depends: base ^>=4.22
 
 test-suite games-test
   import:             shared-properties
@@ -193,7 +193,7 @@ test-suite games-test
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base        >=4.21 && <4.23
+    , base        ^>=4.22
     , games       ^>=0.2
     , hspec       ^>=2.11.15
     , QuickCheck  ^>=2.17

@@ -20,7 +20,7 @@ library
   default-extensions: UnicodeSyntax
   build-depends:
     , aeson              ^>=2.2.3
-    , base               >=4.21 && <4.23
+    , base               ^>=4.22
     , base64-bytestring  ^>=1.2.1
     , bytestring         ^>=0.12.2
     , jwt                ^>=0.11
@@ -50,7 +50,7 @@ executable whatcoffee
   default-extensions: UnicodeSyntax
   build-depends:
     , aeson              ^>=2.2.3
-    , base               >=4.21 && <4.23
+    , base               ^>=4.22
     , base64-bytestring  ^>=1.2.1
     , bytestring         ^>=0.12.2
     , text               ^>=2.1.2
