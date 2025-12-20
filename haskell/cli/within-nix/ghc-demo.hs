@@ -1,8 +1,10 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -p "haskell.packages.ghc912.ghcWithPackages (pkgs: with pkgs; [ containers text ])" -i runghc
+#! nix-shell -I nixpkgs=https://github.com/guibou/nixpkgs/archive/ghc-914.zip -p "haskell.packages.ghc914.ghcWithPackages (pkgs: with pkgs; [ containers text ])" -i runghc
 
 {-# LANGUAGE OverloadedLists   #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE GHC2024 #-}
+{-# LANGUAGE UnicodeSyntax #-}
 
 module Main (main) where
 

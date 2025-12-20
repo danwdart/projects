@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -p haskell.compiler.ghc912 stack -i stack
+#! nix-shell -I nixpkgs=https://github.com/guibou/nixpkgs/archive/ghc-914.zip -p haskell.compiler.ghc914 stack -i stack
 -- stack --resolver nightly-2020-12-03 script
 
 {-# LANGUAGE OverloadedLists #-}

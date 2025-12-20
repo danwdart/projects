@@ -1,8 +1,8 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -p haskell.compiler.ghc912 cabal-install -i cabal
+#! nix-shell -I nixpkgs=https://github.com/guibou/nixpkgs/archive/ghc-914.zip -p haskell.compiler.ghc914 cabal-install -i cabal
 {- cabal:
-build-depends: base ^>= 4.21
-             , containers ^>=0.8.0
+build-depends: base ^>= 4.22
+             , containers ^>=0.8
              , text >=2.1.2
 -}
 {- project:
@@ -10,6 +10,8 @@ packages: *
 -}
 {-# LANGUAGE OverloadedLists   #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE GHC2024 #-}
+{-# LANGUAGE UnicodeSyntax #-}
 
 module Main (main) where
 
