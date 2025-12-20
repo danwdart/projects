@@ -47,7 +47,7 @@ common shared-properties
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
 
-  -- build-depends:      base >=4.21 && <4.23
+  -- build-depends:      base ^>=4.22
   if !arch(wasm32)
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
@@ -67,7 +67,7 @@ executable anglo
   main-is:       Main.hs
   build-depends:
     , aeson       ^>=2.2.3
-    , base        >=4.21 && <4.23
+    , base        ^>=4.22
     , bytestring  ^>=0.12.2
     , text        ^>=2.1.2
 
