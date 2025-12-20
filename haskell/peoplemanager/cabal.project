@@ -1,3 +1,2 @@
 packages: peoplemanager.cabal
-allow-newer: containers, time
--- allow-newer: text, containers
+allow-newer: base, containers, ghc-bignum, template-haskell, time
