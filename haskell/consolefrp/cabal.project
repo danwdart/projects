@@ -1,2 +1,2 @@
 packages: consolefrp.cabal
-allow-newer: base, primitive, text, vty
+allow-newer: base, ghc-bignum, primitive, template-haskell, text, vty

@@ -1,5 +1,5 @@
 { nixpkgs ? import <nixpkgs> {},
-  compiler ? "ghc912" }:
+  compiler ? "ghc914" }:
 let
   gitignore = nixpkgs.nix-gitignore.gitignoreSourcePure [ ./.gitignore ];
   inherit (nixpkgs.pkgs.haskell) lib;
