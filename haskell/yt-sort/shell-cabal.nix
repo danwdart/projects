@@ -1,7 +1,7 @@
-with import <nixpkgs> {};
+with import (builtins.fetchTarball "https://github.com/guibou/nixpkgs/archive/ghc-914.zip") {};
 runCommand "yt-sort" {
     buildInputs = [
-        (haskell.packages.ghc912.ghcWithPackages (ghc: with ghc; [
+        (haskell.packages.ghc914.ghcWithPackages (ghc: with ghc; [
             # apply-refact
             # cabal-fmt
             cabal-install

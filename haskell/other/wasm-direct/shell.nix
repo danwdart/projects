@@ -1,5 +1,5 @@
 # import "https://gitlab.haskell.org/ghc/ghc-wasm-meta/-/archive/master/ghc-wasm-meta-master.tar.gz"
-with import <nixpkgs> {};
+with import (builtins.fetchTarball "https://github.com/guibou/nixpkgs/archive/ghc-914.zip") {};
 runCommand "haskell" {
     buildInputs = [
         #clang
@@ -7,7 +7,7 @@ runCommand "haskell" {
         #emscripten
         #binaryen
         gcc # for strip
-        haskell.compiler.ghc912
+        haskell.compiler.ghc914
         cabal-install
     ];
 } ""

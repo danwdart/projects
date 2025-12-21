@@ -40,7 +40,7 @@ library
   -- other-modules:
   -- other-extensions:
   build-depends:
-    , base              >=4.21 && <4.23
+    , base              ^>=4.22
     , template-haskell  >=2.23 && <2.25
 
   -- for ghc 9.10.1
@@ -57,7 +57,7 @@ executable for-node
 
   -- other-extensions:
   build-depends:
-    , base        >=4.21 && <4.23
+    , base        ^>=4.22
     , js-backend  ^>=0.2
 
   -- , aeson       ^>=2.2.3
@@ -72,7 +72,7 @@ executable for-browser
 
   -- other-extensions:
   build-depends:
-    , base        >=4.21 && <4.23
+    , base        ^>=4.22
     , js-backend  ^>=0.2
 
   -- , aeson       ^>=2.2.3
@@ -97,7 +97,7 @@ test-suite js-backend-test
   hs-source-dirs:     test
   main-is:            Main.hs
   build-depends:
-    , base        >=4.21 && <4.23
+    , base        ^>=4.22
     , js-backend  ^>=0.2
 
   build-tool-depends: hspec-discover:hspec-discover

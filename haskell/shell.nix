@@ -1,7 +1,7 @@
-with import <nixpkgs> {};
+with import (builtins.fetchTarball "https://github.com/guibou/nixpkgs/archive/ghc-914.zip") {};
 runCommand "haskell" {
     buildInputs = [
-        haskell.compiler.ghc912
+        haskell.compiler.ghc914
         cabal-install
     ];
 } ""

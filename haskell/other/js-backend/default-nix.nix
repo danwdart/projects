@@ -4,7 +4,7 @@
     inherit nixpkgs;
     inherit compiler;
   },
-  compiler ? "ghc912",
+  compiler ? "ghc914",
   ENV ? "Unset"
 }:
 let

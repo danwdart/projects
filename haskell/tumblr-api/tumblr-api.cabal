@@ -16,7 +16,7 @@ executable tumblr-api
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   build-depends:
-    , base          >=4.21 && <4.23
+    , base          ^>=4.22
     , bytestring    ^>=0.12.2
     , dotenv        ^>=0.12
     , http-conduit  ^>=2.3.9.1
