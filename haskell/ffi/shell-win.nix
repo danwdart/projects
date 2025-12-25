@@ -1,4 +1,4 @@
-with import (builtins.fetchTarball "https://github.com/guibou/nixpkgs/archive/ghc-914.zip") {};
+with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.zip") {};
 runCommand "ffi" {
     buildInputs = [
         pkgsCross.mingwW64.pkgsBuildHost.gcc

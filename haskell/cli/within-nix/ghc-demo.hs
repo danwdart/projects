@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -I nixpkgs=https://github.com/guibou/nixpkgs/archive/ghc-914.zip -p "haskell.packages.ghc914.ghcWithPackages (pkgs: with pkgs; [ containers text ])" -i runghc
+#! nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.zip -p "haskell.packages.ghc914.ghcWithPackages (pkgs: with pkgs; [ containers text ])" -i runghc
 
 {-# LANGUAGE OverloadedLists   #-}
 {-# LANGUAGE OverloadedStrings #-}

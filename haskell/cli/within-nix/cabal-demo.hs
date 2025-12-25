@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -I nixpkgs=https://github.com/guibou/nixpkgs/archive/ghc-914.zip -p haskell.compiler.ghc914 cabal-install -i cabal
+#! nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.zip -p haskell.compiler.ghc914 cabal-install -i cabal
 {- cabal:
 build-depends: base ^>= 4.22
              , containers ^>=0.8
