@@ -8,7 +8,7 @@ author:             Dan Dart
 maintainer:         cabal@dandart.co.uk
 category:           Nothing
 build-type:         Simple
-extra-source-files: ChangeLog.md
+extra-source-files: CHANGELOG.md
 
 executable hsjava
   main-is:            Main.hs
