@@ -1,4 +1,4 @@
-cabal-version:      3.12
+cabal-version:      3.14
 name:               kmlfun
 version:            0.2.0.0
 synopsis:           kml fun
@@ -6,10 +6,10 @@ description:        Fun with kml
 bug-reports:        https://github.com/danwdart/projects/issues
 license:            CC0-1.0
 author:             Dan Dart
-maintainer:         git@dandart.co.uk
+maintainer:         cabal@dandart.co.uk
 copyright:          2021 Dan Dart
 category:           Mapping
-extra-source-files: CHANGELOG.md
+extra-doc-files:    CHANGELOG.md
 
 executable kmlfun
   main-is:            Main.hs

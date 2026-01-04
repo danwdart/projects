@@ -1,4 +1,4 @@
-cabal-version:      3.12
+cabal-version:      3.14
 name:               hsjava
 version:            0.2.0.0
 synopsis:           Nothing
@@ -8,7 +8,7 @@ author:             Dan Dart
 maintainer:         cabal@dandart.co.uk
 category:           Nothing
 build-type:         Simple
-extra-source-files: CHANGELOG.md
+extra-doc-files:    CHANGELOG.md
 
 executable hsjava
   main-is:            Main.hs

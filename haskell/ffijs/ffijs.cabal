@@ -1,4 +1,4 @@
-cabal-version:      3.12
+cabal-version:      3.14
 name:               ffijs
 version:            0.2.0.0
 synopsis:           ffijs
@@ -6,10 +6,10 @@ description:        ffijs
 bug-reports:        https://github.com/danwdart/projects/issues
 license:            CC0-1.0
 author:             Dan Dart
-maintainer:         git@dandart.co.uk
+maintainer:         cabal@dandart.co.uk
 copyright:          2022 Dan Dart
 category:           js
-extra-source-files: CHANGELOG.md
+extra-doc-files:    CHANGELOG.md
 
 -- library
 --     build-depends:    base, ghcjs-base

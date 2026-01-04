@@ -1,4 +1,4 @@
-cabal-version:      3.12
+cabal-version:      3.14
 name:               ffi-quickcheck
 version:            0.2.0.0
 synopsis:           Quickchecking a couple of C libraries
@@ -6,7 +6,7 @@ description:        Quickchecking a couple of C libraries
 license:            AGPL-3.0-or-later
 license-file:       LICENSE
 author:             Dan Dart
-maintainer:         git@dandart.co.uk
+maintainer:         cabal@dandart.co.uk
 
 -- copyright:
 category:           Development
