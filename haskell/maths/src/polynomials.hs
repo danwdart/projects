@@ -58,8 +58,8 @@ powerOf = fmap (powerDigit . read @Int . L.singleton) . show
 showPoly ∷ Int → String
 showPoly i
     | i == 0 = ""
-    | i == 1 = "x"
-    | otherwise = "x" <> powerOf i
+    | i == 1 = "𝑥"
+    | otherwise = "𝑥" <> powerOf i
 
 -- >>> intercalate " + " $ toList $  fmap (\(i, a) -> show a <> showPoly i) $ LNE.zip (LNE.fromList [0..]) $ getPolynomial $ Polynomial $ fromList [1,2,3,4]
 -- "1 + 2x + 3x\178 + 4x\179"
