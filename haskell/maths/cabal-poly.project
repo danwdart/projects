@@ -1,0 +1,4 @@
+packages:
+  *
+  ../../../../haskell/hs-polynomial/jolharg-polynomial.cabal
+allow-newer: base, containers, ghc-bignum, template-haskell, time

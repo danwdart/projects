@@ -1,8 +1,8 @@
-cabal-version:      3.12
+cabal-version:      3.14
 
 -- Newer versions complain
 name:               maths
-version:            0.2.0.0
+version:            0.2.1
 
 -- synopsis:
 -- description:
@@ -150,7 +150,7 @@ executable oeisA003001
   main-is:       oeis/A003001.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable oeisA003001-otherbases
   import:        shared-properties
@@ -158,14 +158,14 @@ executable oeisA003001-otherbases
   build-depends:
     , base    ^>=4.22
     , digits  ^>=0.3.1
-    , maths   ^>=0.2
+    , maths   ^>=0.2.1
 
 executable oeisA005276
   import:        shared-properties
   main-is:       oeis/A005276.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable oeisA024702
   import:        shared-properties
@@ -193,7 +193,7 @@ executable oeisA052126
   main-is:       oeis/A052126.hs
   build-depends:
     , base    ^>=4.22
-    , maths   ^>=0.2
+    , maths   ^>=0.2.1
     , primes  ^>=0.2.1
 
 executable oeisA112544
@@ -201,7 +201,7 @@ executable oeisA112544
   main-is:       oeis/A112544.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable oeisA133058
   import:        shared-properties
@@ -233,14 +233,14 @@ executable oeisA275124
   main-is:       oeis/A275124.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable oeisA275167
   import:        shared-properties
   main-is:       oeis/A275167.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable oeisA308267
   import:        shared-properties
@@ -256,7 +256,7 @@ executable oeisA332049
   main-is:       oeis/A332049.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable oeisA337840
   import:        shared-properties
@@ -323,7 +323,7 @@ executable braid
 
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
   main-is:       braid.hs
 
@@ -356,7 +356,7 @@ executable chart
     , base         ^>=4.22
     , directory    ^>=1.3.9
     , JuicyPixels  ^>=3.3.9
-    , maths        ^>=0.2
+    , maths        ^>=0.2.1
     , mtl          ^>=2.3.1
 
 executable collatz
@@ -364,7 +364,7 @@ executable collatz
   main-is:       collatz.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable common-ancestors
   import:  shared-properties
@@ -384,6 +384,16 @@ executable compression
 -- executable cyclic
 --   import:  shared-properties
 --   main-is: cyclic.hs
+
+executable datepoly
+  import:  shared-properties
+  main-is: datepoly.hs
+  build-depends:
+    , base   ^>=4.22
+    , Chart  ^>=1.9.5
+    , Chart-cairo  ^>=1.9.4.1
+    , jolharg-polynomial ^>=0.0.1
+    , time   ^>=1.15
 
 executable diffnums
   import:  shared-properties
@@ -405,7 +415,7 @@ executable exact-real
   build-depends:
     , base     ^>=4.22
     , cf       ^>=0.4.2
-    , maths    ^>=0.2
+    , maths    ^>=0.2.1
     , numbers  ^>=3000.2.0.2
 
 executable factors
@@ -413,7 +423,7 @@ executable factors
   main-is:       factors.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable faro
   import:  shared-properties
@@ -482,7 +492,7 @@ executable happy
   build-depends:
     , base    ^>=4.22
     , digits  ^>=0.3.1
-    , maths   ^>=0.2
+    , maths   ^>=0.2.1
 
 -- , graphviz  ^>=2999.20.2
 executable happygraph
@@ -513,7 +523,7 @@ executable highlycompositebase
   build-depends:
     , base    ^>=4.22
     , digits  ^>=0.3.1
-    , maths   ^>=0.2
+    , maths   ^>=0.2.1
 
 -- ???
 -- executable inbase
@@ -584,7 +594,7 @@ executable napier-locar
   main-is:       napier-locar.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 executable nonary
   import:  shared-properties
@@ -720,7 +730,7 @@ executable ulam
   main-is:       ulam.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 -- Primes
 
@@ -770,7 +780,7 @@ executable semiprime
   main-is:       primefun/semiprime.hs
   build-depends:
     , base     ^>=4.22
-    , maths    ^>=0.2
+    , maths    ^>=0.2.1
     , tabular  ^>=0.2.2.8
 
 -- , primes   ^>=0.2.1
@@ -783,7 +793,7 @@ executable upperlower
   main-is:       primefun/upperlower.hs
   build-depends:
     , base   ^>=4.22
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 -- executable squareplusone
 --   import:        shared-properties
@@ -805,7 +815,7 @@ test-suite maths-test
   build-depends:
     , base   ^>=4.22
     , hspec  ^>=2.11.15
-    , maths  ^>=0.2
+    , maths  ^>=0.2.1
 
 -- , hspec-core ^>=2.11.15
 -- , hspec-expectations ^>=0.8.4

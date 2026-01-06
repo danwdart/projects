@@ -1,2 +1,7 @@
 packages: *
-allow-newer: base, containers, ghc-bignum, template-haskell
+allow-newer: base, containers, ghc-bignum, template-haskell, time
+
+source-repository-package
+  type: git
+  location: https://github.com/JolHarg/hs-polynomial.git
+  tag: bf3dcef6e1c4386a2e8acf8c6033793d17d4900e
