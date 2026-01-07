@@ -387,6 +387,8 @@ executable compression
 
 executable datepoly
   import:  shared-properties
+  if ((arch(javascript) || arch(wasm32)) || flag(musl))
+    buildable: False
   main-is: datepoly.hs
   build-depends:
     , base   ^>=4.22
