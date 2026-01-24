@@ -20,7 +20,7 @@ import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
 
 newtype ColumnType = ColumnType Name
-    deriving stock (Eq, Show, Generic)
+    deriving stock (Eq, Show, Generic, Lift)
 
 instance FromJSON ColumnType where
     parseJSON (String s)
@@ -32,10 +32,6 @@ instance FromJSON ColumnType where
 
 instance ToJSON ColumnType where
     toJSON (ColumnType n) = toJSON (show n)
-
-instance Lift ColumnType where
-    lift c = lift (show c)
-    liftTyped _ = Code undefined -- liftTyped c
 
 data Field = Field {
     columnName :: Text,
