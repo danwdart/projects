@@ -18,9 +18,9 @@
   "dependencies": {
     "@snyk/protect": "^1.1294.0",
     "core-js": "^3.39.0",
-    "download": "^3.3.0",
+    "download": "^8.0.0",
     "esm": "^3.2.25",
     "node-fetch": "^4.0.0-beta.4",
-    "serve": "^14.2.4"
+    "serve": "^14.2.5"
   }
 }
