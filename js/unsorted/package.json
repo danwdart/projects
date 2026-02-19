@@ -9,8 +9,8 @@
   "author": "Dan Dart <npm@dandart.co.uk>",
   "license": "ISC",
   "devDependencies": {
-    "@babel/eslint-parser": "^8.0.0-alpha.5",
-    "eslint": "^9.15.0"
+    "@babel/eslint-parser": "^8.0.0-rc.2",
+    "eslint": "^10.0.0"
   },
   "dependencies": {
     "@snyk/protect": "^1.1294.0"
