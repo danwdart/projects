@@ -7,6 +7,6 @@ mkShell rec {
         # zlib.dev
         # cairo.dev
         # expat
-        # xorg.libXdmcp # ???
+        # libxdmcp # ???
     ];
 }

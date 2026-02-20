@@ -11,7 +11,7 @@ mkShell rec {
         emscripten
         # cairo.dev
         # expat
-        # xorg.libXdmcp # ???#
+        # libxdmcp # ???#
     ];
     shellHook = ''
         rm -rf /tmp/.cache

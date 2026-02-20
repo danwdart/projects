@@ -7,7 +7,7 @@ mkShell rec {
         cairo.dev
         expat
         pkg-config
-        xorg.libXdmcp # ???
+        libxdmcp # ???
         zlib.dev
         # krank
         pcre.dev
