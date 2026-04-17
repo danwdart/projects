@@ -45,8 +45,8 @@ instance Symbol (Card ValueUnbounded.Value SuitUnbounded.Suit) where
             if value' > 11 then 1 else 0
         ]
 
-ov ∷ value → suit → Card value suit
-ov = Card
+of' ∷ value → suit → Card value suit
+of' = Card
 
 type CardStd = Card ValueStandard.Value SuitStandard.Suit
 type CardJill = Card ValueJill.Value SuitStandard.Suit
