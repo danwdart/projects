@@ -101,6 +101,24 @@ library
     Value.Class
     Value.Unbounded
 
+executable blackjack
+  import:        shared-properties
+
+  -- deferred-folds is screwy on wasm
+  if arch(wasm32)
+    buildable: False
+  -- idk yet
+  ghc-options: -Wno-unused-packages
+
+  main-is:       blackjack.hs
+  build-depends:
+    , base                    ^>=4.22
+    , cards           ^>=0.2
+    , lens                    ^>=5.3.3
+    , mtl                     ^>=2.3.1
+    , MonadRandom             ^>=0.6.1
+    , perfect-vector-shuffle  ^>=0.1.1.2
+    
 executable bugger
   import:        shared-properties
 
@@ -224,4 +242,4 @@ test-suite cards-test
 -- , cards
 -- , hspec-core ^>=2.11.15
 -- , hspec-expectations ^>=0.8.4
--- , QuickCheck ^>=2.17
+-- , QuickCheck ^>=2.18
