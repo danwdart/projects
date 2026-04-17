@@ -1,3 +1,4 @@
+{-# LANGUAGE OrPatterns #-}
 {-# OPTIONS_GHC -Wno-unused-imports -Wno-unused-top-binds -Wno-x-partial #-}
 
 module Main (main) where
@@ -127,10 +128,7 @@ move state@(hands, _deck, discard, player, _playDirection) = case findIndex (mat
                 ActionCard Reverse _colour -> (hands', deck', discard', player', flipPlayDirection playDirection')
                 ActionCard Skip _colour -> (hands', deck', discard', nextPlayer newState, playDirection')
                 -- @TODO randomness
-                WildCard Wild -> newState
-                WildCard WildShuffleHands -> newState
-                WildCard WildDrawFour -> newState
-                WildCard WildCustomisable -> newState -- TODO customisable rule
+                WildCard (Wild; WildShuffleHands; WildDrawFour; WildCustomisable) -> newState -- TODO customisable rule
             Just winner' -> error $ "Winner: " <> show winner'
     Nothing -> takeCard player state
 
