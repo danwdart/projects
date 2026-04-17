@@ -159,5 +159,8 @@ main = do
             layout_y_axis . laxis_override .= (axis_grid .~ [minY..maxY]) -- . (axis_labels .~ [fmap (\n -> (n, show (round n))) [-10..10]])
             -- layout_y_axis . laxis_generate .= const (autoScaledAxis def (autoSteps 10 [1..10]))
             -- Cairo doesn't like Unicode extended apparently
-            plot (line (prettyPoly defaultPrettyPolyOptions { displayXFn = displayXAscii } $ poly') [line'])
-            plot (points (show d0) (zip [0..] (fromIntegral <$> d0)))
+                
+            plot (fmap (\l -> l & plot_lines_style . line_width .~ 5) $
+                line (prettyPoly defaultPrettyPolyOptions { displayXFn = displayXAscii } $ poly') [line'])
+            plot (fmap (\p -> p & plot_points_style . point_radius .~ 10) $
+                points (show d0) (zip [0..] (fromIntegral <$> d0)))
