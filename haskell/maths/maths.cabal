@@ -431,6 +431,10 @@ executable faro
   import:  shared-properties
   main-is: faro.hs
 
+-- executable finitepiece
+--   import:  shared-properties
+--   main-is: finitepiece.hs
+-- 
 -- ???
 -- executable fixies
 --   import:        shared-properties
@@ -451,14 +455,14 @@ executable frobenius
     , base    ^>=4.22
     , errors  ^>=2.3
     , extra   ^>=1.8
-    , maths   ^>=0.2
+    , maths   ^>=0.2.1
 
-executable funsum
-  import:        shared-properties
-  main-is:       funsum.hs
-  build-depends:
-    , base      ^>=4.22
-    , graphite  ^>=0.10.0.1
+-- executable funsum
+--   import:        shared-properties
+--   main-is:       funsum.hs
+--   build-depends:
+--     , base      ^>=4.22
+--     , graphite  ^>=0.10.0.1
 
 executable gamma
   import:        shared-properties
@@ -480,13 +484,13 @@ executable graphs
   import:  shared-properties
   main-is: graphs.hs
 
-executable gtsp
-  import:  shared-properties
-  main-is: gtsp.hs
+-- executable gtsp
+--   import:  shared-properties
+--   main-is: gtsp.hs
 
-executable guessbivstri
-  import:  shared-properties
-  main-is: guessbivstri.hs
+-- executable guessbivstri
+--   import:  shared-properties
+--   main-is: guessbivstri.hs
 
 executable happy
   import:        shared-properties
@@ -497,13 +501,13 @@ executable happy
     , maths   ^>=0.2.1
 
 -- , graphviz  ^>=2999.20.2
-executable happygraph
-  import:        shared-properties
-  main-is:       happygraph.hs
-  build-depends:
-    , base      ^>=4.22
-    , digits    ^>=0.3.1
-    , graphite  ^>=0.10.0.1
+-- executable happygraph
+--   import:        shared-properties
+--   main-is:       happygraph.hs
+--   build-depends:
+--     , base      ^>=4.22
+--     , digits    ^>=0.3.1
+--     , graphite  ^>=0.10.0.1
 
 executable harmonic-limit
   import:        shared-properties
@@ -512,12 +516,12 @@ executable harmonic-limit
     , base   ^>=4.22
     , extra  ^>=1.8
 
-executable harshad
-  import:        shared-properties
-  main-is:       harshad.hs
-  build-depends:
-    , base   ^>=4.22
-    , digits  ^>=0.3.1
+-- executable harshad
+--   import:        shared-properties
+--   main-is:       harshad.hs
+--   build-depends:
+--     , base   ^>=4.22
+--     , digits  ^>=0.3.1
 
 executable highlycompositebase
   import:        shared-properties
@@ -742,13 +746,13 @@ executable decomp
 
 -- fcv, primes ^>=0.2.1
 
-executable eulerheegner
-  import:  shared-properties
-  main-is: primefun/eulerheegner.hs
-  build-depends:
-    , base   ^>=4.22
-    , numbers  ^>=3000.2.0.2
-    , primes  ^>=0.2.1
+-- executable eulerheegner
+--   import:  shared-properties
+--   main-is: primefun/eulerheegner.hs
+--   build-depends:
+--     , base   ^>=4.22
+--     , numbers  ^>=3000.2.0.2
+--     , primes  ^>=0.2.1
 
 
 executable harmonic-prime-denoms
@@ -821,4 +825,4 @@ test-suite maths-test
 
 -- , hspec-core ^>=2.11.15
 -- , hspec-expectations ^>=0.8.4
--- , QuickCheck ^>=2.17
+-- , QuickCheck ^>=2.18
