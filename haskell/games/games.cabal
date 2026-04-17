@@ -165,6 +165,14 @@ executable snl
 
 -- aeson, protobuf, random, yaml ^>=0.11.11.2
 
+executable shutthebox
+  import:        shared-properties
+  main-is:       shutthebox.hs
+  build-depends:
+    , base        ^>=4.22
+    , containers   ^>=0.8
+    , MonadRandom  ^>=0.6.1
+
 executable sudoku
   import:        shared-properties
   main-is:       sudoku.hs
@@ -196,7 +204,7 @@ test-suite games-test
     , base        ^>=4.22
     , games       ^>=0.2
     , hspec       ^>=2.11.15
-    , QuickCheck  ^>=2.17
+    , QuickCheck  ^>=2.18
 
   build-tool-depends: hspec-discover:hspec-discover
 
