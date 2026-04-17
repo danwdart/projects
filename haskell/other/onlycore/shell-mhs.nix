@@ -3,8 +3,9 @@ with import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/mas
 # needs mkShell in order to use headers/etc. from deps! how do we do that from nix-shell 
 mkShell rec {
     packages = [
-        pkgsMusl.haskell.compiler.ghc914
-        cabal-install
+        microhs
+        haskellPackages.MicroCabal
+        wget # normally included
     ];
     # shellHook = ''
     #     # no krank yet

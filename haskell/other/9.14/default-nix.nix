@@ -45,7 +45,7 @@ let
       # ghc-typelits-presburger = self.callHackage "ghc-typelits-presburger" "0.7.1.0" {};
       # ghc-typelits-natnormalise = self.callHackage "ghc-typelits-natnormalise" "0.7.7" {};
       dbus = lib.doJailbreak super.dbus;
-      other912 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other912" (gitignore ./.) {})));
+      other914 = lib.doBenchmark (lib.doCheck (lib.dontHaddock (self.callCabal2nix "other914" (gitignore ./.) {})));
       bsb-http-chunked = lib.dontCheck super.bsb-http-chunked;
       gloss-rendering = lib.doJailbreak super.gloss-rendering;
       gloss = lib.doJailbreak super.gloss;
@@ -85,7 +85,7 @@ let
   };
   shell = myHaskellPackages.shellFor {
     packages = p: [
-      p.other912
+      p.other914
     ];
     shellHook = ''
       gen-hie > hie.yaml
@@ -97,5 +97,5 @@ let
   in
 {
   inherit shell;
-  other912 = lib.justStaticExecutables myHaskellPackages.other912;
+  other914 = lib.justStaticExecutables myHaskellPackages.other914;
 }
