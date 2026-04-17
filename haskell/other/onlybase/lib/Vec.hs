@@ -12,7 +12,7 @@
 -- | Length Index-Vector
 module Vec (Vec(..), and, head, init, map, length) where
 
-import safe Data.Kind (Constraint, Type)
+import Data.Kind (Constraint, Type)
 import Prelude   hiding (and, elem, filter, head, init, length, map, replicate,
                   tail, take, (++))
 

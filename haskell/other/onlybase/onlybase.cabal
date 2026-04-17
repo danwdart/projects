@@ -53,6 +53,8 @@ common shared-properties-unsafe
 
 common shared-properties-safe
   import:             shared-properties-src
+  if impl(mhs)
+    hs-source-dirs: src
   default-extensions:
     NoGeneralizedNewtypeDeriving
     Safe
@@ -61,61 +63,97 @@ library
   import:             shared-properties-base
   hs-source-dirs:     lib
   default-extensions: NoGeneralizedNewtypeDeriving
-  exposed-modules:
-    Auth
-    BetterBools
-    BreakEverything
-    Cipher
-    Computer
-    Control.Monad.Free
-    Credential
-    Currency
-    Data.DependentLength
-    Data.Digits.Roman
-    Data.DisparateList
-    Data.Either.Collect
-    Data.Email
-    Data.ErrorBars
-    Data.Functor.Multi
-    Data.List.Findable
-    Data.ListIndex
-    Data.Measure
-    Data.Name
-    Data.NotSet
-    Data.Password
-    Data.Set.Ordered
-    Data.Set.Unordered
-    Data.User
-    Disparate
-    DoubleCompose
-    Factorial
-    List
-    MagicString
-    MyLens
-    MyLens.Attribute
-    MyLens.Date
-    MyLens.Event
-    MyLens.Name
-    MyLens.Person
-    MyLens.Title
-    MyLens.Triple
-    MyLens.Tuple
-    OOP
-    Parser
-    Person
-    PersonParser
-    Player
-    PrintAll
-    SafeDiv
-    Secret
-    Seq
-    Sequences
-    Shape
-    StringToInteger
-    TypeError
-    Vec
-    Wave
+  if impl(mhs)
 
+    exposed-modules:
+      Auth
+      BetterBools
+      BreakEverything
+      Credential
+      Currency
+      Data.Digits.Roman
+      Data.Email
+      Data.ErrorBars
+      Data.Functor.Multi
+      Data.List.Findable
+      Data.Measure
+      Data.Name
+      Data.NotSet
+      Data.Password
+      Data.Set.Ordered
+      Data.Set.Unordered
+      Data.User
+      Disparate
+      Factorial
+      List
+      MagicString
+      OOP
+      Parser
+      Person
+      PrintAll
+      SafeDiv
+      Secret
+      Seq
+      Sequences
+      Shape
+      StringToInteger
+      Wave
+  else
+
+    exposed-modules:
+      Auth
+      BetterBools
+      BreakEverything
+      Cipher
+      Computer
+      Control.Monad.Free
+      Credential
+      Currency
+      Data.DependentLength
+      Data.Digits.Roman
+      Data.DisparateList
+      Data.Either.Collect
+      Data.Email
+      Data.ErrorBars
+      Data.Functor.Multi
+      Data.List.Findable
+      Data.ListIndex
+      Data.Measure
+      Data.Name
+      Data.NotSet
+      Data.Password
+      Data.Set.Ordered
+      Data.Set.Unordered
+      Data.User
+      Disparate
+      DoubleCompose
+      Factorial
+      List
+      MagicString
+      MyLens
+      MyLens.Attribute
+      MyLens.Date
+      MyLens.Event
+      MyLens.Name
+      MyLens.Person
+      MyLens.Title
+      MyLens.Triple
+      MyLens.Tuple
+      OOP
+      Parser
+      Person
+      PersonParser
+      Player
+      PrintAll
+      SafeDiv
+      Secret
+      Seq
+      Sequences
+      Shape
+      StringToInteger
+      TypeError
+      Vec
+      Wave
 -- Propagator
 -- Data.Logic.
 executable algsys
@@ -124,6 +162,9 @@ executable algsys
 
 executable applicativedo
   import:  shared-properties-safe
+  if impl(mhs)
+    buildable: False
+  -- No ApplicativeDo?
   main-is: applicativedo.hs
 
 executable args
@@ -342,6 +383,10 @@ executable free-monads
 executable frp
   import:  shared-properties-safe
   main-is: frp.hs
+
+executable funkyinstances
+  import:  shared-properties-safe
+  main-is: funkyinstances.hs
 
 executable gadts
   import:        shared-properties-safe
