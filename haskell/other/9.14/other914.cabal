@@ -408,6 +408,20 @@ executable lenses
 
 -- , time-lens
 
+
+executable lens-field
+  import:        shared-properties-unsafe
+
+  if arch(wasm32)
+    buildable: False
+
+  main-is:       lens-field.hs
+  build-depends:
+    , base        ^>=4.22
+    , containers  ^>=0.8
+    , lens        ^>=5.3.3
+    , time        ^>=1.15
+
 executable linear
   import:        shared-properties-nobase
 
@@ -416,7 +430,7 @@ executable linear
     buildable: False
 
   main-is:       linear.hs
-  build-depends: linear-base ^>=0.6
+  build-depends: linear-base ^>=0.7
 
 executable mdns
   import:        shared-properties-unsafe
@@ -440,6 +454,15 @@ executable mmio
   build-depends:
     , base  ^>=4.22
     , mmap  ^>=0.5.9
+
+-- 
+-- executable monadic-bang
+--   import:        shared-properties-unsafe
+--   ghc-options:   -fplugin=MonadicBang
+--   main-is:       monadic-bang.hs
+--   build-depends:
+--     , base  ^>=4.22
+--     , monadic-bang  ^>=0.2.2.2
 
 executable mongo
   import:        shared-properties-unsafe
@@ -729,7 +752,7 @@ executable wikidata
     , base             ^>=4.22
     , graphql          ^>=1.5
     , http-client      ^>=0.7.18
-    , http-client-tls  ^>=0.3.6.4
+    , http-client-tls  ^>=0.4
     , req              ^>=3.13.4
 
 -- executable xpath
@@ -750,7 +773,7 @@ test-suite test
     , base        ^>=4.22
     , hspec       ^>=2.11.15
     , other914    ^>=0.2
-    , QuickCheck  ^>=2.17
+    , QuickCheck  ^>=2.18
 
   build-tool-depends: hspec-discover:hspec-discover
   other-modules:
