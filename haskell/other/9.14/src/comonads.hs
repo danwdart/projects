@@ -1,3 +1,4 @@
+{-# LANGUAGE OrPatterns #-}
 {-# LANGUAGE OverloadedLists #-}
 {-# OPTIONS_GHC -Wno-unused-top-binds -Wno-name-shadowing -Wno-incomplete-patterns -Wno-unused-matches -Wno-type-defaults -Wno-unused-imports -Wno-x-partial #-}
 
@@ -130,13 +131,12 @@ numLivingNeighbours ∷ Store (Sum Int, Sum Int) Bool → Int
 numLivingNeighbours = getSum . foldMap toCount . experiment neighbourLocations
     where
         toCount ∷ Bool → Sum Int
-        toCount False = Sum 0
-        toCount True  = Sum 1
+        toCount False = 0
+        toCount True  = 1
 
 checkCellAlive ∷ Store (Sum Int, Sum Int) Bool → Bool
 checkCellAlive grid = case (extract grid, numLivingNeighbours grid) of
-    (True, 3) -> True
-    (_, 3)    -> True
+    ((True, 3); (_, 3))  -> True
     _         -> False
 
 step ∷ Store (Sum Int, Sum Int) Bool → Store (Sum Int, Sum Int) Bool
