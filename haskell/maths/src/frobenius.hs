@@ -2,7 +2,7 @@ module Main (main) where
 
 import Control.Error.Util (note)
 import Data.Either
-import Data.Either.Extra
+import Data.Either.Extra (fromEither)
 import Numeric.Frobenius
 import System.Environment
 import Text.Read
