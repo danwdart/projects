@@ -67,6 +67,7 @@ library
   if ((arch(javascript) || arch(wasm32)) || flag(musl))
     build-depends:
       , base    ^>=4.22
+      , containers  ^>=0.8
       , digits  ^>=0.3.1
       , primes  ^>=0.2.1
 
@@ -81,6 +82,7 @@ library
       Numeric.DiffFactor
       Numeric.Napier
       Numeric.Tree
+      Numeric.Words
       NumList
       Period
       Semiprimes
@@ -97,6 +99,7 @@ library
       , base         ^>=4.22
       , Chart        ^>=1.9.5
       , Chart-cairo  ^>=1.9.4.1
+      , containers  ^>=0.8
       , digits       ^>=0.3.1
       , primes       ^>=0.2.1
 
@@ -112,6 +115,7 @@ library
       Numeric.DiffFactor
       Numeric.Napier
       Numeric.Tree
+      Numeric.Words
       NumList
       Period
       Semiprimes
@@ -443,6 +447,14 @@ executable faro
 --   main-is:       fixies.hs
 --   build-depends: base ^>=4.22
 
+executable fixpointwords
+  import:  shared-properties
+  main-is: fixpointwords.hs
+  build-depends:
+    , base    ^>=4.22
+    , containers  ^>=0.8
+    , maths  ^>=0.2.1
+
 executable friendly
   import:        shared-properties
   main-is:       friendly.hs
@@ -732,13 +744,6 @@ executable units
 executable weirdpascal
   import:  shared-properties
   main-is: weirdpascal.hs
-
-executable words
-  import:        shared-properties
-  main-is:       words.hs
-  build-depends:
-    , base        ^>=4.22
-    , containers  ^>=0.8
 
 executable ulam
   import:        shared-properties

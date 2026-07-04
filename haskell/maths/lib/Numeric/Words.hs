@@ -1,14 +1,13 @@
-{-# OPTIONS_GHC -Wno-unused-top-binds -Wno-unused-local-binds -Wno-missing-signatures -Wno-type-defaults -Wno-unused-matches #-}
+{-# LANGUAGE OverloadedLists #-}
 
-module Main (main) where
+-- this is bs it can't do 21
+
+module Numeric.Words where
 
 import Data.Map (Map)
 import Data.Map qualified as M
 import Data.Set (Set)
 import Data.Set qualified as S
-
-main ∷ IO ()
-main = pure ()
 
 data OhOrZero = Oh | Zero deriving stock (Eq)
 data HundredPrefix = A | One | NoPrefix deriving stock (Eq)
@@ -96,7 +95,9 @@ scaledPows sc datas = M.map sl (M.mapKeys (((10 ^ so) *) . ((10 ^ sm) ^)) datas)
     )) miss
     where
         (so, sm, sl, miss) = scaleDetails sc
-unscaledPows list = []
+
+unscaledPows :: Map Int String → Map Integer String
+unscaledPows _list = []
 
 defWords ∷ Map Integer String
 defWords = numToWords (Config Zero One Long)
@@ -115,7 +116,7 @@ basics = M.fromList [
     ]
 
 numToWords ∷ Config → Map Integer String
-numToWords (Config o h s) = let (so, sm, sl, miss) = scaleDetails s in
+numToWords (Config o _h s) = let (_so, _sm, _sl, _miss) = scaleDetails s in
     M.fromList [(0, if o == Oh then "oh" else "zero")] <>
     basics <>
     M.fromList [
