@@ -3,7 +3,7 @@
 
 module Main (main) where
 
-import Data.List.Extra (enumerate)
+-- import Data.Enum
 import Data.Set        (Set)
 -- import Data.Set        qualified as S
 import Data.Vector     (Vector)

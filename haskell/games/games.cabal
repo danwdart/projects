@@ -179,7 +179,6 @@ executable sudoku
   build-depends:
     , base        ^>=4.22
     , containers  ^>=0.8
-    , extra       ^>=1.8
     , games       ^>=0.2
     , vector      ^>=0.13.2
 
