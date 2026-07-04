@@ -4,7 +4,8 @@
 module Main (main) where
 
 import ANSI
-import Data.List.Extra
+import Data.Enum
+import Data.List
 import Data.List.NonEmpty    qualified as LNE
 import Data.Maybe
 -- import           Debug.Trace

@@ -1,7 +1,7 @@
 module Main (main) where
 
+import Data.Enum
 import Data.Foldable
-import Data.List.Extra
 import Ordering
 import Suit.Bounded.Standard
 import Symbol

@@ -9,7 +9,7 @@ import Card
 import Control.Monad.HT           qualified as HT (nest)
 import Control.Monad.Random.Class
 import Data.Bifunctor
-import Data.List.Extra
+import Data.Enum
 import Data.List.Pairs
 import Data.Map                   qualified as M
 import Data.Statistics

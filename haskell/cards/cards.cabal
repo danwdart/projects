@@ -53,7 +53,6 @@ library
     , ansi-terminal  ^>=1.1.2
     , base           ^>=4.22
     , containers     ^>=0.8
-    , extra          ^>=1.8
     , MonadRandom    ^>=0.6.1
     , random         ^>=1.3.1
 
@@ -71,7 +70,6 @@ library
   exposed-modules:
     ANSI
     Card
-    Data.Enum.Extra
     Data.List.Pairs
     Data.Statistics
     Deck
@@ -148,7 +146,6 @@ executable cards
     , base            ^>=4.22
     , cards           ^>=0.2
     , containers      ^>=0.8
-    , extra           ^>=1.8
     , MonadRandom     ^>=0.6.1
     , random-shuffle  ^>=0.0.4
     , utility-ht      ^>=0.0.17.2
@@ -159,7 +156,6 @@ executable demo
   build-depends:
     , base   ^>=4.22
     , cards  ^>=0.2
-    , extra  ^>=1.8
 
 executable ohsol
   import:        shared-properties
@@ -196,7 +192,6 @@ executable faro-shuffles
   build-depends:
     , base   ^>=4.22
     , cards  ^>=0.2
-    , extra  ^>=1.8
 
 executable uno
   import:        shared-properties
@@ -209,7 +204,6 @@ executable uno
   build-depends:
     , base            ^>=4.22
     , cards           ^>=0.2
-    , extra           ^>=1.8
     , random-shuffle  ^>=0.0.4
 
 test-suite cards-test

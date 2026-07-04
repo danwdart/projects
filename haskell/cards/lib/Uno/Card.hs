@@ -3,7 +3,7 @@
 module Uno.Card where
 
 import ANSI
-import Data.List.Extra
+import Data.Enum
 import Data.List.NonEmpty  qualified as LNE
 import System.Console.ANSI qualified as SysConsoleANSI
 import Uno.Action.Bounded  qualified as ActionBounded

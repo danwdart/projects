@@ -3,8 +3,9 @@
 module Main (main) where
 
 import Data.Bifunctor
+import Data.Enum
 import Data.Foldable
-import Data.List.Extra
+import Data.List
 import Deck
 import Ordering
 import Suit.Bounded.Standard  as SuitStandard
