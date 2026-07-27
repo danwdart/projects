@@ -4,26 +4,66 @@ import Control.Monad.Random
 
 main :: IO ()
 main = do
-    let amountWageredEU :: Int = 5
+    putStrLn "== EU =="
+    let amountWageredEU :: Int = 36
+    putStrLn "= Amount wagered:"
+    print amountWageredEU
     wagersEU <- replicateM amountWageredEU $ uniform euOptionsPayouts -- for now one for each
+    putStrLn "= Your wager choices:"
     print wagersEU
+    let meanWinningsOverAllEU = meanWinnings euOptionsPayouts euResults
+    putStrLn "= The mean winnings all over of all options"
+    print meanWinningsOverAllEU
+    putStrLn "= The price of all options"
+    print $ length euOptionsPayouts
+    putStrLn "= The mean profit of all options"
+    print $ meanWinningsOverAllEU - fromIntegral (length euOptionsPayouts)
+    let meanWinningsEU = meanWinnings wagersEU euResults
+    putStrLn "= The mean winnings your choices could have gotten you"
+    print meanWinningsEU
+    putStrLn "= The mean profit your choices could have gotten you"
+    print $ meanWinningsEU - fromIntegral amountWageredEU
     resultEU <- uniform euResults
+    putStrLn "= Your ball result"
     print resultEU
+    putStrLn "= Your winning options"
     print $ showWinningResults wagersEU resultEU
     let totalWinningsEU = calculateWinnings wagersEU resultEU
+    putStrLn "= Your winnings"
     print totalWinningsEU
     let netProfitEU = totalWinningsEU - amountWageredEU
+    putStrLn "= Your net profit"
     print netProfitEU
 
-    let amountWageredUS :: Int = 5
+    putStrLn "== US =="
+    let amountWageredUS :: Int = 36
+    putStrLn "= Amount wagered:"
+    print amountWageredUS
     wagersUS <- replicateM amountWageredUS $ uniform usOptionsPayouts -- for now one for each
+    putStrLn "= Your wager choices:"
     print wagersUS
+    let meanWinningsOverAllUS = meanWinnings usOptionsPayouts usResults
+    putStrLn "= The mean winnings all over of all options"
+    print meanWinningsOverAllUS
+    putStrLn "= The price of all options"
+    print $ length usOptionsPayouts
+    putStrLn "= The mean profit of all options"
+    print $ meanWinningsOverAllUS - fromIntegral (length usOptionsPayouts)
+    let meanWinningsUS = meanWinnings wagersEU usResults
+    putStrLn "= The mean winnings your choices could have gotten you"
+    print meanWinningsUS
+    putStrLn "= The mean profit your choices could have gotten you"
+    print $ meanWinningsUS - fromIntegral amountWageredUS
     resultUS <- uniform usResults
+    putStrLn "= Your ball result"
     print resultUS
+    putStrLn "= Your winning options"
     print $ showWinningResults wagersUS resultUS
     let totalWinningsUS = calculateWinnings wagersUS resultUS
+    putStrLn "= Your winnings"
     print totalWinningsUS
     let netProfitUS = totalWinningsUS - amountWageredUS
+    putStrLn "= Your net profit"
     print netProfitUS
 
 -- Available results
@@ -160,3 +200,9 @@ showWinningResults opts res = filter (\(results, _) -> res `elem` results) opts
 
 calculateWinnings :: [([Result], Payout)] -> Result -> Payout
 calculateWinnings opts res = sum . fmap snd . filter (\(results, _) -> res `elem` results) $ opts
+
+mean :: Fractional a => [a] -> a
+mean xs = sum xs / fromIntegral (length xs)
+
+meanWinnings :: [([Result], Payout)] -> [Result] -> Double
+meanWinnings opts results = mean $ fmap (fromIntegral . calculateWinnings opts) results 
