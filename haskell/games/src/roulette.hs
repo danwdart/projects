@@ -219,7 +219,7 @@ mean :: Fractional a => [a] -> a
 mean xs = sum xs / fromIntegral (length xs)
 
 meanWinnings :: [([Result], Payout)] -> [Result] -> Double
-meanWinnings opts results = traceShow (
+meanWinnings opts results = {- traceShow (
     "Mean winnings",
     (mean $ fmap (fromIntegral . calculateWinnings opts) results) :: Double,
     "Winnings in question",
@@ -227,7 +227,9 @@ meanWinnings opts results = traceShow (
     "Total winnings",
     sum $ fmap (calculateWinnings opts) results :: Int,
     "Number of options of winnings",
-    sum $ fmap (calculateWinnings opts) results :: Int,
+    length $ fmap (calculateWinnings opts) results :: Int,
+    "Average winnings",
+    (fromIntegral $ sum $ fmap (calculateWinnings opts) results :: Double) / (fromIntegral $ length $ fmap (calculateWinnings opts) results :: Double) :: Double,
     "Results in question"
     -- results
-    ) $ mean $ fmap (fromIntegral . calculateWinnings opts) results 
+    ) $ -} mean $ fmap (fromIntegral . calculateWinnings opts) results 
