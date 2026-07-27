@@ -1,11 +1,12 @@
 module Main where
 
 import Control.Monad.Random
+import Debug.Trace
 
 main :: IO ()
 main = do
     putStrLn "== EU =="
-    let amountWageredEU :: Int = 36
+    let amountWageredEU :: Int = 5
     putStrLn "= Amount wagered:"
     print amountWageredEU
     wagersEU <- replicateM amountWageredEU $ uniform euOptionsPayouts -- for now one for each
@@ -36,7 +37,7 @@ main = do
     print netProfitEU
 
     putStrLn "== US =="
-    let amountWageredUS :: Int = 36
+    let amountWageredUS :: Int = 5
     putStrLn "= Amount wagered:"
     print amountWageredUS
     wagersUS <- replicateM amountWageredUS $ uniform usOptionsPayouts -- for now one for each
@@ -49,7 +50,7 @@ main = do
     print $ length usOptionsPayouts
     putStrLn "= The mean profit of all options"
     print $ meanWinningsOverAllUS - fromIntegral (length usOptionsPayouts)
-    let meanWinningsUS = meanWinnings wagersEU usResults
+    let meanWinningsUS = meanWinnings wagersUS usResults
     putStrLn "= The mean winnings your choices could have gotten you"
     print meanWinningsUS
     putStrLn "= The mean profit your choices could have gotten you"
@@ -199,10 +200,34 @@ showWinningResults :: [([Result], Payout)] -> Result -> [([Result], Payout)]
 showWinningResults opts res = filter (\(results, _) -> res `elem` results) opts
 
 calculateWinnings :: [([Result], Payout)] -> Result -> Payout
-calculateWinnings opts res = sum . fmap snd . filter (\(results, _) -> res `elem` results) $ opts
+calculateWinnings opts res = {- traceShow (
+    "Winnings",
+    sum . fmap ((+ 1) . snd) $ showWinningResults opts res,
+    "Winning amounts each",
+    fmap ((+ 1) . snd) $ showWinningResults opts res,
+    "Number of winning results",
+    length (showWinningResults opts res),
+    "Winning results",
+    showWinningResults opts res,
+    "Options",
+    opts,
+    "Result",
+    res
+    ) $ -} sum . fmap ((+ 1) . snd) $ showWinningResults opts res-- the +1 is when you keep what you wagered
 
 mean :: Fractional a => [a] -> a
 mean xs = sum xs / fromIntegral (length xs)
 
 meanWinnings :: [([Result], Payout)] -> [Result] -> Double
-meanWinnings opts results = mean $ fmap (fromIntegral . calculateWinnings opts) results 
+meanWinnings opts results = traceShow (
+    "Mean winnings",
+    (mean $ fmap (fromIntegral . calculateWinnings opts) results) :: Double,
+    "Winnings in question",
+    fmap (calculateWinnings opts) results :: [Int],
+    "Total winnings",
+    sum $ fmap (calculateWinnings opts) results :: Int,
+    "Number of options of winnings",
+    sum $ fmap (calculateWinnings opts) results :: Int,
+    "Results in question"
+    -- results
+    ) $ mean $ fmap (fromIntegral . calculateWinnings opts) results 
