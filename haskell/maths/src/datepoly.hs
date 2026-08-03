@@ -144,8 +144,8 @@ main = do
     let line' :: [(Double, Double)]
         line' = fmap (\val -> (val, evalPolyAt val polyG')) [-0.1, -0.09..7.1]
 
-    let (minY, maxY) = (fromIntegral $ round (minimum vals), fromIntegral $ round (maximum vals)) where
-        vals = fmap snd line'
+    let (minY, maxY) :: (Double, Double) = (fromIntegral @Integer $ round (minimum vals''), fromIntegral @Integer $ round (maximum vals'')) where
+        vals'' = fmap snd line'
 
     -- Let's draw it!
 
