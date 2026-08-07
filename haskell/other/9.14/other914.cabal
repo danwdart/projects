@@ -92,8 +92,8 @@ library
       , either    ^>=5.0.2
       , lattices  ^>=2.2.1
       , text      ^>=2.1.2
-
-  --, ghc-typelits-natnormalise  ^>=0.7.
+      , ghc-typelits-natnormalise  ^>=0.9.6
+      -- , ghc-typelits-presburger ^>=0.7.4.2
   else
     build-depends:
       , base              ^>=4.22
@@ -104,11 +104,11 @@ library
       , template-haskell  >=2.23 && <2.25
       , text              ^>=2.1.2
       , yaml              ^>=0.11.11.2
-
-  --, ghc-typelits-natnormalise  ^>=0.7.10
+      , ghc-typelits-natnormalise  ^>=0.9.6
+      -- , ghc-typelits-presburger ^>=0.7.4.2
   -- , contravariant ^>=1.5.5
   -- for ghc 9.10.1
-  -- , ghc-typelits-presburger
+  -- 
   -- , free -- later
   -- , hxt, hxt-xpath ^>=9.1.2.2
   if (arch(javascript) || arch(wasm32))

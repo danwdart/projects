@@ -1,26 +1,27 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE TypeFamilies      #-}
 {-# LANGUAGE Unsafe            #-}
--- {-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise #-}
-{-# OPTIONS_GHC -Wno-unsafe -Wno-safe -Wwarn #-}
+{-# LANGUAGE RequiredTypeArguments  #-}
+{-# OPTIONS_GHC -fplugin GHC.TypeLits.Normalise -Wno-unsafe -Wno-safe -Wwarn #-}
 
 -- Based on
 module Data.DependentLength where
 
 -- Dependent type based on length
 
--- import Data.Bool
+import Data.Bool
 import Data.Char
-import Data.Foldable
+import Data.Foldable (Foldable)
 import Data.Functor
 import Data.Kind
--- import Data.Eq
--- import Data.Ord
--- import Data.Proxy
+import Data.Eq
+import Data.Ord
+import Data.Proxy
 import Data.Type.Equality
+import Data.Type.Ord
 import GHC.Err
 -- import GHC.IsList
--- import GHC.Num
+import GHC.Num (Num, (*), (+))
 import GHC.TypeNats
 import Text.Show
 import GHC.Stack
@@ -71,10 +72,11 @@ type Password = MinL 16 Char
 
 -- >>> :t 'a' :> 'b' :> 'c' :> 'd' :> 'e' :> 'f' :> 'g' :> 'h' :> 'i' :> 'j' :> 'k' :> 'l' :> 'm' :> 'n' :> 'o' :> 'p' :> Nil :: Password
 
-
 infixr 5 :>
 
 deriving stock instance Show a ⇒ Show (Vec n a)
+deriving stock instance Eq a ⇒ Eq (Vec n a)
+deriving stock instance Ord a ⇒ Ord (Vec n a)
 
 -- >>> fmap succ $ 1 :> 2 :> 3 :> Nil
 -- 2 :> (3 :> (4 :> Nil))
@@ -83,27 +85,34 @@ deriving instance Functor (Vec n)
 
 deriving instance Foldable (Vec n)
 
+data SomeVec a = SomeVec { getVec :: forall n. Vec n a }
+
 {-
-instance IsList (Vec n a) where
-    type Item (Vec n a) = a
+instance IsList (SomeVec a) where
+    type Item (SomeVec a) = a
 
-    fromList :: [a] -> Vec n a
-    fromList [] = Nil
-    fromList (x:xs) = x :> fromList xs
+    fromList :: [a] -> SomeVec a
+    fromList xs = SomeVec (go xs) where
+        go :: [a] -> (forall (n :: Nat). Vec n a)
+        go [] = Nil
+        go (x:xs) = x :> go xs
 
-    toList :: Vec n a -> [a]
-    toList Nil = []
-    toList (a :> as) = a : GHC.IsList.toList as
+    toList :: SomeVec a -> [a]
+    toList v = go (getVec v) where
+        go :: forall a. (forall n. Vec n a) -> [a]
+        go Nil = []
+        go (a :> as) = a : go as
 -}
 
 -- >>> fromList "Hello World!" :: forall n. Vec n Char
 
-{-}
-fromList :: KnownNat n => [a] -> Vec n a -- maybe we want either existent or length passed?
-fromList [] = Nil
-fromList (x:xs) = x :> fromList xs
--}
--- fromNonEmpty -- this is onlybase
+-- fromList :: [a] -> (forall n. KnownNat n => Vec n a) -- maybe we want either existent or length passed?
+-- fromList [] = Nil
+-- fromList (x:xs) = x :> fromList xs
+
+-- fromListL :: KnownNat n => -> [a] -> Vec n a
+-- fromListL _ [] = Nil
+-- fromListL n' (a:as) = a :> fromListL (n' - 1) as  
 
 -- >>> toList $ 1 :> 2 :> 3 :> Nil
 -- [1,2,3]
@@ -183,29 +192,36 @@ init
 -}
 
 {-}
-init :: Vec n a -> Vec (n - 1) a
+init :: forall (n :: Nat) a. Vec n a -> Vec (n - 1) a
 init Nil = error "Wat"
 init (_ :> Nil) = Nil
 init (a :> _ :> Nil) = a :> Nil
 init (a :> as) = a :> init as
+
+initNE :: forall (n :: Nat) a. (1 <= n) => Vec n a -> Vec (n - 1) a
+initNE (_ :> Nil) = Nil
+initNE (a :> _ :> Nil) = a :> Nil
+initNE (a :> as) = a :> init as
 -}
 
 -- >>> headNE (1 :> 2 :> 3 :> Nil)
 -- 1
 --
 
--- last ∷ Vec n a → a
--- last Nil        = error "No last"
--- last (x :> Nil) = x
--- last (_ :> xs)  = head (reverse xs)
+last ∷ Vec n a → a
+last Nil        = error "No last"
+last (x :> Nil) = x
+last (_ :> xs)  = head (reverse xs)
 
 -- >>> last (1 :> 2 :> 3 :> Nil)
 -- 3
 --
 
--- lastNE :: (1 <= n) => Vec n a -> a
--- lastNE (x :> Nil) = x
--- lastNE (_ :> xs) = last xs
+{-
+lastNE :: forall (n :: Nat) a. (1 <= n) => Vec n a -> a
+lastNE (x :> Nil) = x
+lastNE (_ :> xs) = last xs
+-}
 
 {-}
 last
@@ -220,23 +236,22 @@ map ∷ (a → b) → Vec n a → Vec n b
 map _ Nil       = Nil
 map f (x :> xs) = f x :> fmap f xs
 
-{-
-zip :: Vec n a -> Vec m b -> Vec n (a, b)
-zip Nil _ = Nil
-zip _ Nil = Nil
-zip (a :> as) (b :> bs) = (a, b) :> zip as bs
--}
 
--- unzip :: Vec n (a, b) -> (Vec n a, Vec n b)
--- unzip Nil = error "Aaaah!"
--- unzip ((a, b) :> asbs) = undefined
+zip :: Vec n a -> Vec n b -> Vec n (a, b)
+zip Nil _ = Nil
+zip (a :> as) (b :> bs) = (a, b) :> zip as bs
+zip _ Nil = Nil
 
 {-}
+unzip :: Vec n (a, b) -> (Vec n a, Vec n b)
+unzip Nil = error "Aaaah!"
+unzip ((a, b) :> asbs) = undefined
+-}
+
 zipWith :: (a -> b -> c) -> Vec n a -> Vec n b -> Vec n c
 zipWith _ Nil _ = Nil
-zipWith _ _ Nil = Nil
 zipWith f (a :> as) (b :> bs) = f a b :> zipWith f as bs
--}
+zipWith _ _ Nil = Nil
 
 {-}
 zip
@@ -258,14 +273,13 @@ reverseOld ∷ Vec n a → Vec n a
 reverseOld Nil       = Nil
 reverseOld (x :> xs) = reverseOld xs `snoc` x
 
-{-}
 reverse :: Vec n a -> Vec n a
-reverse = go Nil ys
+reverse xs' = go Nil xs'
     where
+        -- needs NN for m + p
         go :: Vec m a -> Vec p a -> Vec (m + p) a
         go acc Nil = acc
-        go acc (x :> xs) = go (x :> acc) xs
--}
+        go acc (x :> xs'') = go (x :> acc) xs''
 
 {-
 mapAccumL
@@ -277,11 +291,7 @@ null
 
 -- BEGIN Foldable
 
-{-}
 
-toList :: Vec n a -> [a]
-toList Nil = []
-toList (a :> as) = a : toList as
 
 
 -- >>> lengthCalc (1 :> 2 :> 3 :> Nil)
@@ -309,7 +319,7 @@ maximum (a :> as) = max a (maximum as)
 minimum :: (Ord a) => Vec n a -> a
 minimum Nil = error "You shouldn't be here."
 minimum (a :> Nil) = a
-minimum (a :> as) = min a (minimum
+minimum (a :> as) = min a (minimum as)
 
 -- >>> sumNaive $ 1 :> 2 :> 3 :> 4 :> Nil
 -- 10
@@ -326,7 +336,7 @@ sum = go 0
     where
         go :: (Num a) => a -> Vec n a -> a
         go acc Nil = acc
-        go acc (a :> as') = go (acc + a) as'
+        go acc (a :> as') = go (acc GHC.Num.+ a) as'
 
 -- >>> productNaive $ 1 :> 2 :> 3 :> 4 :> Nil
 -- 24
@@ -343,23 +353,28 @@ product = go 1
     where
         go :: (Num a) => a -> Vec n a -> a
         go acc Nil = acc
-        go acc (a :> as') = go (acc * a) as'
--}
+        go acc (a :> as') = go (acc GHC.Num.* a) as'
 -- END Foldable
 
+{-}
+replicate :: forall (n :: Nat) a. n -> a -> Vec n a
+replicate 0 _ = Nil
+replicate n' x = x :> replicate (n' - 1) x
+-}
 
--- replicate :: Natural -> a -> Vec n a
--- replicate 0 _ = Nil
--- replicate n x = x :> replicate (n - 1) x
+-- needs NN for n + m
+(++) :: Vec n a -> Vec m a -> Vec (n + m) a
+Nil ++ v = v
+(x :> xs) ++ v = x :> (xs ++ v)
 
--- (++) :: Vec n a -> Vec m a -> Vec (n + m) a
--- Nil ++ v = v
--- (x :> xs) ++ v = x :> (xs ++ v)
+-- instance Semigroup (SomeVec a) where
 
--- take :: n' -> Vec n a -> Vec (min n' n) a
--- take 0 _ = Nil
--- take _ Nil = Nil
--- take n' (x :> xs) = x :> take (n' - 1) xs
+{-}
+take :: forall (n :: Nat) (n' :: Nat) a. (n' <= n) => forall  -> Vec n a -> Vec (Min n' n) a
+take (natVal -> 0) _ = Nil
+take _ Nil = Nil
+take n'' (x :> xs) = x :> take (n'' - 1) xs
+-}
 
 {-}
 drop
@@ -383,7 +398,8 @@ dropWhileEnd
 -}
 
 -- wants existential?
--- filter :: (m <= n) => (a -> Bool) -> Vec n a -> Vec m a
+
+-- filter :: forall (n :: Nat) (m :: Nat) a. (m <= n) => (a -> Bool) -> Vec n a -> Vec m a
 -- filter _ Nil = Nil
 -- filter p (x :> xs) | p x = x :> filter p xs
 --                    | otherwise = filter p xs
@@ -396,7 +412,7 @@ delete
 -}
 
 {-}
-union :: (n <= nm, m <= nm) => Vec n a -> Vec m a -> Vec nm a
+union :: forall n m nm a. ((n :: Nat) <= (nm :: Nat), (m :: Nat) <= (nm :: Nat)) => Vec n a -> Vec m a -> Vec nm a
 union xs Nil = xs
 union Nil ys = ys
 union (x :> xs) ys | x `elem` ys = union xs ys
@@ -412,7 +428,7 @@ intersect
 (!!) ∷ HasCallStack => Vec n a → Nat → a -- Get the nat
 Nil !! _       = error "Nah"
 (x :> _) !! 0  = x
-(_ :> xs) !! n = head xs
+(_ :> xs) !! _ = head xs
 
 -- >>> 1 :> 2 :> Nil !!! 1
 -- <interactive>:32039:16-18: error:
@@ -441,11 +457,9 @@ findIndices
 -- these need custom GADTs to encode the right conditions:
 -}
 
-{-}
-span :: (a -> Bool) -> Vec (m + n) a -> (Vec m a, Vec n a)
-span p Nil = (Nil, Nil)
-span p (x :> xs) = _
--}
+-- span :: (a -> Bool) -> Vec (m + n) a -> (Vec m a, Vec n a)
+-- span p Nil = (Nil, Nil)
+-- span p (x :> xs) = _
 
 {-}
 break
