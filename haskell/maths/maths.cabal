@@ -35,7 +35,7 @@ common shared-properties
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
   ghc-options:
-    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -O3 -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -54,7 +54,7 @@ library
   default-language:   GHC2024
   default-extensions: UnicodeSyntax
   ghc-options:
-    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -O3 -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -392,8 +392,6 @@ executable compression
 
 executable datepoly
   import:  shared-properties
-  if ((arch(javascript) || arch(wasm32)) || flag(musl))
-    buildable: False
   main-is: datepoly.hs
   build-depends:
     , base   ^>=4.22
