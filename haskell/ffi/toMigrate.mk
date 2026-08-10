@@ -1,8 +1,8 @@
 CC = gcc
-CFLAGS = -Wall -Werror
+CFLAGS = -O3 -Wall -Werror -Wextra -Wpedantic
 
 GHC = ghc
-GHCFLAGS = -Wall -Werror -no-keep-o-files -no-keep-hi-files # confusion about main otherwise
+GHCFLAGS = -O3 -Wall -Werror -Wextra -Wpedantic -no-keep-o-files -no-keep-hi-files # confusion about main otherwise
 
 .PHONY: all dynamic_libs dynamic static_libs static clean
 

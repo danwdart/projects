@@ -1,5 +1,5 @@
 GHC = ghcjs
-GHCFLAGS = -Wall -Werror -no-keep-o-files -no-keep-hi-files -DGHCJS_NODE # confusion about main otherwise
+GHCFLAGS = -O3 -Wall -Werror -Wextra -Wpedantic -no-keep-o-files -no-keep-hi-files -DGHCJS_NODE # confusion about main otherwise
 GHCFLAGS_LIB = ${GHCFLAGS} -no-hs-main
 
 .PHONY: all

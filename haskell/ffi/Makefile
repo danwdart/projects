@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror
+CFLAGS = -O3 -Wall -Werror -Wextra -Wpedantic
 
 CFLAGS_dlctohs = -DDYNAMIC_LIBRARY -ldl
 CFLAGS_dlctohs_withhelper = -DDYNAMIC_LIBRARY -ldl -DHELPER_MODULE
@@ -13,7 +13,7 @@ CFLAGS_ffihstoc_object =
 CFLAGS_ffihstoc_static_object =
 
 GHC = ghc
-GHCFLAGS = -Wall -Werror -no-keep-o-files -no-keep-hi-files # confusion about main otherwise
+GHCFLAGS = -O3 -Wall -Werror -Wextra -Wpedantic -no-keep-o-files -no-keep-hi-files # confusion about main otherwise
 
 GHCFLAGS_dlctohs_library = -shared -optl-shared -dynamic -flink-rts # dynamic not ideal
 GHCFLAGS_dlctohs_library_withhelper = -shared -optl-shared -dynamic -flink-rts -DMODULE=libHSDemo_withhelper # dynamic not ideal

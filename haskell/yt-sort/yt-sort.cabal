@@ -26,7 +26,7 @@ common shared-properties
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
   ghc-options:
-    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -O3 -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -49,7 +49,7 @@ common shared-properties
 --     , lens                 ^>=5.3.3
 -- 
 --   ghc-options:
---     -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+--     -O3 -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
 --     -Wno-missing-import-lists -Wno-missing-export-lists
 --     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
 --     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -79,7 +79,7 @@ executable yt-sort
 --   if !arch(wasm32)
 --     ghc-options: -threaded -rtsopts -with-rtsopts=-N 
 --   ghc-options:
---     -Wall -Werror -haddock 
+--     -O3 -Wall -Werror -haddock 
 --     -Weverything -Wno-unsafe -Wno-safe -Wno-missing-import-lists
 --     -Wno-missing-export-lists -Wno-implicit-prelude
 --     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
