@@ -1,6 +1,4 @@
 cabal-version:      3.14
-
--- Newer versions complain
 name:               other914
 version:            0.2.0.0
 
@@ -34,7 +32,7 @@ common shared-properties-base
 common shared-properties-lib
   import:             shared-properties-base
   ghc-options:
-    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -O3 -Werror -Wall -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
     -Wno-missing-import-lists -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
@@ -52,7 +50,7 @@ common shared-properties-unsafe
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
   ghc-options:
-    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -O3 -Werror -Wall -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
     -Wno-missing-import-lists -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
@@ -71,7 +69,7 @@ common shared-properties-safe
 common shared-properties-nobase
   import:      shared-properties-base
   ghc-options:
-    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -O3 -Werror -Wall -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
     -Wno-missing-import-lists -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations

@@ -1,6 +1,4 @@
 cabal-version:      3.14
-
--- Newer versions complain
 name:               onlybase
 version:            0.2.0.0
 
@@ -31,7 +29,7 @@ common shared-properties-base
   default-extensions: UnicodeSyntax
   ghcjs-options:      -dedupe
   ghc-options:
-    -Weverything -Wno-implicit-prelude -Wno-missing-deriving-strategies
+    -O3 -Werror -Wall -Weverything -Wno-implicit-prelude -Wno-missing-deriving-strategies
     -Wno-missing-export-lists -Wno-missing-import-lists
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
     -Wno-all-missed-specialisations -Wno-missed-specialisations

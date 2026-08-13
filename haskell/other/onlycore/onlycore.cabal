@@ -1,6 +1,4 @@
 cabal-version:      3.14
-
--- Newer versions complain
 name:               onlycore
 version:            0.2.0.0
 
@@ -32,13 +30,13 @@ common shared-properties-base
 common shared-properties-lib
   import:             shared-properties-base
   ghc-options:
-    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -O3 -Werror -Wall -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
     -Wno-missing-import-lists -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
     -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-unrecognised-warning-flags -Werror -haddock
+    -Wno-unrecognised-warning-flags -haddock
 
   build-depends:      base ^>=4.22
   default-extensions: NoGeneralizedNewtypeDeriving
@@ -50,13 +48,13 @@ common shared-properties-unsafe
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
   ghc-options:
-    -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
+    -O3 -Werror -Wall -Weverything -Wno-implicit-prelude -Wno-inferred-safe-imports
     -Wno-missing-deriving-strategies -Wno-missing-export-lists
     -Wno-missing-import-lists -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-all-missed-specialisations
     -Wno-missed-specialisations -Wno-missing-role-annotations
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
-    -Wno-unrecognised-warning-flags -Werror -haddock
+    -Wno-unrecognised-warning-flags -haddock
 
   build-depends: base ^>=4.22
 
