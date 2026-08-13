@@ -1,6 +1,4 @@
 cabal-version:      3.14
-
--- Newer versions complain
 name:               games
 version:            0.2.0.0
 homepage:           https://github.com/emberdart/projects#readme
@@ -31,7 +29,7 @@ library
     Propagator
 
   ghc-options:
-    -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
+    -O3 -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -54,7 +52,7 @@ common shared-properties
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
   ghc-options:
-    -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
+    -O3 -Wall -Werror -haddock -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
